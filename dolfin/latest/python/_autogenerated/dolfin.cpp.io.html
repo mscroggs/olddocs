@@ -1,0 +1,414 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>dolfin.cpp.io &mdash; DOLFIN  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="dolfin.cpp.log" href="dolfin.cpp.log.html" />
+    <link rel="prev" title="dolfin.cpp.graph" href="dolfin.cpp.graph.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../using.html">Using DOLFIN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../demos.html">Demos</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">Python API reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.adaptivity.html">dolfin.cpp.adaptivity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.ale.html">dolfin.cpp.ale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.common.html">dolfin.cpp.common</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.fem.html">dolfin.cpp.fem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.function.html">dolfin.cpp.function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.generation.html">dolfin.cpp.generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.geometry.html">dolfin.cpp.geometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.graph.html">dolfin.cpp.graph</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">dolfin.cpp.io</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.log.html">dolfin.cpp.log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.math.html">dolfin.cpp.math</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.mesh.html">dolfin.cpp.mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.multistage.html">dolfin.cpp.multistage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.parameter.html">dolfin.cpp.parameter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.refinement.html">dolfin.cpp.refinement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.common.html">dolfin.common</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.fem.html">dolfin.fem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.function.html">dolfin.function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.io.html">dolfin.io</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.jit.html">dolfin.jit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.la.html">dolfin.la</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.multistage.html">dolfin.multistage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.parameter.html">dolfin.parameter</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../developer.html">Developer resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ChangeLog.html">Change log</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DOLFIN</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../api.html">Python API reference</a> &raquo;</li>
+        
+      <li>dolfin.cpp.io</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/_autogenerated/dolfin.cpp.io.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-dolfin.cpp.io">
+<span id="dolfin-cpp-io"></span><h1>dolfin.cpp.io<a class="headerlink" href="#module-dolfin.cpp.io" title="Permalink to this headline">¶</a></h1>
+<p>I/O module</p>
+<p class="rubric">Classes</p>
+<table class="longtable docutils align-center">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">File</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">HDF5Attribute</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dolfin.cpp.io.HDF5File" title="dolfin.cpp.io.HDF5File"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HDF5File</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">VTKFile</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">X3DOM</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">X3DOMParameters</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dolfin.cpp.io.XDMFFile" title="dolfin.cpp.io.XDMFFile"><code class="xref py py-obj docutils literal notranslate"><span class="pre">XDMFFile</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="class">
+<dt id="dolfin.cpp.io.HDF5File">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.io.</code><code class="descname">HDF5File</code><a class="headerlink" href="#dolfin.cpp.io.HDF5File" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dolfin.cpp.common.html#dolfin.cpp.common.Variable" title="dolfin.cpp.common.Variable"><code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.cpp.common.Variable</span></code></a></p>
+<dl class="method">
+<dt id="dolfin.cpp.io.HDF5File.attributes">
+<code class="descname">attributes</code><span class="sig-paren">(</span><em>self: dolfin.cpp.io.HDF5File</em>, <em>arg0: str</em><span class="sig-paren">)</span> &#x2192; dolfin.cpp.io.HDF5Attribute<a class="headerlink" href="#dolfin.cpp.io.HDF5File.attributes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.io.HDF5File.close">
+<code class="descname">close</code><span class="sig-paren">(</span><em>self: dolfin.cpp.io.HDF5File</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.io.HDF5File.close" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.io.HDF5File.flush">
+<code class="descname">flush</code><span class="sig-paren">(</span><em>self: dolfin.cpp.io.HDF5File</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.io.HDF5File.flush" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.io.HDF5File.get_mpi_atomicity">
+<code class="descname">get_mpi_atomicity</code><span class="sig-paren">(</span><em>self: dolfin.cpp.io.HDF5File</em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#dolfin.cpp.io.HDF5File.get_mpi_atomicity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.io.HDF5File.has_dataset">
+<code class="descname">has_dataset</code><span class="sig-paren">(</span><em>self: dolfin.cpp.io.HDF5File</em>, <em>arg0: str</em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#dolfin.cpp.io.HDF5File.has_dataset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.io.HDF5File.read">
+<code class="descname">read</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.io.HDF5File.read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li><p>read(self: dolfin.cpp.io.HDF5File, arg0: dolfin.cpp.mesh.Mesh, arg1: str, arg2: bool) -&gt; None</p></li>
+<li><p>read(self: dolfin.cpp.io.HDF5File, mvc: dolfin.cpp.mesh.MeshValueCollection_bool, name: str) -&gt; None</p></li>
+<li><p>read(self: dolfin.cpp.io.HDF5File, mvc: dolfin.cpp.mesh.MeshValueCollection_sizet, name: str) -&gt; None</p></li>
+<li><p>read(self: dolfin.cpp.io.HDF5File, mvc: dolfin.cpp.mesh.MeshValueCollection_double, name: str) -&gt; None</p></li>
+<li><p>read(self: dolfin.cpp.io.HDF5File, meshfunction: dolfin.cpp.mesh.MeshFunctionBool, name: str) -&gt; None</p></li>
+<li><p>read(self: dolfin.cpp.io.HDF5File, meshfunction: dolfin.cpp.mesh.MeshFunctionSizet, name: str) -&gt; None</p></li>
+<li><p>read(self: dolfin.cpp.io.HDF5File, meshfunction: dolfin.cpp.mesh.MeshFunctionInt, name: str) -&gt; None</p></li>
+<li><p>read(self: dolfin.cpp.io.HDF5File, meshfunction: dolfin.cpp.mesh.MeshFunctionDouble, name: str) -&gt; None</p></li>
+<li><p>read(self: dolfin.cpp.io.HDF5File, vector: dolfin::GenericVector, name: str, use_partitioning: bool) -&gt; None</p></li>
+<li><p>read(self: dolfin.cpp.io.HDF5File, u: dolfin.cpp.function.Function, name: str) -&gt; None</p></li>
+<li><p>read(self: dolfin.cpp.io.HDF5File, u: object, name: str) -&gt; None</p></li>
+</ol>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.io.HDF5File.set_mpi_atomicity">
+<code class="descname">set_mpi_atomicity</code><span class="sig-paren">(</span><em>self: dolfin.cpp.io.HDF5File</em>, <em>arg0: bool</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.io.HDF5File.set_mpi_atomicity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.io.HDF5File.write">
+<code class="descname">write</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.io.HDF5File.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li><p>write(self: dolfin.cpp.io.HDF5File, arg0: dolfin.cpp.mesh.Mesh, arg1: str) -&gt; None</p></li>
+<li><p>write(self: dolfin.cpp.io.HDF5File, mvc: dolfin.cpp.mesh.MeshValueCollection_bool, name: str) -&gt; None</p></li>
+<li><p>write(self: dolfin.cpp.io.HDF5File, mvc: dolfin.cpp.mesh.MeshValueCollection_sizet, name: str) -&gt; None</p></li>
+<li><p>write(self: dolfin.cpp.io.HDF5File, mvc: dolfin.cpp.mesh.MeshValueCollection_double, name: str) -&gt; None</p></li>
+<li><p>write(self: dolfin.cpp.io.HDF5File, meshfunction: dolfin.cpp.mesh.MeshFunctionBool, name: str) -&gt; None</p></li>
+<li><p>write(self: dolfin.cpp.io.HDF5File, meshfunction: dolfin.cpp.mesh.MeshFunctionSizet, name: str) -&gt; None</p></li>
+<li><p>write(self: dolfin.cpp.io.HDF5File, meshfunction: dolfin.cpp.mesh.MeshFunctionInt, name: str) -&gt; None</p></li>
+<li><p>write(self: dolfin.cpp.io.HDF5File, meshfunction: dolfin.cpp.mesh.MeshFunctionDouble, name: str) -&gt; None</p></li>
+<li><p>write(self: dolfin.cpp.io.HDF5File, vector: dolfin::GenericVector, name: str) -&gt; None</p></li>
+<li><p>write(self: dolfin.cpp.io.HDF5File, u: dolfin.cpp.function.Function, name: str) -&gt; None</p></li>
+<li><p>write(self: dolfin.cpp.io.HDF5File, u: dolfin.cpp.function.Function, name: str, t: float) -&gt; None</p></li>
+<li><p>write(self: dolfin.cpp.io.HDF5File, u: object, name: str) -&gt; None</p></li>
+<li><p>write(self: dolfin.cpp.io.HDF5File, u: object, name: str, t: float) -&gt; None</p></li>
+</ol>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.io.XDMFFile">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.io.</code><code class="descname">XDMFFile</code><a class="headerlink" href="#dolfin.cpp.io.XDMFFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dolfin.cpp.common.html#dolfin.cpp.common.Variable" title="dolfin.cpp.common.Variable"><code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.cpp.common.Variable</span></code></a></p>
+<dl class="method">
+<dt id="dolfin.cpp.io.XDMFFile.close">
+<code class="descname">close</code><span class="sig-paren">(</span><em>self: dolfin.cpp.io.XDMFFile</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.io.XDMFFile.close" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.io.XDMFFile.read">
+<code class="descname">read</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.io.XDMFFile.read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li><p>read(self: dolfin.cpp.io.XDMFFile, arg0: dolfin.cpp.mesh.Mesh) -&gt; None</p></li>
+<li><p>read(self: dolfin.cpp.io.XDMFFile, mf: dolfin.cpp.mesh.MeshFunctionBool, name: str=’‘) -&gt; None</p></li>
+<li><p>read(self: dolfin.cpp.io.XDMFFile, mf: dolfin.cpp.mesh.MeshFunctionSizet, name: str=’‘) -&gt; None</p></li>
+<li><p>read(self: dolfin.cpp.io.XDMFFile, mf: dolfin.cpp.mesh.MeshFunctionInt, name: str=’‘) -&gt; None</p></li>
+<li><p>read(self: dolfin.cpp.io.XDMFFile, mf: dolfin.cpp.mesh.MeshFunctionDouble, name: str=’‘) -&gt; None</p></li>
+<li><p>read(self: dolfin.cpp.io.XDMFFile, mvc: dolfin.cpp.mesh.MeshValueCollection_bool, name: str=’‘) -&gt; None</p></li>
+<li><p>read(self: dolfin.cpp.io.XDMFFile, mvc: dolfin.cpp.mesh.MeshValueCollection_sizet, name: str=’‘) -&gt; None</p></li>
+<li><p>read(self: dolfin.cpp.io.XDMFFile, mvc: dolfin.cpp.mesh.MeshValueCollection_int, name: str=’‘) -&gt; None</p></li>
+<li><p>read(self: dolfin.cpp.io.XDMFFile, mvc: dolfin.cpp.mesh.MeshValueCollection_double, name: str=’‘) -&gt; None</p></li>
+</ol>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.io.XDMFFile.read_checkpoint">
+<code class="descname">read_checkpoint</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.io.XDMFFile.read_checkpoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li><p>read_checkpoint(self: dolfin.cpp.io.XDMFFile, u: dolfin.cpp.function.Function, name: str, counter: int=-1) -&gt; None</p></li>
+<li><p>read_checkpoint(self: dolfin.cpp.io.XDMFFile, u: object, name: str, counter: int=-1) -&gt; None</p></li>
+</ol>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.io.XDMFFile.write">
+<code class="descname">write</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.io.XDMFFile.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li><p>write(self: dolfin.cpp.io.XDMFFile, u: dolfin.cpp.function.Function, encoding: dolfin.cpp.io.XDMFFile.Encoding=Encoding.HDF5) -&gt; None</p></li>
+<li><p>write(self: dolfin.cpp.io.XDMFFile, u: dolfin.cpp.function.Function, t: float, encoding: dolfin.cpp.io.XDMFFile.Encoding=Encoding.HDF5) -&gt; None</p></li>
+<li><p>write(self: dolfin.cpp.io.XDMFFile, mesh: dolfin.cpp.mesh.Mesh, encoding: dolfin.cpp.io.XDMFFile.Encoding=Encoding.HDF5) -&gt; None</p></li>
+<li><p>write(self: dolfin.cpp.io.XDMFFile, mvc: dolfin.cpp.mesh.MeshFunctionBool, encoding: dolfin.cpp.io.XDMFFile.Encoding=Encoding.HDF5) -&gt; None</p></li>
+<li><p>write(self: dolfin.cpp.io.XDMFFile, mvc: dolfin.cpp.mesh.MeshFunctionSizet, encoding: dolfin.cpp.io.XDMFFile.Encoding=Encoding.HDF5) -&gt; None</p></li>
+<li><p>write(self: dolfin.cpp.io.XDMFFile, mvc: dolfin.cpp.mesh.MeshFunctionInt, encoding: dolfin.cpp.io.XDMFFile.Encoding=Encoding.HDF5) -&gt; None</p></li>
+<li><p>write(self: dolfin.cpp.io.XDMFFile, mvc: dolfin.cpp.mesh.MeshFunctionDouble, encoding: dolfin.cpp.io.XDMFFile.Encoding=Encoding.HDF5) -&gt; None</p></li>
+<li><p>write(self: dolfin.cpp.io.XDMFFile, mvc: dolfin.cpp.mesh.MeshValueCollection_bool, encoding: dolfin.cpp.io.XDMFFile.Encoding=Encoding.HDF5) -&gt; None</p></li>
+<li><p>write(self: dolfin.cpp.io.XDMFFile, mvc: dolfin.cpp.mesh.MeshValueCollection_sizet, encoding: dolfin.cpp.io.XDMFFile.Encoding=Encoding.HDF5) -&gt; None</p></li>
+<li><p>write(self: dolfin.cpp.io.XDMFFile, mvc: dolfin.cpp.mesh.MeshValueCollection_int, encoding: dolfin.cpp.io.XDMFFile.Encoding=Encoding.HDF5) -&gt; None</p></li>
+<li><p>write(self: dolfin.cpp.io.XDMFFile, mvc: dolfin.cpp.mesh.MeshValueCollection_double, encoding: dolfin.cpp.io.XDMFFile.Encoding=Encoding.HDF5) -&gt; None</p></li>
+<li><p>write(self: dolfin.cpp.io.XDMFFile, points: list, encoding: dolfin.cpp.io.XDMFFile.Encoding=Encoding.HDF5) -&gt; None</p></li>
+<li><p>write(self: dolfin.cpp.io.XDMFFile, points: list, values: List[float], encoding: dolfin.cpp.io.XDMFFile.Encoding=Encoding.HDF5) -&gt; None</p></li>
+<li><p>write(self: dolfin.cpp.io.XDMFFile, u: object, encoding: dolfin.cpp.io.XDMFFile.Encoding=Encoding.HDF5) -&gt; None</p></li>
+<li><p>write(self: dolfin.cpp.io.XDMFFile, u: object, t: float, encoding: dolfin.cpp.io.XDMFFile.Encoding=Encoding.HDF5) -&gt; None</p></li>
+</ol>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.io.XDMFFile.write_checkpoint">
+<code class="descname">write_checkpoint</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.io.XDMFFile.write_checkpoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li><p>write_checkpoint(self: dolfin.cpp.io.XDMFFile, u: dolfin.cpp.function.Function, function_name: str, time_step: float=0.0, encoding: dolfin.cpp.io.XDMFFile.Encoding=Encoding.HDF5, append: bool=False) -&gt; None</p></li>
+<li><p>write_checkpoint(self: dolfin.cpp.io.XDMFFile, u: object, function_name: str, time_step: float=0.0, encoding: dolfin.cpp.io.XDMFFile.Encoding=Encoding.HDF5, append: bool=False) -&gt; None</p></li>
+</ol>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="dolfin.cpp.log.html" class="btn btn-neutral float-right" title="dolfin.cpp.log" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="dolfin.cpp.graph.html" class="btn btn-neutral float-left" title="dolfin.cpp.graph" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, FEniCS Project
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

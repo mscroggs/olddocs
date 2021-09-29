@@ -1,0 +1,5 @@
+<map id="dolfin::Ifpack2Preconditioner" name="dolfin::Ifpack2Preconditioner">
+<area shape="rect" id="node2" href="$da/d46/classdolfin_1_1TrilinosPreconditioner.html" title="This class provides a common base for Trilinos preconditioners. " alt="" coords="5,95,212,121"/>
+<area shape="rect" id="node3" href="$d8/df0/classdolfin_1_1Variable.html" title="Common base class for DOLFIN variables. " alt="" coords="236,95,355,121"/>
+<area shape="rect" id="node4" href="$da/d06/classdolfin_1_1Parameters.html" title="dolfin::Parameters" alt="" coords="225,5,365,32"/>
+</map>

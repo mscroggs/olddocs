@@ -1,0 +1,72 @@
+dolfin.cpp.mesh
+===============
+
+.. automodule:: dolfin.cpp.mesh
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      cells
+      edges
+      entities
+      faces
+      facets
+      make_dolfin_subdomain
+      vertices
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      BoundaryMesh
+      Cell
+      CellIterator
+      CellType
+      DomainBoundary
+      Edge
+      EdgeIterator
+      Face
+      FaceIterator
+      Facet
+      FacetIterator
+      Mesh
+      MeshColoring
+      MeshConnectivity
+      MeshData
+      MeshDomains
+      MeshEditor
+      MeshEntity
+      MeshEntityIterator
+      MeshFunctionBool
+      MeshFunctionDouble
+      MeshFunctionInt
+      MeshFunctionSizet
+      MeshGeometry
+      MeshPartitioning
+      MeshQuality
+      MeshTopology
+      MeshTransformation
+      MeshValueCollection_bool
+      MeshValueCollection_double
+      MeshValueCollection_int
+      MeshValueCollection_sizet
+      MultiMesh
+      PeriodicBoundaryComputation
+      SubDomain
+      SubMesh
+      SubsetIterator
+      Vertex
+      VertexIterator
+   
+   
+
+   
+   
+   

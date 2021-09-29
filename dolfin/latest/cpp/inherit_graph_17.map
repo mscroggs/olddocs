@@ -1,0 +1,9 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$d4/d11/classdolfin_1_1CellType.html" title="dolfin::CellType" alt="" coords="5,132,127,159"/>
+<area shape="rect" id="node2" href="$de/d50/classdolfin_1_1HexahedronCell.html" title="This class implements functionality for hexahedral cell meshes. " alt="" coords="177,5,348,32"/>
+<area shape="rect" id="node3" href="$dc/d8c/classdolfin_1_1IntervalCell.html" title="This class implements functionality for interval cell meshes. " alt="" coords="192,56,333,83"/>
+<area shape="rect" id="node4" href="$da/dce/classdolfin_1_1PointCell.html" title="This class implements functionality for point cell meshes. " alt="" coords="201,107,325,133"/>
+<area shape="rect" id="node5" href="$da/d42/classdolfin_1_1QuadrilateralCell.html" title="This class implements functionality for quadrilaterial cells. " alt="" coords="175,157,351,184"/>
+<area shape="rect" id="node6" href="$d6/dd2/classdolfin_1_1TetrahedronCell.html" title="This class implements functionality for tetrahedral cell meshes. " alt="" coords="179,208,347,235"/>
+<area shape="rect" id="node7" href="$d5/d65/classdolfin_1_1TriangleCell.html" title="This class implements functionality for triangular meshes. " alt="" coords="191,259,334,285"/>
+</map>

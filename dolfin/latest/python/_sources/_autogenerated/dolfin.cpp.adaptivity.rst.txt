@@ -1,0 +1,27 @@
+dolfin.cpp.adaptivity
+=====================
+
+.. automodule:: dolfin.cpp.adaptivity
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      AdaptiveLinearVariationalSolver
+      AdaptiveNonlinearVariationalSolver
+      ErrorControl
+      GenericAdaptiveVariationalSolver
+      GoalFunctional
+      TimeSeries
+   
+   
+
+   
+   
+   

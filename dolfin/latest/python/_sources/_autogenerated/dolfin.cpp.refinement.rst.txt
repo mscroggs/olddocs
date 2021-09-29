@@ -1,0 +1,23 @@
+dolfin.cpp.refinement
+=====================
+
+.. automodule:: dolfin.cpp.refinement
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      p_refine
+      refine
+   
+   
+
+   
+   
+   
+
+   
+   
+   

@@ -1,0 +1,382 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Poisson equation with pure Neumann boundary conditions &mdash; DOLFIN  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Interpolation from a non-matching mesh" href="../nonmatching-interpolation/demo_nonmatching-interpolation.py.html" />
+    <link rel="prev" title="Singular Poisson" href="../singular-poisson/demo_singular-poisson.py.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../using.html">Using DOLFIN</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../demos.html">Demos</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../demos.html#introductory-demos">Introductory demos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../demos.html#more-advanced-demos">More advanced demos</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../demos.html#all-documented-demos">All documented demos</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../poisson/demo_poisson.py.html">Poisson equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../eigenvalue/demo_eigenvalue.py.html">A simple eigenvalue solver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../built-in-meshes/demo_built-in-meshes.py.html">Built-in meshes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mixed-poisson/demo_mixed-poisson.py.html">Mixed formulation for Poisson equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../biharmonic/demo_biharmonic.py.html">Biharmonic equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../auto-adaptive-poisson/demo_auto-adaptive-poisson.py.html">Auto adaptive Poisson equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cahn-hilliard/demo_cahn-hilliard.py.html">Cahn-Hilliard equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maxwell-eigenvalues/demo_maxwell-eigenvalues.py.html">Stable and unstable finite elements for the Maxwell eigenvalue problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hyperelasticity/demo_hyperelasticity.py.html">Hyperelasticity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nonlinear-poisson/demo_nonlinear-poisson.py.html">Nonlinear Poisson equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../singular-poisson/demo_singular-poisson.py.html">Singular Poisson</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Poisson equation with pure Neumann boundary conditions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#equation-and-problem-definition">Equation and problem definition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#implementation">Implementation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../nonmatching-interpolation/demo_nonmatching-interpolation.py.html">Interpolation from a non-matching mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../stokes-iterative/demo_stokes-iterative.py.html">Stokes equations with an iterative solver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elastodynamics/demo_elastodynamics.py.html">Time-integration of elastodynamics equation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">Python API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer.html">Developer resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ChangeLog.html">Change log</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">DOLFIN</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../demos.html">Demos</a> &raquo;</li>
+        
+      <li>Poisson equation with pure Neumann boundary conditions</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/demos/neumann-poisson/demo_neumann-poisson.py.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="poisson-equation-with-pure-neumann-boundary-conditions">
+<span id="demo-pde-neumann-poisson-python-documentation"></span><h1>Poisson equation with pure Neumann boundary conditions<a class="headerlink" href="#poisson-equation-with-pure-neumann-boundary-conditions" title="Permalink to this headline">¶</a></h1>
+<p>This demo is implemented in a single Python file,
+<a class="reference download internal" download="" href="../../_downloads/653f7d367055a258dce41c212e554b6b/demo_neumann-poisson.py"><code class="xref download docutils literal notranslate"><span class="pre">demo_neumann-poisson.py</span></code></a>, which contains both the
+variational form and the solver.</p>
+<p>This demo illustrates how to:</p>
+<ul class="simple">
+<li><p>Solve a linear partial differential equation with Neumann boundary
+conditions</p></li>
+<li><p>Use mixed finite element spaces</p></li>
+</ul>
+<p>The solution for  <span class="math notranslate nohighlight">\(u\)</span> in this demo will look as follows:</p>
+<a class="reference internal image-reference" href="../../_images/neumann-poisson_u.png"><img alt="../../_images/neumann-poisson_u.png" src="../../_images/neumann-poisson_u.png" style="width: 450.0px; height: 300.0px;" /></a>
+<div class="section" id="equation-and-problem-definition">
+<h2>Equation and problem definition<a class="headerlink" href="#equation-and-problem-definition" title="Permalink to this headline">¶</a></h2>
+<p>The Poisson equation is the canonical elliptic partial differential
+equation. For a domain <span class="math notranslate nohighlight">\(\Omega \subset \mathbb{R}^n\)</span> with
+boundary <span class="math notranslate nohighlight">\(\partial \Omega\)</span>, the Poisson equation with particular
+boundary conditions reads:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}  - \nabla^{2} u &amp;= f \quad {\rm in} \ \Omega, \\
+\nabla u \cdot n &amp;= g \quad {\rm on} \ \partial \Omega.\end{split}\]</div>
+<p>Here, <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> are input data and <span class="math notranslate nohighlight">\(n\)</span> denotes the
+outward directed boundary normal. Since only Neumann conditions are
+applied, <span class="math notranslate nohighlight">\(u\)</span> is only determined up to a constant <span class="math notranslate nohighlight">\(c\)</span> by
+the above equations. An additional constraint is thus required, for
+instance:</p>
+<div class="math notranslate nohighlight">
+\[\int_{\Omega} u \, {\rm d} x = 0.\]</div>
+<p>This can be accomplished by introducing the constant <span class="math notranslate nohighlight">\(c\)</span> as an
+additional unknown (to be sought in <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>) and the above
+constraint expressed via a Lagrange multiplier.</p>
+<p>We further note that a necessary condition for the existence of a
+solution to the Neumann problem is that the right-hand side <span class="math notranslate nohighlight">\(f\)</span>
+satisfies</p>
+<div class="math notranslate nohighlight">
+\[\int_{\Omega} f \, {\rm d} x = - \int_{\partial\Omega} g \, {\rm d} s.\]</div>
+<p>This can be seen by multiplying by <span class="math notranslate nohighlight">\(1\)</span> and integrating by
+parts:</p>
+<div class="math notranslate nohighlight">
+\[\int_{\Omega} f \, {\rm d} x = - \int_{\Omega} 1 \cdot \nabla^{2} u \, {\rm d} x
+                             = - \int_{\partial\Omega} 1 \cdot \partial_n u \, {\rm d} s
+                               + \int_{\Omega} \nabla 1 \cdot \nabla u \, {\rm d} x
+                             = - \int_{\partial\Omega} g \, {\rm d} s.\]</div>
+<p>This condition is not satisfied by the specific right-hand side chosen
+for this test problem, which means that the partial differential
+equation is not well-posed. However, the variational problem expressed
+below is well-posed as the Lagrange multiplier introduced to satisfy
+the condition <span class="math notranslate nohighlight">\(\int_{\Omega} u \, {\rm d} x = 0\)</span> <em>effectively
+redefines the right-hand side such that it safisfies the necessary
+condition</em> <span class="math notranslate nohighlight">\(\int_{\Omega} f \, {\rm d} x = -
+\int_{\partial\Omega} g \, {\rm d} s\)</span>.</p>
+<p>Our variational form reads: Find <span class="math notranslate nohighlight">\((u, c) \in V \times R\)</span> such
+that</p>
+<div class="math notranslate nohighlight">
+\[a((u, c), (v, d)) = L((v, d)) \quad \forall \ (v, d) \in V \times R,\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}a((u, c), (v, d)) &amp;= \int_{\Omega} \nabla u \cdot \nabla v \, {\rm d} x
+                                        + \int_{\Omega} cv \, {\rm d} x
+                                        + \int_{\Omega} ud \, {\rm d} x, \\
+L(v)    &amp;= \int_{\Omega} f v \, {\rm d} x
+        + \int_{\partial\Omega} g v \, {\rm d} s.\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(V\)</span> is a suitable function space containing <span class="math notranslate nohighlight">\(u\)</span> and <cite>v</cite>,
+:math:and <span class="math notranslate nohighlight">\(R\)</span> is the space of real numbers.</p>
+<p>The expression <span class="math notranslate nohighlight">\(a(\cdot, \cdot)\)</span> is the bilinear form and
+<span class="math notranslate nohighlight">\(L(\cdot)\)</span> is the linear form.</p>
+<p>Note that the above variational problem may alternatively be expressed
+in terms of the modified (and consistent) right-hand side
+<span class="math notranslate nohighlight">\(\tilde{f} = f - c\)</span>.</p>
+<p>In this demo we shall consider the following definitions of the domain
+and input functions:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\Omega = [0, 1] \times [0, 1]\)</span> (a unit square)</p></li>
+<li><p><span class="math notranslate nohighlight">\(g = - \sin(5x)\)</span> (normal derivative)</p></li>
+<li><p><span class="math notranslate nohighlight">\(f = 10\exp(-((x - 0.5)^2 + (y - 0.5)^2) / 0.02)\)</span> (source term)</p></li>
+</ul>
+</div>
+<div class="section" id="implementation">
+<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
+<p>This description goes through the implementation in
+<a class="reference download internal" download="" href="../../_downloads/653f7d367055a258dce41c212e554b6b/demo_neumann-poisson.py"><code class="xref download docutils literal notranslate"><span class="pre">demo_neumann-poisson.py</span></code></a> of a solver for the above
+described Poisson equation step-by-step.</p>
+<p>First, the <code class="xref py py-mod docutils literal notranslate"><span class="pre">dolfin</span></code> module is imported:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dolfin</span> <span class="k">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+<p>We proceed by defining a mesh of the domain.  We use a built-in mesh
+provided by the class <code class="xref py py-class docutils literal notranslate"><span class="pre">UnitSquareMesh</span></code>.  In order to create a mesh consisting of
+<span class="math notranslate nohighlight">\(64 \times 64\)</span> squares, we do as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create mesh</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">UnitSquareMesh</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="n">CellType</span><span class="o">.</span><span class="n">Type</span><span class="o">.</span><span class="n">quadrilateral</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Next, we need to define the function space.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Build function space with Lagrange multiplier</span>
+<span class="n">P1</span> <span class="o">=</span> <span class="n">FiniteElement</span><span class="p">(</span><span class="s2">&quot;Lagrange&quot;</span><span class="p">,</span> <span class="n">mesh</span><span class="o">.</span><span class="n">ufl_cell</span><span class="p">(),</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">R</span> <span class="o">=</span> <span class="n">FiniteElement</span><span class="p">(</span><span class="s2">&quot;Real&quot;</span><span class="p">,</span> <span class="n">mesh</span><span class="o">.</span><span class="n">ufl_cell</span><span class="p">(),</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">W</span> <span class="o">=</span> <span class="n">FunctionSpace</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">P1</span> <span class="o">*</span> <span class="n">R</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The second argument to <code class="xref py py-class docutils literal notranslate"><span class="pre">FunctionSpace</span></code> specifies underlying
+finite element, here a mixed element is obtained by <code class="docutils literal notranslate"><span class="pre">*</span></code> operator.</p>
+<p>Now, we want to define the variational problem, but first we need to
+specify the trial functions (the unknowns) and the test functions.
+This can be done using
+<code class="xref py py-class docutils literal notranslate"><span class="pre">TrialFunctions</span></code>
+and <code class="xref py py-class docutils literal notranslate"><span class="pre">TestFunctions</span></code>.  It only remains to define
+the source function <span class="math notranslate nohighlight">\(f\)</span>, before we define the bilinear and
+linear forms.  It is given by a simple mathematical formula, and can
+easily be declared using the <code class="xref py py-class docutils literal notranslate"><span class="pre">Expression</span></code> class.  Note that the string
+defining <code class="docutils literal notranslate"><span class="pre">f</span></code> uses C++ syntax since, for efficiency, DOLFIN will
+generate and compile C++ code for these expressions at run-time.  The
+following code shows how this is done and defines the variational
+problem:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define variational problem</span>
+<span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
+<span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span> <span class="o">=</span> <span class="n">TestFunctions</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">Expression</span><span class="p">(</span><span class="s2">&quot;10*exp(-(pow(x[0] - 0.5, 2) + pow(x[1] - 0.5, 2)) / 0.02)&quot;</span><span class="p">,</span> <span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">Expression</span><span class="p">(</span><span class="s2">&quot;-sin(5*x[0])&quot;</span><span class="p">,</span> <span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="n">inner</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">grad</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="o">+</span> <span class="n">c</span><span class="o">*</span><span class="n">v</span> <span class="o">+</span> <span class="n">u</span><span class="o">*</span><span class="n">d</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">f</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">dx</span> <span class="o">+</span> <span class="n">g</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">ds</span>
+</pre></div>
+</div>
+<p>Since we have natural (Neumann) boundary conditions in this problem,
+we do not have to implement boundary conditions.  This is because
+Neumann boundary conditions are default in DOLFIN.</p>
+<p>To compute the solution we use the bilinear form, the linear forms,
+and the boundary condition, but we also need to create a
+<code class="xref py py-class docutils literal notranslate"><span class="pre">Function</span></code> to store the
+solution(s).  The (full) solution will be stored in <code class="docutils literal notranslate"><span class="pre">w</span></code>, which we
+initialize using the
+<code class="xref py py-class docutils literal notranslate"><span class="pre">FunctionSpace</span></code>
+<code class="docutils literal notranslate"><span class="pre">W</span></code>.  The actual computation is performed by calling
+<code class="xref py py-func docutils literal notranslate"><span class="pre">solve</span></code>.  The separate components
+<code class="docutils literal notranslate"><span class="pre">u</span></code> and <code class="docutils literal notranslate"><span class="pre">c</span></code> of the solution can be extracted by calling the split
+function.  Finally, we output the solution to a <code class="docutils literal notranslate"><span class="pre">VTK</span></code> file to examine the result.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute solution</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
+<span class="n">solve</span><span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">L</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
+<span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+
+<span class="c1"># Save solution in VTK format</span>
+<span class="n">file</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="s2">&quot;neumann_poisson.pvd&quot;</span><span class="p">)</span>
+<span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="n">u</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../nonmatching-interpolation/demo_nonmatching-interpolation.py.html" class="btn btn-neutral float-right" title="Interpolation from a non-matching mesh" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../singular-poisson/demo_singular-poisson.py.html" class="btn btn-neutral float-left" title="Singular Poisson" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, FEniCS Project
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
