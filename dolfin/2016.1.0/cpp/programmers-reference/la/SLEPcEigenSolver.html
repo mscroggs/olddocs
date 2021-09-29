@@ -1,0 +1,516 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>SLEPcEigenSolver.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN la module" href="index.html"/>
+        <link rel="next" title="Scalar.h" href="Scalar.html"/>
+        <link rel="prev" title="PETScVector.h" href="PETScVector.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2016.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-2016.1.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/index.html">DOLFIN common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fem/index.html">DOLFIN fem module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html">DOLFIN function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/index.html">DOLFIN geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/index.html">DOLFIN io module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN la module</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="BelosKrylovSolver.html">BelosKrylovSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BlockMatrix.html">BlockMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BlockVector.html">BlockVector.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CoordinateMatrix.html">CoordinateMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DefaultFactory.html">DefaultFactory.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="EigenFactory.html">EigenFactory.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="EigenKrylovSolver.html">EigenKrylovSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="EigenLUSolver.html">EigenLUSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="EigenMatrix.html">EigenMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="EigenVector.html">EigenVector.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericLUSolver.html">GenericLUSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericLinearAlgebraFactory.html">GenericLinearAlgebraFactory.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericLinearOperator.html">GenericLinearOperator.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericLinearSolver.html">GenericLinearSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericMatrix.html">GenericMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericTensor.html">GenericTensor.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericVector.html">GenericVector.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Ifpack2Preconditioner.html">Ifpack2Preconditioner.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="IndexMap.html">IndexMap.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="KrylovSolver.html">KrylovSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LUSolver.html">LUSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LinearAlgebraObject.html">LinearAlgebraObject.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LinearOperator.html">LinearOperator.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LinearSolver.html">LinearSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Matrix.html">Matrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MueluPreconditioner.html">MueluPreconditioner.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScBaseMatrix.html">PETScBaseMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScFactory.html">PETScFactory.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScKrylovSolver.html">PETScKrylovSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScLUSolver.html">PETScLUSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScLinearOperator.html">PETScLinearOperator.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScMatrix.html">PETScMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScObject.html">PETScObject.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScOptions.html">PETScOptions.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScPreconditioner.html">PETScPreconditioner.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScUserPreconditioner.html">PETScUserPreconditioner.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScVector.html">PETScVector.h</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">SLEPcEigenSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Scalar.html">Scalar.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SparsityPattern.html">SparsityPattern.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TensorLayout.html">TensorLayout.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TpetraFactory.html">TpetraFactory.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TpetraMatrix.html">TpetraMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TpetraVector.html">TpetraVector.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TrilinosPreconditioner.html">TrilinosPreconditioner.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Vector.html">Vector.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VectorSpaceBasis.html">VectorSpaceBasis.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solve.html">solve.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_nullspace.html">test_nullspace.h</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../log/index.html">DOLFIN log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mesh/index.html">DOLFIN mesh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot/index.html">DOLFIN plot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer&#8217;s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-2016.1.0</a> &raquo;</li>
+      
+          <li><a href="index.html">DOLFIN la module</a> &raquo;</li>
+      
+    <li>SLEPcEigenSolver.h</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/programmers-reference/la/SLEPcEigenSolver.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="slepceigensolver-h">
+<span id="programmers-reference-cpp-la-slepceigensolver"></span><h1>SLEPcEigenSolver.h<a class="headerlink" href="#slepceigensolver-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="class">
+<dt id="_CPPv216SLEPcEigenSolver">
+<span id="SLEPcEigenSolver"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">SLEPcEigenSolver</code><a class="headerlink" href="#_CPPv216SLEPcEigenSolver" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Parent class(es)</em></p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="../common/Variable.html#_CPPv28Variable" title="Variable"><code class="xref cpp cpp-class docutils literal"><span class="pre">Variable</span></code></a></li>
+<li><a class="reference internal" href="PETScObject.html#_CPPv211PETScObject" title="PETScObject"><code class="xref cpp cpp-class docutils literal"><span class="pre">PETScObject</span></code></a></li>
+</ul>
+</div></blockquote>
+<p>This class provides an eigenvalue solver for PETSc matrices. It
+is a wrapper for the SLEPc eigenvalue solver.</p>
+<p>The following parameters may be specified to control the solver.</p>
+<ol class="arabic simple">
+<li>&#8220;spectrum&#8221;</li>
+</ol>
+<p>This parameter controls which part of the spectrum to compute.
+Possible values are</p>
+<blockquote>
+<div>&#8220;largest magnitude&#8221;   (eigenvalues with largest magnitude)
+&#8220;smallest magnitude&#8221;  (eigenvalues with smallest magnitude)
+&#8220;largest real&#8221;        (eigenvalues with largest double part)
+&#8220;smallest real&#8221;       (eigenvalues with smallest double part)
+&#8220;largest imaginary&#8221;   (eigenvalues with largest imaginary part)
+&#8220;smallest imaginary&#8221;  (eigenvalues with smallest imaginary part)
+&#8220;target magnitude&#8221;    (eigenvalues closest to target in magnitude)
+&#8220;target real&#8221;         (eigenvalues closest to target in real part)
+&#8220;target imaginary&#8221;    (eigenvalues closest to target in imaginary part)</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>&#8220;solver&#8221;</li>
+</ol>
+<p>This parameter controls which algorithm is used by SLEPc.
+Possible values are</p>
+<blockquote>
+<div>&#8220;power&#8221;               (power iteration)
+&#8220;subspace&#8221;            (subspace iteration)
+&#8220;arnoldi&#8221;             (Arnoldi)
+&#8220;lanczos&#8221;             (Lanczos)
+&#8220;krylov-schur&#8221;        (Krylov-Schur)
+&#8220;lapack&#8221;              (LAPACK, all values, direct, small systems only)
+&#8220;arpack&#8221;              (ARPACK)</div></blockquote>
+<ol class="arabic simple" start="3">
+<li>&#8220;tolerance&#8221;</li>
+</ol>
+<p>This parameter controls the tolerance used by SLEPc.  Possible
+values are positive double numbers.</p>
+<ol class="arabic simple" start="4">
+<li>&#8220;maximum_iterations&#8221;</li>
+</ol>
+<p>This parameter controls the maximum number of iterations used by SLEPc.
+Possible values are positive integers.</p>
+<p>Note that both the tolerance and the number of iterations must be
+specified if either one is specified.</p>
+<ol class="arabic simple" start="5">
+<li>&#8220;problem_type&#8221;</li>
+</ol>
+<p>This parameter can be used to give extra information about the
+type of the eigenvalue problem. Some solver types require this
+extra piece of information. Possible values are:</p>
+<blockquote>
+<div>&#8220;hermitian&#8221;               (Hermitian)
+&#8220;non_hermitian&#8221;           (Non-Hermitian)
+&#8220;gen_hermitian&#8221;           (Generalized Hermitian)
+&#8220;gen_non_hermitian&#8221;       (Generalized Non-Hermitian)
+&#8220;pos_gen_non_hermitian&#8221;   (Generalized Non-Hermitian with positive semidefinite B)</div></blockquote>
+<ol class="arabic simple" start="6">
+<li>&#8220;spectral_transform&#8221;</li>
+</ol>
+<p>This parameter controls the application of a spectral
+transform. A spectral transform can be used to enhance the
+convergence of the eigensolver and in particular to only compute
+eigenvalues in the interior of the spectrum. Possible values
+are:</p>
+<blockquote>
+<div>&#8220;shift-and-invert&#8221;      (A shift-and-invert transform)</div></blockquote>
+<p>Note that if a spectral transform is given, then also a non-zero
+spectral shift parameter has to be provided.</p>
+<p>The default is no spectral transform.</p>
+<ol class="arabic simple" start="7">
+<li>&#8220;spectral_shift&#8221;</li>
+</ol>
+<p>This parameter controls the spectral shift used by the spectral
+transform and must be provided if a spectral transform is
+given. The possible values are real numbers.</p>
+<dl class="function">
+<dt id="_CPPv2N16SLEPcEigenSolver16SLEPcEigenSolverE8MPI_Comm">
+<span id="SLEPcEigenSolver::SLEPcEigenSolver__MPI_Comm"></span><em class="property">explicit</em> <code class="descclassname"></code><code class="descname">SLEPcEigenSolver</code><span class="sig-paren">(</span>MPI_Comm <em>comm</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N16SLEPcEigenSolver16SLEPcEigenSolverE8MPI_Comm" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create eigenvalue solver</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N16SLEPcEigenSolver16SLEPcEigenSolverE3EPS">
+<span id="SLEPcEigenSolver::SLEPcEigenSolver__EPS"></span><em class="property">explicit</em> <code class="descclassname"></code><code class="descname">SLEPcEigenSolver</code><span class="sig-paren">(</span>EPS <em>eps</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N16SLEPcEigenSolver16SLEPcEigenSolverE3EPS" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create eigenvalue solver from EPS object</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N16SLEPcEigenSolver16SLEPcEigenSolverENSt10shared_ptrIK11PETScMatrixEE">
+<span id="SLEPcEigenSolver::SLEPcEigenSolver__std::shared_ptr:PETScMatrixC:"></span><em class="property">explicit</em> <code class="descclassname"></code><code class="descname">SLEPcEigenSolver</code><span class="sig-paren">(</span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="PETScMatrix.html#_CPPv211PETScMatrix" title="PETScMatrix">PETScMatrix</a>&gt; <em>A</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N16SLEPcEigenSolver16SLEPcEigenSolverENSt10shared_ptrIK11PETScMatrixEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create eigenvalue solver for Ax = lambda</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N16SLEPcEigenSolver16SLEPcEigenSolverE8MPI_CommNSt10shared_ptrIK11PETScMatrixEE">
+<span id="SLEPcEigenSolver::SLEPcEigenSolver__MPI_Comm.std::shared_ptr:PETScMatrixC:"></span><code class="descclassname"></code><code class="descname">SLEPcEigenSolver</code><span class="sig-paren">(</span>MPI_Comm <em>comm</em>, std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="PETScMatrix.html#_CPPv211PETScMatrix" title="PETScMatrix">PETScMatrix</a>&gt; <em>A</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N16SLEPcEigenSolver16SLEPcEigenSolverE8MPI_CommNSt10shared_ptrIK11PETScMatrixEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create eigenvalue solver for Ax = lambda x</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N16SLEPcEigenSolver16SLEPcEigenSolverENSt10shared_ptrIK11PETScMatrixEENSt10shared_ptrIK11PETScMatrixEE">
+<span id="SLEPcEigenSolver::SLEPcEigenSolver__std::shared_ptr:PETScMatrixC:.std::shared_ptr:PETScMatrixC:"></span><code class="descclassname"></code><code class="descname">SLEPcEigenSolver</code><span class="sig-paren">(</span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="PETScMatrix.html#_CPPv211PETScMatrix" title="PETScMatrix">PETScMatrix</a>&gt; <em>A</em>, std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="PETScMatrix.html#_CPPv211PETScMatrix" title="PETScMatrix">PETScMatrix</a>&gt; <em>B</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N16SLEPcEigenSolver16SLEPcEigenSolverENSt10shared_ptrIK11PETScMatrixEENSt10shared_ptrIK11PETScMatrixEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create eigenvalue solver for Ax = lambda x on MPI_COMM_WORLD</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N16SLEPcEigenSolver16SLEPcEigenSolverE8MPI_CommNSt10shared_ptrIK11PETScMatrixEENSt10shared_ptrIK11PETScMatrixEE">
+<span id="SLEPcEigenSolver::SLEPcEigenSolver__MPI_Comm.std::shared_ptr:PETScMatrixC:.std::shared_ptr:PETScMatrixC:"></span><code class="descclassname"></code><code class="descname">SLEPcEigenSolver</code><span class="sig-paren">(</span>MPI_Comm <em>comm</em>, std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="PETScMatrix.html#_CPPv211PETScMatrix" title="PETScMatrix">PETScMatrix</a>&gt; <em>A</em>, std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="PETScMatrix.html#_CPPv211PETScMatrix" title="PETScMatrix">PETScMatrix</a>&gt; <em>B</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N16SLEPcEigenSolver16SLEPcEigenSolverE8MPI_CommNSt10shared_ptrIK11PETScMatrixEENSt10shared_ptrIK11PETScMatrixEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create eigenvalue solver for Ax = lambda x</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N16SLEPcEigenSolver13set_operatorsENSt10shared_ptrIK11PETScMatrixEENSt10shared_ptrIK11PETScMatrixEE">
+<span id="SLEPcEigenSolver::set_operators__std::shared_ptr:PETScMatrixC:.std::shared_ptr:PETScMatrixC:"></span>void <code class="descclassname"></code><code class="descname">set_operators</code><span class="sig-paren">(</span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="PETScMatrix.html#_CPPv211PETScMatrix" title="PETScMatrix">PETScMatrix</a>&gt; <em>A</em>, std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="PETScMatrix.html#_CPPv211PETScMatrix" title="PETScMatrix">PETScMatrix</a>&gt; <em>B</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N16SLEPcEigenSolver13set_operatorsENSt10shared_ptrIK11PETScMatrixEENSt10shared_ptrIK11PETScMatrixEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set opeartors (B may be nullptr for regular eigenvalues
+problems)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N16SLEPcEigenSolver5solveEv">
+<span id="SLEPcEigenSolver::solve"></span>void <code class="descclassname"></code><code class="descname">solve</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N16SLEPcEigenSolver5solveEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Compute all eigenpairs of the matrix A (solve Ax = lambda x)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N16SLEPcEigenSolver5solveENSt6size_tE">
+<span id="SLEPcEigenSolver::solve__std::s"></span>void <code class="descclassname"></code><code class="descname">solve</code><span class="sig-paren">(</span>std::size_t <em>n</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N16SLEPcEigenSolver5solveENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Compute the n first eigenpairs of the matrix A (solve Ax = lambda x)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK16SLEPcEigenSolver14get_eigenvalueERdRd">
+<span id="SLEPcEigenSolver::get_eigenvalue__doubleR.doubleRC"></span>void <code class="descclassname"></code><code class="descname">get_eigenvalue</code><span class="sig-paren">(</span>double &amp;<em>lr</em>, double &amp;<em>lc</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK16SLEPcEigenSolver14get_eigenvalueERdRd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the first eigenvalue</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK16SLEPcEigenSolver13get_eigenpairERdRdR13GenericVectorR13GenericVector">
+<span id="SLEPcEigenSolver::get_eigenpair__doubleR.doubleR.GenericVectorR.GenericVectorRC"></span>void <code class="descclassname"></code><code class="descname">get_eigenpair</code><span class="sig-paren">(</span>double &amp;<em>lr</em>, double &amp;<em>lc</em>, <a class="reference internal" href="GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>r</em>, <a class="reference internal" href="GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>c</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK16SLEPcEigenSolver13get_eigenpairERdRdR13GenericVectorR13GenericVector" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the first eigenpair</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK16SLEPcEigenSolver13get_eigenpairERdRdR11PETScVectorR11PETScVector">
+<span id="SLEPcEigenSolver::get_eigenpair__doubleR.doubleR.PETScVectorR.PETScVectorRC"></span>void <code class="descclassname"></code><code class="descname">get_eigenpair</code><span class="sig-paren">(</span>double &amp;<em>lr</em>, double &amp;<em>lc</em>, <a class="reference internal" href="PETScVector.html#_CPPv211PETScVector" title="PETScVector">PETScVector</a> &amp;<em>r</em>, <a class="reference internal" href="PETScVector.html#_CPPv211PETScVector" title="PETScVector">PETScVector</a> &amp;<em>c</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK16SLEPcEigenSolver13get_eigenpairERdRdR11PETScVectorR11PETScVector" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the first eigenpair</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK16SLEPcEigenSolver14get_eigenvalueERdRdNSt6size_tE">
+<span id="SLEPcEigenSolver::get_eigenvalue__doubleR.doubleR.std::sC"></span>void <code class="descclassname"></code><code class="descname">get_eigenvalue</code><span class="sig-paren">(</span>double &amp;<em>lr</em>, double &amp;<em>lc</em>, std::size_t <em>i</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK16SLEPcEigenSolver14get_eigenvalueERdRdNSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get eigenvalue i</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK16SLEPcEigenSolver13get_eigenpairERdRdR13GenericVectorR13GenericVectorNSt6size_tE">
+<span id="SLEPcEigenSolver::get_eigenpair__doubleR.doubleR.GenericVectorR.GenericVectorR.std::sC"></span>void <code class="descclassname"></code><code class="descname">get_eigenpair</code><span class="sig-paren">(</span>double &amp;<em>lr</em>, double &amp;<em>lc</em>, <a class="reference internal" href="GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>r</em>, <a class="reference internal" href="GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>c</em>, std::size_t <em>i</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK16SLEPcEigenSolver13get_eigenpairERdRdR13GenericVectorR13GenericVectorNSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get eigenpair i</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK16SLEPcEigenSolver13get_eigenpairERdRdR11PETScVectorR11PETScVectorNSt6size_tE">
+<span id="SLEPcEigenSolver::get_eigenpair__doubleR.doubleR.PETScVectorR.PETScVectorR.std::sC"></span>void <code class="descclassname"></code><code class="descname">get_eigenpair</code><span class="sig-paren">(</span>double &amp;<em>lr</em>, double &amp;<em>lc</em>, <a class="reference internal" href="PETScVector.html#_CPPv211PETScVector" title="PETScVector">PETScVector</a> &amp;<em>r</em>, <a class="reference internal" href="PETScVector.html#_CPPv211PETScVector" title="PETScVector">PETScVector</a> &amp;<em>c</em>, std::size_t <em>i</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK16SLEPcEigenSolver13get_eigenpairERdRdR11PETScVectorR11PETScVectorNSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get eigenpair i</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK16SLEPcEigenSolver20get_iteration_numberEv">
+<span id="SLEPcEigenSolver::get_iteration_numberC"></span>std::size_t <code class="descclassname"></code><code class="descname">get_iteration_number</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK16SLEPcEigenSolver20get_iteration_numberEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the number of iterations used by the solver</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK16SLEPcEigenSolver20get_number_convergedEv">
+<span id="SLEPcEigenSolver::get_number_convergedC"></span>std::size_t <code class="descclassname"></code><code class="descname">get_number_converged</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK16SLEPcEigenSolver20get_number_convergedEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the number of converged eigenvalues</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N16SLEPcEigenSolver19set_deflation_spaceERK11PETScVector">
+<span id="SLEPcEigenSolver::set_deflation_space__PETScVectorCR"></span>void <code class="descclassname"></code><code class="descname">set_deflation_space</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="PETScVector.html#_CPPv211PETScVector" title="PETScVector">PETScVector</a> &amp;<em>deflation_space</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N16SLEPcEigenSolver19set_deflation_spaceERK11PETScVector" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set deflation space</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N16SLEPcEigenSolver18set_options_prefixENSt6stringE">
+<span id="SLEPcEigenSolver::set_options_prefix__ss"></span>void <code class="descclassname"></code><code class="descname">set_options_prefix</code><span class="sig-paren">(</span>std::string <em>options_prefix</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N16SLEPcEigenSolver18set_options_prefixENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the prefix used by PETSc when searching the PETSc options
+database</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK16SLEPcEigenSolver18get_options_prefixEv">
+<span id="SLEPcEigenSolver::get_options_prefixC"></span>std::string <code class="descclassname"></code><code class="descname">get_options_prefix</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK16SLEPcEigenSolver18get_options_prefixEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the prefix used by PETSc when searching the PETSc
+options database</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK16SLEPcEigenSolver3epsEv">
+<span id="SLEPcEigenSolver::epsC"></span>EPS <code class="descclassname"></code><code class="descname">eps</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK16SLEPcEigenSolver3epsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return SLEPc EPS pointer</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N16SLEPcEigenSolver18default_parametersEv">
+<span id="SLEPcEigenSolver::default_parameters"></span><em class="property">static</em> <a class="reference internal" href="../parameter/Parameters.html#_CPPv210Parameters" title="Parameters">Parameters</a> <code class="descclassname"></code><code class="descname">default_parameters</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N16SLEPcEigenSolver18default_parametersEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Default parameter values</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N16SLEPcEigenSolver15read_parametersEv">
+<span id="SLEPcEigenSolver::read_parameters"></span>void <code class="descclassname"></code><code class="descname">read_parameters</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N16SLEPcEigenSolver15read_parametersEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Callback for changes in parameter values</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Scalar.html" class="btn btn-neutral float-right" title="Scalar.h" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="PETScVector.html" class="btn btn-neutral" title="PETScVector.h" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://bitbucket.org/fenics-project/.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'2016.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,554 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>BoundingBoxTree.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN geometry module" href="index.html"/>
+        <link rel="next" title="BoundingBoxTree3D.h" href="BoundingBoxTree3D.html"/>
+        <link rel="prev" title="DOLFIN geometry module" href="index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.6.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-1.6.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/index.html">DOLFIN common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fem/index.html">DOLFIN fem module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html">DOLFIN function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN geometry module</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">BoundingBoxTree.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BoundingBoxTree3D.html">BoundingBoxTree3D.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericBoundingBoxTree.html">GenericBoundingBoxTree.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshPointIntersection.html">MeshPointIntersection.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Point.html">Point.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intersect.html">intersect.h</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/index.html">DOLFIN io module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../la/index.html">DOLFIN la module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/index.html">DOLFIN log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mesh/index.html">DOLFIN mesh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot/index.html">DOLFIN plot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer&#8217;s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-1.6.0</a> &raquo;</li>
+      
+          <li><a href="index.html">DOLFIN geometry module</a> &raquo;</li>
+      
+    <li>BoundingBoxTree.h</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/programmers-reference/geometry/BoundingBoxTree.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="boundingboxtree-h">
+<span id="programmers-reference-cpp-geometry-boundingboxtree"></span><h1>BoundingBoxTree.h<a class="headerlink" href="#boundingboxtree-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="class">
+<dt id="_CPPv215BoundingBoxTree">
+<span id="BoundingBoxTree"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">BoundingBoxTree</code><a class="headerlink" href="#_CPPv215BoundingBoxTree" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This class implements a (distributed) axis aligned bounding box
+tree (AABB tree). Bounding box trees can be created from meshes
+and [other data structures, to be filled in].</p>
+<dl class="function">
+<dt id="_CPPv2N15BoundingBoxTree15BoundingBoxTreeEv">
+<span id="BoundingBoxTree::BoundingBoxTree"></span><code class="descclassname"></code><code class="descname">BoundingBoxTree</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N15BoundingBoxTree15BoundingBoxTreeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create empty bounding box tree</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N15BoundingBoxTree5buildERK4Mesh">
+<span id="BoundingBoxTree::build__MeshCR"></span>void <code class="descclassname"></code><code class="descname">build</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N15BoundingBoxTree5buildERK4Mesh" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Build bounding box tree for cells of mesh.</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>mesh (<a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh"><code class="xref cpp cpp-class docutils literal"><span class="pre">Mesh</span></code></a>)</dt>
+<dd>The mesh for which to compute the bounding box tree.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N15BoundingBoxTree5buildERK4MeshNSt6size_tE">
+<span id="BoundingBoxTree::build__MeshCR.std::s"></span>void <code class="descclassname"></code><code class="descname">build</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em>, std::size_t <em>tdim</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N15BoundingBoxTree5buildERK4MeshNSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Build bounding box tree for mesh entities of given dimension.</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>mesh (<a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh"><code class="xref cpp cpp-class docutils literal"><span class="pre">Mesh</span></code></a>)</dt>
+<dd>The mesh for which to compute the bounding box tree.</dd>
+<dt>dimension (std::size_t)</dt>
+<dd>The entity dimension (topological dimension) for which
+to compute the bounding box tree.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N15BoundingBoxTree5buildERKNSt6vectorI5PointEENSt6size_tE">
+<span id="BoundingBoxTree::build__std::vector:Point:CR.std::s"></span>void <code class="descclassname"></code><code class="descname">build</code><span class="sig-paren">(</span><em class="property">const</em> std::vector&lt;<a class="reference internal" href="Point.html#_CPPv25Point" title="Point">Point</a>&gt; &amp;<em>points</em>, std::size_t <em>gdim</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N15BoundingBoxTree5buildERKNSt6vectorI5PointEENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Build bounding box tree for point cloud.</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>points (std::vector&lt;<a class="reference internal" href="Point.html#_CPPv25Point" title="Point"><code class="xref cpp cpp-class docutils literal"><span class="pre">Point</span></code></a>&gt;)</dt>
+<dd>The list of points.</dd>
+<dt>gdim (std::size_t)</dt>
+<dd>The geometric dimension.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK15BoundingBoxTree18compute_collisionsERK5Point">
+<span id="BoundingBoxTree::compute_collisions__PointCRC"></span>std::vector&lt;unsigned int&gt; <code class="descclassname"></code><code class="descname">compute_collisions</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="Point.html#_CPPv25Point" title="Point">Point</a> &amp;<em>point</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK15BoundingBoxTree18compute_collisionsERK5Point" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Compute all collisions between bounding boxes and <a class="reference internal" href="Point.html#_CPPv25Point" title="Point"><code class="xref cpp cpp-class docutils literal"><span class="pre">Point</span></code></a>.</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>std::vector&lt;unsigned int&gt;</dt>
+<dd>A list of local indices for entities contained in
+(leaf) bounding boxes that collide with (intersect)
+the given point.</dd>
+</dl>
+</dd>
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>point (<a class="reference internal" href="Point.html#_CPPv25Point" title="Point"><code class="xref cpp cpp-class docutils literal"><span class="pre">Point</span></code></a>)</dt>
+<dd>The point.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK15BoundingBoxTree18compute_collisionsERK15BoundingBoxTree">
+<span id="BoundingBoxTree::compute_collisions__BoundingBoxTreeCRC"></span>std::pair&lt;std::vector&lt;unsigned int&gt;, std::vector&lt;unsigned int&gt;&gt; <code class="descclassname"></code><code class="descname">compute_collisions</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv215BoundingBoxTree" title="BoundingBoxTree">BoundingBoxTree</a> &amp;<em>tree</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK15BoundingBoxTree18compute_collisionsERK15BoundingBoxTree" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Compute all collisions between bounding boxes and <a class="reference internal" href="#_CPPv215BoundingBoxTree" title="BoundingBoxTree"><code class="xref cpp cpp-class docutils literal"><span class="pre">BoundingBoxTree</span></code></a>.</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>std::vector&lt;unsigned int&gt;</dt>
+<dd>A list of local indices for entities in this tree that
+collide with (intersect) entities in other tree.</dd>
+<dt>std::vector&lt;unsigned int&gt;</dt>
+<dd>A list of local indices for entities in other tree that
+collide with (intersect) entities in this tree.</dd>
+</dl>
+</dd>
+</dl>
+<p>The two lists have equal length and contain matching entities,
+such that entity <cite>i</cite> in the first list collides with entity
+<cite>i</cite> in the second list.</p>
+<p>Note that this means that the entity lists may contain
+duplicate entities since a single entity may collide with
+several different entities.</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>tree (<a class="reference internal" href="#_CPPv215BoundingBoxTree" title="BoundingBoxTree"><code class="xref cpp cpp-class docutils literal"><span class="pre">BoundingBoxTree</span></code></a>)</dt>
+<dd>The bounding box tree.</dd>
+</dl>
+</dd>
+</dl>
+<p>Note that this function only checks collisions between bounding
+boxes of entities. It does not check that the entities
+themselves actually collide. To compute entity collisions, use
+the function compute_entity_collisions.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK15BoundingBoxTree25compute_entity_collisionsERK5Point">
+<span id="BoundingBoxTree::compute_entity_collisions__PointCRC"></span>std::vector&lt;unsigned int&gt; <code class="descclassname"></code><code class="descname">compute_entity_collisions</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="Point.html#_CPPv25Point" title="Point">Point</a> &amp;<em>point</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK15BoundingBoxTree25compute_entity_collisionsERK5Point" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Compute all collisions between entities and <a class="reference internal" href="Point.html#_CPPv25Point" title="Point"><code class="xref cpp cpp-class docutils literal"><span class="pre">Point</span></code></a>.</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>std::vector&lt;unsigned int&gt;</dt>
+<dd>A list of local indices for entities that collide with
+(intersect) the given point.</dd>
+</dl>
+</dd>
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>point (<a class="reference internal" href="Point.html#_CPPv25Point" title="Point"><code class="xref cpp cpp-class docutils literal"><span class="pre">Point</span></code></a>)</dt>
+<dd>The point.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK15BoundingBoxTree25compute_entity_collisionsERK15BoundingBoxTree">
+<span id="BoundingBoxTree::compute_entity_collisions__BoundingBoxTreeCRC"></span>std::pair&lt;std::vector&lt;unsigned int&gt;, std::vector&lt;unsigned int&gt;&gt; <code class="descclassname"></code><code class="descname">compute_entity_collisions</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv215BoundingBoxTree" title="BoundingBoxTree">BoundingBoxTree</a> &amp;<em>tree</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK15BoundingBoxTree25compute_entity_collisionsERK15BoundingBoxTree" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Compute all collisions between entities and <a class="reference internal" href="#_CPPv215BoundingBoxTree" title="BoundingBoxTree"><code class="xref cpp cpp-class docutils literal"><span class="pre">BoundingBoxTree</span></code></a>.</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>std::vector&lt;unsigned int&gt;</dt>
+<dd>A list of local indices for entities in this tree that
+collide with (intersect) entities in other tree.</dd>
+<dt>std::vector&lt;unsigned int&gt;</dt>
+<dd>A list of local indices for entities in other tree that
+collide with (intersect) entities in this tree.</dd>
+</dl>
+</dd>
+</dl>
+<p>The two lists have equal length and contain matching entities,
+such that entity <cite>i</cite> in the first list collides with entity
+<cite>i</cite> in the second list.</p>
+<p>Note that this means that the entity lists may contain
+duplicate entities since a single entity may collide with
+several different entities.</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>tree (<a class="reference internal" href="#_CPPv215BoundingBoxTree" title="BoundingBoxTree"><code class="xref cpp cpp-class docutils literal"><span class="pre">BoundingBoxTree</span></code></a>)</dt>
+<dd>The bounding box tree.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK15BoundingBoxTree23compute_first_collisionERK5Point">
+<span id="BoundingBoxTree::compute_first_collision__PointCRC"></span>unsigned int <code class="descclassname"></code><code class="descname">compute_first_collision</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="Point.html#_CPPv25Point" title="Point">Point</a> &amp;<em>point</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK15BoundingBoxTree23compute_first_collisionERK5Point" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Compute first collision between bounding boxes and <a class="reference internal" href="Point.html#_CPPv25Point" title="Point"><code class="xref cpp cpp-class docutils literal"><span class="pre">Point</span></code></a>.</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>unsigned int</dt>
+<dd>The local index for the first found entity contained
+in a (leaf) bounding box that collides with
+(intersects) the given point. If not found,
+std::numeric_limits&lt;unsigned int&gt;::max() is returned.</dd>
+</dl>
+</dd>
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>point (<a class="reference internal" href="Point.html#_CPPv25Point" title="Point"><code class="xref cpp cpp-class docutils literal"><span class="pre">Point</span></code></a>)</dt>
+<dd>The point.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK15BoundingBoxTree30compute_first_entity_collisionERK5Point">
+<span id="BoundingBoxTree::compute_first_entity_collision__PointCRC"></span>unsigned int <code class="descclassname"></code><code class="descname">compute_first_entity_collision</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="Point.html#_CPPv25Point" title="Point">Point</a> &amp;<em>point</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK15BoundingBoxTree30compute_first_entity_collisionERK5Point" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Compute first collision between entities and <a class="reference internal" href="Point.html#_CPPv25Point" title="Point"><code class="xref cpp cpp-class docutils literal"><span class="pre">Point</span></code></a>.</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>unsigned int</dt>
+<dd>The local index for the first found entity that
+collides with (intersects) the given point. If not
+found, std::numeric_limits&lt;unsigned int&gt;::max() is
+returned.</dd>
+</dl>
+</dd>
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>point (<a class="reference internal" href="Point.html#_CPPv25Point" title="Point"><code class="xref cpp cpp-class docutils literal"><span class="pre">Point</span></code></a>)</dt>
+<dd>The point.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK15BoundingBoxTree22compute_closest_entityERK5Point">
+<span id="BoundingBoxTree::compute_closest_entity__PointCRC"></span>std::pair&lt;unsigned int, double&gt; <code class="descclassname"></code><code class="descname">compute_closest_entity</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="Point.html#_CPPv25Point" title="Point">Point</a> &amp;<em>point</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK15BoundingBoxTree22compute_closest_entityERK5Point" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Compute closest entity to <a class="reference internal" href="Point.html#_CPPv25Point" title="Point"><code class="xref cpp cpp-class docutils literal"><span class="pre">Point</span></code></a>.</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>unsigned int</dt>
+<dd>The local index for the entity that is closest to the
+point. If more than one entity is at the same distance
+(or point contained in entity), then the first entity
+is returned.</dd>
+<dt>double</dt>
+<dd>The distance to the closest entity.</dd>
+</dl>
+</dd>
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>point (<a class="reference internal" href="Point.html#_CPPv25Point" title="Point"><code class="xref cpp cpp-class docutils literal"><span class="pre">Point</span></code></a>)</dt>
+<dd>The point.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK15BoundingBoxTree21compute_closest_pointERK5Point">
+<span id="BoundingBoxTree::compute_closest_point__PointCRC"></span>std::pair&lt;unsigned int, double&gt; <code class="descclassname"></code><code class="descname">compute_closest_point</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="Point.html#_CPPv25Point" title="Point">Point</a> &amp;<em>point</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK15BoundingBoxTree21compute_closest_pointERK5Point" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Compute closest point to <a class="reference internal" href="Point.html#_CPPv25Point" title="Point"><code class="xref cpp cpp-class docutils literal"><span class="pre">Point</span></code></a>. This function assumes
+that the tree has been built for a point cloud.</p>
+<p>Developer note: This function should not be confused with
+computing the closest point in all entities of a mesh. That
+function could be added with relative ease since we actually
+compute the closest points to get the distance in the above
+function (compute_closest_entity) inside the specialized
+implementations in TetrahedronCell.cpp etc.</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>unsigned int</dt>
+<dd>The local index for the point that is closest to the
+point. If more than one point is at the same distance
+(or point contained in entity), then the first point
+is returned.</dd>
+<dt>double</dt>
+<dd>The distance to the closest point.</dd>
+</dl>
+</dd>
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>point (<a class="reference internal" href="Point.html#_CPPv25Point" title="Point"><code class="xref cpp cpp-class docutils literal"><span class="pre">Point</span></code></a>)</dt>
+<dd>The point.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK15BoundingBoxTree8collidesERK5Point">
+<span id="BoundingBoxTree::collides__PointCRC"></span>bool <code class="descclassname"></code><code class="descname">collides</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="Point.html#_CPPv25Point" title="Point">Point</a> &amp;<em>point</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK15BoundingBoxTree8collidesERK5Point" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Check whether given point collides with the bounding box tree.
+This is equivalent to calling compute_first_collision and
+checking whether any collision was detected.</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>bool</dt>
+<dd>True iff the point is inside the tree.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK15BoundingBoxTree15collides_entityERK5Point">
+<span id="BoundingBoxTree::collides_entity__PointCRC"></span>bool <code class="descclassname"></code><code class="descname">collides_entity</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="Point.html#_CPPv25Point" title="Point">Point</a> &amp;<em>point</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK15BoundingBoxTree15collides_entityERK5Point" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Check whether given point collides with any entity contained
+in the bounding box tree. This is equivalent to calling
+compute_first_entity_collision and checking whether any
+collision was detected.</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>bool</dt>
+<dd>True iff the point is inside the tree.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="BoundingBoxTree3D.html" class="btn btn-neutral float-right" title="BoundingBoxTree3D.h" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="DOLFIN geometry module" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://bitbucket.org/fenics-project/.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.6.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

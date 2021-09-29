@@ -1,0 +1,594 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>EpetraVector.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN la module" href="index.html"/>
+        <link rel="next" title="GenericLUSolver.h" href="GenericLUSolver.html"/>
+        <link rel="prev" title="EpetraMatrix.h" href="EpetraMatrix.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-1.3.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/index.html">DOLFIN common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fem/index.html">DOLFIN fem module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html">DOLFIN function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/index.html">DOLFIN geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/index.html">DOLFIN io module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN la module</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="BlockMatrix.html">BlockMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BlockVector.html">BlockVector.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CholmodCholeskySolver.html">CholmodCholeskySolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CoordinateMatrix.html">CoordinateMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DefaultFactory.html">DefaultFactory.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="EpetraFactory.html">EpetraFactory.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="EpetraKrylovSolver.html">EpetraKrylovSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="EpetraLUSolver.html">EpetraLUSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="EpetraMatrix.html">EpetraMatrix.h</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">EpetraVector.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericLUSolver.html">GenericLUSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericLinearAlgebraFactory.html">GenericLinearAlgebraFactory.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericLinearOperator.html">GenericLinearOperator.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericLinearSolver.html">GenericLinearSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericMatrix.html">GenericMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericPreconditioner.html">GenericPreconditioner.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericSparsityPattern.html">GenericSparsityPattern.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericTensor.html">GenericTensor.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericVector.html">GenericVector.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="KrylovSolver.html">KrylovSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LUSolver.html">LUSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LinearAlgebraObject.html">LinearAlgebraObject.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LinearOperator.html">LinearOperator.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LinearSolver.html">LinearSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MUMPSLUSolver.html">MUMPSLUSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Matrix.html">Matrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScBaseMatrix.html">PETScBaseMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScCuspFactory.html">PETScCuspFactory.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScFactory.html">PETScFactory.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScKrylovSolver.html">PETScKrylovSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScLUSolver.html">PETScLUSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScLinearOperator.html">PETScLinearOperator.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScMatrix.html">PETScMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScObject.html">PETScObject.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScOptions.html">PETScOptions.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScPreconditioner.html">PETScPreconditioner.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScUserPreconditioner.html">PETScUserPreconditioner.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScVector.html">PETScVector.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PaStiXLUSolver.html">PaStiXLUSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SLEPcEigenSolver.html">SLEPcEigenSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="STLFactory.html">STLFactory.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="STLMatrix.html">STLMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Scalar.html">Scalar.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SparsityPattern.html">SparsityPattern.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TensorProductMatrix.html">TensorProductMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TensorProductVector.html">TensorProductVector.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TrilinosPreconditioner.html">TrilinosPreconditioner.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="UmfpackLUSolver.html">UmfpackLUSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Vector.html">Vector.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VectorSpaceBasis.html">VectorSpaceBasis.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solve.html">solve.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uBLASDenseMatrix.html">uBLASDenseMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uBLASFactory.html">uBLASFactory.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uBLASILUPreconditioner.html">uBLASILUPreconditioner.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uBLASKrylovSolver.html">uBLASKrylovSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uBLASLinearOperator.html">uBLASLinearOperator.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uBLASMatrix.html">uBLASMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uBLASPreconditioner.html">uBLASPreconditioner.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uBLASSparseMatrix.html">uBLASSparseMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uBLASVector.html">uBLASVector.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ublas.html">ublas.h</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../log/index.html">DOLFIN log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mesh/index.html">DOLFIN mesh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot/index.html">DOLFIN plot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer&#8217;s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-1.3.0</a> &raquo;</li>
+      
+          <li><a href="index.html">DOLFIN la module</a> &raquo;</li>
+      
+    <li>EpetraVector.h</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/programmers-reference/la/EpetraVector.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="epetravector-h">
+<span id="programmers-reference-cpp-la-epetravector"></span><h1>EpetraVector.h<a class="headerlink" href="#epetravector-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="class">
+<dt id="_CPPv212EpetraVector">
+<span id="EpetraVector"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">EpetraVector</code><a class="headerlink" href="#_CPPv212EpetraVector" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Parent class(es)</em></p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="GenericVector.html#_CPPv213GenericVector" title="GenericVector"><code class="xref cpp cpp-class docutils literal"><span class="pre">GenericVector</span></code></a></li>
+</ul>
+</div></blockquote>
+<p>This class provides a simple vector class based on Epetra.
+It is a simple wrapper for an Epetra vector object (Epetra_FEVector)
+implementing the GenericVector interface.</p>
+<p>The interface is intentionally simple. For advanced usage,
+access the Epetra_FEVector object using the function vec() or vec_ptr()
+and use the standard Epetra interface.</p>
+<dl class="function">
+<dt id="_CPPv2N12EpetraVector12EpetraVectorENSt6stringE">
+<span id="EpetraVector::EpetraVector__ss"></span><code class="descclassname"></code><code class="descname">EpetraVector</code><span class="sig-paren">(</span>std::string <em>type</em> = &quot;global&quot;<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12EpetraVector12EpetraVectorENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create empty vector</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12EpetraVector12EpetraVectorENSt6size_tENSt6stringE">
+<span id="EpetraVector::EpetraVector__std::s.ss"></span><em class="property">explicit</em> <code class="descclassname"></code><code class="descname">EpetraVector</code><span class="sig-paren">(</span>std::size_t <em>N</em>, std::string <em>type</em> = &quot;global&quot;<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12EpetraVector12EpetraVectorENSt6size_tENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create vector of size N</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12EpetraVector12EpetraVectorERK12EpetraVector">
+<span id="EpetraVector::EpetraVector__EpetraVectorCR"></span><code class="descclassname"></code><code class="descname">EpetraVector</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv2N12EpetraVector12EpetraVectorENSt6stringE" title="EpetraVector::EpetraVector">EpetraVector</a> &amp;<em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12EpetraVector12EpetraVectorERK12EpetraVector" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Copy constructor</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12EpetraVector12EpetraVectorEN5boost10shared_ptrI15Epetra_FEVectorEE">
+<span id="EpetraVector::EpetraVector__boost::shared_ptr:Epetra_FEVector:"></span><em class="property">explicit</em> <code class="descclassname"></code><code class="descname">EpetraVector</code><span class="sig-paren">(</span>boost::shared_ptr&lt;Epetra_FEVector&gt; <em>vector</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12EpetraVector12EpetraVectorEN5boost10shared_ptrI15Epetra_FEVectorEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create vector view from given Epetra_FEVector pointer</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12EpetraVector12EpetraVectorERK15Epetra_BlockMap">
+<span id="EpetraVector::EpetraVector__Epetra_BlockMapCR"></span><em class="property">explicit</em> <code class="descclassname"></code><code class="descname">EpetraVector</code><span class="sig-paren">(</span><em class="property">const</em> Epetra_BlockMap &amp;<em>map</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12EpetraVector12EpetraVectorERK15Epetra_BlockMap" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create vector from given Epetra_BlockMap</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12EpetraVector4zeroEv">
+<span id="EpetraVector::zero"></span>void <code class="descclassname"></code><code class="descname">zero</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12EpetraVector4zeroEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set all entries to zero and keep any sparse structure</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12EpetraVector5applyENSt6stringE">
+<span id="EpetraVector::apply__ss"></span>void <code class="descclassname"></code><code class="descname">apply</code><span class="sig-paren">(</span>std::string <em>mode</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12EpetraVector5applyENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Finalize assembly of tensor</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12EpetraVector3strEb">
+<span id="EpetraVector::str__bC"></span>std::string <code class="descclassname"></code><code class="descname">str</code><span class="sig-paren">(</span>bool <em>verbose</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12EpetraVector3strEb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return informal string representation (pretty-print)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12EpetraVector4copyEv">
+<span id="EpetraVector::copyC"></span>boost::shared_ptr&lt;<a class="reference internal" href="GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a>&gt; <code class="descclassname"></code><code class="descname">copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12EpetraVector4copyEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return copy of vector</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12EpetraVector6resizeENSt6size_tE">
+<span id="EpetraVector::resize__std::s"></span>void <code class="descclassname"></code><code class="descname">resize</code><span class="sig-paren">(</span>std::size_t <em>N</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12EpetraVector6resizeENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Resize vector to size N</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12EpetraVector6resizeENSt4pairINSt6size_tENSt6size_tEEE">
+<span id="EpetraVector::resize__std::pair:std::s.std::s:"></span>void <code class="descclassname"></code><code class="descname">resize</code><span class="sig-paren">(</span>std::pair&lt;std::size_t, std::size_t&gt; <em>range</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12EpetraVector6resizeENSt4pairINSt6size_tENSt6size_tEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Resize vector with given ownership range</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12EpetraVector6resizeENSt4pairINSt6size_tENSt6size_tEEERKNSt6vectorI8la_indexEE">
+<span id="EpetraVector::resize__std::pair:std::s.std::s:.std::vector:la_index:CR"></span>void <code class="descclassname"></code><code class="descname">resize</code><span class="sig-paren">(</span>std::pair&lt;std::size_t, std::size_t&gt; <em>range</em>, <em class="property">const</em> std::vector&lt;la_index&gt; &amp;<em>ghost_indices</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12EpetraVector6resizeENSt4pairINSt6size_tENSt6size_tEEERKNSt6vectorI8la_indexEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Resize vector with given ownership range and with ghost values</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12EpetraVector5emptyEv">
+<span id="EpetraVector::emptyC"></span>bool <code class="descclassname"></code><code class="descname">empty</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12EpetraVector5emptyEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return true if vector is empty</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12EpetraVector4sizeEv">
+<span id="EpetraVector::sizeC"></span>std::size_t <code class="descclassname"></code><code class="descname">size</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12EpetraVector4sizeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return size of vector</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12EpetraVector10local_sizeEv">
+<span id="EpetraVector::local_sizeC"></span>std::size_t <code class="descclassname"></code><code class="descname">local_size</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12EpetraVector10local_sizeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return size of local vector</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12EpetraVector11local_rangeEv">
+<span id="EpetraVector::local_rangeC"></span>std::pair&lt;std::size_t, std::size_t&gt; <code class="descclassname"></code><code class="descname">local_range</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12EpetraVector11local_rangeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return local ownership range of a vector</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12EpetraVector10owns_indexENSt6size_tE">
+<span id="EpetraVector::owns_index__std::sC"></span>bool <code class="descclassname"></code><code class="descname">owns_index</code><span class="sig-paren">(</span>std::size_t <em>i</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12EpetraVector10owns_indexENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Determine whether global vector index is owned by this process</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12EpetraVector3setEPKdNSt6size_tEPKN6dolfin8la_indexE">
+<span id="EpetraVector::set__doubleCP.std::s.dolfin::la_indexCP"></span>void <code class="descclassname"></code><code class="descname">set</code><span class="sig-paren">(</span><em class="property">const</em> double *<em>block</em>, std::size_t <em>m</em>, <em class="property">const</em> dolfin::la_index *<em>rows</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12EpetraVector3setEPKdNSt6size_tEPKN6dolfin8la_indexE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set block of values</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12EpetraVector3addEPKdNSt6size_tEPKN6dolfin8la_indexE">
+<span id="EpetraVector::add__doubleCP.std::s.dolfin::la_indexCP"></span>void <code class="descclassname"></code><code class="descname">add</code><span class="sig-paren">(</span><em class="property">const</em> double *<em>block</em>, std::size_t <em>m</em>, <em class="property">const</em> dolfin::la_index *<em>rows</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12EpetraVector3addEPKdNSt6size_tEPKN6dolfin8la_indexE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add block of values</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12EpetraVector9get_localERNSt6vectorIdEE">
+<span id="EpetraVector::get_local__std::vector:double:RC"></span>void <code class="descclassname"></code><code class="descname">get_local</code><span class="sig-paren">(</span>std::vector&lt;double&gt; &amp;<em>values</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12EpetraVector9get_localERNSt6vectorIdEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get all values on local process</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12EpetraVector9set_localERKNSt6vectorIdEE">
+<span id="EpetraVector::set_local__std::vector:double:CR"></span>void <code class="descclassname"></code><code class="descname">set_local</code><span class="sig-paren">(</span><em class="property">const</em> std::vector&lt;double&gt; &amp;<em>values</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12EpetraVector9set_localERKNSt6vectorIdEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set all values on local process</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12EpetraVector9add_localERK5ArrayIdE">
+<span id="EpetraVector::add_local__Array:double:CR"></span>void <code class="descclassname"></code><code class="descname">add_local</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../common/Array.html#_CPPv25Array" title="Array">Array</a>&lt;double&gt; &amp;<em>values</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12EpetraVector9add_localERK5ArrayIdE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add all values to each entry on local process</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12EpetraVector6gatherER13GenericVectorRKNSt6vectorIN6dolfin8la_indexEEE">
+<span id="EpetraVector::gather__GenericVectorR.std::vector:dolfin::la_index:CRC"></span>void <code class="descclassname"></code><code class="descname">gather</code><span class="sig-paren">(</span><a class="reference internal" href="GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>x</em>, <em class="property">const</em> std::vector&lt;dolfin::la_index&gt; &amp;<em>indices</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12EpetraVector6gatherER13GenericVectorRKNSt6vectorIN6dolfin8la_indexEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gather entries into local vector x</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12EpetraVector6gatherERNSt6vectorIdEERKNSt6vectorIN6dolfin8la_indexEEE">
+<span id="EpetraVector::gather__std::vector:double:R.std::vector:dolfin::la_index:CRC"></span>void <code class="descclassname"></code><code class="descname">gather</code><span class="sig-paren">(</span>std::vector&lt;double&gt; &amp;<em>x</em>, <em class="property">const</em> std::vector&lt;dolfin::la_index&gt; &amp;<em>indices</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12EpetraVector6gatherERNSt6vectorIdEERKNSt6vectorIN6dolfin8la_indexEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gather entries into x</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12EpetraVector14gather_on_zeroERNSt6vectorIdEE">
+<span id="EpetraVector::gather_on_zero__std::vector:double:RC"></span>void <code class="descclassname"></code><code class="descname">gather_on_zero</code><span class="sig-paren">(</span>std::vector&lt;double&gt; &amp;<em>x</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12EpetraVector14gather_on_zeroERNSt6vectorIdEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gather all entries into x on process 0</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12EpetraVector4axpyEdRK13GenericVector">
+<span id="EpetraVector::axpy__double.GenericVectorCR"></span>void <code class="descclassname"></code><code class="descname">axpy</code><span class="sig-paren">(</span>double <em>a</em>, <em class="property">const</em> <a class="reference internal" href="GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12EpetraVector4axpyEdRK13GenericVector" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add multiple of given vector (AXPY operation)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12EpetraVector3absEv">
+<span id="EpetraVector::abs"></span>void <code class="descclassname"></code><code class="descname">abs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12EpetraVector3absEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Replace all entries in the vector by their absolute values</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12EpetraVector5innerERK13GenericVector">
+<span id="EpetraVector::inner__GenericVectorCRC"></span>double <code class="descclassname"></code><code class="descname">inner</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>vector</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12EpetraVector5innerERK13GenericVector" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return inner product with given vector</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12EpetraVector4normENSt6stringE">
+<span id="EpetraVector::norm__ssC"></span>double <code class="descclassname"></code><code class="descname">norm</code><span class="sig-paren">(</span>std::string <em>norm_type</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12EpetraVector4normENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return norm of vector</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12EpetraVector3minEv">
+<span id="EpetraVector::minC"></span>double <code class="descclassname"></code><code class="descname">min</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12EpetraVector3minEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return minimum value of vector</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12EpetraVector3maxEv">
+<span id="EpetraVector::maxC"></span>double <code class="descclassname"></code><code class="descname">max</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12EpetraVector3maxEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return maximum value of vector</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12EpetraVector3sumEv">
+<span id="EpetraVector::sumC"></span>double <code class="descclassname"></code><code class="descname">sum</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12EpetraVector3sumEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return sum of values of vector</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12EpetraVector3sumERK5ArrayINSt6size_tEE">
+<span id="EpetraVector::sum__Array:std::s:CRC"></span>double <code class="descclassname"></code><code class="descname">sum</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../common/Array.html#_CPPv25Array" title="Array">Array</a>&lt;std::size_t&gt; &amp;<em>rows</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12EpetraVector3sumERK5ArrayINSt6size_tEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return sum of selected rows in vector</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12EpetraVectormLEd">
+<span id="EpetraVector::mul-assign-operator__double"></span><em class="property">const</em> <a class="reference internal" href="#_CPPv212EpetraVector" title="EpetraVector">EpetraVector</a> &amp;<code class="descclassname"></code><code class="descname">operator*=</code><span class="sig-paren">(</span>double <em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12EpetraVectormLEd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Multiply vector by given number</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12EpetraVectormLERK13GenericVector">
+<span id="EpetraVector::mul-assign-operator__GenericVectorCR"></span><em class="property">const</em> <a class="reference internal" href="#_CPPv212EpetraVector" title="EpetraVector">EpetraVector</a> &amp;<code class="descclassname"></code><code class="descname">operator*=</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12EpetraVectormLERK13GenericVector" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Multiply vector by another vector pointwise</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12EpetraVectordVEd">
+<span id="EpetraVector::div-assign-operator__double"></span><em class="property">const</em> <a class="reference internal" href="#_CPPv212EpetraVector" title="EpetraVector">EpetraVector</a> &amp;<code class="descclassname"></code><code class="descname">operator/=</code><span class="sig-paren">(</span>double <em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12EpetraVectordVEd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Divide vector by given number</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12EpetraVectorpLERK13GenericVector">
+<span id="EpetraVector::add-assign-operator__GenericVectorCR"></span><em class="property">const</em> <a class="reference internal" href="#_CPPv212EpetraVector" title="EpetraVector">EpetraVector</a> &amp;<code class="descclassname"></code><code class="descname">operator+=</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12EpetraVectorpLERK13GenericVector" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add given vector</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12EpetraVectorpLEd">
+<span id="EpetraVector::add-assign-operator__double"></span><em class="property">const</em> <a class="reference internal" href="#_CPPv212EpetraVector" title="EpetraVector">EpetraVector</a> &amp;<code class="descclassname"></code><code class="descname">operator+=</code><span class="sig-paren">(</span>double <em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12EpetraVectorpLEd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add number to all components of a vector</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12EpetraVectormIERK13GenericVector">
+<span id="EpetraVector::sub-assign-operator__GenericVectorCR"></span><em class="property">const</em> <a class="reference internal" href="#_CPPv212EpetraVector" title="EpetraVector">EpetraVector</a> &amp;<code class="descclassname"></code><code class="descname">operator-=</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12EpetraVectormIERK13GenericVector" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Subtract given vector</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12EpetraVectormIEd">
+<span id="EpetraVector::sub-assign-operator__double"></span><em class="property">const</em> <a class="reference internal" href="#_CPPv212EpetraVector" title="EpetraVector">EpetraVector</a> &amp;<code class="descclassname"></code><code class="descname">operator-=</code><span class="sig-paren">(</span>double <em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12EpetraVectormIEd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Subtract number from all components of a vector</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12EpetraVectoraSERK13GenericVector">
+<span id="EpetraVector::assign-operator__GenericVectorCR"></span><em class="property">const</em> <a class="reference internal" href="#_CPPv212EpetraVector" title="EpetraVector">EpetraVector</a> &amp;<code class="descclassname"></code><code class="descname">operator=</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12EpetraVectoraSERK13GenericVector" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Assignment operator</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12EpetraVectoraSEd">
+<span id="EpetraVector::assign-operator__double"></span><em class="property">const</em> <a class="reference internal" href="#_CPPv212EpetraVector" title="EpetraVector">EpetraVector</a> &amp;<code class="descclassname"></code><code class="descname">operator=</code><span class="sig-paren">(</span>double <em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12EpetraVectoraSEd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Assignment operator</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12EpetraVector7factoryEv">
+<span id="EpetraVector::factoryC"></span><a class="reference internal" href="GenericLinearAlgebraFactory.html#_CPPv227GenericLinearAlgebraFactory" title="GenericLinearAlgebraFactory">GenericLinearAlgebraFactory</a> &amp;<code class="descclassname"></code><code class="descname">factory</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12EpetraVector7factoryEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return linear algebra backend factory</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12EpetraVector5resetERK15Epetra_BlockMap">
+<span id="EpetraVector::reset__Epetra_BlockMapCR"></span>void <code class="descclassname"></code><code class="descname">reset</code><span class="sig-paren">(</span><em class="property">const</em> Epetra_BlockMap &amp;<em>map</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12EpetraVector5resetERK15Epetra_BlockMap" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Reset Epetra_FEVector</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12EpetraVector3vecEv">
+<span id="EpetraVector::vecC"></span>boost::shared_ptr&lt;Epetra_FEVector&gt; <code class="descclassname"></code><code class="descname">vec</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12EpetraVector3vecEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return Epetra_FEVector pointer</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12EpetraVectoraSERK12EpetraVector">
+<span id="EpetraVector::assign-operator__EpetraVectorCR"></span><em class="property">const</em> <a class="reference internal" href="#_CPPv212EpetraVector" title="EpetraVector">EpetraVector</a> &amp;<code class="descclassname"></code><code class="descname">operator=</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv212EpetraVector" title="EpetraVector">EpetraVector</a> &amp;<em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12EpetraVectoraSERK12EpetraVector" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Assignment operator</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="GenericLUSolver.html" class="btn btn-neutral float-right" title="GenericLUSolver.h" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="EpetraMatrix.html" class="btn btn-neutral" title="EpetraMatrix.h" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://fenicsproject.org.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.3.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

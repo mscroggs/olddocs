@@ -1,0 +1,440 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>11. Dual-mixed formulation for Poisson equation &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../../../index.html"/>
+        <link rel="up" title="Collection of documented demos" href="../../../index.html"/>
+        <link rel="next" title="12. Mixed formulation for Poisson equation" href="../../mixed-poisson/python/documentation.html"/>
+        <link rel="prev" title="10. Generate mesh" href="../../mesh-generation/python/documentation.html"/> 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.4.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../programmers-reference/index.html">Programmer&#8217;s reference for DOLFIN (Python)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Collection of documented demos</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../auto-adaptive-poisson/python/documentation.html">1. Auto adaptive Poisson equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../bcs/python/documentation.html">2. Set boundary conditions for meshes that include boundary indicators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../biharmonic/python/documentation.html">3. Biharmonic equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../built-in_meshes/python/documentation.html">4. Built-in meshes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cahn-hilliard/python/documentation.html">5. Cahn-Hilliard equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../csg-2D/python/documentation.html">6. Create CSG 2D-geometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../csg-3D/python/documentation.html">7. Create CSG 3D-geometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../eigenvalue/python/documentation.html">8. A simple eigenvalue solver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hyperelasticity/python/documentation.html">9. Hyperelasticity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mesh-generation/python/documentation.html">10. Generate mesh</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">11. Dual-mixed formulation for Poisson equation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#equation-and-problem-definition">11.1. Equation and problem definition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#implementation">11.2. Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#complete-code">11.3. Complete code</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../mixed-poisson/python/documentation.html">12. Mixed formulation for Poisson equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../navier-stokes/python/documentation.html">13. Incompressible Navier-Stokes equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../neumann-poisson/python/documentation.html">14. Poisson equation with pure Neumann boundary conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nonlinear-poisson/python/documentation.html">15. Nonlinear Poisson equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../periodic/python/documentation.html">16. Poisson equation with periodic boundary conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../poisson/python/documentation.html">17. Poisson equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../singular-poisson/python/documentation.html">18. Singular Poisson</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stokes-iterative/python/documentation.html">19. Stokes equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stokes-mini/python/documentation.html">20. Stokes equations with Mini elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stokes-stabilized/python/documentation.html">21. Stokes equations with stabilized first order elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stokes-taylor-hood/python/documentation.html">22. Stokes equations with Taylor-Hood elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../subdomains-poisson/python/documentation.html">23. Poisson equation with multiple subdomains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../subdomains/python/documentation.html">24. Marking subdomains of a mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tensor-weighted-poisson/python/documentation.html">25. Tensor-weighted Poisson</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../quick_reference.html">Quick Programmer&#8217;s Reference (Python)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../index.html">Collection of documented demos</a> &raquo;</li>
+      
+    <li>11. Dual-mixed formulation for Poisson equation</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../../_sources/demo/documented/mixed-poisson-dual/python/documentation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="dual-mixed-formulation-for-poisson-equation">
+<span id="demo-pde-mixed-poisson-dual-python-documentation"></span><h1>11. Dual-mixed formulation for Poisson equation<a class="headerlink" href="#dual-mixed-formulation-for-poisson-equation" title="Permalink to this headline">¶</a></h1>
+<p>This demo is implemented in a single Python file,
+<a class="reference download internal" href="../../../../_downloads/demo_mixed-poisson-dual.py" download=""><code class="xref download docutils literal"><span class="pre">demo_mixed-poisson-dual.py</span></code></a>, which contains both the
+variational forms and the solver.</p>
+<p>This demo illustrates how to solve Poisson equation using an
+alternative mixed formulation. In particular, it illustrates how to</p>
+<ul class="simple">
+<li>Use mixed and non-continuous finite element spaces</li>
+<li>Set essential boundary conditions for subspaces</li>
+</ul>
+<div class="section" id="equation-and-problem-definition">
+<h2>11.1. Equation and problem definition<a class="headerlink" href="#equation-and-problem-definition" title="Permalink to this headline">¶</a></h2>
+<p>A formulation of Poisson equation involves introducing an additional
+(vector) variable, namely the (negative) flux: <span class="math">\(\sigma = -
+\nabla u\)</span>. The partial differential equations then read</p>
+<div class="math">
+\[\begin{split}\sigma + \nabla u &amp;= 0 \quad {\rm in} \ \Omega, \\
+\nabla \cdot \sigma &amp;= f \quad {\rm in} \ \Omega,\end{split}\]</div>
+<p>with boundary conditions</p>
+<div class="math">
+\[\begin{split}u = u_0 \quad {\rm on} \ \Gamma_{D},  \\
+- \sigma \cdot n = g \quad {\rm on} \ \Gamma_{N}.\end{split}\]</div>
+<p>The same equations arise in connection with flow in porous media,
+where thery are referred to as Darcy flow.</p>
+<p>After multiplying by test functions <span class="math">\(\tau\)</span> and <span class="math">\(v\)</span>,
+integrating over the domain, and integrating term <span class="math">\(\nabla \cdot
+\sigma \ v\)</span> by parts, one obtains the following variational
+formulation: find <span class="math">\(\sigma \in \Sigma\)</span> and <span class="math">\(v \in V\)</span>
+satisfying</p>
+<div class="math">
+\[ \begin{align}\begin{aligned}\begin{split}\int_{\Omega} (\sigma \cdot \tau + \nabla u \cdot \ \tau) \ {\rm d} x
+&amp;= 0
+\quad \forall \ \tau \in \Sigma, \\\end{split}\\\int_{\Omega} \sigma \cdot \nabla v \ {\rm d} x
+&amp;= - \int_{\Omega}     f \ v \ {\rm d} x
+   - \int_{\Gamma_{N}} g \ v \ {\rm d} x
+\quad \forall \ v \in V.\end{aligned}\end{align} \]</div>
+<p>Compared to classical mixed formulation used in demo <cite>Mixed
+formulation for Poisson equation</cite>, the Dirichlet condition is here
+essential one and Neumann condition is natural.</p>
+<p>To discretize the above formulation, two discrete function spaces
+<span class="math">\(\Sigma_h \subset \Sigma\)</span> and <span class="math">\(V_h \subset V\)</span> are needed
+to form a mixed function space <span class="math">\(\Sigma_h \times V_h\)</span>. A stable
+choice of finite element spaces is to let <span class="math">\(\Sigma_h\)</span> be the
+discontinuous Raviart-Thomas elements of polynomial order <span class="math">\(k\)</span>
+and let <span class="math">\(V_h\)</span> be Lagrange elements of polynomial order
+<span class="math">\(k+1\)</span>.</p>
+<p>We will use the same definitions of functions and boundaries as in the
+demo for Poisson&#8217;s equation. These are:</p>
+<ul class="simple">
+<li><span class="math">\(\Omega = [0,1] \times [0,1]\)</span> (a unit square)</li>
+<li><span class="math">\(\Gamma_{D} = \{(0, y) \cup (1, y) \in \partial \Omega\}\)</span></li>
+<li><span class="math">\(\Gamma_{N} = \{(x, 0) \cup (x, 1) \in \partial \Omega\}\)</span></li>
+<li><span class="math">\(u_0 = 0\)</span></li>
+<li><span class="math">\(g = \sin(5x)\)</span>   (flux)</li>
+<li><span class="math">\(f = 10\exp(-((x - 0.5)^2 + (y - 0.5)^2) / 0.02)\)</span>   (source term)</li>
+</ul>
+<p>With the above input the solution for <span class="math">\(u\)</span> and <span class="math">\(\sigma\)</span>
+will look as follows:</p>
+<a class="reference internal image-reference" href="../../../../_images/mixed-poisson-dual_u.png"><img alt="../../../../_images/mixed-poisson-dual_u.png" class="align-center" src="../../../../_images/mixed-poisson-dual_u.png" style="width: 450.0px; height: 300.0px;" /></a>
+<a class="reference internal image-reference" href="../../../../_images/mixed-poisson-dual_sigma.png"><img alt="../../../../_images/mixed-poisson-dual_sigma.png" class="align-center" src="../../../../_images/mixed-poisson-dual_sigma.png" style="width: 450.0px; height: 300.0px;" /></a>
+</div>
+<div class="section" id="implementation">
+<h2>11.2. Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
+<p>This demo is implemented in the <a class="reference download internal" href="../../../../_downloads/demo_mixed-poisson-dual.py" download=""><code class="xref download docutils literal"><span class="pre">demo_mixed-poisson-dual.py</span></code></a>
+file.</p>
+<p>First, the <a class="reference internal" href="../../../../programmers-reference/index.html#module-dolfin" title="dolfin"><code class="xref py py-mod docutils literal"><span class="pre">dolfin</span></code></a> module is imported:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dolfin</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+<p>Then, we need to create a <code class="xref py py-class docutils literal"><span class="pre">Mesh</span></code> covering
+the unit square. In this example, we will let the mesh consist of 32 x
+32 squares with each square divided into two triangles:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Create mesh</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">UnitSquareMesh</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
+</pre></div>
+</div>
+<p id="index-0">Next, we need to define the function spaces. We define the two
+function spaces <span class="math">\(\Sigma_h = DRT\)</span> and <span class="math">\(V_h = CG\)</span>
+separately, before combining these into a mixed function space:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Define function spaces and mixed (product) space</span>
+<span class="n">DRT</span> <span class="o">=</span> <span class="n">FunctionSpace</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="s2">&quot;DRT&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">CG</span> <span class="o">=</span> <span class="n">FunctionSpace</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="s2">&quot;CG&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">W</span> <span class="o">=</span> <span class="n">DRT</span> <span class="o">*</span> <span class="n">CG</span>
+</pre></div>
+</div>
+<p>The second argument to <a class="reference internal" href="../../../../programmers-reference/functions/functionspace/FunctionSpace.html#dolfin.functions.functionspace.FunctionSpace" title="dolfin.functions.functionspace.FunctionSpace"><code class="xref py py-class docutils literal"><span class="pre">FunctionSpace</span></code></a> specifies the type of
+finite element family, while the third argument specifies the
+polynomial degree. The UFL user manual contains a list of all
+available finite element families and more details.  The * operator
+creates a mixed (product) space <code class="docutils literal"><span class="pre">W</span></code> from the two separate spaces
+<code class="docutils literal"><span class="pre">DRT</span></code> and <code class="docutils literal"><span class="pre">CG</span></code>. Hence,</p>
+<div class="math">
+\[W = \{ (\tau, v) \ \text{such that} \ \tau \in DRT, v \in CG \}.\]</div>
+<p>Next, we need to specify the trial functions (the unknowns) and the
+test functions on this space. This can be done as follows</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Define trial and test functions</span>
+<span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span> <span class="o">=</span> <span class="n">TrialFunctions</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
+<span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="o">=</span> <span class="n">TestFunctions</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In order to define the variational form, it only remains to define the
+source functions <span class="math">\(f\)</span> and <span class="math">\(g\)</span>. This is done just as for the
+<a class="reference internal" href="../../mixed-poisson/python/documentation.html#demo-pde-mixed-poisson-python-documentation"><span class="std std-ref">mixed Poisson demo</span></a>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Define source functions</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">Expression</span><span class="p">(</span><span class="s2">&quot;10*exp(-(pow(x[0] - 0.5, 2) + pow(x[1] - 0.5, 2)) / 0.02)&quot;</span><span class="p">)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">Expression</span><span class="p">(</span><span class="s2">&quot;sin(5.0*x[0])&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We are now ready to define the variational forms a and L.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Define variational form</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">tau</span><span class="p">)</span> <span class="o">+</span> <span class="n">dot</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">tau</span><span class="p">)</span> <span class="o">+</span> <span class="n">dot</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">grad</span><span class="p">(</span><span class="n">v</span><span class="p">)))</span><span class="o">*</span><span class="n">dx</span>
+<span class="n">L</span> <span class="o">=</span> <span class="o">-</span> <span class="n">f</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">dx</span> <span class="o">-</span> <span class="n">g</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">ds</span>
+</pre></div>
+</div>
+<p>It only remains to prescribe the Dirichlet boundary condition for
+<span class="math">\(u\)</span>. Essential boundary conditions are specified through the
+class <a class="reference internal" href="../../../../programmers-reference/fem/bcs/DirichletBC.html#dolfin.fem.bcs.DirichletBC" title="dolfin.fem.bcs.DirichletBC"><code class="xref py py-class docutils literal"><span class="pre">DirichletBC</span></code></a> which takes
+three arguments: the function space the boundary condition is supposed
+to be applied to, the data for the boundary condition, and the
+relevant part of the boundary.</p>
+<p>We want to apply the boundary condition to the second subspace of the
+mixed space. Subspaces of a <a class="reference internal" href="../../../../programmers-reference/functions/functionspace/MixedFunctionSpace.html#dolfin.functions.functionspace.MixedFunctionSpace" title="dolfin.functions.functionspace.MixedFunctionSpace"><code class="xref py py-class docutils literal"><span class="pre">MixedFunctionSpace</span></code></a> can be accessed
+by the method <a class="reference internal" href="../../../../programmers-reference/functions/functionspace/FunctionSpaceBase.html#dolfin.functions.functionspace.FunctionSpaceBase.sub" title="dolfin.functions.functionspace.FunctionSpaceBase.sub"><code class="xref py py-func docutils literal"><span class="pre">sub</span></code></a>. In our case,
+this reads <code class="docutils literal"><span class="pre">W.sub(1)</span></code>. (Do <em>not</em> use the separate space <code class="docutils literal"><span class="pre">CG</span></code> as
+this would mess up the numbering.)</p>
+<p>Specifying the relevant part of the boundary can be done as for the
+Poisson demo:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Define Dirichlet BC</span>
+<span class="k">def</span> <span class="nf">boundary</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">DOLFIN_EPS</span> <span class="ow">or</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">DOLFIN_EPS</span>
+</pre></div>
+</div>
+<p>Now, all the pieces are in place for the construction of the essential
+boundary condition:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">bc</span> <span class="o">=</span> <span class="n">DirichletBC</span><span class="p">(</span><span class="n">W</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">boundary</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To compute the solution we use the bilinear and linear forms, and the
+boundary condition, but we also need to create a <a class="reference internal" href="../../../../programmers-reference/functions/function/Function.html#dolfin.functions.function.Function" title="dolfin.functions.function.Function"><code class="xref py py-class docutils literal"><span class="pre">Function</span></code></a> to store the solution(s). The
+(full) solution will be stored in the <code class="docutils literal"><span class="pre">w</span></code>, which we initialise using
+the <a class="reference internal" href="../../../../programmers-reference/functions/functionspace/FunctionSpace.html#dolfin.functions.functionspace.FunctionSpace" title="dolfin.functions.functionspace.FunctionSpace"><code class="xref py py-class docutils literal"><span class="pre">FunctionSpace</span></code></a> <code class="docutils literal"><span class="pre">W</span></code>. The actual
+computation is performed by calling <a class="reference internal" href="../../../../programmers-reference/fem/solving/solve.html#dolfin.fem.solving.solve" title="dolfin.fem.solving.solve"><code class="xref py py-func docutils literal"><span class="pre">solve</span></code></a>. The separate components <code class="docutils literal"><span class="pre">sigma</span></code> and
+<code class="docutils literal"><span class="pre">u</span></code> of the solution can be extracted by calling the <a class="reference internal" href="../../../../programmers-reference/functions/function/Function.html#dolfin.functions.function.Function.split" title="dolfin.functions.function.Function.split"><code class="xref py py-func docutils literal"><span class="pre">split</span></code></a> function. Finally, we plot
+the solutions to examine the result.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Compute solution</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
+<span class="n">solve</span><span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">L</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">bc</span><span class="p">)</span>
+<span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+
+<span class="c1"># Plot sigma and u</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">sigma</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+<span class="n">interactive</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="complete-code">
+<h2>11.3. Complete code<a class="headerlink" href="#complete-code" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default"><div class="highlight"><pre><span></span>
+<span class="kn">from</span> <span class="nn">dolfin</span> <span class="k">import</span> <span class="o">*</span>
+
+<span class="c1"># Create mesh</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">UnitSquareMesh</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
+
+<span class="c1"># Define function spaces and mixed (product) space</span>
+<span class="n">DRT</span> <span class="o">=</span> <span class="n">FunctionSpace</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="s2">&quot;DRT&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">CG</span>  <span class="o">=</span> <span class="n">FunctionSpace</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="s2">&quot;CG&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">W</span> <span class="o">=</span> <span class="n">DRT</span> <span class="o">*</span> <span class="n">CG</span>
+
+<span class="c1"># Define trial and test functions</span>
+<span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span> <span class="o">=</span> <span class="n">TrialFunctions</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
+<span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="o">=</span> <span class="n">TestFunctions</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
+
+<span class="c1"># Define source functions</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">Expression</span><span class="p">(</span><span class="s2">&quot;10*exp(-(pow(x[0] - 0.5, 2) + pow(x[1] - 0.5, 2)) / 0.02)&quot;</span><span class="p">)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">Expression</span><span class="p">(</span><span class="s2">&quot;sin(5.0*x[0])&quot;</span><span class="p">)</span>
+
+<span class="c1"># Define variational form</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">tau</span><span class="p">)</span> <span class="o">+</span> <span class="n">dot</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">tau</span><span class="p">)</span> <span class="o">+</span> <span class="n">dot</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">grad</span><span class="p">(</span><span class="n">v</span><span class="p">)))</span><span class="o">*</span><span class="n">dx</span>
+<span class="n">L</span> <span class="o">=</span> <span class="o">-</span> <span class="n">f</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">dx</span> <span class="o">-</span> <span class="n">g</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">ds</span>
+
+<span class="c1"># Define Dirichlet BC</span>
+<span class="k">def</span> <span class="nf">boundary</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">DOLFIN_EPS</span> <span class="ow">or</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">DOLFIN_EPS</span>
+<span class="n">bc</span> <span class="o">=</span> <span class="n">DirichletBC</span><span class="p">(</span><span class="n">W</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">boundary</span><span class="p">)</span>
+
+<span class="c1"># Compute solution</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
+<span class="n">solve</span><span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">L</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">bc</span><span class="p">)</span>
+<span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+
+<span class="c1"># Plot sigma and u</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">sigma</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+<span class="n">interactive</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../mixed-poisson/python/documentation.html" class="btn btn-neutral float-right" title="12. Mixed formulation for Poisson equation" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../../mesh-generation/python/documentation.html" class="btn btn-neutral" title="10. Generate mesh" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://fenicsproject.org.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'1.4.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

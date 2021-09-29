@@ -1,0 +1,89 @@
+.. Index file for the dolfin.cpp.la module.
+
+.. _programmers_reference_cpp_la_index:
+
+dolfin.cpp.la module
+********************
+
+Classes:
+
+.. toctree::
+    :maxdepth: 1
+
+    BlockMatrix
+    BlockVector
+    CoordinateMatrix
+    DefaultFactory
+    EigenFactory
+    EigenKrylovSolver
+    EigenLUSolver
+    EigenMatrix
+    EigenVector
+    GenericLinearAlgebraFactory
+    GenericLinearOperator
+    GenericLinearSolver
+    GenericMatrix
+    GenericTensor
+    GenericVector
+    IndexMap
+    KrylovSolver
+    LUSolver
+    LinearAlgebraObject
+    LinearOperator
+    LinearSolver
+    Matrix
+    NewtonSolver
+    NonlinearProblem
+    OptimisationProblem
+    Scalar
+    SparsityPattern
+    TensorLayout
+    Vector
+    VectorSpaceBasis
+    ufc_cell
+    ufc_coordinate_mapping
+    ufc_dofmap
+    ufc_finite_element
+    ufc_form
+    ufc_function
+
+Functions:
+
+.. toctree::
+    :maxdepth: 1
+
+    DefaultFactory_factory
+    EigenFactory_instance
+    EigenKrylovSolver_methods
+    EigenKrylovSolver_preconditioners
+    EigenLUSolver_methods
+    as_backend_type
+    get_tensor_type
+    has_krylov_solver_method
+    has_krylov_solver_preconditioner
+    has_linear_algebra_backend
+    has_lu_solver_method
+    has_type
+    in_nullspace
+    krylov_solver_methods
+    krylov_solver_preconditioners
+    la_index_dtype
+    la_solve
+    linear_algebra_backends
+    linear_solver_methods
+    list_krylov_solver_methods
+    list_krylov_solver_preconditioners
+    list_linear_algebra_backends
+    list_linear_solver_methods
+    list_lu_solver_methods
+    lu_solver_methods
+    new_instancemethod
+    normalize
+    residual
+
+Module docstring:
+
+.. automodule:: dolfin.cpp.la
+   :no-members:
+   :no-undoc-members:
+   :no-show-inheritance:

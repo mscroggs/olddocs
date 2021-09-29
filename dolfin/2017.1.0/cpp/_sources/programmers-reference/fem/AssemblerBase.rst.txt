@@ -1,0 +1,43 @@
+
+.. Documentation for the header file dolfin/fem/AssemblerBase.h
+
+.. _programmers_reference_cpp_fem_assemblerbase:
+
+AssemblerBase.h
+===============
+
+.. note::
+    
+    The documentation on this page was automatically extracted from the
+    DOLFIN C++ code and may need to be edited or expanded.
+    
+
+.. cpp:class:: AssemblerBase
+
+    Provide some common functions used in assembler classes.
+
+
+    .. cpp:function:: AssemblerBase()
+    
+        Constructor
+
+
+    .. cpp:function:: void init_global_tensor(GenericTensor& A, const Form& a)
+    
+        Initialize global tensor
+        @param[out] A (GenericTensor&)
+         GenericTensor to assemble into
+        @param[in] a (Form&)
+         Form to assemble from
+
+
+    .. cpp:function:: static void check(const Form& a)
+    
+        Check form
+
+
+    .. cpp:function:: static std::string progress_message(std::size_t rank, std::string integral_type)
+    
+        Pretty-printing for progress bar
+
+

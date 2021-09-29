@@ -1,0 +1,10 @@
+.. Documentation for the function dolfin.cpp.mesh.SCOTCH_compute_reordering
+
+.. _programmers_reference_cpp_mesh_scotch_compute_reordering:
+
+SCOTCH_compute_reordering
+=========================
+
+.. currentmodule:: dolfin.cpp.mesh
+
+.. autofunction:: SCOTCH_compute_reordering

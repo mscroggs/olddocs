@@ -1,0 +1,276 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>GraphBuilder.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN graph module" href="index.html"/>
+        <link rel="next" title="SCOTCH.h" href="SCOTCH.html"/>
+        <link rel="prev" title="Graph.h" href="Graph.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2016.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-2016.1.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/index.html">DOLFIN common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fem/index.html">DOLFIN fem module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html">DOLFIN function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/index.html">DOLFIN geometry module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN graph module</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="BoostGraphOrdering.html">BoostGraphOrdering.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Graph.html">Graph.h</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">GraphBuilder.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SCOTCH.html">SCOTCH.h</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../io/index.html">DOLFIN io module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../la/index.html">DOLFIN la module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/index.html">DOLFIN log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mesh/index.html">DOLFIN mesh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot/index.html">DOLFIN plot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer&#8217;s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-2016.1.0</a> &raquo;</li>
+      
+          <li><a href="index.html">DOLFIN graph module</a> &raquo;</li>
+      
+    <li>GraphBuilder.h</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/programmers-reference/graph/GraphBuilder.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="graphbuilder-h">
+<span id="programmers-reference-cpp-graph-graphbuilder"></span><h1>GraphBuilder.h<a class="headerlink" href="#graphbuilder-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="class">
+<dt id="_CPPv212GraphBuilder">
+<span id="GraphBuilder"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">GraphBuilder</code><a class="headerlink" href="#_CPPv212GraphBuilder" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This class builds a Graph corresponding to various objects</p>
+<dl class="function">
+<dt id="_CPPv2N12GraphBuilder11local_graphERK4MeshRK13GenericDofMapRK13GenericDofMap">
+<span id="GraphBuilder::local_graph__MeshCR.GenericDofMapCR.GenericDofMapCR"></span><em class="property">static</em> Graph <code class="descclassname"></code><code class="descname">local_graph</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em>, <em class="property">const</em> <a class="reference internal" href="../fem/GenericDofMap.html#_CPPv213GenericDofMap" title="GenericDofMap">GenericDofMap</a> &amp;<em>dofmap0</em>, <em class="property">const</em> <a class="reference internal" href="../fem/GenericDofMap.html#_CPPv213GenericDofMap" title="GenericDofMap">GenericDofMap</a> &amp;<em>dofmap1</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12GraphBuilder11local_graphERK4MeshRK13GenericDofMapRK13GenericDofMap" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Build local graph from dofmap</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12GraphBuilder11local_graphERK4MeshRKNSt6vectorINSt6size_tEEE">
+<span id="GraphBuilder::local_graph__MeshCR.std::vector:std::s:CR"></span><em class="property">static</em> Graph <code class="descclassname"></code><code class="descname">local_graph</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em>, <em class="property">const</em> std::vector&lt;std::size_t&gt; &amp;<em>coloring_type</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12GraphBuilder11local_graphERK4MeshRKNSt6vectorINSt6size_tEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Build local graph from mesh (general version)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12GraphBuilder11local_graphERK4MeshNSt6size_tENSt6size_tE">
+<span id="GraphBuilder::local_graph__MeshCR.std::s.std::s"></span><em class="property">static</em> Graph <code class="descclassname"></code><code class="descname">local_graph</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em>, std::size_t <em>dim0</em>, std::size_t <em>dim1</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12GraphBuilder11local_graphERK4MeshNSt6size_tENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Build local graph (specialized version)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12GraphBuilder18compute_dual_graphEK8MPI_CommRKN5boost11multi_arrayINSt7int64_tEX2EEERK8CellTypeKNSt7int64_tERNSt6vectorINSt6vectorINSt6size_tEEEEERNSt3setINSt7int64_tEEE">
+<span id="GraphBuilder::compute_dual_graph__MPI_CommC.boost::multi_array:std::int64_t.2:CR.CellTypeCR.std::int64_tC.std::vector:std::vector:std::s::R.std::set:std::int64_t:R"></span><em class="property">static</em> std::pair&lt;std::int32_t, std::int32_t&gt; <code class="descclassname"></code><code class="descname">compute_dual_graph</code><span class="sig-paren">(</span><em class="property">const</em> MPI_Comm <em>mpi_comm</em>, <em class="property">const</em> boost::multi_array&lt;std::int64_t, 2&gt; &amp;<em>cell_vertices</em>, <em class="property">const</em> <a class="reference internal" href="../mesh/CellType.html#_CPPv28CellType" title="CellType">CellType</a> &amp;<em>cell_type</em>, <em class="property">const</em> std::int64_t <em>num_global_vertices</em>, std::vector&lt;std::vector&lt;std::size_t&gt;&gt; &amp;<em>local_graph</em>, std::set&lt;std::int64_t&gt; &amp;<em>ghost_vertices</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12GraphBuilder18compute_dual_graphEK8MPI_CommRKN5boost11multi_arrayINSt7int64_tEX2EEERK8CellTypeKNSt7int64_tERNSt6vectorINSt6vectorINSt6size_tEEEEERNSt3setINSt7int64_tEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Build distributed dual graph (cell-cell connections) from
+minimal mesh data, and return (num local edges, num
+non-local edges)</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="SCOTCH.html" class="btn btn-neutral float-right" title="SCOTCH.h" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Graph.html" class="btn btn-neutral" title="Graph.h" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://bitbucket.org/fenics-project/.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'2016.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

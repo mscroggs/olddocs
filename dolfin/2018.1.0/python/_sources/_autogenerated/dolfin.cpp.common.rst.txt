@@ -1,0 +1,49 @@
+dolfin.cpp.common
+=================
+
+.. automodule:: dolfin.cpp.common
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      dump_timings_to_xml
+      git_commit_hash
+      has_debug
+      has_hdf5
+      has_hdf5_parallel
+      has_mpi
+      has_mpi4py
+      has_parmetis
+      has_petsc
+      has_petsc4py
+      has_scotch
+      has_slepc
+      has_slepc4py
+      has_sundials
+      list_timings
+      sizeof_la_index
+      timing
+      timings
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      SubSystemsManager
+      Timer
+      TimingClear
+      TimingType
+      Variable
+   
+   
+
+   
+   
+   

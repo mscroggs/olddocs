@@ -1,0 +1,251 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Quick Programmer’s Reference (C++) &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="FEniCS Project" href="index.html"/>
+        <link rel="prev" title="&lt;no title&gt;" href="demo/documented/tensor-weighted-poisson/cpp/documentation.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.4.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="programmers-reference/index.html">C++ Programmer&#8217;s reference for DOLFIN-1.4.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Quick Programmer&#8217;s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Quick Programmer&#8217;s Reference (C++)</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/quick_reference.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="quick-programmer-s-reference-c">
+<h1>Quick Programmer&#8217;s Reference (C++)<a class="headerlink" href="#quick-programmer-s-reference-c" title="Permalink to this headline">¶</a></h1>
+<p>The complete <a class="reference internal" href="genindex.html"><span class="std std-ref">DOLFIN Programmer&#8217;s Reference</span></a> documents
+<strong>all</strong> the classes and functions in DOLFIN. As a <strong>quicker</strong>
+reference, here are some of the most commonly used classes and
+functions, organized by topic:</p>
+<table border="1" class="center docutils">
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Finite elements</th>
+<th class="head">Meshes</th>
+<th class="head">Variational problems</th>
+<th class="head">Linear systems</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><a class="reference internal" href="programmers-reference/function/FunctionSpace.html#_CPPv213FunctionSpace" title="FunctionSpace"><code class="xref cpp cpp-class docutils literal"><span class="pre">FunctionSpace</span></code></a></td>
+<td><a class="reference internal" href="programmers-reference/mesh/Mesh.html#_CPPv24Mesh" title="Mesh"><code class="xref cpp cpp-class docutils literal"><span class="pre">Mesh</span></code></a></td>
+<td><a class="reference internal" href="programmers-reference/fem/LinearVariationalProblem.html#_CPPv224LinearVariationalProblem" title="LinearVariationalProblem"><code class="xref cpp cpp-class docutils literal"><span class="pre">LinearVariationalProblem</span></code></a></td>
+<td><a class="reference internal" href="programmers-reference/fem/assemble.html#_CPPv28assembleR13GenericTensorRK4Form" title="assemble"><code class="xref cpp cpp-func docutils literal"><span class="pre">assemble()</span></code></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="programmers-reference/function/Function.html#_CPPv28Function" title="Function"><code class="xref cpp cpp-class docutils literal"><span class="pre">Function</span></code></a></td>
+<td><a class="reference internal" href="programmers-reference/mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction"><code class="xref cpp cpp-class docutils literal"><span class="pre">MeshFunction</span></code></a></td>
+<td><a class="reference internal" href="programmers-reference/fem/LinearVariationalSolver.html#_CPPv223LinearVariationalSolver" title="LinearVariationalSolver"><code class="xref cpp cpp-class docutils literal"><span class="pre">LinearVariationalSolver</span></code></a></td>
+<td><a class="reference internal" href="programmers-reference/la/Vector.html#_CPPv26Vector" title="Vector"><code class="xref cpp cpp-class docutils literal"><span class="pre">Vector</span></code></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="programmers-reference/fem/Form.html#_CPPv24Form" title="Form"><code class="xref cpp cpp-class docutils literal"><span class="pre">Form</span></code></a></td>
+<td><a class="reference internal" href="programmers-reference/mesh/SubDomain.html#_CPPv29SubDomain" title="SubDomain"><code class="xref cpp cpp-class docutils literal"><span class="pre">SubDomain</span></code></a></td>
+<td><a class="reference internal" href="programmers-reference/fem/NonlinearVariationalProblem.html#_CPPv227NonlinearVariationalProblem" title="NonlinearVariationalProblem"><code class="xref cpp cpp-class docutils literal"><span class="pre">NonlinearVariationalProblem</span></code></a></td>
+<td><a class="reference internal" href="programmers-reference/la/Matrix.html#_CPPv26Matrix" title="Matrix"><code class="xref cpp cpp-class docutils literal"><span class="pre">Matrix</span></code></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="programmers-reference/function/Expression.html#_CPPv210Expression" title="Expression"><code class="xref cpp cpp-class docutils literal"><span class="pre">Expression</span></code></a></td>
+<td>&nbsp;</td>
+<td><a class="reference internal" href="programmers-reference/fem/NonlinearVariationalSolver.html#_CPPv226NonlinearVariationalSolver" title="NonlinearVariationalSolver"><code class="xref cpp cpp-class docutils literal"><span class="pre">NonlinearVariationalSolver</span></code></a></td>
+<td><a class="reference internal" href="programmers-reference/la/LUSolver.html#_CPPv28LUSolver" title="LUSolver"><code class="xref cpp cpp-class docutils literal"><span class="pre">LUSolver</span></code></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="programmers-reference/fem/DirichletBC.html#_CPPv211DirichletBC" title="DirichletBC"><code class="xref cpp cpp-class docutils literal"><span class="pre">DirichletBC</span></code></a></td>
+<td>&nbsp;</td>
+<td><a class="reference internal" href="programmers-reference/adaptivity/adaptivesolve.html#_CPPv25solveRK8EquationR8FunctionKdR14GoalFunctional" title="solve"><code class="xref cpp cpp-func docutils literal"><span class="pre">solve()</span></code></a></td>
+<td><a class="reference internal" href="programmers-reference/la/KrylovSolver.html#_CPPv212KrylovSolver" title="KrylovSolver"><code class="xref cpp cpp-class docutils literal"><span class="pre">KrylovSolver</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="demo/documented/tensor-weighted-poisson/cpp/documentation.html" class="btn btn-neutral" title="&lt;no title&gt;" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://fenicsproject.org.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.4.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

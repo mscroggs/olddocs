@@ -1,0 +1,365 @@
+
+.. Documentation for the header file dolfin/io/XDMFFile.h
+
+.. _programmers_reference_cpp_io_xdmffile:
+
+XDMFFile.h
+==========
+
+.. note::
+    
+    The documentation on this page was automatically extracted from the
+    DOLFIN C++ code and may need to be edited or expanded.
+    
+
+.. cpp:class:: XDMFFile
+
+    *Parent class(es)*
+    
+        * :cpp:class:`Variable`
+        
+    Read and write Mesh, Function, MeshFunction and other objects in XDMF
+    This class supports the output of meshes and functions in XDMF
+    (http://www.xdmf.org) format. It creates an XML file that
+    describes the data and points to a HDF5 file that stores the
+    actual problem data. Output of data in parallel is supported.
+    
+    XDMF is not suitable for checkpointing as it may decimate some
+    data.
+
+
+    .. cpp:function:: enum class Encoding
+    
+        File encoding type
+
+
+    .. cpp:function:: XDMFFile(const std::string filename)
+    
+        Constructor
+
+
+    .. cpp:function:: XDMFFile(MPI_Comm comm, const std::string filename)
+    
+        Constructor
+
+
+    .. cpp:function:: void close()
+    
+        Close the file
+        
+        This closes any open HDF5 files. In ASCII mode the XML file is
+        closed each time it is written to or read from, so close() has
+        no effect.
+        
+        From Python you can also use XDMFFile as a context manager:
+        
+            with XDMFFile(mpi_comm_world(), 'name.xdmf') as xdmf:
+                xdmf.write(mesh)
+        
+        The file is automatically closed at the end of the with block
+
+
+    .. cpp:function:: void write(const Mesh& mesh, Encoding encoding=default_encoding)
+    
+        Save a mesh to XDMF format, either using an associated HDF5
+        file, or storing the data inline as XML Create function on
+        given function space
+        
+        @param    mesh (:cpp:class:`Mesh`)
+                A mesh to save.
+        @param    encoding (_Encoding_)
+                Encoding to use: HDF5 or ASCII
+        
+
+
+    .. cpp:function:: void write_checkpoint(const Function& u, std::string function_name, double time_step = 0.0, Encoding encoding=default_encoding)
+    
+        Save a Function to XDMF file for checkpointing, using an
+        associated HDF5 file, or storing the data inline as XML.
+        
+        If the file where we would like to write exists, then
+        the function is appended to the file.
+        
+        @param    u (:cpp:class:`Function`)
+                A function to save.
+        @param    function_name (string)
+                Name of the function used in XDMF XML and HDF file
+                (if encoding = HDF). The string is used to fill value for XML
+                attribute Name of Grid node. It is also used in HDF file in
+                path to datasets. Must be the same on all processes in parallel.
+        @param    time_step (_double_)
+                Time step. It is saved only in XDMF file. The function could
+                be saved with the same time step several times. There is an
+                internal "counter" value stored in XDMF which differentiates
+                the same time steps.
+        @param    encoding (_Encoding_)
+                Encoding to use: HDF5 or ASCII
+        
+
+
+    .. cpp:function:: void write(const Function& u, Encoding encoding=default_encoding)
+    
+        Save a Function to XDMF file for visualisation, using an
+        associated HDF5 file, or storing the data inline as XML.
+        
+        @param    u (:cpp:class:`Function`)
+                A function to save.
+        @param    encoding (_Encoding_)
+                Encoding to use: HDF5 or ASCII
+        
+
+
+    .. cpp:function:: void write(const Function& u, double t, Encoding encoding=default_encoding)
+    
+        Save a Function with timestamp to XDMF file for visualisation,
+        using an associated HDF5 file, or storing the data inline as
+        XML.
+        
+        You can control the output with the following boolean
+        parameters on the XDMFFile class:
+        
+        * rewrite_function_mesh (default true):
+          Controls whether the mesh will be rewritten every timestep.
+          If the mesh does not change this can be turned off to create
+          smaller files.
+        
+        * functions_share_mesh (default false):
+          Controls whether all functions on a single time step share
+          the same mesh. If true the files created will be smaller and
+          also behave better in Paraview, at least in version 5.3.0
+        
+        @param    u (:cpp:class:`Function`)
+                A function to save.
+        @param    t (_double_)
+                Timestep
+        @param   encoding (_Encoding_)
+                Encoding to use: HDF5 or ASCII
+        
+
+
+    .. cpp:function:: void write(const MeshFunction<bool>& meshfunction, Encoding encoding=default_encoding)
+    
+        Save MeshFunction to file using an associated HDF5 file, or
+        storing the data inline as XML.
+        
+        @param    meshfunction (:cpp:class:`MeshFunction`)
+                A meshfunction to save.
+        @param    encoding (_Encoding_)
+                Encoding to use: HDF5 or ASCII
+        
+
+
+    .. cpp:function:: void write(const MeshFunction<int>& meshfunction, Encoding encoding=default_encoding)
+    
+        Save MeshFunction to file using an associated HDF5 file, or
+        storing the data inline as XML.
+        
+        @param    meshfunction (:cpp:class:`MeshFunction`)
+                A meshfunction to save.
+        @param    encoding (_Encoding_)
+                Encoding to use: HDF5 or ASCII
+        
+
+
+    .. cpp:function:: void write(const MeshFunction<std::size_t>& meshfunction, Encoding encoding=default_encoding)
+    
+        Save MeshFunction to file using an associated HDF5 file, or
+        storing the data inline as XML.
+        
+        @param    meshfunction (:cpp:class:`MeshFunction`)
+                A meshfunction to save.
+        @param    encoding (_Encoding_)
+                Encoding to use: HDF5 or ASCII
+        
+
+
+    .. cpp:function:: void write(const MeshFunction<double>& meshfunction, Encoding encoding=default_encoding)
+    
+        Save MeshFunction to file using an associated HDF5 file, or
+        storing the data inline as XML.
+        
+        @param    meshfunction (:cpp:class:`MeshFunction`)
+                A meshfunction to save.
+        @param    encoding (_Encoding_)
+                Encoding to use: HDF5 or ASCII
+        
+
+
+    .. cpp:function:: void write(const MeshValueCollection<bool>& mvc, Encoding encoding=default_encoding)
+    
+        Write out mesh value collection (subset) using an associated
+        HDF5 file, or storing the data inline as XML.
+        
+        @param mvc (_MeshValueCollection<bool>_)
+                MeshValueCollection to save
+        @param encoding (_Encoding_)
+                Encoding to use: HDF5 or ASCII
+        
+
+
+    .. cpp:function:: void write(const MeshValueCollection<int>& mvc, Encoding encoding=default_encoding)
+    
+        Write out mesh value collection (subset) using an associated
+        HDF5 file, or storing the data inline as XML.
+        
+        @param mvc (_MeshValueCollection<int>_)
+                MeshValueCollection to save
+        @param encoding (_Encoding_)
+                Encoding to use: HDF5 or ASCII
+        
+
+
+    .. cpp:function:: void write(const MeshValueCollection<std::size_t>& mvc, Encoding encoding=default_encoding)
+    
+        Write out mesh value collection (subset) using an associated
+        HDF5 file, or storing the data inline as XML.
+        
+        @param  mvc (_MeshValueCollection<int>_)
+                MeshValueCollection to save
+        @param  encoding (_Encoding_)
+                Encoding to use: HDF5 or ASCII
+        
+
+
+    .. cpp:function:: void write(const MeshValueCollection<double>& mvc, Encoding encoding=default_encoding)
+    
+        Write out mesh value collection (subset) using an associated
+        HDF5 file, or storing the data inline as XML.
+        
+        @param mvc (_MeshValueCollection<double>_)
+                MeshValueCollection to save
+        @param encoding (_Encoding_)
+                Encoding to use: HDF5 or ASCII
+        
+
+
+    .. cpp:function:: void write(const std::vector<Point>& points, Encoding encoding=default_encoding)
+    
+        Save a cloud of points to file using an associated HDF5 file,
+        or storing the data inline as XML.
+        
+        @param    points (_std::vector<Point>_)
+                A list of points to save.
+        @param    encoding (_Encoding_)
+                Encoding to use: HDF5 or ASCII
+        
+
+
+    .. cpp:function:: void write(const std::vector<Point>& points, const std::vector<double>& values, Encoding encoding=default_encoding)
+    
+        Save a cloud of points, with scalar values using an associated
+        HDF5 file, or storing the data inline as XML.
+        
+        @param   points (_std::vector<Point>_)
+                A list of points to save.
+        @param    values (_std::vector<double>_)
+                A list of values at each point.
+        @param    encoding (_Encoding_)
+                Encoding to use: HDF5 or ASCII
+        
+
+
+    .. cpp:function:: void read(Mesh& mesh) const
+    
+        Read in the first Mesh in XDMF file
+        
+        @param mesh (:cpp:class:`Mesh`)
+               Mesh to fill from XDMF file
+
+
+    .. cpp:function:: void read_checkpoint(Function& u, std::string func_name, std::int64_t counter=-1)
+    
+        Read a function from the XDMF file. Supplied function must
+        come with already initialized and compatible function space.
+        
+        Functions saved as time-series must be addressed through
+        (integer) internal counter and function name. Function name
+        is a name of function that was saved. Counter stands for
+        the number of function from time-series, e.g. counter=0
+        refers to first saved function regardless of its time-step value.
+        
+        @param    u (:cpp:class:`Function`)
+                A function to read.
+        @param    func_name (_string_)
+                A name of a function to read. Must be the same on all processes
+                in parallel.
+        @param    counter (_int64_t_)
+                Internal integer counter - used in time-series. Default value
+                is -1 which points to last saved function. Counter works same as
+                python array position key, i.e. counter = -2 points to the
+                function before the last one.
+        
+
+
+    .. cpp:function:: void read(MeshFunction<bool>& meshfunction, std::string name="")
+    
+        Read first MeshFunction from file
+        @param meshfunction (_MeshFunction<bool>_)
+               MeshFunction to restore
+        @param name (std::string)
+               Name of data attribute in XDMF file
+
+
+    .. cpp:function:: void read(MeshFunction<int>& meshfunction, std::string name="")
+    
+        Read first MeshFunction from file
+        @param meshfunction (_MeshFunction<int>_)
+               MeshFunction to restore
+        @param name (std::string)
+               Name of data attribute in XDMF file
+
+
+    .. cpp:function:: void read(MeshFunction<std::size_t>& meshfunction, std::string name="")
+    
+        Read MeshFunction from file, optionally specifying dataset name
+        @param meshfunction (_MeshFunction<std::size_t>_)
+               MeshFunction to restore
+        @param name (std::string)
+               Name of data attribute in XDMF file
+
+
+    .. cpp:function:: void read(MeshFunction<double>& meshfunction, std::string name="")
+    
+        Read MeshFunction from file, optionally specifying dataset name
+        @param meshfunction (_MeshFunction<double>_)
+               MeshFunction to restore
+        @param name (std::string)
+               Name of data attribute in XDMF file
+
+
+    .. cpp:function:: void read(MeshValueCollection<bool>& mvc, std::string name="")
+    
+        Read MeshValueCollection from file, optionally specifying dataset name
+        @param mvc (_MeshValueCollection<bool>_)
+               MeshValueCollection to restore
+        @param name (std::string)
+               Name of data attribute in XDMF file
+
+
+    .. cpp:function:: void read(MeshValueCollection<int>& mvc, std::string name="")
+    
+        Read MeshValueCollection from file, optionally specifying dataset name
+        @param mvc (_MeshValueCollection<int>_)
+               MeshValueCollection to restore
+        @param name (std::string)
+               Name of data attribute in XDMF file
+
+
+    .. cpp:function:: void read(MeshValueCollection<std::size_t>& mvc, std::string name="")
+    
+        Read MeshValueCollection from file, optionally specifying dataset name
+        @param mvc (_MeshValueCollection<std::size_t>_)
+               MeshValueCollection to restore
+        @param name (std::string)
+               Name of data attribute in XDMF file
+
+
+    .. cpp:function:: void read(MeshValueCollection<double>& mvc, std::string name="")
+    
+        Read MeshValueCollection from file, optionally specifying dataset name
+        @param mvc (_MeshValueCollection<double>_)
+               MeshValueCollection to restore
+        @param name (std::string)
+               Name of data attribute in XDMF file
+
+

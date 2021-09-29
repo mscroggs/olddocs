@@ -1,0 +1,10 @@
+.. Documentation for the function dolfin.cpp.mesh.CollisionPredicates_collides_triangle_triangle
+
+.. _programmers_reference_cpp_mesh_collisionpredicates_collides_triangle_triangle:
+
+CollisionPredicates_collides_triangle_triangle
+==============================================
+
+.. currentmodule:: dolfin.cpp.mesh
+
+.. autofunction:: CollisionPredicates_collides_triangle_triangle

@@ -1,0 +1,10 @@
+.. Documentation for the function dolfin.cpp.mesh.CollisionPredicates_collides_segment_point_3d
+
+.. _programmers_reference_cpp_mesh_collisionpredicates_collides_segment_point_3d:
+
+CollisionPredicates_collides_segment_point_3d
+=============================================
+
+.. currentmodule:: dolfin.cpp.mesh
+
+.. autofunction:: CollisionPredicates_collides_segment_point_3d

@@ -1,0 +1,10 @@
+.. Documentation for the function dolfin.cpp.mesh.UnitSquareMesh_create
+
+.. _programmers_reference_cpp_mesh_unitsquaremesh_create:
+
+UnitSquareMesh_create
+=====================
+
+.. currentmodule:: dolfin.cpp.mesh
+
+.. autofunction:: UnitSquareMesh_create

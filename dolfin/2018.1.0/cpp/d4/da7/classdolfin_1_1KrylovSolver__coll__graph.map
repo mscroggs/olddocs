@@ -1,0 +1,5 @@
+<map id="dolfin::KrylovSolver" name="dolfin::KrylovSolver">
+<area shape="rect" id="node2" href="$d4/d2b/classdolfin_1_1GenericLinearSolver.html" title="This class provides a general solver for linear systems Ax = b. " alt="" coords="5,171,197,197"/>
+<area shape="rect" id="node3" href="$d8/df0/classdolfin_1_1Variable.html" title="Common base class for DOLFIN variables. " alt="" coords="44,95,159,121"/>
+<area shape="rect" id="node4" href="$da/d06/classdolfin_1_1Parameters.html" title="dolfin::Parameters" alt="" coords="32,5,171,32"/>
+</map>

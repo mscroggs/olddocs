@@ -1,0 +1,10 @@
+.. Documentation for the function dolfin.functions.specialfunctions.MaxCellEdgeLength
+
+.. _programmers_reference_functions_specialfunctions_maxcelledgelength:
+
+MaxCellEdgeLength
+=================
+
+.. currentmodule:: dolfin.functions.specialfunctions
+
+.. autofunction:: MaxCellEdgeLength

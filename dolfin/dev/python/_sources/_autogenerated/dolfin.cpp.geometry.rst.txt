@@ -1,0 +1,39 @@
+dolfin.cpp.geometry
+===================
+
+.. automodule:: dolfin.cpp.geometry
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      intersect
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      BoundingBoxTree
+      CollisionPredicates
+      IntersectionConstruction
+      MeshPointIntersection
+      Point
+   
+   
+
+   
+   
+   
+
+
+

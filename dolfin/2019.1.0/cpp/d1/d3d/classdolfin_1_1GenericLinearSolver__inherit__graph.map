@@ -1,0 +1,12 @@
+<map id="dolfin::GenericLinearSolver" name="dolfin::GenericLinearSolver">
+<area shape="rect" id="node3" href="$d5/d1b/classdolfin_1_1Amesos2LUSolver.html" title="dolfin::Amesos2LUSolver" alt="" coords="420,5,603,32"/>
+<area shape="rect" id="node4" href="$d1/d0a/classdolfin_1_1BelosKrylovSolver.html" title="dolfin::BelosKrylovSolver" alt="" coords="419,56,604,83"/>
+<area shape="rect" id="node5" href="$d8/d83/classdolfin_1_1EigenKrylovSolver.html" title="dolfin::EigenKrylovSolver" alt="" coords="419,107,604,133"/>
+<area shape="rect" id="node6" href="$d5/d5e/classdolfin_1_1EigenLUSolver.html" title="dolfin::EigenLUSolver" alt="" coords="432,157,591,184"/>
+<area shape="rect" id="node7" href="$d0/d25/classdolfin_1_1KrylovSolver.html" title="dolfin::KrylovSolver" alt="" coords="437,208,586,235"/>
+<area shape="rect" id="node8" href="$da/d10/classdolfin_1_1LinearSolver.html" title="This class provides a general solver for linear systems Ax = b. " alt="" coords="438,259,585,285"/>
+<area shape="rect" id="node9" href="$df/d3b/classdolfin_1_1LUSolver.html" title="LU solver for the built&#45;in LA backends. " alt="" coords="450,309,573,336"/>
+<area shape="rect" id="node10" href="$df/df1/classdolfin_1_1PETScKrylovSolver.html" title="dolfin::PETScKrylovSolver" alt="" coords="417,360,605,387"/>
+<area shape="rect" id="node11" href="$d6/d0e/classdolfin_1_1PETScLUSolver.html" title="dolfin::PETScLUSolver" alt="" coords="430,411,593,437"/>
+<area shape="rect" id="node2" href="$d8/df0/classdolfin_1_1Variable.html" title="Common base class for DOLFIN variables. " alt="" coords="5,208,124,235"/>
+</map>

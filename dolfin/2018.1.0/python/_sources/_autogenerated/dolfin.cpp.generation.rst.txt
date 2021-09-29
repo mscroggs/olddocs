@@ -1,0 +1,30 @@
+dolfin.cpp.generation
+=====================
+
+.. automodule:: dolfin.cpp.generation
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      BoxMesh
+      IntervalMesh
+      RectangleMesh
+      SphericalShellMesh
+      UnitCubeMesh
+      UnitDiscMesh
+      UnitIntervalMesh
+      UnitSquareMesh
+      UnitTriangleMesh
+   
+   
+
+   
+   
+   

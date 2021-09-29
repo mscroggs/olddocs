@@ -1,0 +1,10 @@
+.. Documentation for the function dolfin.cpp.fem.new_instancemethod
+
+.. _programmers_reference_cpp_fem_new_instancemethod:
+
+new_instancemethod
+==================
+
+.. currentmodule:: dolfin.cpp.fem
+
+.. autofunction:: new_instancemethod

@@ -1,0 +1,10 @@
+.. Documentation for the function dolfin.cpp.mesh.IntervalMesh_create
+
+.. _programmers_reference_cpp_mesh_intervalmesh_create:
+
+IntervalMesh_create
+===================
+
+.. currentmodule:: dolfin.cpp.mesh
+
+.. autofunction:: IntervalMesh_create

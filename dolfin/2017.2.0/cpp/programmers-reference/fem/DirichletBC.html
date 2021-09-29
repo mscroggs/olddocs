@@ -1,0 +1,645 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>DirichletBC.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN fem module" href="index.html"/>
+        <link rel="next" title="DiscreteOperators.h" href="DiscreteOperators.html"/>
+        <link rel="prev" title="BasisFunction.h" href="BasisFunction.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.9.11+
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer’s reference for DOLFIN-2017.2.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/index.html">DOLFIN common module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN fem module</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Assembler.html">Assembler.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AssemblerBase.html">AssemblerBase.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BasisFunction.html">BasisFunction.h</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">DirichletBC.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DiscreteOperators.html">DiscreteOperators.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DofMap.html">DofMap.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Equation.html">Equation.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FiniteElement.html">FiniteElement.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Form.html">Form.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericDofMap.html">GenericDofMap.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LinearVariationalProblem.html">LinearVariationalProblem.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LinearVariationalSolver.html">LinearVariationalSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LocalAssembler.html">LocalAssembler.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LocalSolver.html">LocalSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MultiMeshAssembler.html">MultiMeshAssembler.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MultiMeshDirichletBC.html">MultiMeshDirichletBC.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MultiMeshDofMap.html">MultiMeshDofMap.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MultiMeshForm.html">MultiMeshForm.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NonlinearVariationalProblem.html">NonlinearVariationalProblem.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NonlinearVariationalSolver.html">NonlinearVariationalSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScDMCollection.html">PETScDMCollection.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PointSource.html">PointSource.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SparsityPatternBuilder.html">SparsityPatternBuilder.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SystemAssembler.html">SystemAssembler.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="assemble.html">assemble.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="assemble_local.html">assemble_local.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fem_utils.html">fem_utils.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solve.html">solve.h</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html">DOLFIN function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/index.html">DOLFIN geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/index.html">DOLFIN io module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../la/index.html">DOLFIN la module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/index.html">DOLFIN log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mesh/index.html">DOLFIN mesh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer’s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">DOLFIN</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">C++ Programmer’s reference for DOLFIN-2017.2.0</a> &raquo;</li>
+        
+          <li><a href="index.html">DOLFIN fem module</a> &raquo;</li>
+        
+      <li>DirichletBC.h</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/programmers-reference/fem/DirichletBC.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="dirichletbc-h">
+<span id="programmers-reference-cpp-fem-dirichletbc"></span><h1>DirichletBC.h<a class="headerlink" href="#dirichletbc-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="class">
+<dt id="_CPPv211DirichletBC">
+<span id="DirichletBC"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">DirichletBC</code><a class="headerlink" href="#_CPPv211DirichletBC" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Parent class(es)</em></p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="#_CPPv211DirichletBC" title="DirichletBC"><code class="xref cpp cpp-class docutils literal"><span class="pre">Hierarchical</span></code></a></li>
+<li><a class="reference internal" href="../common/Variable.html#_CPPv28Variable" title="Variable"><code class="xref cpp cpp-class docutils literal"><span class="pre">Variable</span></code></a></li>
+</ul>
+</div></blockquote>
+<p>Interface for setting (strong) Dirichlet boundary conditions.</p>
+<blockquote>
+<div>u = g on G,</div></blockquote>
+<p>where u is the solution to be computed, g is a function
+and G is a sub domain of the mesh.</p>
+<p>A DirichletBC is specified by the function g, the function space
+(trial space) and boundary indicators on (a subset of) the mesh
+boundary.</p>
+<p>The boundary indicators may be specified in a number of
+different ways.</p>
+<p>The simplest approach is to specify the boundary by a <a class="reference internal" href="../mesh/SubDomain.html#_CPPv29SubDomain" title="SubDomain"><code class="xref cpp cpp-class docutils literal"><span class="pre">SubDomain</span></code></a>
+object, using the inside() function to specify on which facets
+the boundary conditions should be applied. The boundary facets
+will then be searched for and marked <em>only</em> on the first call to
+apply. This means that the mesh could be moved after the first
+apply and the boundary markers would still remain intact.</p>
+<p>Alternatively, the boundary may be specified by a <a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction"><code class="xref cpp cpp-class docutils literal"><span class="pre">MeshFunction</span></code></a>
+over facets labeling all mesh facets together with a number that
+specifies which facets should be included in the boundary.</p>
+<p>The third option is to attach the boundary information to the
+mesh. This is handled automatically when exporting a mesh from
+for example VMTK.</p>
+<p>The ‘method’ variable may be used to specify the type of method
+used to identify degrees of freedom on the boundary. Available
+methods are: topological approach (default), geometric approach,
+and pointwise approach. The topological approach is faster, but
+will only identify degrees of freedom that are located on a
+facet that is entirely on the boundary. In particular, the
+topological approach will not identify degrees of freedom for
+discontinuous elements (which are all internal to the cell). A
+remedy for this is to use the geometric approach. In the
+geometric approach, each dof on each facet that matches the
+boundary condition will be checked. To apply pointwise boundary
+conditions e.g. pointloads, one will have to use the pointwise
+approach. The three possibilities are “topological”, “geometric”
+and “pointwise”.</p>
+<p>Note: when using “pointwise”, the boolean argument <cite>on_boundary</cite>
+in SubDomain::inside will always be false.</p>
+<p>The ‘check_midpoint’ variable can be used to decide whether or
+not the midpoint of each facet should be checked when a
+user-defined <a class="reference internal" href="../mesh/SubDomain.html#_CPPv29SubDomain" title="SubDomain"><code class="xref cpp cpp-class docutils literal"><span class="pre">SubDomain</span></code></a> is used to define the domain of the
+boundary condition. By default, midpoints are always checked.
+Note that this variable may be of importance close to corners,
+in which case it is sometimes important to check the midpoint to
+avoid including facets “on the diagonal close” to a corner. This
+variable is also of importance for curved boundaries (like on a
+sphere or cylinder), in which case it is important <em>not</em> to
+check the midpoint which will be located in the interior of a
+domain defined relative to a radius.</p>
+<p>Note that there may be caching employed in BC computation for
+performance reasons. In particular, applicable DOFs are cached
+by some methods on a first apply(). This means that changing a
+supplied object (defining boundary subdomain) after first use may
+have no effect. But this is implementation and method specific.</p>
+<dl class="function">
+<dt id="_CPPv2N11DirichletBC11DirichletBCENSt10shared_ptrIK13FunctionSpaceEENSt10shared_ptrIK15GenericFunctionEENSt10shared_ptrIK9SubDomainEENSt6stringEb">
+<span id="DirichletBC::DirichletBC__std::shared_ptr:FunctionSpaceC:.std::shared_ptr:GenericFunctionC:.std::shared_ptr:SubDomainC:.ss.b"></span><code class="descclassname"></code><code class="descname">DirichletBC</code><span class="sig-paren">(</span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../function/FunctionSpace.html#_CPPv213FunctionSpace" title="FunctionSpace">FunctionSpace</a>&gt; <em>V</em>, std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../function/GenericFunction.html#_CPPv215GenericFunction" title="GenericFunction">GenericFunction</a>&gt; <em>g</em>, std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../mesh/SubDomain.html#_CPPv29SubDomain" title="SubDomain">SubDomain</a>&gt; <em>sub_domain</em>, std::string <em>method</em> = &quot;topological&quot;, bool <em>check_midpoint</em> = true<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11DirichletBC11DirichletBCENSt10shared_ptrIK13FunctionSpaceEENSt10shared_ptrIK15GenericFunctionEENSt10shared_ptrIK9SubDomainEENSt6stringEb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create boundary condition for subdomain</p>
+<dl class="docutils">
+<dt>&#64;param[in] V (FunctionSpace)</dt>
+<dd>The function space</dd>
+<dt>&#64;param[in] g (GenericFunction)</dt>
+<dd>The value</dd>
+<dt>&#64;param[in] sub_domain (SubDomain)</dt>
+<dd>The subdomain</dd>
+<dt>&#64;param[in] method (std::string)</dt>
+<dd>Optional argument: A string specifying
+the method to identify dofs</dd>
+</dl>
+<p>&#64;param[in] check_midpoint (bool)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N11DirichletBC11DirichletBCENSt10shared_ptrIK13FunctionSpaceEENSt10shared_ptrIK15GenericFunctionEENSt10shared_ptrIK12MeshFunctionINSt6size_tEEEENSt6size_tENSt6stringE">
+<span id="DirichletBC::DirichletBC__std::shared_ptr:FunctionSpaceC:.std::shared_ptr:GenericFunctionC:.std::shared_ptr:MeshFunction:std::s:C:.std::s.ss"></span><code class="descclassname"></code><code class="descname">DirichletBC</code><span class="sig-paren">(</span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../function/FunctionSpace.html#_CPPv213FunctionSpace" title="FunctionSpace">FunctionSpace</a>&gt; <em>V</em>, std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../function/GenericFunction.html#_CPPv215GenericFunction" title="GenericFunction">GenericFunction</a>&gt; <em>g</em>, std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction">MeshFunction</a>&lt;std::size_t&gt;&gt; <em>sub_domains</em>, std::size_t <em>sub_domain</em>, std::string <em>method</em> = &quot;topological&quot;<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11DirichletBC11DirichletBCENSt10shared_ptrIK13FunctionSpaceEENSt10shared_ptrIK15GenericFunctionEENSt10shared_ptrIK12MeshFunctionINSt6size_tEEEENSt6size_tENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create boundary condition for subdomain specified by index</p>
+<dl class="docutils">
+<dt>&#64;param[in] V (FunctionSpace)</dt>
+<dd>The function space.</dd>
+<dt>&#64;param[in] g (GenericFunction)</dt>
+<dd>The value.</dd>
+<dt>&#64;param[in] sub_domains (MeshFnunction&lt;std::size_t&gt;)</dt>
+<dd>Subdomain markers</dd>
+<dt>&#64;param[in] sub_domain (std::size_t)</dt>
+<dd>The subdomain index (number)</dd>
+<dt>&#64;param[in] method (std::string)</dt>
+<dd>Optional argument: A string specifying the
+method to identify dofs.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N11DirichletBC11DirichletBCENSt10shared_ptrIK13FunctionSpaceEENSt10shared_ptrIK15GenericFunctionEENSt6size_tENSt6stringE">
+<span id="DirichletBC::DirichletBC__std::shared_ptr:FunctionSpaceC:.std::shared_ptr:GenericFunctionC:.std::s.ss"></span><code class="descclassname"></code><code class="descname">DirichletBC</code><span class="sig-paren">(</span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../function/FunctionSpace.html#_CPPv213FunctionSpace" title="FunctionSpace">FunctionSpace</a>&gt; <em>V</em>, std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../function/GenericFunction.html#_CPPv215GenericFunction" title="GenericFunction">GenericFunction</a>&gt; <em>g</em>, std::size_t <em>sub_domain</em>, std::string <em>method</em> = &quot;topological&quot;<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11DirichletBC11DirichletBCENSt10shared_ptrIK13FunctionSpaceEENSt10shared_ptrIK15GenericFunctionEENSt6size_tENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create boundary condition for boundary data included in the mesh</p>
+<dl class="docutils">
+<dt>&#64;param[in] V (FunctionSpace)</dt>
+<dd>The function space.</dd>
+<dt>&#64;param[in]  g (GenericFunction)</dt>
+<dd>The value.</dd>
+<dt>&#64;param[in] sub_domain (std::size_t)</dt>
+<dd>The subdomain index (number)</dd>
+<dt>&#64;param[in] method (std::string)</dt>
+<dd>Optional argument: A string specifying the
+method to identify dofs.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N11DirichletBC11DirichletBCENSt10shared_ptrIK13FunctionSpaceEENSt10shared_ptrIK15GenericFunctionEERKNSt6vectorINSt6size_tEEENSt6stringE">
+<span id="DirichletBC::DirichletBC__std::shared_ptr:FunctionSpaceC:.std::shared_ptr:GenericFunctionC:.std::vector:std::s:CR.ss"></span><code class="descclassname"></code><code class="descname">DirichletBC</code><span class="sig-paren">(</span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../function/FunctionSpace.html#_CPPv213FunctionSpace" title="FunctionSpace">FunctionSpace</a>&gt; <em>V</em>, std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../function/GenericFunction.html#_CPPv215GenericFunction" title="GenericFunction">GenericFunction</a>&gt; <em>g</em>, <em class="property">const</em> std::vector&lt;std::size_t&gt; &amp;<em>markers</em>, std::string <em>method</em> = &quot;topological&quot;<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11DirichletBC11DirichletBCENSt10shared_ptrIK13FunctionSpaceEENSt10shared_ptrIK15GenericFunctionEERKNSt6vectorINSt6size_tEEENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create boundary condition for subdomain by boundary markers
+(cells, local facet numbers)</p>
+<dl class="docutils">
+<dt>&#64;param[in] V (FunctionSpace)</dt>
+<dd>The function space.</dd>
+<dt>&#64;param[in] g (GenericFunction)</dt>
+<dd>The value.</dd>
+<dt>&#64;param[in] markers (std::vector&lt;std:size_t&gt;&amp;)</dt>
+<dd>Subdomain markers (facet index local to process)</dd>
+<dt>&#64;param[in] method (std::string)</dt>
+<dd>Optional argument: A string specifying the
+method to identify dofs.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N11DirichletBC11DirichletBCERK11DirichletBC">
+<span id="DirichletBC::DirichletBC__DirichletBCCR"></span><code class="descclassname"></code><code class="descname">DirichletBC</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv2N11DirichletBC11DirichletBCENSt10shared_ptrIK13FunctionSpaceEENSt10shared_ptrIK15GenericFunctionEENSt10shared_ptrIK9SubDomainEENSt6stringEb" title="DirichletBC::DirichletBC">DirichletBC</a> &amp;<em>bc</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11DirichletBC11DirichletBCERK11DirichletBC" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Copy constructor. Either cached DOF data are copied.</p>
+<dl class="docutils">
+<dt>&#64;param[in] bc (DirichletBC&amp;)</dt>
+<dd>The object to be copied.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N11DirichletBCaSERK11DirichletBC">
+<span id="DirichletBC::assign-operator__DirichletBCCR"></span><em class="property">const</em> <a class="reference internal" href="#_CPPv211DirichletBC" title="DirichletBC">DirichletBC</a> &amp;<code class="descclassname"></code><code class="descname">operator=</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv211DirichletBC" title="DirichletBC">DirichletBC</a> &amp;<em>bc</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11DirichletBCaSERK11DirichletBC" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Assignment operator. Either cached DOF data are assigned.</p>
+<dl class="docutils">
+<dt>&#64;param[in] bc (DirichletBC)</dt>
+<dd>Another DirichletBC object.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11DirichletBC5applyER13GenericMatrix">
+<span id="DirichletBC::apply__GenericMatrixRC"></span>void <code class="descclassname"></code><code class="descname">apply</code><span class="sig-paren">(</span><a class="reference internal" href="../la/GenericMatrix.html#_CPPv213GenericMatrix" title="GenericMatrix">GenericMatrix</a> &amp;<em>A</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11DirichletBC5applyER13GenericMatrix" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Apply boundary condition to a matrix</p>
+<dl class="docutils">
+<dt>&#64;param[in,out] A (GenericMatrix)</dt>
+<dd>The matrix to apply boundary condition to.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11DirichletBC5applyER13GenericVector">
+<span id="DirichletBC::apply__GenericVectorRC"></span>void <code class="descclassname"></code><code class="descname">apply</code><span class="sig-paren">(</span><a class="reference internal" href="../la/GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>b</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11DirichletBC5applyER13GenericVector" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Apply boundary condition to a vector</p>
+<dl class="docutils">
+<dt>&#64;param[in,out] b (GenericVector)</dt>
+<dd>The vector to apply boundary condition to.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11DirichletBC5applyER13GenericMatrixR13GenericVector">
+<span id="DirichletBC::apply__GenericMatrixR.GenericVectorRC"></span>void <code class="descclassname"></code><code class="descname">apply</code><span class="sig-paren">(</span><a class="reference internal" href="../la/GenericMatrix.html#_CPPv213GenericMatrix" title="GenericMatrix">GenericMatrix</a> &amp;<em>A</em>, <a class="reference internal" href="../la/GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>b</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11DirichletBC5applyER13GenericMatrixR13GenericVector" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Apply boundary condition to a linear system</p>
+<dl class="docutils">
+<dt>&#64;param[in,out] A (GenericMatrix)</dt>
+<dd>The matrix to apply boundary condition to.</dd>
+<dt>&#64;param[in,out] b (GenericVector)</dt>
+<dd>The vector to apply boundary condition to.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11DirichletBC5applyER13GenericVectorRK13GenericVector">
+<span id="DirichletBC::apply__GenericVectorR.GenericVectorCRC"></span>void <code class="descclassname"></code><code class="descname">apply</code><span class="sig-paren">(</span><a class="reference internal" href="../la/GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>b</em>, <em class="property">const</em> <a class="reference internal" href="../la/GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>x</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11DirichletBC5applyER13GenericVectorRK13GenericVector" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Apply boundary condition to vectors for a nonlinear problem</p>
+<dl class="docutils">
+<dt>&#64;param[in,out] b (GenericVector)</dt>
+<dd>The vector to apply boundary conditions to.</dd>
+<dt>&#64;param[in] x (GenericVector)</dt>
+<dd>Another vector (nonlinear problem).</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11DirichletBC5applyER13GenericMatrixR13GenericVectorRK13GenericVector">
+<span id="DirichletBC::apply__GenericMatrixR.GenericVectorR.GenericVectorCRC"></span>void <code class="descclassname"></code><code class="descname">apply</code><span class="sig-paren">(</span><a class="reference internal" href="../la/GenericMatrix.html#_CPPv213GenericMatrix" title="GenericMatrix">GenericMatrix</a> &amp;<em>A</em>, <a class="reference internal" href="../la/GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>b</em>, <em class="property">const</em> <a class="reference internal" href="../la/GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>x</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11DirichletBC5applyER13GenericMatrixR13GenericVectorRK13GenericVector" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Apply boundary condition to a linear system for a nonlinear problem</p>
+<dl class="docutils">
+<dt>&#64;param[in,out] A (GenericMatrix)</dt>
+<dd>The matrix to apply boundary conditions to.</dd>
+<dt>&#64;param[in,out] b (GenericVector)</dt>
+<dd>The vector to apply boundary conditions to.</dd>
+<dt>&#64;param[in] x (GenericVector)</dt>
+<dd>Another vector (nonlinear problem).</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11DirichletBC19get_boundary_valuesER3Map">
+<span id="DirichletBC::get_boundary_values__MapRC"></span>void <code class="descclassname"></code><code class="descname">get_boundary_values</code><span class="sig-paren">(</span>Map &amp;<em>boundary_values</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11DirichletBC19get_boundary_valuesER3Map" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get Dirichlet dofs and values. If a method other than ‘pointwise’ is
+used in parallel, the map may not be complete for local vertices since
+a vertex can have a bc applied, but the partition might not have a
+facet on the boundary. To ensure all local boundary dofs are marked,
+it is necessary to call gather() on the returned boundary values.</p>
+<dl class="docutils">
+<dt>&#64;param[in,out] boundary_values (Map&amp;)</dt>
+<dd>Map from dof to boundary value.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11DirichletBC6gatherER3Map">
+<span id="DirichletBC::gather__MapRC"></span>void <code class="descclassname"></code><code class="descname">gather</code><span class="sig-paren">(</span>Map &amp;<em>boundary_values</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11DirichletBC6gatherER3Map" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get boundary values from neighbour processes. If a method other than
+“pointwise” is used, this is necessary to ensure all boundary dofs are
+marked on all processes.</p>
+<dl class="docutils">
+<dt>&#64;param[in,out] boundary_values (Map&amp;)</dt>
+<dd>Map from dof to boundary value.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11DirichletBC4zeroER13GenericMatrix">
+<span id="DirichletBC::zero__GenericMatrixRC"></span>void <code class="descclassname"></code><code class="descname">zero</code><span class="sig-paren">(</span><a class="reference internal" href="../la/GenericMatrix.html#_CPPv213GenericMatrix" title="GenericMatrix">GenericMatrix</a> &amp;<em>A</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11DirichletBC4zeroER13GenericMatrix" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Make rows of matrix associated with boundary condition zero,
+useful for non-diagonal matrices in a block matrix.</p>
+<dl class="docutils">
+<dt>&#64;param[in,out] A (GenericMatrix&amp;)</dt>
+<dd>The matrix</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11DirichletBC12zero_columnsER13GenericMatrixR13GenericVectord">
+<span id="DirichletBC::zero_columns__GenericMatrixR.GenericVectorR.doubleC"></span>void <code class="descclassname"></code><code class="descname">zero_columns</code><span class="sig-paren">(</span><a class="reference internal" href="../la/GenericMatrix.html#_CPPv213GenericMatrix" title="GenericMatrix">GenericMatrix</a> &amp;<em>A</em>, <a class="reference internal" href="../la/GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>b</em>, double <em>diag_val</em> = 0<span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11DirichletBC12zero_columnsER13GenericMatrixR13GenericVectord" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Make columns of matrix associated with boundary condition
+zero, and update a (right-hand side) vector to reflect the
+changes. Useful for non-diagonals.</p>
+<dl class="docutils">
+<dt>&#64;param[in,out] A (GenericMatrix&amp;)</dt>
+<dd>The matrix</dd>
+<dt>&#64;param[in,out] b (GenericVector&amp;)</dt>
+<dd>The vector</dd>
+<dt>&#64;param[in] diag_val (double)</dt>
+<dd>This parameter would normally be -1, 0 or 1.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11DirichletBC7markersEv">
+<span id="DirichletBC::markersC"></span><em class="property">const</em> std::vector&lt;std::size_t&gt; &amp;<code class="descclassname"></code><code class="descname">markers</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11DirichletBC7markersEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return boundary markers</p>
+<dl class="docutils">
+<dt>&#64;return std::vector&lt;std::size_t&gt;&amp;</dt>
+<dd>Boundary markers (facets stored as pairs of cells and
+local facet numbers).</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11DirichletBC14function_spaceEv">
+<span id="DirichletBC::function_spaceC"></span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../function/FunctionSpace.html#_CPPv213FunctionSpace" title="FunctionSpace">FunctionSpace</a>&gt; <code class="descclassname"></code><code class="descname">function_space</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11DirichletBC14function_spaceEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return function space V</p>
+<dl class="docutils">
+<dt>&#64;return FunctionSpace</dt>
+<dd>The function space to which boundary conditions are applied.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11DirichletBC5valueEv">
+<span id="DirichletBC::valueC"></span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../function/GenericFunction.html#_CPPv215GenericFunction" title="GenericFunction">GenericFunction</a>&gt; <code class="descclassname"></code><code class="descname">value</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11DirichletBC5valueEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return boundary value g</p>
+<dl class="docutils">
+<dt>&#64;return GenericFunction</dt>
+<dd>The boundary values.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11DirichletBC15user_sub_domainEv">
+<span id="DirichletBC::user_sub_domainC"></span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../mesh/SubDomain.html#_CPPv29SubDomain" title="SubDomain">SubDomain</a>&gt; <code class="descclassname"></code><code class="descname">user_sub_domain</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11DirichletBC15user_sub_domainEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return shared pointer to subdomain</p>
+<dl class="docutils">
+<dt>&#64;return SubDomain</dt>
+<dd>Shared pointer to subdomain.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N11DirichletBC9set_valueENSt10shared_ptrIK15GenericFunctionEE">
+<span id="DirichletBC::set_value__std::shared_ptr:GenericFunctionC:"></span>void <code class="descclassname"></code><code class="descname">set_value</code><span class="sig-paren">(</span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../function/GenericFunction.html#_CPPv215GenericFunction" title="GenericFunction">GenericFunction</a>&gt; <em>g</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11DirichletBC9set_valueENSt10shared_ptrIK15GenericFunctionEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set value g for boundary condition, domain remains unchanged</p>
+<dl class="docutils">
+<dt>&#64;param[in] g (GenericFucntion)</dt>
+<dd>The value.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N11DirichletBC10homogenizeEv">
+<span id="DirichletBC::homogenize"></span>void <code class="descclassname"></code><code class="descname">homogenize</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11DirichletBC10homogenizeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set value to 0.0</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11DirichletBC6methodEv">
+<span id="DirichletBC::methodC"></span>std::string <code class="descclassname"></code><code class="descname">method</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11DirichletBC6methodEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return method used for computing Dirichlet dofs</p>
+<dl class="docutils">
+<dt>&#64;return std::string</dt>
+<dd>Method used for computing Dirichlet dofs (“topological”,
+“geometric” or “pointwise”).</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N11DirichletBC18default_parametersEv">
+<span id="DirichletBC::default_parameters"></span><em class="property">static</em> <a class="reference internal" href="../parameter/Parameters.html#_CPPv210Parameters" title="Parameters">Parameters</a> <code class="descclassname"></code><code class="descname">default_parameters</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11DirichletBC18default_parametersEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Default parameter values
+&#64;return Parameters</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="_CPPv29LocalData">
+<span id="LocalData"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">LocalData</code><a class="headerlink" href="#_CPPv29LocalData" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="DiscreteOperators.html" class="btn btn-neutral float-right" title="DiscreteOperators.h" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="BasisFunction.html" class="btn btn-neutral" title="BasisFunction.h" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright DOLFIN Core, https://launchpad.net/~dolfin-core.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.9.11+',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

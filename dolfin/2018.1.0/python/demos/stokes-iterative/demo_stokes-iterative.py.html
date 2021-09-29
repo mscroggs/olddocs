@@ -1,0 +1,452 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Stokes equations with an iterative solver &mdash; DOLFIN  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Python API reference" href="../../api.html" />
+    <link rel="prev" title="Interpolation from a non-matching mesh" href="../nonmatching-interpolation/demo_nonmatching-interpolation.py.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../using.html">Using DOLFIN</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../demos.html">Demos</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../demos.html#introductory-demos">Introductory demos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../demos.html#more-advanced-demos">More advanced demos</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../demos.html#all-documented-demos">All documented demos</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../poisson/demo_poisson.py.html">Poisson equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../eigenvalue/demo_eigenvalue.py.html">A simple eigenvalue solver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../built-in-meshes/demo_built-in-meshes.py.html">Built-in meshes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mixed-poisson/demo_mixed-poisson.py.html">Mixed formulation for Poisson equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../biharmonic/demo_biharmonic.py.html">Biharmonic equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../auto-adaptive-poisson/demo_auto-adaptive-poisson.py.html">Auto adaptive Poisson equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cahn-hilliard/demo_cahn-hilliard.py.html">Cahn-Hilliard equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maxwell-eigenvalues/demo_maxwell-eigenvalues.py.html">Stable and unstable finite elements for the Maxwell eigenvalue problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hyperelasticity/demo_hyperelasticity.py.html">Hyperelasticity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nonlinear-poisson/demo_nonlinear-poisson.py.html">Nonlinear Poisson equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../singular-poisson/demo_singular-poisson.py.html">Singular Poisson</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../neumann-poisson/demo_neumann-poisson.py.html">Poisson equation with pure Neumann boundary conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nonmatching-interpolation/demo_nonmatching-interpolation.py.html">Interpolation from a non-matching mesh</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Stokes equations with an iterative solver</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#equation-and-problem-definition">Equation and problem definition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#implementation">Implementation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">Python API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer.html">Developer resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">DOLFIN</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../demos.html">Demos</a> &raquo;</li>
+        
+      <li>Stokes equations with an iterative solver</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/demos/stokes-iterative/demo_stokes-iterative.py.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="stokes-equations-with-an-iterative-solver">
+<span id="demo-pde-iterative-stokes-python-documentation"></span><h1>Stokes equations with an iterative solver<a class="headerlink" href="#stokes-equations-with-an-iterative-solver" title="Permalink to this headline">¶</a></h1>
+<p>This demo is implemented in a single Python file,
+<a class="reference download internal" href="../../_downloads/demo_stokes-iterative.py" download=""><code class="xref download docutils literal notranslate"><span class="pre">demo_stokes-iterative.py</span></code></a>, which contains both the
+variational forms and the solver.</p>
+<p>This demo illustrates how to:</p>
+<ul class="simple">
+<li>Read mesh and subdomains from file</li>
+<li>Use mixed function spaces</li>
+</ul>
+<div class="section" id="equation-and-problem-definition">
+<h2>Equation and problem definition<a class="headerlink" href="#equation-and-problem-definition" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="strong-formulation">
+<h3>Strong formulation<a class="headerlink" href="#strong-formulation" title="Permalink to this headline">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[\begin{split}- \nabla \cdot (\nabla u + p I) &amp;= f \quad {\rm in} \ \Omega, \\
+                \nabla \cdot u &amp;= 0 \quad {\rm in} \ \Omega. \\\end{split}\]</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The sign of the pressure has been flipped from the classical
+definition. This is done in order to have a symmetric (but not
+positive-definite) system of equations rather than a
+non-symmetric (but positive-definite) system of equations.</p>
+</div>
+<p>A typical set of boundary conditions on the boundary <span class="math notranslate nohighlight">\(\partial
+\Omega = \Gamma_{D} \cup \Gamma_{N}\)</span> can be:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}u &amp;= u_0 \quad {\rm on} \ \Gamma_{D}, \\
+\nabla u \cdot n + p n &amp;= g \,   \quad\;\; {\rm on} \ \Gamma_{N}. \\\end{split}\]</div>
+</div>
+<div class="section" id="weak-formulation">
+<h3>Weak formulation<a class="headerlink" href="#weak-formulation" title="Permalink to this headline">¶</a></h3>
+<p>The Stokes equations can easily be formulated in a mixed variational
+form; that is, a form where the two variables, the velocity and the
+pressure, are approximated simultaneously. Using the abstract
+framework, we have the problem: find <span class="math notranslate nohighlight">\((u, p) \in W\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[a((u, p), (v, q)) = L((v, q))\]</div>
+<p>for all <span class="math notranslate nohighlight">\((v, q) \in W\)</span>, where</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}a((u, p), (v, q))
+&amp;= \int_{\Omega} \nabla u \cdot \nabla v
+- \nabla \cdot v \ p
++ \nabla \cdot u \ q \, {\rm d} x, \\
+L((v, q))
+&amp;= \int_{\Omega} f \cdot v \, {\rm d} x
++ \int_{\partial \Omega_N} g \cdot v \, {\rm d} s. \\\end{split}\]</div>
+<p>The space <span class="math notranslate nohighlight">\(W\)</span> should be a mixed (product) function space
+<span class="math notranslate nohighlight">\(W = V \times Q\)</span>, such that <span class="math notranslate nohighlight">\(u \in V\)</span> and <span class="math notranslate nohighlight">\(q \in Q\)</span>.</p>
+</div>
+<div class="section" id="domain-and-boundary-conditions">
+<h3>Domain and boundary conditions<a class="headerlink" href="#domain-and-boundary-conditions" title="Permalink to this headline">¶</a></h3>
+<p>In this demo, we shall consider the following definitions of the input
+functions, the domain, and the boundaries:</p>
+<ul class="simple">
+<li><span class="math notranslate nohighlight">\(\Omega = [0,1]\times[0,1] \backslash {\rm dolphin}\)</span> (a unit
+cube)</li>
+<li><span class="math notranslate nohighlight">\(\Gamma_D =\)</span></li>
+<li><span class="math notranslate nohighlight">\(\Gamma_N =\)</span></li>
+<li><span class="math notranslate nohighlight">\(u_0 = (- \sin(\pi x_1), 0.0)\)</span> for <span class="math notranslate nohighlight">\(x_0 = 1\)</span> and
+<span class="math notranslate nohighlight">\(u_0 = (0.0, 0.0)\)</span> otherwise</li>
+<li><span class="math notranslate nohighlight">\(f = (0.0, 0.0)\)</span></li>
+<li><span class="math notranslate nohighlight">\(g = (0.0, 0.0)\)</span></li>
+</ul>
+</div>
+</div>
+<div class="section" id="implementation">
+<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
+<p>The Stokes equations as formulated above result in a system of linear
+equations that is not positive-definite. Standard iterative linear
+solvers typically fail to converge for such systems. Some care must
+therefore be taken in preconditioning the systems of
+equations. Moreover, not all of the linear algebra backends support
+this. We therefore start by checking that either “PETSc” or “Tpetra”
+(from Trilinos) is available. We also try to pick MINRES Krylov
+subspace method which is suitable for symmetric indefinite problems.
+If not available, costly QMR method is choosen.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dolfin</span> <span class="k">import</span> <span class="o">*</span>
+
+<span class="c1"># Test for PETSc or Tpetra</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">has_linear_algebra_backend</span><span class="p">(</span><span class="s2">&quot;PETSc&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">has_linear_algebra_backend</span><span class="p">(</span><span class="s2">&quot;Tpetra&quot;</span><span class="p">):</span>
+    <span class="n">info</span><span class="p">(</span><span class="s2">&quot;DOLFIN has not been configured with Trilinos or PETSc. Exiting.&quot;</span><span class="p">)</span>
+    <span class="n">exit</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">has_krylov_solver_preconditioner</span><span class="p">(</span><span class="s2">&quot;amg&quot;</span><span class="p">):</span>
+    <span class="n">info</span><span class="p">(</span><span class="s2">&quot;Sorry, this demo is only available when DOLFIN is compiled with AMG &quot;</span>
+         <span class="s2">&quot;preconditioner, Hypre or ML.&quot;</span><span class="p">)</span>
+    <span class="n">exit</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">has_krylov_solver_method</span><span class="p">(</span><span class="s2">&quot;minres&quot;</span><span class="p">):</span>
+    <span class="n">krylov_method</span> <span class="o">=</span> <span class="s2">&quot;minres&quot;</span>
+<span class="k">elif</span> <span class="n">has_krylov_solver_method</span><span class="p">(</span><span class="s2">&quot;tfqmr&quot;</span><span class="p">):</span>
+    <span class="n">krylov_method</span> <span class="o">=</span> <span class="s2">&quot;tfqmr&quot;</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">info</span><span class="p">(</span><span class="s2">&quot;Default linear algebra backend was not compiled with MINRES or TFQMR &quot;</span>
+         <span class="s2">&quot;Krylov subspace method. Terminating.&quot;</span><span class="p">)</span>
+    <span class="n">exit</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Next, we define the mesh (a <code class="xref py py-class docutils literal notranslate"><span class="pre">UnitCubeMesh</span></code>) and a mixed finite element <code class="docutils literal notranslate"><span class="pre">TH</span></code>.  Then
+we build a <code class="xref py py-class docutils literal notranslate"><span class="pre">FunctionSpace</span></code> on this element.
+(This mixed finite element space is known as the Taylor–Hood elements
+and is a stable, standard element pair for the Stokes equations.)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load mesh</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">UnitCubeMesh</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="n">CellType</span><span class="o">.</span><span class="n">Type</span><span class="o">.</span><span class="n">hexahedron</span><span class="p">)</span>
+
+<span class="c1"># Build function space</span>
+<span class="n">P2</span> <span class="o">=</span> <span class="n">VectorElement</span><span class="p">(</span><span class="s2">&quot;Lagrange&quot;</span><span class="p">,</span> <span class="n">mesh</span><span class="o">.</span><span class="n">ufl_cell</span><span class="p">(),</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">P1</span> <span class="o">=</span> <span class="n">FiniteElement</span><span class="p">(</span><span class="s2">&quot;Lagrange&quot;</span><span class="p">,</span> <span class="n">mesh</span><span class="o">.</span><span class="n">ufl_cell</span><span class="p">(),</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">TH</span> <span class="o">=</span> <span class="n">P2</span> <span class="o">*</span> <span class="n">P1</span>
+<span class="n">W</span> <span class="o">=</span> <span class="n">FunctionSpace</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">TH</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Next, we define the boundary conditions.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Boundaries</span>
+<span class="k">def</span> <span class="nf">right</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">on_boundary</span><span class="p">):</span> <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">DOLFIN_EPS</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">left</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">on_boundary</span><span class="p">):</span> <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">DOLFIN_EPS</span>
+<span class="k">def</span> <span class="nf">top_bottom</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">on_boundary</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">DOLFIN_EPS</span> <span class="ow">or</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">DOLFIN_EPS</span>
+
+<span class="c1"># No-slip boundary condition for velocity</span>
+<span class="n">noslip</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">((</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">))</span>
+<span class="n">bc0</span> <span class="o">=</span> <span class="n">DirichletBC</span><span class="p">(</span><span class="n">W</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">noslip</span><span class="p">,</span> <span class="n">top_bottom</span><span class="p">)</span>
+
+<span class="c1"># Inflow boundary condition for velocity</span>
+<span class="n">inflow</span> <span class="o">=</span> <span class="n">Expression</span><span class="p">((</span><span class="s2">&quot;-sin(x[1]*pi)&quot;</span><span class="p">,</span> <span class="s2">&quot;0.0&quot;</span><span class="p">,</span> <span class="s2">&quot;0.0&quot;</span><span class="p">),</span> <span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">bc1</span> <span class="o">=</span> <span class="n">DirichletBC</span><span class="p">(</span><span class="n">W</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">inflow</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span>
+
+<span class="c1"># Collect boundary conditions</span>
+<span class="n">bcs</span> <span class="o">=</span> <span class="p">[</span><span class="n">bc0</span><span class="p">,</span> <span class="n">bc1</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The bilinear and linear forms corresponding to the weak mixed
+formulation of the Stokes equations are defined as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define variational problem</span>
+<span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span> <span class="o">=</span> <span class="n">TrialFunctions</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
+<span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span> <span class="o">=</span> <span class="n">TestFunctions</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">((</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">))</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">inner</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">grad</span><span class="p">(</span><span class="n">v</span><span class="p">))</span><span class="o">*</span><span class="n">dx</span> <span class="o">+</span> <span class="n">div</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">*</span><span class="n">p</span><span class="o">*</span><span class="n">dx</span> <span class="o">+</span> <span class="n">q</span><span class="o">*</span><span class="n">div</span><span class="p">(</span><span class="n">u</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">inner</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span>
+</pre></div>
+</div>
+<p>We can now use the same <code class="xref py py-class docutils literal notranslate"><span class="pre">TrialFunctions</span></code> and
+<code class="xref py py-class docutils literal notranslate"><span class="pre">TestFunctions</span></code> to
+define the preconditioner matrix. We first define the form
+corresponding to the expression for the preconditioner (given in the
+initial description above):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Form for use in constructing preconditioner matrix</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">inner</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">grad</span><span class="p">(</span><span class="n">v</span><span class="p">))</span><span class="o">*</span><span class="n">dx</span> <span class="o">+</span> <span class="n">p</span><span class="o">*</span><span class="n">q</span><span class="o">*</span><span class="n">dx</span>
+</pre></div>
+</div>
+<p>Next, we want to assemble the matrix corresponding to the bilinear
+form and the vector corresponding to the linear form of the Stokes
+equations. Moreover, we want to apply the specified boundary
+conditions to the linear system. However, <code class="xref py py-func docutils literal notranslate"><span class="pre">assembling</span></code> the matrix and vector and applying a
+<code class="xref py py-func docutils literal notranslate"><span class="pre">DirichletBC</span></code> separately will
+possibly result in a non-symmetric system of equations. Instead, we
+can use the <code class="xref py py-func docutils literal notranslate"><span class="pre">assemble_system</span></code> function to assemble both the
+matrix <code class="docutils literal notranslate"><span class="pre">A</span></code>, the vector <code class="docutils literal notranslate"><span class="pre">bb</span></code>, and apply the boundary conditions
+<code class="docutils literal notranslate"><span class="pre">bcs</span></code> in a symmetric fashion:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Assemble system</span>
+<span class="n">A</span><span class="p">,</span> <span class="n">bb</span> <span class="o">=</span> <span class="n">assemble_system</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">bcs</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We do the same for the preconditioner matrix <code class="docutils literal notranslate"><span class="pre">P</span></code> using the linear
+form <code class="docutils literal notranslate"><span class="pre">L</span></code> as a dummy form:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Assemble preconditioner system</span>
+<span class="n">P</span><span class="p">,</span> <span class="n">btmp</span> <span class="o">=</span> <span class="n">assemble_system</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">bcs</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Next, we specify the iterative solver we want to use, in this case a
+<code class="xref py py-class docutils literal notranslate"><span class="pre">KrylovSolver</span></code>. We associate the
+left-hand side matrix <code class="docutils literal notranslate"><span class="pre">A</span></code> and the preconditioner matrix <code class="docutils literal notranslate"><span class="pre">P</span></code> with
+the solver by calling <code class="xref py py-func docutils literal notranslate"><span class="pre">solver.set_operators</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create Krylov solver and AMG preconditioner</span>
+<span class="n">solver</span> <span class="o">=</span> <span class="n">KrylovSolver</span><span class="p">(</span><span class="n">krylov_method</span><span class="p">,</span> <span class="s2">&quot;amg&quot;</span><span class="p">)</span>
+
+<span class="c1"># Associate operator (A) and preconditioner matrix (P)</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">set_operators</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">P</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We are now almost ready to solve the linear system of equations. It
+remains to specify a <code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code> for
+storing the result. For easy manipulation later, we can define a
+<code class="xref py py-class docutils literal notranslate"><span class="pre">Function</span></code> and use the
+vector associated with this Function. The call to
+<code class="xref py py-func docutils literal notranslate"><span class="pre">solver.solve</span></code> then looks as
+follows</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solve</span>
+<span class="n">U</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">U</span><span class="o">.</span><span class="n">vector</span><span class="p">(),</span> <span class="n">bb</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Finally, we can play with the result in different ways:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get sub-functions</span>
+<span class="n">u</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">U</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+
+<span class="c1"># Save solution in VTK format</span>
+<span class="n">ufile_pvd</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="s2">&quot;velocity.pvd&quot;</span><span class="p">)</span>
+<span class="n">ufile_pvd</span> <span class="o">&lt;&lt;</span> <span class="n">u</span>
+<span class="n">pfile_pvd</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="s2">&quot;pressure.pvd&quot;</span><span class="p">)</span>
+<span class="n">pfile_pvd</span> <span class="o">&lt;&lt;</span> <span class="n">p</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../api.html" class="btn btn-neutral float-right" title="Python API reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../nonmatching-interpolation/demo_nonmatching-interpolation.py.html" class="btn btn-neutral" title="Interpolation from a non-matching mesh" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, FEniCS Project.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

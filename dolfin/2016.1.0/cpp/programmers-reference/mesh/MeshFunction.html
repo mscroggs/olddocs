@@ -1,0 +1,746 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>MeshFunction.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN mesh module" href="index.html"/>
+        <link rel="next" title="MeshGeometry.h" href="MeshGeometry.html"/>
+        <link rel="prev" title="MeshEntityIteratorBase.h" href="MeshEntityIteratorBase.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2016.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-2016.1.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/index.html">DOLFIN common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fem/index.html">DOLFIN fem module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html">DOLFIN function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/index.html">DOLFIN geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/index.html">DOLFIN io module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../la/index.html">DOLFIN la module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/index.html">DOLFIN log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN mesh module</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="BoundaryMesh.html">BoundaryMesh.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Cell.html">Cell.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CellType.html">CellType.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DomainBoundary.html">DomainBoundary.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DynamicMeshEditor.html">DynamicMeshEditor.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Edge.html">Edge.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Face.html">Face.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Facet.html">Facet.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FacetCell.html">FacetCell.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LocalMeshData.html">LocalMeshData.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LocalMeshValueCollection.html">LocalMeshValueCollection.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Mesh.html">Mesh.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshColoring.html">MeshColoring.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshConnectivity.html">MeshConnectivity.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshData.html">MeshData.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshDomains.html">MeshDomains.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshEditor.html">MeshEditor.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshEntity.html">MeshEntity.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshEntityIterator.html">MeshEntityIterator.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshEntityIteratorBase.html">MeshEntityIteratorBase.h</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">MeshFunction.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshGeometry.html">MeshGeometry.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshHierarchy.html">MeshHierarchy.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshPartitioning.html">MeshPartitioning.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshQuality.html">MeshQuality.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshRenumbering.html">MeshRenumbering.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshTopology.html">MeshTopology.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshTransformation.html">MeshTransformation.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshValueCollection.html">MeshValueCollection.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MultiMesh.html">MultiMesh.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PeriodicBoundaryComputation.html">PeriodicBoundaryComputation.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SubDomain.html">SubDomain.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SubMesh.html">SubMesh.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SubsetIterator.html">SubsetIterator.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Vertex.html">Vertex.h</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot/index.html">DOLFIN plot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer&#8217;s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-2016.1.0</a> &raquo;</li>
+      
+          <li><a href="index.html">DOLFIN mesh module</a> &raquo;</li>
+      
+    <li>MeshFunction.h</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/programmers-reference/mesh/MeshFunction.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="meshfunction-h">
+<span id="programmers-reference-cpp-mesh-meshfunction"></span><h1>MeshFunction.h<a class="headerlink" href="#meshfunction-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="class">
+<dt id="_CPPv212MeshFunction">
+<span id="MeshFunction"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">MeshFunction</code><a class="headerlink" href="#_CPPv212MeshFunction" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Parent class(es)</em></p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="../common/Variable.html#_CPPv28Variable" title="Variable"><code class="xref cpp cpp-class docutils literal"><span class="pre">Variable</span></code></a></li>
+</ul>
+</div></blockquote>
+<p>A MeshFunction is a function that can be evaluated at a set of
+mesh entities. A MeshFunction is discrete and is only defined at
+the set of mesh entities of a fixed topological dimension.  A
+MeshFunction may for example be used to store a global numbering
+scheme for the entities of a (parallel) mesh, marking sub
+domains or boolean markers for mesh refinement.</p>
+<dl class="function">
+<dt id="_CPPv2N12MeshFunction12MeshFunctionEv">
+<span id="MeshFunction::MeshFunction"></span><code class="descclassname"></code><code class="descname">MeshFunction</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12MeshFunction12MeshFunctionEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create empty mesh function</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12MeshFunction12MeshFunctionENSt10shared_ptrIK4MeshEE">
+<span id="MeshFunction::MeshFunction__std::shared_ptr:MeshC:"></span><em class="property">explicit</em> <code class="descclassname"></code><code class="descname">MeshFunction</code><span class="sig-paren">(</span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a>&gt; <em>mesh</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12MeshFunction12MeshFunctionENSt10shared_ptrIK4MeshEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create empty mesh function on given mesh</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>mesh (<a class="reference internal" href="Mesh.html#_CPPv24Mesh" title="Mesh"><code class="xref cpp cpp-class docutils literal"><span class="pre">Mesh</span></code></a>)</dt>
+<dd>The mesh to create mesh function on.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12MeshFunction12MeshFunctionENSt10shared_ptrIK4MeshEENSt6size_tE">
+<span id="MeshFunction::MeshFunction__std::shared_ptr:MeshC:.std::s"></span><code class="descclassname"></code><code class="descname">MeshFunction</code><span class="sig-paren">(</span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a>&gt; <em>mesh</em>, std::size_t <em>dim</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12MeshFunction12MeshFunctionENSt10shared_ptrIK4MeshEENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create mesh function of given dimension on given mesh</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>mesh (<a class="reference internal" href="Mesh.html#_CPPv24Mesh" title="Mesh"><code class="xref cpp cpp-class docutils literal"><span class="pre">Mesh</span></code></a>)</dt>
+<dd>The mesh to create mesh function on.</dd>
+<dt>dim (std::size_t)</dt>
+<dd>The mesh entity dimension for the mesh function.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12MeshFunction12MeshFunctionENSt10shared_ptrIK4MeshEENSt6size_tERK1T">
+<span id="MeshFunction::MeshFunction__std::shared_ptr:MeshC:.std::s.TCR"></span><code class="descclassname"></code><code class="descname">MeshFunction</code><span class="sig-paren">(</span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a>&gt; <em>mesh</em>, std::size_t <em>dim</em>, <em class="property">const</em> T &amp;<em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12MeshFunction12MeshFunctionENSt10shared_ptrIK4MeshEENSt6size_tERK1T" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create mesh of given dimension on given mesh and initialize
+to a value</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>mesh (<a class="reference internal" href="Mesh.html#_CPPv24Mesh" title="Mesh"><code class="xref cpp cpp-class docutils literal"><span class="pre">Mesh</span></code></a>)</dt>
+<dd>The mesh to create mesh function on.</dd>
+<dt>dim (std::size_t)</dt>
+<dd>The mesh entity dimension.</dd>
+<dt>value (T)</dt>
+<dd>The value.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12MeshFunction12MeshFunctionENSt10shared_ptrIK4MeshEEKNSt6stringE">
+<span id="MeshFunction::MeshFunction__std::shared_ptr:MeshC:.ssC"></span><code class="descclassname"></code><code class="descname">MeshFunction</code><span class="sig-paren">(</span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a>&gt; <em>mesh</em>, <em class="property">const</em> std::string <em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12MeshFunction12MeshFunctionENSt10shared_ptrIK4MeshEEKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create function from data file (shared_ptr version)</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>mesh (<a class="reference internal" href="Mesh.html#_CPPv24Mesh" title="Mesh"><code class="xref cpp cpp-class docutils literal"><span class="pre">Mesh</span></code></a>)</dt>
+<dd>The mesh to create mesh function on.</dd>
+<dt>filename (std::string)</dt>
+<dd>The filename to create mesh function from.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12MeshFunction12MeshFunctionENSt10shared_ptrIK4MeshEERK19MeshValueCollectionI1TE">
+<span id="MeshFunction::MeshFunction__std::shared_ptr:MeshC:.MeshValueCollection:T:CR"></span><code class="descclassname"></code><code class="descname">MeshFunction</code><span class="sig-paren">(</span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a>&gt; <em>mesh</em>, <em class="property">const</em> <a class="reference internal" href="MeshValueCollection.html#_CPPv219MeshValueCollection" title="MeshValueCollection">MeshValueCollection</a>&lt;T&gt; &amp;<em>value_collection</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12MeshFunction12MeshFunctionENSt10shared_ptrIK4MeshEERK19MeshValueCollectionI1TE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create function from a MeshValueCollecion (shared_ptr version)</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>mesh (<a class="reference internal" href="Mesh.html#_CPPv24Mesh" title="Mesh"><code class="xref cpp cpp-class docutils literal"><span class="pre">Mesh</span></code></a>)</dt>
+<dd>The mesh to create mesh function on.</dd>
+<dt>value_collection (<a class="reference internal" href="MeshValueCollection.html#_CPPv219MeshValueCollection" title="MeshValueCollection"><code class="xref cpp cpp-class docutils literal"><span class="pre">MeshValueCollection</span></code></a> &lt;T&gt;)</dt>
+<dd>The mesh value collection for the mesh function data.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12MeshFunction12MeshFunctionENSt10shared_ptrIK4MeshEENSt6size_tERK11MeshDomains">
+<span id="MeshFunction::MeshFunction__std::shared_ptr:MeshC:.std::s.MeshDomainsCR"></span><code class="descclassname"></code><code class="descname">MeshFunction</code><span class="sig-paren">(</span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a>&gt; <em>mesh</em>, std::size_t <em>dim</em>, <em class="property">const</em> <a class="reference internal" href="MeshDomains.html#_CPPv211MeshDomains" title="MeshDomains">MeshDomains</a> &amp;<em>domains</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12MeshFunction12MeshFunctionENSt10shared_ptrIK4MeshEENSt6size_tERK11MeshDomains" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create function from MeshDomains</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>mesh (<a class="reference internal" href="Mesh.html#_CPPv24Mesh" title="Mesh"><code class="xref cpp cpp-class docutils literal"><span class="pre">Mesh</span></code></a>)</dt>
+<dd>The mesh to create mesh function on.</dd>
+<dt>dim (std::size_t)</dt>
+<dd>The dimension of the MeshFunction</dd>
+<dt>domains (_MeshDomains)</dt>
+<dd>The domains from which to extract the domain markers</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12MeshFunction12MeshFunctionERK12MeshFunctionI1TE">
+<span id="MeshFunction::MeshFunction__MeshFunction:T:CR"></span><code class="descclassname"></code><code class="descname">MeshFunction</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv2N12MeshFunction12MeshFunctionEv" title="MeshFunction::MeshFunction">MeshFunction</a>&lt;T&gt; &amp;<em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12MeshFunction12MeshFunctionERK12MeshFunctionI1TE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Copy constructor</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>f (<a class="reference internal" href="#_CPPv2N12MeshFunction12MeshFunctionEv" title="MeshFunction::MeshFunction"><code class="xref cpp cpp-class docutils literal"><span class="pre">MeshFunction</span></code></a> &lt;T&gt;)</dt>
+<dd>The object to be copied.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12MeshFunctionaSERK12MeshFunctionI1TE">
+<span id="MeshFunction::assign-operator__MeshFunction:T:CR"></span><a class="reference internal" href="#_CPPv212MeshFunction" title="MeshFunction">MeshFunction</a>&lt;T&gt; &amp;<code class="descclassname"></code><code class="descname">operator=</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv212MeshFunction" title="MeshFunction">MeshFunction</a>&lt;T&gt; &amp;<em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12MeshFunctionaSERK12MeshFunctionI1TE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Assign mesh function to other mesh function
+Assignment operator</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>f (<a class="reference internal" href="#_CPPv212MeshFunction" title="MeshFunction"><code class="xref cpp cpp-class docutils literal"><span class="pre">MeshFunction</span></code></a> &lt;T&gt;)</dt>
+<dd>A <a class="reference internal" href="#_CPPv212MeshFunction" title="MeshFunction"><code class="xref cpp cpp-class docutils literal"><span class="pre">MeshFunction</span></code></a> object to assign to another MeshFunction.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12MeshFunctionaSERK19MeshValueCollectionI1TE">
+<span id="MeshFunction::assign-operator__MeshValueCollection:T:CR"></span><a class="reference internal" href="#_CPPv212MeshFunction" title="MeshFunction">MeshFunction</a>&lt;T&gt; &amp;<code class="descclassname"></code><code class="descname">operator=</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="MeshValueCollection.html#_CPPv219MeshValueCollection" title="MeshValueCollection">MeshValueCollection</a>&lt;T&gt; &amp;<em>mesh</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12MeshFunctionaSERK19MeshValueCollectionI1TE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Assignment operator</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>mesh (<a class="reference internal" href="MeshValueCollection.html#_CPPv219MeshValueCollection" title="MeshValueCollection"><code class="xref cpp cpp-class docutils literal"><span class="pre">MeshValueCollection</span></code></a>)</dt>
+<dd>A <a class="reference internal" href="MeshValueCollection.html#_CPPv219MeshValueCollection" title="MeshValueCollection"><code class="xref cpp cpp-class docutils literal"><span class="pre">MeshValueCollection</span></code></a> object used to construct a MeshFunction.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12MeshFunction4meshEv">
+<span id="MeshFunction::meshC"></span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a>&gt; <code class="descclassname"></code><code class="descname">mesh</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12MeshFunction4meshEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return mesh associated with mesh function</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt><a class="reference internal" href="Mesh.html#_CPPv24Mesh" title="Mesh"><code class="xref cpp cpp-class docutils literal"><span class="pre">Mesh</span></code></a></dt>
+<dd>The mesh.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12MeshFunction3dimEv">
+<span id="MeshFunction::dimC"></span>std::size_t <code class="descclassname"></code><code class="descname">dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12MeshFunction3dimEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return topological dimension</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>std::size_t</dt>
+<dd>The dimension.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12MeshFunction5emptyEv">
+<span id="MeshFunction::emptyC"></span>bool <code class="descclassname"></code><code class="descname">empty</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12MeshFunction5emptyEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return true if empty</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>bool</dt>
+<dd>True if empty.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12MeshFunction4sizeEv">
+<span id="MeshFunction::sizeC"></span>std::size_t <code class="descclassname"></code><code class="descname">size</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12MeshFunction4sizeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return size (number of entities)</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>std::size_t</dt>
+<dd>The size.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12MeshFunction6valuesEv">
+<span id="MeshFunction::valuesC"></span><em class="property">const</em> T *<code class="descclassname"></code><code class="descname">values</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12MeshFunction6valuesEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return array of values (const. version)</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>T</dt>
+<dd>The values.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12MeshFunction6valuesEv">
+<span id="MeshFunction::values"></span>T *<code class="descclassname"></code><code class="descname">values</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12MeshFunction6valuesEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return array of values</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>T</dt>
+<dd>The values.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12MeshFunctionixERK10MeshEntity">
+<span id="MeshFunction::subscript-operator__MeshEntityCR"></span>T &amp;<code class="descclassname"></code><code class="descname">operator[]</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="MeshEntity.html#_CPPv210MeshEntity" title="MeshEntity">MeshEntity</a> &amp;<em>entity</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12MeshFunctionixERK10MeshEntity" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return value at given mesh entity</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>entity (<a class="reference internal" href="MeshEntity.html#_CPPv210MeshEntity" title="MeshEntity"><code class="xref cpp cpp-class docutils literal"><span class="pre">MeshEntity</span></code></a>)</dt>
+<dd>The mesh entity.</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>T</dt>
+<dd>The value at the given entity.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12MeshFunctionixERK10MeshEntity">
+<span id="MeshFunction::subscript-operator__MeshEntityCRC"></span><em class="property">const</em> T &amp;<code class="descclassname"></code><code class="descname">operator[]</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="MeshEntity.html#_CPPv210MeshEntity" title="MeshEntity">MeshEntity</a> &amp;<em>entity</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12MeshFunctionixERK10MeshEntity" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return value at given mesh entity (const version)</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>entity (<a class="reference internal" href="MeshEntity.html#_CPPv210MeshEntity" title="MeshEntity"><code class="xref cpp cpp-class docutils literal"><span class="pre">MeshEntity</span></code></a>)</dt>
+<dd>The mesh entity.</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>T</dt>
+<dd>The value at the given entity.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12MeshFunctionixENSt6size_tE">
+<span id="MeshFunction::subscript-operator__std::s"></span>T &amp;<code class="descclassname"></code><code class="descname">operator[]</code><span class="sig-paren">(</span>std::size_t <em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12MeshFunctionixENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return value at given index</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>index (std::size_t)</dt>
+<dd>The index.</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>T</dt>
+<dd>The value at the given index.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12MeshFunctionixENSt6size_tE">
+<span id="MeshFunction::subscript-operator__std::sC"></span><em class="property">const</em> T &amp;<code class="descclassname"></code><code class="descname">operator[]</code><span class="sig-paren">(</span>std::size_t <em>index</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12MeshFunctionixENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return value at given index  (const version)</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>index (std::size_t)</dt>
+<dd>The index.</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>T</dt>
+<dd>The value at the given index.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12MeshFunctionaSERK1T">
+<span id="MeshFunction::assign-operator__TCR"></span><em class="property">const</em> <a class="reference internal" href="#_CPPv212MeshFunction" title="MeshFunction">MeshFunction</a>&lt;T&gt; &amp;<code class="descclassname"></code><code class="descname">operator=</code><span class="sig-paren">(</span><em class="property">const</em> T &amp;<em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12MeshFunctionaSERK1T" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set all values to given value</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12MeshFunction4initENSt6size_tE">
+<span id="MeshFunction::init__std::s"></span>void <code class="descclassname"></code><code class="descname">init</code><span class="sig-paren">(</span>std::size_t <em>dim</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12MeshFunction4initENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Initialize mesh function for given topological dimension</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>dim (std::size_t)</dt>
+<dd>The dimension.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12MeshFunction4initENSt6size_tENSt6size_tE">
+<span id="MeshFunction::init__std::s.std::s"></span>void <code class="descclassname"></code><code class="descname">init</code><span class="sig-paren">(</span>std::size_t <em>dim</em>, std::size_t <em>size</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12MeshFunction4initENSt6size_tENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Initialize mesh function for given topological dimension of
+given size</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>dim (std::size_t)</dt>
+<dd>The dimension.</dd>
+<dt>size (std::size_t)</dt>
+<dd>The size.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12MeshFunction4initENSt10shared_ptrIK4MeshEENSt6size_tE">
+<span id="MeshFunction::init__std::shared_ptr:MeshC:.std::s"></span>void <code class="descclassname"></code><code class="descname">init</code><span class="sig-paren">(</span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a>&gt; <em>mesh</em>, std::size_t <em>dim</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12MeshFunction4initENSt10shared_ptrIK4MeshEENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Initialize mesh function for given topological dimension</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>mesh (<a class="reference internal" href="Mesh.html#_CPPv24Mesh" title="Mesh"><code class="xref cpp cpp-class docutils literal"><span class="pre">Mesh</span></code></a>)</dt>
+<dd>The mesh.</dd>
+<dt>dim (std::size_t)</dt>
+<dd>The dimension.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12MeshFunction4initENSt10shared_ptrIK4MeshEENSt6size_tENSt6size_tE">
+<span id="MeshFunction::init__std::shared_ptr:MeshC:.std::s.std::s"></span>void <code class="descclassname"></code><code class="descname">init</code><span class="sig-paren">(</span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a>&gt; <em>mesh</em>, std::size_t <em>dim</em>, std::size_t <em>size</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12MeshFunction4initENSt10shared_ptrIK4MeshEENSt6size_tENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Initialize mesh function for given topological dimension of
+given size (shared_ptr version)</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>mesh (<a class="reference internal" href="Mesh.html#_CPPv24Mesh" title="Mesh"><code class="xref cpp cpp-class docutils literal"><span class="pre">Mesh</span></code></a>)</dt>
+<dd>The mesh.</dd>
+<dt>dim (std::size_t)</dt>
+<dd>The dimension.</dd>
+<dt>size (std::size_t)</dt>
+<dd>The size.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12MeshFunction9set_valueENSt6size_tERK1T">
+<span id="MeshFunction::set_value__std::s.TCR"></span>void <code class="descclassname"></code><code class="descname">set_value</code><span class="sig-paren">(</span>std::size_t <em>index</em>, <em class="property">const</em> T &amp;<em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12MeshFunction9set_valueENSt6size_tERK1T" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set value at given index</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>index (std::size_t)</dt>
+<dd>The index.</dd>
+<dt>value (T)</dt>
+<dd>The value.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12MeshFunction9set_valueENSt6size_tERK1TRK4Mesh">
+<span id="MeshFunction::set_value__std::s.TCR.MeshCR"></span>void <code class="descclassname"></code><code class="descname">set_value</code><span class="sig-paren">(</span>std::size_t <em>index</em>, <em class="property">const</em> T &amp;<em>value</em>, <em class="property">const</em> <a class="reference internal" href="Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12MeshFunction9set_valueENSt6size_tERK1TRK4Mesh" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Compatibility function for use in SubDomains</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12MeshFunction10set_valuesERKNSt6vectorI1TEE">
+<span id="MeshFunction::set_values__std::vector:T:CR"></span>void <code class="descclassname"></code><code class="descname">set_values</code><span class="sig-paren">(</span><em class="property">const</em> std::vector&lt;T&gt; &amp;<em>values</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12MeshFunction10set_valuesERKNSt6vectorI1TEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set values</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>values (std::vector&lt;T&gt;)</dt>
+<dd>The values.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12MeshFunction7set_allERK1T">
+<span id="MeshFunction::set_all__TCR"></span>void <code class="descclassname"></code><code class="descname">set_all</code><span class="sig-paren">(</span><em class="property">const</em> T &amp;<em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12MeshFunction7set_allERK1T" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set all values to given value</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>value (T)</dt>
+<dd>The value to set all values to.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12MeshFunction3strEb">
+<span id="MeshFunction::str__bC"></span>std::string <code class="descclassname"></code><code class="descname">str</code><span class="sig-paren">(</span>bool <em>verbose</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12MeshFunction3strEb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return informal string representation (pretty-print)</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>verbose (bool)</dt>
+<dd>Flag to turn on additional output.</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>std::string</dt>
+<dd>An informal representation.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="MeshGeometry.html" class="btn btn-neutral float-right" title="MeshGeometry.h" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="MeshEntityIteratorBase.html" class="btn btn-neutral" title="MeshEntityIteratorBase.h" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://bitbucket.org/fenics-project/.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'2016.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

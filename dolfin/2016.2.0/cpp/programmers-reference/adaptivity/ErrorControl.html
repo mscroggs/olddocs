@@ -1,0 +1,432 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ErrorControl.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN adaptivity module" href="index.html"/>
+        <link rel="next" title="Extrapolation.h" href="Extrapolation.html"/>
+        <link rel="prev" title="AdaptiveNonlinearVariationalSolver.h" href="AdaptiveNonlinearVariationalSolver.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2016.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-2016.2.0</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN adaptivity module</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="AdaptiveLinearVariationalSolver.html">AdaptiveLinearVariationalSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AdaptiveNonlinearVariationalSolver.html">AdaptiveNonlinearVariationalSolver.h</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">ErrorControl.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Extrapolation.html">Extrapolation.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericAdaptiveVariationalSolver.html">GenericAdaptiveVariationalSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GoalFunctional.html">GoalFunctional.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TimeSeries.html">TimeSeries.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="adapt.html">adapt.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="adaptivesolve.html">adaptivesolve.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="marking.html">marking.h</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/index.html">DOLFIN common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fem/index.html">DOLFIN fem module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html">DOLFIN function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/index.html">DOLFIN geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/index.html">DOLFIN io module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../la/index.html">DOLFIN la module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/index.html">DOLFIN log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mesh/index.html">DOLFIN mesh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot/index.html">DOLFIN plot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer&#8217;s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-2016.2.0</a> &raquo;</li>
+      
+          <li><a href="index.html">DOLFIN adaptivity module</a> &raquo;</li>
+      
+    <li>ErrorControl.h</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/programmers-reference/adaptivity/ErrorControl.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="errorcontrol-h">
+<span id="programmers-reference-cpp-adaptivity-errorcontrol"></span><h1>ErrorControl.h<a class="headerlink" href="#errorcontrol-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="class">
+<dt id="_CPPv212ErrorControl">
+<span id="ErrorControl"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">ErrorControl</code><a class="headerlink" href="#_CPPv212ErrorControl" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>Parent class(es)</em></p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="#_CPPv212ErrorControl" title="ErrorControl"><code class="xref cpp cpp-class docutils literal"><span class="pre">Hierarchical</span></code></a></li>
+<li><a class="reference internal" href="../common/Variable.html#_CPPv28Variable" title="Variable"><code class="xref cpp cpp-class docutils literal"><span class="pre">Variable</span></code></a></li>
+</ul>
+</div></blockquote>
+<p>(Goal-oriented) Error Control class.
+The notation used here follows the notation in &#8220;Automated
+goal-oriented error control I: stationary variational problems&#8221;,
+ME Rognes and A Logg, 2010-2011.</p>
+<dl class="function">
+<dt id="_CPPv2N12ErrorControl12ErrorControlENSt10shared_ptrI4FormEENSt10shared_ptrI4FormEENSt10shared_ptrI4FormEENSt10shared_ptrI4FormEENSt10shared_ptrI4FormEENSt10shared_ptrI4FormEENSt10shared_ptrI4FormEENSt10shared_ptrI4FormEEb">
+<span id="ErrorControl::ErrorControl__std::shared_ptr:Form:.std::shared_ptr:Form:.std::shared_ptr:Form:.std::shared_ptr:Form:.std::shared_ptr:Form:.std::shared_ptr:Form:.std::shared_ptr:Form:.std::shared_ptr:Form:.b"></span><code class="descclassname"></code><code class="descname">ErrorControl</code><span class="sig-paren">(</span>std::shared_ptr&lt;<a class="reference internal" href="../fem/Form.html#_CPPv24Form" title="Form">Form</a>&gt; <em>a_star</em>, std::shared_ptr&lt;<a class="reference internal" href="../fem/Form.html#_CPPv24Form" title="Form">Form</a>&gt; <em>L_star</em>, std::shared_ptr&lt;<a class="reference internal" href="../fem/Form.html#_CPPv24Form" title="Form">Form</a>&gt; <em>residual</em>, std::shared_ptr&lt;<a class="reference internal" href="../fem/Form.html#_CPPv24Form" title="Form">Form</a>&gt; <em>a_R_T</em>, std::shared_ptr&lt;<a class="reference internal" href="../fem/Form.html#_CPPv24Form" title="Form">Form</a>&gt; <em>L_R_T</em>, std::shared_ptr&lt;<a class="reference internal" href="../fem/Form.html#_CPPv24Form" title="Form">Form</a>&gt; <em>a_R_dT</em>, std::shared_ptr&lt;<a class="reference internal" href="../fem/Form.html#_CPPv24Form" title="Form">Form</a>&gt; <em>L_R_dT</em>, std::shared_ptr&lt;<a class="reference internal" href="../fem/Form.html#_CPPv24Form" title="Form">Form</a>&gt; <em>eta_T</em>, bool <em>is_linear</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12ErrorControl12ErrorControlENSt10shared_ptrI4FormEENSt10shared_ptrI4FormEENSt10shared_ptrI4FormEENSt10shared_ptrI4FormEENSt10shared_ptrI4FormEENSt10shared_ptrI4FormEENSt10shared_ptrI4FormEENSt10shared_ptrI4FormEEb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create error control object</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>a_star (<a class="reference internal" href="../fem/Form.html#_CPPv24Form" title="Form"><code class="xref cpp cpp-class docutils literal"><span class="pre">Form</span></code></a>)</dt>
+<dd>the bilinear form for the dual problem</dd>
+<dt>L_star (<a class="reference internal" href="../fem/Form.html#_CPPv24Form" title="Form"><code class="xref cpp cpp-class docutils literal"><span class="pre">Form</span></code></a>)</dt>
+<dd>the linear form for the dual problem</dd>
+<dt>residual (<a class="reference internal" href="../fem/Form.html#_CPPv24Form" title="Form"><code class="xref cpp cpp-class docutils literal"><span class="pre">Form</span></code></a>)</dt>
+<dd>a functional for the residual (error estimate)</dd>
+<dt>a_R_T (<a class="reference internal" href="../fem/Form.html#_CPPv24Form" title="Form"><code class="xref cpp cpp-class docutils literal"><span class="pre">Form</span></code></a>)</dt>
+<dd>the bilinear form for the strong cell residual problem</dd>
+<dt>L_R_T (<a class="reference internal" href="../fem/Form.html#_CPPv24Form" title="Form"><code class="xref cpp cpp-class docutils literal"><span class="pre">Form</span></code></a>)</dt>
+<dd>the linear form for the strong cell residual problem</dd>
+<dt>a_R_dT (<a class="reference internal" href="../fem/Form.html#_CPPv24Form" title="Form"><code class="xref cpp cpp-class docutils literal"><span class="pre">Form</span></code></a>)</dt>
+<dd>the bilinear form for the strong facet residual problem</dd>
+<dt>L_R_dT (<a class="reference internal" href="../fem/Form.html#_CPPv24Form" title="Form"><code class="xref cpp cpp-class docutils literal"><span class="pre">Form</span></code></a>)</dt>
+<dd>the linear form for the strong facet residual problem</dd>
+<dt>eta_T (<a class="reference internal" href="../fem/Form.html#_CPPv24Form" title="Form"><code class="xref cpp cpp-class docutils literal"><span class="pre">Form</span></code></a>)</dt>
+<dd>a linear form over DG_0 for error indicators</dd>
+<dt>is_linear (bool)</dt>
+<dd>true iff primal problem is linear</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12ErrorControl18default_parametersEv">
+<span id="ErrorControl::default_parameters"></span><em class="property">static</em> <a class="reference internal" href="../parameter/Parameters.html#_CPPv210Parameters" title="Parameters">Parameters</a> <code class="descclassname"></code><code class="descname">default_parameters</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12ErrorControl18default_parametersEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Default parameter values:</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12ErrorControl14estimate_errorERK8FunctionKNSt6vectorINSt10shared_ptrIK11DirichletBCEEEE">
+<span id="ErrorControl::estimate_error__FunctionCR.std::vector:std::shared_ptr:DirichletBCC::C"></span>double <code class="descclassname"></code><code class="descname">estimate_error</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../function/Function.html#_CPPv28Function" title="Function">Function</a> &amp;<em>u</em>, <em class="property">const</em> std::vector&lt;std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../fem/DirichletBC.html#_CPPv211DirichletBC" title="DirichletBC">DirichletBC</a>&gt;&gt; <em>bcs</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12ErrorControl14estimate_errorERK8FunctionKNSt6vectorINSt10shared_ptrIK11DirichletBCEEEE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimate the error relative to the goal M of the discrete
+approximation &#8216;u&#8217; relative to the variational formulation by
+evaluating the weak residual at an approximation to the dual
+solution.</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>u (<a class="reference internal" href="../function/Function.html#_CPPv28Function" title="Function"><code class="xref cpp cpp-class docutils literal"><span class="pre">Function</span></code></a>)</dt>
+<dd>the primal approximation</dd>
+<dt>bcs (std::vector&lt;<a class="reference internal" href="../fem/DirichletBC.html#_CPPv211DirichletBC" title="DirichletBC"><code class="xref cpp cpp-class docutils literal"><span class="pre">DirichletBC</span></code></a>&gt;)</dt>
+<dd>the primal boundary conditions</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>double</dt>
+<dd>error estimate</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12ErrorControl18compute_indicatorsER12MeshFunctionIdERK8Function">
+<span id="ErrorControl::compute_indicators__MeshFunction:double:R.FunctionCR"></span>void <code class="descclassname"></code><code class="descname">compute_indicators</code><span class="sig-paren">(</span><a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction">MeshFunction</a>&lt;double&gt; &amp;<em>indicators</em>, <em class="property">const</em> <a class="reference internal" href="../function/Function.html#_CPPv28Function" title="Function">Function</a> &amp;<em>u</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12ErrorControl18compute_indicatorsER12MeshFunctionIdERK8Function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute error indicators</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>indicators (<a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction"><code class="xref cpp cpp-class docutils literal"><span class="pre">MeshFunction</span></code></a> &lt;double&gt;)</dt>
+<dd>the error indicators (to be computed)</dd>
+<dt>u (<a class="reference internal" href="../function/Function.html#_CPPv28Function" title="Function"><code class="xref cpp cpp-class docutils literal"><span class="pre">Function</span></code></a>)</dt>
+<dd>the primal approximation</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12ErrorControl23residual_representationER8FunctionR20SpecialFacetFunctionRK8Function">
+<span id="ErrorControl::residual_representation__FunctionR.SpecialFacetFunctionR.FunctionCR"></span>void <code class="descclassname"></code><code class="descname">residual_representation</code><span class="sig-paren">(</span><a class="reference internal" href="../function/Function.html#_CPPv28Function" title="Function">Function</a> &amp;<em>R_T</em>, <a class="reference internal" href="../function/SpecialFacetFunction.html#_CPPv220SpecialFacetFunction" title="SpecialFacetFunction">SpecialFacetFunction</a> &amp;<em>R_dT</em>, <em class="property">const</em> <a class="reference internal" href="../function/Function.html#_CPPv28Function" title="Function">Function</a> &amp;<em>u</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12ErrorControl23residual_representationER8FunctionR20SpecialFacetFunctionRK8Function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute strong representation (strong cell and facet
+residuals) of the weak residual.</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>R_T (<a class="reference internal" href="../function/Function.html#_CPPv28Function" title="Function"><code class="xref cpp cpp-class docutils literal"><span class="pre">Function</span></code></a>)</dt>
+<dd>the strong cell residual (to be computed)</dd>
+<dt>R_dT (<a class="reference internal" href="../function/SpecialFacetFunction.html#_CPPv220SpecialFacetFunction" title="SpecialFacetFunction"><code class="xref cpp cpp-class docutils literal"><span class="pre">SpecialFacetFunction</span></code></a>)</dt>
+<dd>the strong facet residual (to be computed)</dd>
+<dt>u (<a class="reference internal" href="../function/Function.html#_CPPv28Function" title="Function"><code class="xref cpp cpp-class docutils literal"><span class="pre">Function</span></code></a>)</dt>
+<dd>the primal approximation</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12ErrorControl21compute_cell_residualER8FunctionRK8Function">
+<span id="ErrorControl::compute_cell_residual__FunctionR.FunctionCR"></span>void <code class="descclassname"></code><code class="descname">compute_cell_residual</code><span class="sig-paren">(</span><a class="reference internal" href="../function/Function.html#_CPPv28Function" title="Function">Function</a> &amp;<em>R_T</em>, <em class="property">const</em> <a class="reference internal" href="../function/Function.html#_CPPv28Function" title="Function">Function</a> &amp;<em>u</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12ErrorControl21compute_cell_residualER8FunctionRK8Function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute representation for the strong cell residual
+from the weak residual</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>R_T (<a class="reference internal" href="../function/Function.html#_CPPv28Function" title="Function"><code class="xref cpp cpp-class docutils literal"><span class="pre">Function</span></code></a>)</dt>
+<dd>the strong cell residual (to be computed)</dd>
+<dt>u (<a class="reference internal" href="../function/Function.html#_CPPv28Function" title="Function"><code class="xref cpp cpp-class docutils literal"><span class="pre">Function</span></code></a>)</dt>
+<dd>the primal approximation</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12ErrorControl22compute_facet_residualER20SpecialFacetFunctionRK8FunctionRK8Function">
+<span id="ErrorControl::compute_facet_residual__SpecialFacetFunctionR.FunctionCR.FunctionCR"></span>void <code class="descclassname"></code><code class="descname">compute_facet_residual</code><span class="sig-paren">(</span><a class="reference internal" href="../function/SpecialFacetFunction.html#_CPPv220SpecialFacetFunction" title="SpecialFacetFunction">SpecialFacetFunction</a> &amp;<em>R_dT</em>, <em class="property">const</em> <a class="reference internal" href="../function/Function.html#_CPPv28Function" title="Function">Function</a> &amp;<em>u</em>, <em class="property">const</em> <a class="reference internal" href="../function/Function.html#_CPPv28Function" title="Function">Function</a> &amp;<em>R_T</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12ErrorControl22compute_facet_residualER20SpecialFacetFunctionRK8FunctionRK8Function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute representation for the strong facet residual from the
+weak residual and the strong cell residual</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>R_dT (<a class="reference internal" href="../function/SpecialFacetFunction.html#_CPPv220SpecialFacetFunction" title="SpecialFacetFunction"><code class="xref cpp cpp-class docutils literal"><span class="pre">SpecialFacetFunction</span></code></a>)</dt>
+<dd>the strong facet residual (to be computed)</dd>
+<dt>u (<a class="reference internal" href="../function/Function.html#_CPPv28Function" title="Function"><code class="xref cpp cpp-class docutils literal"><span class="pre">Function</span></code></a>)</dt>
+<dd>the primal approximation</dd>
+<dt>R_T (<a class="reference internal" href="../function/Function.html#_CPPv28Function" title="Function"><code class="xref cpp cpp-class docutils literal"><span class="pre">Function</span></code></a>)</dt>
+<dd>the strong cell residual</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12ErrorControl12compute_dualER8FunctionKNSt6vectorINSt10shared_ptrIK11DirichletBCEEEE">
+<span id="ErrorControl::compute_dual__FunctionR.std::vector:std::shared_ptr:DirichletBCC::C"></span>void <code class="descclassname"></code><code class="descname">compute_dual</code><span class="sig-paren">(</span><a class="reference internal" href="../function/Function.html#_CPPv28Function" title="Function">Function</a> &amp;<em>z</em>, <em class="property">const</em> std::vector&lt;std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../fem/DirichletBC.html#_CPPv211DirichletBC" title="DirichletBC">DirichletBC</a>&gt;&gt; <em>bcs</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12ErrorControl12compute_dualER8FunctionKNSt6vectorINSt10shared_ptrIK11DirichletBCEEEE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute dual approximation defined by dual variational
+problem and dual boundary conditions given by homogenized primal
+boundary conditions.</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>z (<a class="reference internal" href="../function/Function.html#_CPPv28Function" title="Function"><code class="xref cpp cpp-class docutils literal"><span class="pre">Function</span></code></a>)</dt>
+<dd>the dual approximation (to be computed)</dd>
+<dt>bcs (std::vector&lt;<a class="reference internal" href="../fem/DirichletBC.html#_CPPv211DirichletBC" title="DirichletBC"><code class="xref cpp cpp-class docutils literal"><span class="pre">DirichletBC</span></code></a>&gt;)</dt>
+<dd>the primal boundary conditions</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12ErrorControl21compute_extrapolationERK8FunctionKNSt6vectorINSt10shared_ptrIK11DirichletBCEEEE">
+<span id="ErrorControl::compute_extrapolation__FunctionCR.std::vector:std::shared_ptr:DirichletBCC::C"></span>void <code class="descclassname"></code><code class="descname">compute_extrapolation</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../function/Function.html#_CPPv28Function" title="Function">Function</a> &amp;<em>z</em>, <em class="property">const</em> std::vector&lt;std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../fem/DirichletBC.html#_CPPv211DirichletBC" title="DirichletBC">DirichletBC</a>&gt;&gt; <em>bcs</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12ErrorControl21compute_extrapolationERK8FunctionKNSt6vectorINSt10shared_ptrIK11DirichletBCEEEE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute extrapolation with boundary conditions</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>z (<a class="reference internal" href="../function/Function.html#_CPPv28Function" title="Function"><code class="xref cpp cpp-class docutils literal"><span class="pre">Function</span></code></a>)</dt>
+<dd>the extrapolated function (to be computed)</dd>
+<dt>bcs (std::vector&lt;<a class="reference internal" href="../fem/DirichletBC.html#_CPPv211DirichletBC" title="DirichletBC"><code class="xref cpp cpp-class docutils literal"><span class="pre">DirichletBC</span></code></a>&gt;)</dt>
+<dd>the dual boundary conditions</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Extrapolation.html" class="btn btn-neutral float-right" title="Extrapolation.h" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="AdaptiveNonlinearVariationalSolver.html" class="btn btn-neutral" title="AdaptiveNonlinearVariationalSolver.h" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://bitbucket.org/fenics-project/.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'2016.2.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

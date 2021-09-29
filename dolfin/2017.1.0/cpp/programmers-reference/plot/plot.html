@@ -1,0 +1,338 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>plot.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN plot module" href="index.html"/>
+        <link rel="next" title="DOLFIN refinement module" href="../refinement/index.html"/>
+        <link rel="prev" title="VTKPlotter.h" href="VTKPlotter.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.9.11+
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer’s reference for DOLFIN-2017.1.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/index.html">DOLFIN common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fem/index.html">DOLFIN fem module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html">DOLFIN function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/index.html">DOLFIN geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/index.html">DOLFIN io module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../la/index.html">DOLFIN la module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/index.html">DOLFIN log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mesh/index.html">DOLFIN mesh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN plot module</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="VTKPlotter.html">VTKPlotter.h</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">plot.h</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer’s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">DOLFIN</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">C++ Programmer’s reference for DOLFIN-2017.1.0</a> &raquo;</li>
+        
+          <li><a href="index.html">DOLFIN plot module</a> &raquo;</li>
+        
+      <li>plot.h</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/programmers-reference/plot/plot.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="plot-h">
+<span id="programmers-reference-cpp-plot-plot"></span><h1>plot.h<a class="headerlink" href="#plot-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="function">
+<dt id="_CPPv211interactiveb">
+<span id="interactive__b"></span>void <code class="descclassname"></code><code class="descname">interactive</code><span class="sig-paren">(</span>bool <em>really</em> = false<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv211interactiveb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Make the current plots interactive. If really is set, the interactive
+mode is entered even if ‘Q’ has been pressed.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv24plotRK8VariableNSt6stringENSt6stringE">
+<span id="plot__VariableCR.ss.ss"></span>void <code class="descclassname"></code><code class="descname">plot</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../common/Variable.html#_CPPv28Variable" title="Variable">Variable</a>&amp;, std::string <em>title</em> = &quot;&quot;, std::string <em>mode</em> = &quot;auto&quot;<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv24plotRK8VariableNSt6stringENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Plot variable of any supported type</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv24plotNSt10shared_ptrIK8VariableEENSt6stringENSt6stringE">
+<span id="plot__std::shared_ptr:VariableC:.ss.ss"></span>std::shared_ptr&lt;<a class="reference internal" href="VTKPlotter.html#_CPPv210VTKPlotter" title="VTKPlotter">VTKPlotter</a>&gt; <code class="descclassname"></code><code class="descname">plot</code><span class="sig-paren">(</span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../common/Variable.html#_CPPv28Variable" title="Variable">Variable</a>&gt;, std::string <em>title</em> = &quot;&quot;, std::string <em>mode</em> = &quot;auto&quot;<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv24plotNSt10shared_ptrIK8VariableEENSt6stringENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Plot variable (shared_ptr version)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv24plotRK8VariableRK10Parameters">
+<span id="plot__VariableCR.ParametersCR"></span>void <code class="descclassname"></code><code class="descname">plot</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../common/Variable.html#_CPPv28Variable" title="Variable">Variable</a>&amp;, <em class="property">const</em> <a class="reference internal" href="../parameter/Parameters.html#_CPPv210Parameters" title="Parameters">Parameters</a> &amp;<em>parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv24plotRK8VariableRK10Parameters" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Plot variable (parameter version)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv24plotNSt10shared_ptrIK8VariableEENSt10shared_ptrIK10ParametersEE">
+<span id="plot__std::shared_ptr:VariableC:.std::shared_ptr:ParametersC:"></span>std::shared_ptr&lt;<a class="reference internal" href="VTKPlotter.html#_CPPv210VTKPlotter" title="VTKPlotter">VTKPlotter</a>&gt; <code class="descclassname"></code><code class="descname">plot</code><span class="sig-paren">(</span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../common/Variable.html#_CPPv28Variable" title="Variable">Variable</a>&gt;, std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../parameter/Parameters.html#_CPPv210Parameters" title="Parameters">Parameters</a>&gt; <em>parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv24plotNSt10shared_ptrIK8VariableEENSt10shared_ptrIK10ParametersEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Plot variable (parameter, shared_ptr version)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv24plotRK10ExpressionRK4MeshNSt6stringENSt6stringE">
+<span id="plot__ExpressionCR.MeshCR.ss.ss"></span>void <code class="descclassname"></code><code class="descname">plot</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../function/Expression.html#_CPPv210Expression" title="Expression">Expression</a> &amp;<em>expression</em>, <em class="property">const</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em>, std::string <em>title</em> = &quot;&quot;, std::string <em>mode</em> = &quot;auto&quot;<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv24plotRK10ExpressionRK4MeshNSt6stringENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Plot expression</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv24plotNSt10shared_ptrIK10ExpressionEENSt10shared_ptrIK4MeshEENSt6stringENSt6stringE">
+<span id="plot__std::shared_ptr:ExpressionC:.std::shared_ptr:MeshC:.ss.ss"></span>std::shared_ptr&lt;<a class="reference internal" href="VTKPlotter.html#_CPPv210VTKPlotter" title="VTKPlotter">VTKPlotter</a>&gt; <code class="descclassname"></code><code class="descname">plot</code><span class="sig-paren">(</span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../function/Expression.html#_CPPv210Expression" title="Expression">Expression</a>&gt; <em>expression</em>, std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a>&gt; <em>mesh</em>, std::string <em>title</em> = &quot;&quot;, std::string <em>mode</em> = &quot;auto&quot;<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv24plotNSt10shared_ptrIK10ExpressionEENSt10shared_ptrIK4MeshEENSt6stringENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Plot expression (shared_ptr version)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv24plotRK10ExpressionRK4MeshRK10Parameters">
+<span id="plot__ExpressionCR.MeshCR.ParametersCR"></span>void <code class="descclassname"></code><code class="descname">plot</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../function/Expression.html#_CPPv210Expression" title="Expression">Expression</a> &amp;<em>expression</em>, <em class="property">const</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em>, <em class="property">const</em> <a class="reference internal" href="../parameter/Parameters.html#_CPPv210Parameters" title="Parameters">Parameters</a> &amp;<em>parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv24plotRK10ExpressionRK4MeshRK10Parameters" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Plot expression (parameter version)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv24plotNSt10shared_ptrIK10ExpressionEENSt10shared_ptrIK4MeshEENSt10shared_ptrIK10ParametersEE">
+<span id="plot__std::shared_ptr:ExpressionC:.std::shared_ptr:MeshC:.std::shared_ptr:ParametersC:"></span>std::shared_ptr&lt;<a class="reference internal" href="VTKPlotter.html#_CPPv210VTKPlotter" title="VTKPlotter">VTKPlotter</a>&gt; <code class="descclassname"></code><code class="descname">plot</code><span class="sig-paren">(</span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../function/Expression.html#_CPPv210Expression" title="Expression">Expression</a>&gt; <em>expression</em>, std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a>&gt; <em>mesh</em>, std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../parameter/Parameters.html#_CPPv210Parameters" title="Parameters">Parameters</a>&gt; <em>parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv24plotNSt10shared_ptrIK10ExpressionEENSt10shared_ptrIK4MeshEENSt10shared_ptrIK10ParametersEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Plot expression (parameter, shared_ptr version)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv24plotRK9MultiMesh">
+<span id="plot__MultiMeshCR"></span>void <code class="descclassname"></code><code class="descname">plot</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../mesh/MultiMesh.html#_CPPv29MultiMesh" title="MultiMesh">MultiMesh</a> &amp;<em>multimesh</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv24plotRK9MultiMesh" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Plot multimesh</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv24plotNSt10shared_ptrIK9MultiMeshEE">
+<span id="plot__std::shared_ptr:MultiMeshC:"></span>void <code class="descclassname"></code><code class="descname">plot</code><span class="sig-paren">(</span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../mesh/MultiMesh.html#_CPPv29MultiMesh" title="MultiMesh">MultiMesh</a>&gt; <em>multimesh</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv24plotNSt10shared_ptrIK9MultiMeshEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Plot multimesh (shared_ptr version)</p>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../refinement/index.html" class="btn btn-neutral float-right" title="DOLFIN refinement module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="VTKPlotter.html" class="btn btn-neutral" title="VTKPlotter.h" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright DOLFIN Core, https://launchpad.net/~dolfin-core.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.9.11+',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,353 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>FunctionAXPY.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN function module" href="index.html"/>
+        <link rel="next" title="FunctionAssigner.h" href="FunctionAssigner.html"/>
+        <link rel="prev" title="Function.h" href="Function.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-1.5.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/index.html">DOLFIN common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fem/index.html">DOLFIN fem module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN function module</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Constant.html">Constant.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Expression.html">Expression.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Function.html">Function.h</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">FunctionAXPY.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FunctionAssigner.html">FunctionAssigner.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FunctionSpace.html">FunctionSpace.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericFunction.html">GenericFunction.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LagrangeInterpolator.html">LagrangeInterpolator.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MultiMeshFunction.html">MultiMeshFunction.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MultiMeshFunctionSpace.html">MultiMeshFunctionSpace.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MultiMeshSubSpace.html">MultiMeshSubSpace.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SpecialFacetFunction.html">SpecialFacetFunction.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SpecialFunctions.html">SpecialFunctions.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SubSpace.html">SubSpace.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="assign.html">assign.h</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/index.html">DOLFIN geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/index.html">DOLFIN io module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../la/index.html">DOLFIN la module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/index.html">DOLFIN log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mesh/index.html">DOLFIN mesh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot/index.html">DOLFIN plot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer&#8217;s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-1.5.0</a> &raquo;</li>
+      
+          <li><a href="index.html">DOLFIN function module</a> &raquo;</li>
+      
+    <li>FunctionAXPY.h</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/programmers-reference/function/FunctionAXPY.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="functionaxpy-h">
+<span id="programmers-reference-cpp-function-functionaxpy"></span><h1>FunctionAXPY.h<a class="headerlink" href="#functionaxpy-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="class">
+<dt id="_CPPv212FunctionAXPY">
+<span id="FunctionAXPY"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">FunctionAXPY</code><a class="headerlink" href="#_CPPv212FunctionAXPY" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This class represents a linear combination of functions. It is
+mostly used as an intermediate class for operations such as u =
+3*u0 + 4*u1; where the rhs generates an FunctionAXPY.</p>
+<dl class="function">
+<dt id="_CPPv2N12FunctionAXPY12FunctionAXPYERK8Functiond">
+<span id="FunctionAXPY::FunctionAXPY__FunctionCR.double"></span><code class="descclassname"></code><code class="descname">FunctionAXPY</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="Function.html#_CPPv28Function" title="Function">Function</a> &amp;<em>func</em>, double <em>scalar</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12FunctionAXPY12FunctionAXPYERK8Functiond" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructor</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12FunctionAXPY12FunctionAXPYERK12FunctionAXPYd">
+<span id="FunctionAXPY::FunctionAXPY__FunctionAXPYCR.double"></span><code class="descclassname"></code><code class="descname">FunctionAXPY</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv2N12FunctionAXPY12FunctionAXPYERK8Functiond" title="FunctionAXPY::FunctionAXPY">FunctionAXPY</a> &amp;<em>axpy</em>, double <em>scalar</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12FunctionAXPY12FunctionAXPYERK12FunctionAXPYd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructor</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12FunctionAXPY12FunctionAXPYERK8FunctionRK8Function9Direction">
+<span id="FunctionAXPY::FunctionAXPY__FunctionCR.FunctionCR.Direction"></span><code class="descclassname"></code><code class="descname">FunctionAXPY</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="Function.html#_CPPv28Function" title="Function">Function</a> &amp;<em>func0</em>, <em class="property">const</em> <a class="reference internal" href="Function.html#_CPPv28Function" title="Function">Function</a> &amp;<em>func1</em>, Direction <em>direction</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12FunctionAXPY12FunctionAXPYERK8FunctionRK8Function9Direction" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructor</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12FunctionAXPY12FunctionAXPYERK12FunctionAXPYRK8Function9Direction">
+<span id="FunctionAXPY::FunctionAXPY__FunctionAXPYCR.FunctionCR.Direction"></span><code class="descclassname"></code><code class="descname">FunctionAXPY</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv2N12FunctionAXPY12FunctionAXPYERK8Functiond" title="FunctionAXPY::FunctionAXPY">FunctionAXPY</a> &amp;<em>axpy</em>, <em class="property">const</em> <a class="reference internal" href="Function.html#_CPPv28Function" title="Function">Function</a> &amp;<em>func</em>, Direction <em>direction</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12FunctionAXPY12FunctionAXPYERK12FunctionAXPYRK8Function9Direction" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructor</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12FunctionAXPY12FunctionAXPYERK12FunctionAXPYRK12FunctionAXPY9Direction">
+<span id="FunctionAXPY::FunctionAXPY__FunctionAXPYCR.FunctionAXPYCR.Direction"></span><code class="descclassname"></code><code class="descname">FunctionAXPY</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv2N12FunctionAXPY12FunctionAXPYERK8Functiond" title="FunctionAXPY::FunctionAXPY">FunctionAXPY</a> &amp;<em>axpy0</em>, <em class="property">const</em> <a class="reference internal" href="#_CPPv2N12FunctionAXPY12FunctionAXPYERK8Functiond" title="FunctionAXPY::FunctionAXPY">FunctionAXPY</a> &amp;<em>axpy1</em>, Direction <em>direction</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12FunctionAXPY12FunctionAXPYERK12FunctionAXPYRK12FunctionAXPY9Direction" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructor</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12FunctionAXPY12FunctionAXPYENSt6vectorINSt4pairIdPK8FunctionEEEE">
+<span id="FunctionAXPY::FunctionAXPY__std::vector:std::pair:double.FunctionCP::"></span><code class="descclassname"></code><code class="descname">FunctionAXPY</code><span class="sig-paren">(</span>std::vector&lt;std::pair&lt;double, <em class="property">const</em> <a class="reference internal" href="Function.html#_CPPv28Function" title="Function">Function</a> *&gt;&gt; <em>pairs</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12FunctionAXPY12FunctionAXPYENSt6vectorINSt4pairIdPK8FunctionEEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructor</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12FunctionAXPY12FunctionAXPYERK12FunctionAXPY">
+<span id="FunctionAXPY::FunctionAXPY__FunctionAXPYCR"></span><code class="descclassname"></code><code class="descname">FunctionAXPY</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv2N12FunctionAXPY12FunctionAXPYERK8Functiond" title="FunctionAXPY::FunctionAXPY">FunctionAXPY</a> &amp;<em>axpy</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12FunctionAXPY12FunctionAXPYERK12FunctionAXPY" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Copy constructor</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12FunctionAXPYplERK8Function">
+<span id="FunctionAXPY::add-operator__FunctionCRC"></span><a class="reference internal" href="#_CPPv212FunctionAXPY" title="FunctionAXPY">FunctionAXPY</a> <code class="descclassname"></code><code class="descname">operator+</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="Function.html#_CPPv28Function" title="Function">Function</a> &amp;<em>func</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12FunctionAXPYplERK8Function" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Addition operator</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12FunctionAXPYplERK12FunctionAXPY">
+<span id="FunctionAXPY::add-operator__FunctionAXPYCRC"></span><a class="reference internal" href="#_CPPv212FunctionAXPY" title="FunctionAXPY">FunctionAXPY</a> <code class="descclassname"></code><code class="descname">operator+</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv212FunctionAXPY" title="FunctionAXPY">FunctionAXPY</a> &amp;<em>axpy</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12FunctionAXPYplERK12FunctionAXPY" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Addition operator</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12FunctionAXPYmiERK8Function">
+<span id="FunctionAXPY::sub-operator__FunctionCRC"></span><a class="reference internal" href="#_CPPv212FunctionAXPY" title="FunctionAXPY">FunctionAXPY</a> <code class="descclassname"></code><code class="descname">operator-</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="Function.html#_CPPv28Function" title="Function">Function</a> &amp;<em>func</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12FunctionAXPYmiERK8Function" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Subtraction operator</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12FunctionAXPYmiERK12FunctionAXPY">
+<span id="FunctionAXPY::sub-operator__FunctionAXPYCRC"></span><a class="reference internal" href="#_CPPv212FunctionAXPY" title="FunctionAXPY">FunctionAXPY</a> <code class="descclassname"></code><code class="descname">operator-</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv212FunctionAXPY" title="FunctionAXPY">FunctionAXPY</a> &amp;<em>axpy</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12FunctionAXPYmiERK12FunctionAXPY" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Subtraction operator</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12FunctionAXPYmlEd">
+<span id="FunctionAXPY::mul-operator__doubleC"></span><a class="reference internal" href="#_CPPv212FunctionAXPY" title="FunctionAXPY">FunctionAXPY</a> <code class="descclassname"></code><code class="descname">operator*</code><span class="sig-paren">(</span>double <em>scale</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12FunctionAXPYmlEd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Scale operator</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12FunctionAXPYdvEd">
+<span id="FunctionAXPY::div-operator__doubleC"></span><a class="reference internal" href="#_CPPv212FunctionAXPY" title="FunctionAXPY">FunctionAXPY</a> <code class="descclassname"></code><code class="descname">operator/</code><span class="sig-paren">(</span>double <em>scale</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12FunctionAXPYdvEd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Scale operator</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12FunctionAXPY5pairsEv">
+<span id="FunctionAXPY::pairsC"></span><em class="property">const</em> std::vector&lt;std::pair&lt;double, <em class="property">const</em> <a class="reference internal" href="Function.html#_CPPv28Function" title="Function">Function</a> *&gt;&gt; &amp;<code class="descclassname"></code><code class="descname">pairs</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12FunctionAXPY5pairsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the scalar and Function pairs</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12FunctionAXPY9_registerERK12FunctionAXPYd">
+<span id="FunctionAXPY::_register__FunctionAXPYCR.double"></span>void <code class="descclassname"></code><code class="descname">_register</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv212FunctionAXPY" title="FunctionAXPY">FunctionAXPY</a> &amp;<em>axpy0</em>, double <em>scale</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12FunctionAXPY9_registerERK12FunctionAXPYd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Register another AXPY object</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="FunctionAssigner.html" class="btn btn-neutral float-right" title="FunctionAssigner.h" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Function.html" class="btn btn-neutral" title="Function.h" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://bitbucket.org/fenics-project/.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.5.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

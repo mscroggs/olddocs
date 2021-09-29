@@ -1,0 +1,592 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>GenericMatrix.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN la module" href="index.html"/>
+        <link rel="next" title="GenericTensor.h" href="GenericTensor.html"/>
+        <link rel="prev" title="GenericLinearSolver.h" href="GenericLinearSolver.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.9.11+
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer’s reference for DOLFIN-2017.1.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/index.html">DOLFIN common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fem/index.html">DOLFIN fem module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html">DOLFIN function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/index.html">DOLFIN geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/index.html">DOLFIN io module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN la module</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="BelosKrylovSolver.html">BelosKrylovSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BlockMatrix.html">BlockMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BlockVector.html">BlockVector.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CoordinateMatrix.html">CoordinateMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DefaultFactory.html">DefaultFactory.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="EigenFactory.html">EigenFactory.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="EigenKrylovSolver.html">EigenKrylovSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="EigenLUSolver.html">EigenLUSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="EigenMatrix.html">EigenMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="EigenVector.html">EigenVector.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericLinearAlgebraFactory.html">GenericLinearAlgebraFactory.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericLinearOperator.html">GenericLinearOperator.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericLinearSolver.html">GenericLinearSolver.h</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">GenericMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericTensor.html">GenericTensor.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericVector.html">GenericVector.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Ifpack2Preconditioner.html">Ifpack2Preconditioner.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="IndexMap.html">IndexMap.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="KrylovSolver.html">KrylovSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LUSolver.html">LUSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LinearAlgebraObject.html">LinearAlgebraObject.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LinearOperator.html">LinearOperator.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LinearSolver.html">LinearSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Matrix.html">Matrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MueluPreconditioner.html">MueluPreconditioner.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScBaseMatrix.html">PETScBaseMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScFactory.html">PETScFactory.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScKrylovSolver.html">PETScKrylovSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScLUSolver.html">PETScLUSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScLinearOperator.html">PETScLinearOperator.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScMatrix.html">PETScMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScObject.html">PETScObject.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScOptions.html">PETScOptions.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScPreconditioner.html">PETScPreconditioner.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScUserPreconditioner.html">PETScUserPreconditioner.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScVector.html">PETScVector.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SLEPcEigenSolver.html">SLEPcEigenSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Scalar.html">Scalar.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SparsityPattern.html">SparsityPattern.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TensorLayout.html">TensorLayout.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TpetraFactory.html">TpetraFactory.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TpetraMatrix.html">TpetraMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TpetraVector.html">TpetraVector.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TrilinosPreconditioner.html">TrilinosPreconditioner.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Vector.html">Vector.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VectorSpaceBasis.html">VectorSpaceBasis.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solve.html">solve.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_nullspace.html">test_nullspace.h</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../log/index.html">DOLFIN log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mesh/index.html">DOLFIN mesh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot/index.html">DOLFIN plot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer’s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">DOLFIN</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">C++ Programmer’s reference for DOLFIN-2017.1.0</a> &raquo;</li>
+        
+          <li><a href="index.html">DOLFIN la module</a> &raquo;</li>
+        
+      <li>GenericMatrix.h</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/programmers-reference/la/GenericMatrix.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="genericmatrix-h">
+<span id="programmers-reference-cpp-la-genericmatrix"></span><h1>GenericMatrix.h<a class="headerlink" href="#genericmatrix-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="class">
+<dt id="_CPPv213GenericMatrix">
+<span id="GenericMatrix"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">GenericMatrix</code><a class="headerlink" href="#_CPPv213GenericMatrix" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Parent class(es)</em></p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="GenericTensor.html#_CPPv213GenericTensor" title="GenericTensor"><code class="xref cpp cpp-class docutils literal"><span class="pre">GenericTensor</span></code></a></li>
+<li><a class="reference internal" href="GenericLinearOperator.html#_CPPv221GenericLinearOperator" title="GenericLinearOperator"><code class="xref cpp cpp-class docutils literal"><span class="pre">GenericLinearOperator</span></code></a></li>
+</ul>
+</div></blockquote>
+<p>This class defines a common interface for matrices.</p>
+<dl class="function">
+<dt id="_CPPv2NK13GenericMatrix4rankEv">
+<span id="GenericMatrix::rankC"></span>std::size_t <code class="descclassname"></code><code class="descname">rank</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13GenericMatrix4rankEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return tensor rank (number of dimensions)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13GenericMatrix4sizeENSt6size_tE">
+<span id="GenericMatrix::size__std::sC"></span>std::size_t <code class="descclassname"></code><code class="descname">size</code><span class="sig-paren">(</span>std::size_t <em>dim</em><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK13GenericMatrix4sizeENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return size of given dimension</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13GenericMatrix11local_rangeENSt6size_tE">
+<span id="GenericMatrix::local_range__std::sC"></span>std::pair&lt;std::int64_t, std::int64_t&gt; <code class="descclassname"></code><code class="descname">local_range</code><span class="sig-paren">(</span>std::size_t <em>dim</em><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK13GenericMatrix11local_rangeENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return local ownership range</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13GenericMatrix3nnzEv">
+<span id="GenericMatrix::nnzC"></span>std::size_t <code class="descclassname"></code><code class="descname">nnz</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK13GenericMatrix3nnzEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return number of non-zero entries in matrix (collective)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13GenericMatrix3getEPdPKN6dolfin8la_indexEPPCKN6dolfin8la_indexE">
+<span id="GenericMatrix::get__doubleP.dolfin::la_indexCP.dolfin::la_indexCPCPC"></span>void <code class="descclassname"></code><code class="descname">get</code><span class="sig-paren">(</span>double *<em>block</em>, <em class="property">const</em> dolfin::la_index *<em>num_rows</em>, <em class="property">const</em> dolfin::la_index *<em class="property">const</em> *<em>rows</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13GenericMatrix3getEPdPKN6dolfin8la_indexEPPCKN6dolfin8la_indexE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get block of values</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N13GenericMatrix3setEPKdPKN6dolfin8la_indexEPPCKN6dolfin8la_indexE">
+<span id="GenericMatrix::set__doubleCP.dolfin::la_indexCP.dolfin::la_indexCPCP"></span>void <code class="descclassname"></code><code class="descname">set</code><span class="sig-paren">(</span><em class="property">const</em> double *<em>block</em>, <em class="property">const</em> dolfin::la_index *<em>num_rows</em>, <em class="property">const</em> dolfin::la_index *<em class="property">const</em> *<em>rows</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N13GenericMatrix3setEPKdPKN6dolfin8la_indexEPPCKN6dolfin8la_indexE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set block of values using global indices</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N13GenericMatrix9set_localEPKdPKN6dolfin8la_indexEPPCKN6dolfin8la_indexE">
+<span id="GenericMatrix::set_local__doubleCP.dolfin::la_indexCP.dolfin::la_indexCPCP"></span>void <code class="descclassname"></code><code class="descname">set_local</code><span class="sig-paren">(</span><em class="property">const</em> double *<em>block</em>, <em class="property">const</em> dolfin::la_index *<em>num_rows</em>, <em class="property">const</em> dolfin::la_index *<em class="property">const</em> *<em>rows</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N13GenericMatrix9set_localEPKdPKN6dolfin8la_indexEPPCKN6dolfin8la_indexE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set block of values using local indices</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N13GenericMatrix3addEPKdPKN6dolfin8la_indexEPPCKN6dolfin8la_indexE">
+<span id="GenericMatrix::add__doubleCP.dolfin::la_indexCP.dolfin::la_indexCPCP"></span>void <code class="descclassname"></code><code class="descname">add</code><span class="sig-paren">(</span><em class="property">const</em> double *<em>block</em>, <em class="property">const</em> dolfin::la_index *<em>num_rows</em>, <em class="property">const</em> dolfin::la_index *<em class="property">const</em> *<em>rows</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N13GenericMatrix3addEPKdPKN6dolfin8la_indexEPPCKN6dolfin8la_indexE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add block of values using global indices</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N13GenericMatrix9add_localEPKdPKN6dolfin8la_indexEPPCKN6dolfin8la_indexE">
+<span id="GenericMatrix::add_local__doubleCP.dolfin::la_indexCP.dolfin::la_indexCPCP"></span>void <code class="descclassname"></code><code class="descname">add_local</code><span class="sig-paren">(</span><em class="property">const</em> double *<em>block</em>, <em class="property">const</em> dolfin::la_index *<em>num_rows</em>, <em class="property">const</em> dolfin::la_index *<em class="property">const</em> *<em>rows</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N13GenericMatrix9add_localEPKdPKN6dolfin8la_indexEPPCKN6dolfin8la_indexE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add block of values using local indices</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N13GenericMatrix3addEPKdRKNSt6vectorI9ArrayViewIKN6dolfin8la_indexEEEE">
+<span id="GenericMatrix::add__doubleCP.std::vector:ArrayView:dolfin::la_indexC::CR"></span>void <code class="descclassname"></code><code class="descname">add</code><span class="sig-paren">(</span><em class="property">const</em> double *<em>block</em>, <em class="property">const</em> std::vector&lt;<a class="reference internal" href="../common/ArrayView.html#_CPPv29ArrayView" title="ArrayView">ArrayView</a>&lt;<em class="property">const</em> dolfin::la_index&gt;&gt; &amp;<em>rows</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N13GenericMatrix3addEPKdRKNSt6vectorI9ArrayViewIKN6dolfin8la_indexEEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add block of values using global indices</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N13GenericMatrix9add_localEPKdRKNSt6vectorI9ArrayViewIKN6dolfin8la_indexEEEE">
+<span id="GenericMatrix::add_local__doubleCP.std::vector:ArrayView:dolfin::la_indexC::CR"></span>void <code class="descclassname"></code><code class="descname">add_local</code><span class="sig-paren">(</span><em class="property">const</em> double *<em>block</em>, <em class="property">const</em> std::vector&lt;<a class="reference internal" href="../common/ArrayView.html#_CPPv29ArrayView" title="ArrayView">ArrayView</a>&lt;<em class="property">const</em> dolfin::la_index&gt;&gt; &amp;<em>rows</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N13GenericMatrix9add_localEPKdRKNSt6vectorI9ArrayViewIKN6dolfin8la_indexEEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add block of values using local indices</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N13GenericMatrix4zeroEv">
+<span id="GenericMatrix::zero"></span>void <code class="descclassname"></code><code class="descname">zero</code><span class="sig-paren">(</span><span class="sig-paren">)</span> = 0<a class="headerlink" href="#_CPPv2N13GenericMatrix4zeroEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set all entries to zero and keep any sparse structure</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N13GenericMatrix5applyENSt6stringE">
+<span id="GenericMatrix::apply__ss"></span>void <code class="descclassname"></code><code class="descname">apply</code><span class="sig-paren">(</span>std::string <em>mode</em><span class="sig-paren">)</span> = 0<a class="headerlink" href="#_CPPv2N13GenericMatrix5applyENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Finalize assembly of tensor</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13GenericMatrix3strEb">
+<span id="GenericMatrix::str__bC"></span>std::string <code class="descclassname"></code><code class="descname">str</code><span class="sig-paren">(</span>bool <em>verbose</em><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK13GenericMatrix3strEb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return informal string representation (pretty-print)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13GenericMatrix4copyEv">
+<span id="GenericMatrix::copyC"></span>std::shared_ptr&lt;<a class="reference internal" href="#_CPPv213GenericMatrix" title="GenericMatrix">GenericMatrix</a>&gt; <code class="descclassname"></code><code class="descname">copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK13GenericMatrix4copyEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return copy of matrix</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13GenericMatrix11init_vectorER13GenericVectorNSt6size_tE">
+<span id="GenericMatrix::init_vector__GenericVectorR.std::sC"></span>void <code class="descclassname"></code><code class="descname">init_vector</code><span class="sig-paren">(</span><a class="reference internal" href="GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>z</em>, std::size_t <em>dim</em><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK13GenericMatrix11init_vectorER13GenericVectorNSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Initialize vector z to be compatible with the matrix-vector
+product y = Ax. In the parallel case, both size and layout are
+important.</p>
+<dl class="docutils">
+<dt>&#64;param z (GenericVector&amp;)</dt>
+<dd>Vector to initialise</dd>
+<dt>&#64;param dim (std::size_t)</dt>
+<dd>The dimension (axis): dim = 0 –&gt; z = y, dim = 1 –&gt; z = x</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13GenericMatrix3getEPdNSt6size_tEPKN6dolfin8la_indexENSt6size_tEPKN6dolfin8la_indexE">
+<span id="GenericMatrix::get__doubleP.std::s.dolfin::la_indexCP.std::s.dolfin::la_indexCPC"></span>void <code class="descclassname"></code><code class="descname">get</code><span class="sig-paren">(</span>double *<em>block</em>, std::size_t <em>m</em>, <em class="property">const</em> dolfin::la_index *<em>rows</em>, std::size_t <em>n</em>, <em class="property">const</em> dolfin::la_index *<em>cols</em><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK13GenericMatrix3getEPdNSt6size_tEPKN6dolfin8la_indexENSt6size_tEPKN6dolfin8la_indexE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get block of values</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N13GenericMatrix3setEPKdNSt6size_tEPKN6dolfin8la_indexENSt6size_tEPKN6dolfin8la_indexE">
+<span id="GenericMatrix::set__doubleCP.std::s.dolfin::la_indexCP.std::s.dolfin::la_indexCP"></span>void <code class="descclassname"></code><code class="descname">set</code><span class="sig-paren">(</span><em class="property">const</em> double *<em>block</em>, std::size_t <em>m</em>, <em class="property">const</em> dolfin::la_index *<em>rows</em>, std::size_t <em>n</em>, <em class="property">const</em> dolfin::la_index *<em>cols</em><span class="sig-paren">)</span> = 0<a class="headerlink" href="#_CPPv2N13GenericMatrix3setEPKdNSt6size_tEPKN6dolfin8la_indexENSt6size_tEPKN6dolfin8la_indexE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set block of values using global indices</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N13GenericMatrix9set_localEPKdNSt6size_tEPKN6dolfin8la_indexENSt6size_tEPKN6dolfin8la_indexE">
+<span id="GenericMatrix::set_local__doubleCP.std::s.dolfin::la_indexCP.std::s.dolfin::la_indexCP"></span>void <code class="descclassname"></code><code class="descname">set_local</code><span class="sig-paren">(</span><em class="property">const</em> double *<em>block</em>, std::size_t <em>m</em>, <em class="property">const</em> dolfin::la_index *<em>rows</em>, std::size_t <em>n</em>, <em class="property">const</em> dolfin::la_index *<em>cols</em><span class="sig-paren">)</span> = 0<a class="headerlink" href="#_CPPv2N13GenericMatrix9set_localEPKdNSt6size_tEPKN6dolfin8la_indexENSt6size_tEPKN6dolfin8la_indexE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set block of values using local indices</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N13GenericMatrix3addEPKdNSt6size_tEPKN6dolfin8la_indexENSt6size_tEPKN6dolfin8la_indexE">
+<span id="GenericMatrix::add__doubleCP.std::s.dolfin::la_indexCP.std::s.dolfin::la_indexCP"></span>void <code class="descclassname"></code><code class="descname">add</code><span class="sig-paren">(</span><em class="property">const</em> double *<em>block</em>, std::size_t <em>m</em>, <em class="property">const</em> dolfin::la_index *<em>rows</em>, std::size_t <em>n</em>, <em class="property">const</em> dolfin::la_index *<em>cols</em><span class="sig-paren">)</span> = 0<a class="headerlink" href="#_CPPv2N13GenericMatrix3addEPKdNSt6size_tEPKN6dolfin8la_indexENSt6size_tEPKN6dolfin8la_indexE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add block of values using global indices</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N13GenericMatrix9add_localEPKdNSt6size_tEPKN6dolfin8la_indexENSt6size_tEPKN6dolfin8la_indexE">
+<span id="GenericMatrix::add_local__doubleCP.std::s.dolfin::la_indexCP.std::s.dolfin::la_indexCP"></span>void <code class="descclassname"></code><code class="descname">add_local</code><span class="sig-paren">(</span><em class="property">const</em> double *<em>block</em>, std::size_t <em>m</em>, <em class="property">const</em> dolfin::la_index *<em>rows</em>, std::size_t <em>n</em>, <em class="property">const</em> dolfin::la_index *<em>cols</em><span class="sig-paren">)</span> = 0<a class="headerlink" href="#_CPPv2N13GenericMatrix9add_localEPKdNSt6size_tEPKN6dolfin8la_indexENSt6size_tEPKN6dolfin8la_indexE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add block of values using local indices</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N13GenericMatrix4axpyEdRK13GenericMatrixb">
+<span id="GenericMatrix::axpy__double.GenericMatrixCR.b"></span>void <code class="descclassname"></code><code class="descname">axpy</code><span class="sig-paren">(</span>double <em>a</em>, <em class="property">const</em> <a class="reference internal" href="#_CPPv213GenericMatrix" title="GenericMatrix">GenericMatrix</a> &amp;<em>A</em>, bool <em>same_nonzero_pattern</em><span class="sig-paren">)</span> = 0<a class="headerlink" href="#_CPPv2N13GenericMatrix4axpyEdRK13GenericMatrixb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add multiple of given matrix (AXPY operation)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13GenericMatrix4normENSt6stringE">
+<span id="GenericMatrix::norm__ssC"></span>double <code class="descclassname"></code><code class="descname">norm</code><span class="sig-paren">(</span>std::string <em>norm_type</em><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK13GenericMatrix4normENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return norm of matrix</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13GenericMatrix6getrowENSt6size_tERNSt6vectorINSt6size_tEEERNSt6vectorIdEE">
+<span id="GenericMatrix::getrow__std::s.std::vector:std::s:R.std::vector:double:RC"></span>void <code class="descclassname"></code><code class="descname">getrow</code><span class="sig-paren">(</span>std::size_t <em>row</em>, std::vector&lt;std::size_t&gt; &amp;<em>columns</em>, std::vector&lt;double&gt; &amp;<em>values</em><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK13GenericMatrix6getrowENSt6size_tERNSt6vectorINSt6size_tEEERNSt6vectorIdEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get non-zero values of given row (global index) on local process</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N13GenericMatrix6setrowENSt6size_tERKNSt6vectorINSt6size_tEEERKNSt6vectorIdEE">
+<span id="GenericMatrix::setrow__std::s.std::vector:std::s:CR.std::vector:double:CR"></span>void <code class="descclassname"></code><code class="descname">setrow</code><span class="sig-paren">(</span>std::size_t <em>row</em>, <em class="property">const</em> std::vector&lt;std::size_t&gt; &amp;<em>columns</em>, <em class="property">const</em> std::vector&lt;double&gt; &amp;<em>values</em><span class="sig-paren">)</span> = 0<a class="headerlink" href="#_CPPv2N13GenericMatrix6setrowENSt6size_tERKNSt6vectorINSt6size_tEEERKNSt6vectorIdEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set values for given row (global index) on local process</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N13GenericMatrix4zeroENSt6size_tEPKN6dolfin8la_indexE">
+<span id="GenericMatrix::zero__std::s.dolfin::la_indexCP"></span>void <code class="descclassname"></code><code class="descname">zero</code><span class="sig-paren">(</span>std::size_t <em>m</em>, <em class="property">const</em> dolfin::la_index *<em>rows</em><span class="sig-paren">)</span> = 0<a class="headerlink" href="#_CPPv2N13GenericMatrix4zeroENSt6size_tEPKN6dolfin8la_indexE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set given rows (global row indices) to zero</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N13GenericMatrix10zero_localENSt6size_tEPKN6dolfin8la_indexE">
+<span id="GenericMatrix::zero_local__std::s.dolfin::la_indexCP"></span>void <code class="descclassname"></code><code class="descname">zero_local</code><span class="sig-paren">(</span>std::size_t <em>m</em>, <em class="property">const</em> dolfin::la_index *<em>rows</em><span class="sig-paren">)</span> = 0<a class="headerlink" href="#_CPPv2N13GenericMatrix10zero_localENSt6size_tEPKN6dolfin8la_indexE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set given rows (local row indices) to zero</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N13GenericMatrix5identENSt6size_tEPKN6dolfin8la_indexE">
+<span id="GenericMatrix::ident__std::s.dolfin::la_indexCP"></span>void <code class="descclassname"></code><code class="descname">ident</code><span class="sig-paren">(</span>std::size_t <em>m</em>, <em class="property">const</em> dolfin::la_index *<em>rows</em><span class="sig-paren">)</span> = 0<a class="headerlink" href="#_CPPv2N13GenericMatrix5identENSt6size_tEPKN6dolfin8la_indexE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set given rows (global row indices) to identity matrix</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N13GenericMatrix11ident_localENSt6size_tEPKN6dolfin8la_indexE">
+<span id="GenericMatrix::ident_local__std::s.dolfin::la_indexCP"></span>void <code class="descclassname"></code><code class="descname">ident_local</code><span class="sig-paren">(</span>std::size_t <em>m</em>, <em class="property">const</em> dolfin::la_index *<em>rows</em><span class="sig-paren">)</span> = 0<a class="headerlink" href="#_CPPv2N13GenericMatrix11ident_localENSt6size_tEPKN6dolfin8la_indexE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set given rows (local row indices) to identity matrix</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13GenericMatrix10transpmultERK13GenericVectorR13GenericVector">
+<span id="GenericMatrix::transpmult__GenericVectorCR.GenericVectorRC"></span>void <code class="descclassname"></code><code class="descname">transpmult</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>x</em>, <a class="reference internal" href="GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>y</em><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK13GenericMatrix10transpmultERK13GenericVectorR13GenericVector" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Matrix-vector product, y = A^T x. The y vector must either be
+zero-sized or have correct size and parallel layout.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13GenericMatrix12get_diagonalER13GenericVector">
+<span id="GenericMatrix::get_diagonal__GenericVectorRC"></span>void <code class="descclassname"></code><code class="descname">get_diagonal</code><span class="sig-paren">(</span><a class="reference internal" href="GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>x</em><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK13GenericMatrix12get_diagonalER13GenericVector" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get diagonal of a matrix</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N13GenericMatrix12set_diagonalERK13GenericVector">
+<span id="GenericMatrix::set_diagonal__GenericVectorCR"></span>void <code class="descclassname"></code><code class="descname">set_diagonal</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>x</em><span class="sig-paren">)</span> = 0<a class="headerlink" href="#_CPPv2N13GenericMatrix12set_diagonalERK13GenericVector" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set diagonal of a matrix</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N13GenericMatrixmLEd">
+<span id="GenericMatrix::mul-assign-operator__double"></span><em class="property">const</em> <a class="reference internal" href="#_CPPv213GenericMatrix" title="GenericMatrix">GenericMatrix</a> &amp;<code class="descclassname"></code><code class="descname">operator*=</code><span class="sig-paren">(</span>double <em>a</em><span class="sig-paren">)</span> = 0<a class="headerlink" href="#_CPPv2N13GenericMatrixmLEd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Multiply matrix by given number</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N13GenericMatrixdVEd">
+<span id="GenericMatrix::div-assign-operator__double"></span><em class="property">const</em> <a class="reference internal" href="#_CPPv213GenericMatrix" title="GenericMatrix">GenericMatrix</a> &amp;<code class="descclassname"></code><code class="descname">operator/=</code><span class="sig-paren">(</span>double <em>a</em><span class="sig-paren">)</span> = 0<a class="headerlink" href="#_CPPv2N13GenericMatrixdVEd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Divide matrix by given number</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N13GenericMatrixpLERK13GenericMatrix">
+<span id="GenericMatrix::add-assign-operator__GenericMatrixCR"></span><em class="property">const</em> <a class="reference internal" href="#_CPPv213GenericMatrix" title="GenericMatrix">GenericMatrix</a> &amp;<code class="descclassname"></code><code class="descname">operator+=</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv213GenericMatrix" title="GenericMatrix">GenericMatrix</a> &amp;<em>A</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N13GenericMatrixpLERK13GenericMatrix" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add given matrix</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N13GenericMatrixmIERK13GenericMatrix">
+<span id="GenericMatrix::sub-assign-operator__GenericMatrixCR"></span><em class="property">const</em> <a class="reference internal" href="#_CPPv213GenericMatrix" title="GenericMatrix">GenericMatrix</a> &amp;<code class="descclassname"></code><code class="descname">operator-=</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv213GenericMatrix" title="GenericMatrix">GenericMatrix</a> &amp;<em>A</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N13GenericMatrixmIERK13GenericMatrix" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Subtract given matrix</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13GenericMatrix12is_symmetricEd">
+<span id="GenericMatrix::is_symmetric__doubleC"></span>bool <code class="descclassname"></code><code class="descname">is_symmetric</code><span class="sig-paren">(</span>double <em>tol</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13GenericMatrix12is_symmetricEd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Test if matrix is symmetric</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N13GenericMatrixaSERK13GenericMatrix">
+<span id="GenericMatrix::assign-operator__GenericMatrixCR"></span><em class="property">const</em> <a class="reference internal" href="#_CPPv213GenericMatrix" title="GenericMatrix">GenericMatrix</a> &amp;<code class="descclassname"></code><code class="descname">operator=</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv213GenericMatrix" title="GenericMatrix">GenericMatrix</a> &amp;<em>x</em><span class="sig-paren">)</span> = 0<a class="headerlink" href="#_CPPv2N13GenericMatrixaSERK13GenericMatrix" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Assignment operator</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13GenericMatrixclEN6dolfin8la_indexEN6dolfin8la_indexE">
+<span id="GenericMatrix::call-operator__dolfin::la_index.dolfin::la_indexC"></span>double <code class="descclassname"></code><code class="descname">operator()</code><span class="sig-paren">(</span>dolfin::la_index <em>i</em>, dolfin::la_index <em>j</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13GenericMatrixclEN6dolfin8la_indexEN6dolfin8la_indexE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get value of given entry</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13GenericMatrix7getitemENSt4pairIN6dolfin8la_indexEN6dolfin8la_indexEEE">
+<span id="GenericMatrix::getitem__std::pair:dolfin::la_index.dolfin::la_index:C"></span>double <code class="descclassname"></code><code class="descname">getitem</code><span class="sig-paren">(</span>std::pair&lt;dolfin::la_index, dolfin::la_index&gt; <em>ij</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13GenericMatrix7getitemENSt4pairIN6dolfin8la_indexEN6dolfin8la_indexEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get value of given entry</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N13GenericMatrix7setitemENSt4pairIN6dolfin8la_indexEN6dolfin8la_indexEEEd">
+<span id="GenericMatrix::setitem__std::pair:dolfin::la_index.dolfin::la_index:.double"></span>void <code class="descclassname"></code><code class="descname">setitem</code><span class="sig-paren">(</span>std::pair&lt;dolfin::la_index, dolfin::la_index&gt; <em>ij</em>, double <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N13GenericMatrix7setitemENSt4pairIN6dolfin8la_indexEN6dolfin8la_indexEEEd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set given entry to value. apply(“insert”) must be called
+before using using the object.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N13GenericMatrix11ident_zerosEv">
+<span id="GenericMatrix::ident_zeros"></span>void <code class="descclassname"></code><code class="descname">ident_zeros</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N13GenericMatrix11ident_zerosEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Insert one on the diagonal for all zero rows</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="GenericTensor.html" class="btn btn-neutral float-right" title="GenericTensor.h" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="GenericLinearSolver.html" class="btn btn-neutral" title="GenericLinearSolver.h" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright DOLFIN Core, https://launchpad.net/~dolfin-core.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.9.11+',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

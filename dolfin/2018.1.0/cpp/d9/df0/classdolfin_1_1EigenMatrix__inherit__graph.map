@@ -1,0 +1,7 @@
+<map id="dolfin::EigenMatrix" name="dolfin::EigenMatrix">
+<area shape="rect" id="node2" href="$dd/d5f/classdolfin_1_1GenericMatrix.html" title="This class defines a common interface for matrices. " alt="" coords="109,229,261,256"/>
+<area shape="rect" id="node3" href="$db/ddc/classdolfin_1_1GenericTensor.html" title="A common interface for arbitrary rank tensors. " alt="" coords="5,155,160,181"/>
+<area shape="rect" id="node4" href="$db/d42/classdolfin_1_1LinearAlgebraObject.html" title="dolfin::LinearAlgebraObject" alt="" coords="89,80,282,107"/>
+<area shape="rect" id="node6" href="$da/d6a/classdolfin_1_1GenericLinearOperator.html" title="dolfin::GenericLinearOperator" alt="" coords="185,155,394,181"/>
+<area shape="rect" id="node5" href="$d8/df0/classdolfin_1_1Variable.html" title="Common base class for DOLFIN variables. " alt="" coords="128,5,243,32"/>
+</map>

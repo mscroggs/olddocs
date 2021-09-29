@@ -1,0 +1,584 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>SubDomain.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN mesh module" href="index.html"/>
+        <link rel="next" title="SubMesh.h" href="SubMesh.html"/>
+        <link rel="prev" title="PeriodicBoundaryComputation.h" href="PeriodicBoundaryComputation.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.9.11+
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer’s reference for DOLFIN-2017.2.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/index.html">DOLFIN common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fem/index.html">DOLFIN fem module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html">DOLFIN function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/index.html">DOLFIN geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/index.html">DOLFIN io module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../la/index.html">DOLFIN la module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/index.html">DOLFIN log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN mesh module</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="BoundaryMesh.html">BoundaryMesh.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Cell.html">Cell.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CellType.html">CellType.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DomainBoundary.html">DomainBoundary.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DynamicMeshEditor.html">DynamicMeshEditor.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Edge.html">Edge.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Face.html">Face.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Facet.html">Facet.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FacetCell.html">FacetCell.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LocalMeshData.html">LocalMeshData.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LocalMeshValueCollection.html">LocalMeshValueCollection.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Mesh.html">Mesh.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshColoring.html">MeshColoring.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshConnectivity.html">MeshConnectivity.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshData.html">MeshData.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshDomains.html">MeshDomains.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshEditor.html">MeshEditor.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshEntity.html">MeshEntity.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshEntityIterator.html">MeshEntityIterator.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshEntityIteratorBase.html">MeshEntityIteratorBase.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshFunction.html">MeshFunction.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshGeometry.html">MeshGeometry.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshHierarchy.html">MeshHierarchy.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshPartitioning.html">MeshPartitioning.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshQuality.html">MeshQuality.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshRenumbering.html">MeshRenumbering.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshTopology.html">MeshTopology.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshTransformation.html">MeshTransformation.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshValueCollection.html">MeshValueCollection.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MultiMesh.html">MultiMesh.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PeriodicBoundaryComputation.html">PeriodicBoundaryComputation.h</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">SubDomain.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SubMesh.html">SubMesh.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SubsetIterator.html">SubsetIterator.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Vertex.html">Vertex.h</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer’s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">DOLFIN</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">C++ Programmer’s reference for DOLFIN-2017.2.0</a> &raquo;</li>
+        
+          <li><a href="index.html">DOLFIN mesh module</a> &raquo;</li>
+        
+      <li>SubDomain.h</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/programmers-reference/mesh/SubDomain.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="subdomain-h">
+<span id="programmers-reference-cpp-mesh-subdomain"></span><h1>SubDomain.h<a class="headerlink" href="#subdomain-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="class">
+<dt id="_CPPv29SubDomain">
+<span id="SubDomain"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">SubDomain</code><a class="headerlink" href="#_CPPv29SubDomain" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This class defines the interface for definition of subdomains.
+Alternatively, subdomains may be defined by a <a class="reference internal" href="Mesh.html#_CPPv24Mesh" title="Mesh"><code class="xref cpp cpp-class docutils literal"><span class="pre">Mesh</span></code></a> and a
+MeshFunction&lt;std::size_t&gt; over the mesh.</p>
+<dl class="function">
+<dt id="_CPPv2N9SubDomain9SubDomainEKd">
+<span id="SubDomain::SubDomain__doubleC"></span><code class="descclassname"></code><code class="descname">SubDomain</code><span class="sig-paren">(</span><em class="property">const</em> double <em>map_tol</em> = 1.0e-10<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9SubDomain9SubDomainEKd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructor</p>
+<dl class="docutils">
+<dt>&#64;param map_tol (double)</dt>
+<dd>The tolerance used when identifying mapped points using
+the function SubDomain::map.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK9SubDomain6insideERK5ArrayIdEb">
+<span id="SubDomain::inside__Array:double:CR.bC"></span>bool <code class="descclassname"></code><code class="descname">inside</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../common/Array.html#_CPPv25Array" title="Array">Array</a>&lt;double&gt; &amp;<em>x</em>, bool <em>on_boundary</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK9SubDomain6insideERK5ArrayIdEb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return true for points inside the subdomain</p>
+<dl class="docutils">
+<dt>&#64;param    x (Array&lt;double&gt;)</dt>
+<dd>The coordinates of the point.</dd>
+<dt>&#64;param   on_boundary (bool)</dt>
+<dd>True for points on the boundary.</dd>
+<dt>&#64;return    bool</dt>
+<dd>True for points inside the subdomain.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK9SubDomain6insideEN5Eigen3RefIKN5Eigen8VectorXdEEEb">
+<span id="SubDomain::inside__Eigen::Ref:Eigen::VectorXdC:.bC"></span>bool <code class="descclassname"></code><code class="descname">inside</code><span class="sig-paren">(</span>Eigen::Ref&lt;<em class="property">const</em> Eigen::VectorXd&gt; <em>x</em>, bool <em>on_boundary</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK9SubDomain6insideEN5Eigen3RefIKN5Eigen8VectorXdEEEb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return true for points inside the subdomain</p>
+<dl class="docutils">
+<dt>&#64;param    x (Eigen::Ref&lt;const Eigen::VectorXd&gt;)</dt>
+<dd>The coordinates of the point.</dd>
+<dt>&#64;param   on_boundary (bool)</dt>
+<dd>True for points on the boundary.</dd>
+<dt>&#64;return    bool</dt>
+<dd>True for points inside the subdomain.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK9SubDomain3mapERK5ArrayIdER5ArrayIdE">
+<span id="SubDomain::map__Array:double:CR.Array:double:RC"></span>void <code class="descclassname"></code><code class="descname">map</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../common/Array.html#_CPPv25Array" title="Array">Array</a>&lt;double&gt; &amp;<em>x</em>, <a class="reference internal" href="../common/Array.html#_CPPv25Array" title="Array">Array</a>&lt;double&gt; &amp;<em>y</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK9SubDomain3mapERK5ArrayIdER5ArrayIdE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Map coordinate x in domain H to coordinate y in domain G (used for
+periodic boundary conditions)</p>
+<dl class="docutils">
+<dt>&#64;param   x (Array&lt;double&gt;)</dt>
+<dd>The coordinates in domain H.</dd>
+<dt>&#64;param    y (Array&lt;double&gt;)</dt>
+<dd>The coordinates in domain G.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK9SubDomain3mapEN5Eigen3RefIKN5Eigen8VectorXdEEEN5Eigen3RefIN5Eigen8VectorXdEEE">
+<span id="SubDomain::map__Eigen::Ref:Eigen::VectorXdC:.Eigen::Ref:Eigen::VectorXd:C"></span>void <code class="descclassname"></code><code class="descname">map</code><span class="sig-paren">(</span>Eigen::Ref&lt;<em class="property">const</em> Eigen::VectorXd&gt; <em>x</em>, Eigen::Ref&lt;Eigen::VectorXd&gt; <em>y</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK9SubDomain3mapEN5Eigen3RefIKN5Eigen8VectorXdEEEN5Eigen3RefIN5Eigen8VectorXdEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Map coordinate x in domain H to coordinate y in domain G (used for
+periodic boundary conditions)</p>
+<dl class="docutils">
+<dt>&#64;param   x (Eigen::Ref&lt;const Eigen::VectorXd&gt;)</dt>
+<dd>The coordinates in domain H.</dd>
+<dt>&#64;param    y (Eigen::Ref&lt;Eigen::VectorXd&gt;)</dt>
+<dd>The coordinates in domain G.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK9SubDomain4snapER5ArrayIdE">
+<span id="SubDomain::snap__Array:double:RC"></span>void <code class="descclassname"></code><code class="descname">snap</code><span class="sig-paren">(</span><a class="reference internal" href="../common/Array.html#_CPPv25Array" title="Array">Array</a>&lt;double&gt; &amp;<em>x</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK9SubDomain4snapER5ArrayIdE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Snap coordinate to boundary of subdomain</p>
+<dl class="docutils">
+<dt>&#64;param x (Array&lt;double&gt;)</dt>
+<dd>The coordinates.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK9SubDomain10mark_cellsER4MeshNSt6size_tEb">
+<span id="SubDomain::mark_cells__MeshR.std::s.bC"></span>void <code class="descclassname"></code><code class="descname">mark_cells</code><span class="sig-paren">(</span><a class="reference internal" href="Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em>, std::size_t <em>sub_domain</em>, bool <em>check_midpoint</em> = true<span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK9SubDomain10mark_cellsER4MeshNSt6size_tEb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set subdomain markers (std::size_t) on cells for given subdomain number</p>
+<dl class="docutils">
+<dt>&#64;param    mesh (<a class="reference internal" href="Mesh.html#_CPPv24Mesh" title="Mesh"><code class="xref cpp cpp-class docutils literal"><span class="pre">Mesh</span></code></a>)</dt>
+<dd>The mesh to be marked.</dd>
+<dt>&#64;param    sub_domain (std::size_t)</dt>
+<dd>The subdomain number.</dd>
+<dt>&#64;param    check_midpoint (bool)</dt>
+<dd>Flag for whether midpoint of cell should be checked (default).</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK9SubDomain11mark_facetsER4MeshNSt6size_tEb">
+<span id="SubDomain::mark_facets__MeshR.std::s.bC"></span>void <code class="descclassname"></code><code class="descname">mark_facets</code><span class="sig-paren">(</span><a class="reference internal" href="Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em>, std::size_t <em>sub_domain</em>, bool <em>check_midpoint</em> = true<span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK9SubDomain11mark_facetsER4MeshNSt6size_tEb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set subdomain markers (std::size_t) on facets for given subdomain number</p>
+<dl class="docutils">
+<dt>&#64;param    mesh (<a class="reference internal" href="Mesh.html#_CPPv24Mesh" title="Mesh"><code class="xref cpp cpp-class docutils literal"><span class="pre">Mesh</span></code></a>)</dt>
+<dd>The mesh to be marked.</dd>
+<dt>&#64;param    sub_domain (std::size_t)</dt>
+<dd>The subdomain number.</dd>
+<dt>&#64;param    check_midpoint (bool)</dt>
+<dd>Flag for whether midpoint of cell should be checked (default).</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK9SubDomain4markER4MeshNSt6size_tENSt6size_tEb">
+<span id="SubDomain::mark__MeshR.std::s.std::s.bC"></span>void <code class="descclassname"></code><code class="descname">mark</code><span class="sig-paren">(</span><a class="reference internal" href="Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em>, std::size_t <em>dim</em>, std::size_t <em>sub_domain</em>, bool <em>check_midpoint</em> = true<span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK9SubDomain4markER4MeshNSt6size_tENSt6size_tEb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set subdomain markers (std::size_t) for given topological dimension
+and subdomain number</p>
+<dl class="docutils">
+<dt>&#64;param    mesh (<a class="reference internal" href="Mesh.html#_CPPv24Mesh" title="Mesh"><code class="xref cpp cpp-class docutils literal"><span class="pre">Mesh</span></code></a>)</dt>
+<dd>The mesh to be marked.</dd>
+<dt>&#64;param    dim (std::size_t)</dt>
+<dd>The topological dimension of entities to be marked.</dd>
+<dt>&#64;param    sub_domain (std::size_t)</dt>
+<dd>The subdomain number.</dd>
+<dt>&#64;param    check_midpoint (bool)</dt>
+<dd>Flag for whether midpoint of cell should be checked (default).</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK9SubDomain4markER12MeshFunctionINSt6size_tEENSt6size_tEb">
+<span id="SubDomain::mark__MeshFunction:std::s:R.std::s.bC"></span>void <code class="descclassname"></code><code class="descname">mark</code><span class="sig-paren">(</span><a class="reference internal" href="MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction">MeshFunction</a>&lt;std::size_t&gt; &amp;<em>sub_domains</em>, std::size_t <em>sub_domain</em>, bool <em>check_midpoint</em> = true<span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK9SubDomain4markER12MeshFunctionINSt6size_tEENSt6size_tEb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set subdomain markers (std::size_t) for given subdomain number</p>
+<dl class="docutils">
+<dt>&#64;param    sub_domains (MeshFunction&lt;std::size_t&gt;)</dt>
+<dd>The subdomain markers.</dd>
+<dt>&#64;param    sub_domain (std::size_t)</dt>
+<dd>The subdomain number.</dd>
+<dt>&#64;param    check_midpoint (bool)</dt>
+<dd>Flag for whether midpoint of cell should be checked (default).</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK9SubDomain4markER12MeshFunctionIiEib">
+<span id="SubDomain::mark__MeshFunction:i:R.i.bC"></span>void <code class="descclassname"></code><code class="descname">mark</code><span class="sig-paren">(</span><a class="reference internal" href="MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction">MeshFunction</a>&lt;int&gt; &amp;<em>sub_domains</em>, int <em>sub_domain</em>, bool <em>check_midpoint</em> = true<span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK9SubDomain4markER12MeshFunctionIiEib" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set subdomain markers (int) for given subdomain number</p>
+<dl class="docutils">
+<dt>&#64;param    sub_domains (MeshFunction&lt;int&gt;)</dt>
+<dd>The subdomain markers.</dd>
+<dt>&#64;param    sub_domain (int)</dt>
+<dd>The subdomain number.</dd>
+<dt>&#64;param    check_midpoint (bool)</dt>
+<dd>Flag for whether midpoint of cell should be checked (default).</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK9SubDomain4markER12MeshFunctionIdEdb">
+<span id="SubDomain::mark__MeshFunction:double:R.double.bC"></span>void <code class="descclassname"></code><code class="descname">mark</code><span class="sig-paren">(</span><a class="reference internal" href="MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction">MeshFunction</a>&lt;double&gt; &amp;<em>sub_domains</em>, double <em>sub_domain</em>, bool <em>check_midpoint</em> = true<span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK9SubDomain4markER12MeshFunctionIdEdb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set subdomain markers (double) for given subdomain number</p>
+<dl class="docutils">
+<dt>&#64;param    sub_domains (MeshFunction&lt;double&gt;)</dt>
+<dd>The subdomain markers.</dd>
+<dt>&#64;param    sub_domain (double)</dt>
+<dd>The subdomain number.</dd>
+<dt>&#64;param    check_midpoint (bool)</dt>
+<dd>Flag for whether midpoint of cell should be checked (default).</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK9SubDomain4markER12MeshFunctionIbEbb">
+<span id="SubDomain::mark__MeshFunction:b:R.b.bC"></span>void <code class="descclassname"></code><code class="descname">mark</code><span class="sig-paren">(</span><a class="reference internal" href="MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction">MeshFunction</a>&lt;bool&gt; &amp;<em>sub_domains</em>, bool <em>sub_domain</em>, bool <em>check_midpoint</em> = true<span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK9SubDomain4markER12MeshFunctionIbEbb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set subdomain markers (bool) for given subdomain</p>
+<dl class="docutils">
+<dt>&#64;param    sub_domains (MeshFunction&lt;bool&gt;)</dt>
+<dd>The subdomain markers.</dd>
+<dt>&#64;param    sub_domain (bool)</dt>
+<dd>The subdomain number.</dd>
+<dt>&#64;param   check_midpoint (bool)</dt>
+<dd>Flag for whether midpoint of cell should be checked (default).</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK9SubDomain4markER19MeshValueCollectionINSt6size_tEENSt6size_tERK4Meshb">
+<span id="SubDomain::mark__MeshValueCollection:std::s:R.std::s.MeshCR.bC"></span>void <code class="descclassname"></code><code class="descname">mark</code><span class="sig-paren">(</span><a class="reference internal" href="MeshValueCollection.html#_CPPv219MeshValueCollection" title="MeshValueCollection">MeshValueCollection</a>&lt;std::size_t&gt; &amp;<em>sub_domains</em>, std::size_t <em>sub_domain</em>, <em class="property">const</em> <a class="reference internal" href="Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em>, bool <em>check_midpoint</em> = true<span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK9SubDomain4markER19MeshValueCollectionINSt6size_tEENSt6size_tERK4Meshb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set subdomain markers (std::size_t) for given subdomain number</p>
+<dl class="docutils">
+<dt>&#64;param    sub_domains (MeshValueCollection&lt;std::size_t&gt;)</dt>
+<dd>The subdomain markers.</dd>
+<dt>&#64;param    sub_domain (std::size_t)</dt>
+<dd>The subdomain number.</dd>
+<dt>&#64;param    mesh (<a class="reference internal" href="Mesh.html#_CPPv24Mesh" title="Mesh"><code class="xref cpp cpp-class docutils literal"><span class="pre">Mesh</span></code></a>)</dt>
+<dd>The mesh.</dd>
+<dt>&#64;param    check_midpoint (bool)</dt>
+<dd>Flag for whether midpoint of cell should be checked (default).</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK9SubDomain4markER19MeshValueCollectionIiEiRK4Meshb">
+<span id="SubDomain::mark__MeshValueCollection:i:R.i.MeshCR.bC"></span>void <code class="descclassname"></code><code class="descname">mark</code><span class="sig-paren">(</span><a class="reference internal" href="MeshValueCollection.html#_CPPv219MeshValueCollection" title="MeshValueCollection">MeshValueCollection</a>&lt;int&gt; &amp;<em>sub_domains</em>, int <em>sub_domain</em>, <em class="property">const</em> <a class="reference internal" href="Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em>, bool <em>check_midpoint</em> = true<span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK9SubDomain4markER19MeshValueCollectionIiEiRK4Meshb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set subdomain markers (int) for given subdomain number</p>
+<dl class="docutils">
+<dt>&#64;param    sub_domains (MeshValueCollection&lt;int&gt;)</dt>
+<dd>The subdomain markers</dd>
+<dt>&#64;param    sub_domain (int)</dt>
+<dd>The subdomain number</dd>
+<dt>&#64;param  mesh (Mesh)</dt>
+<dd>The mesh.</dd>
+<dt>&#64;param    check_midpoint (bool)</dt>
+<dd>Flag for whether midpoint of cell should be checked (default).</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK9SubDomain4markER19MeshValueCollectionIdEdRK4Meshb">
+<span id="SubDomain::mark__MeshValueCollection:double:R.double.MeshCR.bC"></span>void <code class="descclassname"></code><code class="descname">mark</code><span class="sig-paren">(</span><a class="reference internal" href="MeshValueCollection.html#_CPPv219MeshValueCollection" title="MeshValueCollection">MeshValueCollection</a>&lt;double&gt; &amp;<em>sub_domains</em>, double <em>sub_domain</em>, <em class="property">const</em> <a class="reference internal" href="Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em>, bool <em>check_midpoint</em> = true<span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK9SubDomain4markER19MeshValueCollectionIdEdRK4Meshb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set subdomain markers (double) for given subdomain number</p>
+<dl class="docutils">
+<dt>&#64;param    sub_domains (MeshValueCollection&lt;double&gt;)</dt>
+<dd>The subdomain markers.</dd>
+<dt>&#64;param    sub_domain (double)</dt>
+<dd>The subdomain number</dd>
+<dt>&#64;param  mesh (Mesh)</dt>
+<dd>The mesh.</dd>
+<dt>&#64;param    check_midpoint (bool)</dt>
+<dd>Flag for whether midpoint of cell should be checked (default).</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK9SubDomain4markER19MeshValueCollectionIbEbRK4Meshb">
+<span id="SubDomain::mark__MeshValueCollection:b:R.b.MeshCR.bC"></span>void <code class="descclassname"></code><code class="descname">mark</code><span class="sig-paren">(</span><a class="reference internal" href="MeshValueCollection.html#_CPPv219MeshValueCollection" title="MeshValueCollection">MeshValueCollection</a>&lt;bool&gt; &amp;<em>sub_domains</em>, bool <em>sub_domain</em>, <em class="property">const</em> <a class="reference internal" href="Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em>, bool <em>check_midpoint</em> = true<span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK9SubDomain4markER19MeshValueCollectionIbEbRK4Meshb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set subdomain markers (bool) for given subdomain</p>
+<dl class="docutils">
+<dt>&#64;param     sub_domains (MeshValueCollection&lt;bool&gt;)</dt>
+<dd>The subdomain markers</dd>
+<dt>&#64;param    sub_domain (bool)</dt>
+<dd>The subdomain number</dd>
+<dt>&#64;param  mesh (Mesh)</dt>
+<dd>The mesh.</dd>
+<dt>&#64;param    check_midpoint (bool)</dt>
+<dd>Flag for whether midpoint of cell should be checked (default).</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK9SubDomain19geometric_dimensionEv">
+<span id="SubDomain::geometric_dimensionC"></span>std::size_t <code class="descclassname"></code><code class="descname">geometric_dimension</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK9SubDomain19geometric_dimensionEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return geometric dimension</p>
+<dl class="docutils">
+<dt>&#64;return    std::size_t</dt>
+<dd>The geometric dimension.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N9SubDomain12set_propertyENSt6stringEd">
+<span id="SubDomain::set_property__ss.double"></span>void <code class="descclassname"></code><code class="descname">set_property</code><span class="sig-paren">(</span>std::string <em>name</em>, double <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9SubDomain12set_propertyENSt6stringEd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Property setter</p>
+<p>&#64;param name
+&#64;param value</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK9SubDomain12get_propertyENSt6stringE">
+<span id="SubDomain::get_property__ssC"></span>double <code class="descclassname"></code><code class="descname">get_property</code><span class="sig-paren">(</span>std::string <em>name</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK9SubDomain12get_propertyENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Property getter</p>
+<p>&#64;param name
+&#64;return double</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK9SubDomain13apply_markersER1S1TRK4Meshb">
+<span id="SubDomain::apply_markers__SR.T.MeshCR.bC"></span>void <code class="descclassname"></code><code class="descname">apply_markers</code><span class="sig-paren">(</span>S &amp;<em>sub_domains</em>, T <em>sub_domain</em>, <em class="property">const</em> <a class="reference internal" href="Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em>, bool <em>check_midpoint</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK9SubDomain13apply_markersER1S1TRK4Meshb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Apply marker of type T (most likely an std::size_t) to object of class
+S (most likely MeshFunction or MeshValueCollection)</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="SubMesh.html" class="btn btn-neutral float-right" title="SubMesh.h" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="PeriodicBoundaryComputation.html" class="btn btn-neutral" title="PeriodicBoundaryComputation.h" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright DOLFIN Core, https://launchpad.net/~dolfin-core.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.9.11+',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

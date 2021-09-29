@@ -1,0 +1,10 @@
+.. Documentation for the function dolfin.cpp.mesh.MeshTransformation_scale
+
+.. _programmers_reference_cpp_mesh_meshtransformation_scale:
+
+MeshTransformation_scale
+========================
+
+.. currentmodule:: dolfin.cpp.mesh
+
+.. autofunction:: MeshTransformation_scale

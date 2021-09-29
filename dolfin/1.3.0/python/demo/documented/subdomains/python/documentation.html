@@ -1,0 +1,465 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>23. Marking subdomains of a mesh &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../../../index.html"/>
+        <link rel="up" title="Collection of documented demos" href="../../../index.html"/>
+        <link rel="next" title="24. Tensor-weighted Poisson" href="../../tensor-weighted-poisson/python/documentation.html"/>
+        <link rel="prev" title="22. Poisson equation with multiple subdomains" href="../../subdomains-poisson/python/documentation.html"/> 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../programmers-reference/index.html">Programmer&#8217;s reference for DOLFIN (Python)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Collection of documented demos</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../auto-adaptive-poisson/python/documentation.html">1. Auto adaptive Poisson equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../bcs/python/documentation.html">2. Set boundary conditions for meshes that include boundary indicators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../biharmonic/python/documentation.html">3. Biharmonic equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../built-in_meshes/python/documentation.html">4. Built-in meshes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cahn-hilliard/python/documentation.html">5. Cahn-Hilliard equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../csg-2D/python/documentation.html">6. Create CSG 2D-geometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../csg-3D/python/documentation.html">7. Create CSG 3D-geometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../eigenvalue/python/documentation.html">8. A simple eigenvalue solver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hyperelasticity/python/documentation.html">9. Hyperelasticity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mesh-generation/python/documentation.html">10. Generate mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mixed-poisson/python/documentation.html">11. Mixed formulation for Poisson equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../navier-stokes/python/documentation.html">12. Incompressible Navier-Stokes equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../neumann-poisson/python/documentation.html">13. Poisson equation with pure Neumann boundary conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nonlinear-poisson/python/documentation.html">14. Nonlinear Poisson equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../periodic/python/documentation.html">15. Poisson equation with periodic boundary conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../poisson/python/documentation.html">16. Poisson equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../singular-poisson/python/documentation.html">17. Singular Poisson</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stokes-iterative/python/documentation.html">18. Stokes equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stokes-mini/python/documentation.html">19. Stokes equations with Mini elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stokes-stabilized/python/documentation.html">20. Stokes equations with stabilized first order elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stokes-taylor-hood/python/documentation.html">21. Stokes equations with Taylor-Hood elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../subdomains-poisson/python/documentation.html">22. Poisson equation with multiple subdomains</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">23. Marking subdomains of a mesh</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#problem-definition">23.1. Problem definition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#implementation">23.2. Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#complete-code">23.3. Complete code</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tensor-weighted-poisson/python/documentation.html">24. Tensor-weighted Poisson</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../quick_reference.html">Quick Programmer&#8217;s Reference (Python)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../index.html">Collection of documented demos</a> &raquo;</li>
+      
+    <li>23. Marking subdomains of a mesh</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../../_sources/demo/documented/subdomains/python/documentation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="marking-subdomains-of-a-mesh">
+<span id="demo-pde-subdomains-python-documentation"></span><h1>23. Marking subdomains of a mesh<a class="headerlink" href="#marking-subdomains-of-a-mesh" title="Permalink to this headline">¶</a></h1>
+<p>This demo is implemented in a single Python file,
+<a class="reference download internal" href="../../../../_downloads/demo_subdomains.py" download=""><code class="xref download docutils literal"><span class="pre">demo_subdomains.py</span></code></a>.</p>
+<p>This demo illustrates:</p>
+<ul class="simple">
+<li>How to mark subdomains of a mesh</li>
+<li>How to store subdomain markers as a mesh function to DOLFIN XML files and VTK files</li>
+</ul>
+<div class="section" id="problem-definition">
+<h2>23.1. Problem definition<a class="headerlink" href="#problem-definition" title="Permalink to this headline">¶</a></h2>
+<p>In this demo, we focus on how to mark subdomains, so we do not have
+any equations to solve. The mesh we will work on is a unit square
+where the shape of a dolphin is removed from the middle of the square.
+This mesh and the subdomain markers produced by this demo program are
+the ones used for the Stokes demo programs.  We will mark the
+boundaries so that the boundary to the right (<span class="math">\(x = 1\)</span>) is
+inflow, the boundary to the left (<span class="math">\(x = 0\)</span>) is outflow, and the
+top, bottom and the interior boundary around the dolphin will be
+noslip. We thus have</p>
+<div class="math">
+\[\begin{split}\partial \Omega &amp;= \Gamma_{\mathrm{inflow}} \cup \Gamma_{\mathrm{outflow}} \cup \Gamma_{\mathrm{noslip}}, \\
+\Gamma_{\mathrm{inflow}} &amp;= (1, y), \\
+\Gamma_{\mathrm{outflow}} &amp;= (0, y), \\
+\Gamma_{\mathrm{noslip}} &amp;= \partial \Omega \backslash (\Gamma_{\mathrm{inflow}} \cup \Gamma_{\mathrm{outflow}}). \\\end{split}\]</div>
+<p>The mesh with marked boundaries looks as follows:</p>
+<a class="reference internal image-reference" href="../../../../_images/plot_subdomains.png"><img alt="../../../../_images/plot_subdomains.png" src="../../../../_images/plot_subdomains.png" style="width: 450.0px; height: 300.0px;" /></a>
+</div>
+<div class="section" id="implementation">
+<h2>23.2. Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
+<p>First, the <a class="reference internal" href="../../../../programmers-reference/index.html#module-dolfin" title="dolfin"><code class="xref py py-mod docutils literal"><span class="pre">dolfin</span></code></a> module is imported:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dolfin</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+<p>It may be useful to get information about what is going on behind the
+scenes when the program is running. In DOLFIN, we can control which
+messages routed through the logging system will be printed. By
+calling the function <a class="reference internal" href="../../../../programmers-reference/cpp/common/set_log_level.html#dolfin.cpp.common.set_log_level" title="dolfin.cpp.common.set_log_level"><code class="xref py py-class docutils literal"><span class="pre">set_log_level()</span></code></a> we specify the log level. An
+optional integer argument may be given to specify the level, the
+default level is 20. Only messages on a level higher than or equal to
+the current log level will be printed. To get as much information as
+possible we will set the log level to 1:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">set_log_level</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Before we can mark the boundaries, we must specify the boundary
+conditions.  We do this by defining three classes, one for each
+boundary condition. We start by defining the whole boundary as a
+noslip boundary, and then overwrite the parts of the boundary that is
+inflow and outflow.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Sub domain for no-slip (mark whole boundary, inflow and outflow will overwrite)</span>
+<span class="k">class</span> <span class="nc">Noslip</span><span class="p">(</span><span class="n">SubDomain</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">inside</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">on_boundary</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">on_boundary</span>
+
+<span class="c1"># Sub domain for inflow (right)</span>
+<span class="k">class</span> <span class="nc">Inflow</span><span class="p">(</span><span class="n">SubDomain</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">inside</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">on_boundary</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">DOLFIN_EPS</span> <span class="ow">and</span> <span class="n">on_boundary</span>
+
+<span class="c1"># Sub domain for outflow (left)</span>
+<span class="k">class</span> <span class="nc">Outflow</span><span class="p">(</span><span class="n">SubDomain</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">inside</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">on_boundary</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">DOLFIN_EPS</span> <span class="ow">and</span> <span class="n">on_boundary</span>
+</pre></div>
+</div>
+<p>Then, we import the mesh:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Read mesh</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">Mesh</span><span class="p">(</span><span class="s2">&quot;dolfin-2.xml.gz&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We create a <code class="xref py py-class docutils literal"><span class="pre">MeshFunction</span></code> to
+store the numbering of the subdomains.  When creating a MeshFunction
+an argument specifying the type of the MeshFunction must be given.
+Allowed types are ‘int’, ‘size_t’, ‘double’ and ‘bool’. To illustrate
+the difference of these we will use both ‘size_t’, ‘double’ and
+‘bool’:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Create mesh functions over the cell facets</span>
+<span class="n">sub_domains</span> <span class="o">=</span> <span class="n">MeshFunction</span><span class="p">(</span><span class="s2">&quot;size_t&quot;</span><span class="p">,</span> <span class="n">mesh</span><span class="p">,</span> <span class="n">mesh</span><span class="o">.</span><span class="n">topology</span><span class="p">()</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">sub_domains_bool</span> <span class="o">=</span> <span class="n">MeshFunction</span><span class="p">(</span><span class="s2">&quot;bool&quot;</span><span class="p">,</span> <span class="n">mesh</span><span class="p">,</span> <span class="n">mesh</span><span class="o">.</span><span class="n">topology</span><span class="p">()</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">sub_domains_double</span> <span class="o">=</span> <span class="n">MeshFunction</span><span class="p">(</span><span class="s2">&quot;double&quot;</span><span class="p">,</span> <span class="n">mesh</span><span class="p">,</span> <span class="n">mesh</span><span class="o">.</span><span class="n">topology</span><span class="p">()</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The second and third arguments are optional. The second argument
+specifies our mesh, while the third argument gives the topological
+dimension of the <code class="xref py py-class docutils literal"><span class="pre">MeshFunction</span></code>,
+which is the topological dimension of our mesh minus 1.</p>
+<p>We are now ready to mark the mesh. We will create four subdomains of
+the mesh; one subdomain for each boundary condition and a fourth
+subdomain for the interior. First, we mark all facets in the mesh as
+part of subdomain 3. Since we want to illustrate the possible types
+of mesh functions, this is done in three different ways. The first
+type, the <code class="xref py py-class docutils literal"><span class="pre">MeshFunction</span></code>,
+takes an integer argument and all facets will be given this index.
+The second type, the <code class="xref py py-class docutils literal"><span class="pre">MeshFunction</span></code>, takes a boolean as argument and all
+facets will be marked by this boolean.  The third type , the
+<code class="xref py py-class docutils literal"><span class="pre">MeshFunction</span></code>, takes a
+floating point number as argument and this number will be the index of
+all the facets.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Mark all facets as sub domain 3</span>
+<span class="n">sub_domains</span><span class="o">.</span><span class="n">set_all</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">sub_domains_bool</span><span class="o">.</span><span class="n">set_all</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">sub_domains_double</span><span class="o">.</span><span class="n">set_all</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>When all facets are marked, we mark only the boundary facets.  We give
+the noslip boundary the index 0.  To mark the facets of the noslip
+boundary, we first make an instance of the class <code class="docutils literal"><span class="pre">Noslip</span></code>, and then
+mark these facets with the correct value (either an integer, boolean
+or double).</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Mark no-slip facets as sub domain 0, 0.0</span>
+<span class="n">noslip</span> <span class="o">=</span> <span class="n">Noslip</span><span class="p">()</span>
+<span class="n">noslip</span><span class="o">.</span><span class="n">mark</span><span class="p">(</span><span class="n">sub_domains</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">noslip</span><span class="o">.</span><span class="n">mark</span><span class="p">(</span><span class="n">sub_domains_double</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The same must be done for the inflow and outflow boundaries.  The
+inflow is marked as subdomain 1 and the outflow is marked as subdomain
+2:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Mark inflow as sub domain 1, 01</span>
+<span class="n">inflow</span> <span class="o">=</span> <span class="n">Inflow</span><span class="p">()</span>
+<span class="n">inflow</span><span class="o">.</span><span class="n">mark</span><span class="p">(</span><span class="n">sub_domains</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">inflow</span><span class="o">.</span><span class="n">mark</span><span class="p">(</span><span class="n">sub_domains_double</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+
+<span class="c1"># Mark outflow as sub domain 2, 0.2, True</span>
+<span class="n">outflow</span> <span class="o">=</span> <span class="n">Outflow</span><span class="p">()</span>
+<span class="n">outflow</span><span class="o">.</span><span class="n">mark</span><span class="p">(</span><span class="n">sub_domains</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">outflow</span><span class="o">.</span><span class="n">mark</span><span class="p">(</span><span class="n">sub_domains_double</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
+<span class="n">outflow</span><span class="o">.</span><span class="n">mark</span><span class="p">(</span><span class="n">sub_domains_bool</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Finally, to be able to use these subdomains together with the mesh in
+other programs, we save the subdomains to file, both as XML and VTK
+files:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Save sub domains to file</span>
+<span class="nb">file</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="s2">&quot;subdomains.xml&quot;</span><span class="p">)</span>
+<span class="nb">file</span> <span class="o">&lt;&lt;</span> <span class="n">sub_domains</span>
+
+<span class="c1"># FIXME: Not implemented</span>
+<span class="c1">#file_bool = File(&quot;subdomains_bool.xml&quot;)</span>
+<span class="c1">#file_bool &lt;&lt; sub_domains_bool</span>
+
+<span class="n">file_double</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="s2">&quot;subdomains_double.xml&quot;</span><span class="p">)</span>
+<span class="n">file_double</span> <span class="o">&lt;&lt;</span> <span class="n">sub_domains_double</span>
+
+<span class="c1"># Save sub domains to VTK files</span>
+<span class="nb">file</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="s2">&quot;subdomains.pvd&quot;</span><span class="p">)</span>
+<span class="nb">file</span> <span class="o">&lt;&lt;</span> <span class="n">sub_domains</span>
+
+<span class="nb">file</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="s2">&quot;subdomains_double.pvd&quot;</span><span class="p">)</span>
+<span class="nb">file</span> <span class="o">&lt;&lt;</span> <span class="n">sub_domains_double</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="complete-code">
+<h2>23.3. Complete code<a class="headerlink" href="#complete-code" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default"><div class="highlight"><pre><span></span>
+<span class="kn">from</span> <span class="nn">dolfin</span> <span class="k">import</span> <span class="o">*</span>
+
+<span class="n">set_log_level</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Sub domain for no-slip (mark whole boundary, inflow and outflow will overwrite)</span>
+<span class="k">class</span> <span class="nc">Noslip</span><span class="p">(</span><span class="n">SubDomain</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">inside</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">on_boundary</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">on_boundary</span>
+
+<span class="c1"># Sub domain for inflow (right)</span>
+<span class="k">class</span> <span class="nc">Inflow</span><span class="p">(</span><span class="n">SubDomain</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">inside</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">on_boundary</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">DOLFIN_EPS</span> <span class="ow">and</span> <span class="n">on_boundary</span>
+
+<span class="c1"># Sub domain for outflow (left)</span>
+<span class="k">class</span> <span class="nc">Outflow</span><span class="p">(</span><span class="n">SubDomain</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">inside</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">on_boundary</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">DOLFIN_EPS</span> <span class="ow">and</span> <span class="n">on_boundary</span>
+
+<span class="c1"># Read mesh</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">Mesh</span><span class="p">(</span><span class="s2">&quot;../dolfin_fine.xml.gz&quot;</span><span class="p">)</span>
+
+<span class="c1"># Create mesh functions over the cell facets</span>
+<span class="n">sub_domains</span> <span class="o">=</span> <span class="n">MeshFunction</span><span class="p">(</span><span class="s2">&quot;size_t&quot;</span><span class="p">,</span> <span class="n">mesh</span><span class="p">,</span> <span class="n">mesh</span><span class="o">.</span><span class="n">topology</span><span class="p">()</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">sub_domains_bool</span> <span class="o">=</span> <span class="n">MeshFunction</span><span class="p">(</span><span class="s2">&quot;bool&quot;</span><span class="p">,</span> <span class="n">mesh</span><span class="p">,</span> <span class="n">mesh</span><span class="o">.</span><span class="n">topology</span><span class="p">()</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">sub_domains_double</span> <span class="o">=</span> <span class="n">MeshFunction</span><span class="p">(</span><span class="s2">&quot;double&quot;</span><span class="p">,</span> <span class="n">mesh</span><span class="p">,</span> <span class="n">mesh</span><span class="o">.</span><span class="n">topology</span><span class="p">()</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Mark all facets as sub domain 3</span>
+<span class="n">sub_domains</span><span class="o">.</span><span class="n">set_all</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">sub_domains_bool</span><span class="o">.</span><span class="n">set_all</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">sub_domains_double</span><span class="o">.</span><span class="n">set_all</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="c1"># Mark no-slip facets as sub domain 0, 0.0</span>
+<span class="n">noslip</span> <span class="o">=</span> <span class="n">Noslip</span><span class="p">()</span>
+<span class="n">noslip</span><span class="o">.</span><span class="n">mark</span><span class="p">(</span><span class="n">sub_domains</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">noslip</span><span class="o">.</span><span class="n">mark</span><span class="p">(</span><span class="n">sub_domains_double</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+
+<span class="c1"># Mark inflow as sub domain 1, 01</span>
+<span class="n">inflow</span> <span class="o">=</span> <span class="n">Inflow</span><span class="p">()</span>
+<span class="n">inflow</span><span class="o">.</span><span class="n">mark</span><span class="p">(</span><span class="n">sub_domains</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">inflow</span><span class="o">.</span><span class="n">mark</span><span class="p">(</span><span class="n">sub_domains_double</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+
+<span class="c1"># Mark outflow as sub domain 2, 0.2, True</span>
+<span class="n">outflow</span> <span class="o">=</span> <span class="n">Outflow</span><span class="p">()</span>
+<span class="n">outflow</span><span class="o">.</span><span class="n">mark</span><span class="p">(</span><span class="n">sub_domains</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">outflow</span><span class="o">.</span><span class="n">mark</span><span class="p">(</span><span class="n">sub_domains_double</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
+<span class="n">outflow</span><span class="o">.</span><span class="n">mark</span><span class="p">(</span><span class="n">sub_domains_bool</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Save sub domains to file</span>
+<span class="n">file</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="s2">&quot;subdomains.xml&quot;</span><span class="p">)</span>
+<span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="n">sub_domains</span>
+
+<span class="c1"># FIXME: Not implemented</span>
+<span class="c1">#file_bool = File(&quot;subdomains_bool.xml&quot;)</span>
+<span class="c1">#file_bool &lt;&lt; sub_domains_bool</span>
+
+<span class="n">file_double</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="s2">&quot;subdomains_double.xml&quot;</span><span class="p">)</span>
+<span class="n">file_double</span> <span class="o">&lt;&lt;</span> <span class="n">sub_domains_double</span>
+
+<span class="c1"># Save sub domains to VTK files</span>
+<span class="n">file</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="s2">&quot;subdomains.pvd&quot;</span><span class="p">)</span>
+<span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="n">sub_domains</span>
+
+<span class="n">file</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="s2">&quot;subdomains_double.pvd&quot;</span><span class="p">)</span>
+<span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="n">sub_domains_double</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../tensor-weighted-poisson/python/documentation.html" class="btn btn-neutral float-right" title="24. Tensor-weighted Poisson" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../../subdomains-poisson/python/documentation.html" class="btn btn-neutral" title="22. Poisson equation with multiple subdomains" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://fenicsproject.org.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'1.3.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

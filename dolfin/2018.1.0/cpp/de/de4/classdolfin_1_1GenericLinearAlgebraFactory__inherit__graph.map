@@ -1,0 +1,6 @@
+<map id="dolfin::GenericLinearAlgebraFactory" name="dolfin::GenericLinearAlgebraFactory">
+<area shape="rect" id="node2" href="$da/dfc/classdolfin_1_1DefaultFactory.html" title="Default linear algebra factory based on global parameter &quot;linear_algebra_backend&quot;. " alt="" coords="255,5,411,32"/>
+<area shape="rect" id="node3" href="$df/d68/classdolfin_1_1EigenFactory.html" title="Eigen linear algebra factory. " alt="" coords="260,56,405,83"/>
+<area shape="rect" id="node4" href="$dd/d7e/classdolfin_1_1PETScFactory.html" title="PETSc linear algebra factory. " alt="" coords="258,107,407,133"/>
+<area shape="rect" id="node5" href="$d8/d17/classdolfin_1_1TpetraFactory.html" title="Tpetra linear algebra factory. " alt="" coords="257,157,408,184"/>
+</map>

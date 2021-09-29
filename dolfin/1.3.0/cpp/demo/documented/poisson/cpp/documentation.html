@@ -1,0 +1,528 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>6. Poisson equation &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../../../index.html"/>
+        <link rel="up" title="Collection of documented demos" href="../../../index.html"/>
+        <link rel="next" title="&lt;no title&gt;" href="../../singular-poisson/cpp/documentation.html"/>
+        <link rel="prev" title="&lt;no title&gt;" href="../../periodic/cpp/documentation.html"/> 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../programmers-reference/index.html">C++ Programmer&#8217;s reference for DOLFIN-1.3.0</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Collection of documented demos</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../biharmonic/cpp/documentation.html">1. Biharmonic equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cahn-hilliard/cpp/documentation.html">2. Cahn-Hilliard equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hyperelasticity/cpp/documentation.html">3. Hyperelasticity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mixed-poisson/cpp/documentation.html">4. Mixed formulation for Poisson equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../navier-stokes/cpp/documentation.html">5. Incompressible Navier-Stokes equations</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">6. Poisson equation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#equation-and-problem-definition">6.1. Equation and problem definition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#implementation">6.2. Implementation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ufl-form-file">6.2.1. UFL form file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c-program">6.2.2. C++ program</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#complete-code">6.3. Complete code</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#complete-ufl-file">6.3.1. Complete UFL file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#complete-main-file">6.3.2. Complete main file</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../quick_reference.html">Quick Programmer&#8217;s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../index.html">Collection of documented demos</a> &raquo;</li>
+      
+    <li>6. Poisson equation</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../../_sources/demo/documented/poisson/cpp/documentation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="poisson-equation">
+<span id="demo-pde-poisson-cpp-documentation"></span><h1>6. Poisson equation<a class="headerlink" href="#poisson-equation" title="Permalink to this headline">¶</a></h1>
+<p>This demo illustrates how to:</p>
+<ul class="simple">
+<li>Solve a linear partial differential equation</li>
+<li>Create and apply Dirichlet boundary conditions</li>
+<li>Define Expressions</li>
+<li>Define a FunctionSpace</li>
+<li>Create a SubDomain</li>
+</ul>
+<p>The solution for <span class="math">\(u\)</span> in this demo will look as follows:</p>
+<a class="reference internal image-reference" href="../../../../_images/poisson_u.png"><img alt="../../../../_images/poisson_u.png" src="../../../../_images/poisson_u.png" style="width: 390.0px; height: 237.75px;" /></a>
+<div class="section" id="equation-and-problem-definition">
+<h2>6.1. Equation and problem definition<a class="headerlink" href="#equation-and-problem-definition" title="Permalink to this headline">¶</a></h2>
+<p>The Poisson equation is the canonical elliptic partial differential
+equation.  For a domain <span class="math">\(\Omega \subset \mathbb{R}^n\)</span> with
+boundary <span class="math">\(\partial \Omega = \Gamma_{D} \cup \Gamma_{N}\)</span>, the
+Poisson equation with particular boundary conditions reads:</p>
+<div class="math">
+\[\begin{split}- \nabla^{2} u &amp;= f \quad {\rm in} \ \Omega, \\
+             u &amp;= 0 \quad {\rm on} \ \Gamma_{D}, \\
+             \nabla u \cdot n &amp;= g \quad {\rm on} \ \Gamma_{N}. \\\end{split}\]</div>
+<p>Here, <span class="math">\(f\)</span> and <span class="math">\(g\)</span> are input data and <span class="math">\(n\)</span> denotes the
+outward directed boundary normal. The most standard variational form
+of Poisson equation reads: find <span class="math">\(u \in V\)</span> such that</p>
+<div class="math">
+\[a(u, v) = L(v) \quad \forall \ v \in V,\]</div>
+<p>where <span class="math">\(V\)</span> is a suitable function space and</p>
+<div class="math">
+\[\begin{split}a(u, v) &amp;= \int_{\Omega} \nabla u \cdot \nabla v \, {\rm d} x, \\
+L(v)    &amp;= \int_{\Omega} f v \, {\rm d} x
+         + \int_{\Gamma_{N}} g v \, {\rm d} s.\end{split}\]</div>
+<p>The expression <span class="math">\(a(u, v)\)</span> is the bilinear form and <span class="math">\(L(v)\)</span>
+is the linear form. It is assumed that all functions in <span class="math">\(V\)</span>
+satisfy the Dirichlet boundary conditions (<span class="math">\(u = 0 \ {\rm on} \
+\Gamma_{D}\)</span>).</p>
+<p>In this demo, we shall consider the following definitions of the input
+functions, the domain, and the boundaries:</p>
+<ul class="simple">
+<li><span class="math">\(\Omega = [0,1] \times [0,1]\)</span> (a unit square)</li>
+<li><span class="math">\(\Gamma_{D} = \{(0, y) \cup (1, y) \subset \partial \Omega\}\)</span> (Dirichlet boundary)</li>
+<li><span class="math">\(\Gamma_{N} = \{(x, 0) \cup (x, 1) \subset \partial \Omega\}\)</span> (Neumann boundary)</li>
+<li><span class="math">\(g = \sin(5x)\)</span> (normal derivative)</li>
+<li><span class="math">\(f = 10\exp(-((x - 0.5)^2 + (y - 0.5)^2) / 0.02)\)</span> (source term)</li>
+</ul>
+</div>
+<div class="section" id="implementation">
+<h2>6.2. Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
+<p>The implementation is split in two files: a form file containing the
+definition of the variational forms expressed in UFL and a C++ file
+containing the actual solver.</p>
+<p>Running this demo requires the files: <a class="reference download internal" href="../../../../_downloads/main5.cpp" download=""><code class="xref download docutils literal"><span class="pre">main.cpp</span></code></a>,
+<a class="reference download internal" href="../../../../_downloads/Poisson.ufl" download=""><code class="xref download docutils literal"><span class="pre">Poisson.ufl</span></code></a> and <a class="reference download internal" href="../../../../_downloads/CMakeLists5.txt" download=""><code class="xref download docutils literal"><span class="pre">CMakeLists.txt</span></code></a>.</p>
+<div class="section" id="ufl-form-file">
+<h3>6.2.1. UFL form file<a class="headerlink" href="#ufl-form-file" title="Permalink to this headline">¶</a></h3>
+<p>The first step is to define the variational problem at hand. We define
+the variational problem in UFL terms in a separate form file
+<a class="reference download internal" href="../../../../_downloads/Poisson.ufl" download=""><code class="xref download docutils literal"><span class="pre">Poisson.ufl</span></code></a>.  We begin by defining the finite element:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">element</span> <span class="o">=</span> <span class="n">FiniteElement</span><span class="p">(</span><span class="s2">&quot;Lagrange&quot;</span><span class="p">,</span> <span class="n">triangle</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The first argument to <code class="xref py py-class docutils literal"><span class="pre">FiniteElement</span></code> is the finite element
+family, the second argument specifies the domain, while the third
+argument specifies the polynomial degree. Thus, in this case, our
+element <code class="docutils literal"><span class="pre">element</span></code> consists of first-order, continuous Lagrange basis
+functions on triangles (or in order words, continuous piecewise linear
+polynomials on triangles).</p>
+<p>Next, we use this element to initialize the trial and test functions
+(<span class="math">\(u\)</span> and <span class="math">\(v\)</span>) and the coefficient functions (<span class="math">\(f\)</span> and
+<span class="math">\(g\)</span>):</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">u</span> <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">TestFunction</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">Coefficient</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">Coefficient</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Finally, we define the bilinear and linear forms according to the
+variational formulation of the equations:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">inner</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">grad</span><span class="p">(</span><span class="n">v</span><span class="p">))</span><span class="o">*</span><span class="n">dx</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">f</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">dx</span> <span class="o">+</span> <span class="n">g</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">ds</span>
+</pre></div>
+</div>
+<p>Before the form file can be used in the C++ program, it must be
+compiled using FFC by running (on the command-line):</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>ffc -l dolfin Poisson.ufl
+</pre></div>
+</div>
+<p>Note the flag <code class="docutils literal"><span class="pre">-l</span> <span class="pre">dolfin</span></code> which tells FFC to generate
+DOLFIN-specific wrappers that make it easy to access the generated
+code from within DOLFIN.</p>
+</div>
+<div class="section" id="c-program">
+<h3>6.2.2. C++ program<a class="headerlink" href="#c-program" title="Permalink to this headline">¶</a></h3>
+<p>The main solver is implemented in the <a class="reference download internal" href="../../../../_downloads/main5.cpp" download=""><code class="xref download docutils literal"><span class="pre">main.cpp</span></code></a> file.</p>
+<p>At the top we include the DOLFIN header file and the generated header
+file &#8220;Poisson.h&#8221; containing the variational forms for the Poisson
+equation.  For convenience we also include the DOLFIN namespace.</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;dolfin.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;Poisson.h&quot;</span><span class="cp"></span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">dolfin</span><span class="p">;</span>
+</pre></div>
+</div>
+<p id="index-0">Then follows the definition of the coefficient functions (for
+<span class="math">\(f\)</span> and <span class="math">\(g\)</span>), which are derived from the
+<a class="reference internal" href="../../../../programmers-reference/function/Expression.html#_CPPv210Expression" title="Expression"><code class="xref cpp cpp-class docutils literal"><span class="pre">Expression</span></code></a> class in DOLFIN.</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// Source term (right-hand side)</span>
+<span class="k">class</span> <span class="nc">Source</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Expression</span>
+<span class="p">{</span>
+  <span class="kt">void</span> <span class="n">eval</span><span class="p">(</span><span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span> <span class="n">values</span><span class="p">,</span> <span class="k">const</span> <span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span> <span class="n">x</span><span class="p">)</span> <span class="k">const</span>
+  <span class="p">{</span>
+    <span class="kt">double</span> <span class="n">dx</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">dy</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">;</span>
+    <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span><span class="o">*</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">dx</span><span class="o">*</span><span class="n">dx</span> <span class="o">+</span> <span class="n">dy</span><span class="o">*</span><span class="n">dy</span><span class="p">)</span> <span class="o">/</span> <span class="mf">0.02</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">// Normal derivative (Neumann boundary condition)</span>
+<span class="k">class</span> <span class="nc">dUdN</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Expression</span>
+<span class="p">{</span>
+  <span class="kt">void</span> <span class="n">eval</span><span class="p">(</span><span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span> <span class="n">values</span><span class="p">,</span> <span class="k">const</span> <span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span> <span class="n">x</span><span class="p">)</span> <span class="k">const</span>
+  <span class="p">{</span>
+    <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p id="index-1">The <code class="docutils literal"><span class="pre">DirichletBoundary</span></code> is derived from the <a class="reference internal" href="../../../../programmers-reference/mesh/SubDomain.html#_CPPv29SubDomain" title="SubDomain"><code class="xref cpp cpp-class docutils literal"><span class="pre">SubDomain</span></code></a>
+class and defines the part of the boundary to which the Dirichlet
+boundary condition should be applied.</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// Sub domain for Dirichlet boundary condition</span>
+<span class="k">class</span> <span class="nc">DirichletBoundary</span> <span class="o">:</span> <span class="k">public</span> <span class="n">SubDomain</span>
+<span class="p">{</span>
+  <span class="kt">bool</span> <span class="n">inside</span><span class="p">(</span><span class="k">const</span> <span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span> <span class="n">x</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">on_boundary</span><span class="p">)</span> <span class="k">const</span>
+  <span class="p">{</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">DOLFIN_EPS</span> <span class="n">or</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">DOLFIN_EPS</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Inside the <code class="docutils literal"><span class="pre">main</span></code> function, we begin by defining a mesh of the
+domain. As the unit square is a very standard domain, we can use a
+built-in mesh provided by the class <a class="reference internal" href="../../../../programmers-reference/generation/UnitSquareMesh.html#_CPPv214UnitSquareMesh" title="UnitSquareMesh"><code class="xref cpp cpp-class docutils literal"><span class="pre">UnitSquareMesh</span></code></a>. In order
+to create a mesh consisting of 32 x 32 squares with each square
+divided into two triangles, and the finite element space (specified in
+the form file) defined relative to this mesh, we do as follows</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// Create mesh and function space</span>
+<span class="n">UnitSquareMesh</span> <span class="nf">mesh</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">);</span>
+<span class="n">Poisson</span><span class="o">::</span><span class="n">FunctionSpace</span> <span class="n">V</span><span class="p">(</span><span class="n">mesh</span><span class="p">);</span>
+</pre></div>
+</div>
+<p id="index-2">Now, the Dirichlet boundary condition (<span class="math">\(u = 0\)</span>) can be created
+using the class <a class="reference internal" href="../../../../programmers-reference/fem/DirichletBC.html#_CPPv211DirichletBC" title="DirichletBC"><code class="xref cpp cpp-class docutils literal"><span class="pre">DirichletBC</span></code></a>. A <a class="reference internal" href="../../../../programmers-reference/fem/DirichletBC.html#_CPPv211DirichletBC" title="DirichletBC"><code class="xref cpp cpp-class docutils literal"><span class="pre">DirichletBC</span></code></a>
+takes three arguments: the function space the boundary condition
+applies to, the value of the boundary condition, and the part of the
+boundary on which the condition applies. In our example, the function
+space is <code class="docutils literal"><span class="pre">V</span></code>, the value of the boundary condition (0.0) can
+represented using a <a class="reference internal" href="../../../../programmers-reference/function/Constant.html#_CPPv28Constant" title="Constant"><code class="xref cpp cpp-class docutils literal"><span class="pre">Constant</span></code></a>, and the Dirichlet boundary
+is defined by the class <code class="xref cpp cpp-class docutils literal"><span class="pre">DirichletBoundary</span></code> listed
+above. The definition of the Dirichlet boundary condition then looks
+as follows:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// Define boundary condition</span>
+<span class="n">Constant</span> <span class="nf">u0</span><span class="p">(</span><span class="mf">0.0</span><span class="p">);</span>
+<span class="n">DirichletBoundary</span> <span class="n">boundary</span><span class="p">;</span>
+<span class="n">DirichletBC</span> <span class="nf">bc</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">u0</span><span class="p">,</span> <span class="n">boundary</span><span class="p">);</span>
+</pre></div>
+</div>
+<p id="index-3">Next, we define the variational formulation by initializing the
+bilinear and linear forms (<span class="math">\(a\)</span>, <span class="math">\(L\)</span>) using the previously
+defined <a class="reference internal" href="../../../../programmers-reference/function/FunctionSpace.html#_CPPv213FunctionSpace" title="FunctionSpace"><code class="xref cpp cpp-class docutils literal"><span class="pre">FunctionSpace</span></code></a> <code class="docutils literal"><span class="pre">V</span></code>.  Then we can create the
+source and boundary flux term (<span class="math">\(f\)</span>, <span class="math">\(g\)</span>) and attach these
+to the linear form.</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// Define variational forms</span>
+<span class="n">Poisson</span><span class="o">::</span><span class="n">BilinearForm</span> <span class="n">a</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">V</span><span class="p">);</span>
+<span class="n">Poisson</span><span class="o">::</span><span class="n">LinearForm</span> <span class="n">L</span><span class="p">(</span><span class="n">V</span><span class="p">);</span>
+<span class="n">Source</span> <span class="n">f</span><span class="p">;</span>
+<span class="n">dUdN</span> <span class="n">g</span><span class="p">;</span>
+<span class="n">L</span><span class="p">.</span><span class="n">f</span> <span class="o">=</span> <span class="n">f</span><span class="p">;</span>
+<span class="n">L</span><span class="p">.</span><span class="n">g</span> <span class="o">=</span> <span class="n">g</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Now, we have specified the variational forms and can consider the
+solution of the variational problem. First, we need to define a
+<a class="reference internal" href="../../../../programmers-reference/function/Function.html#_CPPv28Function" title="Function"><code class="xref cpp cpp-class docutils literal"><span class="pre">Function</span></code></a> <code class="docutils literal"><span class="pre">u</span></code> to store the solution. (Upon
+initialization, it is simply set to the zero function.) Next, we can
+call the <code class="docutils literal"><span class="pre">solve</span></code> function with the arguments <code class="docutils literal"><span class="pre">a</span> <span class="pre">==</span> <span class="pre">L</span></code>, <code class="docutils literal"><span class="pre">u</span></code> and
+<code class="docutils literal"><span class="pre">bc</span></code> as follows:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// Compute solution</span>
+<span class="n">Function</span> <span class="nf">u</span><span class="p">(</span><span class="n">V</span><span class="p">);</span>
+<span class="n">solve</span><span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">L</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">bc</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The function <code class="docutils literal"><span class="pre">u</span></code> will be modified during the call to solve. A
+<a class="reference internal" href="../../../../programmers-reference/function/Function.html#_CPPv28Function" title="Function"><code class="xref cpp cpp-class docutils literal"><span class="pre">Function</span></code></a> can be manipulated in various ways, in
+particular, it can be plotted and saved to file. Here, we output the
+solution to a <code class="docutils literal"><span class="pre">VTK</span></code> file (using the suffix <code class="docutils literal"><span class="pre">.pvd</span></code>) for later
+visualization and also plot it using the <code class="docutils literal"><span class="pre">plot</span></code> command:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// Save solution in VTK format</span>
+<span class="n">File</span> <span class="nf">file</span><span class="p">(</span><span class="s">&quot;poisson.pvd&quot;</span><span class="p">);</span>
+<span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="n">u</span><span class="p">;</span>
+
+<span class="c1">// Plot solution</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">u</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complete-code">
+<h2>6.3. Complete code<a class="headerlink" href="#complete-code" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="complete-ufl-file">
+<h3>6.3.1. Complete UFL file<a class="headerlink" href="#complete-ufl-file" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span></span>
+<span class="n">element</span> <span class="o">=</span> <span class="n">FiniteElement</span><span class="p">(</span><span class="s2">&quot;Lagrange&quot;</span><span class="p">,</span> <span class="n">triangle</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">u</span> <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">TestFunction</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">Coefficient</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">Coefficient</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">inner</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">grad</span><span class="p">(</span><span class="n">v</span><span class="p">))</span><span class="o">*</span><span class="n">dx</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">f</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">dx</span> <span class="o">+</span> <span class="n">g</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">ds</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="complete-main-file">
+<h3>6.3.2. Complete main file<a class="headerlink" href="#complete-main-file" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;dolfin.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;Poisson.h&quot;</span><span class="cp"></span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">dolfin</span><span class="p">;</span>
+
+<span class="c1">// Source term (right-hand side)</span>
+<span class="k">class</span> <span class="nc">Source</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Expression</span>
+<span class="p">{</span>
+  <span class="kt">void</span> <span class="n">eval</span><span class="p">(</span><span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span> <span class="n">values</span><span class="p">,</span> <span class="k">const</span> <span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span> <span class="n">x</span><span class="p">)</span> <span class="k">const</span>
+  <span class="p">{</span>
+    <span class="kt">double</span> <span class="n">dx</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">dy</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">;</span>
+    <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span><span class="o">*</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">dx</span><span class="o">*</span><span class="n">dx</span> <span class="o">+</span> <span class="n">dy</span><span class="o">*</span><span class="n">dy</span><span class="p">)</span> <span class="o">/</span> <span class="mf">0.02</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">// Normal derivative (Neumann boundary condition)</span>
+<span class="k">class</span> <span class="nc">dUdN</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Expression</span>
+<span class="p">{</span>
+  <span class="kt">void</span> <span class="n">eval</span><span class="p">(</span><span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span> <span class="n">values</span><span class="p">,</span> <span class="k">const</span> <span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span> <span class="n">x</span><span class="p">)</span> <span class="k">const</span>
+  <span class="p">{</span>
+    <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">// Sub domain for Dirichlet boundary condition</span>
+<span class="k">class</span> <span class="nc">DirichletBoundary</span> <span class="o">:</span> <span class="k">public</span> <span class="n">SubDomain</span>
+<span class="p">{</span>
+  <span class="kt">bool</span> <span class="n">inside</span><span class="p">(</span><span class="k">const</span> <span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span> <span class="n">x</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">on_boundary</span><span class="p">)</span> <span class="k">const</span>
+  <span class="p">{</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">DOLFIN_EPS</span> <span class="n">or</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">DOLFIN_EPS</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="c1">// Create mesh and function space</span>
+  <span class="n">UnitSquareMesh</span> <span class="n">mesh</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">);</span>
+  <span class="n">Poisson</span><span class="o">::</span><span class="n">FunctionSpace</span> <span class="n">V</span><span class="p">(</span><span class="n">mesh</span><span class="p">);</span>
+
+  <span class="c1">// Define boundary condition</span>
+  <span class="n">Constant</span> <span class="n">u0</span><span class="p">(</span><span class="mf">0.0</span><span class="p">);</span>
+  <span class="n">DirichletBoundary</span> <span class="n">boundary</span><span class="p">;</span>
+  <span class="n">DirichletBC</span> <span class="n">bc</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">u0</span><span class="p">,</span> <span class="n">boundary</span><span class="p">);</span>
+
+  <span class="c1">// Define variational forms</span>
+  <span class="n">Poisson</span><span class="o">::</span><span class="n">BilinearForm</span> <span class="n">a</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">V</span><span class="p">);</span>
+  <span class="n">Poisson</span><span class="o">::</span><span class="n">LinearForm</span> <span class="n">L</span><span class="p">(</span><span class="n">V</span><span class="p">);</span>
+
+  <span class="n">Source</span> <span class="n">f</span><span class="p">;</span>
+  <span class="n">dUdN</span> <span class="n">g</span><span class="p">;</span>
+  <span class="n">L</span><span class="p">.</span><span class="n">f</span> <span class="o">=</span> <span class="n">f</span><span class="p">;</span>
+  <span class="n">L</span><span class="p">.</span><span class="n">g</span> <span class="o">=</span> <span class="n">g</span><span class="p">;</span>
+
+  <span class="c1">// Compute solution</span>
+  <span class="n">Function</span> <span class="n">u</span><span class="p">(</span><span class="n">V</span><span class="p">);</span>
+  <span class="n">solve</span><span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">L</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">bc</span><span class="p">);</span>
+
+  <span class="c1">// Save solution in VTK format</span>
+  <span class="n">File</span> <span class="n">file</span><span class="p">(</span><span class="s">&quot;poisson.pvd&quot;</span><span class="p">);</span>
+  <span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="n">u</span><span class="p">;</span>
+
+  <span class="c1">// Plot solution</span>
+  <span class="n">plot</span><span class="p">(</span><span class="n">u</span><span class="p">);</span>
+  <span class="n">interactive</span><span class="p">();</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../singular-poisson/cpp/documentation.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../../periodic/cpp/documentation.html" class="btn btn-neutral" title="&lt;no title&gt;" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://fenicsproject.org.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'1.3.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

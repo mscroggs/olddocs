@@ -1,0 +1,10 @@
+.. Documentation for the function dolfin.cpp.common.ParameterValue_check_key
+
+.. _programmers_reference_cpp_common_parametervalue_check_key:
+
+ParameterValue_check_key
+========================
+
+.. currentmodule:: dolfin.cpp.common
+
+.. autofunction:: ParameterValue_check_key

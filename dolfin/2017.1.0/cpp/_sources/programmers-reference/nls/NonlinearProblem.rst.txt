@@ -1,0 +1,61 @@
+
+.. Documentation for the header file dolfin/nls/NonlinearProblem.h
+
+.. _programmers_reference_cpp_nls_nonlinearproblem:
+
+NonlinearProblem.h
+==================
+
+.. note::
+    
+    The documentation on this page was automatically extracted from the
+    DOLFIN C++ code and may need to be edited or expanded.
+    
+
+.. cpp:class:: NonlinearProblem
+
+    This is a base class for nonlinear problems which can return the
+    nonlinear function F(u) and its Jacobian J = dF(u)/du.
+
+
+    .. cpp:function:: NonlinearProblem()
+    
+        Constructor
+
+
+    .. cpp:function:: void form(GenericMatrix& A, GenericVector& b, const GenericVector& x)
+    
+        Function called by Newton solver before requesting F or J.
+        This can be used to compute F and J together.
+        NOTE: This function is deprecated. Use variant with
+        preconditioner
+
+
+    .. cpp:function:: void form(GenericMatrix& A, GenericMatrix& P, GenericVector& b, const GenericVector& x)
+    
+        Function called by Newton solver before requesting F, J or J_pc.
+        This can be used to compute F, J and J_pc together. Preconditioner
+        matrix P can be left empty so that A is used instead
+
+
+    .. cpp:function:: void F(GenericVector& b, const GenericVector& x) = 0
+    
+        Compute F at current point x
+
+
+    .. cpp:function:: void J(GenericMatrix& A, const GenericVector& x) = 0
+    
+        Compute J = F' at current point x
+
+
+    .. cpp:function:: void J_pc(GenericMatrix& P, const GenericVector& x)
+    
+        Compute J_pc used to precondition J. Not implementing this
+        or leaving P empty results in system matrix A being used
+        to construct preconditioner.
+        
+        Note that if nonempty P is not assembled on first call
+        then a solver implementation may throw away P and not
+        call this routine ever again.
+
+

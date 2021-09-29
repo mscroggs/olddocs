@@ -1,0 +1,258 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Built-in meshes &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../../../index.html"/> 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2016.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../programmers-reference/index.html">C++ Programmer&#8217;s reference for DOLFIN-2016.2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../quick_reference.html">Quick Programmer&#8217;s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+      
+    <li>Built-in meshes</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../../_sources/demo/documented/built-in-meshes/cpp/main.cpp.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="built-in-meshes">
+<h1>Built-in meshes<a class="headerlink" href="#built-in-meshes" title="Permalink to this headline">¶</a></h1>
+<p>This demo illustrates:</p>
+<ul class="simple">
+<li>How to define some of the different built-in meshes in DOLFIN</li>
+</ul>
+<div class="section" id="implementation">
+<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
+<p>Running this demo requires the files: <a class="reference download internal" href="../../../../_downloads/main2.cpp" download=""><code class="xref download docutils literal"><span class="pre">main.cpp</span></code></a> and
+<a class="reference download internal" href="../../../../_downloads/CMakeLists2.txt" download=""><code class="xref download docutils literal"><span class="pre">CMakeLists.txt</span></code></a>.</p>
+<p>Under construction</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;dolfin.h&gt;</span><span class="cp"></span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">dolfin</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">dolfin</span><span class="o">::</span><span class="n">MPI</span><span class="o">::</span><span class="n">size</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">UnitIntervalMesh</span> <span class="n">interval</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+    <span class="n">info</span><span class="p">(</span><span class="s">&quot;Plotting a UnitIntervalMesh&quot;</span><span class="p">);</span>
+    <span class="n">plot</span><span class="p">(</span><span class="n">interval</span><span class="p">,</span> <span class="s">&quot;Unit interval&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="n">UnitSquareMesh</span> <span class="n">square_default</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+  <span class="n">info</span><span class="p">(</span><span class="s">&quot;Plotting a UnitSquareMesh&quot;</span><span class="p">);</span>
+  <span class="n">plot</span><span class="p">(</span><span class="n">square_default</span><span class="p">,</span> <span class="s">&quot;Unit square&quot;</span><span class="p">);</span>
+
+  <span class="n">UnitSquareMesh</span> <span class="n">square_left</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="s">&quot;left&quot;</span><span class="p">);</span>
+  <span class="n">info</span><span class="p">(</span><span class="s">&quot;Plotting a UnitSquareMesh&quot;</span><span class="p">);</span>
+  <span class="n">plot</span><span class="p">(</span><span class="n">square_left</span><span class="p">,</span> <span class="s">&quot;Unit square (left)&quot;</span><span class="p">);</span>
+
+  <span class="n">UnitSquareMesh</span> <span class="n">square_crossed</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="s">&quot;crossed&quot;</span><span class="p">);</span>
+  <span class="n">info</span><span class="p">(</span><span class="s">&quot;Plotting a UnitSquareMesh&quot;</span><span class="p">);</span>
+  <span class="n">plot</span><span class="p">(</span><span class="n">square_crossed</span><span class="p">,</span> <span class="s">&quot;Unit square (crossed)&quot;</span><span class="p">);</span>
+
+  <span class="n">UnitSquareMesh</span> <span class="n">square_right_left</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="s">&quot;right/left&quot;</span><span class="p">);</span>
+  <span class="n">info</span><span class="p">(</span><span class="s">&quot;Plotting a UnitSquareMesh&quot;</span><span class="p">);</span>
+  <span class="n">plot</span><span class="p">(</span><span class="n">square_right_left</span><span class="p">,</span> <span class="s">&quot;Unit square (right/left)&quot;</span><span class="p">);</span>
+
+  <span class="n">RectangleMesh</span> <span class="n">rectangle_default</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">),</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+  <span class="n">info</span><span class="p">(</span><span class="s">&quot;Plotting a RectangleMesh&quot;</span><span class="p">);</span>
+  <span class="n">plot</span><span class="p">(</span><span class="n">rectangle_default</span><span class="p">,</span> <span class="s">&quot;Rectangle&quot;</span><span class="p">);</span>
+
+  <span class="n">RectangleMesh</span> <span class="n">rectangle_right_left</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="o">-</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="mf">7.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">),</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="s">&quot;right/left&quot;</span><span class="p">);</span>
+  <span class="n">info</span><span class="p">(</span><span class="s">&quot;Plotting a RectangleMesh&quot;</span><span class="p">);</span>
+  <span class="n">plot</span><span class="p">(</span><span class="n">rectangle_right_left</span><span class="p">,</span> <span class="s">&quot;Rectangle (right/left)&quot;</span><span class="p">);</span>
+
+  <span class="n">UnitCubeMesh</span> <span class="n">cube</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+  <span class="n">info</span><span class="p">(</span><span class="s">&quot;Plotting a UnitCubeMesh&quot;</span><span class="p">);</span>
+  <span class="n">plot</span><span class="p">(</span><span class="n">cube</span><span class="p">,</span> <span class="s">&quot;Unit cube&quot;</span><span class="p">);</span>
+
+  <span class="n">BoxMesh</span> <span class="n">box</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">),</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+  <span class="n">info</span><span class="p">(</span><span class="s">&quot;Plotting a BoxMesh&quot;</span><span class="p">);</span>
+  <span class="n">plot</span><span class="p">(</span><span class="n">box</span><span class="p">,</span> <span class="s">&quot;Box&quot;</span><span class="p">);</span>
+
+  <span class="n">interactive</span><span class="p">();</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://bitbucket.org/fenics-project/.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'2016.2.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

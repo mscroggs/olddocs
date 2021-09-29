@@ -1,0 +1,494 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>PETScKrylovSolver.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN la module" href="index.html"/>
+        <link rel="next" title="PETScLUSolver.h" href="PETScLUSolver.html"/>
+        <link rel="prev" title="PETScFactory.h" href="PETScFactory.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2016.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-2016.2.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/index.html">DOLFIN common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fem/index.html">DOLFIN fem module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html">DOLFIN function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/index.html">DOLFIN geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/index.html">DOLFIN io module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN la module</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="BelosKrylovSolver.html">BelosKrylovSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BlockMatrix.html">BlockMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BlockVector.html">BlockVector.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CoordinateMatrix.html">CoordinateMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DefaultFactory.html">DefaultFactory.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="EigenFactory.html">EigenFactory.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="EigenKrylovSolver.html">EigenKrylovSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="EigenLUSolver.html">EigenLUSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="EigenMatrix.html">EigenMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="EigenVector.html">EigenVector.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericLUSolver.html">GenericLUSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericLinearAlgebraFactory.html">GenericLinearAlgebraFactory.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericLinearOperator.html">GenericLinearOperator.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericLinearSolver.html">GenericLinearSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericMatrix.html">GenericMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericTensor.html">GenericTensor.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericVector.html">GenericVector.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Ifpack2Preconditioner.html">Ifpack2Preconditioner.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="IndexMap.html">IndexMap.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="KrylovSolver.html">KrylovSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LUSolver.html">LUSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LinearAlgebraObject.html">LinearAlgebraObject.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LinearOperator.html">LinearOperator.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LinearSolver.html">LinearSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Matrix.html">Matrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MueluPreconditioner.html">MueluPreconditioner.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScBaseMatrix.html">PETScBaseMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScFactory.html">PETScFactory.h</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">PETScKrylovSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScLUSolver.html">PETScLUSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScLinearOperator.html">PETScLinearOperator.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScMatrix.html">PETScMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScObject.html">PETScObject.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScOptions.html">PETScOptions.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScPreconditioner.html">PETScPreconditioner.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScUserPreconditioner.html">PETScUserPreconditioner.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScVector.html">PETScVector.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SLEPcEigenSolver.html">SLEPcEigenSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Scalar.html">Scalar.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SparsityPattern.html">SparsityPattern.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TensorLayout.html">TensorLayout.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TpetraFactory.html">TpetraFactory.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TpetraMatrix.html">TpetraMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TpetraVector.html">TpetraVector.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TrilinosPreconditioner.html">TrilinosPreconditioner.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Vector.html">Vector.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VectorSpaceBasis.html">VectorSpaceBasis.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solve.html">solve.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_nullspace.html">test_nullspace.h</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../log/index.html">DOLFIN log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mesh/index.html">DOLFIN mesh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot/index.html">DOLFIN plot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer&#8217;s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-2016.2.0</a> &raquo;</li>
+      
+          <li><a href="index.html">DOLFIN la module</a> &raquo;</li>
+      
+    <li>PETScKrylovSolver.h</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/programmers-reference/la/PETScKrylovSolver.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="petsckrylovsolver-h">
+<span id="programmers-reference-cpp-la-petsckrylovsolver"></span><h1>PETScKrylovSolver.h<a class="headerlink" href="#petsckrylovsolver-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="class">
+<dt id="_CPPv217PETScKrylovSolver">
+<span id="PETScKrylovSolver"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">PETScKrylovSolver</code><a class="headerlink" href="#_CPPv217PETScKrylovSolver" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>Parent class(es)</em></p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="GenericLinearSolver.html#_CPPv219GenericLinearSolver" title="GenericLinearSolver"><code class="xref cpp cpp-class docutils literal"><span class="pre">GenericLinearSolver</span></code></a></li>
+<li><a class="reference internal" href="PETScObject.html#_CPPv211PETScObject" title="PETScObject"><code class="xref cpp cpp-class docutils literal"><span class="pre">PETScObject</span></code></a></li>
+</ul>
+</div></blockquote>
+<p>This class implements Krylov methods for linear systems of the
+form Ax = b. It is a wrapper for the Krylov solvers of PETSc.</p>
+<dl class="function">
+<dt>
+<code class="descname">enum class norm_type</code></dt>
+<dd><p>Norm types used in convergence testing. Not all solvers types
+support all norm types (see
+<a class="reference external" href="http://www.mcs.anl.gov/petsc/petsc-current/docs/manualpages/KSP/KSPSetNormType.html">http://www.mcs.anl.gov/petsc/petsc-current/docs/manualpages/KSP/KSPSetNormType.html</a>). Note
+that &#8216;default&#8217; is a reserved keyword, so we use &#8216;default_norm&#8217;</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N17PETScKrylovSolver17PETScKrylovSolverE8MPI_CommNSt6stringENSt6stringE">
+<span id="PETScKrylovSolver::PETScKrylovSolver__MPI_Comm.ss.ss"></span><code class="descclassname"></code><code class="descname">PETScKrylovSolver</code><span class="sig-paren">(</span>MPI_Comm <em>comm</em>, std::string <em>method</em> = &quot;default&quot;, std::string <em>preconditioner</em> = &quot;default&quot;<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N17PETScKrylovSolver17PETScKrylovSolverE8MPI_CommNSt6stringENSt6stringE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create Krylov solver for a particular method and named
+preconditioner</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N17PETScKrylovSolver17PETScKrylovSolverENSt6stringENSt6stringE">
+<span id="PETScKrylovSolver::PETScKrylovSolver__ss.ss"></span><code class="descclassname"></code><code class="descname">PETScKrylovSolver</code><span class="sig-paren">(</span>std::string <em>method</em> = &quot;default&quot;, std::string <em>preconditioner</em> = &quot;default&quot;<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N17PETScKrylovSolver17PETScKrylovSolverENSt6stringENSt6stringE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create Krylov solver for a particular method and named
+preconditioner</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N17PETScKrylovSolver17PETScKrylovSolverE8MPI_CommNSt6stringENSt10shared_ptrI19PETScPreconditionerEE">
+<span id="PETScKrylovSolver::PETScKrylovSolver__MPI_Comm.ss.std::shared_ptr:PETScPreconditioner:"></span><code class="descclassname"></code><code class="descname">PETScKrylovSolver</code><span class="sig-paren">(</span>MPI_Comm <em>comm</em>, std::string <em>method</em>, std::shared_ptr&lt;<a class="reference internal" href="PETScPreconditioner.html#_CPPv219PETScPreconditioner" title="PETScPreconditioner">PETScPreconditioner</a>&gt; <em>preconditioner</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N17PETScKrylovSolver17PETScKrylovSolverE8MPI_CommNSt6stringENSt10shared_ptrI19PETScPreconditionerEE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create Krylov solver for a particular method and
+PETScPreconditioner (shared_ptr version)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N17PETScKrylovSolver17PETScKrylovSolverENSt6stringENSt10shared_ptrI19PETScPreconditionerEE">
+<span id="PETScKrylovSolver::PETScKrylovSolver__ss.std::shared_ptr:PETScPreconditioner:"></span><code class="descclassname"></code><code class="descname">PETScKrylovSolver</code><span class="sig-paren">(</span>std::string <em>method</em>, std::shared_ptr&lt;<a class="reference internal" href="PETScPreconditioner.html#_CPPv219PETScPreconditioner" title="PETScPreconditioner">PETScPreconditioner</a>&gt; <em>preconditioner</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N17PETScKrylovSolver17PETScKrylovSolverENSt6stringENSt10shared_ptrI19PETScPreconditionerEE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create Krylov solver for a particular method and
+PETScPreconditioner (shared_ptr version)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N17PETScKrylovSolver17PETScKrylovSolverE8MPI_CommNSt6stringENSt10shared_ptrI23PETScUserPreconditionerEE">
+<span id="PETScKrylovSolver::PETScKrylovSolver__MPI_Comm.ss.std::shared_ptr:PETScUserPreconditioner:"></span><code class="descclassname"></code><code class="descname">PETScKrylovSolver</code><span class="sig-paren">(</span>MPI_Comm <em>comm</em>, std::string <em>method</em>, std::shared_ptr&lt;<a class="reference internal" href="PETScUserPreconditioner.html#_CPPv223PETScUserPreconditioner" title="PETScUserPreconditioner">PETScUserPreconditioner</a>&gt; <em>preconditioner</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N17PETScKrylovSolver17PETScKrylovSolverE8MPI_CommNSt6stringENSt10shared_ptrI23PETScUserPreconditionerEE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create Krylov solver for a particular method and
+PETScPreconditioner (shared_ptr version)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N17PETScKrylovSolver17PETScKrylovSolverENSt6stringENSt10shared_ptrI23PETScUserPreconditionerEE">
+<span id="PETScKrylovSolver::PETScKrylovSolver__ss.std::shared_ptr:PETScUserPreconditioner:"></span><code class="descclassname"></code><code class="descname">PETScKrylovSolver</code><span class="sig-paren">(</span>std::string <em>method</em>, std::shared_ptr&lt;<a class="reference internal" href="PETScUserPreconditioner.html#_CPPv223PETScUserPreconditioner" title="PETScUserPreconditioner">PETScUserPreconditioner</a>&gt; <em>preconditioner</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N17PETScKrylovSolver17PETScKrylovSolverENSt6stringENSt10shared_ptrI23PETScUserPreconditionerEE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create Krylov solver for a particular method and
+PETScPreconditioner (shared_ptr version)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N17PETScKrylovSolver17PETScKrylovSolverE3KSP">
+<span id="PETScKrylovSolver::PETScKrylovSolver__KSP"></span><em class="property">explicit</em> <code class="descclassname"></code><code class="descname">PETScKrylovSolver</code><span class="sig-paren">(</span>KSP <em>ksp</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N17PETScKrylovSolver17PETScKrylovSolverE3KSP" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create solver wrapper of a PETSc KSP object</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N17PETScKrylovSolver12set_operatorENSt10shared_ptrIK21GenericLinearOperatorEE">
+<span id="PETScKrylovSolver::set_operator__std::shared_ptr:GenericLinearOperatorC:"></span>void <code class="descclassname"></code><code class="descname">set_operator</code><span class="sig-paren">(</span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="GenericLinearOperator.html#_CPPv221GenericLinearOperator" title="GenericLinearOperator">GenericLinearOperator</a>&gt; <em>A</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N17PETScKrylovSolver12set_operatorENSt10shared_ptrIK21GenericLinearOperatorEE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set operator (matrix)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N17PETScKrylovSolver13set_operatorsENSt10shared_ptrIK21GenericLinearOperatorEENSt10shared_ptrIK21GenericLinearOperatorEE">
+<span id="PETScKrylovSolver::set_operators__std::shared_ptr:GenericLinearOperatorC:.std::shared_ptr:GenericLinearOperatorC:"></span>void <code class="descclassname"></code><code class="descname">set_operators</code><span class="sig-paren">(</span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="GenericLinearOperator.html#_CPPv221GenericLinearOperator" title="GenericLinearOperator">GenericLinearOperator</a>&gt; <em>A</em>, std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="GenericLinearOperator.html#_CPPv221GenericLinearOperator" title="GenericLinearOperator">GenericLinearOperator</a>&gt; <em>P</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N17PETScKrylovSolver13set_operatorsENSt10shared_ptrIK21GenericLinearOperatorEENSt10shared_ptrIK21GenericLinearOperatorEE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set operator (matrix) and preconditioner matrix</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N17PETScKrylovSolver5solveER13GenericVectorRK13GenericVector">
+<span id="PETScKrylovSolver::solve__GenericVectorR.GenericVectorCR"></span>std::size_t <code class="descclassname"></code><code class="descname">solve</code><span class="sig-paren">(</span><a class="reference internal" href="GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>x</em>, <em class="property">const</em> <a class="reference internal" href="GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N17PETScKrylovSolver5solveER13GenericVectorRK13GenericVector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Solve linear system Ax = b and return number of iterations</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N17PETScKrylovSolver5solveER11PETScVectorRK11PETScVector">
+<span id="PETScKrylovSolver::solve__PETScVectorR.PETScVectorCR"></span>std::size_t <code class="descclassname"></code><code class="descname">solve</code><span class="sig-paren">(</span><a class="reference internal" href="PETScVector.html#_CPPv211PETScVector" title="PETScVector">PETScVector</a> &amp;<em>x</em>, <em class="property">const</em> <a class="reference internal" href="PETScVector.html#_CPPv211PETScVector" title="PETScVector">PETScVector</a> &amp;<em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N17PETScKrylovSolver5solveER11PETScVectorRK11PETScVector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Solve linear system Ax = b and return number of iterations</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N17PETScKrylovSolver5solveERK21GenericLinearOperatorR13GenericVectorRK13GenericVector">
+<span id="PETScKrylovSolver::solve__GenericLinearOperatorCR.GenericVectorR.GenericVectorCR"></span>std::size_t <code class="descclassname"></code><code class="descname">solve</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="GenericLinearOperator.html#_CPPv221GenericLinearOperator" title="GenericLinearOperator">GenericLinearOperator</a> &amp;<em>A</em>, <a class="reference internal" href="GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>x</em>, <em class="property">const</em> <a class="reference internal" href="GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N17PETScKrylovSolver5solveERK21GenericLinearOperatorR13GenericVectorRK13GenericVector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Solve linear system Ax = b and return number of iterations</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N17PETScKrylovSolver17set_nonzero_guessEb">
+<span id="PETScKrylovSolver::set_nonzero_guess__b"></span>void <code class="descclassname"></code><code class="descname">set_nonzero_guess</code><span class="sig-paren">(</span>bool <em>nonzero_guess</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N17PETScKrylovSolver17set_nonzero_guessEb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use nonzero intial guess for solution function
+(nonzero_guess=true, the solution vector x will not be zeroed
+before the solver starts)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N17PETScKrylovSolver24set_reuse_preconditionerEb">
+<span id="PETScKrylovSolver::set_reuse_preconditioner__b"></span>void <code class="descclassname"></code><code class="descname">set_reuse_preconditioner</code><span class="sig-paren">(</span>bool <em>reuse_pc</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N17PETScKrylovSolver24set_reuse_preconditionerEb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reuse preconditioner if true, even if matrix operator changes
+(by default preconditioner will be re-built if the matrix
+changes)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N17PETScKrylovSolver14set_tolerancesEdddi">
+<span id="PETScKrylovSolver::set_tolerances__double.double.double.i"></span>void <code class="descclassname"></code><code class="descname">set_tolerances</code><span class="sig-paren">(</span>double <em>relative</em>, double <em>absolute</em>, double <em>diverged</em>, int <em>max_iter</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N17PETScKrylovSolver14set_tolerancesEdddi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set tolerances (relative residual, alsolute residial, maximum
+number of iterations)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N17PETScKrylovSolver13set_norm_typeE9norm_type">
+<span id="PETScKrylovSolver::set_norm_type__norm_type"></span>void <code class="descclassname"></code><code class="descname">set_norm_type</code><span class="sig-paren">(</span>norm_type <em>type</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N17PETScKrylovSolver13set_norm_typeE9norm_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set norm type used in convergence testing - not all solvers
+types support all norm types</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK17PETScKrylovSolver13get_norm_typeEv">
+<span id="PETScKrylovSolver::get_norm_typeC"></span>norm_type <code class="descclassname"></code><code class="descname">get_norm_type</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK17PETScKrylovSolver13get_norm_typeEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get norm type used in convergence testing</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N17PETScKrylovSolver7monitorEb">
+<span id="PETScKrylovSolver::monitor__b"></span>void <code class="descclassname"></code><code class="descname">monitor</code><span class="sig-paren">(</span>bool <em>monitor_convergence</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N17PETScKrylovSolver7monitorEb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Monitor residual at each iteration</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N17PETScKrylovSolver18set_options_prefixENSt6stringE">
+<span id="PETScKrylovSolver::set_options_prefix__ss"></span>void <code class="descclassname"></code><code class="descname">set_options_prefix</code><span class="sig-paren">(</span>std::string <em>options_prefix</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N17PETScKrylovSolver18set_options_prefixENSt6stringE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the prefix used by PETSc when searching the PETSc options
+database</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK17PETScKrylovSolver18get_options_prefixEv">
+<span id="PETScKrylovSolver::get_options_prefixC"></span>std::string <code class="descclassname"></code><code class="descname">get_options_prefix</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK17PETScKrylovSolver18get_options_prefixEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the prefix used by PETSc when searching the PETSc
+options database</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK17PETScKrylovSolver16set_from_optionsEv">
+<span id="PETScKrylovSolver::set_from_optionsC"></span>void <code class="descclassname"></code><code class="descname">set_from_options</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK17PETScKrylovSolver16set_from_optionsEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set options from PETSc options database</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK17PETScKrylovSolver3strEb">
+<span id="PETScKrylovSolver::str__bC"></span>std::string <code class="descclassname"></code><code class="descname">str</code><span class="sig-paren">(</span>bool <em>verbose</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK17PETScKrylovSolver3strEb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return informal string representation (pretty-print)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK17PETScKrylovSolver8mpi_commEv">
+<span id="PETScKrylovSolver::mpi_commC"></span>MPI_Comm <code class="descclassname"></code><code class="descname">mpi_comm</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK17PETScKrylovSolver8mpi_commEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return MPI communicator</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK17PETScKrylovSolver3kspEv">
+<span id="PETScKrylovSolver::kspC"></span>KSP <code class="descclassname"></code><code class="descname">ksp</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK17PETScKrylovSolver3kspEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return PETSc KSP pointer</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N17PETScKrylovSolver7methodsEv">
+<span id="PETScKrylovSolver::methods"></span><em class="property">static</em> std::map&lt;std::string, std::string&gt; <code class="descclassname"></code><code class="descname">methods</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N17PETScKrylovSolver7methodsEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of available solver methods</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N17PETScKrylovSolver15preconditionersEv">
+<span id="PETScKrylovSolver::preconditioners"></span><em class="property">static</em> std::map&lt;std::string, std::string&gt; <code class="descclassname"></code><code class="descname">preconditioners</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N17PETScKrylovSolver15preconditionersEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of available named preconditioners</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N17PETScKrylovSolver18default_parametersEv">
+<span id="PETScKrylovSolver::default_parameters"></span><em class="property">static</em> <a class="reference internal" href="../parameter/Parameters.html#_CPPv210Parameters" title="Parameters">Parameters</a> <code class="descclassname"></code><code class="descname">default_parameters</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N17PETScKrylovSolver18default_parametersEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Default parameter values</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK17PETScKrylovSolver14parameter_typeEv">
+<span id="PETScKrylovSolver::parameter_typeC"></span>std::string <code class="descclassname"></code><code class="descname">parameter_type</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK17PETScKrylovSolver14parameter_typeEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return parameter type: &#8220;krylov_solver&#8221; or &#8220;lu_solver&#8221;</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="PETScLUSolver.html" class="btn btn-neutral float-right" title="PETScLUSolver.h" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="PETScFactory.html" class="btn btn-neutral" title="PETScFactory.h" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://bitbucket.org/fenics-project/.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'2016.2.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

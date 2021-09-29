@@ -1,0 +1,389 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>refine.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN refinement module" href="index.html"/>
+        <link rel="next" title="Collection of documented demos" href="../../demo/index.html"/>
+        <link rel="prev" title="DOLFIN refinement module" href="index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2016.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-2016.2.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/index.html">DOLFIN common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fem/index.html">DOLFIN fem module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html">DOLFIN function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/index.html">DOLFIN geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/index.html">DOLFIN io module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../la/index.html">DOLFIN la module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/index.html">DOLFIN log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mesh/index.html">DOLFIN mesh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot/index.html">DOLFIN plot module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN refinement module</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">refine.h</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer&#8217;s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-2016.2.0</a> &raquo;</li>
+      
+          <li><a href="index.html">DOLFIN refinement module</a> &raquo;</li>
+      
+    <li>refine.h</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/programmers-reference/refinement/refine.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="refine-h">
+<span id="programmers-reference-cpp-refinement-refine"></span><h1>refine.h<a class="headerlink" href="#refine-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="function">
+<dt id="_CPPv26refineRK4Meshb">
+<span id="refine__MeshCR.b"></span><a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> <code class="descclassname"></code><code class="descname">refine</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em>, bool <em>redistribute</em> = true<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv26refineRK4Meshb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create uniformly refined mesh</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>mesh (<a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh"><code class="xref cpp cpp-class docutils literal"><span class="pre">Mesh</span></code></a>)</dt>
+<dd>The mesh to refine.</dd>
+<dt>redistribute (_bool_)</dt>
+<dd>Optional argument to redistribute the refined mesh if mesh is a
+distributed mesh.</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt><a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh"><code class="xref cpp cpp-class docutils literal"><span class="pre">Mesh</span></code></a></dt>
+<dd>The refined mesh.</dd>
+</dl>
+</dd>
+<dt><em>Example</em></dt>
+<dd><div class="first last highlight-c++"><div class="highlight"><pre><span></span><span class="n">mesh</span> <span class="o">=</span> <span class="n">refine</span><span class="p">(</span><span class="n">mesh</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv26refineRK13MeshHierarchyRK12MeshFunctionIbE">
+<span id="refine__MeshHierarchyCR.MeshFunction:b:CR"></span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../mesh/MeshHierarchy.html#_CPPv213MeshHierarchy" title="MeshHierarchy">MeshHierarchy</a>&gt; <code class="descclassname"></code><code class="descname">refine</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../mesh/MeshHierarchy.html#_CPPv213MeshHierarchy" title="MeshHierarchy">MeshHierarchy</a> &amp;<em>hierarchy</em>, <em class="property">const</em> <a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction">MeshFunction</a>&lt;bool&gt; &amp;<em>markers</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv26refineRK13MeshHierarchyRK12MeshFunctionIbE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Refine a MeshHierarchy</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv26refineR4MeshRK4Meshb">
+<span id="refine__MeshR.MeshCR.b"></span>void <code class="descclassname"></code><code class="descname">refine</code><span class="sig-paren">(</span><a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>refined_mesh</em>, <em class="property">const</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em>, bool <em>redistribute</em> = true<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv26refineR4MeshRK4Meshb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create uniformly refined mesh</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>refined_mesh (<a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh"><code class="xref cpp cpp-class docutils literal"><span class="pre">Mesh</span></code></a>)</dt>
+<dd>The mesh that will be the refined mesh.</dd>
+<dt>mesh (<a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh"><code class="xref cpp cpp-class docutils literal"><span class="pre">Mesh</span></code></a>)</dt>
+<dd>The original mesh.</dd>
+<dt>redistribute (_bool_)</dt>
+<dd>Optional argument to redistribute the refined mesh if mesh is a
+distributed mesh.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv26refineRK4MeshRK12MeshFunctionIbEb">
+<span id="refine__MeshCR.MeshFunction:b:CR.b"></span><a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> <code class="descclassname"></code><code class="descname">refine</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em>, <em class="property">const</em> <a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction">MeshFunction</a>&lt;bool&gt; &amp;<em>cell_markers</em>, bool <em>redistribute</em> = true<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv26refineRK4MeshRK12MeshFunctionIbEb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create locally refined mesh</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>mesh (<a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh"><code class="xref cpp cpp-class docutils literal"><span class="pre">Mesh</span></code></a>)</dt>
+<dd>The mesh to refine.</dd>
+<dt>cell_markers (<a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction"><code class="xref cpp cpp-class docutils literal"><span class="pre">MeshFunction</span></code></a> &lt;bool&gt;)</dt>
+<dd>A mesh function over booleans specifying which cells
+that should be refined (and which should not).</dd>
+<dt>redistribute (_bool_)</dt>
+<dd>Optional argument to redistribute the refined mesh if mesh is a
+distributed mesh.</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt><a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh"><code class="xref cpp cpp-class docutils literal"><span class="pre">Mesh</span></code></a></dt>
+<dd>The locally refined mesh.</dd>
+</dl>
+</dd>
+<dt><em>Example</em></dt>
+<dd><div class="first last highlight-c++"><div class="highlight"><pre><span></span><span class="n">CellFunction</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span> <span class="n">cell_markers</span><span class="p">(</span><span class="n">mesh</span><span class="p">);</span>
+<span class="n">cell_markers</span><span class="p">.</span><span class="n">set_all</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+<span class="n">Point</span> <span class="nf">origin</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">);</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">CellIterator</span> <span class="n">cell</span><span class="p">(</span><span class="n">mesh</span><span class="p">);</span> <span class="o">!</span><span class="n">cell</span><span class="p">.</span><span class="n">end</span><span class="p">();</span> <span class="o">++</span><span class="n">cell</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Point</span> <span class="n">p</span> <span class="o">=</span> <span class="n">cell</span><span class="o">-&gt;</span><span class="n">midpoint</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">distance</span><span class="p">(</span><span class="n">origin</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.1</span><span class="p">)</span>
+        <span class="n">cell_markers</span><span class="p">[</span><span class="o">*</span><span class="n">cell</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">refine</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">cell_markers</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv26refineR4MeshRK4MeshRK12MeshFunctionIbEb">
+<span id="refine__MeshR.MeshCR.MeshFunction:b:CR.b"></span>void <code class="descclassname"></code><code class="descname">refine</code><span class="sig-paren">(</span><a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>refined_mesh</em>, <em class="property">const</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em>, <em class="property">const</em> <a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction">MeshFunction</a>&lt;bool&gt; &amp;<em>cell_markers</em>, bool <em>redistribute</em> = true<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv26refineR4MeshRK4MeshRK12MeshFunctionIbEb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create locally refined mesh</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>refined_mesh (<a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh"><code class="xref cpp cpp-class docutils literal"><span class="pre">Mesh</span></code></a>)</dt>
+<dd>The mesh that will be the refined mesh.</dd>
+<dt>mesh (<a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh"><code class="xref cpp cpp-class docutils literal"><span class="pre">Mesh</span></code></a>)</dt>
+<dd>The original mesh.</dd>
+<dt>cell_markers (<a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction"><code class="xref cpp cpp-class docutils literal"><span class="pre">MeshFunction</span></code></a> &lt;bool&gt;)</dt>
+<dd>A mesh function over booleans specifying which cells
+that should be refined (and which should not).</dd>
+<dt>redistribute (_bool_)</dt>
+<dd>Optional argument to redistribute the refined mesh if mesh is a
+distributed mesh.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv28p_refineR4MeshRK4Mesh">
+<span id="p_refine__MeshR.MeshCR"></span>void <code class="descclassname"></code><code class="descname">p_refine</code><span class="sig-paren">(</span><a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>refined_mesh</em>, <em class="property">const</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv28p_refineR4MeshRK4Mesh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Increase the polynomial order of the mesh from 1 to 2, i.e. add points
+at the Edge midpoints, to make a quadratic mesh.</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>refined_mesh (<a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh"><code class="xref cpp cpp-class docutils literal"><span class="pre">Mesh</span></code></a>)</dt>
+<dd>The mesh that will be the quadratic mesh.</dd>
+<dt>mesh (<a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh"><code class="xref cpp cpp-class docutils literal"><span class="pre">Mesh</span></code></a>)</dt>
+<dd>The original linear mesh.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv28p_refineRK4Mesh">
+<span id="p_refine__MeshCR"></span><a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> <code class="descclassname"></code><code class="descname">p_refine</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv28p_refineRK4Mesh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a p_refined mesh
+Increase the polynomial order of the mesh from 1 to 2, i.e. add points
+at the Edge midpoints, to make a quadratic mesh.</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>mesh (<a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh"><code class="xref cpp cpp-class docutils literal"><span class="pre">Mesh</span></code></a>)</dt>
+<dd>The original linear mesh.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../demo/index.html" class="btn btn-neutral float-right" title="Collection of documented demos" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="DOLFIN refinement module" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://bitbucket.org/fenics-project/.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'2016.2.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,246 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Interpolation from a non-matching mesh &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../../../index.html"/> 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2016.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../programmers-reference/index.html">Programmer&#8217;s reference for DOLFIN (Python)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../quick_reference.html">Quick Programmer&#8217;s Reference (Python)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+      
+    <li>Interpolation from a non-matching mesh</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../../_sources/demo/documented/nonmatching-interpolation/python/demo_nonmatching-interpolation.py.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="interpolation-from-a-non-matching-mesh">
+<span id="demo-nonmataching-interpolation"></span><h1>Interpolation from a non-matching mesh<a class="headerlink" href="#interpolation-from-a-non-matching-mesh" title="Permalink to this headline">¶</a></h1>
+<p>This example demonstrates how to interpolate functions between
+finite element spaces on non-matching meshes.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Interpolation on non-matching meshes is not presently support in
+parallel. See
+<a class="reference external" href="https://bitbucket.org/fenics-project/dolfin/issues/162">https://bitbucket.org/fenics-project/dolfin/issues/162</a>.</p>
+</div>
+<p>First, the <a class="reference internal" href="../../../../programmers-reference/index.html#module-dolfin" title="dolfin"><code class="xref py py-mod docutils literal"><span class="pre">dolfin</span></code></a> module is imported:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dolfin</span> <span class="k">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+<p>Next, we create two different meshes. In this case we create unit
+square meshes with different size cells</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">mesh0</span> <span class="o">=</span> <span class="n">UnitSquareMesh</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">mesh1</span> <span class="o">=</span> <span class="n">UnitSquareMesh</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>On each mesh we create a finite element space. On the coarser mesh we use linear
+Lagrange elements, and on the finer mesh cubic Lagrange elements</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">P1</span> <span class="o">=</span> <span class="n">FunctionSpace</span><span class="p">(</span><span class="n">mesh0</span><span class="p">,</span> <span class="s2">&quot;Lagrange&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">P3</span> <span class="o">=</span> <span class="n">FunctionSpace</span><span class="p">(</span><span class="n">mesh1</span><span class="p">,</span> <span class="s2">&quot;Lagrange&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We interpolate the function <span class="math">\(\sin(10x) \sin(10y)\)</span></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">v</span> <span class="o">=</span> <span class="n">Expression</span><span class="p">(</span><span class="s2">&quot;sin(10.0*x[0])*sin(10.0*x[1])&quot;</span><span class="p">,</span> <span class="n">degree</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>into the <code class="docutils literal"><span class="pre">P3</span></code> finite element space</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># Create function on P3 and interpolate v</span>
+<span class="n">v3</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="n">P3</span><span class="p">)</span>
+<span class="n">v3</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We now interpolate the function <code class="docutils literal"><span class="pre">v3</span></code> into the <code class="docutils literal"><span class="pre">P1</span></code> space</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># Create function on P1 and interpolate v3</span>
+<span class="n">v1</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="n">P1</span><span class="p">)</span>
+<span class="n">v1</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">v3</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The interpolated functions, <code class="docutils literal"><span class="pre">v3</span></code> and <code class="docutils literal"><span class="pre">v1</span></code> can ve visualised using
+the <code class="docutils literal"><span class="pre">plot</span></code> function</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">plot</span><span class="p">(</span><span class="n">v3</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;v3&#39;</span><span class="p">)</span>
+<span class="n">interactive</span><span class="p">()</span>
+
+<span class="n">plot</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;v1&#39;</span><span class="p">)</span>
+<span class="n">interactive</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://bitbucket.org/fenics-project/.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'2016.2.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

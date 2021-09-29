@@ -1,0 +1,5 @@
+<map id="dolfin::GenericAdaptiveVariationalSolver" name="dolfin::GenericAdaptiveVariationalSolver">
+<area shape="rect" id="node3" href="$dc/d96/classdolfin_1_1AdaptiveLinearVariationalSolver.html" title="dolfin::AdaptiveLinearVariational\lSolver" alt="" coords="464,5,699,47"/>
+<area shape="rect" id="node4" href="$d5/df6/classdolfin_1_1AdaptiveNonlinearVariationalSolver.html" title="dolfin::AdaptiveNonlinear\lVariationalSolver" alt="" coords="488,71,675,112"/>
+<area shape="rect" id="node2" href="$d8/df0/classdolfin_1_1Variable.html" title="Common base class for DOLFIN variables. " alt="" coords="5,46,124,73"/>
+</map>

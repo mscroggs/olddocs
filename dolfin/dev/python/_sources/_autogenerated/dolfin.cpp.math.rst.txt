@@ -1,0 +1,31 @@
+dolfin.cpp.math
+===============
+
+.. automodule:: dolfin.cpp.math
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      between
+      ipow
+      near
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

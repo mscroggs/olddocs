@@ -1,0 +1,10 @@
+.. Documentation for the function dolfin.cpp.mesh.new_instancemethod
+
+.. _programmers_reference_cpp_mesh_new_instancemethod:
+
+new_instancemethod
+==================
+
+.. currentmodule:: dolfin.cpp.mesh
+
+.. autofunction:: new_instancemethod

@@ -1,0 +1,352 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Hyperelasticity &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../../../index.html"/> 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2016.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../programmers-reference/index.html">Programmer&#8217;s reference for DOLFIN (Python)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../quick_reference.html">Quick Programmer&#8217;s Reference (Python)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+      
+    <li>Hyperelasticity</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../../_sources/demo/documented/hyperelasticity/python/demo_hyperelasticity.py.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="hyperelasticity">
+<span id="demo-hyperelasticity"></span><h1>Hyperelasticity<a class="headerlink" href="#hyperelasticity" title="Permalink to this headline">¶</a></h1>
+<p>This demo is implemented in a single Python file,
+<a class="reference download internal" href="../../../../_downloads/demo_hyperelasticity.py" download=""><code class="xref download docutils literal"><span class="pre">demo_hyperelasticity.py</span></code></a>, which contains both the
+variational forms and the solver.</p>
+<div class="section" id="implementation">
+<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
+<p>This demo is implemented in the <a class="reference download internal" href="../../../../_downloads/demo_hyperelasticity.py" download=""><code class="xref download docutils literal"><span class="pre">demo_hyperelasticity.py</span></code></a>
+file.</p>
+<p>First, the <a class="reference internal" href="../../../../programmers-reference/index.html#module-dolfin" title="dolfin"><code class="xref py py-mod docutils literal"><span class="pre">dolfin</span></code></a> module is imported</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dolfin</span> <span class="k">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+<p>The behavior of the form compiler FFC can be adjusted by prescribing
+various parameters. Here, we want to use some of the optimization
+features.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># Optimization options for the form compiler</span>
+<span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;form_compiler&quot;</span><span class="p">][</span><span class="s2">&quot;cpp_optimize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">ffc_options</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;optimize&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> \
+               <span class="s2">&quot;eliminate_zeros&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> \
+               <span class="s2">&quot;precompute_basis_const&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> \
+               <span class="s2">&quot;precompute_ip_const&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>The first line tells the form compiler to use C++ compiler optimizations when
+compiling the generated code. The remainder is a dictionary of options which
+will be passed to the form compiler. It lists the optimizations strategies
+that we wish the form compiler to use when generating code.</p>
+<p id="index-0">First, we need a tetrahedral mesh of the domain and a function space
+on this mesh. Here, we choose to create a unit cube mesh with 25 ( =
+24 + 1) vertices in one direction and 17 ( = 16 + 1) vertices in the
+other two direction. On this mesh, we define a function space of
+continuous piecewise linear vector polynomials (a Lagrange vector
+element space)</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># Create mesh and define function space</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">UnitCubeMesh</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">V</span> <span class="o">=</span> <span class="n">VectorFunctionSpace</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="s2">&quot;Lagrange&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note that <a class="reference internal" href="../../../../programmers-reference/functions/functionspace/VectorFunctionSpace.html#dolfin.functions.functionspace.VectorFunctionSpace" title="dolfin.functions.functionspace.VectorFunctionSpace"><code class="xref py py-class docutils literal"><span class="pre">VectorFunctionSpace</span></code></a> creates a
+function space of vector fields. The dimension of the vector field
+(the number of components) is assumed to be the same as the spatial
+dimension, unless otherwise specified.</p>
+<p id="index-1">The portions of the boundary on which Dirichlet boundary conditions
+will be applied are now defined</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># Mark boundary subdomians</span>
+<span class="n">left</span> <span class="o">=</span>  <span class="n">CompiledSubDomain</span><span class="p">(</span><span class="s2">&quot;near(x[0], side) &amp;&amp; on_boundary&quot;</span><span class="p">,</span> <span class="n">side</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">)</span>
+<span class="n">right</span> <span class="o">=</span> <span class="n">CompiledSubDomain</span><span class="p">(</span><span class="s2">&quot;near(x[0], side) &amp;&amp; on_boundary&quot;</span><span class="p">,</span> <span class="n">side</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The boundary subdomain <code class="docutils literal"><span class="pre">left</span></code> corresponds to the part of the
+boundary on which <span class="math">\(x=0\)</span> and the boundary subdomain <code class="docutils literal"><span class="pre">right</span></code>
+corresponds to the part of the boundary on which <span class="math">\(x=1\)</span>. Note
+that C++ syntax is used in the <code class="xref py py-func docutils literal"><span class="pre">CompiledSubDomain()</span></code>
+&lt;dolfin.compilemodules.subdomains.CompiledSubDomain&gt;` function since
+the function will be automatically compiled into C++ code for
+efficiency. The (built-in) variable <code class="docutils literal"><span class="pre">on_boundary</span></code> is true for points
+on the boundary of a domain, and false otherwise.</p>
+<p id="index-2">The Dirichlet boundary values are defined using compiled expressions</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># Define Dirichlet boundary (x = 0 or x = 1)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">((</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">))</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">Expression</span><span class="p">((</span><span class="s2">&quot;scale*0.0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;scale*(y0 + (x[1] - y0)*cos(theta) - (x[2] - z0)*sin(theta) - x[1])&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;scale*(z0 + (x[1] - y0)*sin(theta) + (x[2] - z0)*cos(theta) - x[2])&quot;</span><span class="p">),</span>
+                <span class="n">scale</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">y0</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">z0</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">theta</span> <span class="o">=</span> <span class="n">pi</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note the use of setting named parameters in the <a class="reference internal" href="../../../../programmers-reference/functions/expression/Expression.html#dolfin.functions.expression.Expression" title="dolfin.functions.expression.Expression"><code class="xref py py-class docutils literal"><span class="pre">Expression</span></code></a> for <code class="docutils literal"><span class="pre">r</span></code>.</p>
+<p>The boundary subdomains and the boundary condition expressions are
+collected together in two <a class="reference internal" href="../../../../programmers-reference/fem/bcs/DirichletBC.html#dolfin.fem.bcs.DirichletBC" title="dolfin.fem.bcs.DirichletBC"><code class="xref py py-class docutils literal"><span class="pre">DirichletBC</span></code></a> objects, one for each part of the
+Dirichlet boundary</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">bcl</span> <span class="o">=</span> <span class="n">DirichletBC</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">left</span><span class="p">)</span>
+<span class="n">bcr</span> <span class="o">=</span> <span class="n">DirichletBC</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span>
+<span class="n">bcs</span> <span class="o">=</span> <span class="p">[</span><span class="n">bcl</span><span class="p">,</span> <span class="n">bcr</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The Dirichlet (essential) boundary conditions are constraints on the
+function space <span class="math">\(V\)</span>. The function space is therefore required as
+an argument to <a class="reference internal" href="../../../../programmers-reference/fem/bcs/DirichletBC.html#dolfin.fem.bcs.DirichletBC" title="dolfin.fem.bcs.DirichletBC"><code class="xref py py-class docutils literal"><span class="pre">DirichletBC</span></code></a>.</p>
+<p id="index-3">Trial and test functions, and the most recent approximate displacement
+<code class="docutils literal"><span class="pre">u</span></code> are defined on the finite element space <code class="docutils literal"><span class="pre">V</span></code>, and two objects
+of type <a class="reference internal" href="../../../../programmers-reference/functions/constant/Constant.html#dolfin.functions.constant.Constant" title="dolfin.functions.constant.Constant"><code class="xref py py-class docutils literal"><span class="pre">Constant</span></code></a> are
+declared for the body force (<code class="docutils literal"><span class="pre">B</span></code>) and traction (<code class="docutils literal"><span class="pre">T</span></code>) terms</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># Define functions</span>
+<span class="n">du</span> <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>            <span class="c1"># Incremental displacement</span>
+<span class="n">v</span>  <span class="o">=</span> <span class="n">TestFunction</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>             <span class="c1"># Test function</span>
+<span class="n">u</span>  <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>                 <span class="c1"># Displacement from previous iteration</span>
+<span class="n">B</span>  <span class="o">=</span> <span class="n">Constant</span><span class="p">((</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">))</span>  <span class="c1"># Body force per unit volume</span>
+<span class="n">T</span>  <span class="o">=</span> <span class="n">Constant</span><span class="p">((</span><span class="mf">0.1</span><span class="p">,</span>  <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">))</span>  <span class="c1"># Traction force on the boundary</span>
+</pre></div>
+</div>
+<p>In place of <a class="reference internal" href="../../../../programmers-reference/functions/constant/Constant.html#dolfin.functions.constant.Constant" title="dolfin.functions.constant.Constant"><code class="xref py py-class docutils literal"><span class="pre">Constant</span></code></a>,
+it is also possible to use <code class="docutils literal"><span class="pre">as_vector</span></code>, e.g.  <code class="docutils literal"><span class="pre">B</span> <span class="pre">=</span> <span class="pre">as_vector(</span> <span class="pre">[0.0,</span>
+<span class="pre">-0.5,</span> <span class="pre">0.0]</span> <span class="pre">)</span></code>. The advantage of Constant is that its values can be
+changed without requiring re-generation and re-compilation of C++
+code. On the other hand, using <code class="docutils literal"><span class="pre">as_vector</span></code> can eliminate some
+function calls during assembly.</p>
+<p>With the functions defined, the kinematic quantities involved in the model
+are defined using UFL syntax</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># Kinematics</span>
+<span class="n">d</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+<span class="n">I</span> <span class="o">=</span> <span class="n">Identity</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>             <span class="c1"># Identity tensor</span>
+<span class="n">F</span> <span class="o">=</span> <span class="n">I</span> <span class="o">+</span> <span class="n">grad</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>             <span class="c1"># Deformation gradient</span>
+<span class="n">C</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">T</span><span class="o">*</span><span class="n">F</span>                   <span class="c1"># Right Cauchy-Green tensor</span>
+
+<span class="c1"># Invariants of deformation tensors</span>
+<span class="n">Ic</span> <span class="o">=</span> <span class="n">tr</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
+<span class="n">J</span>  <span class="o">=</span> <span class="n">det</span><span class="p">(</span><span class="n">F</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Next, the material parameters are set and the strain energy density
+and the total potential energy are defined, again using UFL syntax</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># Elasticity parameters</span>
+<span class="n">E</span><span class="p">,</span> <span class="n">nu</span> <span class="o">=</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">0.3</span>
+<span class="n">mu</span><span class="p">,</span> <span class="n">lmbda</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="n">E</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">nu</span><span class="p">))),</span> <span class="n">Constant</span><span class="p">(</span><span class="n">E</span><span class="o">*</span><span class="n">nu</span><span class="o">/</span><span class="p">((</span><span class="mi">1</span> <span class="o">+</span> <span class="n">nu</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">nu</span><span class="p">)))</span>
+
+<span class="c1"># Stored strain energy density (compressible neo-Hookean model)</span>
+<span class="n">psi</span> <span class="o">=</span> <span class="p">(</span><span class="n">mu</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">Ic</span> <span class="o">-</span> <span class="mi">3</span><span class="p">)</span> <span class="o">-</span> <span class="n">mu</span><span class="o">*</span><span class="n">ln</span><span class="p">(</span><span class="n">J</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">lmbda</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">ln</span><span class="p">(</span><span class="n">J</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="c1"># Total potential energy</span>
+<span class="n">Pi</span> <span class="o">=</span> <span class="n">psi</span><span class="o">*</span><span class="n">dx</span> <span class="o">-</span> <span class="n">dot</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span> <span class="o">-</span> <span class="n">dot</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span><span class="o">*</span><span class="n">ds</span>
+</pre></div>
+</div>
+<p>Just as for the body force and traction vectors, <a class="reference internal" href="../../../../programmers-reference/functions/constant/Constant.html#dolfin.functions.constant.Constant" title="dolfin.functions.constant.Constant"><code class="xref py py-class docutils literal"><span class="pre">Constant</span></code></a> has been used for the model
+parameters <code class="docutils literal"><span class="pre">mu</span></code> and <code class="docutils literal"><span class="pre">lmbda</span></code> to avoid re-generation of C++ code
+when changing model parameters. Note that <code class="docutils literal"><span class="pre">lambda</span></code> is a reserved
+keyword in Python, hence the misspelling <code class="docutils literal"><span class="pre">lmbda</span></code>.</p>
+<p id="index-4">Directional derivatives are now computed of <span class="math">\(\Pi\)</span> and <span class="math">\(L\)</span>
+(see <a href="#equation-first_variation">(?)</a> and <a href="#equation-second_variation">(?)</a>)</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># Compute first variation of Pi (directional derivative about u in the direction of v)</span>
+<span class="n">F</span> <span class="o">=</span> <span class="n">derivative</span><span class="p">(</span><span class="n">Pi</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+
+<span class="c1"># Compute Jacobian of F</span>
+<span class="n">J</span> <span class="o">=</span> <span class="n">derivative</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">du</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The complete variational problem can now be solved by a single call to
+<a class="reference internal" href="../../../../programmers-reference/fem/solving/solve.html#dolfin.fem.solving.solve" title="dolfin.fem.solving.solve"><code class="xref py py-func docutils literal"><span class="pre">solve</span></code></a></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># Solve variational problem</span>
+<span class="n">solve</span><span class="p">(</span><span class="n">F</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">bcs</span><span class="p">,</span> <span class="n">J</span><span class="o">=</span><span class="n">J</span><span class="p">,</span>
+      <span class="n">form_compiler_parameters</span><span class="o">=</span><span class="n">ffc_options</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The dictionary of form compiler options, which were defined initially,
+is supplied using <code class="docutils literal"><span class="pre">form_compiler_parameters</span> <span class="pre">=</span> <span class="pre">ffc_options</span></code>.</p>
+<p>Finally, the solution <code class="docutils literal"><span class="pre">u</span></code> is saved to a file named
+<code class="docutils literal"><span class="pre">displacement.pvd</span></code> in VTK format, and the deformed mesh is plotted
+to the screen</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># Save solution in VTK format</span>
+<span class="n">file</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="s2">&quot;displacement.pvd&quot;</span><span class="p">);</span>
+<span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="n">u</span><span class="p">;</span>
+
+<span class="c1"># Plot and hold solution</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">mode</span> <span class="o">=</span> <span class="s2">&quot;displacement&quot;</span><span class="p">,</span> <span class="n">interactive</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://bitbucket.org/fenics-project/.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'2016.2.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

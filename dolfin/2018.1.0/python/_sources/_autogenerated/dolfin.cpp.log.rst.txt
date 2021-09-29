@@ -1,0 +1,33 @@
+dolfin.cpp.log
+==============
+
+.. automodule:: dolfin.cpp.log
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      get_log_level
+      info
+      log
+      set_log_level
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      LogLevel
+      Progress
+      Table
+   
+   
+
+   
+   
+   

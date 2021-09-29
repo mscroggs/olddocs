@@ -1,0 +1,13 @@
+.. Documentation for the class dolfin.cpp.mesh.CollisionPredicates
+
+.. _programmers_reference_cpp_mesh_collisionpredicates:
+
+CollisionPredicates
+===================
+
+.. currentmodule:: dolfin.cpp.mesh
+
+.. autoclass:: CollisionPredicates
+   :members:
+   :undoc-members:
+   :show-inheritance:

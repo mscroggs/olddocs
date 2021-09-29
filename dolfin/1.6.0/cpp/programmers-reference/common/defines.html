@@ -1,0 +1,340 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>defines.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN common module" href="index.html"/>
+        <link rel="next" title="init.h" href="init.html"/>
+        <link rel="prev" title="constants.h" href="constants.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.6.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-1.6.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN common module</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Array.html">Array.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ArrayView.html">ArrayView.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Hierarchical.html">Hierarchical.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="IndexSet.html">IndexSet.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MPI.html">MPI.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Set.html">Set.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SubSystemsManager.html">SubSystemsManager.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Timer.html">Timer.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Variable.html">Variable.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="constants.html">constants.h</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">defines.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="init.html">init.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="timing.html">timing.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="types.html">types.h</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../fem/index.html">DOLFIN fem module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html">DOLFIN function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/index.html">DOLFIN geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/index.html">DOLFIN io module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../la/index.html">DOLFIN la module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/index.html">DOLFIN log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mesh/index.html">DOLFIN mesh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot/index.html">DOLFIN plot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer&#8217;s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-1.6.0</a> &raquo;</li>
+      
+          <li><a href="index.html">DOLFIN common module</a> &raquo;</li>
+      
+    <li>defines.h</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/programmers-reference/common/defines.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="defines-h">
+<span id="programmers-reference-cpp-common-defines"></span><h1>defines.h<a class="headerlink" href="#defines-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="function">
+<dt id="_CPPv214dolfin_versionv">
+<span id="dolfin_version"></span>std::string <code class="descclassname"></code><code class="descname">dolfin_version</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv214dolfin_versionv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return DOLFIN version string</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv215git_commit_hashv">
+<span id="git_commit_hash"></span>std::string <code class="descclassname"></code><code class="descname">git_commit_hash</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv215git_commit_hashv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return git changeset hash (returns &#8220;unknown&#8221; if changeset is
+not known)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv215sizeof_la_indexv">
+<span id="sizeof_la_index"></span>std::size_t <code class="descclassname"></code><code class="descname">sizeof_la_index</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv215sizeof_la_indexv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return sizeof the dolfin::la_index type</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv210has_openmpv">
+<span id="has_openmp"></span>bool <code class="descclassname"></code><code class="descname">has_openmp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv210has_openmpv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return true if DOLFIN is compiled with OpenMP</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv27has_mpiv">
+<span id="has_mpi"></span>bool <code class="descclassname"></code><code class="descname">has_mpi</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv27has_mpiv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return true if DOLFIN is compiled with MPI</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv29has_petscv">
+<span id="has_petsc"></span>bool <code class="descclassname"></code><code class="descname">has_petsc</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv29has_petscv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return true if DOLFIN is compiled with PETSc</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv27has_taov">
+<span id="has_tao"></span>bool <code class="descclassname"></code><code class="descname">has_tao</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv27has_taov" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return true if DOLFIN is compiled with PETSc and PETSc version
+provides TAO</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv29has_slepcv">
+<span id="has_slepc"></span>bool <code class="descclassname"></code><code class="descname">has_slepc</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv29has_slepcv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return true if DOLFIN is compiled with SLEPc</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv210has_scotchv">
+<span id="has_scotch"></span>bool <code class="descclassname"></code><code class="descname">has_scotch</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv210has_scotchv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return true if DOLFIN is compiled with Scotch</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv211has_umfpackv">
+<span id="has_umfpack"></span>bool <code class="descclassname"></code><code class="descname">has_umfpack</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv211has_umfpackv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return true if DOLFIN is compiled with Umfpack</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv211has_cholmodv">
+<span id="has_cholmod"></span>bool <code class="descclassname"></code><code class="descname">has_cholmod</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv211has_cholmodv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return true if DOLFIN is compiled with Cholmod</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv212has_parmetisv">
+<span id="has_parmetis"></span>bool <code class="descclassname"></code><code class="descname">has_parmetis</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv212has_parmetisv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return true if DOLFIN is compiled with ParMETIS</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv28has_zlibv">
+<span id="has_zlib"></span>bool <code class="descclassname"></code><code class="descname">has_zlib</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv28has_zlibv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return true if DOLFIN is compiled with ZLIB</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv28has_hdf5v">
+<span id="has_hdf5"></span>bool <code class="descclassname"></code><code class="descname">has_hdf5</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv28has_hdf5v" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return true if DOLFIN is compiled with HDF5</p>
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="init.html" class="btn btn-neutral float-right" title="init.h" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="constants.html" class="btn btn-neutral" title="constants.h" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://bitbucket.org/fenics-project/.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.6.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+dolfin.cpp.function
+===================
+
+.. automodule:: dolfin.cpp.function
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      assign
+      interpolate
+      make_dolfin_expression
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      Constant
+      Expression
+      FacetArea
+      Function
+      FunctionAXPY
+      FunctionAssigner
+      FunctionSpace
+      GenericFunction
+      HierarchicalFunction
+      LagrangeInterpolator
+      MeshCoordinates
+      MultiMeshFunction
+      MultiMeshFunctionSpace
+      MultiMeshSubSpace
+      ufc_cell
+      ufc_function
+      ufc_shape
+   
+   
+
+   
+   
+   

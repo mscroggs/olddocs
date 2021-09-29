@@ -1,0 +1,660 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>dolfin.multistage &mdash; DOLFIN  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="dolfin.parameter" href="dolfin.parameter.html" />
+    <link rel="prev" title="dolfin.la" href="dolfin.la.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../using.html">Using DOLFIN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../demos.html">Demos</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">Python API reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.adaptivity.html">dolfin.cpp.adaptivity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.ale.html">dolfin.cpp.ale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.common.html">dolfin.cpp.common</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.fem.html">dolfin.cpp.fem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.function.html">dolfin.cpp.function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.generation.html">dolfin.cpp.generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.geometry.html">dolfin.cpp.geometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.graph.html">dolfin.cpp.graph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.io.html">dolfin.cpp.io</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.log.html">dolfin.cpp.log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.math.html">dolfin.cpp.math</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.mesh.html">dolfin.cpp.mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.multistage.html">dolfin.cpp.multistage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.parameter.html">dolfin.cpp.parameter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.refinement.html">dolfin.cpp.refinement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.common.html">dolfin.common</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.fem.html">dolfin.fem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.function.html">dolfin.function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.io.html">dolfin.io</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.jit.html">dolfin.jit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.la.html">dolfin.la</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">dolfin.multistage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.parameter.html">dolfin.parameter</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../developer.html">Developer resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DOLFIN</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../api.html">Python API reference</a> &raquo;</li>
+        
+      <li>dolfin.multistage</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/_autogenerated/dolfin.multistage.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-dolfin.multistage">
+<span id="dolfin-multistage"></span><h1>dolfin.multistage<a class="headerlink" href="#module-dolfin.multistage" title="Permalink to this headline">¶</a></h1>
+<p>The multistage module of dolfin</p>
+<dl class="class">
+<dt id="dolfin.multistage.MultiStageScheme">
+<em class="property">class </em><code class="descclassname">dolfin.multistage.</code><code class="descname">MultiStageScheme</code><span class="sig-paren">(</span><em>rhs_form</em>, <em>ufl_stage_forms</em>, <em>dolfin_stage_forms</em>, <em>last_stage</em>, <em>stage_solutions</em>, <em>solution</em>, <em>time</em>, <em>dt</em>, <em>dt_stage_offsets</em>, <em>jacobian_indices</em>, <em>order</em>, <em>name</em>, <em>human_form</em>, <em>bcs</em>, <em>contraction=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagescheme.html#MultiStageScheme"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dolfin.multistage.MultiStageScheme" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dolfin.cpp.multistage.html#dolfin.cpp.multistage.MultiStageScheme" title="dolfin.cpp.multistage.MultiStageScheme"><code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.cpp.multistage.MultiStageScheme</span></code></a></p>
+<p>Base class for all MultiStageSchemes</p>
+<dl class="method">
+<dt id="dolfin.multistage.MultiStageScheme.dolfin_stage_forms">
+<code class="descname">dolfin_stage_forms</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagescheme.html#MultiStageScheme.dolfin_stage_forms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dolfin.multistage.MultiStageScheme.dolfin_stage_forms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the dolfin stage forms</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.multistage.MultiStageScheme.dt">
+<code class="descname">dt</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagescheme.html#MultiStageScheme.dt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dolfin.multistage.MultiStageScheme.dt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the Constant used to describe time in the MultiStageScheme</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.multistage.MultiStageScheme.last_stage">
+<code class="descname">last_stage</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagescheme.html#MultiStageScheme.last_stage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dolfin.multistage.MultiStageScheme.last_stage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the form describing the last stage</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.multistage.MultiStageScheme.rhs_form">
+<code class="descname">rhs_form</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagescheme.html#MultiStageScheme.rhs_form"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dolfin.multistage.MultiStageScheme.rhs_form" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the original rhs form</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.multistage.MultiStageScheme.solution">
+<code class="descname">solution</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagescheme.html#MultiStageScheme.solution"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dolfin.multistage.MultiStageScheme.solution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the solution Function</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.multistage.MultiStageScheme.stage_solutions">
+<code class="descname">stage_solutions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagescheme.html#MultiStageScheme.stage_solutions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dolfin.multistage.MultiStageScheme.stage_solutions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the stage solutions</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.multistage.MultiStageScheme.t">
+<code class="descname">t</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagescheme.html#MultiStageScheme.t"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dolfin.multistage.MultiStageScheme.t" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the Constant used to describe time in the MultiStageScheme</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.multistage.MultiStageScheme.ufl_stage_forms">
+<code class="descname">ufl_stage_forms</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagescheme.html#MultiStageScheme.ufl_stage_forms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dolfin.multistage.MultiStageScheme.ufl_stage_forms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the ufl stage forms</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dolfin.multistage.ERK">
+<code class="descclassname">dolfin.multistage.</code><code class="descname">ERK</code><a class="headerlink" href="#dolfin.multistage.ERK" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.multistage.multistagescheme.ERK1</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dolfin.multistage.ImplicitEuler">
+<code class="descclassname">dolfin.multistage.</code><code class="descname">ImplicitEuler</code><a class="headerlink" href="#dolfin.multistage.ImplicitEuler" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.multistage.multistagescheme.BDF1</span></code></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.multistage.ExplicitMidPoint">
+<em class="property">class </em><code class="descclassname">dolfin.multistage.</code><code class="descname">ExplicitMidPoint</code><span class="sig-paren">(</span><em>rhs_form</em>, <em>solution</em>, <em>t=None</em>, <em>bcs=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagescheme.html#ExplicitMidPoint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dolfin.multistage.ExplicitMidPoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.multistage.multistagescheme.ButcherMultiStageScheme</span></code></p>
+<p>Explicit 2nd order scheme</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.multistage.ERK4">
+<em class="property">class </em><code class="descclassname">dolfin.multistage.</code><code class="descname">ERK4</code><span class="sig-paren">(</span><em>rhs_form</em>, <em>solution</em>, <em>t=None</em>, <em>bcs=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagescheme.html#ERK4"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dolfin.multistage.ERK4" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.multistage.multistagescheme.ButcherMultiStageScheme</span></code></p>
+<p>Explicit 4th order scheme</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.multistage.ERK1">
+<em class="property">class </em><code class="descclassname">dolfin.multistage.</code><code class="descname">ERK1</code><span class="sig-paren">(</span><em>rhs_form</em>, <em>solution</em>, <em>t=None</em>, <em>bcs=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagescheme.html#ERK1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dolfin.multistage.ERK1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.multistage.multistagescheme.ButcherMultiStageScheme</span></code></p>
+<p>Explicit first order Scheme</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dolfin.multistage.RK4">
+<code class="descclassname">dolfin.multistage.</code><code class="descname">RK4</code><a class="headerlink" href="#dolfin.multistage.RK4" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.multistage.multistagescheme.ERK4</span></code></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.multistage.CN2">
+<em class="property">class </em><code class="descclassname">dolfin.multistage.</code><code class="descname">CN2</code><span class="sig-paren">(</span><em>rhs_form</em>, <em>solution</em>, <em>t=None</em>, <em>bcs=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagescheme.html#CN2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dolfin.multistage.CN2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.multistage.multistagescheme.ButcherMultiStageScheme</span></code></p>
+<p>Semi-implicit 2nd order scheme</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dolfin.multistage.CrankNicolson">
+<code class="descclassname">dolfin.multistage.</code><code class="descname">CrankNicolson</code><a class="headerlink" href="#dolfin.multistage.CrankNicolson" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.multistage.multistagescheme.CN2</span></code></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.multistage.ButcherMultiStageScheme">
+<em class="property">class </em><code class="descclassname">dolfin.multistage.</code><code class="descname">ButcherMultiStageScheme</code><span class="sig-paren">(</span><em>rhs_form</em>, <em>solution</em>, <em>time</em>, <em>bcs</em>, <em>a</em>, <em>b</em>, <em>c</em>, <em>order</em>, <em>generator=&lt;function _butcher_scheme_generator&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagescheme.html#ButcherMultiStageScheme"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dolfin.multistage.ButcherMultiStageScheme" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.multistage.multistagescheme.MultiStageScheme</span></code></p>
+<p>Base class for all MultiStageSchemes</p>
+<dl class="method">
+<dt id="dolfin.multistage.ButcherMultiStageScheme.to_adm">
+<code class="descname">to_adm</code><span class="sig-paren">(</span><em>adj</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagescheme.html#ButcherMultiStageScheme.to_adm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dolfin.multistage.ButcherMultiStageScheme.to_adm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return another MultiStageScheme that implements the adjoint
+linearisation of the ODE solver.</p>
+<p>This takes bar{y_n+1} (the derivative of a functional J with
+respect to y_n+1) and computes bar{y_n} (the derivative of J
+with respect to y_n).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.multistage.ButcherMultiStageScheme.to_tlm">
+<code class="descname">to_tlm</code><span class="sig-paren">(</span><em>perturbation</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagescheme.html#ButcherMultiStageScheme.to_tlm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dolfin.multistage.ButcherMultiStageScheme.to_tlm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return another MultiStageScheme that implements the tangent
+linearisation of the ODE solver.</p>
+<p>This takes dot{y_n} (the derivative of y_n with respect to a
+parameter) and computes dot{y_n+1} (the derivative of y_n+1
+with respect to that parameter).</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.multistage.BDF1">
+<em class="property">class </em><code class="descclassname">dolfin.multistage.</code><code class="descname">BDF1</code><span class="sig-paren">(</span><em>rhs_form</em>, <em>solution</em>, <em>t=None</em>, <em>bcs=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagescheme.html#BDF1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dolfin.multistage.BDF1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.multistage.multistagescheme.ButcherMultiStageScheme</span></code></p>
+<p>Implicit first order scheme</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dolfin.multistage.ExplicitEuler">
+<code class="descclassname">dolfin.multistage.</code><code class="descname">ExplicitEuler</code><a class="headerlink" href="#dolfin.multistage.ExplicitEuler" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.multistage.multistagescheme.ERK1</span></code></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.multistage.ESDIRK3">
+<em class="property">class </em><code class="descclassname">dolfin.multistage.</code><code class="descname">ESDIRK3</code><span class="sig-paren">(</span><em>rhs_form</em>, <em>solution</em>, <em>t=None</em>, <em>bcs=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagescheme.html#ESDIRK3"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dolfin.multistage.ESDIRK3" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.multistage.multistagescheme.ButcherMultiStageScheme</span></code></p>
+<p>Explicit implicit 3rd order scheme</p>
+<p>See also “Singly diagonally implicit Runge–Kutta methods with an
+explicit first stage” by A Kværnø - BIT Numerical Mathematics,
+2004 (p.497)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dolfin.multistage.ForwardEuler">
+<code class="descclassname">dolfin.multistage.</code><code class="descname">ForwardEuler</code><a class="headerlink" href="#dolfin.multistage.ForwardEuler" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.multistage.multistagescheme.ERK1</span></code></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.multistage.ESDIRK4">
+<em class="property">class </em><code class="descclassname">dolfin.multistage.</code><code class="descname">ESDIRK4</code><span class="sig-paren">(</span><em>rhs_form</em>, <em>solution</em>, <em>t=None</em>, <em>bcs=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagescheme.html#ESDIRK4"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dolfin.multistage.ESDIRK4" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.multistage.multistagescheme.ButcherMultiStageScheme</span></code></p>
+<p>Explicit implicit 4rd order scheme</p>
+<p>See also “Singly diagonally implicit Runge–Kutta methods with an
+explicit first stage” by A Kværnø - BIT Numerical Mathematics,
+2004 (p.498)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dolfin.multistage.BackwardEuler">
+<code class="descclassname">dolfin.multistage.</code><code class="descname">BackwardEuler</code><a class="headerlink" href="#dolfin.multistage.BackwardEuler" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.multistage.multistagescheme.BDF1</span></code></p>
+</dd></dl>
+
+<dl class="class">
+<dt>
+<em class="property">class </em><code class="descclassname">dolfin.multistage.</code><code class="descname">MultiStageScheme</code><span class="sig-paren">(</span><em>rhs_form</em>, <em>ufl_stage_forms</em>, <em>dolfin_stage_forms</em>, <em>last_stage</em>, <em>stage_solutions</em>, <em>solution</em>, <em>time</em>, <em>dt</em>, <em>dt_stage_offsets</em>, <em>jacobian_indices</em>, <em>order</em>, <em>name</em>, <em>human_form</em>, <em>bcs</em>, <em>contraction=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagescheme.html#MultiStageScheme"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Bases: <a class="reference internal" href="dolfin.cpp.multistage.html#dolfin.cpp.multistage.MultiStageScheme" title="dolfin.cpp.multistage.MultiStageScheme"><code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.cpp.multistage.MultiStageScheme</span></code></a></p>
+<p>Base class for all MultiStageSchemes</p>
+<dl class="method">
+<dt>
+<code class="descname">dolfin_stage_forms</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagescheme.html#MultiStageScheme.dolfin_stage_forms"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Return the dolfin stage forms</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">dt</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagescheme.html#MultiStageScheme.dt"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Return the Constant used to describe time in the MultiStageScheme</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">last_stage</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagescheme.html#MultiStageScheme.last_stage"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Return the form describing the last stage</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">rhs_form</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagescheme.html#MultiStageScheme.rhs_form"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Return the original rhs form</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">solution</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagescheme.html#MultiStageScheme.solution"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Return the solution Function</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">stage_solutions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagescheme.html#MultiStageScheme.stage_solutions"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Return the stage solutions</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">t</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagescheme.html#MultiStageScheme.t"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Return the Constant used to describe time in the MultiStageScheme</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">ufl_stage_forms</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagescheme.html#MultiStageScheme.ufl_stage_forms"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Return the ufl stage forms</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.multistage.PointIntegralSolver">
+<em class="property">class </em><code class="descclassname">dolfin.multistage.</code><code class="descname">PointIntegralSolver</code><span class="sig-paren">(</span><em>scheme</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagesolvers.html#PointIntegralSolver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dolfin.multistage.PointIntegralSolver" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dolfin.cpp.multistage.html#dolfin.cpp.multistage.PointIntegralSolver" title="dolfin.cpp.multistage.PointIntegralSolver"><code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.cpp.multistage.PointIntegralSolver</span></code></a></p>
+<dl class="method">
+<dt id="dolfin.multistage.PointIntegralSolver.scheme">
+<code class="descname">scheme</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagesolvers.html#PointIntegralSolver.scheme"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dolfin.multistage.PointIntegralSolver.scheme" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the MultiStageScheme</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt>
+<em class="property">class </em><code class="descclassname">dolfin.multistage.</code><code class="descname">MultiStageScheme</code><span class="sig-paren">(</span><em>rhs_form</em>, <em>ufl_stage_forms</em>, <em>dolfin_stage_forms</em>, <em>last_stage</em>, <em>stage_solutions</em>, <em>solution</em>, <em>time</em>, <em>dt</em>, <em>dt_stage_offsets</em>, <em>jacobian_indices</em>, <em>order</em>, <em>name</em>, <em>human_form</em>, <em>bcs</em>, <em>contraction=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagescheme.html#MultiStageScheme"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Bases: <a class="reference internal" href="dolfin.cpp.multistage.html#dolfin.cpp.multistage.MultiStageScheme" title="dolfin.cpp.multistage.MultiStageScheme"><code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.cpp.multistage.MultiStageScheme</span></code></a></p>
+<p>Base class for all MultiStageSchemes</p>
+<dl class="method">
+<dt>
+<code class="descname">dolfin_stage_forms</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagescheme.html#MultiStageScheme.dolfin_stage_forms"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Return the dolfin stage forms</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">dt</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagescheme.html#MultiStageScheme.dt"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Return the Constant used to describe time in the MultiStageScheme</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">last_stage</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagescheme.html#MultiStageScheme.last_stage"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Return the form describing the last stage</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">rhs_form</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagescheme.html#MultiStageScheme.rhs_form"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Return the original rhs form</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">solution</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagescheme.html#MultiStageScheme.solution"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Return the solution Function</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">stage_solutions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagescheme.html#MultiStageScheme.stage_solutions"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Return the stage solutions</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">t</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagescheme.html#MultiStageScheme.t"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Return the Constant used to describe time in the MultiStageScheme</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">ufl_stage_forms</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagescheme.html#MultiStageScheme.ufl_stage_forms"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Return the ufl stage forms</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.multistage.GRL2">
+<em class="property">class </em><code class="descclassname">dolfin.multistage.</code><code class="descname">GRL2</code><span class="sig-paren">(</span><em>rhs_form</em>, <em>solution</em>, <em>t=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/rushlarsenschemes.html#GRL2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dolfin.multistage.GRL2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.multistage.rushlarsenschemes.RushLarsenScheme</span></code></p>
+<p>Second order generalized Rush Larsen Scheme</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.multistage.RushLarsenScheme">
+<em class="property">class </em><code class="descclassname">dolfin.multistage.</code><code class="descname">RushLarsenScheme</code><span class="sig-paren">(</span><em>rhs_form</em>, <em>solution</em>, <em>time</em>, <em>order</em>, <em>generalized</em>, <em>generator=&lt;function _rush_larsen_scheme_generator&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/rushlarsenschemes.html#RushLarsenScheme"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dolfin.multistage.RushLarsenScheme" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.multistage.multistagescheme.MultiStageScheme</span></code></p>
+<dl class="method">
+<dt id="dolfin.multistage.RushLarsenScheme.to_adm">
+<code class="descname">to_adm</code><span class="sig-paren">(</span><em>perturbation</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/rushlarsenschemes.html#RushLarsenScheme.to_adm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dolfin.multistage.RushLarsenScheme.to_adm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return another RushLarsenScheme that implements the adjoint
+linearisation of the ODE solver.</p>
+<p>This takes bar{y_n+1} (the derivative of y_n+1 with respect to a
+parameter) and computes bar{y_n} (the derivative of y_n
+with respect to that parameter).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.multistage.RushLarsenScheme.to_tlm">
+<code class="descname">to_tlm</code><span class="sig-paren">(</span><em>perturbation</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/rushlarsenschemes.html#RushLarsenScheme.to_tlm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dolfin.multistage.RushLarsenScheme.to_tlm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return another RushLarsenScheme that implements the tangent
+linearisation of the ODE solver.</p>
+<p>This takes dot{y_n} (the derivative of y_n with respect to a
+parameter) and computes dot{y_n+1} (the derivative of y_n+1
+with respect to that parameter).</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.multistage.RL1">
+<em class="property">class </em><code class="descclassname">dolfin.multistage.</code><code class="descname">RL1</code><span class="sig-paren">(</span><em>rhs_form</em>, <em>solution</em>, <em>t=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/rushlarsenschemes.html#RL1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dolfin.multistage.RL1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.multistage.rushlarsenschemes.RushLarsenScheme</span></code></p>
+<p>First order Rush Larsen Scheme</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.multistage.RL2">
+<em class="property">class </em><code class="descclassname">dolfin.multistage.</code><code class="descname">RL2</code><span class="sig-paren">(</span><em>rhs_form</em>, <em>solution</em>, <em>t=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/rushlarsenschemes.html#RL2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dolfin.multistage.RL2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.multistage.rushlarsenschemes.RushLarsenScheme</span></code></p>
+<p>Second order Rush Larsen Scheme</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.multistage.GRL1">
+<em class="property">class </em><code class="descclassname">dolfin.multistage.</code><code class="descname">GRL1</code><span class="sig-paren">(</span><em>rhs_form</em>, <em>solution</em>, <em>t=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/rushlarsenschemes.html#GRL1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dolfin.multistage.GRL1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.multistage.rushlarsenschemes.RushLarsenScheme</span></code></p>
+<p>First order generalized Rush Larsen Scheme</p>
+</dd></dl>
+
+<dl class="class">
+<dt>
+<em class="property">class </em><code class="descclassname">dolfin.multistage.</code><code class="descname">MultiStageScheme</code><span class="sig-paren">(</span><em>rhs_form</em>, <em>ufl_stage_forms</em>, <em>dolfin_stage_forms</em>, <em>last_stage</em>, <em>stage_solutions</em>, <em>solution</em>, <em>time</em>, <em>dt</em>, <em>dt_stage_offsets</em>, <em>jacobian_indices</em>, <em>order</em>, <em>name</em>, <em>human_form</em>, <em>bcs</em>, <em>contraction=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagescheme.html#MultiStageScheme"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Bases: <a class="reference internal" href="dolfin.cpp.multistage.html#dolfin.cpp.multistage.MultiStageScheme" title="dolfin.cpp.multistage.MultiStageScheme"><code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.cpp.multistage.MultiStageScheme</span></code></a></p>
+<p>Base class for all MultiStageSchemes</p>
+<dl class="method">
+<dt>
+<code class="descname">dolfin_stage_forms</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagescheme.html#MultiStageScheme.dolfin_stage_forms"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Return the dolfin stage forms</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">dt</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagescheme.html#MultiStageScheme.dt"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Return the Constant used to describe time in the MultiStageScheme</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">last_stage</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagescheme.html#MultiStageScheme.last_stage"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Return the form describing the last stage</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">rhs_form</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagescheme.html#MultiStageScheme.rhs_form"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Return the original rhs form</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">solution</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagescheme.html#MultiStageScheme.solution"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Return the solution Function</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">stage_solutions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagescheme.html#MultiStageScheme.stage_solutions"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Return the stage solutions</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">t</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagescheme.html#MultiStageScheme.t"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Return the Constant used to describe time in the MultiStageScheme</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">ufl_stage_forms</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dolfin/multistage/multistagescheme.html#MultiStageScheme.ufl_stage_forms"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Return the ufl stage forms</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="dolfin.parameter.html" class="btn btn-neutral float-right" title="dolfin.parameter" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="dolfin.la.html" class="btn btn-neutral" title="dolfin.la" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, FEniCS Project.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

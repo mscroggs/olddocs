@@ -1,0 +1,27 @@
+.. Index file for the dolfin.common.timer module.
+
+.. _programmers_reference_common_timer_index:
+
+dolfin.common.timer module
+**************************
+
+Classes:
+
+.. toctree::
+    :maxdepth: 1
+
+    Timer
+
+Functions:
+
+.. toctree::
+    :maxdepth: 1
+
+    timed
+
+Module docstring:
+
+.. automodule:: dolfin.common.timer
+   :no-members:
+   :no-undoc-members:
+   :no-show-inheritance:

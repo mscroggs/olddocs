@@ -1,0 +1,559 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>PETScMatrix.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN la module" href="index.html"/>
+        <link rel="next" title="PETScObject.h" href="PETScObject.html"/>
+        <link rel="prev" title="PETScLinearOperator.h" href="PETScLinearOperator.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.6.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-1.6.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/index.html">DOLFIN common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fem/index.html">DOLFIN fem module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html">DOLFIN function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/index.html">DOLFIN geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/index.html">DOLFIN io module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN la module</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="BelosKrylovSolver.html">BelosKrylovSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BlockMatrix.html">BlockMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BlockVector.html">BlockVector.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CoordinateMatrix.html">CoordinateMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DefaultFactory.html">DefaultFactory.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="EigenFactory.html">EigenFactory.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="EigenKrylovSolver.html">EigenKrylovSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="EigenLUSolver.html">EigenLUSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="EigenMatrix.html">EigenMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="EigenVector.html">EigenVector.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericLUSolver.html">GenericLUSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericLinearAlgebraFactory.html">GenericLinearAlgebraFactory.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericLinearOperator.html">GenericLinearOperator.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericLinearSolver.html">GenericLinearSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericMatrix.html">GenericMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericPreconditioner.html">GenericPreconditioner.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericSparsityPattern.html">GenericSparsityPattern.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericTensor.html">GenericTensor.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericVector.html">GenericVector.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="KrylovSolver.html">KrylovSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LUSolver.html">LUSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LinearAlgebraObject.html">LinearAlgebraObject.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LinearOperator.html">LinearOperator.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LinearSolver.html">LinearSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MUMPSLUSolver.html">MUMPSLUSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Matrix.html">Matrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScBaseMatrix.html">PETScBaseMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScFactory.html">PETScFactory.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScKrylovSolver.html">PETScKrylovSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScLUSolver.html">PETScLUSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScLinearOperator.html">PETScLinearOperator.h</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">PETScMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScObject.html">PETScObject.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScOptions.html">PETScOptions.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScPreconditioner.html">PETScPreconditioner.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScUserPreconditioner.html">PETScUserPreconditioner.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScVector.html">PETScVector.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PaStiXLUSolver.html">PaStiXLUSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SLEPcEigenSolver.html">SLEPcEigenSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="STLFactory.html">STLFactory.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="STLMatrix.html">STLMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Scalar.html">Scalar.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SparsityPattern.html">SparsityPattern.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TensorLayout.html">TensorLayout.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TpetraMatrix.html">TpetraMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TpetraVector.html">TpetraVector.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Vector.html">Vector.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VectorSpaceBasis.html">VectorSpaceBasis.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solve.html">solve.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_nullspace.html">test_nullspace.h</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../log/index.html">DOLFIN log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mesh/index.html">DOLFIN mesh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot/index.html">DOLFIN plot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer&#8217;s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-1.6.0</a> &raquo;</li>
+      
+          <li><a href="index.html">DOLFIN la module</a> &raquo;</li>
+      
+    <li>PETScMatrix.h</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/programmers-reference/la/PETScMatrix.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="petscmatrix-h">
+<span id="programmers-reference-cpp-la-petscmatrix"></span><h1>PETScMatrix.h<a class="headerlink" href="#petscmatrix-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="class">
+<dt id="_CPPv211PETScMatrix">
+<span id="PETScMatrix"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">PETScMatrix</code><a class="headerlink" href="#_CPPv211PETScMatrix" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Parent class(es)</em></p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="GenericMatrix.html#_CPPv213GenericMatrix" title="GenericMatrix"><code class="xref cpp cpp-class docutils literal"><span class="pre">GenericMatrix</span></code></a></li>
+<li><a class="reference internal" href="PETScBaseMatrix.html#_CPPv215PETScBaseMatrix" title="PETScBaseMatrix"><code class="xref cpp cpp-class docutils literal"><span class="pre">PETScBaseMatrix</span></code></a></li>
+</ul>
+</div></blockquote>
+<p>This class provides a simple matrix class based on PETSc.
+It is a wrapper for a PETSc matrix pointer (Mat)
+implementing the GenericMatrix interface.</p>
+<p>The interface is intentionally simple. For advanced usage,
+access the PETSc Mat pointer using the function mat() and
+use the standard PETSc interface.</p>
+<dl class="function">
+<dt id="_CPPv2N11PETScMatrix11PETScMatrixEv">
+<span id="PETScMatrix::PETScMatrix"></span><code class="descclassname"></code><code class="descname">PETScMatrix</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11PETScMatrix11PETScMatrixEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create empty matrix</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N11PETScMatrix11PETScMatrixE3Mat">
+<span id="PETScMatrix::PETScMatrix__Mat"></span><em class="property">explicit</em> <code class="descclassname"></code><code class="descname">PETScMatrix</code><span class="sig-paren">(</span>Mat <em>A</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11PETScMatrix11PETScMatrixE3Mat" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create a wrapper around a PETSc Mat pointer</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N11PETScMatrix11PETScMatrixERK11PETScMatrix">
+<span id="PETScMatrix::PETScMatrix__PETScMatrixCR"></span><code class="descclassname"></code><code class="descname">PETScMatrix</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv2N11PETScMatrix11PETScMatrixEv" title="PETScMatrix::PETScMatrix">PETScMatrix</a> &amp;<em>A</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11PETScMatrix11PETScMatrixERK11PETScMatrix" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Copy constructor</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N11PETScMatrix4initERK12TensorLayout">
+<span id="PETScMatrix::init__TensorLayoutCR"></span>void <code class="descclassname"></code><code class="descname">init</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="TensorLayout.html#_CPPv212TensorLayout" title="TensorLayout">TensorLayout</a> &amp;<em>tensor_layout</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11PETScMatrix4initERK12TensorLayout" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Initialize zero tensor using tensor layout</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11PETScMatrix5emptyEv">
+<span id="PETScMatrix::emptyC"></span>bool <code class="descclassname"></code><code class="descname">empty</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11PETScMatrix5emptyEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return true if empty</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11PETScMatrix4sizeENSt6size_tE">
+<span id="PETScMatrix::size__std::sC"></span>std::size_t <code class="descclassname"></code><code class="descname">size</code><span class="sig-paren">(</span>std::size_t <em>dim</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11PETScMatrix4sizeENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return size of given dimension</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11PETScMatrix11local_rangeENSt6size_tE">
+<span id="PETScMatrix::local_range__std::sC"></span>std::pair&lt;std::size_t, std::size_t&gt; <code class="descclassname"></code><code class="descname">local_range</code><span class="sig-paren">(</span>std::size_t <em>dim</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11PETScMatrix11local_rangeENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return local ownership range</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11PETScMatrix3nnzEv">
+<span id="PETScMatrix::nnzC"></span>std::size_t <code class="descclassname"></code><code class="descname">nnz</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11PETScMatrix3nnzEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return number of non-zero entries in matrix (collective)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N11PETScMatrix4zeroEv">
+<span id="PETScMatrix::zero"></span>void <code class="descclassname"></code><code class="descname">zero</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11PETScMatrix4zeroEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set all entries to zero and keep any sparse structure</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N11PETScMatrix5applyENSt6stringE">
+<span id="PETScMatrix::apply__ss"></span>void <code class="descclassname"></code><code class="descname">apply</code><span class="sig-paren">(</span>std::string <em>mode</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11PETScMatrix5applyENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Finalize assembly of tensor. The following values are recognized
+for the mode parameter:</p>
+<blockquote>
+<div>add    - corresponds to PETSc MatAssemblyBegin+End(MAT_FINAL_ASSEMBLY)
+insert - corresponds to PETSc MatAssemblyBegin+End(MAT_FINAL_ASSEMBLY)
+flush  - corresponds to PETSc MatAssemblyBegin+End(MAT_FLUSH_ASSEMBLY)</div></blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11PETScMatrix8mpi_commEv">
+<span id="PETScMatrix::mpi_commC"></span>MPI_Comm <code class="descclassname"></code><code class="descname">mpi_comm</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11PETScMatrix8mpi_commEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return MPI communicator</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11PETScMatrix3strEb">
+<span id="PETScMatrix::str__bC"></span>std::string <code class="descclassname"></code><code class="descname">str</code><span class="sig-paren">(</span>bool <em>verbose</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11PETScMatrix3strEb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return informal string representation (pretty-print)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11PETScMatrix4copyEv">
+<span id="PETScMatrix::copyC"></span>std::shared_ptr&lt;<a class="reference internal" href="GenericMatrix.html#_CPPv213GenericMatrix" title="GenericMatrix">GenericMatrix</a>&gt; <code class="descclassname"></code><code class="descname">copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11PETScMatrix4copyEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return copy of matrix</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11PETScMatrix11init_vectorER13GenericVectorNSt6size_tE">
+<span id="PETScMatrix::init_vector__GenericVectorR.std::sC"></span>void <code class="descclassname"></code><code class="descname">init_vector</code><span class="sig-paren">(</span><a class="reference internal" href="GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>z</em>, std::size_t <em>dim</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11PETScMatrix11init_vectorER13GenericVectorNSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Initialize vector z to be compatible with the matrix-vector product
+y = Ax. In the parallel case, both size and layout are
+important.</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>dim (std::size_t)</dt>
+<dd>The dimension (axis): dim = 0 &#8211;&gt; z = y, dim = 1 &#8211;&gt; z = x</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11PETScMatrix3getEPdNSt6size_tEPKN6dolfin8la_indexENSt6size_tEPKN6dolfin8la_indexE">
+<span id="PETScMatrix::get__doubleP.std::s.dolfin::la_indexCP.std::s.dolfin::la_indexCPC"></span>void <code class="descclassname"></code><code class="descname">get</code><span class="sig-paren">(</span>double *<em>block</em>, std::size_t <em>m</em>, <em class="property">const</em> dolfin::la_index *<em>rows</em>, std::size_t <em>n</em>, <em class="property">const</em> dolfin::la_index *<em>cols</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11PETScMatrix3getEPdNSt6size_tEPKN6dolfin8la_indexENSt6size_tEPKN6dolfin8la_indexE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get block of values</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N11PETScMatrix3setEPKdNSt6size_tEPKN6dolfin8la_indexENSt6size_tEPKN6dolfin8la_indexE">
+<span id="PETScMatrix::set__doubleCP.std::s.dolfin::la_indexCP.std::s.dolfin::la_indexCP"></span>void <code class="descclassname"></code><code class="descname">set</code><span class="sig-paren">(</span><em class="property">const</em> double *<em>block</em>, std::size_t <em>m</em>, <em class="property">const</em> dolfin::la_index *<em>rows</em>, std::size_t <em>n</em>, <em class="property">const</em> dolfin::la_index *<em>cols</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11PETScMatrix3setEPKdNSt6size_tEPKN6dolfin8la_indexENSt6size_tEPKN6dolfin8la_indexE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set block of values using global indices</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N11PETScMatrix9set_localEPKdNSt6size_tEPKN6dolfin8la_indexENSt6size_tEPKN6dolfin8la_indexE">
+<span id="PETScMatrix::set_local__doubleCP.std::s.dolfin::la_indexCP.std::s.dolfin::la_indexCP"></span>void <code class="descclassname"></code><code class="descname">set_local</code><span class="sig-paren">(</span><em class="property">const</em> double *<em>block</em>, std::size_t <em>m</em>, <em class="property">const</em> dolfin::la_index *<em>rows</em>, std::size_t <em>n</em>, <em class="property">const</em> dolfin::la_index *<em>cols</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11PETScMatrix9set_localEPKdNSt6size_tEPKN6dolfin8la_indexENSt6size_tEPKN6dolfin8la_indexE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set block of values using local indices</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N11PETScMatrix3addEPKdNSt6size_tEPKN6dolfin8la_indexENSt6size_tEPKN6dolfin8la_indexE">
+<span id="PETScMatrix::add__doubleCP.std::s.dolfin::la_indexCP.std::s.dolfin::la_indexCP"></span>void <code class="descclassname"></code><code class="descname">add</code><span class="sig-paren">(</span><em class="property">const</em> double *<em>block</em>, std::size_t <em>m</em>, <em class="property">const</em> dolfin::la_index *<em>rows</em>, std::size_t <em>n</em>, <em class="property">const</em> dolfin::la_index *<em>cols</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11PETScMatrix3addEPKdNSt6size_tEPKN6dolfin8la_indexENSt6size_tEPKN6dolfin8la_indexE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add block of values using global indices</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N11PETScMatrix9add_localEPKdNSt6size_tEPKN6dolfin8la_indexENSt6size_tEPKN6dolfin8la_indexE">
+<span id="PETScMatrix::add_local__doubleCP.std::s.dolfin::la_indexCP.std::s.dolfin::la_indexCP"></span>void <code class="descclassname"></code><code class="descname">add_local</code><span class="sig-paren">(</span><em class="property">const</em> double *<em>block</em>, std::size_t <em>m</em>, <em class="property">const</em> dolfin::la_index *<em>rows</em>, std::size_t <em>n</em>, <em class="property">const</em> dolfin::la_index *<em>cols</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11PETScMatrix9add_localEPKdNSt6size_tEPKN6dolfin8la_indexENSt6size_tEPKN6dolfin8la_indexE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add block of values using local indices</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N11PETScMatrix4axpyEdRK13GenericMatrixb">
+<span id="PETScMatrix::axpy__double.GenericMatrixCR.b"></span>void <code class="descclassname"></code><code class="descname">axpy</code><span class="sig-paren">(</span>double <em>a</em>, <em class="property">const</em> <a class="reference internal" href="GenericMatrix.html#_CPPv213GenericMatrix" title="GenericMatrix">GenericMatrix</a> &amp;<em>A</em>, bool <em>same_nonzero_pattern</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11PETScMatrix4axpyEdRK13GenericMatrixb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add multiple of given matrix (AXPY operation)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11PETScMatrix4normENSt6stringE">
+<span id="PETScMatrix::norm__ssC"></span>double <code class="descclassname"></code><code class="descname">norm</code><span class="sig-paren">(</span>std::string <em>norm_type</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11PETScMatrix4normENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return norm of matrix</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11PETScMatrix6getrowENSt6size_tERNSt6vectorINSt6size_tEEERNSt6vectorIdEE">
+<span id="PETScMatrix::getrow__std::s.std::vector:std::s:R.std::vector:double:RC"></span>void <code class="descclassname"></code><code class="descname">getrow</code><span class="sig-paren">(</span>std::size_t <em>row</em>, std::vector&lt;std::size_t&gt; &amp;<em>columns</em>, std::vector&lt;double&gt; &amp;<em>values</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11PETScMatrix6getrowENSt6size_tERNSt6vectorINSt6size_tEEERNSt6vectorIdEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get non-zero values of given row</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N11PETScMatrix6setrowENSt6size_tERKNSt6vectorINSt6size_tEEERKNSt6vectorIdEE">
+<span id="PETScMatrix::setrow__std::s.std::vector:std::s:CR.std::vector:double:CR"></span>void <code class="descclassname"></code><code class="descname">setrow</code><span class="sig-paren">(</span>std::size_t <em>row</em>, <em class="property">const</em> std::vector&lt;std::size_t&gt; &amp;<em>columns</em>, <em class="property">const</em> std::vector&lt;double&gt; &amp;<em>values</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11PETScMatrix6setrowENSt6size_tERKNSt6vectorINSt6size_tEEERKNSt6vectorIdEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set values for given row</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N11PETScMatrix4zeroENSt6size_tEPKN6dolfin8la_indexE">
+<span id="PETScMatrix::zero__std::s.dolfin::la_indexCP"></span>void <code class="descclassname"></code><code class="descname">zero</code><span class="sig-paren">(</span>std::size_t <em>m</em>, <em class="property">const</em> dolfin::la_index *<em>rows</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11PETScMatrix4zeroENSt6size_tEPKN6dolfin8la_indexE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set given rows (global row indices) to zero</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N11PETScMatrix10zero_localENSt6size_tEPKN6dolfin8la_indexE">
+<span id="PETScMatrix::zero_local__std::s.dolfin::la_indexCP"></span>void <code class="descclassname"></code><code class="descname">zero_local</code><span class="sig-paren">(</span>std::size_t <em>m</em>, <em class="property">const</em> dolfin::la_index *<em>rows</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11PETScMatrix10zero_localENSt6size_tEPKN6dolfin8la_indexE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set given rows (local row indices) to zero</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N11PETScMatrix5identENSt6size_tEPKN6dolfin8la_indexE">
+<span id="PETScMatrix::ident__std::s.dolfin::la_indexCP"></span>void <code class="descclassname"></code><code class="descname">ident</code><span class="sig-paren">(</span>std::size_t <em>m</em>, <em class="property">const</em> dolfin::la_index *<em>rows</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11PETScMatrix5identENSt6size_tEPKN6dolfin8la_indexE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set given rows (global row indices) to identity matrix</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N11PETScMatrix11ident_localENSt6size_tEPKN6dolfin8la_indexE">
+<span id="PETScMatrix::ident_local__std::s.dolfin::la_indexCP"></span>void <code class="descclassname"></code><code class="descname">ident_local</code><span class="sig-paren">(</span>std::size_t <em>m</em>, <em class="property">const</em> dolfin::la_index *<em>rows</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11PETScMatrix11ident_localENSt6size_tEPKN6dolfin8la_indexE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set given rows (local row indices) to identity matrix</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11PETScMatrix12get_diagonalER13GenericVector">
+<span id="PETScMatrix::get_diagonal__GenericVectorRC"></span>void <code class="descclassname"></code><code class="descname">get_diagonal</code><span class="sig-paren">(</span><a class="reference internal" href="GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>x</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11PETScMatrix12get_diagonalER13GenericVector" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get diagonal of a matrix</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N11PETScMatrix12set_diagonalERK13GenericVector">
+<span id="PETScMatrix::set_diagonal__GenericVectorCR"></span>void <code class="descclassname"></code><code class="descname">set_diagonal</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11PETScMatrix12set_diagonalERK13GenericVector" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set diagonal of a matrix</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N11PETScMatrixmLEd">
+<span id="PETScMatrix::mul-assign-operator__double"></span><em class="property">const</em> <a class="reference internal" href="#_CPPv211PETScMatrix" title="PETScMatrix">PETScMatrix</a> &amp;<code class="descclassname"></code><code class="descname">operator*=</code><span class="sig-paren">(</span>double <em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11PETScMatrixmLEd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Multiply matrix by given number</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N11PETScMatrixdVEd">
+<span id="PETScMatrix::div-assign-operator__double"></span><em class="property">const</em> <a class="reference internal" href="#_CPPv211PETScMatrix" title="PETScMatrix">PETScMatrix</a> &amp;<code class="descclassname"></code><code class="descname">operator/=</code><span class="sig-paren">(</span>double <em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11PETScMatrixdVEd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Divide matrix by given number</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N11PETScMatrixaSERK13GenericMatrix">
+<span id="PETScMatrix::assign-operator__GenericMatrixCR"></span><em class="property">const</em> <a class="reference internal" href="GenericMatrix.html#_CPPv213GenericMatrix" title="GenericMatrix">GenericMatrix</a> &amp;<code class="descclassname"></code><code class="descname">operator=</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="GenericMatrix.html#_CPPv213GenericMatrix" title="GenericMatrix">GenericMatrix</a> &amp;<em>A</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11PETScMatrixaSERK13GenericMatrix" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Assignment operator</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11PETScMatrix12is_symmetricEd">
+<span id="PETScMatrix::is_symmetric__doubleC"></span>bool <code class="descclassname"></code><code class="descname">is_symmetric</code><span class="sig-paren">(</span>double <em>tol</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11PETScMatrix12is_symmetricEd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Test if matrix is symmetric</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11PETScMatrix7factoryEv">
+<span id="PETScMatrix::factoryC"></span><a class="reference internal" href="GenericLinearAlgebraFactory.html#_CPPv227GenericLinearAlgebraFactory" title="GenericLinearAlgebraFactory">GenericLinearAlgebraFactory</a> &amp;<code class="descclassname"></code><code class="descname">factory</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11PETScMatrix7factoryEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return linear algebra backend factory</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N11PETScMatrix18set_options_prefixENSt6stringE">
+<span id="PETScMatrix::set_options_prefix__ss"></span>void <code class="descclassname"></code><code class="descname">set_options_prefix</code><span class="sig-paren">(</span>std::string <em>options_prefix</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11PETScMatrix18set_options_prefixENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the prefix used by PETSc when searching the options
+database</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11PETScMatrix18get_options_prefixEv">
+<span id="PETScMatrix::get_options_prefixC"></span>std::string <code class="descclassname"></code><code class="descname">get_options_prefix</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11PETScMatrix18get_options_prefixEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the prefix used by PETSc when searching the options
+database</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N11PETScMatrixaSERK11PETScMatrix">
+<span id="PETScMatrix::assign-operator__PETScMatrixCR"></span><em class="property">const</em> <a class="reference internal" href="#_CPPv211PETScMatrix" title="PETScMatrix">PETScMatrix</a> &amp;<code class="descclassname"></code><code class="descname">operator=</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv211PETScMatrix" title="PETScMatrix">PETScMatrix</a> &amp;<em>A</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11PETScMatrixaSERK11PETScMatrix" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Assignment operator</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N11PETScMatrix13set_nullspaceERK16VectorSpaceBasis">
+<span id="PETScMatrix::set_nullspace__VectorSpaceBasisCR"></span>void <code class="descclassname"></code><code class="descname">set_nullspace</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="VectorSpaceBasis.html#_CPPv216VectorSpaceBasis" title="VectorSpaceBasis">VectorSpaceBasis</a> &amp;<em>nullspace</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11PETScMatrix13set_nullspaceERK16VectorSpaceBasis" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Attach nullspace to matrix</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11PETScMatrix11binary_dumpENSt6stringE">
+<span id="PETScMatrix::binary_dump__ssC"></span>void <code class="descclassname"></code><code class="descname">binary_dump</code><span class="sig-paren">(</span>std::string <em>file_name</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11PETScMatrix11binary_dumpENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Dump matrix to PETSc binary format</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="PETScObject.html" class="btn btn-neutral float-right" title="PETScObject.h" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="PETScLinearOperator.html" class="btn btn-neutral" title="PETScLinearOperator.h" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://bitbucket.org/fenics-project/.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.6.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

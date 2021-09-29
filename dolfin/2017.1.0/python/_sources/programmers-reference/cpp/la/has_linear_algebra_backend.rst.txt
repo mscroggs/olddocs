@@ -1,0 +1,10 @@
+.. Documentation for the function dolfin.cpp.la.has_linear_algebra_backend
+
+.. _programmers_reference_cpp_la_has_linear_algebra_backend:
+
+has_linear_algebra_backend
+==========================
+
+.. currentmodule:: dolfin.cpp.la
+
+.. autofunction:: has_linear_algebra_backend

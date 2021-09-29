@@ -1,0 +1,437 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>BlockVector.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN la module" href="index.html"/>
+        <link rel="next" title="CoordinateMatrix.h" href="CoordinateMatrix.html"/>
+        <link rel="prev" title="BlockMatrix.h" href="BlockMatrix.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.9.11+
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer’s reference for DOLFIN-2017.1.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/index.html">DOLFIN common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fem/index.html">DOLFIN fem module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html">DOLFIN function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/index.html">DOLFIN geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/index.html">DOLFIN io module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN la module</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="BelosKrylovSolver.html">BelosKrylovSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BlockMatrix.html">BlockMatrix.h</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">BlockVector.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CoordinateMatrix.html">CoordinateMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DefaultFactory.html">DefaultFactory.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="EigenFactory.html">EigenFactory.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="EigenKrylovSolver.html">EigenKrylovSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="EigenLUSolver.html">EigenLUSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="EigenMatrix.html">EigenMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="EigenVector.html">EigenVector.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericLinearAlgebraFactory.html">GenericLinearAlgebraFactory.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericLinearOperator.html">GenericLinearOperator.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericLinearSolver.html">GenericLinearSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericMatrix.html">GenericMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericTensor.html">GenericTensor.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericVector.html">GenericVector.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Ifpack2Preconditioner.html">Ifpack2Preconditioner.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="IndexMap.html">IndexMap.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="KrylovSolver.html">KrylovSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LUSolver.html">LUSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LinearAlgebraObject.html">LinearAlgebraObject.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LinearOperator.html">LinearOperator.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LinearSolver.html">LinearSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Matrix.html">Matrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MueluPreconditioner.html">MueluPreconditioner.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScBaseMatrix.html">PETScBaseMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScFactory.html">PETScFactory.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScKrylovSolver.html">PETScKrylovSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScLUSolver.html">PETScLUSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScLinearOperator.html">PETScLinearOperator.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScMatrix.html">PETScMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScObject.html">PETScObject.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScOptions.html">PETScOptions.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScPreconditioner.html">PETScPreconditioner.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScUserPreconditioner.html">PETScUserPreconditioner.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScVector.html">PETScVector.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SLEPcEigenSolver.html">SLEPcEigenSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Scalar.html">Scalar.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SparsityPattern.html">SparsityPattern.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TensorLayout.html">TensorLayout.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TpetraFactory.html">TpetraFactory.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TpetraMatrix.html">TpetraMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TpetraVector.html">TpetraVector.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TrilinosPreconditioner.html">TrilinosPreconditioner.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Vector.html">Vector.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VectorSpaceBasis.html">VectorSpaceBasis.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solve.html">solve.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_nullspace.html">test_nullspace.h</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../log/index.html">DOLFIN log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mesh/index.html">DOLFIN mesh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot/index.html">DOLFIN plot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer’s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">DOLFIN</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">C++ Programmer’s reference for DOLFIN-2017.1.0</a> &raquo;</li>
+        
+          <li><a href="index.html">DOLFIN la module</a> &raquo;</li>
+        
+      <li>BlockVector.h</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/programmers-reference/la/BlockVector.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="blockvector-h">
+<span id="programmers-reference-cpp-la-blockvector"></span><h1>BlockVector.h<a class="headerlink" href="#blockvector-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="class">
+<dt id="_CPPv211BlockVector">
+<span id="BlockVector"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">BlockVector</code><a class="headerlink" href="#_CPPv211BlockVector" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Block vector</p>
+<dl class="function">
+<dt id="_CPPv2N11BlockVector11BlockVectorENSt6size_tE">
+<span id="BlockVector::BlockVector__std::s"></span><code class="descclassname"></code><code class="descname">BlockVector</code><span class="sig-paren">(</span>std::size_t <em>n</em> = 0<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11BlockVector11BlockVectorENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructor</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11BlockVector4copyEv">
+<span id="BlockVector::copyC"></span><a class="reference internal" href="#_CPPv211BlockVector" title="BlockVector">BlockVector</a> *<code class="descclassname"></code><code class="descname">copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11BlockVector4copyEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return copy of tensor</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N11BlockVector9set_blockENSt6size_tENSt10shared_ptrI13GenericVectorEE">
+<span id="BlockVector::set_block__std::s.std::shared_ptr:GenericVector:"></span>void <code class="descclassname"></code><code class="descname">set_block</code><span class="sig-paren">(</span>std::size_t <em>i</em>, std::shared_ptr&lt;<a class="reference internal" href="GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a>&gt; <em>v</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11BlockVector9set_blockENSt6size_tENSt10shared_ptrI13GenericVectorEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set function</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11BlockVector9get_blockENSt6size_tE">
+<span id="BlockVector::get_block__std::sC"></span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a>&gt; <code class="descclassname"></code><code class="descname">get_block</code><span class="sig-paren">(</span>std::size_t <em>i</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11BlockVector9get_blockENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get sub-vector (const)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N11BlockVector9get_blockENSt6size_tE">
+<span id="BlockVector::get_block__std::s"></span>std::shared_ptr&lt;<a class="reference internal" href="GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a>&gt; <code class="descclassname"></code><code class="descname">get_block</code><span class="sig-paren">(</span>std::size_t<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11BlockVector9get_blockENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get sub-vector (non-const)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N11BlockVector4axpyEdRK11BlockVector">
+<span id="BlockVector::axpy__double.BlockVectorCR"></span>void <code class="descclassname"></code><code class="descname">axpy</code><span class="sig-paren">(</span>double <em>a</em>, <em class="property">const</em> <a class="reference internal" href="#_CPPv211BlockVector" title="BlockVector">BlockVector</a> &amp;<em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11BlockVector4axpyEdRK11BlockVector" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add multiple of given vector (AXPY operation)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11BlockVector5innerERK11BlockVector">
+<span id="BlockVector::inner__BlockVectorCRC"></span>double <code class="descclassname"></code><code class="descname">inner</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv211BlockVector" title="BlockVector">BlockVector</a> &amp;<em>x</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11BlockVector5innerERK11BlockVector" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return inner product with given vector</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11BlockVector4normENSt6stringE">
+<span id="BlockVector::norm__ssC"></span>double <code class="descclassname"></code><code class="descname">norm</code><span class="sig-paren">(</span>std::string <em>norm_type</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11BlockVector4normENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return norm of vector</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11BlockVector3minEv">
+<span id="BlockVector::minC"></span>double <code class="descclassname"></code><code class="descname">min</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11BlockVector3minEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return minimum value of vector</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11BlockVector3maxEv">
+<span id="BlockVector::maxC"></span>double <code class="descclassname"></code><code class="descname">max</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11BlockVector3maxEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return maximum value of vector</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N11BlockVectormLEd">
+<span id="BlockVector::mul-assign-operator__double"></span><em class="property">const</em> <a class="reference internal" href="#_CPPv211BlockVector" title="BlockVector">BlockVector</a> &amp;<code class="descclassname"></code><code class="descname">operator*=</code><span class="sig-paren">(</span>double <em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11BlockVectormLEd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Multiply vector by given number</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N11BlockVectordVEd">
+<span id="BlockVector::div-assign-operator__double"></span><em class="property">const</em> <a class="reference internal" href="#_CPPv211BlockVector" title="BlockVector">BlockVector</a> &amp;<code class="descclassname"></code><code class="descname">operator/=</code><span class="sig-paren">(</span>double <em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11BlockVectordVEd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Divide vector by given number</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N11BlockVectorpLERK11BlockVector">
+<span id="BlockVector::add-assign-operator__BlockVectorCR"></span><em class="property">const</em> <a class="reference internal" href="#_CPPv211BlockVector" title="BlockVector">BlockVector</a> &amp;<code class="descclassname"></code><code class="descname">operator+=</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv211BlockVector" title="BlockVector">BlockVector</a> &amp;<em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11BlockVectorpLERK11BlockVector" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add given vector</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N11BlockVectormIERK11BlockVector">
+<span id="BlockVector::sub-assign-operator__BlockVectorCR"></span><em class="property">const</em> <a class="reference internal" href="#_CPPv211BlockVector" title="BlockVector">BlockVector</a> &amp;<code class="descclassname"></code><code class="descname">operator-=</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv211BlockVector" title="BlockVector">BlockVector</a> &amp;<em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11BlockVectormIERK11BlockVector" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Subtract given vector</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N11BlockVectoraSERK11BlockVector">
+<span id="BlockVector::assign-operator__BlockVectorCR"></span><em class="property">const</em> <a class="reference internal" href="#_CPPv211BlockVector" title="BlockVector">BlockVector</a> &amp;<code class="descclassname"></code><code class="descname">operator=</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv211BlockVector" title="BlockVector">BlockVector</a> &amp;<em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11BlockVectoraSERK11BlockVector" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Assignment operator</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N11BlockVectoraSEd">
+<span id="BlockVector::assign-operator__double"></span><em class="property">const</em> <a class="reference internal" href="#_CPPv211BlockVector" title="BlockVector">BlockVector</a> &amp;<code class="descclassname"></code><code class="descname">operator=</code><span class="sig-paren">(</span>double <em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11BlockVectoraSEd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Assignment operator</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11BlockVector5emptyEv">
+<span id="BlockVector::emptyC"></span>bool <code class="descclassname"></code><code class="descname">empty</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11BlockVector5emptyEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return true if empty</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11BlockVector4sizeEv">
+<span id="BlockVector::sizeC"></span>std::size_t <code class="descclassname"></code><code class="descname">size</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11BlockVector4sizeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Number of vectors</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11BlockVector3strEb">
+<span id="BlockVector::str__bC"></span>std::string <code class="descclassname"></code><code class="descname">str</code><span class="sig-paren">(</span>bool <em>verbose</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11BlockVector3strEb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return informal string representation (pretty-print)</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="CoordinateMatrix.html" class="btn btn-neutral float-right" title="CoordinateMatrix.h" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="BlockMatrix.html" class="btn btn-neutral" title="BlockMatrix.h" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright DOLFIN Core, https://launchpad.net/~dolfin-core.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.9.11+',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

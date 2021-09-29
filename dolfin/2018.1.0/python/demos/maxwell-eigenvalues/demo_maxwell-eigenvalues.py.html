@@ -1,0 +1,500 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Stable and unstable finite elements for the Maxwell eigenvalue problem &mdash; DOLFIN  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Hyperelasticity" href="../hyperelasticity/demo_hyperelasticity.py.html" />
+    <link rel="prev" title="Cahn-Hilliard equation" href="../cahn-hilliard/demo_cahn-hilliard.py.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../using.html">Using DOLFIN</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../demos.html">Demos</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../demos.html#introductory-demos">Introductory demos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../demos.html#more-advanced-demos">More advanced demos</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../demos.html#all-documented-demos">All documented demos</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../poisson/demo_poisson.py.html">Poisson equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../eigenvalue/demo_eigenvalue.py.html">A simple eigenvalue solver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../built-in-meshes/demo_built-in-meshes.py.html">Built-in meshes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mixed-poisson/demo_mixed-poisson.py.html">Mixed formulation for Poisson equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../biharmonic/demo_biharmonic.py.html">Biharmonic equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../auto-adaptive-poisson/demo_auto-adaptive-poisson.py.html">Auto adaptive Poisson equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cahn-hilliard/demo_cahn-hilliard.py.html">Cahn-Hilliard equation</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Stable and unstable finite elements for the Maxwell eigenvalue problem</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#model-problem">Model problem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-weak-formulation-and-the-finite-element-method">The weak formulation and the finite element method</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#stable-and-unstable-finite-elements">Stable and unstable finite elements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-implementation">The implementation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../hyperelasticity/demo_hyperelasticity.py.html">Hyperelasticity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nonlinear-poisson/demo_nonlinear-poisson.py.html">Nonlinear Poisson equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../singular-poisson/demo_singular-poisson.py.html">Singular Poisson</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../neumann-poisson/demo_neumann-poisson.py.html">Poisson equation with pure Neumann boundary conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nonmatching-interpolation/demo_nonmatching-interpolation.py.html">Interpolation from a non-matching mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../stokes-iterative/demo_stokes-iterative.py.html">Stokes equations with an iterative solver</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">Python API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer.html">Developer resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">DOLFIN</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../demos.html">Demos</a> &raquo;</li>
+        
+      <li>Stable and unstable finite elements for the Maxwell eigenvalue problem</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/demos/maxwell-eigenvalues/demo_maxwell-eigenvalues.py.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="stable-and-unstable-finite-elements-for-the-maxwell-eigenvalue-problem">
+<h1>Stable and unstable finite elements for the Maxwell eigenvalue problem<a class="headerlink" href="#stable-and-unstable-finite-elements-for-the-maxwell-eigenvalue-problem" title="Permalink to this headline">¶</a></h1>
+<p>The Maxwell eigenvalue problem seeks eigenvalues <span class="math notranslate nohighlight">\(\lambda\)</span> and
+the corresponding nonzero vector-valued eigenfunctions <span class="math notranslate nohighlight">\(u\)</span>
+satisfying the partial differential equation</p>
+<div class="math notranslate nohighlight">
+\[\operatorname{curl}\operatorname{curl} u = \lambda u \text{ in $\Omega$}\]</div>
+<p>(we have simplified slightly by setting the material parameters equal
+to 1).  The PDE is to be supplemented with boundary conditions, which
+we take here to be the essential boundary condition</p>
+<div class="math notranslate nohighlight">
+\[u \times n = 0 \text{ on $\partial\Omega$}.\]</div>
+<p>The eigenvalues <span class="math notranslate nohighlight">\(\lambda\)</span> are all real and non-negative, but
+only the positive ones are of interest, since, if <span class="math notranslate nohighlight">\(\lambda &gt;0\)</span>,
+then it follows from the PDE that <span class="math notranslate nohighlight">\(\operatorname{div} u = 0\)</span>,
+which is also a requirement of Maxwell’s equations.  There exist, in
+addition, an infinite-dimensional family of eigenfunctions with
+eigenvalue <span class="math notranslate nohighlight">\(\lambda=0\)</span>, since for any smooth function
+<span class="math notranslate nohighlight">\(\phi\)</span> vanishing to second order on the boundary,
+<span class="math notranslate nohighlight">\(u=\operatorname{grad}\phi\)</span> is such an eigenfunction.  But these
+functions are not divergence-free and should not be considered Maxwell
+eigenfunctions.</p>
+<div class="section" id="model-problem">
+<h2>Model problem<a class="headerlink" href="#model-problem" title="Permalink to this headline">¶</a></h2>
+<p>In this demo we shall consider the Maxwell eigenvalue problem in two
+dimensions with the domain <span class="math notranslate nohighlight">\(\Omega\)</span> taken to be the square
+<span class="math notranslate nohighlight">\((0,\pi)\times(0,\pi)\)</span>, since in that case the exact eigenpairs
+have a simple analytic expression.  They are</p>
+<div class="math notranslate nohighlight">
+\[u(x,y) = (\sin m x, \sin n y), \quad \lambda = m^2 + n^2,\]</div>
+<p>for any non-negative integers <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(n,\)</span> not both zero.
+Thus the eigenvalues are</p>
+<div class="math notranslate nohighlight">
+\[\lambda = 1, 1, 2, 4, 4, 5, 5, 8, 9, 9, 10, 10, 13, 13, \dots\]</div>
+<p>In the demo program we compute the 12 eigenvalues nearest 5.5, and so
+should obtain the first 12 numbers on this list, ranging from 1 to 10.</p>
+</div>
+<div class="section" id="the-weak-formulation-and-the-finite-element-method">
+<h2>The weak formulation and the finite element method<a class="headerlink" href="#the-weak-formulation-and-the-finite-element-method" title="Permalink to this headline">¶</a></h2>
+<p>A weak formulation of the eigenvalue problem seeks <span class="math notranslate nohighlight">\(0\ne u\in
+H_0(\operatorname{curl})\)</span> and <span class="math notranslate nohighlight">\(\lambda&gt;0\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[\int_{\Omega} \operatorname{curl} u\, \operatorname{curl}v\, {\rm d} x
+= \lambda \int_{\Omega} u v\, {\rm d} x \quad \forall \ v\in H_0(\operatorname{curl}),\]</div>
+<p>where <span class="math notranslate nohighlight">\(H_0(\operatorname{curl})\)</span> is the space of
+square-integrable vector fields with square-integrable curl and
+satisfying the essential boundary condition.  If we replace
+<span class="math notranslate nohighlight">\(H_0(\operatorname{curl})\)</span> in this formulation by a finite
+element subspace, we obtain a finite element method.</p>
+</div>
+<div class="section" id="stable-and-unstable-finite-elements">
+<h2>Stable and unstable finite elements<a class="headerlink" href="#stable-and-unstable-finite-elements" title="Permalink to this headline">¶</a></h2>
+<p>We consider here two possible choices of finite element spaces.  The
+first, the Nédélec edge elements, which are obtained in FEniCS as
+<code class="docutils literal notranslate"><span class="pre">FunctionSpace(mesh,</span> <span class="pre">'H1curl',</span> <span class="pre">1)</span></code>, are well suited to this problem
+and give an accurate discretization.  The second choice is simply the
+vector-valued Lagrange piecewise linears: <code class="docutils literal notranslate"><span class="pre">VectorFunctionSpace(mesh,</span>
+<span class="pre">'Lagrange',</span> <span class="pre">1)</span></code>.  To the uninitiated it usually comes as a surprise
+that the Lagrange elements do not provide an accurate discretization
+of the Maxwell eigenvalue problem: the computed eigenvalues do not
+converge to the true ones as the mesh is refined!  This is a subtle
+matter connected to the stability theory of mixed finite element
+methods.  See <a class="reference external" href="http://umn.edu/~arnold/papers/icm2002.pdf">this paper</a> for details.</p>
+<p>While the Nédélec elements behave stably for any mesh, the failure of
+the Lagrange elements differs on different sorts of meshes.  Here we
+compute with two structured meshes, the first obtained from a
+<span class="math notranslate nohighlight">\(40\times 40\)</span> grid of squares by dividing each with its
+positively-sloped diagonal, and the second the crossed mesh obtained
+by dividing each subsquare into four using both diagonals.  The output
+from the first case is:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>diagonal mesh
+Nédélec:   [ 1.00  1.00  2.00  4.00  4.00  5.00  5.00  8.01  8.98  8.99  9.99  9.99]
+Lagrange:  [ 5.16  5.26  5.26  5.30  5.39  5.45  5.53  5.61  5.61  5.62  5.71  5.73]
+Exact:     [ 1.00  1.00  2.00  4.00  4.00  5.00  5.00  8.00  9.00  9.00 10.00 10.00]
+</pre></div>
+</div>
+<p>Note that the eigenvalues calculated using the Nédélec elements are
+all correct to within a fraction of a percent. But the 12 eigenvalues
+computed by the Lagrange elements are certainly all <em>wrong</em>, since
+they are far from being integers!</p>
+<p>On the crossed mesh, we obtain a different mode of failure:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>crossed mesh
+Nédélec:   [ 1.00  1.00  2.00  4.00  4.00  5.00  5.00  7.99  9.00  9.00 10.00 10.00]
+Lagrange:  [ 1.00  1.00  2.00  4.00  4.00  5.00  5.00  6.00  8.01  9.01  9.01 10.02]
+Exact:     [ 1.00  1.00  2.00  4.00  4.00  5.00  5.00  8.00  9.00  9.00 10.00 10.00]
+</pre></div>
+</div>
+<p>Again the Nédélec elements are accurate.  The Lagrange elements also
+approximate most of the eigenvalues well, but they return a <em>totally
+spurious</em> value of 6.00 as well.  If we were to compute more
+eigenvalues, more spurious ones would be returned.  This mode of
+failure might be considered more dangerous, since it is harder to
+spot.</p>
+</div>
+<div class="section" id="the-implementation">
+<h2>The implementation<a class="headerlink" href="#the-implementation" title="Permalink to this headline">¶</a></h2>
+<p><strong>Preamble.</strong> First we import <code class="docutils literal notranslate"><span class="pre">dolfin</span></code> and <code class="docutils literal notranslate"><span class="pre">numpy</span></code> and make sure
+that dolfin has been configured with PETSc and SLEPc (since we depend
+on the SLEPc eigenvalue solver).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dolfin</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">has_linear_algebra_backend</span><span class="p">(</span><span class="s2">&quot;PETSc&quot;</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;DOLFIN has not been configured with PETSc. Exiting.&quot;</span><span class="p">)</span>
+    <span class="n">exit</span><span class="p">()</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">has_slepc</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;DOLFIN has not been configured with SLEPc. Exiting.&quot;</span><span class="p">)</span>
+    <span class="n">exit</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Function eigenvalues.</strong>
+The function <code class="docutils literal notranslate"><span class="pre">eigenvalues</span></code> takes the finite element space <code class="docutils literal notranslate"><span class="pre">V</span></code> and the
+essential boundary conditions <code class="docutils literal notranslate"><span class="pre">bcs</span></code> for it, and returns a requested
+set of Maxwell eigenvalues (specified in the code below)
+as a sorted numpy array:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">eigenvalues</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">bcs</span><span class="p">):</span>
+</pre></div>
+</div>
+<p>We start by defining the bilinear forms on the right- and left-hand
+sides of the weak formulation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#</span>
+    <span class="c1"># Define the bilinear forms on the right- and left-hand sides</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">TestFunction</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">inner</span><span class="p">(</span><span class="n">curl</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">curl</span><span class="p">(</span><span class="n">v</span><span class="p">))</span><span class="o">*</span><span class="n">dx</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">inner</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span>
+</pre></div>
+</div>
+<p>Next we assemble the bilinear forms <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> into PETSc
+matrices <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code>, so the eigenvalue problem is converted into
+a generalized matrix eigenvalue problem <span class="math notranslate nohighlight">\(Ax=\lambda B x\)</span>.
+During the assembly step the essential boundary conditions are
+incorporated by modifying the rows and columns of the matrices corresponding to
+constrained boundary degrees of freedom.  We use <code class="docutils literal notranslate"><span class="pre">assemble_system</span></code>
+rather than <code class="docutils literal notranslate"><span class="pre">assemble</span></code> to do the assembly, since it maintains the
+symmetry of the matrices.  <code class="docutils literal notranslate"><span class="pre">assemble_system</span></code> is designed for source
+problems, rather than eigenvalue problems, and requires a right-hand
+side linear form, so we define a dummy form to feed it.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#</span>
+    <span class="c1"># Assemble into PETSc matrices</span>
+    <span class="n">dummy</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">dx</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">PETScMatrix</span><span class="p">()</span>
+    <span class="n">assemble_system</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">dummy</span><span class="p">,</span> <span class="n">bcs</span><span class="p">,</span> <span class="n">A_tensor</span><span class="o">=</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">B</span> <span class="o">=</span> <span class="n">PETScMatrix</span><span class="p">()</span>
+    <span class="n">assemble_system</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">dummy</span><span class="p">,</span> <span class="n">bcs</span><span class="p">,</span> <span class="n">A_tensor</span><span class="o">=</span><span class="n">B</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We zero out the rows of <span class="math notranslate nohighlight">\(B\)</span> corresponding to constrained
+boundary degrees of freedom, so as not to introduce spurious
+eigenpairs with nonzero boundary DOFs.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#</span>
+    <span class="p">[</span><span class="n">bc</span><span class="o">.</span><span class="n">zero</span><span class="p">(</span><span class="n">B</span><span class="p">)</span> <span class="k">for</span> <span class="n">bc</span> <span class="ow">in</span> <span class="n">bcs</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Now we solve the generalized matrix eigenvalue problem using the SLEPc
+package.  The behavior of the <code class="docutils literal notranslate"><span class="pre">SLEPcEigenSolver</span></code> is controlled by a
+parameter set (use <code class="docutils literal notranslate"><span class="pre">info(solver,</span> <span class="pre">True)</span></code> to see all possible
+parameters).  We use parameters to set the eigensolution method to
+Krylov-Schur, which is good for computing a subset of the eigenvalues
+of a sparse matrix, and to tell SLEPc that the matrices <code class="docutils literal notranslate"><span class="pre">A</span></code> and
+<code class="docutils literal notranslate"><span class="pre">B</span></code> in the generalized eigenvalue problem are symmetric
+(Hermitian).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#</span>
+    <span class="n">solver</span> <span class="o">=</span> <span class="n">SLEPcEigenSolver</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span>
+    <span class="n">solver</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;solver&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;krylov-schur&quot;</span>
+    <span class="n">solver</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;problem_type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;gen_hermitian&quot;</span>
+</pre></div>
+</div>
+<p>We specify that we want 12 eigenvalues nearest in magnitude to a
+target value of 5.5.  Note that when the <code class="docutils literal notranslate"><span class="pre">spectrum</span></code> parameter is set
+to <code class="docutils literal notranslate"><span class="pre">target</span> <span class="pre">magnitude</span></code>, the <code class="docutils literal notranslate"><span class="pre">spectral_transform</span></code> parameter should
+be set to <code class="docutils literal notranslate"><span class="pre">shift-and-invert</span></code> and the <code class="docutils literal notranslate"><span class="pre">spectral_shift</span></code> parameter
+should be set equal to the target.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#</span>
+    <span class="n">solver</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;spectrum&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;target magnitude&quot;</span>
+    <span class="n">solver</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;spectral_transform&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;shift-and-invert&quot;</span>
+    <span class="n">solver</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;spectral_shift&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">5.5</span>
+    <span class="n">neigs</span> <span class="o">=</span> <span class="mi">12</span>
+    <span class="n">solver</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">neigs</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Finally we collect the computed eigenvalues in list which we convert
+to a numpy array and sort before returning.  Note that we are not
+guaranteed to get the number of eigenvalues requested.  The function
+<code class="docutils literal notranslate"><span class="pre">solver.get_number_converged()</span></code> reports the actual number of
+eigenvalues computed, which may be more or less than the number
+requested.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#</span>
+    <span class="c1"># Return the computed eigenvalues in a sorted array</span>
+    <span class="n">computed_eigenvalues</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">neigs</span><span class="p">,</span> <span class="n">solver</span><span class="o">.</span><span class="n">get_number_converged</span><span class="p">())):</span>
+        <span class="n">r</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">get_eigenvalue</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="c1"># ignore the imaginary part</span>
+        <span class="n">computed_eigenvalues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">computed_eigenvalues</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><strong>Function print_eigenvalues.</strong> Given just a mesh, the function
+<code class="docutils literal notranslate"><span class="pre">print_eigenvalues</span></code> calls the preceding function <code class="docutils literal notranslate"><span class="pre">eigenvalues</span></code> to
+solve the Maxwell eigenvalue problem for each of the two finite
+element spaces, Nédélec and Lagrange, and prints the results, together
+with the known exact eigenvalues:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">print_eigenvalues</span><span class="p">(</span><span class="n">mesh</span><span class="p">):</span>
+</pre></div>
+</div>
+<p>First we define the Nédélec edge element space and the essential
+boundary conditions for it, and call <code class="docutils literal notranslate"><span class="pre">eigenvalues</span></code> to compute the
+eigenvalues.  Since the degrees of freedom for the Nédélec space are
+tangential components on element edges, we simply need to constrain
+all the DOFs associated to boundary points to zero.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#</span>
+    <span class="n">nedelec_V</span>   <span class="o">=</span> <span class="n">FunctionSpace</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="s2">&quot;N1curl&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">nedelec_bcs</span> <span class="o">=</span> <span class="p">[</span><span class="n">DirichletBC</span><span class="p">(</span><span class="n">nedelec_V</span><span class="p">,</span> <span class="n">Constant</span><span class="p">((</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)),</span> <span class="n">DomainBoundary</span><span class="p">())]</span>
+    <span class="n">nedelec_eig</span> <span class="o">=</span> <span class="n">eigenvalues</span><span class="p">(</span><span class="n">nedelec_V</span><span class="p">,</span> <span class="n">nedelec_bcs</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then we do the same for the vector Lagrange elements.  Since the
+Lagrange DOFs are both components of the vector, we must specify which
+component must vanish on which edges (the x-component on horizontal
+edges and the y-component on vertical edges).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#</span>
+    <span class="n">lagrange_V</span>   <span class="o">=</span> <span class="n">VectorFunctionSpace</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="s2">&quot;Lagrange&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">lagrange_bcs</span> <span class="o">=</span> <span class="p">[</span><span class="n">DirichletBC</span><span class="p">(</span><span class="n">lagrange_V</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;near(x[0], 0) || near(x[0], pi)&quot;</span><span class="p">),</span>
+                    <span class="n">DirichletBC</span><span class="p">(</span><span class="n">lagrange_V</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;near(x[1], 0) || near(x[1], pi)&quot;</span><span class="p">)]</span>
+    <span class="n">lagrange_eig</span> <span class="o">=</span> <span class="n">eigenvalues</span><span class="p">(</span><span class="n">lagrange_V</span><span class="p">,</span> <span class="n">lagrange_bcs</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The true eigenvalues are just the 12 smallest numbers of the form
+<span class="math notranslate nohighlight">\(m^2 + n^2\)</span>, <span class="math notranslate nohighlight">\(m,n\ge0\)</span>, not counting 0.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#</span>
+    <span class="n">true_eig</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">m</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">n</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">)]))[</span><span class="mi">1</span><span class="p">:</span><span class="mi">13</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Finally we print the results:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">formatter</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;float&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">{:5.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">})</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Nedelec:  </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nedelec_eig</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Lagrange: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lagrange_eig</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exact:    </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">true_eig</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><strong>Calling the functions.</strong> To complete the program, we call
+<code class="docutils literal notranslate"><span class="pre">print_eigenvalues</span></code> for each of two different meshes</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mesh</span> <span class="o">=</span> <span class="n">RectangleMesh</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="n">pi</span><span class="p">,</span> <span class="n">pi</span><span class="p">),</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">diagonal mesh&quot;</span><span class="p">)</span>
+<span class="n">print_eigenvalues</span><span class="p">(</span><span class="n">mesh</span><span class="p">)</span>
+
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">RectangleMesh</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="n">pi</span><span class="p">,</span> <span class="n">pi</span><span class="p">),</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="s2">&quot;crossed&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">crossed mesh&quot;</span><span class="p">)</span>
+<span class="n">print_eigenvalues</span><span class="p">(</span><span class="n">mesh</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../hyperelasticity/demo_hyperelasticity.py.html" class="btn btn-neutral float-right" title="Hyperelasticity" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../cahn-hilliard/demo_cahn-hilliard.py.html" class="btn btn-neutral" title="Cahn-Hilliard equation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, FEniCS Project.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,865 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1. Cahn-Hilliard equation &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../../../index.html"/>
+        <link rel="up" title="Collection of documented demos" href="../../../index.html"/>
+        <link rel="next" title="2. Hyperelasticity" href="../../hyperelasticity/cpp/documentation.html"/>
+        <link rel="prev" title="&lt;no title&gt;" href="../../bcs/cpp/documentation.html"/> 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2016.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../programmers-reference/index.html">C++ Programmer&#8217;s reference for DOLFIN-2016.2.0</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Collection of documented demos</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1. Cahn-Hilliard equation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#equation-and-problem-definition">1.1. Equation and problem definition</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#mixed-form">1.1.1. Mixed form</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#time-discretisation">1.1.2. Time discretisation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#demo-parameters">1.1.3. Demo parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#implementation">1.2. Implementation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ufl-form-files">1.2.1. UFL form files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c-program">1.2.2. C++ program</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#complete-code">1.3. Complete code</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#complete-ufl-files">1.3.1. Complete UFL files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#complete-main-file">1.3.2. Complete main file</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../hyperelasticity/cpp/documentation.html">2. Hyperelasticity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mixed-poisson/cpp/documentation.html">3. Mixed formulation for Poisson equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../navier-stokes/cpp/documentation.html">4. Incompressible Navier-Stokes equations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../quick_reference.html">Quick Programmer&#8217;s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../index.html">Collection of documented demos</a> &raquo;</li>
+      
+    <li>1. Cahn-Hilliard equation</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../../_sources/demo/documented/cahn-hilliard/cpp/documentation.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="cahn-hilliard-equation">
+<span id="demo-pde-cahn-hilliard-cpp-documentation"></span><h1>1. Cahn-Hilliard equation<a class="headerlink" href="#cahn-hilliard-equation" title="Permalink to this headline">¶</a></h1>
+<p>This example demonstrates the solution of a particular nonlinear
+time-dependent fourth-order equation, known as the Cahn-Hilliard
+equation. In particular it demonstrates the use of</p>
+<ul class="simple">
+<li>The built-in Newton solver</li>
+<li>Advanced use of the base class <code class="docutils literal"><span class="pre">NonlinearProblem</span></code></li>
+<li>Automatic linearisation</li>
+<li>A mixed finite element method</li>
+<li>The <span class="math">\(\theta\)</span>-method for time-dependent equations</li>
+<li>User-defined Expressions as Python classes</li>
+<li>Form compiler options</li>
+<li>Interpolation of functions</li>
+</ul>
+<div class="section" id="equation-and-problem-definition">
+<h2>1.1. Equation and problem definition<a class="headerlink" href="#equation-and-problem-definition" title="Permalink to this headline">¶</a></h2>
+<p>The Cahn-Hilliard equation is a parabolic equation and is typically
+used to model phase separation in binary mixtures.  It involves
+first-order time derivatives, and second- and fourth-order spatial
+derivatives.  The equation reads:</p>
+<div class="math">
+\[\begin{split}\frac{\partial c}{\partial t} - \nabla \cdot M \left(\nabla\left(\frac{d f}{d c}
+          - \lambda \nabla^{2}c\right)\right) &amp;= 0 \quad {\rm in} \ \Omega, \\
+M\left(\nabla\left(\frac{d f}{d c} - \lambda \nabla^{2}c\right)\right) \cdot n &amp;= 0 \quad {\rm on} \ \partial\Omega, \\
+M \lambda \nabla c \cdot n &amp;= 0 \quad {\rm on} \ \partial\Omega.\end{split}\]</div>
+<p>where <span class="math">\(c\)</span> is the unknown field, the function <span class="math">\(f\)</span> is
+usually non-convex in <span class="math">\(c\)</span> (a fourth-order polynomial is commonly
+used), <span class="math">\(n\)</span> is the outward directed boundary normal, and
+<span class="math">\(M\)</span> is a scalar parameter.</p>
+<div class="section" id="mixed-form">
+<h3>1.1.1. Mixed form<a class="headerlink" href="#mixed-form" title="Permalink to this headline">¶</a></h3>
+<p>The Cahn-Hilliard equation is a fourth-order equation, so casting it
+in a weak form would result in the presence of second-order spatial
+derivatives, and the problem could not be solved using a standard
+Lagrange finite element basis.  A solution is to rephrase the problem
+as two coupled second-order equations:</p>
+<div class="math">
+\[\begin{split}\frac{\partial c}{\partial t} - \nabla \cdot M \nabla\mu  &amp;= 0 \quad {\rm in} \ \Omega, \\
+\mu -  \frac{d f}{d c} + \lambda \nabla^{2}c &amp;= 0 \quad {\rm in} \ \Omega.\end{split}\]</div>
+<p>The unknown fields are now <span class="math">\(c\)</span> and <span class="math">\(\mu\)</span>. The weak
+(variational) form of the problem reads: find <span class="math">\((c, \mu) \in V
+\times V\)</span> such that</p>
+<div class="math">
+\[\begin{split}\int_{\Omega} \frac{\partial c}{\partial t} q \, {\rm d} x + \int_{\Omega} M \nabla\mu \cdot \nabla q \, {\rm d} x
+       &amp;= 0 \quad \forall \ q \in V,  \\
+\int_{\Omega} \mu v \, {\rm d} x - \int_{\Omega} \frac{d f}{d c} v \, {\rm d} x - \int_{\Omega} \lambda \nabla c \cdot \nabla v \, {\rm d} x
+       &amp;= 0 \quad \forall \ v \in V.\end{split}\]</div>
+</div>
+<div class="section" id="time-discretisation">
+<h3>1.1.2. Time discretisation<a class="headerlink" href="#time-discretisation" title="Permalink to this headline">¶</a></h3>
+<p>Before being able to solve this problem, the time derivative must be
+dealt with. Apply the <span class="math">\(\theta\)</span>-method to the mixed weak form of
+the equation:</p>
+<div class="math">
+\[\begin{split}\int_{\Omega} \frac{c_{n+1} - c_{n}}{dt} q \, {\rm d} x + \int_{\Omega} M \nabla \mu_{n+\theta} \cdot \nabla q \, {\rm d} x
+       &amp;= 0 \quad \forall \ q \in V  \\
+\int_{\Omega} \mu_{n+1} v  \, {\rm d} x - \int_{\Omega} \frac{d f_{n+1}}{d c} v  \, {\rm d} x - \int_{\Omega} \lambda \nabla c_{n+1} \cdot \nabla v \, {\rm d} x
+       &amp;= 0 \quad \forall \ v \in V\end{split}\]</div>
+<p>where <span class="math">\(dt = t_{n+1} - t_{n}\)</span> and <span class="math">\(\mu_{n+\theta} =
+(1-\theta) \mu_{n} + \theta \mu_{n+1}\)</span>.  The task is: given
+<span class="math">\(c_{n}\)</span> and <span class="math">\(\mu_{n}\)</span>, solve the above equation to find
+<span class="math">\(c_{n+1}\)</span> and <span class="math">\(\mu_{n+1}\)</span>.</p>
+</div>
+<div class="section" id="demo-parameters">
+<h3>1.1.3. Demo parameters<a class="headerlink" href="#demo-parameters" title="Permalink to this headline">¶</a></h3>
+<p>The following domains, functions and time stepping parameters are used
+in this demo:</p>
+<ul class="simple">
+<li><span class="math">\(\Omega = (0, 1) \times (0, 1)\)</span> (unit square)</li>
+<li><span class="math">\(f = 100 c^{2} (1-c)^{2}\)</span></li>
+<li><span class="math">\(\lambda = 1 \times 10^{-2}\)</span></li>
+<li><span class="math">\(M = 1\)</span></li>
+<li><span class="math">\(dt = 5 \times 10^{-6}\)</span></li>
+<li><span class="math">\(\theta = 0.5\)</span></li>
+</ul>
+<p>With the above input the solution for <span class="math">\(c\)</span> will look as follows:</p>
+<a class="reference internal image-reference" href="../../../../_images/cahn-hilliard_c.png"><img alt="../../../../_images/cahn-hilliard_c.png" class="align-center" src="../../../../_images/cahn-hilliard_c.png" style="width: 450.0px; height: 300.0px;" /></a>
+</div>
+</div>
+<div class="section" id="implementation">
+<h2>1.2. Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
+<p>The implementation is split in three files: two form files containing the
+definition of the variational forms expressed in UFL and a C++ file
+containing the actual solver.</p>
+<p>Running this demo requires the files: <a class="reference download internal" href="../../../../_downloads/main3.cpp" download=""><code class="xref download docutils literal"><span class="pre">main.cpp</span></code></a>,
+<a class="reference download internal" href="../../../../_downloads/CahnHilliard2D.ufl" download=""><code class="xref download docutils literal"><span class="pre">CahnHilliard2D.ufl</span></code></a>, <a class="reference download internal" href="../../../../_downloads/CahnHilliard3D.ufl" download=""><code class="xref download docutils literal"><span class="pre">CahnHilliard3D.ufl</span></code></a> and
+<a class="reference download internal" href="../../../../_downloads/CMakeLists3.txt" download=""><code class="xref download docutils literal"><span class="pre">CMakeLists.txt</span></code></a>.</p>
+<div class="section" id="ufl-form-files">
+<h3>1.2.1. UFL form files<a class="headerlink" href="#ufl-form-files" title="Permalink to this headline">¶</a></h3>
+<p>The UFL code for this problem in two and three dimensions are in
+<a class="reference download internal" href="../../../../_downloads/CahnHilliard2D.ufl" download=""><code class="xref download docutils literal"><span class="pre">CahnHilliard2D.ufl</span></code></a> and <a class="reference download internal" href="../../../../_downloads/CahnHilliard3D.ufl" download=""><code class="xref download docutils literal"><span class="pre">CahnHilliard3D.ufl</span></code></a> respectively.
+They differ only in the first line setting the cell:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">cell</span> <span class="o">=</span> <span class="n">triangle</span>
+</pre></div>
+</div>
+<p>First, a mixed function spaces of linear Lagrange functions on triangles
+is created:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">P1</span> <span class="o">=</span> <span class="n">FiniteElement</span><span class="p">(</span><span class="s2">&quot;Lagrange&quot;</span><span class="p">,</span> <span class="n">cell</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ME</span> <span class="o">=</span> <span class="n">P1</span><span class="o">*</span><span class="n">P1</span>
+</pre></div>
+</div>
+<p>On the mixed space, trial and test functions are defined:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">du</span>   <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">ME</span><span class="p">)</span>
+<span class="n">q</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">TestFunctions</span><span class="p">(</span><span class="n">ME</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The test functions have been split into components.</p>
+<p>Coefficient functions are now defined for the current solution (the
+most recent guess) and the solution from the beginning of the time
+step. Further, these functions (and the trial function) are split into
+their components:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">u</span>   <span class="o">=</span> <span class="n">Coefficient</span><span class="p">(</span><span class="n">ME</span><span class="p">)</span>  <span class="c1"># current solution</span>
+<span class="n">u0</span>  <span class="o">=</span> <span class="n">Coefficient</span><span class="p">(</span><span class="n">ME</span><span class="p">)</span>  <span class="c1"># solution from previous converged step</span>
+
+<span class="c1"># Split mixed functions</span>
+<span class="n">dc</span><span class="p">,</span> <span class="n">dmu</span> <span class="o">=</span> <span class="n">split</span><span class="p">(</span><span class="n">du</span><span class="p">)</span>
+<span class="n">c</span><span class="p">,</span>  <span class="n">mu</span>  <span class="o">=</span> <span class="n">split</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+<span class="n">c0</span><span class="p">,</span> <span class="n">mu0</span> <span class="o">=</span> <span class="n">split</span><span class="p">(</span><span class="n">u0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Various model parameters can be specified using the class
+<code class="xref py py-class docutils literal"><span class="pre">Constant</span></code>. This means that their value can be changed
+without recompiling the UFL file.  Lastly, the value of
+<span class="math">\(\mu_{n+\theta}\)</span> is computed.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">lmbda</span>    <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span> <span class="c1"># surface energy parameter</span>
+<span class="n">dt</span>       <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span> <span class="c1"># time step</span>
+<span class="n">theta</span>    <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span> <span class="c1"># time stepping parameter</span>
+
+<span class="c1"># mu_(n+theta)</span>
+<span class="n">mu_mid</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">theta</span><span class="p">)</span><span class="o">*</span><span class="n">mu0</span> <span class="o">+</span> <span class="n">theta</span><span class="o">*</span><span class="n">mu</span>
+</pre></div>
+</div>
+<p id="index-0">The chemical potential <span class="math">\(df/dc\)</span> will be computed using automated
+differentiation:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Compute the chemical potential df/dc</span>
+<span class="n">c</span>    <span class="o">=</span> <span class="n">variable</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="n">f</span>    <span class="o">=</span> <span class="mi">100</span><span class="o">*</span><span class="n">c</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">c</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">dfdc</span> <span class="o">=</span> <span class="n">diff</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Here, the first line declares that <code class="docutils literal"><span class="pre">c</span></code> is a variable that some
+function can be differentiated with respect to. The next line is the
+function <span class="math">\(f\)</span> defined in the problem statement, and the third
+line performs the differentiation of <code class="docutils literal"><span class="pre">f</span></code> with respect to the
+variable <code class="docutils literal"><span class="pre">c</span></code>.</p>
+<p>The linear forms for the two equations can be summed into one form
+<code class="docutils literal"><span class="pre">L</span></code>. We wish to drive the residual of this form to zero during the
+solution process. The directional derivative of <code class="docutils literal"><span class="pre">L</span></code> can be computed
+automatically, by calling <code class="docutils literal"><span class="pre">derivative</span></code>, to form the bilinear form
+<code class="docutils literal"><span class="pre">a</span></code> representing the Jacobian matrix:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">F0</span> <span class="o">=</span> <span class="n">c</span><span class="o">*</span><span class="n">q</span><span class="o">*</span><span class="n">dx</span>  <span class="o">-</span> <span class="n">c0</span><span class="o">*</span><span class="n">q</span><span class="o">*</span><span class="n">dx</span>   <span class="o">+</span> <span class="n">dt</span><span class="o">*</span><span class="n">dot</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">mu_mid</span><span class="p">),</span> <span class="n">grad</span><span class="p">(</span><span class="n">q</span><span class="p">))</span><span class="o">*</span><span class="n">dx</span>
+<span class="n">F1</span> <span class="o">=</span> <span class="n">mu</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">dx</span> <span class="o">-</span> <span class="n">dfdc</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">dx</span> <span class="o">-</span> <span class="n">lmbda</span><span class="o">*</span><span class="n">dot</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">c</span><span class="p">),</span> <span class="n">grad</span><span class="p">(</span><span class="n">v</span><span class="p">))</span><span class="o">*</span><span class="n">dx</span>
+<span class="n">F</span> <span class="o">=</span> <span class="n">F0</span> <span class="o">+</span> <span class="n">F1</span>
+
+<span class="n">J</span> <span class="o">=</span> <span class="n">derivative</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">du</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="c-program">
+<h3>1.2.2. C++ program<a class="headerlink" href="#c-program" title="Permalink to this headline">¶</a></h3>
+<p>The first lines of this solver include the <code class="docutils literal"><span class="pre">DOLFIN</span></code> header files
+and the two files generated by the form compiler, and the <code class="docutils literal"><span class="pre">DOLFIN</span></code>
+namespace is used:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;dolfin.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;CahnHilliard2D.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;CahnHilliard3D.h&quot;</span><span class="cp"></span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">dolfin</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>The class <code class="docutils literal"><span class="pre">InitialConditions</span></code> defines the initial conditions for the
+solver.  In the constructor, the random number generator is seeded
+using the rank (process number) so that different processes will
+generate different sequences when running in parallel. The <code class="docutils literal"><span class="pre">eval</span></code>
+function evaluates the initial condition. The first value (<code class="docutils literal"><span class="pre">[0]</span></code>)
+corresponds to <span class="math">\(c\)</span> and the second value (<code class="docutils literal"><span class="pre">[1]</span></code>) corresponds to
+<span class="math">\(\mu\)</span>:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// Initial conditions</span>
+<span class="k">class</span> <span class="nc">InitialConditions</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Expression</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+
+  <span class="n">InitialConditions</span><span class="p">()</span> <span class="o">:</span> <span class="n">Expression</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+  <span class="p">{</span>
+     <span class="n">dolfin</span><span class="o">::</span><span class="n">seed</span><span class="p">(</span><span class="mi">2</span> <span class="o">+</span> <span class="n">dolfin</span><span class="o">::</span><span class="n">MPI</span><span class="o">::</span><span class="n">rank</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">));</span>
+  <span class="p">}</span>
+
+  <span class="kt">void</span> <span class="n">eval</span><span class="p">(</span><span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span> <span class="n">values</span><span class="p">,</span> <span class="k">const</span> <span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span> <span class="n">x</span><span class="p">)</span> <span class="k">const</span>
+  <span class="p">{</span>
+    <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span> <span class="mf">0.63</span> <span class="o">+</span> <span class="mf">0.02</span><span class="o">*</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">-</span> <span class="n">dolfin</span><span class="o">::</span><span class="n">rand</span><span class="p">());</span>
+    <span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>The next class is a subclass of <a class="reference internal" href="../../../../programmers-reference/nls/NonlinearProblem.html#_CPPv216NonlinearProblem" title="NonlinearProblem"><code class="xref cpp cpp-class docutils literal"><span class="pre">NonlinearProblem</span></code></a>. A
+<a class="reference internal" href="../../../../programmers-reference/nls/NonlinearProblem.html#_CPPv216NonlinearProblem" title="NonlinearProblem"><code class="xref cpp cpp-class docutils literal"><span class="pre">NonlinearProblem</span></code></a> object can be passed to a
+<a class="reference internal" href="../../../../programmers-reference/nls/NewtonSolver.html#_CPPv212NewtonSolver" title="NewtonSolver"><code class="xref cpp cpp-class docutils literal"><span class="pre">NewtonSolver</span></code></a> to be solved. The requirements of a
+<a class="reference internal" href="../../../../programmers-reference/nls/NonlinearProblem.html#_CPPv216NonlinearProblem" title="NonlinearProblem"><code class="xref cpp cpp-class docutils literal"><span class="pre">NonlinearProblem</span></code></a> subclass are that it provides the
+function <code class="docutils literal"><span class="pre">void</span> <span class="pre">F(GenericVector&amp;</span> <span class="pre">b,</span> <span class="pre">const</span> <span class="pre">GenericVector&amp;</span> <span class="pre">x)</span></code> for
+computing the residual vector and the function <code class="docutils literal"><span class="pre">void</span> <span class="pre">J(GenericMatrix&amp;</span>
+<span class="pre">A,</span> <span class="pre">const</span> <span class="pre">GenericVector&amp;</span> <span class="pre">x)</span></code> for computing the Jacobian matrix.  The
+below class is designed to work for two different generated forms (2D
+and 3D), with the appropriate form chosen based on the geometric
+dimension of the mesh. The makes the class more complicated than would
+be the case if it supported a single form type.  The class is first
+declared as a subclass of cpp:class:<cite>NonlinearProblem</cite>:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// User defined nonlinear problem</span>
+<span class="k">class</span> <span class="nc">CahnHilliardEquation</span> <span class="o">:</span> <span class="k">public</span> <span class="n">NonlinearProblem</span>
+<span class="p">{</span>
+  <span class="k">public</span><span class="o">:</span>
+</pre></div>
+</div>
+<p>Its constructor takes the various arguments which are required
+to create the forms, and it calls a the templated private member
+function <code class="docutils literal"><span class="pre">init</span></code>:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// Constructor</span>
+<span class="n">CahnHilliardEquation</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">Mesh</span><span class="o">&gt;</span> <span class="n">mesh</span><span class="p">,</span>
+                     <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">Constant</span><span class="o">&gt;</span> <span class="n">dt</span><span class="p">,</span>
+                     <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">Constant</span><span class="o">&gt;</span> <span class="n">theta</span><span class="p">,</span>
+                     <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">Constant</span><span class="o">&gt;</span> <span class="n">lambda</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">// Initialize class (depending on geometric dimension of the mesh).</span>
+  <span class="c1">// Unfortunately C++ does not allow namespaces as template arguments</span>
+  <span class="n">dolfin_assert</span><span class="p">(</span><span class="n">mesh</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">mesh</span><span class="o">-&gt;</span><span class="n">geometry</span><span class="p">().</span><span class="n">dim</span><span class="p">()</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">init</span><span class="o">&lt;</span><span class="n">CahnHilliard2D</span><span class="o">::</span><span class="n">FunctionSpace</span><span class="p">,</span> <span class="n">CahnHilliard2D</span><span class="o">::</span><span class="n">JacobianForm</span><span class="p">,</span>
+         <span class="n">CahnHilliard2D</span><span class="o">::</span><span class="n">ResidualForm</span><span class="o">&gt;</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">lambda</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">mesh</span><span class="o">-&gt;</span><span class="n">geometry</span><span class="p">().</span><span class="n">dim</span><span class="p">()</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">init</span><span class="o">&lt;</span><span class="n">CahnHilliard3D</span><span class="o">::</span><span class="n">FunctionSpace</span><span class="p">,</span> <span class="n">CahnHilliard3D</span><span class="o">::</span><span class="n">JacobianForm</span><span class="p">,</span>
+         <span class="n">CahnHilliard3D</span><span class="o">::</span><span class="n">ResidualForm</span><span class="o">&gt;</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">lambda</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span>
+    <span class="n">error</span><span class="p">(</span><span class="s">&quot;Cahn-Hilliard model is programmed for 2D and 3D only.&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The function <code class="docutils literal"><span class="pre">F</span></code> computes the residual vector, which corresponds to
+assembly of the form <code class="docutils literal"><span class="pre">L</span></code>:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// User defined residual vector</span>
+<span class="kt">void</span> <span class="nf">F</span><span class="p">(</span><span class="n">GenericVector</span><span class="o">&amp;</span> <span class="n">b</span><span class="p">,</span> <span class="k">const</span> <span class="n">GenericVector</span><span class="o">&amp;</span> <span class="n">x</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">// Assemble RHS (Neumann boundary conditions)</span>
+  <span class="n">Assembler</span> <span class="n">assembler</span><span class="p">;</span>
+  <span class="n">assembler</span><span class="p">.</span><span class="n">assemble</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="o">*</span><span class="n">L</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The function <code class="docutils literal"><span class="pre">J</span></code> computes the Jacobian matrix, which corresponds to
+the assembly of the form <code class="docutils literal"><span class="pre">a</span></code>.</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// User defined assemble of Jacobian</span>
+<span class="kt">void</span> <span class="nf">J</span><span class="p">(</span><span class="n">GenericMatrix</span><span class="o">&amp;</span> <span class="n">A</span><span class="p">,</span> <span class="k">const</span> <span class="n">GenericVector</span><span class="o">&amp;</span> <span class="n">x</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">// Assemble system</span>
+  <span class="n">Assembler</span> <span class="n">assembler</span><span class="p">;</span>
+  <span class="n">assembler</span><span class="p">.</span><span class="n">assemble</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="o">*</span><span class="n">a</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The following two functions are helper functions which allow access to
+the solution vectors:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// Return solution function</span>
+<span class="n">Function</span><span class="o">&amp;</span> <span class="n">u</span><span class="p">()</span>
+<span class="p">{</span> <span class="k">return</span> <span class="o">*</span><span class="n">_u</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="c1">// Return solution function</span>
+<span class="n">Function</span><span class="o">&amp;</span> <span class="n">u0</span><span class="p">()</span>
+<span class="p">{</span> <span class="k">return</span> <span class="o">*</span><span class="n">_u0</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>The private <code class="docutils literal"><span class="pre">init</span></code> function is responsible for creating the forms
+and functions associated with the problem. It is a templated function
+so that the 2D and 3D cases can be handled with the same code.
+Firstly, a shared pointer to a <a class="reference internal" href="../../../../programmers-reference/function/FunctionSpace.html#_CPPv213FunctionSpace" title="FunctionSpace"><code class="xref cpp cpp-class docutils literal"><span class="pre">FunctionSpace</span></code></a> (<code class="docutils literal"><span class="pre">X</span></code>) is
+created. Then two shared pointers <code class="docutils literal"><span class="pre">_u</span></code> and <code class="docutils literal"><span class="pre">_u0</span></code> are set to point
+to <a class="reference internal" href="../../../../programmers-reference/function/Function.html#_CPPv28Function" title="Function"><code class="xref cpp cpp-class docutils literal"><span class="pre">Function</span></code></a> s from the space <code class="docutils literal"><span class="pre">V</span></code>.  A shared pointer is
+used so that the function space is not destroyed when the constructor
+exits. (The function space will not be destroyed until there are no
+more Functions or Forms that point to it.)  Using the function space
+<code class="docutils literal"><span class="pre">V</span></code>, bilinear and linear forms are created using <code class="docutils literal"><span class="pre">new</span></code>, and the
+coefficient functions are attached. These forms are then wrapped in a
+shared pointer (using the <code class="docutils literal"><span class="pre">reset</span></code> function) which will take care of
+eventually destroying the forms. Finally, <code class="docutils literal"><span class="pre">_u</span></code> is set equal to the
+initial condition (by interpolation).</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="k">private</span><span class="o">:</span>
+
+  <span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">X</span><span class="p">,</span> <span class="k">class</span> <span class="nc">Y</span><span class="p">,</span> <span class="k">class</span> <span class="nc">Z</span><span class="o">&gt;</span>
+  <span class="kt">void</span> <span class="n">init</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">Mesh</span><span class="o">&gt;</span> <span class="n">mesh</span><span class="p">,</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">Constant</span><span class="o">&gt;</span> <span class="n">dt</span><span class="p">,</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">Constant</span><span class="o">&gt;</span> <span class="n">theta</span><span class="p">,</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">Constant</span><span class="o">&gt;</span> <span class="n">lambda</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="c1">// Create function space and functions</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">X</span><span class="o">&gt;</span> <span class="n">V</span><span class="p">(</span><span class="k">new</span> <span class="n">X</span><span class="p">(</span><span class="n">mesh</span><span class="p">));</span>
+    <span class="n">_u</span><span class="p">.</span><span class="n">reset</span><span class="p">(</span><span class="k">new</span> <span class="n">Function</span><span class="p">(</span><span class="n">V</span><span class="p">));</span>
+    <span class="n">_u0</span><span class="p">.</span><span class="n">reset</span><span class="p">(</span><span class="k">new</span> <span class="n">Function</span><span class="p">(</span><span class="n">V</span><span class="p">));</span>
+
+    <span class="c1">// Create forms and attach functions</span>
+    <span class="n">Y</span><span class="o">*</span> <span class="n">_a</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Y</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">V</span><span class="p">);</span>
+    <span class="n">Z</span><span class="o">*</span> <span class="n">_L</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Z</span><span class="p">(</span><span class="n">V</span><span class="p">);</span>
+    <span class="n">_a</span><span class="o">-&gt;</span><span class="n">u</span> <span class="o">=</span> <span class="n">_u</span><span class="p">;</span>
+    <span class="n">_a</span><span class="o">-&gt;</span><span class="n">lmbda</span> <span class="o">=</span> <span class="n">lambda</span><span class="p">;</span> <span class="n">_a</span><span class="o">-&gt;</span><span class="n">dt</span> <span class="o">=</span> <span class="n">dt</span><span class="p">;</span> <span class="n">_a</span><span class="o">-&gt;</span><span class="n">theta</span> <span class="o">=</span> <span class="n">theta</span><span class="p">;</span>
+    <span class="n">_L</span><span class="o">-&gt;</span><span class="n">u</span> <span class="o">=</span> <span class="n">_u</span><span class="p">;</span> <span class="n">_L</span><span class="o">-&gt;</span><span class="n">u0</span> <span class="o">=</span> <span class="n">_u0</span><span class="p">;</span>
+    <span class="n">_L</span><span class="o">-&gt;</span><span class="n">lmbda</span> <span class="o">=</span> <span class="n">lambda</span><span class="p">;</span> <span class="n">_L</span><span class="o">-&gt;</span><span class="n">dt</span> <span class="o">=</span> <span class="n">dt</span><span class="p">;</span> <span class="n">_L</span><span class="o">-&gt;</span><span class="n">theta</span> <span class="o">=</span> <span class="n">theta</span><span class="p">;</span>
+
+    <span class="c1">// Wrap pointers in a smart pointer</span>
+    <span class="n">a</span><span class="p">.</span><span class="n">reset</span><span class="p">(</span><span class="n">_a</span><span class="p">);</span>
+    <span class="n">L</span><span class="p">.</span><span class="n">reset</span><span class="p">(</span><span class="n">_L</span><span class="p">);</span>
+
+    <span class="c1">// Set solution to intitial condition</span>
+    <span class="n">InitialConditions</span> <span class="n">u_initial</span><span class="p">;</span>
+    <span class="o">*</span><span class="n">_u</span> <span class="o">=</span> <span class="n">u_initial</span><span class="p">;</span>
+  <span class="p">}</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">CahnHilliardEquation</span></code> class stores the data required for
+computing the residual vector and the Jacobian matrix as private data:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span>    <span class="c1">// Function space, forms and functions</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Form</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Form</span><span class="o">&gt;</span> <span class="n">L</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Function</span><span class="o">&gt;</span> <span class="n">_u</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Function</span><span class="o">&gt;</span> <span class="n">_u0</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>The main program is started, and declared such that it can accept
+command line arguments. Such are parsed to <code class="docutils literal"><span class="pre">init</span></code>:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+  <span class="n">init</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>A mesh is then created with 97 (96 + 1) vertices in each direction:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// Mesh</span>
+<span class="k">auto</span> <span class="n">mesh</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">UnitSquareMesh</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">96</span><span class="p">,</span> <span class="mi">96</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>A set of constants (required for the assembling of the forms) and two
+scalars (to be used in the time stepping) are then declared:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// Time stepping and model parameters</span>
+<span class="k">auto</span> <span class="n">dt</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Constant</span><span class="o">&gt;</span><span class="p">(</span><span class="mf">5.0e-6</span><span class="p">);</span>
+<span class="k">auto</span> <span class="n">theta</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Constant</span><span class="o">&gt;</span><span class="p">(</span><span class="mf">0.5</span><span class="p">);</span>
+<span class="k">auto</span> <span class="n">lambda</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Constant</span><span class="o">&gt;</span><span class="p">(</span><span class="mf">1.0e-2</span><span class="p">);</span>
+
+<span class="kt">double</span> <span class="n">t</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+<span class="kt">double</span> <span class="n">T</span> <span class="o">=</span> <span class="mi">50</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="n">dt</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>A <code class="docutils literal"><span class="pre">CahnHilliardEquation</span></code> object is created, which will be used in conjunction
+with a Newton solver, and references to solution functions are
+declared:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// Create user-defined nonlinear problem</span>
+<span class="n">CahnHilliardEquation</span> <span class="nf">cahn_hilliard</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">lambda</span><span class="p">);</span>
+
+<span class="c1">// Solution functions</span>
+<span class="n">Function</span><span class="o">&amp;</span> <span class="n">u</span> <span class="o">=</span> <span class="n">cahn_hilliard</span><span class="p">.</span><span class="n">u</span><span class="p">();</span>
+<span class="n">Function</span><span class="o">&amp;</span> <span class="n">u0</span> <span class="o">=</span> <span class="n">cahn_hilliard</span><span class="p">.</span><span class="n">u0</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>A Newton solver is created which will use a LU linear solver, and various
+solver parameters are set:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// Create nonlinear solver and set parameters</span>
+<span class="n">NewtonSolver</span> <span class="n">newton_solver</span><span class="p">;</span>
+<span class="n">newton_solver</span><span class="p">.</span><span class="n">parameters</span><span class="p">[</span><span class="s">&quot;linear_solver&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;lu&quot;</span><span class="p">;</span>
+<span class="n">newton_solver</span><span class="p">.</span><span class="n">parameters</span><span class="p">[</span><span class="s">&quot;convergence_criterion&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;incremental&quot;</span><span class="p">;</span>
+<span class="n">newton_solver</span><span class="p">.</span><span class="n">parameters</span><span class="p">[</span><span class="s">&quot;maximum_iterations&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="n">newton_solver</span><span class="p">.</span><span class="n">parameters</span><span class="p">[</span><span class="s">&quot;relative_tolerance&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1e-6</span><span class="p">;</span>
+<span class="n">newton_solver</span><span class="p">.</span><span class="n">parameters</span><span class="p">[</span><span class="s">&quot;absolute_tolerance&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1e-15</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>A file is created for saving the solution at each time step in VTK
+format. The data will be compressed to reduce the file size.</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// Save initial condition to file</span>
+<span class="n">File</span> <span class="nf">file</span><span class="p">(</span><span class="s">&quot;cahn_hilliard.pvd&quot;</span><span class="p">,</span> <span class="s">&quot;compressed&quot;</span><span class="p">);</span>
+<span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+</pre></div>
+</div>
+<p>The solution process is based on stepping forward in time. At the
+beginning of each time step, time is incremented and <span class="math">\(u_{n}
+\leftarrow u_{n+1}\)</span>. The Newton solver is then used to solve the
+nonlinear equation and the first component of the solution (<code class="docutils literal"><span class="pre">u[0]</span></code>)
+is saved to a file, along with the time <code class="docutils literal"><span class="pre">t</span></code>.</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// Solve</span>
+<span class="k">while</span> <span class="p">(</span><span class="n">t</span> <span class="o">&lt;</span> <span class="n">T</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">// Update for next time step</span>
+  <span class="n">t</span> <span class="o">+=</span> <span class="o">*</span><span class="n">dt</span><span class="p">;</span>
+  <span class="o">*</span><span class="n">u0</span><span class="p">.</span><span class="n">vector</span><span class="p">()</span> <span class="o">=</span> <span class="o">*</span><span class="n">u</span><span class="p">.</span><span class="n">vector</span><span class="p">();</span>
+
+  <span class="c1">// Solve</span>
+  <span class="n">newton_solver</span><span class="p">.</span><span class="n">solve</span><span class="p">(</span><span class="n">cahn_hilliard</span><span class="p">,</span> <span class="o">*</span><span class="n">u</span><span class="p">.</span><span class="n">vector</span><span class="p">());</span>
+
+  <span class="c1">// Save function to file</span>
+  <span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">Function</span><span class="o">*</span><span class="p">,</span> <span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">t</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The final result is plotted to the screen and the program is finished.</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span>  <span class="c1">// Plot solution</span>
+  <span class="n">plot</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+  <span class="n">interactive</span><span class="p">();</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complete-code">
+<h2>1.3. Complete code<a class="headerlink" href="#complete-code" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="complete-ufl-files">
+<h3>1.3.1. Complete UFL files<a class="headerlink" href="#complete-ufl-files" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span></span>
+<span class="n">cell</span> <span class="o">=</span> <span class="n">triangle</span>
+
+<span class="n">P1</span> <span class="o">=</span> <span class="n">FiniteElement</span><span class="p">(</span><span class="s2">&quot;Lagrange&quot;</span><span class="p">,</span> <span class="n">cell</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ME</span> <span class="o">=</span> <span class="n">P1</span><span class="o">*</span><span class="n">P1</span>
+
+<span class="n">du</span>   <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">ME</span><span class="p">)</span>
+<span class="n">q</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">TestFunctions</span><span class="p">(</span><span class="n">ME</span><span class="p">)</span>
+
+<span class="n">u</span>   <span class="o">=</span> <span class="n">Coefficient</span><span class="p">(</span><span class="n">ME</span><span class="p">)</span>  <span class="c1"># current solution</span>
+<span class="n">u0</span>  <span class="o">=</span> <span class="n">Coefficient</span><span class="p">(</span><span class="n">ME</span><span class="p">)</span>  <span class="c1"># solution from previous converged step</span>
+
+<span class="c1"># Split mixed functions</span>
+<span class="n">dc</span><span class="p">,</span> <span class="n">dmu</span> <span class="o">=</span> <span class="n">split</span><span class="p">(</span><span class="n">du</span><span class="p">)</span>
+<span class="n">c</span><span class="p">,</span>  <span class="n">mu</span>  <span class="o">=</span> <span class="n">split</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+<span class="n">c0</span><span class="p">,</span> <span class="n">mu0</span> <span class="o">=</span> <span class="n">split</span><span class="p">(</span><span class="n">u0</span><span class="p">)</span>
+
+<span class="n">lmbda</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span> <span class="c1"># surface energy parameter</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span> <span class="c1"># time step</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span> <span class="c1"># time stepping parameter</span>
+
+<span class="c1"># mu_(n+theta)</span>
+<span class="n">mu_mid</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">theta</span><span class="p">)</span><span class="o">*</span><span class="n">mu0</span> <span class="o">+</span> <span class="n">theta</span><span class="o">*</span><span class="n">mu</span>
+
+<span class="c1"># Compute the chemical potential df/dc</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">variable</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="mi">100</span><span class="o">*</span><span class="n">c</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">c</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">dfdc</span> <span class="o">=</span> <span class="n">diff</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+
+<span class="n">F0</span> <span class="o">=</span> <span class="n">c</span><span class="o">*</span><span class="n">q</span><span class="o">*</span><span class="n">dx</span>  <span class="o">-</span> <span class="n">c0</span><span class="o">*</span><span class="n">q</span><span class="o">*</span><span class="n">dx</span>   <span class="o">+</span> <span class="n">dt</span><span class="o">*</span><span class="n">dot</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">mu_mid</span><span class="p">),</span> <span class="n">grad</span><span class="p">(</span><span class="n">q</span><span class="p">))</span><span class="o">*</span><span class="n">dx</span>
+<span class="n">F1</span> <span class="o">=</span> <span class="n">mu</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">dx</span> <span class="o">-</span> <span class="n">dfdc</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">dx</span> <span class="o">-</span> <span class="n">lmbda</span><span class="o">*</span><span class="n">dot</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">c</span><span class="p">),</span> <span class="n">grad</span><span class="p">(</span><span class="n">v</span><span class="p">))</span><span class="o">*</span><span class="n">dx</span>
+<span class="n">F</span>  <span class="o">=</span> <span class="n">F0</span> <span class="o">+</span> <span class="n">F1</span>
+
+<span class="n">J</span> <span class="o">=</span> <span class="n">derivative</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">du</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span></span>
+<span class="n">cell</span> <span class="o">=</span> <span class="n">tetrahedron</span>
+
+<span class="n">P1</span> <span class="o">=</span> <span class="n">FiniteElement</span><span class="p">(</span><span class="s2">&quot;Lagrange&quot;</span><span class="p">,</span> <span class="n">cell</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ME</span> <span class="o">=</span> <span class="n">P1</span><span class="o">*</span><span class="n">P1</span>
+
+<span class="n">du</span>   <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">ME</span><span class="p">)</span>
+<span class="n">q</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">TestFunctions</span><span class="p">(</span><span class="n">ME</span><span class="p">)</span>
+
+<span class="n">u</span>   <span class="o">=</span> <span class="n">Coefficient</span><span class="p">(</span><span class="n">ME</span><span class="p">)</span>  <span class="c1"># current solution</span>
+<span class="n">u0</span>  <span class="o">=</span> <span class="n">Coefficient</span><span class="p">(</span><span class="n">ME</span><span class="p">)</span>  <span class="c1"># solution from previous converged step</span>
+
+<span class="c1"># Split mixed functions</span>
+<span class="n">dc</span><span class="p">,</span> <span class="n">dmu</span> <span class="o">=</span> <span class="n">split</span><span class="p">(</span><span class="n">du</span><span class="p">)</span>
+<span class="n">c</span><span class="p">,</span>  <span class="n">mu</span>  <span class="o">=</span> <span class="n">split</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+<span class="n">c0</span><span class="p">,</span> <span class="n">mu0</span> <span class="o">=</span> <span class="n">split</span><span class="p">(</span><span class="n">u0</span><span class="p">)</span>
+
+<span class="n">lmbda</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span> <span class="c1"># surface energy parameter</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span> <span class="c1"># time step</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span> <span class="c1"># time stepping parameter</span>
+
+<span class="c1"># mu_(n+theta)</span>
+<span class="n">mu_mid</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">theta</span><span class="p">)</span><span class="o">*</span><span class="n">mu0</span> <span class="o">+</span> <span class="n">theta</span><span class="o">*</span><span class="n">mu</span>
+
+<span class="c1"># Compute the chemical potential df/dc</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">variable</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="mi">100</span><span class="o">*</span><span class="n">c</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">c</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">dfdc</span> <span class="o">=</span> <span class="n">diff</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+
+<span class="n">F0</span> <span class="o">=</span> <span class="n">c</span><span class="o">*</span><span class="n">q</span><span class="o">*</span><span class="n">dx</span>  <span class="o">-</span> <span class="n">c0</span><span class="o">*</span><span class="n">q</span><span class="o">*</span><span class="n">dx</span>   <span class="o">+</span> <span class="n">dt</span><span class="o">*</span><span class="n">dot</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">mu_mid</span><span class="p">),</span> <span class="n">grad</span><span class="p">(</span><span class="n">q</span><span class="p">))</span><span class="o">*</span><span class="n">dx</span>
+<span class="n">F1</span> <span class="o">=</span> <span class="n">mu</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">dx</span> <span class="o">-</span> <span class="n">dfdc</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">dx</span> <span class="o">-</span> <span class="n">lmbda</span><span class="o">*</span><span class="n">dot</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">c</span><span class="p">),</span> <span class="n">grad</span><span class="p">(</span><span class="n">v</span><span class="p">))</span><span class="o">*</span><span class="n">dx</span>
+<span class="n">F</span>  <span class="o">=</span> <span class="n">F0</span> <span class="o">+</span> <span class="n">F1</span>
+
+<span class="n">J</span> <span class="o">=</span> <span class="n">derivative</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">du</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="complete-main-file">
+<h3>1.3.2. Complete main file<a class="headerlink" href="#complete-main-file" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;dolfin.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;CahnHilliard2D.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;CahnHilliard3D.h&quot;</span><span class="cp"></span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">dolfin</span><span class="p">;</span>
+
+<span class="c1">// Initial conditions</span>
+<span class="k">class</span> <span class="nc">InitialConditions</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Expression</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+
+  <span class="n">InitialConditions</span><span class="p">()</span> <span class="o">:</span> <span class="n">Expression</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+  <span class="p">{</span> <span class="n">dolfin</span><span class="o">::</span><span class="n">seed</span><span class="p">(</span><span class="mi">2</span> <span class="o">+</span> <span class="n">dolfin</span><span class="o">::</span><span class="n">MPI</span><span class="o">::</span><span class="n">rank</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">));</span> <span class="p">}</span>
+
+  <span class="kt">void</span> <span class="n">eval</span><span class="p">(</span><span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span> <span class="n">values</span><span class="p">,</span> <span class="k">const</span> <span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span> <span class="n">x</span><span class="p">)</span> <span class="k">const</span>
+  <span class="p">{</span>
+    <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span> <span class="mf">0.63</span> <span class="o">+</span> <span class="mf">0.02</span><span class="o">*</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">-</span> <span class="n">dolfin</span><span class="o">::</span><span class="n">rand</span><span class="p">());</span>
+    <span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+  <span class="p">}</span>
+
+<span class="p">};</span>
+
+<span class="c1">// User defined nonlinear problem</span>
+<span class="k">class</span> <span class="nc">CahnHilliardEquation</span> <span class="o">:</span> <span class="k">public</span> <span class="n">NonlinearProblem</span>
+<span class="p">{</span>
+  <span class="k">public</span><span class="o">:</span>
+
+    <span class="c1">// Constructor</span>
+    <span class="n">CahnHilliardEquation</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">Form</span><span class="o">&gt;</span> <span class="n">F</span><span class="p">,</span>
+                         <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">Form</span><span class="o">&gt;</span> <span class="n">J</span><span class="p">)</span> <span class="o">:</span> <span class="n">_F</span><span class="p">(</span><span class="n">F</span><span class="p">),</span> <span class="n">_J</span><span class="p">(</span><span class="n">J</span><span class="p">)</span> <span class="p">{}</span>
+
+    <span class="c1">// User defined residual vector</span>
+    <span class="kt">void</span> <span class="n">F</span><span class="p">(</span><span class="n">GenericVector</span><span class="o">&amp;</span> <span class="n">b</span><span class="p">,</span> <span class="k">const</span> <span class="n">GenericVector</span><span class="o">&amp;</span> <span class="n">x</span><span class="p">)</span>
+    <span class="p">{</span> <span class="n">assemble</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="o">*</span><span class="n">_F</span><span class="p">);</span> <span class="p">}</span>
+
+    <span class="c1">// User defined assemble of Jacobian</span>
+    <span class="kt">void</span> <span class="n">J</span><span class="p">(</span><span class="n">GenericMatrix</span><span class="o">&amp;</span> <span class="n">A</span><span class="p">,</span> <span class="k">const</span> <span class="n">GenericVector</span><span class="o">&amp;</span> <span class="n">x</span><span class="p">)</span>
+    <span class="p">{</span> <span class="n">assemble</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="o">*</span><span class="n">_J</span><span class="p">);</span> <span class="p">}</span>
+
+  <span class="k">private</span><span class="o">:</span>
+
+    <span class="c1">// Forms</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">Form</span><span class="o">&gt;</span> <span class="n">_F</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">Form</span><span class="o">&gt;</span> <span class="n">_J</span><span class="p">;</span>
+<span class="p">};</span>
+
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+  <span class="n">init</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">);</span>
+
+  <span class="c1">// Mesh</span>
+  <span class="k">auto</span> <span class="n">mesh</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">UnitSquareMesh</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">96</span><span class="p">,</span> <span class="mi">96</span><span class="p">);</span>
+
+  <span class="c1">// Create function space and forms, depending on spatial dimension</span>
+  <span class="c1">// of the mesh</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">FunctionSpace</span><span class="o">&gt;</span> <span class="n">V</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Form</span><span class="o">&gt;</span> <span class="n">F</span><span class="p">,</span> <span class="n">J</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">mesh</span><span class="o">-&gt;</span><span class="n">geometry</span><span class="p">().</span><span class="n">dim</span><span class="p">()</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">V</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">CahnHilliard2D</span><span class="o">::</span><span class="n">FunctionSpace</span><span class="o">&gt;</span><span class="p">(</span><span class="n">mesh</span><span class="p">);</span>
+    <span class="n">F</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">CahnHilliard2D</span><span class="o">::</span><span class="n">ResidualForm</span><span class="o">&gt;</span><span class="p">(</span><span class="n">V</span><span class="p">);</span>
+    <span class="n">J</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">CahnHilliard2D</span><span class="o">::</span><span class="n">JacobianForm</span><span class="o">&gt;</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">V</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">mesh</span><span class="o">-&gt;</span><span class="n">geometry</span><span class="p">().</span><span class="n">dim</span><span class="p">()</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">V</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">CahnHilliard3D</span><span class="o">::</span><span class="n">FunctionSpace</span><span class="o">&gt;</span><span class="p">(</span><span class="n">mesh</span><span class="p">);</span>
+    <span class="n">F</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">CahnHilliard3D</span><span class="o">::</span><span class="n">ResidualForm</span><span class="o">&gt;</span><span class="p">(</span><span class="n">V</span><span class="p">);</span>
+    <span class="n">J</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">CahnHilliard3D</span><span class="o">::</span><span class="n">JacobianForm</span><span class="o">&gt;</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">V</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span>
+    <span class="n">error</span><span class="p">(</span><span class="s">&quot;This demo only supports two or three spatial dimensions.&quot;</span><span class="p">);</span>
+
+  <span class="c1">// Create solution Functions (at t_n and t_{n+1})</span>
+  <span class="k">auto</span> <span class="n">u0</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Function</span><span class="o">&gt;</span><span class="p">(</span><span class="n">V</span><span class="p">);</span>
+  <span class="k">auto</span> <span class="n">u</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Function</span><span class="o">&gt;</span><span class="p">(</span><span class="n">V</span><span class="p">);</span>
+
+  <span class="c1">// Set solution to intitial condition</span>
+  <span class="n">InitialConditions</span> <span class="n">u_initial</span><span class="p">;</span>
+  <span class="o">*</span><span class="n">u0</span> <span class="o">=</span> <span class="n">u_initial</span><span class="p">;</span>
+  <span class="o">*</span><span class="n">u</span> <span class="o">=</span> <span class="n">u_initial</span><span class="p">;</span>
+
+  <span class="c1">// Time stepping and model parameters</span>
+  <span class="k">auto</span> <span class="n">dt</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Constant</span><span class="o">&gt;</span><span class="p">(</span><span class="mf">5.0e-6</span><span class="p">);</span>
+  <span class="k">auto</span> <span class="n">theta</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Constant</span><span class="o">&gt;</span><span class="p">(</span><span class="mf">0.5</span><span class="p">);</span>
+  <span class="k">auto</span> <span class="n">lambda</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Constant</span><span class="o">&gt;</span><span class="p">(</span><span class="mf">1.0e-2</span><span class="p">);</span>
+
+  <span class="c1">// Collect coefficient into groups</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">GenericFunction</span><span class="o">&gt;&gt;</span> <span class="n">coefficients</span>
+    <span class="o">=</span> <span class="p">{{</span><span class="s">&quot;u&quot;</span><span class="p">,</span> <span class="n">u</span><span class="p">},</span> <span class="p">{</span><span class="s">&quot;lmbda&quot;</span><span class="p">,</span> <span class="n">lambda</span><span class="p">},</span> <span class="p">{</span><span class="s">&quot;dt&quot;</span><span class="p">,</span> <span class="n">dt</span><span class="p">},</span> <span class="p">{</span><span class="s">&quot;theta&quot;</span><span class="p">,</span> <span class="n">theta</span><span class="p">}};</span>
+
+  <span class="c1">// Add extra coefficient for residual</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">GenericFunction</span><span class="o">&gt;&gt;</span> <span class="n">coefficients_F</span> <span class="o">=</span> <span class="n">coefficients</span><span class="p">;</span>
+  <span class="n">coefficients_F</span><span class="p">.</span><span class="n">insert</span><span class="p">({</span><span class="s">&quot;u0&quot;</span><span class="p">,</span> <span class="n">u0</span><span class="p">});</span>
+
+  <span class="c1">// Attach coefficients to form</span>
+  <span class="n">J</span><span class="o">-&gt;</span><span class="n">set_coefficients</span><span class="p">(</span><span class="n">coefficients</span><span class="p">);</span>
+  <span class="n">F</span><span class="o">-&gt;</span><span class="n">set_coefficients</span><span class="p">(</span><span class="n">coefficients_F</span><span class="p">);</span>
+
+  <span class="kt">double</span> <span class="n">t</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+  <span class="kt">double</span> <span class="n">T</span> <span class="o">=</span> <span class="mi">50</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="n">dt</span><span class="p">);</span>
+
+  <span class="c1">// Create user-defined nonlinear problem</span>
+  <span class="n">CahnHilliardEquation</span> <span class="n">cahn_hilliard</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">J</span><span class="p">);</span>
+
+  <span class="c1">// Create nonlinear solver and set parameters</span>
+  <span class="n">NewtonSolver</span> <span class="n">newton_solver</span><span class="p">;</span>
+  <span class="n">newton_solver</span><span class="p">.</span><span class="n">parameters</span><span class="p">[</span><span class="s">&quot;linear_solver&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;lu&quot;</span><span class="p">;</span>
+  <span class="n">newton_solver</span><span class="p">.</span><span class="n">parameters</span><span class="p">[</span><span class="s">&quot;convergence_criterion&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;incremental&quot;</span><span class="p">;</span>
+  <span class="n">newton_solver</span><span class="p">.</span><span class="n">parameters</span><span class="p">[</span><span class="s">&quot;maximum_iterations&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+  <span class="n">newton_solver</span><span class="p">.</span><span class="n">parameters</span><span class="p">[</span><span class="s">&quot;relative_tolerance&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1e-6</span><span class="p">;</span>
+  <span class="n">newton_solver</span><span class="p">.</span><span class="n">parameters</span><span class="p">[</span><span class="s">&quot;absolute_tolerance&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1e-15</span><span class="p">;</span>
+
+  <span class="c1">// Save initial condition to file</span>
+  <span class="n">File</span> <span class="n">file</span><span class="p">(</span><span class="s">&quot;cahn_hilliard.pvd&quot;</span><span class="p">,</span> <span class="s">&quot;compressed&quot;</span><span class="p">);</span>
+  <span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="o">*</span><span class="n">u</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>
+
+  <span class="c1">// Solve</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">t</span> <span class="o">&lt;</span> <span class="n">T</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="c1">// Update for next time step</span>
+    <span class="n">t</span> <span class="o">+=</span> <span class="o">*</span><span class="n">dt</span><span class="p">;</span>
+    <span class="o">*</span><span class="n">u0</span><span class="o">-&gt;</span><span class="n">vector</span><span class="p">()</span> <span class="o">=</span> <span class="o">*</span><span class="n">u</span><span class="o">-&gt;</span><span class="n">vector</span><span class="p">();</span>
+
+    <span class="c1">// Solve</span>
+    <span class="n">newton_solver</span><span class="p">.</span><span class="n">solve</span><span class="p">(</span><span class="n">cahn_hilliard</span><span class="p">,</span> <span class="o">*</span><span class="n">u</span><span class="o">-&gt;</span><span class="n">vector</span><span class="p">());</span>
+
+    <span class="c1">// Save function to file</span>
+    <span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">Function</span><span class="o">*</span><span class="p">,</span> <span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="p">((</span><span class="o">*</span><span class="n">u</span><span class="p">)[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">t</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Plot solution</span>
+  <span class="n">plot</span><span class="p">((</span><span class="o">*</span><span class="n">u</span><span class="p">)[</span><span class="mi">0</span><span class="p">]);</span>
+  <span class="n">interactive</span><span class="p">();</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../hyperelasticity/cpp/documentation.html" class="btn btn-neutral float-right" title="2. Hyperelasticity" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../../bcs/cpp/documentation.html" class="btn btn-neutral" title="&lt;no title&gt;" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://bitbucket.org/fenics-project/.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'2016.2.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

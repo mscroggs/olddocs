@@ -1,0 +1,28 @@
+var searchData=
+[
+  ['parallelrefinement',['ParallelRefinement',['../d8/df1/classdolfin_1_1ParallelRefinement.html',1,'dolfin']]],
+  ['parameter',['Parameter',['../d4/d95/classdolfin_1_1Parameter.html',1,'dolfin']]],
+  ['parameters',['Parameters',['../da/d06/classdolfin_1_1Parameters.html',1,'dolfin']]],
+  ['parmetis',['ParMETIS',['../dc/d5c/classdolfin_1_1ParMETIS.html',1,'dolfin']]],
+  ['periodicboundarycomputation',['PeriodicBoundaryComputation',['../de/d87/classdolfin_1_1PeriodicBoundaryComputation.html',1,'dolfin']]],
+  ['petscbasematrix',['PETScBaseMatrix',['../d0/d3d/classdolfin_1_1PETScBaseMatrix.html',1,'dolfin']]],
+  ['petscdmcollection',['PETScDMCollection',['../d8/d3b/classdolfin_1_1PETScDMCollection.html',1,'dolfin']]],
+  ['petscfactory',['PETScFactory',['../dd/d7e/classdolfin_1_1PETScFactory.html',1,'dolfin']]],
+  ['petsckrylovsolver',['PETScKrylovSolver',['../df/df1/classdolfin_1_1PETScKrylovSolver.html',1,'dolfin']]],
+  ['petsclinearoperator',['PETScLinearOperator',['../d1/dd8/classdolfin_1_1PETScLinearOperator.html',1,'dolfin']]],
+  ['petsclusolver',['PETScLUSolver',['../d6/d0e/classdolfin_1_1PETScLUSolver.html',1,'dolfin']]],
+  ['petscmatrix',['PETScMatrix',['../d4/db0/classdolfin_1_1PETScMatrix.html',1,'dolfin']]],
+  ['petscobject',['PETScObject',['../d1/d64/classdolfin_1_1PETScObject.html',1,'dolfin']]],
+  ['petscoptions',['PETScOptions',['../d9/d09/classdolfin_1_1PETScOptions.html',1,'dolfin']]],
+  ['petscpreconditioner',['PETScPreconditioner',['../d5/d49/classdolfin_1_1PETScPreconditioner.html',1,'dolfin']]],
+  ['petscsnessolver',['PETScSNESSolver',['../d8/dad/classdolfin_1_1PETScSNESSolver.html',1,'dolfin']]],
+  ['petsctaosolver',['PETScTAOSolver',['../db/d74/classdolfin_1_1PETScTAOSolver.html',1,'dolfin']]],
+  ['petscvector',['PETScVector',['../d5/d9e/classdolfin_1_1PETScVector.html',1,'dolfin']]],
+  ['plazarefinementnd',['PlazaRefinementND',['../da/d70/classdolfin_1_1PlazaRefinementND.html',1,'dolfin']]],
+  ['point',['Point',['../d3/d1a/classdolfin_1_1Point.html',1,'dolfin']]],
+  ['pointcell',['PointCell',['../da/dce/classdolfin_1_1PointCell.html',1,'dolfin']]],
+  ['pointintegralsolver',['PointIntegralSolver',['../db/d63/classdolfin_1_1PointIntegralSolver.html',1,'dolfin']]],
+  ['pointsource',['PointSource',['../d1/dd8/classdolfin_1_1PointSource.html',1,'dolfin']]],
+  ['predicateinitialization',['PredicateInitialization',['../da/d98/classdolfin_1_1PredicateInitialization.html',1,'dolfin']]],
+  ['progress',['Progress',['../d1/d53/classdolfin_1_1Progress.html',1,'dolfin']]]
+];

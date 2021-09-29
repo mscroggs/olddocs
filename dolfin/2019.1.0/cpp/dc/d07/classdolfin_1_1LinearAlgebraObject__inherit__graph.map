@@ -1,0 +1,19 @@
+<map id="dolfin::LinearAlgebraObject" name="dolfin::LinearAlgebraObject">
+<area shape="rect" id="node3" href="$da/d6a/classdolfin_1_1GenericLinearOperator.html" title="dolfin::GenericLinearOperator" alt="" coords="419,122,632,149"/>
+<area shape="rect" id="node12" href="$db/ddc/classdolfin_1_1GenericTensor.html" title="A common interface for arbitrary rank tensors. " alt="" coords="446,223,605,250"/>
+<area shape="rect" id="node2" href="$d8/df0/classdolfin_1_1Variable.html" title="Common base class for DOLFIN variables. " alt="" coords="5,198,124,225"/>
+<area shape="rect" id="node4" href="$df/dc8/classdolfin_1_1GenericLinearAlgebraFactory_1_1NotImplementedLinearOperator.html" title="dolfin::GenericLinearAlgebra\lFactory::NotImplementedLinearOperator" alt="" coords="680,5,963,47"/>
+<area shape="rect" id="node5" href="$dd/d5f/classdolfin_1_1GenericMatrix.html" title="This class defines a common interface for matrices. " alt="" coords="743,173,900,199"/>
+<area shape="rect" id="node10" href="$df/dc9/classdolfin_1_1LinearOperator.html" title="dolfin::LinearOperator" alt="" coords="740,71,903,98"/>
+<area shape="rect" id="node11" href="$d1/dd8/classdolfin_1_1PETScLinearOperator.html" title="PETSc version of the GenericLinearOperator. " alt="" coords="720,122,923,149"/>
+<area shape="rect" id="node6" href="$d4/d63/classdolfin_1_1EigenMatrix.html" title="dolfin::EigenMatrix" alt="" coords="1014,46,1157,73"/>
+<area shape="rect" id="node7" href="$d5/d04/classdolfin_1_1Matrix.html" title="dolfin::Matrix" alt="" coords="1032,97,1139,123"/>
+<area shape="rect" id="node8" href="$d4/db0/classdolfin_1_1PETScMatrix.html" title="dolfin::PETScMatrix" alt="" coords="1012,147,1159,174"/>
+<area shape="rect" id="node9" href="$d3/d2c/classdolfin_1_1TpetraMatrix.html" title="dolfin::TpetraMatrix" alt="" coords="1011,198,1160,225"/>
+<area shape="rect" id="node13" href="$d6/da4/classdolfin_1_1GenericVector.html" title="This class defines a common interface for vectors. " alt="" coords="743,274,900,301"/>
+<area shape="rect" id="node18" href="$db/d01/classdolfin_1_1Scalar.html" title="dolfin::Scalar" alt="" coords="768,325,875,351"/>
+<area shape="rect" id="node14" href="$df/d4b/classdolfin_1_1EigenVector.html" title="dolfin::EigenVector" alt="" coords="1014,249,1157,275"/>
+<area shape="rect" id="node15" href="$d5/d9e/classdolfin_1_1PETScVector.html" title="dolfin::PETScVector" alt="" coords="1012,299,1159,326"/>
+<area shape="rect" id="node16" href="$d3/dfd/classdolfin_1_1TpetraVector.html" title="dolfin::TpetraVector" alt="" coords="1011,350,1160,377"/>
+<area shape="rect" id="node17" href="$d7/da5/classdolfin_1_1Vector.html" title="dolfin::Vector" alt="" coords="1032,401,1139,427"/>
+</map>

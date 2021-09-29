@@ -1,0 +1,1015 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>dolfin.multistage.multistagescheme &mdash; DOLFIN  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../using.html">Using DOLFIN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../demos.html">Demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">Python API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../developer.html">Developer resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">DOLFIN</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>dolfin.multistage.multistagescheme</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for dolfin.multistage.multistagescheme</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;This module defines different MultiStageScheme classes which can be</span>
+<span class="sd">passed to a RKSolver or PointIntegralSolver</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># Copyright (C) 2013-2015 Johan Hake</span>
+<span class="c1">#</span>
+<span class="c1"># This file is part of DOLFIN.</span>
+<span class="c1">#</span>
+<span class="c1"># DOLFIN is free software: you can redistribute it and/or modify</span>
+<span class="c1"># it under the terms of the GNU Lesser General Public License as published by</span>
+<span class="c1"># the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c1"># (at your option) any later version.</span>
+<span class="c1">#</span>
+<span class="c1"># DOLFIN is distributed in the hope that it will be useful,</span>
+<span class="c1"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the</span>
+<span class="c1"># GNU Lesser General Public License for more details.</span>
+<span class="c1">#</span>
+<span class="c1"># You should have received a copy of the GNU Lesser General Public License</span>
+<span class="c1"># along with DOLFIN. If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<span class="c1">#</span>
+<span class="c1"># Modified by Patrick Farrell, 2013</span>
+<span class="c1"># Modified by Martin Sandve Alnæs, 2015</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">functools</span>
+<span class="kn">import</span> <span class="nn">ufl</span>
+
+<span class="kn">import</span> <span class="nn">dolfin.cpp</span> <span class="k">as</span> <span class="nn">cpp</span>
+<span class="kn">from</span> <span class="nn">dolfin.function.constant</span> <span class="k">import</span> <span class="n">Constant</span>
+<span class="kn">from</span> <span class="nn">dolfin.function.expression</span> <span class="k">import</span> <span class="n">Expression</span>
+<span class="kn">from</span> <span class="nn">dolfin.function.function</span> <span class="k">import</span> <span class="n">Function</span>
+<span class="kn">from</span> <span class="nn">dolfin.fem.formmanipulations</span> <span class="k">import</span> <span class="n">derivative</span><span class="p">,</span> <span class="n">adjoint</span>
+<span class="kn">from</span> <span class="nn">ufl</span> <span class="k">import</span> <span class="n">action</span> <span class="k">as</span> <span class="n">ufl_action</span>
+<span class="kn">from</span> <span class="nn">dolfin.fem.form</span> <span class="k">import</span> <span class="n">Form</span>
+<span class="kn">import</span> <span class="nn">ufl.algorithms</span>
+<span class="kn">from</span> <span class="nn">ufl.algorithms</span> <span class="k">import</span> <span class="n">expand_derivatives</span>
+
+<span class="c1"># FIXME: Add support for algebraic parts (at least for implicit)</span>
+<span class="c1"># FIXME: Add support for implicit/explicit split ala IMEX schemes</span>
+
+
+<span class="k">def</span> <span class="nf">safe_adjoint</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">adjoint</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">reordered_arguments</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">arguments</span><span class="p">())</span>
+
+
+<span class="k">def</span> <span class="nf">safe_action</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">expand_derivatives</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">integrals</span><span class="p">()</span> <span class="o">==</span> <span class="p">():</span>
+        <span class="k">return</span> <span class="n">x</span>  <span class="c1"># form is empty, return anyway</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">ufl_action</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_check_abc</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">or</span>
+            <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Expected an m x m numpy array as the first argument&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Expected a 1 or 2 dimensional numpy array as the second argument&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Expected a 1 dimensional numpy array as the third argument&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Make sure a is a &quot;matrix&quot;</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Get size of system</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># If b is a matrix we expect it to have two rows</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">b</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">size</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Expected a 2 row matrix with the same number &quot;</span>
+                             <span class="s2">&quot;of collumns as the first dimension of the a matrix.&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="o">!=</span> <span class="n">size</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Expected the length of the b vector to have the &quot;</span>
+                         <span class="s2">&quot;same size as the first dimension of the a matrix.&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">!=</span> <span class="n">size</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Expected the length of the c vector to have the &quot;</span>
+                         <span class="s2">&quot;same size as the first dimension of the a matrix.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Check if the method is singly diagonally implicit</span>
+    <span class="n">sigma</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
+        <span class="c1"># If implicit</span>
+        <span class="k">if</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">sigma</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                <span class="n">sigma</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span>
+            <span class="k">elif</span> <span class="n">sigma</span> <span class="o">!=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">]:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Expected only singly diagonally implicit &quot;</span>
+                                 <span class="s2">&quot;schemes. (Same value on the diagonal of &#39;a&#39;.)&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Check if tableau is fully implicit</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Does not support fully implicit Butcher tableau.&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">a</span>
+
+
+<span class="k">def</span> <span class="nf">_check_form</span><span class="p">(</span><span class="n">rhs_form</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rhs_form</span><span class="p">,</span> <span class="n">ufl</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Expected a ufl.Form as the 5th argument.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Check if form contains a cell or point integral</span>
+    <span class="k">if</span> <span class="n">rhs_form</span><span class="o">.</span><span class="n">integrals_by_type</span><span class="p">(</span><span class="s2">&quot;cell&quot;</span><span class="p">):</span>
+        <span class="n">DX</span> <span class="o">=</span> <span class="n">ufl</span><span class="o">.</span><span class="n">dx</span>
+    <span class="k">elif</span> <span class="n">rhs_form</span><span class="o">.</span><span class="n">integrals_by_type</span><span class="p">(</span><span class="s2">&quot;vertex&quot;</span><span class="p">):</span>
+        <span class="n">DX</span> <span class="o">=</span> <span class="n">ufl</span><span class="o">.</span><span class="n">dP</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Expected either a cell or vertex integral in the form.&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">rhs_form</span><span class="o">.</span><span class="n">integrals</span><span class="p">())</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Expected only one integral in form.&quot;</span><span class="p">)</span>
+
+    <span class="n">arguments</span> <span class="o">=</span> <span class="n">rhs_form</span><span class="o">.</span><span class="n">arguments</span><span class="p">()</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">arguments</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Expected the form to have rank 1&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">DX</span>
+
+
+<span class="k">def</span> <span class="nf">_time_dependent_expressions</span><span class="p">(</span><span class="n">rhs_form</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return a list of expressions which uses the present time as a</span>
+<span class="sd">    parameter</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># FIXME: Add extraction of time dependant expressions from bcs too</span>
+    <span class="n">time_dependent_expressions</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">coefficient</span> <span class="ow">in</span> <span class="n">rhs_form</span><span class="o">.</span><span class="n">coefficients</span><span class="p">():</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">coefficient</span><span class="p">,</span> <span class="s2">&quot;_user_parameters&quot;</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">c_name</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">coefficient</span><span class="o">.</span><span class="n">_user_parameters</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">ufl</span><span class="o">.</span><span class="n">Coefficient</span><span class="p">)</span> <span class="ow">and</span> <span class="n">time</span><span class="o">.</span><span class="n">id</span><span class="p">()</span> <span class="o">==</span> <span class="n">c</span><span class="o">.</span><span class="n">id</span><span class="p">():</span>
+                    <span class="k">if</span> <span class="n">coefficient</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">time_dependent_expressions</span><span class="p">:</span>
+                        <span class="n">time_dependent_expressions</span><span class="p">[</span><span class="n">coefficient</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">c_name</span><span class="p">]</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">time_dependent_expressions</span><span class="p">[</span><span class="n">coefficient</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c_name</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">time_dependent_expressions</span>
+
+
+<span class="k">def</span> <span class="nf">_replace_dict_time_dependent_expression</span><span class="p">(</span><span class="n">time_dep_expressions</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span>
+                                            <span class="n">dt</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+    <span class="k">assert</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="nb">float</span><span class="p">))</span>
+    <span class="n">replace_dict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="mf">0.0</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">time_dep_expressions</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">replace_dict</span>
+    <span class="n">new_time</span> <span class="o">=</span> <span class="n">Expression</span><span class="p">(</span><span class="s2">&quot;time + c*dt&quot;</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="n">time</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">,</span> <span class="n">degree</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">expr</span><span class="p">,</span> <span class="n">c_names</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">time_dep_expressions</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+        <span class="k">assert</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">Expression</span><span class="p">))</span>
+        <span class="n">kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">expr</span><span class="o">.</span><span class="n">name</span><span class="p">(),</span> <span class="n">label</span><span class="o">=</span><span class="n">expr</span><span class="o">.</span><span class="n">label</span><span class="p">(),</span>
+                      <span class="n">element</span><span class="o">=</span><span class="n">expr</span><span class="o">.</span><span class="n">ufl_element</span><span class="p">(),</span> <span class="o">**</span><span class="n">expr</span><span class="o">.</span><span class="n">_user_parameters</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">c_name</span> <span class="ow">in</span> <span class="n">c_names</span><span class="p">:</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="n">c_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_time</span>
+        <span class="n">replace_dict</span><span class="p">[</span><span class="n">expr</span><span class="p">]</span> <span class="o">=</span> <span class="n">Expression</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">_cppcode</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">replace_dict</span>
+
+
+<span class="k">def</span> <span class="nf">_butcher_scheme_generator</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">solution</span><span class="p">,</span> <span class="n">rhs_form</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generates a list of forms and solutions for a given Butcher tableau</span>
+
+<span class="sd">    *Arguments*</span>
+<span class="sd">        a (2 dimensional numpy array)</span>
+<span class="sd">            The a matrix of the Butcher tableau.</span>
+<span class="sd">        b (1-2 dimensional numpy array)</span>
+<span class="sd">            The b vector of the Butcher tableau. If b is 2 dimensional the</span>
+<span class="sd">            scheme includes an error estimator and can be used in adaptive</span>
+<span class="sd">            solvers.</span>
+<span class="sd">        c (1 dimensional numpy array)</span>
+<span class="sd">            The c vector the Butcher tableau.</span>
+<span class="sd">        time (_Constant_)</span>
+<span class="sd">            A Constant holding the time at the start of the time step</span>
+<span class="sd">        solution (_Function_)</span>
+<span class="sd">            The prognostic variable</span>
+<span class="sd">        rhs_form (ufl.Form)</span>
+<span class="sd">            A UFL form representing the rhs for a time differentiated equation</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">a</span> <span class="o">=</span> <span class="n">_check_abc</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">DX</span> <span class="o">=</span> <span class="n">_check_form</span><span class="p">(</span><span class="n">rhs_form</span><span class="p">)</span>
+
+    <span class="c1"># Get test function</span>
+    <span class="n">arguments</span> <span class="o">=</span> <span class="n">rhs_form</span><span class="o">.</span><span class="n">arguments</span><span class="p">()</span>
+    <span class="c1"># coefficients = rhs_form.coefficients()</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># Create time step</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+
+    <span class="c1"># rhs forms</span>
+    <span class="n">dolfin_stage_forms</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">ufl_stage_forms</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Stage solutions</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="p">[</span><span class="n">Function</span><span class="p">(</span><span class="n">solution</span><span class="o">.</span><span class="n">function_space</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;k_</span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">)]</span>
+
+    <span class="n">jacobian_indices</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Create the stage forms</span>
+    <span class="n">y_</span> <span class="o">=</span> <span class="n">solution</span>
+    <span class="n">time_</span> <span class="o">=</span> <span class="n">time</span>
+    <span class="n">time_dep_expressions</span> <span class="o">=</span> <span class="n">_time_dependent_expressions</span><span class="p">(</span><span class="n">rhs_form</span><span class="p">,</span> <span class="n">time</span><span class="p">)</span>
+    <span class="n">zero_</span> <span class="o">=</span> <span class="n">ufl</span><span class="o">.</span><span class="n">zero</span><span class="p">(</span><span class="o">*</span><span class="n">y_</span><span class="o">.</span><span class="n">ufl_shape</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ki</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+
+        <span class="c1"># Check whether the stage is explicit</span>
+        <span class="n">explicit</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span>
+
+        <span class="c1"># Evaluation arguments for the ith stage</span>
+        <span class="n">evalargs</span> <span class="o">=</span> <span class="n">y_</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">])</span> <span class="o">*</span> <span class="n">k</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                                  <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)],</span> <span class="n">zero_</span><span class="p">)</span>
+        <span class="n">time</span> <span class="o">=</span> <span class="n">time_</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+        <span class="n">replace_dict</span> <span class="o">=</span> <span class="n">_replace_dict_time_dependent_expression</span><span class="p">(</span><span class="n">time_dep_expressions</span><span class="p">,</span>
+                                                               <span class="n">time_</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+        <span class="n">replace_dict</span><span class="p">[</span><span class="n">y_</span><span class="p">]</span> <span class="o">=</span> <span class="n">evalargs</span>
+        <span class="n">replace_dict</span><span class="p">[</span><span class="n">time_</span><span class="p">]</span> <span class="o">=</span> <span class="n">time</span>
+        <span class="n">stage_form</span> <span class="o">=</span> <span class="n">ufl</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">rhs_form</span><span class="p">,</span> <span class="n">replace_dict</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">explicit</span><span class="p">:</span>
+            <span class="n">stage_forms</span> <span class="o">=</span> <span class="p">[</span><span class="n">stage_form</span><span class="p">]</span>
+            <span class="n">jacobian_indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Create a F=0 form and differentiate it</span>
+            <span class="n">stage_form</span> <span class="o">-=</span> <span class="n">ufl</span><span class="o">.</span><span class="n">inner</span><span class="p">(</span><span class="n">ki</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="o">*</span> <span class="n">DX</span>
+            <span class="n">stage_forms</span> <span class="o">=</span> <span class="p">[</span><span class="n">stage_form</span><span class="p">,</span> <span class="n">derivative</span><span class="p">(</span><span class="n">stage_form</span><span class="p">,</span> <span class="n">ki</span><span class="p">)]</span>
+            <span class="n">jacobian_indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">ufl_stage_forms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stage_forms</span><span class="p">)</span>
+
+        <span class="n">dolfin_stage_forms</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">Form</span><span class="p">(</span><span class="n">form</span><span class="p">)</span> <span class="k">for</span> <span class="n">form</span> <span class="ow">in</span> <span class="n">stage_forms</span><span class="p">])</span>
+
+    <span class="c1"># Only one last stage</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">last_stage</span> <span class="o">=</span> <span class="n">Form</span><span class="p">(</span><span class="n">ufl</span><span class="o">.</span><span class="n">inner</span><span class="p">(</span><span class="n">y_</span> <span class="o">+</span> <span class="nb">sum</span><span class="p">([</span><span class="n">dt</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">bi</span><span class="p">)</span> <span class="o">*</span> <span class="n">ki</span> <span class="k">for</span> <span class="n">bi</span><span class="p">,</span> <span class="n">ki</span> <span class="ow">in</span>
+                                              <span class="nb">zip</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">k</span><span class="p">)],</span> <span class="n">zero_</span><span class="p">),</span> <span class="n">v</span><span class="p">)</span> <span class="o">*</span> <span class="n">DX</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># FIXME: Add support for adaptivity in RKSolver and</span>
+        <span class="c1"># MultiStageScheme</span>
+        <span class="n">last_stage</span> <span class="o">=</span> <span class="p">[</span><span class="n">Form</span><span class="p">(</span><span class="n">ufl</span><span class="o">.</span><span class="n">inner</span><span class="p">(</span><span class="n">y_</span> <span class="o">+</span> <span class="nb">sum</span><span class="p">([</span><span class="n">dt</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">bi</span><span class="p">)</span> <span class="o">*</span> <span class="n">ki</span> <span class="k">for</span> <span class="n">bi</span><span class="p">,</span> <span class="n">ki</span> <span class="ow">in</span>
+                                               <span class="nb">zip</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:],</span> <span class="n">k</span><span class="p">)],</span> <span class="n">zero_</span><span class="p">),</span> <span class="n">v</span><span class="p">)</span> <span class="o">*</span> <span class="n">DX</span><span class="p">),</span>
+                      <span class="n">Form</span><span class="p">(</span><span class="n">ufl</span><span class="o">.</span><span class="n">inner</span><span class="p">(</span><span class="n">y_</span> <span class="o">+</span> <span class="nb">sum</span><span class="p">([</span><span class="n">dt</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">bi</span><span class="p">)</span> <span class="o">*</span> <span class="n">ki</span> <span class="k">for</span> <span class="n">bi</span><span class="p">,</span> <span class="n">ki</span> <span class="ow">in</span>
+                                               <span class="nb">zip</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:],</span> <span class="n">k</span><span class="p">)],</span> <span class="n">zero_</span><span class="p">),</span> <span class="n">v</span><span class="p">)</span> <span class="o">*</span> <span class="n">DX</span><span class="p">)]</span>
+
+    <span class="c1"># Create the Function holding the solution at end of time step</span>
+    <span class="c1"># k.append(solution.copy())</span>
+
+    <span class="c1"># Generate human form of MultiStageScheme</span>
+    <span class="n">human_form</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
+        <span class="n">kterm</span> <span class="o">=</span> <span class="s2">&quot; + &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">h*k_</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s2">&quot;&quot;</span> <span class="k">if</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mf">1.0</span> <span class="k">else</span>
+                                         <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">*&quot;</span> <span class="o">%</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">],</span> <span class="n">j</span><span class="p">)</span>
+                           <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">)</span> <span class="k">if</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]:</span>
+            <span class="n">cih</span> <span class="o">=</span> <span class="s2">&quot; + h&quot;</span> <span class="k">if</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mf">1.0</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">cih</span> <span class="o">=</span> <span class="s2">&quot; + </span><span class="si">%s</span><span class="s2">*h&quot;</span> <span class="o">%</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">kterm</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">human_form</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;k_</span><span class="si">%(i)s</span><span class="s2"> = f(t_n</span><span class="si">%(cih)s</span><span class="s2">, y_n)&quot;</span> <span class="o">%</span> <span class="p">{</span><span class="s2">&quot;i&quot;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;cih&quot;</span><span class="p">:</span> <span class="n">cih</span><span class="p">})</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">human_form</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;k_</span><span class="si">%(i)s</span><span class="s2"> = f(t_n</span><span class="si">%(cih)s</span><span class="s2">, y_n + </span><span class="si">%(kterm)s</span><span class="s2">)&quot;</span> <span class="o">%</span>
+                              <span class="p">{</span><span class="s2">&quot;i&quot;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;cih&quot;</span><span class="p">:</span> <span class="n">cih</span><span class="p">,</span> <span class="s2">&quot;kterm&quot;</span><span class="p">:</span> <span class="n">kterm</span><span class="p">})</span>
+
+    <span class="n">parentheses</span> <span class="o">=</span> <span class="s2">&quot;(</span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">b</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">&quot;</span>
+    <span class="n">human_form</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;y_{n+1} = y_n + h*&quot;</span> <span class="o">+</span> <span class="n">parentheses</span> <span class="o">%</span> <span class="p">(</span><span class="s2">&quot; + &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+        <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">k_</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s2">&quot;&quot;</span> <span class="k">if</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mf">1.0</span> <span class="k">else</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">*&quot;</span> <span class="o">%</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">i</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">)</span> <span class="k">if</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)))</span>
+
+    <span class="n">human_form</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">human_form</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">ufl_stage_forms</span><span class="p">,</span> <span class="n">dolfin_stage_forms</span><span class="p">,</span> <span class="n">jacobian_indices</span><span class="p">,</span> <span class="n">last_stage</span><span class="p">,</span> \
+        <span class="n">k</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">human_form</span><span class="p">,</span> <span class="kc">None</span>
+
+
+<span class="k">def</span> <span class="nf">_butcher_scheme_generator_tlm</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">solution</span><span class="p">,</span> <span class="n">rhs_form</span><span class="p">,</span>
+                                  <span class="n">perturbation</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generates a list of forms and solutions for a given Butcher tableau</span>
+
+<span class="sd">    *Arguments*</span>
+<span class="sd">        a (2 dimensional numpy array)</span>
+<span class="sd">            The a matrix of the Butcher tableau.</span>
+<span class="sd">        b (1-2 dimensional numpy array)</span>
+<span class="sd">            The b vector of the Butcher tableau. If b is 2 dimensional the</span>
+<span class="sd">            scheme includes an error estimator and can be used in adaptive</span>
+<span class="sd">            solvers.</span>
+<span class="sd">        c (1 dimensional numpy array)</span>
+<span class="sd">            The c vector the Butcher tableau.</span>
+<span class="sd">        time (_Constant_)</span>
+<span class="sd">            A Constant holding the time at the start of the time step</span>
+<span class="sd">        solution (_Function_)</span>
+<span class="sd">            The prognostic variable</span>
+<span class="sd">        rhs_form (ufl.Form)</span>
+<span class="sd">            A UFL form representing the rhs for a time differentiated equation</span>
+<span class="sd">        perturbation (_Function_)</span>
+<span class="sd">            The perturbation in the initial condition of the solution</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">a</span> <span class="o">=</span> <span class="n">_check_abc</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">DX</span> <span class="o">=</span> <span class="n">_check_form</span><span class="p">(</span><span class="n">rhs_form</span><span class="p">)</span>
+
+    <span class="c1"># Get test function</span>
+    <span class="n">arguments</span> <span class="o">=</span> <span class="n">rhs_form</span><span class="o">.</span><span class="n">arguments</span><span class="p">()</span>
+    <span class="c1"># coefficients = rhs_form.coefficients()</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># Create time step</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+
+    <span class="c1"># rhs forms</span>
+    <span class="n">dolfin_stage_forms</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">ufl_stage_forms</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Stage solutions</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="p">[</span><span class="n">Function</span><span class="p">(</span><span class="n">solution</span><span class="o">.</span><span class="n">function_space</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;k_</span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">)]</span>
+    <span class="n">kdot</span> <span class="o">=</span> <span class="p">[</span><span class="n">Function</span><span class="p">(</span><span class="n">solution</span><span class="o">.</span><span class="n">function_space</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;kdot_</span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">i</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">)]</span>
+
+    <span class="c1"># Create the stage forms</span>
+    <span class="n">y_</span> <span class="o">=</span> <span class="n">solution</span>
+    <span class="n">time_</span> <span class="o">=</span> <span class="n">time</span>
+    <span class="n">time_dep_expressions</span> <span class="o">=</span> <span class="n">_time_dependent_expressions</span><span class="p">(</span><span class="n">rhs_form</span><span class="p">,</span> <span class="n">time</span><span class="p">)</span>
+    <span class="n">zero_</span> <span class="o">=</span> <span class="n">ufl</span><span class="o">.</span><span class="n">zero</span><span class="p">(</span><span class="o">*</span><span class="n">y_</span><span class="o">.</span><span class="n">ufl_shape</span><span class="p">)</span>
+    <span class="n">forward_forms</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">stage_solutions</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">jacobian_indices</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ki</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+
+        <span class="c1"># Check whether the stage is explicit</span>
+        <span class="n">explicit</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span>
+
+        <span class="c1"># Evaluation arguments for the ith stage</span>
+        <span class="n">evalargs</span> <span class="o">=</span> <span class="n">y_</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">])</span> <span class="o">*</span> <span class="n">k</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                                  <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)],</span> <span class="n">zero_</span><span class="p">)</span>
+        <span class="n">time</span> <span class="o">=</span> <span class="n">time_</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+        <span class="n">replace_dict</span> <span class="o">=</span> <span class="n">_replace_dict_time_dependent_expression</span><span class="p">(</span><span class="n">time_dep_expressions</span><span class="p">,</span>
+                                                               <span class="n">time_</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+        <span class="n">replace_dict</span><span class="p">[</span><span class="n">y_</span><span class="p">]</span> <span class="o">=</span> <span class="n">evalargs</span>
+        <span class="n">replace_dict</span><span class="p">[</span><span class="n">time_</span><span class="p">]</span> <span class="o">=</span> <span class="n">time</span>
+        <span class="n">stage_form</span> <span class="o">=</span> <span class="n">ufl</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">rhs_form</span><span class="p">,</span> <span class="n">replace_dict</span><span class="p">)</span>
+
+        <span class="n">forward_forms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stage_form</span><span class="p">)</span>
+
+        <span class="c1"># The recomputation of the forward run:</span>
+
+        <span class="k">if</span> <span class="n">explicit</span><span class="p">:</span>
+            <span class="n">stage_forms</span> <span class="o">=</span> <span class="p">[</span><span class="n">stage_form</span><span class="p">]</span>
+            <span class="n">jacobian_indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Create a F=0 form and differentiate it</span>
+            <span class="n">stage_form_implicit</span> <span class="o">=</span> <span class="n">stage_form</span> <span class="o">-</span> <span class="n">ufl</span><span class="o">.</span><span class="n">inner</span><span class="p">(</span><span class="n">ki</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="o">*</span> <span class="n">DX</span>
+            <span class="n">stage_forms</span> <span class="o">=</span> <span class="p">[</span><span class="n">stage_form_implicit</span><span class="p">,</span> <span class="n">derivative</span><span class="p">(</span><span class="n">stage_form_implicit</span><span class="p">,</span> <span class="n">ki</span><span class="p">)]</span>
+            <span class="n">jacobian_indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="n">ufl_stage_forms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stage_forms</span><span class="p">)</span>
+        <span class="n">dolfin_stage_forms</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">Form</span><span class="p">(</span><span class="n">form</span><span class="p">)</span> <span class="k">for</span> <span class="n">form</span> <span class="ow">in</span> <span class="n">stage_forms</span><span class="p">])</span>
+        <span class="n">stage_solutions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ki</span><span class="p">)</span>
+
+        <span class="c1"># And now the tangent linearisation:</span>
+        <span class="n">stage_form_tlm</span> <span class="o">=</span> <span class="n">safe_action</span><span class="p">(</span><span class="n">derivative</span><span class="p">(</span><span class="n">stage_form</span><span class="p">,</span> <span class="n">y_</span><span class="p">),</span> <span class="n">perturbation</span><span class="p">)</span> <span class="o">+</span> \
+            <span class="nb">sum</span><span class="p">([</span><span class="n">dt</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">])</span> <span class="o">*</span> <span class="n">safe_action</span><span class="p">(</span><span class="n">derivative</span><span class="p">(</span>
+                <span class="n">forward_forms</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">y_</span><span class="p">),</span> <span class="n">kdot</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)])</span>
+        <span class="k">if</span> <span class="n">explicit</span><span class="p">:</span>
+            <span class="n">stage_forms_tlm</span> <span class="o">=</span> <span class="p">[</span><span class="n">stage_form_tlm</span><span class="p">]</span>
+            <span class="n">jacobian_indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Create a F=0 form and differentiate it</span>
+            <span class="n">stage_form_tlm</span> <span class="o">-=</span> <span class="n">ufl</span><span class="o">.</span><span class="n">inner</span><span class="p">(</span><span class="n">kdot</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">v</span><span class="p">)</span> <span class="o">*</span> <span class="n">DX</span>
+            <span class="n">stage_forms_tlm</span> <span class="o">=</span> <span class="p">[</span><span class="n">stage_form_tlm</span><span class="p">,</span> <span class="n">derivative</span><span class="p">(</span><span class="n">stage_form_tlm</span><span class="p">,</span> <span class="n">kdot</span><span class="p">[</span><span class="n">i</span><span class="p">])]</span>
+            <span class="n">jacobian_indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">ufl_stage_forms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stage_forms_tlm</span><span class="p">)</span>
+        <span class="n">dolfin_stage_forms</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">Form</span><span class="p">(</span><span class="n">form</span><span class="p">)</span> <span class="k">for</span> <span class="n">form</span> <span class="ow">in</span> <span class="n">stage_forms_tlm</span><span class="p">])</span>
+        <span class="n">stage_solutions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">kdot</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+    <span class="c1"># Only one last stage</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">last_stage</span> <span class="o">=</span> <span class="n">Form</span><span class="p">(</span><span class="n">ufl</span><span class="o">.</span><span class="n">inner</span><span class="p">(</span><span class="n">perturbation</span> <span class="o">+</span> <span class="nb">sum</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">dt</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">bi</span><span class="p">)</span> <span class="o">*</span> <span class="n">kdoti</span> <span class="k">for</span> <span class="n">bi</span><span class="p">,</span> <span class="n">kdoti</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">kdot</span><span class="p">)],</span> <span class="n">zero_</span><span class="p">),</span> <span class="n">v</span><span class="p">)</span> <span class="o">*</span> <span class="n">DX</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Not sure what to do here&quot;</span><span class="p">)</span>
+
+    <span class="n">human_form</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
+        <span class="n">kterm</span> <span class="o">=</span> <span class="s2">&quot; + &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">h*k_</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s2">&quot;&quot;</span> <span class="k">if</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mf">1.0</span> <span class="k">else</span>
+                                         <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">*&quot;</span> <span class="o">%</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">],</span> <span class="n">j</span><span class="p">)</span>
+                           <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">)</span> <span class="k">if</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]:</span>
+            <span class="n">cih</span> <span class="o">=</span> <span class="s2">&quot; + h&quot;</span> <span class="k">if</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mf">1.0</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">cih</span> <span class="o">=</span> <span class="s2">&quot; + </span><span class="si">%s</span><span class="s2">*h&quot;</span> <span class="o">%</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+        <span class="n">kdotterm</span> <span class="o">=</span> <span class="s2">&quot; + &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%(a)s</span><span class="s2">h*action(derivative(f(t_n</span><span class="si">%(cih)s</span><span class="s2">, y_n + &quot;</span>
+                              <span class="s2">&quot;</span><span class="si">%(kterm)s</span><span class="s2">), kdot_</span><span class="si">%(i)s</span><span class="s2">&quot;</span> <span class="o">%</span>
+                              <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;&quot;</span> <span class="k">if</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mf">1.0</span> <span class="k">else</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">*&quot;</span> <span class="o">%</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">],</span> <span class="n">j</span><span class="p">),</span>
+                               <span class="s2">&quot;i&quot;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span>
+                               <span class="s2">&quot;cih&quot;</span><span class="p">:</span> <span class="n">cih</span><span class="p">,</span>
+                               <span class="s2">&quot;kterm&quot;</span><span class="p">:</span> <span class="n">kterm</span><span class="p">}</span>
+                              <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">)</span> <span class="k">if</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">kterm</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">human_form</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;k_</span><span class="si">%(i)s</span><span class="s2"> = f(t_n</span><span class="si">%(cih)s</span><span class="s2">, y_n)&quot;</span> <span class="o">%</span> <span class="p">{</span><span class="s2">&quot;i&quot;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;cih&quot;</span><span class="p">:</span> <span class="n">cih</span><span class="p">})</span>
+            <span class="n">human_form</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;kdot_</span><span class="si">%(i)s</span><span class="s2"> = action(derivative(&quot;</span>
+                              <span class="s2">&quot;f(t_n</span><span class="si">%(cih)s</span><span class="s2">, y_n), y_n), ydot_n)&quot;</span> <span class="o">%</span>
+                              <span class="p">{</span><span class="s2">&quot;i&quot;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;cih&quot;</span><span class="p">:</span> <span class="n">cih</span><span class="p">})</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">human_form</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;k_</span><span class="si">%(i)s</span><span class="s2"> = f(t_n</span><span class="si">%(cih)s</span><span class="s2">, y_n + </span><span class="si">%(kterm)s</span><span class="s2">)&quot;</span> <span class="o">%</span>
+                              <span class="p">{</span><span class="s2">&quot;i&quot;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;cih&quot;</span><span class="p">:</span> <span class="n">cih</span><span class="p">,</span> <span class="s2">&quot;kterm&quot;</span><span class="p">:</span> <span class="n">kterm</span><span class="p">})</span>
+            <span class="n">human_form</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;kdot_</span><span class="si">%(i)s</span><span class="s2"> = action(derivative(f(t_n</span><span class="si">%(cih)s</span><span class="s2">, &quot;</span>
+                              <span class="s2">&quot;y_n + </span><span class="si">%(kterm)s</span><span class="s2">), y_n) + </span><span class="si">%(kdotterm)s</span><span class="s2">&quot;</span> <span class="o">%</span>
+                              <span class="p">{</span><span class="s2">&quot;i&quot;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;cih&quot;</span><span class="p">:</span> <span class="n">cih</span><span class="p">,</span> <span class="s2">&quot;kterm&quot;</span><span class="p">:</span> <span class="n">kterm</span><span class="p">,</span> <span class="s2">&quot;kdotterm&quot;</span><span class="p">:</span> <span class="n">kdotterm</span><span class="p">})</span>
+
+    <span class="n">parentheses</span> <span class="o">=</span> <span class="s2">&quot;(</span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">b</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">&quot;</span>
+    <span class="n">human_form</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;ydot_{n+1} = ydot_n + h*&quot;</span> <span class="o">+</span> <span class="n">parentheses</span> <span class="o">%</span> <span class="p">(</span><span class="s2">&quot; + &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+        <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">kdot_</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s2">&quot;&quot;</span> <span class="k">if</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mf">1.0</span> <span class="k">else</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">*&quot;</span> <span class="o">%</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">i</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">)</span> <span class="k">if</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)))</span>
+
+    <span class="n">human_form</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">human_form</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">ufl_stage_forms</span><span class="p">,</span> <span class="n">dolfin_stage_forms</span><span class="p">,</span> <span class="n">jacobian_indices</span><span class="p">,</span> <span class="n">last_stage</span><span class="p">,</span> \
+        <span class="n">stage_solutions</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">human_form</span><span class="p">,</span> <span class="n">perturbation</span>
+
+
+<span class="k">def</span> <span class="nf">_butcher_scheme_generator_adm</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">solution</span><span class="p">,</span> <span class="n">rhs_form</span><span class="p">,</span> <span class="n">adj</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generates a list of forms and solutions for a given Butcher tableau</span>
+
+<span class="sd">    *Arguments*</span>
+<span class="sd">        a (2 dimensional numpy array)</span>
+<span class="sd">            The a matrix of the Butcher tableau.</span>
+<span class="sd">        b (1-2 dimensional numpy array)</span>
+<span class="sd">            The b vector of the Butcher tableau. If b is 2 dimensional the</span>
+<span class="sd">            scheme includes an error estimator and can be used in adaptive</span>
+<span class="sd">            solvers.</span>
+<span class="sd">        c (1 dimensional numpy array)</span>
+<span class="sd">            The c vector the Butcher tableau.</span>
+<span class="sd">        time (_Constant_)</span>
+<span class="sd">            A Constant holding the time at the start of the time step</span>
+<span class="sd">        solution (_Function_)</span>
+<span class="sd">            The prognostic variable</span>
+<span class="sd">        rhs_form (ufl.Form)</span>
+<span class="sd">            A UFL form representing the rhs for a time differentiated equation</span>
+<span class="sd">        adj (_Function_)</span>
+<span class="sd">            The derivative of the functional with respect to y_n+1</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">a</span> <span class="o">=</span> <span class="n">_check_abc</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">DX</span> <span class="o">=</span> <span class="n">_check_form</span><span class="p">(</span><span class="n">rhs_form</span><span class="p">)</span>
+
+    <span class="c1"># Get test function</span>
+    <span class="n">arguments</span> <span class="o">=</span> <span class="n">rhs_form</span><span class="o">.</span><span class="n">arguments</span><span class="p">()</span>
+    <span class="c1"># coefficients = rhs_form.coefficients()</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># Create time step</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+
+    <span class="c1"># rhs forms</span>
+    <span class="n">dolfin_stage_forms</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">ufl_stage_forms</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Stage solutions</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="p">[</span><span class="n">Function</span><span class="p">(</span><span class="n">solution</span><span class="o">.</span><span class="n">function_space</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;k_</span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">)]</span>
+    <span class="n">kbar</span> <span class="o">=</span> <span class="p">[</span><span class="n">Function</span><span class="p">(</span><span class="n">solution</span><span class="o">.</span><span class="n">function_space</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;kbar_</span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">i</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">)]</span>
+
+    <span class="c1"># Create the stage forms</span>
+    <span class="n">y_</span> <span class="o">=</span> <span class="n">solution</span>
+    <span class="n">time_</span> <span class="o">=</span> <span class="n">time</span>
+    <span class="n">time_dep_expressions</span> <span class="o">=</span> <span class="n">_time_dependent_expressions</span><span class="p">(</span><span class="n">rhs_form</span><span class="p">,</span> <span class="n">time</span><span class="p">)</span>
+    <span class="n">zero_</span> <span class="o">=</span> <span class="n">ufl</span><span class="o">.</span><span class="n">zero</span><span class="p">(</span><span class="o">*</span><span class="n">y_</span><span class="o">.</span><span class="n">ufl_shape</span><span class="p">)</span>
+    <span class="n">forward_forms</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">stage_solutions</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">jacobian_indices</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># The recomputation of the forward run:</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ki</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+
+        <span class="c1"># Check whether the stage is explicit</span>
+        <span class="n">explicit</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span>
+
+        <span class="c1"># Evaluation arguments for the ith stage</span>
+        <span class="n">evalargs</span> <span class="o">=</span> <span class="n">y_</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">])</span> <span class="o">*</span> <span class="n">k</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                                  <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)],</span> <span class="n">zero_</span><span class="p">)</span>
+        <span class="n">time</span> <span class="o">=</span> <span class="n">time_</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+        <span class="n">replace_dict</span> <span class="o">=</span> <span class="n">_replace_dict_time_dependent_expression</span><span class="p">(</span>
+            <span class="n">time_dep_expressions</span><span class="p">,</span> <span class="n">time_</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+        <span class="n">replace_dict</span><span class="p">[</span><span class="n">y_</span><span class="p">]</span> <span class="o">=</span> <span class="n">evalargs</span>
+        <span class="n">replace_dict</span><span class="p">[</span><span class="n">time_</span><span class="p">]</span> <span class="o">=</span> <span class="n">time</span>
+        <span class="n">stage_form</span> <span class="o">=</span> <span class="n">ufl</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">rhs_form</span><span class="p">,</span> <span class="n">replace_dict</span><span class="p">)</span>
+
+        <span class="n">forward_forms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stage_form</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">explicit</span><span class="p">:</span>
+            <span class="n">stage_forms</span> <span class="o">=</span> <span class="p">[</span><span class="n">stage_form</span><span class="p">]</span>
+            <span class="n">jacobian_indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Create a F=0 form and differentiate it</span>
+            <span class="n">stage_form_implicit</span> <span class="o">=</span> <span class="n">stage_form</span> <span class="o">-</span> <span class="n">ufl</span><span class="o">.</span><span class="n">inner</span><span class="p">(</span><span class="n">ki</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="o">*</span> <span class="n">DX</span>
+            <span class="n">stage_forms</span> <span class="o">=</span> <span class="p">[</span><span class="n">stage_form_implicit</span><span class="p">,</span> <span class="n">derivative</span><span class="p">(</span>
+                <span class="n">stage_form_implicit</span><span class="p">,</span> <span class="n">ki</span><span class="p">)]</span>
+            <span class="n">jacobian_indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="n">ufl_stage_forms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stage_forms</span><span class="p">)</span>
+        <span class="n">dolfin_stage_forms</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">Form</span><span class="p">(</span><span class="n">form</span><span class="p">)</span> <span class="k">for</span> <span class="n">form</span> <span class="ow">in</span> <span class="n">stage_forms</span><span class="p">])</span>
+        <span class="n">stage_solutions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ki</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">kbari</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">(</span><span class="n">kbar</span><span class="p">))):</span>
+
+        <span class="c1"># Check whether the stage is explicit</span>
+        <span class="n">explicit</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span>
+
+        <span class="c1"># And now the adjoint linearisation:</span>
+        <span class="n">stage_form_adm</span> <span class="o">=</span> <span class="n">ufl</span><span class="o">.</span><span class="n">inner</span><span class="p">(</span><span class="n">dt</span> <span class="o">*</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">adj</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="o">*</span> <span class="n">DX</span> <span class="o">+</span> <span class="nb">sum</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">dt</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">])</span> <span class="o">*</span> <span class="n">safe_action</span><span class="p">(</span><span class="n">safe_adjoint</span><span class="p">(</span><span class="n">derivative</span><span class="p">(</span>
+                <span class="n">forward_forms</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">y_</span><span class="p">)),</span> <span class="n">kbar</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">size</span><span class="p">)])</span>
+        <span class="k">if</span> <span class="n">explicit</span><span class="p">:</span>
+            <span class="n">stage_forms_adm</span> <span class="o">=</span> <span class="p">[</span><span class="n">stage_form_adm</span><span class="p">]</span>
+            <span class="n">jacobian_indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Create a F=0 form and differentiate it</span>
+            <span class="n">stage_form_adm</span> <span class="o">-=</span> <span class="n">ufl</span><span class="o">.</span><span class="n">inner</span><span class="p">(</span><span class="n">kbar</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">v</span><span class="p">)</span> <span class="o">*</span> <span class="n">DX</span>
+            <span class="n">stage_forms_adm</span> <span class="o">=</span> <span class="p">[</span><span class="n">stage_form_adm</span><span class="p">,</span> <span class="n">derivative</span><span class="p">(</span><span class="n">stage_form_adm</span><span class="p">,</span> <span class="n">kbari</span><span class="p">)]</span>
+            <span class="n">jacobian_indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">ufl_stage_forms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stage_forms_adm</span><span class="p">)</span>
+        <span class="n">dolfin_stage_forms</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">Form</span><span class="p">(</span><span class="n">form</span><span class="p">)</span> <span class="k">for</span> <span class="n">form</span> <span class="ow">in</span> <span class="n">stage_forms_adm</span><span class="p">])</span>
+        <span class="n">stage_solutions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">kbari</span><span class="p">)</span>
+
+    <span class="c1"># Only one last stage</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">last_stage</span> <span class="o">=</span> <span class="n">Form</span><span class="p">(</span><span class="n">ufl</span><span class="o">.</span><span class="n">inner</span><span class="p">(</span><span class="n">adj</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="o">*</span> <span class="n">DX</span> <span class="o">+</span> <span class="nb">sum</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">safe_action</span><span class="p">(</span><span class="n">safe_adjoint</span><span class="p">(</span><span class="n">derivative</span><span class="p">(</span><span class="n">forward_forms</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">y_</span><span class="p">)),</span> <span class="n">kbar</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">)]))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Not sure what to do here&quot;</span><span class="p">)</span>
+
+    <span class="n">human_form</span> <span class="o">=</span> <span class="s2">&quot;unimplemented&quot;</span>
+
+    <span class="k">return</span> <span class="n">ufl_stage_forms</span><span class="p">,</span> <span class="n">dolfin_stage_forms</span><span class="p">,</span> <span class="n">jacobian_indices</span><span class="p">,</span> <span class="n">last_stage</span><span class="p">,</span> \
+        <span class="n">stage_solutions</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">human_form</span><span class="p">,</span> <span class="n">adj</span>
+
+
+<div class="viewcode-block" id="MultiStageScheme"><a class="viewcode-back" href="../../../_autogenerated/dolfin.multistage.html#dolfin.multistage.MultiStageScheme">[docs]</a><span class="k">class</span> <span class="nc">MultiStageScheme</span><span class="p">(</span><span class="n">cpp</span><span class="o">.</span><span class="n">multistage</span><span class="o">.</span><span class="n">MultiStageScheme</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Base class for all MultiStageSchemes</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs_form</span><span class="p">,</span> <span class="n">ufl_stage_forms</span><span class="p">,</span>
+                 <span class="n">dolfin_stage_forms</span><span class="p">,</span> <span class="n">last_stage</span><span class="p">,</span> <span class="n">stage_solutions</span><span class="p">,</span>
+                 <span class="n">solution</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">dt_stage_offsets</span><span class="p">,</span> <span class="n">jacobian_indices</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span>
+                 <span class="n">name</span><span class="p">,</span> <span class="n">human_form</span><span class="p">,</span> <span class="n">bcs</span><span class="p">,</span> <span class="n">contraction</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+        <span class="c1"># Store Python data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rhs_form</span> <span class="o">=</span> <span class="n">rhs_form</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ufl_stage_forms</span> <span class="o">=</span> <span class="n">ufl_stage_forms</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dolfin_stage_forms</span> <span class="o">=</span> <span class="n">dolfin_stage_forms</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_t</span> <span class="o">=</span> <span class="n">time</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_bcs</span> <span class="o">=</span> <span class="n">bcs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dt</span> <span class="o">=</span> <span class="n">dt</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_last_stage</span> <span class="o">=</span> <span class="n">last_stage</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_solution</span> <span class="o">=</span> <span class="n">solution</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_stage_solutions</span> <span class="o">=</span> <span class="n">stage_solutions</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_order</span> <span class="o">=</span> <span class="n">order</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">jacobian_indices</span> <span class="o">=</span> <span class="n">jacobian_indices</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">contraction</span> <span class="o">=</span> <span class="n">contraction</span>
+
+        <span class="c1"># Pass args to C++ constructor</span>
+        <span class="n">stage_solutions</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">cpp_object</span><span class="p">()</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">stage_solutions</span><span class="p">]</span>
+
+        <span class="n">cpp</span><span class="o">.</span><span class="n">multistage</span><span class="o">.</span><span class="n">MultiStageScheme</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                                                 <span class="n">dolfin_stage_forms</span><span class="p">,</span>
+                                                 <span class="n">last_stage</span><span class="p">,</span>
+                                                 <span class="n">stage_solutions</span><span class="p">,</span>
+                                                 <span class="n">solution</span><span class="o">.</span><span class="n">cpp_object</span><span class="p">(),</span>
+                                                 <span class="n">time</span><span class="o">.</span><span class="n">cpp_object</span><span class="p">(),</span>
+                                                 <span class="n">dt</span><span class="o">.</span><span class="n">cpp_object</span><span class="p">(),</span>
+                                                 <span class="n">dt_stage_offsets</span><span class="p">,</span>
+                                                 <span class="n">jacobian_indices</span><span class="p">,</span>
+                                                 <span class="n">order</span><span class="p">,</span>
+                                                 <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                                                 <span class="n">human_form</span><span class="p">,</span> <span class="n">bcs</span><span class="p">)</span>
+
+<div class="viewcode-block" id="MultiStageScheme.rhs_form"><a class="viewcode-back" href="../../../_autogenerated/dolfin.multistage.html#dolfin.multistage.MultiStageScheme.rhs_form">[docs]</a>    <span class="k">def</span> <span class="nf">rhs_form</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s2">&quot;Return the original rhs form&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rhs_form</span></div>
+
+<div class="viewcode-block" id="MultiStageScheme.ufl_stage_forms"><a class="viewcode-back" href="../../../_autogenerated/dolfin.multistage.html#dolfin.multistage.MultiStageScheme.ufl_stage_forms">[docs]</a>    <span class="k">def</span> <span class="nf">ufl_stage_forms</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s2">&quot;Return the ufl stage forms&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ufl_stage_forms</span></div>
+
+<div class="viewcode-block" id="MultiStageScheme.dolfin_stage_forms"><a class="viewcode-back" href="../../../_autogenerated/dolfin.multistage.html#dolfin.multistage.MultiStageScheme.dolfin_stage_forms">[docs]</a>    <span class="k">def</span> <span class="nf">dolfin_stage_forms</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s2">&quot;Return the dolfin stage forms&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dolfin_stage_forms</span></div>
+
+<div class="viewcode-block" id="MultiStageScheme.t"><a class="viewcode-back" href="../../../_autogenerated/dolfin.multistage.html#dolfin.multistage.MultiStageScheme.t">[docs]</a>    <span class="k">def</span> <span class="nf">t</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s2">&quot;Return the Constant used to describe time in the MultiStageScheme&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_t</span></div>
+
+<div class="viewcode-block" id="MultiStageScheme.dt"><a class="viewcode-back" href="../../../_autogenerated/dolfin.multistage.html#dolfin.multistage.MultiStageScheme.dt">[docs]</a>    <span class="k">def</span> <span class="nf">dt</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s2">&quot;Return the Constant used to describe time in the MultiStageScheme&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dt</span></div>
+
+<div class="viewcode-block" id="MultiStageScheme.solution"><a class="viewcode-back" href="../../../_autogenerated/dolfin.multistage.html#dolfin.multistage.MultiStageScheme.solution">[docs]</a>    <span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s2">&quot;Return the solution Function&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_solution</span></div>
+
+<div class="viewcode-block" id="MultiStageScheme.last_stage"><a class="viewcode-back" href="../../../_autogenerated/dolfin.multistage.html#dolfin.multistage.MultiStageScheme.last_stage">[docs]</a>    <span class="k">def</span> <span class="nf">last_stage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s2">&quot;Return the form describing the last stage&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_last_stage</span></div>
+
+<div class="viewcode-block" id="MultiStageScheme.stage_solutions"><a class="viewcode-back" href="../../../_autogenerated/dolfin.multistage.html#dolfin.multistage.MultiStageScheme.stage_solutions">[docs]</a>    <span class="k">def</span> <span class="nf">stage_solutions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s2">&quot;Return the stage solutions&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stage_solutions</span></div>
+
+    <span class="k">def</span> <span class="nf">to_tlm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">perturbation</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;&#39;to_tlm:&#39; implement in derived classes&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">to_adm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">perturbation</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;&#39;to_adm:&#39; implement in derived classes&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ButcherMultiStageScheme"><a class="viewcode-back" href="../../../_autogenerated/dolfin.multistage.html#dolfin.multistage.ButcherMultiStageScheme">[docs]</a><span class="k">class</span> <span class="nc">ButcherMultiStageScheme</span><span class="p">(</span><span class="n">MultiStageScheme</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Base class for all MultiStageSchemes</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs_form</span><span class="p">,</span> <span class="n">solution</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">bcs</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span>
+                 <span class="n">generator</span><span class="o">=</span><span class="n">_butcher_scheme_generator</span><span class="p">):</span>
+        <span class="n">bcs</span> <span class="o">=</span> <span class="n">bcs</span> <span class="ow">or</span> <span class="p">[]</span>
+        <span class="n">time</span> <span class="o">=</span> <span class="n">time</span> <span class="ow">or</span> <span class="n">Constant</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
+        <span class="n">ufl_stage_forms</span><span class="p">,</span> <span class="n">dolfin_stage_forms</span><span class="p">,</span> <span class="n">jacobian_indices</span><span class="p">,</span> <span class="n">last_stage</span><span class="p">,</span> \
+            <span class="n">stage_solutions</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">human_form</span><span class="p">,</span> <span class="n">contraction</span> <span class="o">=</span> \
+            <span class="n">generator</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">solution</span><span class="p">,</span> <span class="n">rhs_form</span><span class="p">)</span>
+
+        <span class="c1"># Store data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">a</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">b</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">c</span> <span class="o">=</span> <span class="n">c</span>
+
+        <span class="n">MultiStageScheme</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs_form</span><span class="p">,</span> <span class="n">ufl_stage_forms</span><span class="p">,</span>
+                                  <span class="n">dolfin_stage_forms</span><span class="p">,</span> <span class="n">last_stage</span><span class="p">,</span>
+                                  <span class="n">stage_solutions</span><span class="p">,</span> <span class="n">solution</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span>
+                                  <span class="n">c</span><span class="p">,</span> <span class="n">jacobian_indices</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span>
+                                  <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">human_form</span><span class="p">,</span>
+                                  <span class="n">bcs</span><span class="p">,</span> <span class="n">contraction</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ButcherMultiStageScheme.to_tlm"><a class="viewcode-back" href="../../../_autogenerated/dolfin.multistage.html#dolfin.multistage.ButcherMultiStageScheme.to_tlm">[docs]</a>    <span class="k">def</span> <span class="nf">to_tlm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">perturbation</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return another MultiStageScheme that implements the tangent</span>
+<span class="sd">        linearisation of the ODE solver.</span>
+
+<span class="sd">        This takes \dot{y_n} (the derivative of y_n with respect to a</span>
+<span class="sd">        parameter) and computes \dot{y_n+1} (the derivative of y_n+1</span>
+<span class="sd">        with respect to that parameter).</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">generator</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span><span class="n">_butcher_scheme_generator_tlm</span><span class="p">,</span>
+                                      <span class="n">perturbation</span><span class="o">=</span><span class="n">perturbation</span><span class="p">)</span>
+        <span class="n">new_solution</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_solution</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">new_form</span> <span class="o">=</span> <span class="n">ufl</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_rhs_form</span><span class="p">,</span> <span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_solution</span><span class="p">:</span> <span class="n">new_solution</span><span class="p">})</span>
+        <span class="k">return</span> <span class="n">ButcherMultiStageScheme</span><span class="p">(</span><span class="n">new_form</span><span class="p">,</span> <span class="n">new_solution</span><span class="p">,</span>
+                                       <span class="bp">self</span><span class="o">.</span><span class="n">_t</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bcs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">,</span>
+                                       <span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">c</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_order</span><span class="p">,</span>
+                                       <span class="n">generator</span><span class="o">=</span><span class="n">generator</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ButcherMultiStageScheme.to_adm"><a class="viewcode-back" href="../../../_autogenerated/dolfin.multistage.html#dolfin.multistage.ButcherMultiStageScheme.to_adm">[docs]</a>    <span class="k">def</span> <span class="nf">to_adm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">adj</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return another MultiStageScheme that implements the adjoint</span>
+<span class="sd">        linearisation of the ODE solver.</span>
+
+<span class="sd">        This takes \bar{y_n+1} (the derivative of a functional J with</span>
+<span class="sd">        respect to y_n+1) and computes \bar{y_n} (the derivative of J</span>
+<span class="sd">        with respect to y_n).</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">generator</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span><span class="n">_butcher_scheme_generator_adm</span><span class="p">,</span> <span class="n">adj</span><span class="o">=</span><span class="n">adj</span><span class="p">)</span>
+        <span class="n">new_solution</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_solution</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">new_form</span> <span class="o">=</span> <span class="n">ufl</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_rhs_form</span><span class="p">,</span> <span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_solution</span><span class="p">:</span> <span class="n">new_solution</span><span class="p">})</span>
+        <span class="k">return</span> <span class="n">ButcherMultiStageScheme</span><span class="p">(</span><span class="n">new_form</span><span class="p">,</span> <span class="n">new_solution</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_t</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bcs</span><span class="p">,</span>
+                                       <span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">c</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_order</span><span class="p">,</span>
+                                       <span class="n">generator</span><span class="o">=</span><span class="n">generator</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="ERK1"><a class="viewcode-back" href="../../../_autogenerated/dolfin.multistage.html#dolfin.multistage.ERK1">[docs]</a><span class="k">class</span> <span class="nc">ERK1</span><span class="p">(</span><span class="n">ButcherMultiStageScheme</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Explicit first order Scheme&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs_form</span><span class="p">,</span> <span class="n">solution</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bcs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">])</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.</span><span class="p">])</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">])</span>
+        <span class="n">ButcherMultiStageScheme</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs_form</span><span class="p">,</span> <span class="n">solution</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">bcs</span><span class="p">,</span>
+                                         <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="BDF1"><a class="viewcode-back" href="../../../_autogenerated/dolfin.multistage.html#dolfin.multistage.BDF1">[docs]</a><span class="k">class</span> <span class="nc">BDF1</span><span class="p">(</span><span class="n">ButcherMultiStageScheme</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Implicit first order scheme&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs_form</span><span class="p">,</span> <span class="n">solution</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bcs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.</span><span class="p">])</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.</span><span class="p">])</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.</span><span class="p">])</span>
+        <span class="n">ButcherMultiStageScheme</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs_form</span><span class="p">,</span> <span class="n">solution</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">bcs</span><span class="p">,</span>
+                                         <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ExplicitMidPoint"><a class="viewcode-back" href="../../../_autogenerated/dolfin.multistage.html#dolfin.multistage.ExplicitMidPoint">[docs]</a><span class="k">class</span> <span class="nc">ExplicitMidPoint</span><span class="p">(</span><span class="n">ButcherMultiStageScheme</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Explicit 2nd order scheme&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs_form</span><span class="p">,</span> <span class="n">solution</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bcs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+        <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]])</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
+        <span class="n">ButcherMultiStageScheme</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs_form</span><span class="p">,</span> <span class="n">solution</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">bcs</span><span class="p">,</span>
+                                         <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CN2"><a class="viewcode-back" href="../../../_autogenerated/dolfin.multistage.html#dolfin.multistage.CN2">[docs]</a><span class="k">class</span> <span class="nc">CN2</span><span class="p">(</span><span class="n">ButcherMultiStageScheme</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Semi-implicit 2nd order scheme&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs_form</span><span class="p">,</span> <span class="n">solution</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bcs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]])</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
+
+        <span class="n">ButcherMultiStageScheme</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs_form</span><span class="p">,</span> <span class="n">solution</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">bcs</span><span class="p">,</span>
+                                         <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ERK4"><a class="viewcode-back" href="../../../_autogenerated/dolfin.multistage.html#dolfin.multistage.ERK4">[docs]</a><span class="k">class</span> <span class="nc">ERK4</span><span class="p">(</span><span class="n">ButcherMultiStageScheme</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Explicit 4th order scheme&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs_form</span><span class="p">,</span> <span class="n">solution</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bcs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                      <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                      <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                      <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.</span> <span class="o">/</span> <span class="mi">6</span><span class="p">,</span> <span class="mf">1.</span> <span class="o">/</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">1.</span> <span class="o">/</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">1.</span> <span class="o">/</span> <span class="mi">6</span><span class="p">])</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">ButcherMultiStageScheme</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs_form</span><span class="p">,</span> <span class="n">solution</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">bcs</span><span class="p">,</span>
+                                         <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ESDIRK3"><a class="viewcode-back" href="../../../_autogenerated/dolfin.multistage.html#dolfin.multistage.ESDIRK3">[docs]</a><span class="k">class</span> <span class="nc">ESDIRK3</span><span class="p">(</span><span class="n">ButcherMultiStageScheme</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Explicit implicit 3rd order scheme</span>
+
+<span class="sd">    See also &quot;Singly diagonally implicit Runge–Kutta methods with an</span>
+<span class="sd">    explicit first stage&quot; by A Kværnø - BIT Numerical Mathematics,</span>
+<span class="sd">    2004 (p.497)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs_form</span><span class="p">,</span> <span class="n">solution</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bcs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.000000000000000</span><span class="p">,</span> <span class="mf">0.000000000000000</span><span class="p">,</span> <span class="mf">0.000000000000000</span><span class="p">,</span> <span class="mf">0.00000000000000</span><span class="p">],</span>
+                      <span class="p">[</span><span class="mf">0.435866521500000</span><span class="p">,</span> <span class="mf">0.435866521500000</span><span class="p">,</span> <span class="mf">0.000000000000000</span><span class="p">,</span> <span class="mf">0.00000000000000</span><span class="p">],</span>
+                      <span class="p">[</span><span class="mf">0.490563388419108</span><span class="p">,</span> <span class="mf">0.073570090080892</span><span class="p">,</span> <span class="mf">0.435866521500000</span><span class="p">,</span> <span class="mf">0.00000000000000</span><span class="p">],</span>
+                      <span class="p">[</span><span class="mf">0.308809969973036</span><span class="p">,</span> <span class="mf">1.490563388254108</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.235239879727145</span><span class="p">,</span> <span class="mf">0.435866521500000</span><span class="p">]])</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">ButcherMultiStageScheme</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs_form</span><span class="p">,</span> <span class="n">solution</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">bcs</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ESDIRK4"><a class="viewcode-back" href="../../../_autogenerated/dolfin.multistage.html#dolfin.multistage.ESDIRK4">[docs]</a><span class="k">class</span> <span class="nc">ESDIRK4</span><span class="p">(</span><span class="n">ButcherMultiStageScheme</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Explicit implicit 4rd order scheme</span>
+
+<span class="sd">    See also &quot;Singly diagonally implicit Runge–Kutta methods with an</span>
+<span class="sd">    explicit first stage&quot; by A Kværnø - BIT Numerical Mathematics,</span>
+<span class="sd">    2004 (p.498)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs_form</span><span class="p">,</span> <span class="n">solution</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bcs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.000000000000000</span><span class="p">,</span> <span class="mf">0.0000000000000000</span><span class="p">,</span> <span class="mf">0.000000000000000</span><span class="p">,</span> <span class="mf">0.000000000000000</span><span class="p">,</span> <span class="mf">0.000000000000000</span><span class="p">],</span>
+                      <span class="p">[</span><span class="mf">0.435866521500000</span><span class="p">,</span> <span class="mf">0.4358665215000000</span><span class="p">,</span> <span class="mf">0.000000000000000</span><span class="p">,</span> <span class="mf">0.000000000000000</span><span class="p">,</span> <span class="mf">0.000000000000000</span><span class="p">],</span>
+                      <span class="p">[</span><span class="mf">0.140737774731968</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.108365551378832</span><span class="p">,</span> <span class="mf">0.435866521500000</span><span class="p">,</span> <span class="mf">0.000000000000000</span><span class="p">,</span> <span class="mf">0.000000000000000</span><span class="p">],</span>
+                      <span class="p">[</span><span class="mf">0.102399400616089</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.376878452267324</span><span class="p">,</span> <span class="mf">0.838612530151233</span><span class="p">,</span> <span class="mf">0.435866521500000</span><span class="p">,</span> <span class="mf">0.000000000000000</span><span class="p">],</span>
+                      <span class="p">[</span><span class="mf">0.157024897860995</span><span class="p">,</span> <span class="mf">0.1173304413577680</span><span class="p">,</span> <span class="mf">0.616678030391680</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.326899891110444</span><span class="p">,</span> <span class="mf">0.435866521500000</span><span class="p">]])</span>
+
+        <span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">ButcherMultiStageScheme</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs_form</span><span class="p">,</span> <span class="n">solution</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">bcs</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span></div>
+
+
+<span class="c1"># Aliases</span>
+<span class="n">CrankNicolson</span> <span class="o">=</span> <span class="n">CN2</span>
+<span class="n">ExplicitEuler</span> <span class="o">=</span> <span class="n">ERK1</span>
+<span class="n">ForwardEuler</span> <span class="o">=</span> <span class="n">ERK1</span>
+<span class="n">ImplicitEuler</span> <span class="o">=</span> <span class="n">BDF1</span>
+<span class="n">BackwardEuler</span> <span class="o">=</span> <span class="n">BDF1</span>
+<span class="n">ERK</span> <span class="o">=</span> <span class="n">ERK1</span>
+<span class="n">RK4</span> <span class="o">=</span> <span class="n">ERK4</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="n">name</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">attr</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="nb">globals</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+           <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="nb">type</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="n">MultiStageScheme</span><span class="p">)]</span>
+
+<span class="n">__all__</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;MultiStageScheme&quot;</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, FEniCS Project.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

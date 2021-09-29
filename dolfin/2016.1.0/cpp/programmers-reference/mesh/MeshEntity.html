@@ -1,0 +1,598 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>MeshEntity.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN mesh module" href="index.html"/>
+        <link rel="next" title="MeshEntityIterator.h" href="MeshEntityIterator.html"/>
+        <link rel="prev" title="MeshEditor.h" href="MeshEditor.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2016.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-2016.1.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/index.html">DOLFIN common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fem/index.html">DOLFIN fem module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html">DOLFIN function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/index.html">DOLFIN geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/index.html">DOLFIN io module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../la/index.html">DOLFIN la module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/index.html">DOLFIN log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN mesh module</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="BoundaryMesh.html">BoundaryMesh.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Cell.html">Cell.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CellType.html">CellType.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DomainBoundary.html">DomainBoundary.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DynamicMeshEditor.html">DynamicMeshEditor.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Edge.html">Edge.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Face.html">Face.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Facet.html">Facet.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FacetCell.html">FacetCell.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LocalMeshData.html">LocalMeshData.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LocalMeshValueCollection.html">LocalMeshValueCollection.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Mesh.html">Mesh.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshColoring.html">MeshColoring.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshConnectivity.html">MeshConnectivity.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshData.html">MeshData.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshDomains.html">MeshDomains.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshEditor.html">MeshEditor.h</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">MeshEntity.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshEntityIterator.html">MeshEntityIterator.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshEntityIteratorBase.html">MeshEntityIteratorBase.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshFunction.html">MeshFunction.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshGeometry.html">MeshGeometry.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshHierarchy.html">MeshHierarchy.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshPartitioning.html">MeshPartitioning.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshQuality.html">MeshQuality.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshRenumbering.html">MeshRenumbering.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshTopology.html">MeshTopology.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshTransformation.html">MeshTransformation.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshValueCollection.html">MeshValueCollection.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MultiMesh.html">MultiMesh.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PeriodicBoundaryComputation.html">PeriodicBoundaryComputation.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SubDomain.html">SubDomain.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SubMesh.html">SubMesh.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SubsetIterator.html">SubsetIterator.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Vertex.html">Vertex.h</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot/index.html">DOLFIN plot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer&#8217;s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-2016.1.0</a> &raquo;</li>
+      
+          <li><a href="index.html">DOLFIN mesh module</a> &raquo;</li>
+      
+    <li>MeshEntity.h</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/programmers-reference/mesh/MeshEntity.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="meshentity-h">
+<span id="programmers-reference-cpp-mesh-meshentity"></span><h1>MeshEntity.h<a class="headerlink" href="#meshentity-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="class">
+<dt id="_CPPv210MeshEntity">
+<span id="MeshEntity"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">MeshEntity</code><a class="headerlink" href="#_CPPv210MeshEntity" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A MeshEntity represents a mesh entity associated with
+a specific topological dimension of some <a class="reference internal" href="Mesh.html#_CPPv24Mesh" title="Mesh"><code class="xref cpp cpp-class docutils literal"><span class="pre">Mesh</span></code></a>.</p>
+<dl class="function">
+<dt id="_CPPv2N10MeshEntity10MeshEntityEv">
+<span id="MeshEntity::MeshEntity"></span><code class="descclassname"></code><code class="descname">MeshEntity</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10MeshEntity10MeshEntityEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Default Constructor</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10MeshEntity10MeshEntityERK4MeshNSt6size_tENSt6size_tE">
+<span id="MeshEntity::MeshEntity__MeshCR.std::s.std::s"></span><code class="descclassname"></code><code class="descname">MeshEntity</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em>, std::size_t <em>dim</em>, std::size_t <em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10MeshEntity10MeshEntityERK4MeshNSt6size_tENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructor</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>mesh (<a class="reference internal" href="Mesh.html#_CPPv24Mesh" title="Mesh"><code class="xref cpp cpp-class docutils literal"><span class="pre">Mesh</span></code></a>)</dt>
+<dd>The mesh.</dd>
+<dt>dim (std::size_t)</dt>
+<dd>The topological dimension.</dd>
+<dt>index (std::size_t)</dt>
+<dd>The index.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10MeshEntity4initERK4MeshNSt6size_tENSt6size_tE">
+<span id="MeshEntity::init__MeshCR.std::s.std::s"></span>void <code class="descclassname"></code><code class="descname">init</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em>, std::size_t <em>dim</em>, std::size_t <em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10MeshEntity4initERK4MeshNSt6size_tENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Initialize mesh entity with given data</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>mesh (<a class="reference internal" href="Mesh.html#_CPPv24Mesh" title="Mesh"><code class="xref cpp cpp-class docutils literal"><span class="pre">Mesh</span></code></a>)</dt>
+<dd>The mesh.</dd>
+<dt>dim (std::size_t)</dt>
+<dd>The topological dimension.</dd>
+<dt>index (std::size_t)</dt>
+<dd>The index.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10MeshEntityeqERK10MeshEntity">
+<span id="MeshEntity::eq-operator__MeshEntityCRC"></span>bool <code class="descclassname"></code><code class="descname">operator==</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv210MeshEntity" title="MeshEntity">MeshEntity</a> &amp;<em>e</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10MeshEntityeqERK10MeshEntity" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Comparison Operator</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>another (<a class="reference internal" href="#_CPPv210MeshEntity" title="MeshEntity"><code class="xref cpp cpp-class docutils literal"><span class="pre">MeshEntity</span></code></a>)</dt>
+<dd>Another mesh entity</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>bool</dt>
+<dd>True if the two mesh entities are equal.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10MeshEntityneERK10MeshEntity">
+<span id="MeshEntity::neq-operator__MeshEntityCRC"></span>bool <code class="descclassname"></code><code class="descname">operator!=</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv210MeshEntity" title="MeshEntity">MeshEntity</a> &amp;<em>e</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10MeshEntityneERK10MeshEntity" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Comparison Operator</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>another (MeshEntity)</dt>
+<dd>Another mesh entity.</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>bool</dt>
+<dd>True if the two mesh entities are NOT equal.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10MeshEntity4meshEv">
+<span id="MeshEntity::meshC"></span><em class="property">const</em> <a class="reference internal" href="Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<code class="descclassname"></code><code class="descname">mesh</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10MeshEntity4meshEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return mesh associated with mesh entity</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt><a class="reference internal" href="Mesh.html#_CPPv24Mesh" title="Mesh"><code class="xref cpp cpp-class docutils literal"><span class="pre">Mesh</span></code></a></dt>
+<dd>The mesh.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10MeshEntity3dimEv">
+<span id="MeshEntity::dimC"></span>std::size_t <code class="descclassname"></code><code class="descname">dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10MeshEntity3dimEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return topological dimension</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>std::size_t</dt>
+<dd>The dimension.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10MeshEntity5indexEv">
+<span id="MeshEntity::indexC"></span>std::size_t <code class="descclassname"></code><code class="descname">index</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10MeshEntity5indexEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return index of mesh entity</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>std::size_t</dt>
+<dd>The index.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10MeshEntity12global_indexEv">
+<span id="MeshEntity::global_indexC"></span>std::size_t <code class="descclassname"></code><code class="descname">global_index</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10MeshEntity12global_indexEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return global index of mesh entity</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>std::size_t</dt>
+<dd>The global index. Set to
+std::numerical_limits&lt;std::size_t&gt;::max() if global index
+has not been computed</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10MeshEntity12num_entitiesENSt6size_tE">
+<span id="MeshEntity::num_entities__std::sC"></span>std::size_t <code class="descclassname"></code><code class="descname">num_entities</code><span class="sig-paren">(</span>std::size_t <em>dim</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10MeshEntity12num_entitiesENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return local number of incident mesh entities of given
+topological dimension</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>dim (std::size_t)</dt>
+<dd>The topological dimension.</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd>std::size_t</dd>
+</dl>
+<p>The number of local incident MeshEntity objects of given
+dimension.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10MeshEntity19num_global_entitiesENSt6size_tE">
+<span id="MeshEntity::num_global_entities__std::sC"></span>std::size_t <code class="descclassname"></code><code class="descname">num_global_entities</code><span class="sig-paren">(</span>std::size_t <em>dim</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10MeshEntity19num_global_entitiesENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return global number of incident mesh entities of given
+topological dimension</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>dim (std::size_t)</dt>
+<dd>The topological dimension.</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>std::size_t</dt>
+<dd>The number of global incident MeshEntity objects of given
+dimension.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10MeshEntity8entitiesENSt6size_tE">
+<span id="MeshEntity::entities__std::sC"></span><em class="property">const</em> unsigned int *<code class="descclassname"></code><code class="descname">entities</code><span class="sig-paren">(</span>std::size_t <em>dim</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10MeshEntity8entitiesENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return array of indices for incident mesh entities of given
+topological dimension</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>dim (std::size_t)</dt>
+<dd>The topological dimension.</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>std::size_t</dt>
+<dd>The index for incident mesh entities of given dimension.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10MeshEntity7mesh_idEv">
+<span id="MeshEntity::mesh_idC"></span>std::size_t <code class="descclassname"></code><code class="descname">mesh_id</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10MeshEntity7mesh_idEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return unique mesh ID</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>std::size_t</dt>
+<dd>The unique mesh ID.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10MeshEntity8incidentERK10MeshEntity">
+<span id="MeshEntity::incident__MeshEntityCRC"></span>bool <code class="descclassname"></code><code class="descname">incident</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv210MeshEntity" title="MeshEntity">MeshEntity</a> &amp;<em>entity</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10MeshEntity8incidentERK10MeshEntity" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Check if given entity is incident</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>entity (<a class="reference internal" href="#_CPPv210MeshEntity" title="MeshEntity"><code class="xref cpp cpp-class docutils literal"><span class="pre">MeshEntity</span></code></a>)</dt>
+<dd>The entity.</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>bool</dt>
+<dd>True if the given entity is incident</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10MeshEntity5indexERK10MeshEntity">
+<span id="MeshEntity::index__MeshEntityCRC"></span>std::size_t <code class="descclassname"></code><code class="descname">index</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv210MeshEntity" title="MeshEntity">MeshEntity</a> &amp;<em>entity</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10MeshEntity5indexERK10MeshEntity" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Compute local index of given incident entity (error if not
+found)</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>entity (<a class="reference internal" href="#_CPPv210MeshEntity" title="MeshEntity"><code class="xref cpp cpp-class docutils literal"><span class="pre">MeshEntity</span></code></a>)</dt>
+<dd>The mesh entity.</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>std::size_t</dt>
+<dd>The local index of given entity.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10MeshEntity8midpointEv">
+<span id="MeshEntity::midpointC"></span><a class="reference internal" href="../geometry/Point.html#_CPPv25Point" title="Point">Point</a> <code class="descclassname"></code><code class="descname">midpoint</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10MeshEntity8midpointEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Compute midpoint of cell</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt><a class="reference internal" href="../geometry/Point.html#_CPPv25Point" title="Point"><code class="xref cpp cpp-class docutils literal"><span class="pre">Point</span></code></a></dt>
+<dd>The midpoint of the cell.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10MeshEntity8is_ghostEv">
+<span id="MeshEntity::is_ghostC"></span>bool <code class="descclassname"></code><code class="descname">is_ghost</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10MeshEntity8is_ghostEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Determine whether an entity is a &#8216;ghost&#8217; from another
+process</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10MeshEntity17sharing_processesEv">
+<span id="MeshEntity::sharing_processesC"></span>std::set&lt;unsigned int&gt; <code class="descclassname"></code><code class="descname">sharing_processes</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10MeshEntity17sharing_processesEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return set of sharing processes</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10MeshEntity9is_sharedEv">
+<span id="MeshEntity::is_sharedC"></span>bool <code class="descclassname"></code><code class="descname">is_shared</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10MeshEntity9is_sharedEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Determine if an entity is shared or not</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10MeshEntity5ownerEv">
+<span id="MeshEntity::ownerC"></span>unsigned int <code class="descclassname"></code><code class="descname">owner</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10MeshEntity5ownerEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get ownership of this entity - only really valid for cells</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10MeshEntity3strEb">
+<span id="MeshEntity::str__bC"></span>std::string <code class="descclassname"></code><code class="descname">str</code><span class="sig-paren">(</span>bool <em>verbose</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10MeshEntity3strEb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return informal string representation (pretty-print)</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>verbose (bool)</dt>
+<dd>Flag to turn on additional output.</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>std::string</dt>
+<dd>An informal representation of the function space.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="MeshEntityIterator.html" class="btn btn-neutral float-right" title="MeshEntityIterator.h" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="MeshEditor.html" class="btn btn-neutral" title="MeshEditor.h" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://bitbucket.org/fenics-project/.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'2016.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

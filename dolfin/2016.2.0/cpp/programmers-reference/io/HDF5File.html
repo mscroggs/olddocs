@@ -1,0 +1,462 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>HDF5File.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN io module" href="index.html"/>
+        <link rel="next" title="X3DOM.h" href="X3DOM.html"/>
+        <link rel="prev" title="HDF5Attribute.h" href="HDF5Attribute.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2016.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-2016.2.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/index.html">DOLFIN common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fem/index.html">DOLFIN fem module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html">DOLFIN function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/index.html">DOLFIN geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN io module</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="File.html">File.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericFile.html">GenericFile.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="HDF5Attribute.html">HDF5Attribute.h</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">HDF5File.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="X3DOM.html">X3DOM.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="XDMFFile.html">XDMFFile.h</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../la/index.html">DOLFIN la module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/index.html">DOLFIN log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mesh/index.html">DOLFIN mesh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot/index.html">DOLFIN plot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer&#8217;s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-2016.2.0</a> &raquo;</li>
+      
+          <li><a href="index.html">DOLFIN io module</a> &raquo;</li>
+      
+    <li>HDF5File.h</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/programmers-reference/io/HDF5File.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="hdf5file-h">
+<span id="programmers-reference-cpp-io-hdf5file"></span><h1>HDF5File.h<a class="headerlink" href="#hdf5file-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="class">
+<dt id="_CPPv28HDF5File">
+<span id="HDF5File"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">HDF5File</code><a class="headerlink" href="#_CPPv28HDF5File" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>Parent class(es)</em></p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="../common/Variable.html#_CPPv28Variable" title="Variable"><code class="xref cpp cpp-class docutils literal"><span class="pre">Variable</span></code></a></li>
+</ul>
+</div></blockquote>
+<dl class="function">
+<dt id="_CPPv2N8HDF5File8HDF5FileE8MPI_CommKNSt6stringEKNSt6stringE">
+<span id="HDF5File::HDF5File__MPI_Comm.ssC.ssC"></span><code class="descclassname"></code><code class="descname">HDF5File</code><span class="sig-paren">(</span>MPI_Comm <em>comm</em>, <em class="property">const</em> std::string <em>filename</em>, <em class="property">const</em> std::string <em>file_mode</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8HDF5File8HDF5FileE8MPI_CommKNSt6stringEKNSt6stringE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructor. file_mode should be &#8220;a&#8221; (append),
+&#8220;w&#8221; (write) or &#8220;r&#8221; (read).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8HDF5File5closeEv">
+<span id="HDF5File::close"></span>void <code class="descclassname"></code><code class="descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8HDF5File5closeEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Close file</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8HDF5File5flushEv">
+<span id="HDF5File::flush"></span>void <code class="descclassname"></code><code class="descname">flush</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8HDF5File5flushEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Flush buffered I/O to disk</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8HDF5File5writeERKNSt6vectorI5PointEEKNSt6stringE">
+<span id="HDF5File::write__std::vector:Point:CR.ssC"></span>void <code class="descclassname"></code><code class="descname">write</code><span class="sig-paren">(</span><em class="property">const</em> std::vector&lt;<a class="reference internal" href="../geometry/Point.html#_CPPv25Point" title="Point">Point</a>&gt; &amp;<em>points</em>, <em class="property">const</em> std::string <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8HDF5File5writeERKNSt6vectorI5PointEEKNSt6stringE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write points to file</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8HDF5File5writeERKNSt6vectorIdEEKNSt6stringE">
+<span id="HDF5File::write__std::vector:double:CR.ssC"></span>void <code class="descclassname"></code><code class="descname">write</code><span class="sig-paren">(</span><em class="property">const</em> std::vector&lt;double&gt; &amp;<em>values</em>, <em class="property">const</em> std::string <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8HDF5File5writeERKNSt6vectorIdEEKNSt6stringE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write simple vector of double to file</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8HDF5File5writeERK13GenericVectorKNSt6stringE">
+<span id="HDF5File::write__GenericVectorCR.ssC"></span>void <code class="descclassname"></code><code class="descname">write</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../la/GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>x</em>, <em class="property">const</em> std::string <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8HDF5File5writeERK13GenericVectorKNSt6stringE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write Vector to file in a format suitable for re-reading</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK8HDF5File4readER13GenericVectorKNSt6stringEKb">
+<span id="HDF5File::read__GenericVectorR.ssC.bCC"></span>void <code class="descclassname"></code><code class="descname">read</code><span class="sig-paren">(</span><a class="reference internal" href="../la/GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>x</em>, <em class="property">const</em> std::string <em>dataset_name</em>, <em class="property">const</em> bool <em>use_partition_from_file</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK8HDF5File4readER13GenericVectorKNSt6stringEKb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read vector from file and optionally re-use any partitioning
+that is available in the file</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8HDF5File5writeERK4MeshKNSt6stringE">
+<span id="HDF5File::write__MeshCR.ssC"></span>void <code class="descclassname"></code><code class="descname">write</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em>, <em class="property">const</em> std::string <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8HDF5File5writeERK4MeshKNSt6stringE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write Mesh to file in a format suitable for re-reading</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8HDF5File5writeERK4MeshKNSt6size_tEKNSt6stringE">
+<span id="HDF5File::write__MeshCR.std::sC.ssC"></span>void <code class="descclassname"></code><code class="descname">write</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em>, <em class="property">const</em> std::size_t <em>cell_dim</em>, <em class="property">const</em> std::string <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8HDF5File5writeERK4MeshKNSt6size_tEKNSt6stringE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write Mesh of given cell dimension to file in a format
+suitable for re-reading</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8HDF5File5writeERK8FunctionKNSt6stringE">
+<span id="HDF5File::write__FunctionCR.ssC"></span>void <code class="descclassname"></code><code class="descname">write</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../function/Function.html#_CPPv28Function" title="Function">Function</a> &amp;<em>u</em>, <em class="property">const</em> std::string <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8HDF5File5writeERK8FunctionKNSt6stringE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write Function to file in a format suitable for re-reading</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8HDF5File5writeERK8FunctionKNSt6stringEd">
+<span id="HDF5File::write__FunctionCR.ssC.double"></span>void <code class="descclassname"></code><code class="descname">write</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../function/Function.html#_CPPv28Function" title="Function">Function</a> &amp;<em>u</em>, <em class="property">const</em> std::string <em>name</em>, double <em>timestamp</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8HDF5File5writeERK8FunctionKNSt6stringEd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write Function to file with a timestamp</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8HDF5File4readER8FunctionKNSt6stringE">
+<span id="HDF5File::read__FunctionR.ssC"></span>void <code class="descclassname"></code><code class="descname">read</code><span class="sig-paren">(</span><a class="reference internal" href="../function/Function.html#_CPPv28Function" title="Function">Function</a> &amp;<em>u</em>, <em class="property">const</em> std::string <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8HDF5File4readER8FunctionKNSt6stringE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read Function from file and distribute data according to the
+Mesh and dofmap associated with the Function.  If the &#8216;name&#8217;
+refers to a HDF5 group, then it is assumed that the Function
+data is stored in the datasets within that group.  If the
+&#8216;name&#8217; refers to a HDF5 dataset within a group, then it is
+assumed that it is a Vector, and the Function will be filled
+from that Vector</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK8HDF5File4readER4MeshKNSt6stringEb">
+<span id="HDF5File::read__MeshR.ssC.bC"></span>void <code class="descclassname"></code><code class="descname">read</code><span class="sig-paren">(</span><a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em>, <em class="property">const</em> std::string <em>data_path</em>, bool <em>use_partition_from_file</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK8HDF5File4readER4MeshKNSt6stringEb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read Mesh from file, using attribute data (e.g., cell type) stored
+in the HDF5 file. Optionally re-use any partition data
+in the file. This function requires all necessary data for
+constructing a Mesh to be present in the HDF5 file.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK8HDF5File4readER4MeshKNSt6stringEKNSt6stringEKiRK8CellTypeKNSt7int64_tEKNSt7int64_tEb">
+<span id="HDF5File::read__MeshR.ssC.ssC.iC.CellTypeCR.std::int64_tC.std::int64_tC.bC"></span>void <code class="descclassname"></code><code class="descname">read</code><span class="sig-paren">(</span><a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>input_mesh</em>, <em class="property">const</em> std::string <em>topology_path</em>, <em class="property">const</em> std::string <em>geometry_path</em>, <em class="property">const</em> int <em>gdim</em>, <em class="property">const</em> <a class="reference internal" href="../mesh/CellType.html#_CPPv28CellType" title="CellType">CellType</a> &amp;<em>cell_type</em>, <em class="property">const</em> std::int64_t <em>expected_num_global_cells</em>, <em class="property">const</em> std::int64_t <em>expected_num_global_points</em>, bool <em>use_partition_from_file</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK8HDF5File4readER4MeshKNSt6stringEKNSt6stringEKiRK8CellTypeKNSt7int64_tEKNSt7int64_tEb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct Mesh with paths to topology and geometry datasets, and
+providing essential meta-data, e.g. geometric dimension and
+cell type. If this data is available in the HDF5 file, it will
+be checked for consistency. Set expected_num_global_cells to a
+negative value if not known.</p>
+<p>This function is typically called when using the XDMF format,
+in which case the meta data has alreayd been read from an XML
+file</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8HDF5File5writeERK12MeshFunctionINSt6size_tEEKNSt6stringE">
+<span id="HDF5File::write__MeshFunction:std::s:CR.ssC"></span>void <code class="descclassname"></code><code class="descname">write</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction">MeshFunction</a>&lt;std::size_t&gt; &amp;<em>meshfunction</em>, <em class="property">const</em> std::string <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8HDF5File5writeERK12MeshFunctionINSt6size_tEEKNSt6stringE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write MeshFunction to file in a format suitable for re-reading</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8HDF5File5writeERK12MeshFunctionIiEKNSt6stringE">
+<span id="HDF5File::write__MeshFunction:i:CR.ssC"></span>void <code class="descclassname"></code><code class="descname">write</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction">MeshFunction</a>&lt;int&gt; &amp;<em>meshfunction</em>, <em class="property">const</em> std::string <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8HDF5File5writeERK12MeshFunctionIiEKNSt6stringE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write MeshFunction to file in a format suitable for re-reading</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8HDF5File5writeERK12MeshFunctionIdEKNSt6stringE">
+<span id="HDF5File::write__MeshFunction:double:CR.ssC"></span>void <code class="descclassname"></code><code class="descname">write</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction">MeshFunction</a>&lt;double&gt; &amp;<em>meshfunction</em>, <em class="property">const</em> std::string <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8HDF5File5writeERK12MeshFunctionIdEKNSt6stringE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write MeshFunction to file in a format suitable for re-reading</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8HDF5File5writeERK12MeshFunctionIbEKNSt6stringE">
+<span id="HDF5File::write__MeshFunction:b:CR.ssC"></span>void <code class="descclassname"></code><code class="descname">write</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction">MeshFunction</a>&lt;bool&gt; &amp;<em>meshfunction</em>, <em class="property">const</em> std::string <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8HDF5File5writeERK12MeshFunctionIbEKNSt6stringE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write MeshFunction to file in a format suitable for re-reading</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK8HDF5File4readER12MeshFunctionINSt6size_tEEKNSt6stringE">
+<span id="HDF5File::read__MeshFunction:std::s:R.ssCC"></span>void <code class="descclassname"></code><code class="descname">read</code><span class="sig-paren">(</span><a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction">MeshFunction</a>&lt;std::size_t&gt; &amp;<em>meshfunction</em>, <em class="property">const</em> std::string <em>name</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK8HDF5File4readER12MeshFunctionINSt6size_tEEKNSt6stringE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read MeshFunction from file</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK8HDF5File4readER12MeshFunctionIiEKNSt6stringE">
+<span id="HDF5File::read__MeshFunction:i:R.ssCC"></span>void <code class="descclassname"></code><code class="descname">read</code><span class="sig-paren">(</span><a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction">MeshFunction</a>&lt;int&gt; &amp;<em>meshfunction</em>, <em class="property">const</em> std::string <em>name</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK8HDF5File4readER12MeshFunctionIiEKNSt6stringE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read MeshFunction from file</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK8HDF5File4readER12MeshFunctionIdEKNSt6stringE">
+<span id="HDF5File::read__MeshFunction:double:R.ssCC"></span>void <code class="descclassname"></code><code class="descname">read</code><span class="sig-paren">(</span><a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction">MeshFunction</a>&lt;double&gt; &amp;<em>meshfunction</em>, <em class="property">const</em> std::string <em>name</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK8HDF5File4readER12MeshFunctionIdEKNSt6stringE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read MeshFunction from file</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK8HDF5File4readER12MeshFunctionIbEKNSt6stringE">
+<span id="HDF5File::read__MeshFunction:b:R.ssCC"></span>void <code class="descclassname"></code><code class="descname">read</code><span class="sig-paren">(</span><a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction">MeshFunction</a>&lt;bool&gt; &amp;<em>meshfunction</em>, <em class="property">const</em> std::string <em>name</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK8HDF5File4readER12MeshFunctionIbEKNSt6stringE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read MeshFunction from file</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8HDF5File5writeERK19MeshValueCollectionINSt6size_tEEKNSt6stringE">
+<span id="HDF5File::write__MeshValueCollection:std::s:CR.ssC"></span>void <code class="descclassname"></code><code class="descname">write</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../mesh/MeshValueCollection.html#_CPPv219MeshValueCollection" title="MeshValueCollection">MeshValueCollection</a>&lt;std::size_t&gt; &amp;<em>mesh_values</em>, <em class="property">const</em> std::string <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8HDF5File5writeERK19MeshValueCollectionINSt6size_tEEKNSt6stringE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write MeshValueCollection to file</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8HDF5File5writeERK19MeshValueCollectionIdEKNSt6stringE">
+<span id="HDF5File::write__MeshValueCollection:double:CR.ssC"></span>void <code class="descclassname"></code><code class="descname">write</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../mesh/MeshValueCollection.html#_CPPv219MeshValueCollection" title="MeshValueCollection">MeshValueCollection</a>&lt;double&gt; &amp;<em>mesh_values</em>, <em class="property">const</em> std::string <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8HDF5File5writeERK19MeshValueCollectionIdEKNSt6stringE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write MeshValueCollection to file</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8HDF5File5writeERK19MeshValueCollectionIbEKNSt6stringE">
+<span id="HDF5File::write__MeshValueCollection:b:CR.ssC"></span>void <code class="descclassname"></code><code class="descname">write</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../mesh/MeshValueCollection.html#_CPPv219MeshValueCollection" title="MeshValueCollection">MeshValueCollection</a>&lt;bool&gt; &amp;<em>mesh_values</em>, <em class="property">const</em> std::string <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8HDF5File5writeERK19MeshValueCollectionIbEKNSt6stringE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write MeshValueCollection to file</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK8HDF5File4readER19MeshValueCollectionINSt6size_tEEKNSt6stringE">
+<span id="HDF5File::read__MeshValueCollection:std::s:R.ssCC"></span>void <code class="descclassname"></code><code class="descname">read</code><span class="sig-paren">(</span><a class="reference internal" href="../mesh/MeshValueCollection.html#_CPPv219MeshValueCollection" title="MeshValueCollection">MeshValueCollection</a>&lt;std::size_t&gt; &amp;<em>mesh_values</em>, <em class="property">const</em> std::string <em>name</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK8HDF5File4readER19MeshValueCollectionINSt6size_tEEKNSt6stringE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read MeshValueCollection from file</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK8HDF5File4readER19MeshValueCollectionIdEKNSt6stringE">
+<span id="HDF5File::read__MeshValueCollection:double:R.ssCC"></span>void <code class="descclassname"></code><code class="descname">read</code><span class="sig-paren">(</span><a class="reference internal" href="../mesh/MeshValueCollection.html#_CPPv219MeshValueCollection" title="MeshValueCollection">MeshValueCollection</a>&lt;double&gt; &amp;<em>mesh_values</em>, <em class="property">const</em> std::string <em>name</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK8HDF5File4readER19MeshValueCollectionIdEKNSt6stringE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read MeshValueCollection from file</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK8HDF5File4readER19MeshValueCollectionIbEKNSt6stringE">
+<span id="HDF5File::read__MeshValueCollection:b:R.ssCC"></span>void <code class="descclassname"></code><code class="descname">read</code><span class="sig-paren">(</span><a class="reference internal" href="../mesh/MeshValueCollection.html#_CPPv219MeshValueCollection" title="MeshValueCollection">MeshValueCollection</a>&lt;bool&gt; &amp;<em>mesh_values</em>, <em class="property">const</em> std::string <em>name</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK8HDF5File4readER19MeshValueCollectionIbEKNSt6stringE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read MeshValueCollection from file</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK8HDF5File11has_datasetEKNSt6stringE">
+<span id="HDF5File::has_dataset__ssCC"></span>bool <code class="descclassname"></code><code class="descname">has_dataset</code><span class="sig-paren">(</span><em class="property">const</em> std::string <em>dataset_name</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK8HDF5File11has_datasetEKNSt6stringE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if dataset exists in HDF5 file</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8HDF5File17set_mpi_atomicityEb">
+<span id="HDF5File::set_mpi_atomicity__b"></span>void <code class="descclassname"></code><code class="descname">set_mpi_atomicity</code><span class="sig-paren">(</span>bool <em>atomic</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8HDF5File17set_mpi_atomicityEb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the MPI atomicity</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK8HDF5File17get_mpi_atomicityEv">
+<span id="HDF5File::get_mpi_atomicityC"></span>bool <code class="descclassname"></code><code class="descname">get_mpi_atomicity</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK8HDF5File17get_mpi_atomicityEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the MPI atomicity</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="X3DOM.html" class="btn btn-neutral float-right" title="X3DOM.h" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="HDF5Attribute.html" class="btn btn-neutral" title="HDF5Attribute.h" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://bitbucket.org/fenics-project/.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'2016.2.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

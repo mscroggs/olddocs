@@ -1,0 +1,10 @@
+.. Documentation for the function dolfin.cpp.mesh.SphericalShellMesh_create
+
+.. _programmers_reference_cpp_mesh_sphericalshellmesh_create:
+
+SphericalShellMesh_create
+=========================
+
+.. currentmodule:: dolfin.cpp.mesh
+
+.. autofunction:: SphericalShellMesh_create

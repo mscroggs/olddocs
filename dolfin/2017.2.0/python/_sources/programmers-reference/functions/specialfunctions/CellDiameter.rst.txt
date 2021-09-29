@@ -1,0 +1,10 @@
+.. Documentation for the function dolfin.functions.specialfunctions.CellDiameter
+
+.. _programmers_reference_functions_specialfunctions_celldiameter:
+
+CellDiameter
+============
+
+.. currentmodule:: dolfin.functions.specialfunctions
+
+.. autofunction:: CellDiameter

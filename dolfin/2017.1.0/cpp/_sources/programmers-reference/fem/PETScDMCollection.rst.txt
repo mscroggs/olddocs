@@ -1,0 +1,53 @@
+
+.. Documentation for the header file dolfin/fem/PETScDMCollection.h
+
+.. _programmers_reference_cpp_fem_petscdmcollection:
+
+PETScDMCollection.h
+===================
+
+.. note::
+    
+    The documentation on this page was automatically extracted from the
+    DOLFIN C++ code and may need to be edited or expanded.
+    
+
+.. cpp:class:: PETScDMCollection
+
+    This class builds and stores of collection of PETSc DM objects
+    from a hierarchy of FunctionSpaces objects. The DM objects are
+    used to construct multigrid solvers via PETSc.
+    
+    Warning: This classs is highly experimental and will change
+
+
+    .. cpp:function:: PETScDMCollection(std::vector<std::shared_ptr<const FunctionSpace>> function_spaces)
+    
+        Construct PETScDMCollection from a vector of
+        FunctionSpaces. The vector of FunctionSpaces is stored from
+        coarse to fine.
+
+
+    .. cpp:function:: DM get_dm(int i)
+    
+        Return the ith DM objects. The coarest DM has index 0. Use
+        i=-1 to get the DM for the finest level, i=-2 for the DM for
+        the second finest level, etc.
+
+
+    .. cpp:function:: void check_ref_count() const
+    
+        These are test/debugging functions that will be removed
+
+
+    .. cpp:function:: void reset(int i)
+    
+        Debugging use - to be removed
+
+
+    .. cpp:function:: static std::shared_ptr<PETScMatrix> create_transfer_matrix (std::shared_ptr<const FunctionSpace> coarse_space, std::shared_ptr<const FunctionSpace> fine_space)
+    
+        Create the interpolation matrix from the coarse to the fine
+        space (prolongation matrix)
+
+

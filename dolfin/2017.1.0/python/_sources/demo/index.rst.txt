@@ -1,0 +1,6 @@
+
+Collection of documented demos
+==============================
+
+See `DOLFIN Read the Docs page
+<http://fenics.readthedocs.io/projects/dolfin/en/2017.1.0.post0/demos.html>`_.

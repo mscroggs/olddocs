@@ -1,0 +1,6 @@
+<map id="dolfin::PETScBaseMatrix" name="dolfin::PETScBaseMatrix">
+<area shape="rect" id="node4" href="$d1/dd8/classdolfin_1_1PETScLinearOperator.html" title="PETSc version of the GenericLinearOperator. " alt="" coords="5,155,204,181"/>
+<area shape="rect" id="node5" href="$d4/db0/classdolfin_1_1PETScMatrix.html" title="dolfin::PETScMatrix" alt="" coords="228,155,371,181"/>
+<area shape="rect" id="node2" href="$d1/d64/classdolfin_1_1PETScObject.html" title="dolfin::PETScObject" alt="" coords="54,5,198,32"/>
+<area shape="rect" id="node3" href="$d8/df0/classdolfin_1_1Variable.html" title="Common base class for DOLFIN variables. " alt="" coords="222,5,337,32"/>
+</map>

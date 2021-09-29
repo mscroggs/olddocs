@@ -1,0 +1,547 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>C++ coding style guide &mdash; DOLFIN  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Contributing" href="contributing.html" />
+    <link rel="prev" title="Developer resources" href="developer.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using.html">Using DOLFIN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="demos.html">Demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Python API reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="developer.html">Developer resources</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">C++ coding style guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#naming-conventions">Naming conventions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#class-names">Class names</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#function-names">Function names</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#variable-names">Variable names</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#enum-variables-and-constants">Enum variables and constants</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#file-names">File names</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#miscellaneous">Miscellaneous</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#indentation">Indentation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#comments">Comments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#integers-and-reals">Integers and reals</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#placement-of-brackets-and-indent-style">Placement of brackets and indent style</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#header-file-layout">Header file layout</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#implementation-file-layout">Implementation file layout</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#including-header-files-and-using-forward-declarations">Including header files and using forward declarations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#explicit-constructors">Explicit constructors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#virtual-functions">Virtual functions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#use-of-libraries">Use of libraries</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#prefer-c-strings-and-streams-over-old-c-style-char">Prefer C++ strings and streams over old C-style <code class="docutils literal notranslate"><span class="pre">char*</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#prefer-smart-pointers-over-plain-pointers">Prefer smart pointers over plain pointers</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ChangeLog.html">Change log</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">DOLFIN</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="developer.html">Developer resources</a> &raquo;</li>
+        
+      <li>C++ coding style guide</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/styleguide_cpp.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="c-coding-style-guide">
+<span id="developers-styleguide-cpp"></span><h1>C++ coding style guide<a class="headerlink" href="#c-coding-style-guide" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="naming-conventions">
+<h2>Naming conventions<a class="headerlink" href="#naming-conventions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="class-names">
+<h3>Class names<a class="headerlink" href="#class-names" title="Permalink to this headline">¶</a></h3>
+<p>Use camel caps for class names:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">FooBar</span>
+<span class="p">{</span>
+  <span class="p">...</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="function-names">
+<h3>Function names<a class="headerlink" href="#function-names" title="Permalink to this headline">¶</a></h3>
+<p>Use lower-case for function names and underscore to separate words:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">foo</span><span class="p">();</span>
+<span class="n">bar</span><span class="p">();</span>
+<span class="n">foo_bar</span><span class="p">(...);</span>
+</pre></div>
+</div>
+<p>Functions returning a value should be given the name of that value,
+for example:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Array</span><span class="o">:</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+
+  <span class="c1">/// Return size of array (number of entries)</span>
+  <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">size</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>In the above example, the function should be named <code class="docutils literal notranslate"><span class="pre">size</span></code> rather
+than <code class="docutils literal notranslate"><span class="pre">get_size</span></code>. On the other hand, a function not returning a value
+but rather taking a variable (by reference) and assigning a value to
+it, should use the <code class="docutils literal notranslate"><span class="pre">get_foo</span></code> naming scheme, for example:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Parameters</span><span class="o">:</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+
+  <span class="c1">/// Retrieve all parameter keys</span>
+  <span class="kt">void</span> <span class="n">get_parameter_keys</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;&amp;</span> <span class="n">parameter_keys</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+
+<span class="p">};</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="variable-names">
+<h3>Variable names<a class="headerlink" href="#variable-names" title="Permalink to this headline">¶</a></h3>
+<p>Use lower-case for variable names and underscore to separate words:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Foo</span> <span class="n">foo</span><span class="p">;</span>
+<span class="n">Bar</span> <span class="n">bar</span><span class="p">;</span>
+<span class="n">FooBar</span> <span class="n">foo_bar</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="enum-variables-and-constants">
+<h3>Enum variables and constants<a class="headerlink" href="#enum-variables-and-constants" title="Permalink to this headline">¶</a></h3>
+<p>Enum variables should be lower-case with underscore to separate words:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">enum</span> <span class="n">Type</span> <span class="p">{</span><span class="n">foo</span><span class="p">,</span> <span class="n">bar</span><span class="p">,</span> <span class="n">foo_bar</span><span class="p">};</span>
+</pre></div>
+</div>
+<p>We try to avoid using <code class="docutils literal notranslate"><span class="pre">#define</span></code> to define constants, but when
+necessary constants should be capitalized:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#define FOO 3.14159265358979</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="file-names">
+<h3>File names<a class="headerlink" href="#file-names" title="Permalink to this headline">¶</a></h3>
+<p>Use camel caps for file names if they contain the
+declaration/definition of a class. Header files should have the suffix
+<code class="docutils literal notranslate"><span class="pre">.h</span></code> and implementation files should have the suffix <code class="docutils literal notranslate"><span class="pre">.cpp</span></code>:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">FooBar</span><span class="p">.</span><span class="n">h</span>
+<span class="n">FooBar</span><span class="p">.</span><span class="n">cpp</span>
+</pre></div>
+</div>
+<p>Use lower-case for file names that contain utilities/functions (not
+classes).</p>
+</div>
+</div>
+<div class="section" id="miscellaneous">
+<h2>Miscellaneous<a class="headerlink" href="#miscellaneous" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="indentation">
+<span id="styleguides-cpp-coding-style-indentation"></span><h3>Indentation<a class="headerlink" href="#indentation" title="Permalink to this headline">¶</a></h3>
+<p>Indentation should be two spaces and it should be spaces. Do <strong>not</strong>
+use tab(s).</p>
+</div>
+<div class="section" id="comments">
+<h3>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h3>
+<p>Comment your code, and do it often. Capitalize the first letter and
+don’t use punctuation (unless the comment runs over several
+sentences). Here’s a good example from <code class="docutils literal notranslate"><span class="pre">TopologyComputation.cpp</span></code>:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Check if connectivity has already been computed</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">connectivity</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+  <span class="k">return</span><span class="p">;</span>
+
+<span class="c1">// Invalidate ordering</span>
+<span class="n">mesh</span><span class="p">.</span><span class="n">_ordered</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+
+<span class="c1">// Compute entities if they don&#39;t exist</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">topology</span><span class="p">.</span><span class="n">size</span><span class="p">(</span><span class="n">d0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+  <span class="n">compute_entities</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">d0</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">topology</span><span class="p">.</span><span class="n">size</span><span class="p">(</span><span class="n">d1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+  <span class="n">compute_entities</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">d1</span><span class="p">);</span>
+
+<span class="c1">// Check if connectivity still needs to be computed</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">connectivity</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+  <span class="k">return</span><span class="p">;</span>
+
+<span class="p">...</span>
+</pre></div>
+</div>
+<p>Always use <code class="docutils literal notranslate"><span class="pre">//</span></code> for comments and <code class="docutils literal notranslate"><span class="pre">///</span></code> for documentation. Never
+use <code class="docutils literal notranslate"><span class="pre">/*</span> <span class="pre">foo</span> <span class="pre">*/</span></code>, not even for comments that runs over multiple
+lines.</p>
+</div>
+<div class="section" id="integers-and-reals">
+<h3>Integers and reals<a class="headerlink" href="#integers-and-reals" title="Permalink to this headline">¶</a></h3>
+<p>Use <code class="docutils literal notranslate"><span class="pre">std::size_t</span></code> instead of <code class="docutils literal notranslate"><span class="pre">int</span></code> (unless you really want to use
+negative integers or memory usage is critical).</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">double</span> <span class="n">x</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="placement-of-brackets-and-indent-style">
+<h3>Placement of brackets and indent style<a class="headerlink" href="#placement-of-brackets-and-indent-style" title="Permalink to this headline">¶</a></h3>
+<p>Use the <a class="reference external" href="http://en.wikipedia.org/wiki/Indent_style">BSD/Allman</a>
+style when formatting blocks of code, i.e., curly brackets following
+multiline control statements should appear on the next line and should
+not be indented:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="p">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>For one line statements, omit the brackets:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+  <span class="n">foo</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="header-file-layout">
+<h3>Header file layout<a class="headerlink" href="#header-file-layout" title="Permalink to this headline">¶</a></h3>
+<p>Header files should follow the below template:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Copyright (C) 2008 Foo Bar</span>
+<span class="c1">//</span>
+<span class="c1">// This file is part of DOLFIN.</span>
+<span class="c1">//</span>
+<span class="c1">// DOLFIN is free software: you can redistribute it and/or modify</span>
+<span class="c1">// it under the terms of the GNU Lesser General Public License as published by</span>
+<span class="c1">// the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c1">// (at your option) any later version.</span>
+<span class="c1">//</span>
+<span class="c1">// DOLFIN is distributed in the hope that it will be useful,</span>
+<span class="c1">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the</span>
+<span class="c1">// GNU Lesser General Public License for more details.</span>
+<span class="c1">//</span>
+<span class="c1">// You should have received a copy of the GNU Lesser General Public License</span>
+<span class="c1">// along with DOLFIN. If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<span class="c1">//</span>
+<span class="c1">// Modified by Bar Foo 2008</span>
+
+<span class="cp">#ifndef __FOO_H</span>
+<span class="cp">#define __FOO_H</span>
+
+<span class="k">namespace</span> <span class="n">dolfin</span>
+<span class="p">{</span>
+
+  <span class="k">class</span> <span class="nc">Bar</span><span class="p">;</span> <span class="c1">// Forward declarations here</span>
+
+  <span class="c1">/// Documentation of class</span>
+
+  <span class="k">class</span> <span class="nc">Foo</span>
+  <span class="p">{</span>
+  <span class="k">public</span><span class="o">:</span>
+
+    <span class="p">...</span>
+
+  <span class="k">private</span><span class="o">:</span>
+
+    <span class="p">...</span>
+
+  <span class="p">};</span>
+
+<span class="p">}</span>
+
+<span class="cp">#endif</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="implementation-file-layout">
+<h3>Implementation file layout<a class="headerlink" href="#implementation-file-layout" title="Permalink to this headline">¶</a></h3>
+<p>Implementation files should follow the below template:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Copyright (C) 2008 Foo Bar</span>
+<span class="c1">//</span>
+<span class="c1">// This file is part of DOLFIN.</span>
+<span class="c1">//</span>
+<span class="c1">// DOLFIN is free software: you can redistribute it and/or modify</span>
+<span class="c1">// it under the terms of the GNU Lesser General Public License as published by</span>
+<span class="c1">// the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c1">// (at your option) any later version.</span>
+<span class="c1">//</span>
+<span class="c1">// DOLFIN is distributed in the hope that it will be useful,</span>
+<span class="c1">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the</span>
+<span class="c1">// GNU Lesser General Public License for more details.</span>
+<span class="c1">//</span>
+<span class="c1">// You should have received a copy of the GNU Lesser General Public License</span>
+<span class="c1">// along with DOLFIN. If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<span class="c1">//</span>
+<span class="c1">// Modified by Bar Foo 2008</span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;dolfin/Foo.h&gt;</span><span class="cp"></span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">dolfin</span><span class="p">;</span>
+
+<span class="c1">//-----------------------------------------------------------------------------</span>
+<span class="n">Foo</span><span class="o">::</span><span class="n">Foo</span><span class="p">()</span> <span class="o">:</span> <span class="c1">// variable initialization here</span>
+<span class="p">{</span>
+  <span class="p">...</span>
+<span class="p">}</span>
+<span class="c1">//-----------------------------------------------------------------------------</span>
+<span class="n">Foo</span><span class="o">::~</span><span class="n">Foo</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="c1">// Do nothing</span>
+<span class="p">}</span>
+<span class="c1">//-----------------------------------------------------------------------------</span>
+</pre></div>
+</div>
+<p>The horizontal lines above (including the slashes) should be exactly
+79 characters wide.</p>
+</div>
+<div class="section" id="including-header-files-and-using-forward-declarations">
+<h3>Including header files and using forward declarations<a class="headerlink" href="#including-header-files-and-using-forward-declarations" title="Permalink to this headline">¶</a></h3>
+<p>Do not use <code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&lt;dolfin.h&gt;</span></code> or <code class="docutils literal notranslate"><span class="pre">#include</span></code>
+<code class="docutils literal notranslate"><span class="pre">&lt;dolfin/dolfin_foo.h&gt;</span></code> inside the DOLFIN source tree. Only include
+the portions of DOLFIN you are actually using.</p>
+<p>Include as few header files as possible and use forward declarations
+whenever possible (in header files). Put the <code class="docutils literal notranslate"><span class="pre">#include</span></code> in the
+implementation file.  This reduces compilation time and minimizes the
+risk of cyclic dependencies.</p>
+</div>
+<div class="section" id="explicit-constructors">
+<h3>Explicit constructors<a class="headerlink" href="#explicit-constructors" title="Permalink to this headline">¶</a></h3>
+<p>Make all one argument constructors (except copy constructors)
+explicit:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Foo</span>
+<span class="p">{</span>
+  <span class="k">explicit</span> <span class="n">Foo</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="virtual-functions">
+<h3>Virtual functions<a class="headerlink" href="#virtual-functions" title="Permalink to this headline">¶</a></h3>
+<p>Always declare inherited virtual functions as virtual in the
+subclasses.  This makes it easier to spot which functions are virtual.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Foo</span>
+<span class="p">{</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">foo</span><span class="p">();</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">bar</span><span class="p">()</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">Bar</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Foo</span>
+<span class="p">{</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">foo</span><span class="p">();</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">bar</span><span class="p">();</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="use-of-libraries">
+<h2>Use of libraries<a class="headerlink" href="#use-of-libraries" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="prefer-c-strings-and-streams-over-old-c-style-char">
+<h3>Prefer C++ strings and streams over old C-style <code class="docutils literal notranslate"><span class="pre">char*</span></code><a class="headerlink" href="#prefer-c-strings-and-streams-over-old-c-style-char" title="Permalink to this headline">¶</a></h3>
+<p>Use <code class="docutils literal notranslate"><span class="pre">std::string</span></code> instead of <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">char*</span></code> and use
+<code class="docutils literal notranslate"><span class="pre">std::istream</span></code> and <code class="docutils literal notranslate"><span class="pre">std::ostream</span></code> instead of <code class="docutils literal notranslate"><span class="pre">FILE</span></code>. Avoid
+<code class="docutils literal notranslate"><span class="pre">printf</span></code>, <code class="docutils literal notranslate"><span class="pre">sprintf</span></code> and other C functions.</p>
+<p>There are some exceptions to this rule where we need to use old
+C-style function calls. One such exception is handling of command-line
+arguments (<code class="docutils literal notranslate"><span class="pre">char*</span> <span class="pre">argv[]</span></code>).</p>
+</div>
+<div class="section" id="prefer-smart-pointers-over-plain-pointers">
+<h3>Prefer smart pointers over plain pointers<a class="headerlink" href="#prefer-smart-pointers-over-plain-pointers" title="Permalink to this headline">¶</a></h3>
+<p>Use <code class="docutils literal notranslate"><span class="pre">std::shared_ptr</span></code> and <code class="docutils literal notranslate"><span class="pre">std::unique_ptr</span></code> in favour of plain
+pointers. Smart pointers reduce the likelihood of memory leaks and
+make ownership clear. Use <code class="docutils literal notranslate"><span class="pre">unique_ptr</span></code> for a pointer that is not
+shared and <code class="docutils literal notranslate"><span class="pre">shared_ptr</span></code> when multiple pointers point to the same
+object.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="contributing.html" class="btn btn-neutral float-right" title="Contributing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="developer.html" class="btn btn-neutral float-left" title="Developer resources" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2017, FEniCS Project
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

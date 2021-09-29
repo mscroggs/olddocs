@@ -1,0 +1,445 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>MPI.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN common module" href="index.html"/>
+        <link rel="next" title="Set.h" href="Set.html"/>
+        <link rel="prev" title="IndexSet.h" href="IndexSet.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2016.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-2016.1.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN common module</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Array.html">Array.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ArrayView.html">ArrayView.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Hierarchical.html">Hierarchical.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="IndexSet.html">IndexSet.h</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">MPI.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Set.html">Set.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SubSystemsManager.html">SubSystemsManager.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Timer.html">Timer.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Variable.html">Variable.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="constants.html">constants.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="defines.html">defines.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="init.html">init.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="timing.html">timing.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="types.html">types.h</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../fem/index.html">DOLFIN fem module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html">DOLFIN function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/index.html">DOLFIN geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/index.html">DOLFIN io module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../la/index.html">DOLFIN la module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/index.html">DOLFIN log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mesh/index.html">DOLFIN mesh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot/index.html">DOLFIN plot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer&#8217;s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-2016.1.0</a> &raquo;</li>
+      
+          <li><a href="index.html">DOLFIN common module</a> &raquo;</li>
+      
+    <li>MPI.h</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/programmers-reference/common/MPI.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="mpi-h">
+<span id="programmers-reference-cpp-common-mpi"></span><h1>MPI.h<a class="headerlink" href="#mpi-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="class">
+<dt id="_CPPv27MPIInfo">
+<span id="MPIInfo"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">MPIInfo</code><a class="headerlink" href="#_CPPv27MPIInfo" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="_CPPv23MPI">
+<span id="MPI"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">MPI</code><a class="headerlink" href="#_CPPv23MPI" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This class provides utility functions for easy communication
+with MPI and handles cases when DOLFIN is not configured with
+MPI.</p>
+<dl class="function">
+<dt id="_CPPv2N3MPI4rankE8MPI_Comm">
+<span id="MPI::rank__MPI_Comm"></span><em class="property">static</em> unsigned int <code class="descclassname"></code><code class="descname">rank</code><span class="sig-paren">(</span>MPI_Comm <em>comm</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N3MPI4rankE8MPI_Comm" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return process rank for the communicator</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N3MPI4sizeE8MPI_Comm">
+<span id="MPI::size__MPI_Comm"></span><em class="property">static</em> unsigned int <code class="descclassname"></code><code class="descname">size</code><span class="sig-paren">(</span>MPI_Comm <em>comm</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N3MPI4sizeE8MPI_Comm" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return size of the group (number of processes) associated with
+the communicator</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N3MPI14is_broadcasterE8MPI_Comm">
+<span id="MPI::is_broadcaster__MPI_Comm"></span><em class="property">static</em> bool <code class="descclassname"></code><code class="descname">is_broadcaster</code><span class="sig-paren">(</span>MPI_Comm <em>comm</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N3MPI14is_broadcasterE8MPI_Comm" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Determine whether we should broadcast (based on current
+parallel policy)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N3MPI11is_receiverE8MPI_Comm">
+<span id="MPI::is_receiver__MPI_Comm"></span><em class="property">static</em> bool <code class="descclassname"></code><code class="descname">is_receiver</code><span class="sig-paren">(</span>MPI_Comm <em>comm</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N3MPI11is_receiverE8MPI_Comm" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Determine whether we should receive (based on current parallel
+policy)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N3MPI7barrierE8MPI_Comm">
+<span id="MPI::barrier__MPI_Comm"></span><em class="property">static</em> void <code class="descclassname"></code><code class="descname">barrier</code><span class="sig-paren">(</span>MPI_Comm <em>comm</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N3MPI7barrierE8MPI_Comm" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set a barrier (synchronization point)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N3MPI10all_to_allE8MPI_CommRNSt6vectorINSt6vectorI1TEEEERNSt6vectorINSt6vectorI1TEEEE">
+<span id="MPI::all_to_all__MPI_Comm.std::vector:std::vector:T::R.std::vector:std::vector:T::R"></span><em class="property">static</em> void <code class="descclassname"></code><code class="descname">all_to_all</code><span class="sig-paren">(</span>MPI_Comm <em>comm</em>, std::vector&lt;std::vector&lt;T&gt;&gt; &amp;<em>in_values</em>, std::vector&lt;std::vector&lt;T&gt;&gt; &amp;<em>out_values</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N3MPI10all_to_allE8MPI_CommRNSt6vectorINSt6vectorI1TEEEERNSt6vectorINSt6vectorI1TEEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Send in_values[p0] to process p0 and receive values from
+process p1 in out_values[p1]</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N3MPI9broadcastE8MPI_CommRNSt6vectorI1TEEj">
+<span id="MPI::broadcast__MPI_Comm.std::vector:T:R.unsigned-i"></span><em class="property">static</em> void <code class="descclassname"></code><code class="descname">broadcast</code><span class="sig-paren">(</span>MPI_Comm <em>comm</em>, std::vector&lt;T&gt; &amp;<em>value</em>, unsigned int <em>broadcaster</em> = 0<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N3MPI9broadcastE8MPI_CommRNSt6vectorI1TEEj" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Broadcast vector of value from broadcaster to all processes</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N3MPI9broadcastE8MPI_CommR1Tj">
+<span id="MPI::broadcast__MPI_Comm.TR.unsigned-i"></span><em class="property">static</em> void <code class="descclassname"></code><code class="descname">broadcast</code><span class="sig-paren">(</span>MPI_Comm <em>comm</em>, T &amp;<em>value</em>, unsigned int <em>broadcaster</em> = 0<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N3MPI9broadcastE8MPI_CommR1Tj" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Broadcast single primitive from broadcaster to all processes</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N3MPI7scatterE8MPI_CommRKNSt6vectorINSt6vectorI1TEEEERNSt6vectorI1TEEj">
+<span id="MPI::scatter__MPI_Comm.std::vector:std::vector:T::CR.std::vector:T:R.unsigned-i"></span><em class="property">static</em> void <code class="descclassname"></code><code class="descname">scatter</code><span class="sig-paren">(</span>MPI_Comm <em>comm</em>, <em class="property">const</em> std::vector&lt;std::vector&lt;T&gt;&gt; &amp;<em>in_values</em>, std::vector&lt;T&gt; &amp;<em>out_value</em>, unsigned int <em>sending_process</em> = 0<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N3MPI7scatterE8MPI_CommRKNSt6vectorINSt6vectorI1TEEEERNSt6vectorI1TEEj" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Scatter vector in_values[i] to process i</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N3MPI7scatterE8MPI_CommRKNSt6vectorI1TEER1Tj">
+<span id="MPI::scatter__MPI_Comm.std::vector:T:CR.TR.unsigned-i"></span><em class="property">static</em> void <code class="descclassname"></code><code class="descname">scatter</code><span class="sig-paren">(</span>MPI_Comm <em>comm</em>, <em class="property">const</em> std::vector&lt;T&gt; &amp;<em>in_values</em>, T &amp;<em>out_value</em>, unsigned int <em>sending_process</em> = 0<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N3MPI7scatterE8MPI_CommRKNSt6vectorI1TEER1Tj" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Scatter primitive in_values[i] to process i</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N3MPI6gatherE8MPI_CommRKNSt6vectorI1TEERNSt6vectorI1TEEj">
+<span id="MPI::gather__MPI_Comm.std::vector:T:CR.std::vector:T:R.unsigned-i"></span><em class="property">static</em> void <code class="descclassname"></code><code class="descname">gather</code><span class="sig-paren">(</span>MPI_Comm <em>comm</em>, <em class="property">const</em> std::vector&lt;T&gt; &amp;<em>in_values</em>, std::vector&lt;T&gt; &amp;<em>out_values</em>, unsigned int <em>receiving_process</em> = 0<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N3MPI6gatherE8MPI_CommRKNSt6vectorI1TEERNSt6vectorI1TEEj" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gather values on one process</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N3MPI6gatherE8MPI_CommRKNSt6stringERNSt6vectorINSt6stringEEEj">
+<span id="MPI::gather__MPI_Comm.ssCR.std::vector:ss:R.unsigned-i"></span><em class="property">static</em> void <code class="descclassname"></code><code class="descname">gather</code><span class="sig-paren">(</span>MPI_Comm <em>comm</em>, <em class="property">const</em> std::string &amp;<em>in_values</em>, std::vector&lt;std::string&gt; &amp;<em>out_values</em>, unsigned int <em>receiving_process</em> = 0<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N3MPI6gatherE8MPI_CommRKNSt6stringERNSt6vectorINSt6stringEEEj" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gather strings on one process</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N3MPI10all_gatherE8MPI_CommRKNSt6vectorI1TEERNSt6vectorI1TEE">
+<span id="MPI::all_gather__MPI_Comm.std::vector:T:CR.std::vector:T:R"></span><em class="property">static</em> void <code class="descclassname"></code><code class="descname">all_gather</code><span class="sig-paren">(</span>MPI_Comm <em>comm</em>, <em class="property">const</em> std::vector&lt;T&gt; &amp;<em>in_values</em>, std::vector&lt;T&gt; &amp;<em>out_values</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N3MPI10all_gatherE8MPI_CommRKNSt6vectorI1TEERNSt6vectorI1TEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gather values from all processes. Same data count from each
+process (wrapper for MPI_Allgather)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N3MPI10all_gatherE8MPI_CommRKNSt6vectorI1TEERNSt6vectorINSt6vectorI1TEEEE">
+<span id="MPI::all_gather__MPI_Comm.std::vector:T:CR.std::vector:std::vector:T::R"></span><em class="property">static</em> void <code class="descclassname"></code><code class="descname">all_gather</code><span class="sig-paren">(</span>MPI_Comm <em>comm</em>, <em class="property">const</em> std::vector&lt;T&gt; &amp;<em>in_values</em>, std::vector&lt;std::vector&lt;T&gt;&gt; &amp;<em>out_values</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N3MPI10all_gatherE8MPI_CommRKNSt6vectorI1TEERNSt6vectorINSt6vectorI1TEEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gather values from each process (variable count per process)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N3MPI10all_gatherE8MPI_CommK1TRNSt6vectorI1TEE">
+<span id="MPI::all_gather__MPI_Comm.TC.std::vector:T:R"></span><em class="property">static</em> void <code class="descclassname"></code><code class="descname">all_gather</code><span class="sig-paren">(</span>MPI_Comm <em>comm</em>, <em class="property">const</em> T <em>in_value</em>, std::vector&lt;T&gt; &amp;<em>out_values</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N3MPI10all_gatherE8MPI_CommK1TRNSt6vectorI1TEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gather values, one primitive from each process (MPI_Allgather)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N3MPI3maxE8MPI_CommRK1T">
+<span id="MPI::max__MPI_Comm.TCR"></span><em class="property">static</em> T <code class="descclassname"></code><code class="descname">max</code><span class="sig-paren">(</span>MPI_Comm <em>comm</em>, <em class="property">const</em> T &amp;<em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N3MPI3maxE8MPI_CommRK1T" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return global max value</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N3MPI3minE8MPI_CommRK1T">
+<span id="MPI::min__MPI_Comm.TCR"></span><em class="property">static</em> T <code class="descclassname"></code><code class="descname">min</code><span class="sig-paren">(</span>MPI_Comm <em>comm</em>, <em class="property">const</em> T &amp;<em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N3MPI3minE8MPI_CommRK1T" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return global min value</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N3MPI3sumE8MPI_CommRK1T">
+<span id="MPI::sum__MPI_Comm.TCR"></span><em class="property">static</em> T <code class="descclassname"></code><code class="descname">sum</code><span class="sig-paren">(</span>MPI_Comm <em>comm</em>, <em class="property">const</em> T &amp;<em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N3MPI3sumE8MPI_CommRK1T" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sum values and return sum</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N3MPI3avgE8MPI_CommRK1T">
+<span id="MPI::avg__MPI_Comm.TCR"></span><em class="property">static</em> T <code class="descclassname"></code><code class="descname">avg</code><span class="sig-paren">(</span>MPI_Comm <em>comm</em>, <em class="property">const</em> T &amp;<em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N3MPI3avgE8MPI_CommRK1T" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return average across comm; implemented only for T == Table</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N3MPI10all_reduceE8MPI_CommRK1T1X">
+<span id="MPI::all_reduce__MPI_Comm.TCR.X"></span><em class="property">static</em> T <code class="descclassname"></code><code class="descname">all_reduce</code><span class="sig-paren">(</span>MPI_Comm <em>comm</em>, <em class="property">const</em> T &amp;<em>value</em>, X <em>op</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N3MPI10all_reduceE8MPI_CommRK1T1X" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>All reduce</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N3MPI13global_offsetE8MPI_CommNSt6size_tEb">
+<span id="MPI::global_offset__MPI_Comm.std::s.b"></span><em class="property">static</em> std::size_t <code class="descclassname"></code><code class="descname">global_offset</code><span class="sig-paren">(</span>MPI_Comm <em>comm</em>, std::size_t <em>range</em>, bool <em>exclusive</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N3MPI13global_offsetE8MPI_CommNSt6size_tEb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Find global offset (index) (wrapper for MPI_(Ex)Scan with
+MPI_SUM as reduction op)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N3MPI9send_recvE8MPI_CommRKNSt6vectorI1TEEjiRNSt6vectorI1TEEji">
+<span id="MPI::send_recv__MPI_Comm.std::vector:T:CR.unsigned-i.i.std::vector:T:R.unsigned-i.i"></span><em class="property">static</em> void <code class="descclassname"></code><code class="descname">send_recv</code><span class="sig-paren">(</span>MPI_Comm <em>comm</em>, <em class="property">const</em> std::vector&lt;T&gt; &amp;<em>send_value</em>, unsigned int <em>dest</em>, int <em>send_tag</em>, std::vector&lt;T&gt; &amp;<em>recv_value</em>, unsigned int <em>source</em>, int <em>recv_tag</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N3MPI9send_recvE8MPI_CommRKNSt6vectorI1TEEjiRNSt6vectorI1TEEji" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Send-receive data between processes (blocking)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N3MPI9send_recvE8MPI_CommRKNSt6vectorI1TEEjRNSt6vectorI1TEEj">
+<span id="MPI::send_recv__MPI_Comm.std::vector:T:CR.unsigned-i.std::vector:T:R.unsigned-i"></span><em class="property">static</em> void <code class="descclassname"></code><code class="descname">send_recv</code><span class="sig-paren">(</span>MPI_Comm <em>comm</em>, <em class="property">const</em> std::vector&lt;T&gt; &amp;<em>send_value</em>, unsigned int <em>dest</em>, std::vector&lt;T&gt; &amp;<em>recv_value</em>, unsigned int <em>source</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N3MPI9send_recvE8MPI_CommRKNSt6vectorI1TEEjRNSt6vectorI1TEEj" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Send-receive data between processes</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N3MPI11local_rangeE8MPI_CommNSt7int64_tE">
+<span id="MPI::local_range__MPI_Comm.std::int64_t"></span><em class="property">static</em> std::pair&lt;std::int64_t, std::int64_t&gt; <code class="descclassname"></code><code class="descname">local_range</code><span class="sig-paren">(</span>MPI_Comm <em>comm</em>, std::int64_t <em>N</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N3MPI11local_rangeE8MPI_CommNSt7int64_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return local range for local process, splitting [0, N - 1] into
+size() portions of almost equal size</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N3MPI11local_rangeE8MPI_CommiNSt7int64_tE">
+<span id="MPI::local_range__MPI_Comm.i.std::int64_t"></span><em class="property">static</em> std::pair&lt;std::int64_t, std::int64_t&gt; <code class="descclassname"></code><code class="descname">local_range</code><span class="sig-paren">(</span>MPI_Comm <em>comm</em>, int <em>process</em>, std::int64_t <em>N</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N3MPI11local_rangeE8MPI_CommiNSt7int64_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return local range for given process, splitting [0, N - 1] into
+size() portions of almost equal size</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N3MPI19compute_local_rangeEiNSt7int64_tEi">
+<span id="MPI::compute_local_range__i.std::int64_t.i"></span><em class="property">static</em> std::pair&lt;std::int64_t, std::int64_t&gt; <code class="descclassname"></code><code class="descname">compute_local_range</code><span class="sig-paren">(</span>int <em>process</em>, std::int64_t <em>N</em>, int <em>size</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N3MPI19compute_local_rangeEiNSt7int64_tEi" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return local range for given process, splitting [0, N - 1] into
+size() portions of almost equal size</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N3MPI11index_ownerE8MPI_CommNSt6size_tENSt6size_tE">
+<span id="MPI::index_owner__MPI_Comm.std::s.std::s"></span><em class="property">static</em> unsigned int <code class="descclassname"></code><code class="descname">index_owner</code><span class="sig-paren">(</span>MPI_Comm <em>comm</em>, std::size_t <em>index</em>, std::size_t <em>N</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N3MPI11index_ownerE8MPI_CommNSt6size_tENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return which process owns index (inverse of local_range)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N3MPI7MPI_AVGEv">
+<span id="MPI::MPI_AVG"></span><em class="property">static</em> MPI_Op <code class="descclassname"></code><code class="descname">MPI_AVG</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N3MPI7MPI_AVGEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return average reduction operation; recognized by
+all_reduce(MPI_Comm, Table&amp;, MPI_Op)</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Set.html" class="btn btn-neutral float-right" title="Set.h" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="IndexSet.html" class="btn btn-neutral" title="IndexSet.h" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://bitbucket.org/fenics-project/.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'2016.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

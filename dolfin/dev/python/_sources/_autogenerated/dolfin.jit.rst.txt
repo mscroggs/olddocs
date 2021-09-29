@@ -1,0 +1,29 @@
+dolfin.jit
+==========
+
+.. automodule:: dolfin.jit
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      get_pybind_include
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

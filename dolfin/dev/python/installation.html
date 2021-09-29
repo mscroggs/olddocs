@@ -1,0 +1,309 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Installation &mdash; DOLFIN  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Using DOLFIN" href="using.html" />
+    <link rel="prev" title="DOLFIN documentation" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#quick-start">Quick start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#building-from-source">Building from source</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dependencies">Dependencies</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#required">Required</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#required-for-python-interface">Required for Python interface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#optional">Optional</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#optional-for-the-python-interface">Optional for the Python interface</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="using.html">Using DOLFIN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="demos.html">Demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Python API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer.html">Developer resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ChangeLog.html">Change log</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">DOLFIN</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Installation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/installation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="quick-start">
+<h2>Quick start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h2>
+<p>You probably want to read the <a class="reference external" href="https://fenicsproject.org/download/">FEniCS download and installation web
+page</a> if you just want to get
+FEniCS installed as quickly as possible.</p>
+</div>
+<div class="section" id="building-from-source">
+<h2>Building from source<a class="headerlink" href="#building-from-source" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="dependencies">
+<h3>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h3>
+<p>DOLFIN requires a compiler that supports the C++11 standard.</p>
+<p>The required and optional DOLFIN dependencies are listed below.</p>
+<div class="section" id="required">
+<h4>Required<a class="headerlink" href="#required" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Boost (<a class="reference external" href="http://www.boost.org">http://www.boost.org</a>), with the following compiled Boost
+components</p>
+<ul>
+<li><p>filesystem</p></li>
+<li><p>iostreams</p></li>
+<li><p>program_options</p></li>
+<li><p>timer</p></li>
+</ul>
+</li>
+<li><p>CMake (<a class="reference external" href="https://cmake.org">https://cmake.org</a>)</p></li>
+<li><p>Eigen3 (<a class="reference external" href="http://eigen.tuxfamily.org">http://eigen.tuxfamily.org</a>)</p></li>
+<li><p>FFC (<a class="reference external" href="https://bitbucket.org/fenics-project/ffc">https://bitbucket.org/fenics-project/ffc</a>)</p></li>
+<li><p>pkg-config (<a class="reference external" href="https://www.freedesktop.org/wiki/Software/pkg-config/">https://www.freedesktop.org/wiki/Software/pkg-config/</a>)</p></li>
+<li><p>Python 3 (used by the build system)</p></li>
+<li><p>zlib</p></li>
+</ul>
+</div>
+<div class="section" id="required-for-python-interface">
+<h4>Required for Python interface<a class="headerlink" href="#required-for-python-interface" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Python 3 (including header files)</p></li>
+<li><p>pybind11 (<a class="reference external" href="https://github.com/pybind/pybind11">https://github.com/pybind/pybind11</a>)</p></li>
+<li><p>NumPy (<a class="reference external" href="http://www.numpy.org">http://www.numpy.org</a>)</p></li>
+<li><p>ply (<a class="reference external" href="https://github.com/dabeaz/ply">https://github.com/dabeaz/ply</a>)</p></li>
+</ul>
+</div>
+<div class="section" id="optional">
+<h4>Optional<a class="headerlink" href="#optional" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>HDF5 (with MPI support enabled if building DOLFIN with MPI support)</p></li>
+<li><p>MPI</p></li>
+<li><p>ParMETIS <a class="footnote-reference brackets" href="#id5" id="id1">1</a></p></li>
+<li><p>PETSc (strongly recommended) <a class="footnote-reference brackets" href="#id6" id="id2">2</a></p></li>
+<li><p>SCOTCH and PT-SCOTCH <a class="footnote-reference brackets" href="#id5" id="id3">1</a></p></li>
+<li><p>SLEPc</p></li>
+<li><p>Suitesparse <a class="footnote-reference brackets" href="#id5" id="id4">1</a></p></li>
+<li><p>Trilinos</p></li>
+</ul>
+</div>
+<div class="section" id="optional-for-the-python-interface">
+<h4>Optional for the Python interface<a class="headerlink" href="#optional-for-the-python-interface" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Matplotlib (required for plotting)</p></li>
+<li><p>mpi4py</p></li>
+<li><p>petsc4py</p></li>
+<li><p>slepc4py</p></li>
+</ul>
+<dl class="footnote brackets">
+<dt class="label" id="id5"><span class="brackets">1</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id3">2</a>,<a href="#id4">3</a>)</span></dt>
+<dd><p>It is strongly recommended to use the PETSc build system to
+download and configure and build these libraries.</p>
+</dd>
+<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p>Its is recommended to configuration with ParMETIS, PT-SCOTCH,
+MUMPS and Hypre using the
+<code class="docutils literal notranslate"><span class="pre">--download-parmetis</span> <span class="pre">--download-ptscotch</span> <span class="pre">--download-suitesparse</span>
+<span class="pre">--download-mumps</span> <span class="pre">--download-hypre</span></code></p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="using.html" class="btn btn-neutral float-right" title="Using DOLFIN" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="DOLFIN documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2017, FEniCS Project
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

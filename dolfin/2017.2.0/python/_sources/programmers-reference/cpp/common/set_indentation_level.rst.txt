@@ -1,0 +1,10 @@
+.. Documentation for the function dolfin.cpp.common.set_indentation_level
+
+.. _programmers_reference_cpp_common_set_indentation_level:
+
+set_indentation_level
+=====================
+
+.. currentmodule:: dolfin.cpp.common
+
+.. autofunction:: set_indentation_level

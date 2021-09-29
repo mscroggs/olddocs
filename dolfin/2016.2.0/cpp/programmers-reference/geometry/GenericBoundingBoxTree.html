@@ -1,0 +1,373 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>GenericBoundingBoxTree.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN geometry module" href="index.html"/>
+        <link rel="next" title="MeshPointIntersection.h" href="MeshPointIntersection.html"/>
+        <link rel="prev" title="BoundingBoxTree3D.h" href="BoundingBoxTree3D.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2016.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-2016.2.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/index.html">DOLFIN common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fem/index.html">DOLFIN fem module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html">DOLFIN function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN geometry module</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="BoundingBoxTree.html">BoundingBoxTree.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BoundingBoxTree3D.html">BoundingBoxTree3D.h</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">GenericBoundingBoxTree.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshPointIntersection.html">MeshPointIntersection.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Point.html">Point.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intersect.html">intersect.h</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/index.html">DOLFIN io module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../la/index.html">DOLFIN la module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/index.html">DOLFIN log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mesh/index.html">DOLFIN mesh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot/index.html">DOLFIN plot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer&#8217;s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-2016.2.0</a> &raquo;</li>
+      
+          <li><a href="index.html">DOLFIN geometry module</a> &raquo;</li>
+      
+    <li>GenericBoundingBoxTree.h</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/programmers-reference/geometry/GenericBoundingBoxTree.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="genericboundingboxtree-h">
+<span id="programmers-reference-cpp-geometry-genericboundingboxtree"></span><h1>GenericBoundingBoxTree.h<a class="headerlink" href="#genericboundingboxtree-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="class">
+<dt id="_CPPv222GenericBoundingBoxTree">
+<span id="GenericBoundingBoxTree"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">GenericBoundingBoxTree</code><a class="headerlink" href="#_CPPv222GenericBoundingBoxTree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class for bounding box implementations (envelope-letter
+design)</p>
+<dl class="function">
+<dt id="_CPPv2N22GenericBoundingBoxTree22GenericBoundingBoxTreeEv">
+<span id="GenericBoundingBoxTree::GenericBoundingBoxTree"></span><code class="descclassname"></code><code class="descname">GenericBoundingBoxTree</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N22GenericBoundingBoxTree22GenericBoundingBoxTreeEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructor</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N22GenericBoundingBoxTree6createEj">
+<span id="GenericBoundingBoxTree::create__unsigned-i"></span><em class="property">static</em> std::shared_ptr&lt;<a class="reference internal" href="#_CPPv222GenericBoundingBoxTree" title="GenericBoundingBoxTree">GenericBoundingBoxTree</a>&gt; <code class="descclassname"></code><code class="descname">create</code><span class="sig-paren">(</span>unsigned int <em>dim</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N22GenericBoundingBoxTree6createEj" title="Permalink to this definition">¶</a></dt>
+<dd><p>Factory function returning (empty) tree of appropriate dimension</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N22GenericBoundingBoxTree5buildERK4MeshNSt6size_tE">
+<span id="GenericBoundingBoxTree::build__MeshCR.std::s"></span>void <code class="descclassname"></code><code class="descname">build</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em>, std::size_t <em>tdim</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N22GenericBoundingBoxTree5buildERK4MeshNSt6size_tE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build bounding box tree for mesh entities of given dimension</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N22GenericBoundingBoxTree5buildERKNSt6vectorI5PointEE">
+<span id="GenericBoundingBoxTree::build__std::vector:Point:CR"></span>void <code class="descclassname"></code><code class="descname">build</code><span class="sig-paren">(</span><em class="property">const</em> std::vector&lt;<a class="reference internal" href="Point.html#_CPPv25Point" title="Point">Point</a>&gt; &amp;<em>points</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N22GenericBoundingBoxTree5buildERKNSt6vectorI5PointEE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build bounding box tree for point cloud</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK22GenericBoundingBoxTree18compute_collisionsERK5Point">
+<span id="GenericBoundingBoxTree::compute_collisions__PointCRC"></span>std::vector&lt;unsigned int&gt; <code class="descclassname"></code><code class="descname">compute_collisions</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="Point.html#_CPPv25Point" title="Point">Point</a> &amp;<em>point</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK22GenericBoundingBoxTree18compute_collisionsERK5Point" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute all collisions between bounding boxes and <a class="reference internal" href="Point.html#_CPPv25Point" title="Point"><code class="xref cpp cpp-class docutils literal"><span class="pre">Point</span></code></a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK22GenericBoundingBoxTree18compute_collisionsERK22GenericBoundingBoxTree">
+<span id="GenericBoundingBoxTree::compute_collisions__GenericBoundingBoxTreeCRC"></span>std::pair&lt;std::vector&lt;unsigned int&gt;, std::vector&lt;unsigned int&gt;&gt; <code class="descclassname"></code><code class="descname">compute_collisions</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv222GenericBoundingBoxTree" title="GenericBoundingBoxTree">GenericBoundingBoxTree</a> &amp;<em>tree</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK22GenericBoundingBoxTree18compute_collisionsERK22GenericBoundingBoxTree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute all collisions between bounding boxes and <a class="reference internal" href="BoundingBoxTree.html#_CPPv215BoundingBoxTree" title="BoundingBoxTree"><code class="xref cpp cpp-class docutils literal"><span class="pre">BoundingBoxTree</span></code></a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK22GenericBoundingBoxTree25compute_entity_collisionsERK5PointRK4Mesh">
+<span id="GenericBoundingBoxTree::compute_entity_collisions__PointCR.MeshCRC"></span>std::vector&lt;unsigned int&gt; <code class="descclassname"></code><code class="descname">compute_entity_collisions</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="Point.html#_CPPv25Point" title="Point">Point</a> &amp;<em>point</em>, <em class="property">const</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK22GenericBoundingBoxTree25compute_entity_collisionsERK5PointRK4Mesh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute all collisions between entities and <a class="reference internal" href="Point.html#_CPPv25Point" title="Point"><code class="xref cpp cpp-class docutils literal"><span class="pre">Point</span></code></a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK22GenericBoundingBoxTree26compute_process_collisionsERK5Point">
+<span id="GenericBoundingBoxTree::compute_process_collisions__PointCRC"></span>std::vector&lt;unsigned int&gt; <code class="descclassname"></code><code class="descname">compute_process_collisions</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="Point.html#_CPPv25Point" title="Point">Point</a> &amp;<em>point</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK22GenericBoundingBoxTree26compute_process_collisionsERK5Point" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute all collisions between processes and <a class="reference internal" href="Point.html#_CPPv25Point" title="Point"><code class="xref cpp cpp-class docutils literal"><span class="pre">Point</span></code></a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK22GenericBoundingBoxTree25compute_entity_collisionsERK22GenericBoundingBoxTreeRK4MeshRK4Mesh">
+<span id="GenericBoundingBoxTree::compute_entity_collisions__GenericBoundingBoxTreeCR.MeshCR.MeshCRC"></span>std::pair&lt;std::vector&lt;unsigned int&gt;, std::vector&lt;unsigned int&gt;&gt; <code class="descclassname"></code><code class="descname">compute_entity_collisions</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv222GenericBoundingBoxTree" title="GenericBoundingBoxTree">GenericBoundingBoxTree</a> &amp;<em>tree</em>, <em class="property">const</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh_A</em>, <em class="property">const</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh_B</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK22GenericBoundingBoxTree25compute_entity_collisionsERK22GenericBoundingBoxTreeRK4MeshRK4Mesh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute all collisions between entities and <a class="reference internal" href="BoundingBoxTree.html#_CPPv215BoundingBoxTree" title="BoundingBoxTree"><code class="xref cpp cpp-class docutils literal"><span class="pre">BoundingBoxTree</span></code></a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK22GenericBoundingBoxTree23compute_first_collisionERK5Point">
+<span id="GenericBoundingBoxTree::compute_first_collision__PointCRC"></span>unsigned int <code class="descclassname"></code><code class="descname">compute_first_collision</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="Point.html#_CPPv25Point" title="Point">Point</a> &amp;<em>point</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK22GenericBoundingBoxTree23compute_first_collisionERK5Point" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute first collision between bounding boxes and <a class="reference internal" href="Point.html#_CPPv25Point" title="Point"><code class="xref cpp cpp-class docutils literal"><span class="pre">Point</span></code></a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK22GenericBoundingBoxTree30compute_first_entity_collisionERK5PointRK4Mesh">
+<span id="GenericBoundingBoxTree::compute_first_entity_collision__PointCR.MeshCRC"></span>unsigned int <code class="descclassname"></code><code class="descname">compute_first_entity_collision</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="Point.html#_CPPv25Point" title="Point">Point</a> &amp;<em>point</em>, <em class="property">const</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK22GenericBoundingBoxTree30compute_first_entity_collisionERK5PointRK4Mesh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute first collision between entities and <a class="reference internal" href="Point.html#_CPPv25Point" title="Point"><code class="xref cpp cpp-class docutils literal"><span class="pre">Point</span></code></a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK22GenericBoundingBoxTree22compute_closest_entityERK5PointRK4Mesh">
+<span id="GenericBoundingBoxTree::compute_closest_entity__PointCR.MeshCRC"></span>std::pair&lt;unsigned int, double&gt; <code class="descclassname"></code><code class="descname">compute_closest_entity</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="Point.html#_CPPv25Point" title="Point">Point</a> &amp;<em>point</em>, <em class="property">const</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK22GenericBoundingBoxTree22compute_closest_entityERK5PointRK4Mesh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute closest entity and distance to <a class="reference internal" href="Point.html#_CPPv25Point" title="Point"><code class="xref cpp cpp-class docutils literal"><span class="pre">Point</span></code></a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK22GenericBoundingBoxTree21compute_closest_pointERK5Point">
+<span id="GenericBoundingBoxTree::compute_closest_point__PointCRC"></span>std::pair&lt;unsigned int, double&gt; <code class="descclassname"></code><code class="descname">compute_closest_point</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="Point.html#_CPPv25Point" title="Point">Point</a> &amp;<em>point</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK22GenericBoundingBoxTree21compute_closest_pointERK5Point" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute closest point and distance to <a class="reference internal" href="Point.html#_CPPv25Point" title="Point"><code class="xref cpp cpp-class docutils literal"><span class="pre">Point</span></code></a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N22GenericBoundingBoxTree3strEb">
+<span id="GenericBoundingBoxTree::str__b"></span>std::string <code class="descclassname"></code><code class="descname">str</code><span class="sig-paren">(</span>bool <em>verbose</em> = false<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N22GenericBoundingBoxTree3strEb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print out for debugging</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N22GenericBoundingBoxTree19_compute_collisionsERK22GenericBoundingBoxTreeRK5PointjRNSt6vectorIjEEPK4Mesh">
+<span id="GenericBoundingBoxTree::_compute_collisions__GenericBoundingBoxTreeCR.PointCR.unsigned-i.std::vector:unsigned-i:R.MeshCP"></span><em class="property">static</em> void <code class="descclassname"></code><code class="descname">_compute_collisions</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv222GenericBoundingBoxTree" title="GenericBoundingBoxTree">GenericBoundingBoxTree</a> &amp;<em>tree</em>, <em class="property">const</em> <a class="reference internal" href="Point.html#_CPPv25Point" title="Point">Point</a> &amp;<em>point</em>, unsigned int <em>node</em>, std::vector&lt;unsigned int&gt; &amp;<em>entities</em>, <em class="property">const</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> *<em>mesh</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N22GenericBoundingBoxTree19_compute_collisionsERK22GenericBoundingBoxTreeRK5PointjRNSt6vectorIjEEPK4Mesh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute collisions with point (recursive)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N22GenericBoundingBoxTree19_compute_collisionsERK22GenericBoundingBoxTreeRK22GenericBoundingBoxTreejjRNSt6vectorIjEERNSt6vectorIjEEPK4MeshPK4Mesh">
+<span id="GenericBoundingBoxTree::_compute_collisions__GenericBoundingBoxTreeCR.GenericBoundingBoxTreeCR.unsigned-i.unsigned-i.std::vector:unsigned-i:R.std::vector:unsigned-i:R.MeshCP.MeshCP"></span><em class="property">static</em> void <code class="descclassname"></code><code class="descname">_compute_collisions</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv222GenericBoundingBoxTree" title="GenericBoundingBoxTree">GenericBoundingBoxTree</a> &amp;<em>A</em>, <em class="property">const</em> <a class="reference internal" href="#_CPPv222GenericBoundingBoxTree" title="GenericBoundingBoxTree">GenericBoundingBoxTree</a> &amp;<em>B</em>, unsigned int <em>node_A</em>, unsigned int <em>node_B</em>, std::vector&lt;unsigned int&gt; &amp;<em>entities_A</em>, std::vector&lt;unsigned int&gt; &amp;<em>entities_B</em>, <em class="property">const</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> *<em>mesh_A</em>, <em class="property">const</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> *<em>mesh_B</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N22GenericBoundingBoxTree19_compute_collisionsERK22GenericBoundingBoxTreeRK22GenericBoundingBoxTreejjRNSt6vectorIjEERNSt6vectorIjEEPK4MeshPK4Mesh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute collisions with tree (recursive)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N22GenericBoundingBoxTree24_compute_first_collisionERK22GenericBoundingBoxTreeRK5Pointj">
+<span id="GenericBoundingBoxTree::_compute_first_collision__GenericBoundingBoxTreeCR.PointCR.unsigned-i"></span><em class="property">static</em> unsigned int <code class="descclassname"></code><code class="descname">_compute_first_collision</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv222GenericBoundingBoxTree" title="GenericBoundingBoxTree">GenericBoundingBoxTree</a> &amp;<em>tree</em>, <em class="property">const</em> <a class="reference internal" href="Point.html#_CPPv25Point" title="Point">Point</a> &amp;<em>point</em>, unsigned int <em>node</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N22GenericBoundingBoxTree24_compute_first_collisionERK22GenericBoundingBoxTreeRK5Pointj" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute first collision (recursive)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N22GenericBoundingBoxTree31_compute_first_entity_collisionERK22GenericBoundingBoxTreeRK5PointjRK4Mesh">
+<span id="GenericBoundingBoxTree::_compute_first_entity_collision__GenericBoundingBoxTreeCR.PointCR.unsigned-i.MeshCR"></span><em class="property">static</em> unsigned int <code class="descclassname"></code><code class="descname">_compute_first_entity_collision</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv222GenericBoundingBoxTree" title="GenericBoundingBoxTree">GenericBoundingBoxTree</a> &amp;<em>tree</em>, <em class="property">const</em> <a class="reference internal" href="Point.html#_CPPv25Point" title="Point">Point</a> &amp;<em>point</em>, unsigned int <em>node</em>, <em class="property">const</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N22GenericBoundingBoxTree31_compute_first_entity_collisionERK22GenericBoundingBoxTreeRK5PointjRK4Mesh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute first entity collision (recursive)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N22GenericBoundingBoxTree23_compute_closest_entityERK22GenericBoundingBoxTreeRK5PointjRK4MeshRjRd">
+<span id="GenericBoundingBoxTree::_compute_closest_entity__GenericBoundingBoxTreeCR.PointCR.unsigned-i.MeshCR.unsigned-iR.doubleR"></span><em class="property">static</em> void <code class="descclassname"></code><code class="descname">_compute_closest_entity</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv222GenericBoundingBoxTree" title="GenericBoundingBoxTree">GenericBoundingBoxTree</a> &amp;<em>tree</em>, <em class="property">const</em> <a class="reference internal" href="Point.html#_CPPv25Point" title="Point">Point</a> &amp;<em>point</em>, unsigned int <em>node</em>, <em class="property">const</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em>, unsigned int &amp;<em>closest_entity</em>, double &amp;<em>R2</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N22GenericBoundingBoxTree23_compute_closest_entityERK22GenericBoundingBoxTreeRK5PointjRK4MeshRjRd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute closest entity (recursive)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N22GenericBoundingBoxTree22_compute_closest_pointERK22GenericBoundingBoxTreeRK5PointjRjRd">
+<span id="GenericBoundingBoxTree::_compute_closest_point__GenericBoundingBoxTreeCR.PointCR.unsigned-i.unsigned-iR.doubleR"></span><em class="property">static</em> void <code class="descclassname"></code><code class="descname">_compute_closest_point</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv222GenericBoundingBoxTree" title="GenericBoundingBoxTree">GenericBoundingBoxTree</a> &amp;<em>tree</em>, <em class="property">const</em> <a class="reference internal" href="Point.html#_CPPv25Point" title="Point">Point</a> &amp;<em>point</em>, unsigned int <em>node</em>, unsigned int &amp;<em>closest_point</em>, double &amp;<em>R2</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N22GenericBoundingBoxTree22_compute_closest_pointERK22GenericBoundingBoxTreeRK5PointjRjRd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute closest point (recursive)</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="MeshPointIntersection.html" class="btn btn-neutral float-right" title="MeshPointIntersection.h" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="BoundingBoxTree3D.html" class="btn btn-neutral" title="BoundingBoxTree3D.h" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://bitbucket.org/fenics-project/.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'2016.2.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

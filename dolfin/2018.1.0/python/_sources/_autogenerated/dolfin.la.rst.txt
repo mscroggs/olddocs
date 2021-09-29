@@ -1,0 +1,23 @@
+dolfin.la
+=========
+
+.. automodule:: dolfin.la
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      as_backend_type
+      la_index_dtype
+   
+   
+
+   
+   
+   
+
+   
+   
+   

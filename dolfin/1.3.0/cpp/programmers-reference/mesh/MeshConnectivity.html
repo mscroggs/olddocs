@@ -1,0 +1,403 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>MeshConnectivity.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN mesh module" href="index.html"/>
+        <link rel="next" title="MeshData.h" href="MeshData.html"/>
+        <link rel="prev" title="MeshColoring.h" href="MeshColoring.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-1.3.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/index.html">DOLFIN common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fem/index.html">DOLFIN fem module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html">DOLFIN function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/index.html">DOLFIN geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/index.html">DOLFIN io module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../la/index.html">DOLFIN la module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/index.html">DOLFIN log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN mesh module</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="BoundaryMesh.html">BoundaryMesh.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Cell.html">Cell.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CellType.html">CellType.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DomainBoundary.html">DomainBoundary.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DynamicMeshEditor.html">DynamicMeshEditor.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Edge.html">Edge.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Face.html">Face.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Facet.html">Facet.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FacetCell.html">FacetCell.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LocalMeshData.html">LocalMeshData.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LocalMeshValueCollection.html">LocalMeshValueCollection.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Mesh.html">Mesh.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshColoring.html">MeshColoring.h</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">MeshConnectivity.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshData.html">MeshData.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshDomains.html">MeshDomains.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshEditor.html">MeshEditor.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshEntity.html">MeshEntity.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshEntityIterator.html">MeshEntityIterator.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshEntityIteratorBase.html">MeshEntityIteratorBase.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshFunction.html">MeshFunction.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshGeometry.html">MeshGeometry.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshPartitioning.html">MeshPartitioning.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshQuality.html">MeshQuality.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshRenumbering.html">MeshRenumbering.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshTopology.html">MeshTopology.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshTransformation.html">MeshTransformation.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshValueCollection.html">MeshValueCollection.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PeriodicBoundaryComputation.html">PeriodicBoundaryComputation.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Restriction.html">Restriction.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SubDomain.html">SubDomain.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SubMesh.html">SubMesh.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SubsetIterator.html">SubsetIterator.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Vertex.html">Vertex.h</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot/index.html">DOLFIN plot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer&#8217;s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-1.3.0</a> &raquo;</li>
+      
+          <li><a href="index.html">DOLFIN mesh module</a> &raquo;</li>
+      
+    <li>MeshConnectivity.h</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/programmers-reference/mesh/MeshConnectivity.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="meshconnectivity-h">
+<span id="programmers-reference-cpp-mesh-meshconnectivity"></span><h1>MeshConnectivity.h<a class="headerlink" href="#meshconnectivity-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="class">
+<dt id="_CPPv216MeshConnectivity">
+<span id="MeshConnectivity"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">MeshConnectivity</code><a class="headerlink" href="#_CPPv216MeshConnectivity" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mesh connectivity stores a sparse data structure of connections
+(incidence relations) between mesh entities for a fixed pair of
+topological dimensions.</p>
+<p>The connectivity can be specified either by first giving the
+number of entities and the number of connections for each entity,
+which may either be equal for all entities or different, or by
+giving the entire (sparse) connectivity pattern.</p>
+<dl class="function">
+<dt id="_CPPv2N16MeshConnectivity16MeshConnectivityENSt6size_tENSt6size_tE">
+<span id="MeshConnectivity::MeshConnectivity__std::s.std::s"></span><code class="descclassname"></code><code class="descname">MeshConnectivity</code><span class="sig-paren">(</span>std::size_t <em>d0</em>, std::size_t <em>d1</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N16MeshConnectivity16MeshConnectivityENSt6size_tENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create empty connectivity between given dimensions (d0 &#8211; d1)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N16MeshConnectivity16MeshConnectivityERK16MeshConnectivity">
+<span id="MeshConnectivity::MeshConnectivity__MeshConnectivityCR"></span><code class="descclassname"></code><code class="descname">MeshConnectivity</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv2N16MeshConnectivity16MeshConnectivityENSt6size_tENSt6size_tE" title="MeshConnectivity::MeshConnectivity">MeshConnectivity</a> &amp;<em>connectivity</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N16MeshConnectivity16MeshConnectivityERK16MeshConnectivity" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Copy constructor</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N16MeshConnectivityaSERK16MeshConnectivity">
+<span id="MeshConnectivity::assign-operator__MeshConnectivityCR"></span><em class="property">const</em> <a class="reference internal" href="#_CPPv216MeshConnectivity" title="MeshConnectivity">MeshConnectivity</a> &amp;<code class="descclassname"></code><code class="descname">operator=</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv216MeshConnectivity" title="MeshConnectivity">MeshConnectivity</a> &amp;<em>connectivity</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N16MeshConnectivityaSERK16MeshConnectivity" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Assignment</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK16MeshConnectivity5emptyEv">
+<span id="MeshConnectivity::emptyC"></span>bool <code class="descclassname"></code><code class="descname">empty</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK16MeshConnectivity5emptyEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return true if the total number of connections is equal to zero</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK16MeshConnectivity4sizeEv">
+<span id="MeshConnectivity::sizeC"></span>std::size_t <code class="descclassname"></code><code class="descname">size</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK16MeshConnectivity4sizeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return total number of connections</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK16MeshConnectivity4sizeENSt6size_tE">
+<span id="MeshConnectivity::size__std::sC"></span>std::size_t <code class="descclassname"></code><code class="descname">size</code><span class="sig-paren">(</span>std::size_t <em>entity</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK16MeshConnectivity4sizeENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return number of connections for given entity</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK16MeshConnectivity11size_globalENSt6size_tE">
+<span id="MeshConnectivity::size_global__std::sC"></span>std::size_t <code class="descclassname"></code><code class="descname">size_global</code><span class="sig-paren">(</span>std::size_t <em>entity</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK16MeshConnectivity11size_globalENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return global number of connections for given entity</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK16MeshConnectivityclENSt6size_tE">
+<span id="MeshConnectivity::call-operator__std::sC"></span><em class="property">const</em> unsigned int *<code class="descclassname"></code><code class="descname">operator()</code><span class="sig-paren">(</span>std::size_t <em>entity</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK16MeshConnectivityclENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return array of connections for given entity</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK16MeshConnectivityclEv">
+<span id="MeshConnectivity::call-operatorC"></span><em class="property">const</em> std::vector&lt;unsigned int&gt; &amp;<code class="descclassname"></code><code class="descname">operator()</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK16MeshConnectivityclEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return contiguous array of connections for all entities</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N16MeshConnectivity5clearEv">
+<span id="MeshConnectivity::clear"></span>void <code class="descclassname"></code><code class="descname">clear</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N16MeshConnectivity5clearEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clear all data</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N16MeshConnectivity4initENSt6size_tENSt6size_tE">
+<span id="MeshConnectivity::init__std::s.std::s"></span>void <code class="descclassname"></code><code class="descname">init</code><span class="sig-paren">(</span>std::size_t <em>num_entities</em>, std::size_t <em>num_connections</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N16MeshConnectivity4initENSt6size_tENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Initialize number of entities and number of connections (equal
+for all)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N16MeshConnectivity4initERNSt6vectorINSt6size_tEEE">
+<span id="MeshConnectivity::init__std::vector:std::s:R"></span>void <code class="descclassname"></code><code class="descname">init</code><span class="sig-paren">(</span>std::vector&lt;std::size_t&gt; &amp;<em>num_connections</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N16MeshConnectivity4initERNSt6vectorINSt6size_tEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Initialize number of entities and number of connections
+(individually)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N16MeshConnectivity3setENSt6size_tENSt6size_tENSt6size_tE">
+<span id="MeshConnectivity::set__std::s.std::s.std::s"></span>void <code class="descclassname"></code><code class="descname">set</code><span class="sig-paren">(</span>std::size_t <em>entity</em>, std::size_t <em>connection</em>, std::size_t <em>pos</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N16MeshConnectivity3setENSt6size_tENSt6size_tENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set given connection for given entity</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N16MeshConnectivity3setENSt6size_tERKNSt6vectorINSt6size_tEEE">
+<span id="MeshConnectivity::set__std::s.std::vector:std::s:CR"></span>void <code class="descclassname"></code><code class="descname">set</code><span class="sig-paren">(</span>std::size_t <em>entity</em>, <em class="property">const</em> std::vector&lt;std::size_t&gt; &amp;<em>connections</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N16MeshConnectivity3setENSt6size_tERKNSt6vectorINSt6size_tEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set all connections for given entity</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N16MeshConnectivity3setENSt6size_tEPNSt6size_tE">
+<span id="MeshConnectivity::set__std::s.std::sP"></span>void <code class="descclassname"></code><code class="descname">set</code><span class="sig-paren">(</span>std::size_t <em>entity</em>, std::size_t *<em>connections</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N16MeshConnectivity3setENSt6size_tEPNSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set all connections for given entity</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N16MeshConnectivity3setERKNSt6vectorI1TEE">
+<span id="MeshConnectivity::set__std::vector:T:CR"></span>void <code class="descclassname"></code><code class="descname">set</code><span class="sig-paren">(</span><em class="property">const</em> std::vector&lt;T&gt; &amp;<em>connections</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N16MeshConnectivity3setERKNSt6vectorI1TEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set all connections for all entities (T is a container, e.g.
+a std::vector&lt;std::size_t&gt;, std::set&lt;std::size_t&gt;, etc)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N16MeshConnectivity15set_global_sizeERKNSt6vectorIjEE">
+<span id="MeshConnectivity::set_global_size__std::vector:unsigned-i:CR"></span>void <code class="descclassname"></code><code class="descname">set_global_size</code><span class="sig-paren">(</span><em class="property">const</em> std::vector&lt;unsigned int&gt; &amp;<em>num_global_connections</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N16MeshConnectivity15set_global_sizeERKNSt6vectorIjEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set global number of connections for all local entities</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK16MeshConnectivity4hashEv">
+<span id="MeshConnectivity::hashC"></span>std::size_t <code class="descclassname"></code><code class="descname">hash</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK16MeshConnectivity4hashEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Hash of connections</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK16MeshConnectivity3strEb">
+<span id="MeshConnectivity::str__bC"></span>std::string <code class="descclassname"></code><code class="descname">str</code><span class="sig-paren">(</span>bool <em>verbose</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK16MeshConnectivity3strEb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return informal string representation (pretty-print)</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="MeshData.html" class="btn btn-neutral float-right" title="MeshData.h" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="MeshColoring.html" class="btn btn-neutral" title="MeshColoring.h" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://fenicsproject.org.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.3.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,489 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Parameters.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN parameter module" href="index.html"/>
+        <link rel="next" title="DOLFIN plot module" href="../plot/index.html"/>
+        <link rel="prev" title="Parameter.h" href="Parameter.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2016.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-2016.2.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/index.html">DOLFIN common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fem/index.html">DOLFIN fem module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html">DOLFIN function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/index.html">DOLFIN geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/index.html">DOLFIN io module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../la/index.html">DOLFIN la module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/index.html">DOLFIN log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mesh/index.html">DOLFIN mesh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN parameter module</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="GlobalParameters.html">GlobalParameters.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Parameter.html">Parameter.h</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Parameters.h</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../plot/index.html">DOLFIN plot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer&#8217;s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-2016.2.0</a> &raquo;</li>
+      
+          <li><a href="index.html">DOLFIN parameter module</a> &raquo;</li>
+      
+    <li>Parameters.h</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/programmers-reference/parameter/Parameters.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="parameters-h">
+<span id="programmers-reference-cpp-parameter-parameters"></span><h1>Parameters.h<a class="headerlink" href="#parameters-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="class">
+<dt id="_CPPv210Parameters">
+<span id="Parameters"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">Parameters</code><a class="headerlink" href="#_CPPv210Parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class stores a set of parameters. Each parameter is
+identified by a unique string (the key) and a value of some
+given value type. Parameter sets can be nested at arbitrary
+depths.</p>
+<p>A parameter may be either int, double, string or boolean valued.</p>
+<p>Parameters may be added as follows:</p>
+<blockquote>
+<div>Parameters p(&#8220;my_parameters&#8221;);
+p.add(&#8220;relative_tolerance&#8221;,  1e-15);
+p.add(&#8220;absolute_tolerance&#8221;,  1e-15);
+p.add(&#8220;gmres_restart&#8221;,       30);
+p.add(&#8220;monitor_convergence&#8221;, false);</div></blockquote>
+<p>Parameters may be changed as follows:</p>
+<blockquote>
+<div>p[&#8220;gmres_restart&#8221;] = 50;</div></blockquote>
+<p>Parameter values may be retrieved as follows:</p>
+<blockquote>
+<div>int gmres_restart = p[&#8220;gmres_restart&#8221;];</div></blockquote>
+<p>Parameter sets may be nested as follows:</p>
+<blockquote>
+<div>Parameters q(&#8220;nested_parameters&#8221;);
+p.add(q);</div></blockquote>
+<p>Nested parameters may then be accessed by</p>
+<blockquote>
+<div>p(&#8220;nested_parameters&#8221;)[&#8221;...&#8221;]</div></blockquote>
+<p>Parameters may be nested at arbitrary depths.</p>
+<p>Parameters may be parsed from the command-line as follows:</p>
+<blockquote>
+<div>p.parse(argc, argv);</div></blockquote>
+<p>Note: spaces in parameter keys are not allowed (to simplify
+usage from command-line).</p>
+<dl class="function">
+<dt id="_CPPv2N10Parameters10ParametersENSt6stringE">
+<span id="Parameters::Parameters__ss"></span><em class="property">explicit</em> <code class="descclassname"></code><code class="descname">Parameters</code><span class="sig-paren">(</span>std::string <em>key</em> = &quot;parameters&quot;<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10Parameters10ParametersENSt6stringE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create empty parameter set</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10Parameters10ParametersERK10Parameters">
+<span id="Parameters::Parameters__ParametersCR"></span><code class="descclassname"></code><code class="descname">Parameters</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv2N10Parameters10ParametersENSt6stringE" title="Parameters::Parameters">Parameters</a> &amp;<em>parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10Parameters10ParametersERK10Parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Copy constructor</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10Parameters4nameEv">
+<span id="Parameters::nameC"></span>std::string <code class="descclassname"></code><code class="descname">name</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10Parameters4nameEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return name for parameter set</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10Parameters6renameENSt6stringE">
+<span id="Parameters::rename__ss"></span>void <code class="descclassname"></code><code class="descname">rename</code><span class="sig-paren">(</span>std::string <em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10Parameters6renameENSt6stringE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rename parameter set</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10Parameters5clearEv">
+<span id="Parameters::clear"></span>void <code class="descclassname"></code><code class="descname">clear</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10Parameters5clearEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clear parameter set</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10Parameters3addENSt6stringE">
+<span id="Parameters::add__ss"></span>void <code class="descclassname"></code><code class="descname">add</code><span class="sig-paren">(</span>std::string <em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10Parameters3addENSt6stringE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add an unset parameter of type T. For example, to create a
+unset parameter of type bool, do
+parameters.add&lt;bool&gt;(&#8220;my_setting&#8221;)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10Parameters3addENSt6stringE1T1T">
+<span id="Parameters::add__ss.T.T"></span>void <code class="descclassname"></code><code class="descname">add</code><span class="sig-paren">(</span>std::string <em>key</em>, T <em>min</em>, T <em>max</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10Parameters3addENSt6stringE1T1T" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add an unset parameter of type T with allows parameters. For
+example, to create a unset parameter of type bool, do
+parameters.add&lt;bool&gt;(&#8220;my_setting&#8221;)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10Parameters3addENSt6stringENSt3setI1TEE">
+<span id="Parameters::add__ss.std::set:T:"></span>void <code class="descclassname"></code><code class="descname">add</code><span class="sig-paren">(</span>std::string <em>key</em>, std::set&lt;T&gt; <em>valid_values</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10Parameters3addENSt6stringENSt3setI1TEE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add an unset parameter of type T with allows parameters. For
+example, to create a unset parameter of type bool, do
+parameters.add&lt;bool&gt;(&#8220;my_setting&#8221;)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10Parameters3addENSt6stringEi">
+<span id="Parameters::add__ss.i"></span>void <code class="descclassname"></code><code class="descname">add</code><span class="sig-paren">(</span>std::string <em>key</em>, int <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10Parameters3addENSt6stringEi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add int-valued parameter</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10Parameters3addENSt6stringEiii">
+<span id="Parameters::add__ss.i.i.i"></span>void <code class="descclassname"></code><code class="descname">add</code><span class="sig-paren">(</span>std::string <em>key</em>, int <em>value</em>, int <em>min_value</em>, int <em>max_value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10Parameters3addENSt6stringEiii" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add int-valued parameter with given range</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10Parameters3addENSt6stringEd">
+<span id="Parameters::add__ss.double"></span>void <code class="descclassname"></code><code class="descname">add</code><span class="sig-paren">(</span>std::string <em>key</em>, double <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10Parameters3addENSt6stringEd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add double-valued parameter</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10Parameters3addENSt6stringEddd">
+<span id="Parameters::add__ss.double.double.double"></span>void <code class="descclassname"></code><code class="descname">add</code><span class="sig-paren">(</span>std::string <em>key</em>, double <em>value</em>, double <em>min_value</em>, double <em>max_value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10Parameters3addENSt6stringEddd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add double-valued parameter with given range</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10Parameters3addENSt6stringENSt6stringE">
+<span id="Parameters::add__ss.ss"></span>void <code class="descclassname"></code><code class="descname">add</code><span class="sig-paren">(</span>std::string <em>key</em>, std::string <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10Parameters3addENSt6stringENSt6stringE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add string-valued parameter</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10Parameters3addENSt6stringEPKc">
+<span id="Parameters::add__ss.cCP"></span>void <code class="descclassname"></code><code class="descname">add</code><span class="sig-paren">(</span>std::string <em>key</em>, <em class="property">const</em> char *<em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10Parameters3addENSt6stringEPKc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add string-valued parameter</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10Parameters3addENSt6stringENSt6stringENSt3setINSt6stringEEE">
+<span id="Parameters::add__ss.ss.std::set:ss:"></span>void <code class="descclassname"></code><code class="descname">add</code><span class="sig-paren">(</span>std::string <em>key</em>, std::string <em>value</em>, std::set&lt;std::string&gt; <em>range</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10Parameters3addENSt6stringENSt6stringENSt3setINSt6stringEEE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add string-valued parameter with given range</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10Parameters3addENSt6stringEPKcNSt3setINSt6stringEEE">
+<span id="Parameters::add__ss.cCP.std::set:ss:"></span>void <code class="descclassname"></code><code class="descname">add</code><span class="sig-paren">(</span>std::string <em>key</em>, <em class="property">const</em> char *<em>value</em>, std::set&lt;std::string&gt; <em>range</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10Parameters3addENSt6stringEPKcNSt3setINSt6stringEEE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add string-valued parameter with given range</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10Parameters3addENSt6stringEb">
+<span id="Parameters::add__ss.b"></span>void <code class="descclassname"></code><code class="descname">add</code><span class="sig-paren">(</span>std::string <em>key</em>, bool <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10Parameters3addENSt6stringEb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add bool-valued parameter</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10Parameters3addERK10Parameters">
+<span id="Parameters::add__ParametersCR"></span>void <code class="descclassname"></code><code class="descname">add</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv210Parameters" title="Parameters">Parameters</a> &amp;<em>parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10Parameters3addERK10Parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add nested parameter set</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10Parameters6removeENSt6stringE">
+<span id="Parameters::remove__ss"></span>void <code class="descclassname"></code><code class="descname">remove</code><span class="sig-paren">(</span>std::string <em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10Parameters6removeENSt6stringE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove parameter or parameter set with given key</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10Parameters5parseEiA_Pc">
+<span id="Parameters::parse__i.cPA"></span>void <code class="descclassname"></code><code class="descname">parse</code><span class="sig-paren">(</span>int <em>argc</em>, char *<em>argv</em>[]<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10Parameters5parseEiA_Pc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse parameters from command-line</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10Parameters6updateERK10Parameters">
+<span id="Parameters::update__ParametersCR"></span>void <code class="descclassname"></code><code class="descname">update</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv210Parameters" title="Parameters">Parameters</a> &amp;<em>parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10Parameters6updateERK10Parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update parameters with another set of parameters</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10ParametersixENSt6stringE">
+<span id="Parameters::subscript-operator__ss"></span><a class="reference internal" href="Parameter.html#_CPPv29Parameter" title="Parameter">Parameter</a> &amp;<code class="descclassname"></code><code class="descname">operator[]</code><span class="sig-paren">(</span>std::string <em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10ParametersixENSt6stringE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return parameter for given key</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10ParametersixENSt6stringE">
+<span id="Parameters::subscript-operator__ssC"></span><em class="property">const</em> <a class="reference internal" href="Parameter.html#_CPPv29Parameter" title="Parameter">Parameter</a> &amp;<code class="descclassname"></code><code class="descname">operator[]</code><span class="sig-paren">(</span>std::string <em>key</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10ParametersixENSt6stringE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return parameter for given key (const version)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10ParametersclENSt6stringE">
+<span id="Parameters::call-operator__ss"></span><a class="reference internal" href="#_CPPv210Parameters" title="Parameters">Parameters</a> &amp;<code class="descclassname"></code><code class="descname">operator()</code><span class="sig-paren">(</span>std::string <em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10ParametersclENSt6stringE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return nested parameter set for given key</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10ParametersclENSt6stringE">
+<span id="Parameters::call-operator__ssC"></span><em class="property">const</em> <a class="reference internal" href="#_CPPv210Parameters" title="Parameters">Parameters</a> &amp;<code class="descclassname"></code><code class="descname">operator()</code><span class="sig-paren">(</span>std::string <em>key</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10ParametersclENSt6stringE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return nested parameter set for given key (const)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10ParametersaSERK10Parameters">
+<span id="Parameters::assign-operator__ParametersCR"></span><em class="property">const</em> <a class="reference internal" href="#_CPPv210Parameters" title="Parameters">Parameters</a> &amp;<code class="descclassname"></code><code class="descname">operator=</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv210Parameters" title="Parameters">Parameters</a> &amp;<em>parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10ParametersaSERK10Parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assignment operator</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10Parameters7has_keyENSt6stringE">
+<span id="Parameters::has_key__ssC"></span>bool <code class="descclassname"></code><code class="descname">has_key</code><span class="sig-paren">(</span>std::string <em>key</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10Parameters7has_keyENSt6stringE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if parameter set has key (parameter or nested parameter set)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10Parameters13has_parameterENSt6stringE">
+<span id="Parameters::has_parameter__ssC"></span>bool <code class="descclassname"></code><code class="descname">has_parameter</code><span class="sig-paren">(</span>std::string <em>key</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10Parameters13has_parameterENSt6stringE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if parameter set has given parameter</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10Parameters17has_parameter_setENSt6stringE">
+<span id="Parameters::has_parameter_set__ssC"></span>bool <code class="descclassname"></code><code class="descname">has_parameter_set</code><span class="sig-paren">(</span>std::string <em>key</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10Parameters17has_parameter_setENSt6stringE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if parameter set has given nested parameter set</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10Parameters18get_parameter_keysERNSt6vectorINSt6stringEEE">
+<span id="Parameters::get_parameter_keys__std::vector:ss:RC"></span>void <code class="descclassname"></code><code class="descname">get_parameter_keys</code><span class="sig-paren">(</span>std::vector&lt;std::string&gt; &amp;<em>keys</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10Parameters18get_parameter_keysERNSt6vectorINSt6stringEEE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a vector of parameter keys</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10Parameters22get_parameter_set_keysERNSt6vectorINSt6stringEEE">
+<span id="Parameters::get_parameter_set_keys__std::vector:ss:RC"></span>void <code class="descclassname"></code><code class="descname">get_parameter_set_keys</code><span class="sig-paren">(</span>std::vector&lt;std::string&gt; &amp;<em>keys</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10Parameters22get_parameter_set_keysERNSt6vectorINSt6stringEEE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a vector of parameter set keys</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10Parameters3strEb">
+<span id="Parameters::str__bC"></span>std::string <code class="descclassname"></code><code class="descname">str</code><span class="sig-paren">(</span>bool <em>verbose</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10Parameters3strEb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return informal string representation (pretty-print)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10Parameters12parse_commonEiA_Pc">
+<span id="Parameters::parse_common__i.cPA"></span>void <code class="descclassname"></code><code class="descname">parse_common</code><span class="sig-paren">(</span>int <em>argc</em>, char *<em>argv</em>[]<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10Parameters12parse_commonEiA_Pc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse filtered options (everything except PETSc options)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10Parameters11parse_petscEiA_Pc">
+<span id="Parameters::parse_petsc__i.cPA"></span>void <code class="descclassname"></code><code class="descname">parse_petsc</code><span class="sig-paren">(</span>int <em>argc</em>, char *<em>argv</em>[]<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10Parameters11parse_petscEiA_Pc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse filtered options (only PETSc options)</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../plot/index.html" class="btn btn-neutral float-right" title="DOLFIN plot module" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Parameter.html" class="btn btn-neutral" title="Parameter.h" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://bitbucket.org/fenics-project/.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'2016.2.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

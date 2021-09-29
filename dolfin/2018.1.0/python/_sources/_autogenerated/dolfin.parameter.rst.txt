@@ -1,0 +1,22 @@
+dolfin.parameter
+================
+
+.. automodule:: dolfin.parameter
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      ffc_default_parameters
+   
+   
+
+   
+   
+   
+
+   
+   
+   

@@ -1,0 +1,541 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>STLMatrix.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN la module" href="index.html"/>
+        <link rel="next" title="Scalar.h" href="Scalar.html"/>
+        <link rel="prev" title="STLFactory.h" href="STLFactory.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-1.5.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/index.html">DOLFIN common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fem/index.html">DOLFIN fem module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html">DOLFIN function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/index.html">DOLFIN geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/index.html">DOLFIN io module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN la module</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="BlockMatrix.html">BlockMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BlockVector.html">BlockVector.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CholmodCholeskySolver.html">CholmodCholeskySolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CoordinateMatrix.html">CoordinateMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DefaultFactory.html">DefaultFactory.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericLUSolver.html">GenericLUSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericLinearAlgebraFactory.html">GenericLinearAlgebraFactory.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericLinearOperator.html">GenericLinearOperator.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericLinearSolver.html">GenericLinearSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericMatrix.html">GenericMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericPreconditioner.html">GenericPreconditioner.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericSparsityPattern.html">GenericSparsityPattern.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericTensor.html">GenericTensor.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericVector.html">GenericVector.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="KrylovSolver.html">KrylovSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LUSolver.html">LUSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LinearAlgebraObject.html">LinearAlgebraObject.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LinearOperator.html">LinearOperator.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LinearSolver.html">LinearSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MUMPSLUSolver.html">MUMPSLUSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Matrix.html">Matrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScBaseMatrix.html">PETScBaseMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScCuspFactory.html">PETScCuspFactory.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScFactory.html">PETScFactory.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScKrylovSolver.html">PETScKrylovSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScLUSolver.html">PETScLUSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScLinearOperator.html">PETScLinearOperator.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScMatrix.html">PETScMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScObject.html">PETScObject.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScOptions.html">PETScOptions.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScPreconditioner.html">PETScPreconditioner.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScUserPreconditioner.html">PETScUserPreconditioner.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScVector.html">PETScVector.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PaStiXLUSolver.html">PaStiXLUSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SLEPcEigenSolver.html">SLEPcEigenSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="STLFactory.html">STLFactory.h</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">STLMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Scalar.html">Scalar.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SparsityPattern.html">SparsityPattern.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="UmfpackLUSolver.html">UmfpackLUSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Vector.html">Vector.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VectorSpaceBasis.html">VectorSpaceBasis.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solve.html">solve.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_nullspace.html">test_nullspace.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uBLASDenseMatrix.html">uBLASDenseMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uBLASFactory.html">uBLASFactory.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uBLASILUPreconditioner.html">uBLASILUPreconditioner.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uBLASKrylovSolver.html">uBLASKrylovSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uBLASLinearOperator.html">uBLASLinearOperator.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uBLASMatrix.html">uBLASMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uBLASPreconditioner.html">uBLASPreconditioner.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uBLASSparseMatrix.html">uBLASSparseMatrix.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uBLASVector.html">uBLASVector.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ublas.html">ublas.h</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../log/index.html">DOLFIN log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mesh/index.html">DOLFIN mesh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot/index.html">DOLFIN plot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer&#8217;s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-1.5.0</a> &raquo;</li>
+      
+          <li><a href="index.html">DOLFIN la module</a> &raquo;</li>
+      
+    <li>STLMatrix.h</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/programmers-reference/la/STLMatrix.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="stlmatrix-h">
+<span id="programmers-reference-cpp-la-stlmatrix"></span><h1>STLMatrix.h<a class="headerlink" href="#stlmatrix-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="class">
+<dt id="_CPPv29STLMatrix">
+<span id="STLMatrix"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">STLMatrix</code><a class="headerlink" href="#_CPPv29STLMatrix" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Parent class(es)</em></p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="GenericMatrix.html#_CPPv213GenericMatrix" title="GenericMatrix"><code class="xref cpp cpp-class docutils literal"><span class="pre">GenericMatrix</span></code></a></li>
+</ul>
+</div></blockquote>
+<p>Simple STL-based implementation of the GenericMatrix interface.
+The sparse matrix is stored as a pair of std::vector of
+std::vector, one for the columns and one for the values.</p>
+<p>Historically, this class has undergone a number of different
+incarnations, based on various combinations of std::vector,
+std::set and std::map. The current implementation has proven to
+be the fastest.</p>
+<dl class="function">
+<dt id="_CPPv2N9STLMatrix9STLMatrixENSt6size_tE">
+<span id="STLMatrix::STLMatrix__std::s"></span><code class="descclassname"></code><code class="descname">STLMatrix</code><span class="sig-paren">(</span>std::size_t <em>primary_dim</em> = 0<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9STLMatrix9STLMatrixENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create empty matrix</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N9STLMatrix4initERK12TensorLayout">
+<span id="STLMatrix::init__TensorLayoutCR"></span>void <code class="descclassname"></code><code class="descname">init</code><span class="sig-paren">(</span><em class="property">const</em> TensorLayout &amp;<em>tensor_layout</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9STLMatrix4initERK12TensorLayout" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>&#8212; Implementation of the GenericTensor interface &#8212;
+Initialize zero tensor using sparsity pattern</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK9STLMatrix5emptyEv">
+<span id="STLMatrix::emptyC"></span>bool <code class="descclassname"></code><code class="descname">empty</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK9STLMatrix5emptyEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return true if empty</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK9STLMatrix4sizeENSt6size_tE">
+<span id="STLMatrix::size__std::sC"></span>std::size_t <code class="descclassname"></code><code class="descname">size</code><span class="sig-paren">(</span>std::size_t <em>dim</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK9STLMatrix4sizeENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return size of given dimension</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK9STLMatrix11local_rangeENSt6size_tE">
+<span id="STLMatrix::local_range__std::sC"></span>std::pair&lt;std::size_t, std::size_t&gt; <code class="descclassname"></code><code class="descname">local_range</code><span class="sig-paren">(</span>std::size_t <em>dim</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK9STLMatrix11local_rangeENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return local ownership range</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N9STLMatrix4zeroEv">
+<span id="STLMatrix::zero"></span>void <code class="descclassname"></code><code class="descname">zero</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9STLMatrix4zeroEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set all entries to zero and keep any sparse structure</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N9STLMatrix5applyENSt6stringE">
+<span id="STLMatrix::apply__ss"></span>void <code class="descclassname"></code><code class="descname">apply</code><span class="sig-paren">(</span>std::string <em>mode</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9STLMatrix5applyENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Finalize assembly of tensor</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK9STLMatrix8mpi_commEv">
+<span id="STLMatrix::mpi_commC"></span>MPI_Comm <code class="descclassname"></code><code class="descname">mpi_comm</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK9STLMatrix8mpi_commEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return MPI communicator</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK9STLMatrix3strEb">
+<span id="STLMatrix::str__bC"></span>std::string <code class="descclassname"></code><code class="descname">str</code><span class="sig-paren">(</span>bool <em>verbose</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK9STLMatrix3strEb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return informal string representation (pretty-print)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK9STLMatrix4copyEv">
+<span id="STLMatrix::copyC"></span>std::shared_ptr&lt;<a class="reference internal" href="GenericMatrix.html#_CPPv213GenericMatrix" title="GenericMatrix">GenericMatrix</a>&gt; <code class="descclassname"></code><code class="descname">copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK9STLMatrix4copyEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return copy of matrix</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK9STLMatrix11init_vectorER13GenericVectorNSt6size_tE">
+<span id="STLMatrix::init_vector__GenericVectorR.std::sC"></span>void <code class="descclassname"></code><code class="descname">init_vector</code><span class="sig-paren">(</span><a class="reference internal" href="GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>z</em>, std::size_t <em>dim</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK9STLMatrix11init_vectorER13GenericVectorNSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Initialize vector z to be compatible with the matrix-vector
+product y = Ax. In the parallel case, both size and layout are
+important.</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>dim (std::size_t)</dt>
+<dd>The dimension (axis): dim = 0 &#8211;&gt; z = y, dim = 1 &#8211;&gt; z = x</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK9STLMatrix3getEPdNSt6size_tEPKN6dolfin8la_indexENSt6size_tEPKN6dolfin8la_indexE">
+<span id="STLMatrix::get__doubleP.std::s.dolfin::la_indexCP.std::s.dolfin::la_indexCPC"></span>void <code class="descclassname"></code><code class="descname">get</code><span class="sig-paren">(</span>double *<em>block</em>, std::size_t <em>m</em>, <em class="property">const</em> dolfin::la_index *<em>rows</em>, std::size_t <em>n</em>, <em class="property">const</em> dolfin::la_index *<em>cols</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK9STLMatrix3getEPdNSt6size_tEPKN6dolfin8la_indexENSt6size_tEPKN6dolfin8la_indexE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get block of values</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N9STLMatrix3setEPKdNSt6size_tEPKN6dolfin8la_indexENSt6size_tEPKN6dolfin8la_indexE">
+<span id="STLMatrix::set__doubleCP.std::s.dolfin::la_indexCP.std::s.dolfin::la_indexCP"></span>void <code class="descclassname"></code><code class="descname">set</code><span class="sig-paren">(</span><em class="property">const</em> double *<em>block</em>, std::size_t <em>m</em>, <em class="property">const</em> dolfin::la_index *<em>rows</em>, std::size_t <em>n</em>, <em class="property">const</em> dolfin::la_index *<em>cols</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9STLMatrix3setEPKdNSt6size_tEPKN6dolfin8la_indexENSt6size_tEPKN6dolfin8la_indexE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set block of values using global indices</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N9STLMatrix9set_localEPKdNSt6size_tEPKN6dolfin8la_indexENSt6size_tEPKN6dolfin8la_indexE">
+<span id="STLMatrix::set_local__doubleCP.std::s.dolfin::la_indexCP.std::s.dolfin::la_indexCP"></span>void <code class="descclassname"></code><code class="descname">set_local</code><span class="sig-paren">(</span><em class="property">const</em> double *<em>block</em>, std::size_t <em>m</em>, <em class="property">const</em> dolfin::la_index *<em>rows</em>, std::size_t <em>n</em>, <em class="property">const</em> dolfin::la_index *<em>cols</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9STLMatrix9set_localEPKdNSt6size_tEPKN6dolfin8la_indexENSt6size_tEPKN6dolfin8la_indexE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set block of values using local indices</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N9STLMatrix3addEPKdNSt6size_tEPKN6dolfin8la_indexENSt6size_tEPKN6dolfin8la_indexE">
+<span id="STLMatrix::add__doubleCP.std::s.dolfin::la_indexCP.std::s.dolfin::la_indexCP"></span>void <code class="descclassname"></code><code class="descname">add</code><span class="sig-paren">(</span><em class="property">const</em> double *<em>block</em>, std::size_t <em>m</em>, <em class="property">const</em> dolfin::la_index *<em>rows</em>, std::size_t <em>n</em>, <em class="property">const</em> dolfin::la_index *<em>cols</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9STLMatrix3addEPKdNSt6size_tEPKN6dolfin8la_indexENSt6size_tEPKN6dolfin8la_indexE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add block of values using global indices</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N9STLMatrix9add_localEPKdNSt6size_tEPKN6dolfin8la_indexENSt6size_tEPKN6dolfin8la_indexE">
+<span id="STLMatrix::add_local__doubleCP.std::s.dolfin::la_indexCP.std::s.dolfin::la_indexCP"></span>void <code class="descclassname"></code><code class="descname">add_local</code><span class="sig-paren">(</span><em class="property">const</em> double *<em>block</em>, std::size_t <em>m</em>, <em class="property">const</em> dolfin::la_index *<em>rows</em>, std::size_t <em>n</em>, <em class="property">const</em> dolfin::la_index *<em>cols</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9STLMatrix9add_localEPKdNSt6size_tEPKN6dolfin8la_indexENSt6size_tEPKN6dolfin8la_indexE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add block of values using local indices</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N9STLMatrix4axpyEdRK13GenericMatrixb">
+<span id="STLMatrix::axpy__double.GenericMatrixCR.b"></span>void <code class="descclassname"></code><code class="descname">axpy</code><span class="sig-paren">(</span>double <em>a</em>, <em class="property">const</em> <a class="reference internal" href="GenericMatrix.html#_CPPv213GenericMatrix" title="GenericMatrix">GenericMatrix</a> &amp;<em>A</em>, bool <em>same_nonzero_pattern</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9STLMatrix4axpyEdRK13GenericMatrixb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add multiple of given matrix (AXPY operation)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK9STLMatrix4normENSt6stringE">
+<span id="STLMatrix::norm__ssC"></span>double <code class="descclassname"></code><code class="descname">norm</code><span class="sig-paren">(</span>std::string <em>norm_type</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK9STLMatrix4normENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return norm of matrix</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK9STLMatrix6getrowENSt6size_tERNSt6vectorINSt6size_tEEERNSt6vectorIdEE">
+<span id="STLMatrix::getrow__std::s.std::vector:std::s:R.std::vector:double:RC"></span>void <code class="descclassname"></code><code class="descname">getrow</code><span class="sig-paren">(</span>std::size_t <em>row</em>, std::vector&lt;std::size_t&gt; &amp;<em>columns</em>, std::vector&lt;double&gt; &amp;<em>values</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK9STLMatrix6getrowENSt6size_tERNSt6vectorINSt6size_tEEERNSt6vectorIdEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get non-zero values of given row</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N9STLMatrix6setrowENSt6size_tERKNSt6vectorINSt6size_tEEERKNSt6vectorIdEE">
+<span id="STLMatrix::setrow__std::s.std::vector:std::s:CR.std::vector:double:CR"></span>void <code class="descclassname"></code><code class="descname">setrow</code><span class="sig-paren">(</span>std::size_t <em>row</em>, <em class="property">const</em> std::vector&lt;std::size_t&gt; &amp;<em>columns</em>, <em class="property">const</em> std::vector&lt;double&gt; &amp;<em>values</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9STLMatrix6setrowENSt6size_tERKNSt6vectorINSt6size_tEEERKNSt6vectorIdEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set values for given row</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N9STLMatrix4zeroENSt6size_tEPKN6dolfin8la_indexE">
+<span id="STLMatrix::zero__std::s.dolfin::la_indexCP"></span>void <code class="descclassname"></code><code class="descname">zero</code><span class="sig-paren">(</span>std::size_t <em>m</em>, <em class="property">const</em> dolfin::la_index *<em>rows</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9STLMatrix4zeroENSt6size_tEPKN6dolfin8la_indexE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set given rows (global row indices) to zero</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N9STLMatrix10zero_localENSt6size_tEPKN6dolfin8la_indexE">
+<span id="STLMatrix::zero_local__std::s.dolfin::la_indexCP"></span>void <code class="descclassname"></code><code class="descname">zero_local</code><span class="sig-paren">(</span>std::size_t <em>m</em>, <em class="property">const</em> dolfin::la_index *<em>rows</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9STLMatrix10zero_localENSt6size_tEPKN6dolfin8la_indexE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set given rows (local row indices) to zero</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N9STLMatrix5identENSt6size_tEPKN6dolfin8la_indexE">
+<span id="STLMatrix::ident__std::s.dolfin::la_indexCP"></span>void <code class="descclassname"></code><code class="descname">ident</code><span class="sig-paren">(</span>std::size_t <em>m</em>, <em class="property">const</em> dolfin::la_index *<em>rows</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9STLMatrix5identENSt6size_tEPKN6dolfin8la_indexE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set given rows to identity matrix</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N9STLMatrix11ident_localENSt6size_tEPKN6dolfin8la_indexE">
+<span id="STLMatrix::ident_local__std::s.dolfin::la_indexCP"></span>void <code class="descclassname"></code><code class="descname">ident_local</code><span class="sig-paren">(</span>std::size_t <em>m</em>, <em class="property">const</em> dolfin::la_index *<em>rows</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9STLMatrix11ident_localENSt6size_tEPKN6dolfin8la_indexE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set given rows to identity matrix</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N9STLMatrix12set_diagonalERK13GenericVector">
+<span id="STLMatrix::set_diagonal__GenericVectorCR"></span>void <code class="descclassname"></code><code class="descname">set_diagonal</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9STLMatrix12set_diagonalERK13GenericVector" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set diagonal of a matrix</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N9STLMatrixmLEd">
+<span id="STLMatrix::mul-assign-operator__double"></span><em class="property">const</em> <a class="reference internal" href="#_CPPv29STLMatrix" title="STLMatrix">STLMatrix</a> &amp;<code class="descclassname"></code><code class="descname">operator*=</code><span class="sig-paren">(</span>double <em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9STLMatrixmLEd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Multiply matrix by given number</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N9STLMatrixdVEd">
+<span id="STLMatrix::div-assign-operator__double"></span><em class="property">const</em> <a class="reference internal" href="#_CPPv29STLMatrix" title="STLMatrix">STLMatrix</a> &amp;<code class="descclassname"></code><code class="descname">operator/=</code><span class="sig-paren">(</span>double <em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9STLMatrixdVEd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Divide matrix by given number</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N9STLMatrixaSERK13GenericMatrix">
+<span id="STLMatrix::assign-operator__GenericMatrixCR"></span><em class="property">const</em> <a class="reference internal" href="GenericMatrix.html#_CPPv213GenericMatrix" title="GenericMatrix">GenericMatrix</a> &amp;<code class="descclassname"></code><code class="descname">operator=</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="GenericMatrix.html#_CPPv213GenericMatrix" title="GenericMatrix">GenericMatrix</a> &amp;<em>A</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9STLMatrixaSERK13GenericMatrix" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Assignment operator</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK9STLMatrix7factoryEv">
+<span id="STLMatrix::factoryC"></span><a class="reference internal" href="GenericLinearAlgebraFactory.html#_CPPv227GenericLinearAlgebraFactory" title="GenericLinearAlgebraFactory">GenericLinearAlgebraFactory</a> &amp;<code class="descclassname"></code><code class="descname">factory</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK9STLMatrix7factoryEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>&#8212; Specialized matrix functions &#8212;
+Return linear algebra backend factory</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK9STLMatrix10block_sizeEv">
+<span id="STLMatrix::block_sizeC"></span>std::size_t <code class="descclassname"></code><code class="descname">block_size</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK9STLMatrix10block_sizeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>&#8212; STLMatrix interface &#8212;
+Return matrix block size</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N9STLMatrix5clearEv">
+<span id="STLMatrix::clear"></span>void <code class="descclassname"></code><code class="descname">clear</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9STLMatrix5clearEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clear matrix. Destroys data and sparse layout</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK9STLMatrix3csrERNSt6vectorIdEERNSt6vectorI1TEERNSt6vectorI1TEERNSt6vectorI1TEEbb">
+<span id="STLMatrix::csr__std::vector:double:R.std::vector:T:R.std::vector:T:R.std::vector:T:R.b.bC"></span>void <code class="descclassname"></code><code class="descname">csr</code><span class="sig-paren">(</span>std::vector&lt;double&gt; &amp;<em>vals</em>, std::vector&lt;T&gt; &amp;<em>cols</em>, std::vector&lt;T&gt; &amp;<em>row_ptr</em>, std::vector&lt;T&gt; &amp;<em>local_to_global_row</em>, bool <em>block</em>, bool <em>symmetric</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK9STLMatrix3csrERNSt6vectorIdEERNSt6vectorI1TEERNSt6vectorI1TEERNSt6vectorI1TEEbb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return matrix in CSR format</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK9STLMatrix3cscERNSt6vectorIdEERNSt6vectorI1TEERNSt6vectorI1TEERNSt6vectorI1TEEbb">
+<span id="STLMatrix::csc__std::vector:double:R.std::vector:T:R.std::vector:T:R.std::vector:T:R.b.bC"></span>void <code class="descclassname"></code><code class="descname">csc</code><span class="sig-paren">(</span>std::vector&lt;double&gt; &amp;<em>vals</em>, std::vector&lt;T&gt; &amp;<em>rows</em>, std::vector&lt;T&gt; &amp;<em>col_ptr</em>, std::vector&lt;T&gt; &amp;<em>local_to_global_col</em>, bool <em>block</em>, bool <em>symmetric</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK9STLMatrix3cscERNSt6vectorIdEERNSt6vectorI1TEERNSt6vectorI1TEERNSt6vectorI1TEEbb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return matrix in CSC format</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK9STLMatrix3nnzEv">
+<span id="STLMatrix::nnzC"></span>std::size_t <code class="descclassname"></code><code class="descname">nnz</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK9STLMatrix3nnzEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return number of global non-zero entries</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK9STLMatrix9local_nnzEv">
+<span id="STLMatrix::local_nnzC"></span>std::size_t <code class="descclassname"></code><code class="descname">local_nnz</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK9STLMatrix9local_nnzEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return number of local non-zero entries</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK9STLMatrix18compressed_storageERNSt6vectorIdEERNSt6vectorI1TEERNSt6vectorI1TEERNSt6vectorI1TEEbb">
+<span id="STLMatrix::compressed_storage__std::vector:double:R.std::vector:T:R.std::vector:T:R.std::vector:T:R.b.bC"></span>void <code class="descclassname"></code><code class="descname">compressed_storage</code><span class="sig-paren">(</span>std::vector&lt;double&gt; &amp;<em>vals</em>, std::vector&lt;T&gt; &amp;<em>rows</em>, std::vector&lt;T&gt; &amp;<em>col_ptr</em>, std::vector&lt;T&gt; &amp;<em>local_to_global_col</em>, bool <em>block</em>, bool <em>symmetric</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK9STLMatrix18compressed_storageERNSt6vectorIdEERNSt6vectorI1TEERNSt6vectorI1TEERNSt6vectorI1TEEbb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return matrix in compressed format</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Scalar.html" class="btn btn-neutral float-right" title="Scalar.h" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="STLFactory.html" class="btn btn-neutral" title="STLFactory.h" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://bitbucket.org/fenics-project/.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.5.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,551 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>VTKPlotter.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN plot module" href="index.html"/>
+        <link rel="next" title="plot.h" href="plot.html"/>
+        <link rel="prev" title="DOLFIN plot module" href="index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.6.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-1.6.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/index.html">DOLFIN common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fem/index.html">DOLFIN fem module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html">DOLFIN function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/index.html">DOLFIN geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/index.html">DOLFIN io module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../la/index.html">DOLFIN la module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/index.html">DOLFIN log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mesh/index.html">DOLFIN mesh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN plot module</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">VTKPlotter.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot.html">plot.h</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer&#8217;s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-1.6.0</a> &raquo;</li>
+      
+          <li><a href="index.html">DOLFIN plot module</a> &raquo;</li>
+      
+    <li>VTKPlotter.h</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/programmers-reference/plot/VTKPlotter.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="vtkplotter-h">
+<span id="programmers-reference-cpp-plot-vtkplotter"></span><h1>VTKPlotter.h<a class="headerlink" href="#vtkplotter-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="class">
+<dt id="_CPPv210VTKPlotter">
+<span id="VTKPlotter"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">VTKPlotter</code><a class="headerlink" href="#_CPPv210VTKPlotter" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Parent class(es)</em></p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="../common/Variable.html#_CPPv28Variable" title="Variable"><code class="xref cpp cpp-class docutils literal"><span class="pre">Variable</span></code></a></li>
+</ul>
+</div></blockquote>
+<p>This class enables visualization of various DOLFIN entities.
+It supports visualization of meshes, functions, expressions, boundary
+conditions and mesh functions. It can plot data wrapped in classes
+conforming to the GenericVTKPlottable interface.
+The plotter has several parameters that the user can set and adjust to
+affect the appearance and behavior of the plot.</p>
+<p>A plotter can be created and used in the following way:</p>
+<blockquote>
+<div>Mesh mesh = ...;
+VTKPlotter plotter(mesh);
+plotter.plot();</div></blockquote>
+<p>Parameters can be adjusted at any time and will take effect on the next
+call to the plot() method. The following parameters exist:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="15%" />
+<col width="20%" />
+<col width="47%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Value type</th>
+<th class="head">Default value</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>mode</td>
+<td>String</td>
+<td>&#8220;auto&#8221;</td>
+<td>For vector valued functions,
+this parameter may be set to
+&#8220;glyphs&#8221; or &#8220;displacement&#8221;.
+Scalars may be set to &#8220;warp&#8221; in
+2D only. A value of &#8220;color&#8221; is
+valid in all cases; for vectors,
+the norms are used. See below for
+a summary of default modes,
+used when set to &#8220;auto&#8221;.</td>
+</tr>
+<tr class="row-odd"><td>interactive</td>
+<td>Boolean</td>
+<td>False</td>
+<td>Enable/disable interactive mode
+for the rendering window.
+For repeated plots of the same
+object (animated plots), this
+parameter should be set to false.</td>
+</tr>
+<tr class="row-even"><td>wireframe</td>
+<td>Boolean</td>
+<td>True for
+meshes, else
+false</td>
+<td>Enable/disable wireframe
+rendering of the object.</td>
+</tr>
+<tr class="row-odd"><td>title</td>
+<td>String</td>
+<td>Inherited
+from the
+name/label of
+the object</td>
+<td>The title of the rendering
+window</td>
+</tr>
+<tr class="row-even"><td>scale</td>
+<td>Double</td>
+<td>1.0</td>
+<td>Adjusts the scaling of the
+warping and glyphs</td>
+</tr>
+<tr class="row-odd"><td>scalarbar</td>
+<td>Boolean</td>
+<td>False for
+meshes, else
+true</td>
+<td>Hide/show the colormapping bar</td>
+</tr>
+<tr class="row-even"><td>axes</td>
+<td>Boolean</td>
+<td>False</td>
+<td>Show X-Y-Z axes.</td>
+</tr>
+<tr class="row-odd"><td>rescale</td>
+<td>Boolean</td>
+<td>True</td>
+<td>Enable/disable recomputation
+of the scalar to color mapping
+on every iteration when performing
+repeated/animated plots of the same
+data. If both range_min and
+range_max are set, this parameter
+is ignored.</td>
+</tr>
+<tr class="row-even"><td>range_min</td>
+<td>Double</td>
+<td>&nbsp;</td>
+<td>Set lower range of data values.
+Disables automatic (re-)computation
+of the lower range.</td>
+</tr>
+<tr class="row-odd"><td>range_max</td>
+<td>Double</td>
+<td>&nbsp;</td>
+<td>Set upper range of data values.
+Disables automatic (re-)computation
+of the upper range.</td>
+</tr>
+<tr class="row-even"><td>elevate</td>
+<td>Double</td>
+<td>-65.0 for 2D
+warped scalars,
+0.0 otherwise</td>
+<td>Set camera elevation.</td>
+</tr>
+<tr class="row-odd"><td>prefix</td>
+<td>String</td>
+<td>&#8220;<a href="#id1"><span class="problematic" id="id2">dolfin_plot_</span></a>&#8220;</td>
+<td>Filename prefix used when
+saving plots to file in
+interactive mode. An integer
+counter is appended after the
+prefix.</td>
+</tr>
+<tr class="row-even"><td>helptext</td>
+<td>Boolean</td>
+<td>True</td>
+<td>Enable/disable the hover-over
+help-text in interactive
+mode</td>
+</tr>
+<tr class="row-odd"><td>window_width</td>
+<td>Integer</td>
+<td>600</td>
+<td>The width of the plotting window
+in pixels</td>
+</tr>
+<tr class="row-even"><td>window_height</td>
+<td>Integer</td>
+<td>400</td>
+<td>The height of the plotting window
+in pixels</td>
+</tr>
+<tr class="row-odd"><td>tile_windows</td>
+<td>Boolean</td>
+<td>True</td>
+<td>Automatically tile plot windows.</td>
+</tr>
+<tr class="row-even"><td>key</td>
+<td>String</td>
+<td>&nbsp;</td>
+<td>Key (id) of the plot window, used to
+decide if a new plotter should be
+created or a current one updated
+when called through the static
+plot() interface (in plot.h).
+If not set, the object&#8217;s unique
+id (Variable::id) is used.</td>
+</tr>
+<tr class="row-odd"><td>input_keys</td>
+<td>String</td>
+<td>&#8220;&#8221;</td>
+<td>Synthesize key presses, as if these
+keys are pressed by the user in
+the plot window.
+For example: &#8220;ww++m&#8221; shows the data
+as large points on a wireframe
+mesh.</td>
+</tr>
+<tr class="row-even"><td>hide_above</td>
+<td>Double</td>
+<td>&nbsp;</td>
+<td>If either of these are set, scalar</td>
+</tr>
+<tr class="row-odd"><td>hide_below</td>
+<td>Double</td>
+<td>&nbsp;</td>
+<td>values above or below will not be
+shown in the plot.</td>
+</tr>
+</tbody>
+</table>
+<p>The default visualization mode for the different plot types are as follows:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="34%" />
+<col width="38%" />
+<col width="28%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Plot type</th>
+<th class="head">Default visualization mode</th>
+<th class="head">Alternatives</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Meshes</td>
+<td>Wireframe rendering</td>
+<td>None</td>
+</tr>
+<tr class="row-odd"><td>2D scalar functions</td>
+<td>Scalar warping</td>
+<td>Color mapping</td>
+</tr>
+<tr class="row-even"><td>3D scalar functions</td>
+<td>Color mapping</td>
+<td>None</td>
+</tr>
+<tr class="row-odd"><td>2D/3D vector functions</td>
+<td>Glyphs (vector arrows)</td>
+<td>Displacements,
+Color mapping (norm)</td>
+</tr>
+</tbody>
+</table>
+<p>Expressions and boundary conditions are also visualized according to the
+above table.</p>
+<dl class="function">
+<dt id="_CPPv2N10VTKPlotter10VTKPlotterENSt10shared_ptrIK8VariableEEP10QVTKWidget">
+<span id="VTKPlotter::VTKPlotter__std::shared_ptr:VariableC:.QVTKWidgetP"></span><code class="descclassname"></code><code class="descname">VTKPlotter</code><span class="sig-paren">(</span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../common/Variable.html#_CPPv28Variable" title="Variable">Variable</a>&gt;, QVTKWidget *<em>widget</em> = NULL<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10VTKPlotter10VTKPlotterENSt10shared_ptrIK8VariableEEP10QVTKWidget" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create plotter for a variable. If a widget is supplied, this widget
+will be used for drawing, instead of a new top-level widget. Ownership
+is transferred.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10VTKPlotter10VTKPlotterENSt10shared_ptrIK10ExpressionEENSt10shared_ptrIK4MeshEEP10QVTKWidget">
+<span id="VTKPlotter::VTKPlotter__std::shared_ptr:ExpressionC:.std::shared_ptr:MeshC:.QVTKWidgetP"></span><code class="descclassname"></code><code class="descname">VTKPlotter</code><span class="sig-paren">(</span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../function/Expression.html#_CPPv210Expression" title="Expression">Expression</a>&gt; <em>expression</em>, std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a>&gt; <em>mesh</em>, QVTKWidget *<em>wiget</em> = NULL<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10VTKPlotter10VTKPlotterENSt10shared_ptrIK10ExpressionEENSt10shared_ptrIK4MeshEEP10QVTKWidget" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create plotter for an Expression with associated Mesh. If a widget is
+supplied, this widget will be used for drawing, instead of a new
+top-level widget. Ownership is transferred.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10VTKPlotter18default_parametersEv">
+<span id="VTKPlotter::default_parameters"></span><em class="property">static</em> <a class="reference internal" href="../parameter/Parameters.html#_CPPv210Parameters" title="Parameters">Parameters</a> <code class="descclassname"></code><code class="descname">default_parameters</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10VTKPlotter18default_parametersEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Default parameter values</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10VTKPlotter4plotENSt10shared_ptrIK8VariableEE">
+<span id="VTKPlotter::plot__std::shared_ptr:VariableC:"></span>void <code class="descclassname"></code><code class="descname">plot</code><span class="sig-paren">(</span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../common/Variable.html#_CPPv28Variable" title="Variable">Variable</a>&gt; <em>variable</em> = std::shared_ptr&lt;const Variable&gt;()<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10VTKPlotter4plotENSt10shared_ptrIK8VariableEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Plot the object</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10VTKPlotter11interactiveEb">
+<span id="VTKPlotter::interactive__b"></span>void <code class="descclassname"></code><code class="descname">interactive</code><span class="sig-paren">(</span>bool <em>enter_eventloop</em> = true<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10VTKPlotter11interactiveEb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Make the current plot interactive</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10VTKPlotter9write_pngENSt6stringE">
+<span id="VTKPlotter::write_png__ss"></span>void <code class="descclassname"></code><code class="descname">write_png</code><span class="sig-paren">(</span>std::string <em>filename</em> = &quot;&quot;<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10VTKPlotter9write_pngENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Save plot to PNG file (file suffix appended automatically, filename
+optionally built from prefix)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10VTKPlotter9write_pdfENSt6stringE">
+<span id="VTKPlotter::write_pdf__ss"></span>void <code class="descclassname"></code><code class="descname">write_pdf</code><span class="sig-paren">(</span>std::string <em>filename</em> = &quot;&quot;<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10VTKPlotter9write_pdfENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Save plot to PDF file (file suffix appended automatically, filename
+optionally built from prefix)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10VTKPlotter3keyEv">
+<span id="VTKPlotter::keyC"></span><em class="property">const</em> std::string &amp;<code class="descclassname"></code><code class="descname">key</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10VTKPlotter3keyEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return key (i.e., plotter id) of the object to plot</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10VTKPlotter7set_keyENSt6stringE">
+<span id="VTKPlotter::set_key__ss"></span>void <code class="descclassname"></code><code class="descname">set_key</code><span class="sig-paren">(</span>std::string <em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10VTKPlotter7set_keyENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set the key (plotter id)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10VTKPlotter6to_keyERK8Variable">
+<span id="VTKPlotter::to_key__VariableCR"></span><em class="property">static</em> std::string <code class="descclassname"></code><code class="descname">to_key</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../common/Variable.html#_CPPv28Variable" title="Variable">Variable</a> &amp;<em>var</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10VTKPlotter6to_keyERK8Variable" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return default key (plotter id) of a Variable (object to plot).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10VTKPlotter7azimuthEd">
+<span id="VTKPlotter::azimuth__double"></span>void <code class="descclassname"></code><code class="descname">azimuth</code><span class="sig-paren">(</span>double <em>angle</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10VTKPlotter7azimuthEd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Camera control</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10VTKPlotter15all_interactiveEb">
+<span id="VTKPlotter::all_interactive__b"></span><em class="property">static</em> void <code class="descclassname"></code><code class="descname">all_interactive</code><span class="sig-paren">(</span>bool <em>really</em> = false<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10VTKPlotter15all_interactiveEb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Make all plot windows interactive. If really is set, the interactive
+mode is entered even if &#8216;Q&#8217; has been pressed.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="plot.html" class="btn btn-neutral float-right" title="plot.h" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="DOLFIN plot module" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://bitbucket.org/fenics-project/.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.6.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

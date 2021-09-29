@@ -1,0 +1,446 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>X3DOM.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN io module" href="index.html"/>
+        <link rel="next" title="XDMFFile.h" href="XDMFFile.html"/>
+        <link rel="prev" title="HDF5File.h" href="HDF5File.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2016.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-2016.2.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/index.html">DOLFIN common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fem/index.html">DOLFIN fem module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html">DOLFIN function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/index.html">DOLFIN geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN io module</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="File.html">File.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericFile.html">GenericFile.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="HDF5Attribute.html">HDF5Attribute.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="HDF5File.html">HDF5File.h</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">X3DOM.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="XDMFFile.html">XDMFFile.h</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../la/index.html">DOLFIN la module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/index.html">DOLFIN log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mesh/index.html">DOLFIN mesh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot/index.html">DOLFIN plot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer&#8217;s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-2016.2.0</a> &raquo;</li>
+      
+          <li><a href="index.html">DOLFIN io module</a> &raquo;</li>
+      
+    <li>X3DOM.h</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/programmers-reference/io/X3DOM.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="x3dom-h">
+<span id="programmers-reference-cpp-io-x3dom"></span><h1>X3DOM.h<a class="headerlink" href="#x3dom-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="class">
+<dt id="_CPPv215X3DOMParameters">
+<span id="X3DOMParameters"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">X3DOMParameters</code><a class="headerlink" href="#_CPPv215X3DOMParameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class data to store X3DOM view parameters.</p>
+<dl class="function">
+<dt>
+<code class="descname">enum class Representation</code></dt>
+<dd><p>X3DOM representation type</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N15X3DOMParameters15X3DOMParametersEv">
+<span id="X3DOMParameters::X3DOMParameters"></span><code class="descclassname"></code><code class="descname">X3DOMParameters</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N15X3DOMParameters15X3DOMParametersEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructor (with default parameter settings)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N15X3DOMParameters18set_representationE14Representation">
+<span id="X3DOMParameters::set_representation__Representation"></span>void <code class="descclassname"></code><code class="descname">set_representation</code><span class="sig-paren">(</span>Representation <em>representation</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N15X3DOMParameters18set_representationE14Representation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set representation of object (wireframe, surface or
+surface_with_edges)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK15X3DOMParameters18get_representationEv">
+<span id="X3DOMParameters::get_representationC"></span>Representation <code class="descclassname"></code><code class="descname">get_representation</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK15X3DOMParameters18get_representationEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the current representation of the object (wireframe,
+surface or surface_with_edges)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK15X3DOMParameters17get_viewport_sizeEv">
+<span id="X3DOMParameters::get_viewport_sizeC"></span>std::array&lt;double, 2&gt; <code class="descclassname"></code><code class="descname">get_viewport_size</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK15X3DOMParameters17get_viewport_sizeEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the size of the viewport</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N15X3DOMParameters17set_diffuse_colorENSt5arrayIdX3EEE">
+<span id="X3DOMParameters::set_diffuse_color__std::array:double.3:"></span>void <code class="descclassname"></code><code class="descname">set_diffuse_color</code><span class="sig-paren">(</span>std::array&lt;double, 3&gt; <em>rgb</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N15X3DOMParameters17set_diffuse_colorENSt5arrayIdX3EEE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the RGB color of the object</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK15X3DOMParameters17get_diffuse_colorEv">
+<span id="X3DOMParameters::get_diffuse_colorC"></span>std::array&lt;double, 3&gt; <code class="descclassname"></code><code class="descname">get_diffuse_color</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK15X3DOMParameters17get_diffuse_colorEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the RGB diffuse color of the object</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N15X3DOMParameters18set_emissive_colorENSt5arrayIdX3EEE">
+<span id="X3DOMParameters::set_emissive_color__std::array:double.3:"></span>void <code class="descclassname"></code><code class="descname">set_emissive_color</code><span class="sig-paren">(</span>std::array&lt;double, 3&gt; <em>rgb</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N15X3DOMParameters18set_emissive_colorENSt5arrayIdX3EEE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the RGB emissive color</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK15X3DOMParameters18get_emissive_colorEv">
+<span id="X3DOMParameters::get_emissive_colorC"></span>std::array&lt;double, 3&gt; <code class="descclassname"></code><code class="descname">get_emissive_color</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK15X3DOMParameters18get_emissive_colorEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the RGB emissive color</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N15X3DOMParameters18set_specular_colorENSt5arrayIdX3EEE">
+<span id="X3DOMParameters::set_specular_color__std::array:double.3:"></span>void <code class="descclassname"></code><code class="descname">set_specular_color</code><span class="sig-paren">(</span>std::array&lt;double, 3&gt; <em>rgb</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N15X3DOMParameters18set_specular_colorENSt5arrayIdX3EEE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the RGB specular color</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK15X3DOMParameters18get_specular_colorEv">
+<span id="X3DOMParameters::get_specular_colorC"></span>std::array&lt;double, 3&gt; <code class="descclassname"></code><code class="descname">get_specular_color</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK15X3DOMParameters18get_specular_colorEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the RGB specular color</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N15X3DOMParameters20set_background_colorENSt5arrayIdX3EEE">
+<span id="X3DOMParameters::set_background_color__std::array:double.3:"></span>void <code class="descclassname"></code><code class="descname">set_background_color</code><span class="sig-paren">(</span>std::array&lt;double, 3&gt; <em>rgb</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N15X3DOMParameters20set_background_colorENSt5arrayIdX3EEE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set background RGB color</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK15X3DOMParameters20get_background_colorEv">
+<span id="X3DOMParameters::get_background_colorC"></span>std::array&lt;double, 3&gt; <code class="descclassname"></code><code class="descname">get_background_color</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK15X3DOMParameters20get_background_colorEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get background RGB color</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N15X3DOMParameters21set_ambient_intensityEd">
+<span id="X3DOMParameters::set_ambient_intensity__double"></span>void <code class="descclassname"></code><code class="descname">set_ambient_intensity</code><span class="sig-paren">(</span>double <em>intensity</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N15X3DOMParameters21set_ambient_intensityEd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the ambient lighting intensity</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK15X3DOMParameters21get_ambient_intensityEv">
+<span id="X3DOMParameters::get_ambient_intensityC"></span>double <code class="descclassname"></code><code class="descname">get_ambient_intensity</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK15X3DOMParameters21get_ambient_intensityEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the ambient lighting intensity</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N15X3DOMParameters13set_shininessEd">
+<span id="X3DOMParameters::set_shininess__double"></span>void <code class="descclassname"></code><code class="descname">set_shininess</code><span class="sig-paren">(</span>double <em>shininess</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N15X3DOMParameters13set_shininessEd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the surface shininess of the object</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK15X3DOMParameters13get_shininessEv">
+<span id="X3DOMParameters::get_shininessC"></span>double <code class="descclassname"></code><code class="descname">get_shininess</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK15X3DOMParameters13get_shininessEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the surface shininess of the object</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N15X3DOMParameters16set_transparencyEd">
+<span id="X3DOMParameters::set_transparency__double"></span>void <code class="descclassname"></code><code class="descname">set_transparency</code><span class="sig-paren">(</span>double <em>transparency</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N15X3DOMParameters16set_transparencyEd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the transparency (0-1)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK15X3DOMParameters16get_transparencyEv">
+<span id="X3DOMParameters::get_transparencyC"></span>double <code class="descclassname"></code><code class="descname">get_transparency</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK15X3DOMParameters16get_transparencyEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the transparency (0-1)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N15X3DOMParameters13set_color_mapERKNSt6vectorIdEE">
+<span id="X3DOMParameters::set_color_map__std::vector:double:CR"></span>void <code class="descclassname"></code><code class="descname">set_color_map</code><span class="sig-paren">(</span><em class="property">const</em> std::vector&lt;double&gt; &amp;<em>color_data</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N15X3DOMParameters13set_color_mapERKNSt6vectorIdEE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the color map by supplying a vector of 768 values
+(256*RGB) (using std::vector for Python compatibility via
+SWIG)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK15X3DOMParameters13get_color_mapEv">
+<span id="X3DOMParameters::get_color_mapC"></span>std::vector&lt;double&gt; <code class="descclassname"></code><code class="descname">get_color_map</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK15X3DOMParameters13get_color_mapEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the color map as a vector of 768 values (256*RGB) (using
+std::vector for Python compatibility via SWIG)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK15X3DOMParameters19get_color_map_arrayEv">
+<span id="X3DOMParameters::get_color_map_arrayC"></span>boost::multi_array&lt;float, 2&gt; <code class="descclassname"></code><code class="descname">get_color_map_array</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK15X3DOMParameters19get_color_map_arrayEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the color map as a boost::multi_array (256x3)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N15X3DOMParameters13set_x3d_statsEb">
+<span id="X3DOMParameters::set_x3d_stats__b"></span>void <code class="descclassname"></code><code class="descname">set_x3d_stats</code><span class="sig-paren">(</span>bool <em>show</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N15X3DOMParameters13set_x3d_statsEb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turn X3D &#8216;statistics&#8217; window on/off</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N15X3DOMParameters16set_menu_displayEb">
+<span id="X3DOMParameters::set_menu_display__b"></span>void <code class="descclassname"></code><code class="descname">set_menu_display</code><span class="sig-paren">(</span>bool <em>show</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N15X3DOMParameters16set_menu_displayEb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Toggle menu option</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK15X3DOMParameters16get_menu_displayEv">
+<span id="X3DOMParameters::get_menu_displayC"></span>bool <code class="descclassname"></code><code class="descname">get_menu_display</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK15X3DOMParameters16get_menu_displayEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the menu display state</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="_CPPv25X3DOM">
+<span id="X3DOM"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">X3DOM</code><a class="headerlink" href="#_CPPv25X3DOM" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class implements output of meshes to X3DOM XML or HTML5
+with X3DOM strings. The latter can be used for interactive
+visualisation</p>
+<p>Developer note: pugixml is used to created X3DOM and HTML5. By
+using pugixml, we produce valid XML, but care must be taken that
+the XML is also valid HTML. This includes not letting pugixml
+create self-closing elements, in cases. E.g., &lt;foo
+bar=&#8221;foobar&#8221;&gt;&lt;/foo&gt; is fine, but the self-closing syntax &lt;foo
+bar=&#8221;foobar&#8221; /&gt; while being valid XML is is not valid HTML5. See
+<a class="reference external" href="https://github.com/x3dom/x3dom/issues/600">https://github.com/x3dom/x3dom/issues/600</a>.</p>
+<dl class="function">
+<dt id="_CPPv2N5X3DOM3strERK4Mesh15X3DOMParameters">
+<span id="X3DOM::str__MeshCR.X3DOMParameters"></span><em class="property">static</em> std::string <code class="descclassname"></code><code class="descname">str</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em>, <a class="reference internal" href="#_CPPv215X3DOMParameters" title="X3DOMParameters">X3DOMParameters</a> <em>parameters</em> = X3DOMParameters()<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N5X3DOM3strERK4Mesh15X3DOMParameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return X3D string for a Mesh</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N5X3DOM3strERK8Function15X3DOMParameters">
+<span id="X3DOM::str__FunctionCR.X3DOMParameters"></span><em class="property">static</em> std::string <code class="descclassname"></code><code class="descname">str</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../function/Function.html#_CPPv28Function" title="Function">Function</a> &amp;<em>u</em>, <a class="reference internal" href="#_CPPv215X3DOMParameters" title="X3DOMParameters">X3DOMParameters</a> <em>parameters</em> = X3DOMParameters()<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N5X3DOM3strERK8Function15X3DOMParameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return X3D string for a Function</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N5X3DOM4htmlERK4Mesh15X3DOMParameters">
+<span id="X3DOM::html__MeshCR.X3DOMParameters"></span><em class="property">static</em> std::string <code class="descclassname"></code><code class="descname">html</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em>, <a class="reference internal" href="#_CPPv215X3DOMParameters" title="X3DOMParameters">X3DOMParameters</a> <em>parameters</em> = X3DOMParameters()<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N5X3DOM4htmlERK4Mesh15X3DOMParameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return HTML5 string with embedded X3D for a Mesh</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N5X3DOM4htmlERK8Function15X3DOMParameters">
+<span id="X3DOM::html__FunctionCR.X3DOMParameters"></span><em class="property">static</em> std::string <code class="descclassname"></code><code class="descname">html</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../function/Function.html#_CPPv28Function" title="Function">Function</a> &amp;<em>u</em>, <a class="reference internal" href="#_CPPv215X3DOMParameters" title="X3DOMParameters">X3DOMParameters</a> <em>parameters</em> = X3DOMParameters()<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N5X3DOM4htmlERK8Function15X3DOMParameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return HTML5 string with embedded X3D for a Function</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="XDMFFile.html" class="btn btn-neutral float-right" title="XDMFFile.h" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="HDF5File.html" class="btn btn-neutral" title="HDF5File.h" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://bitbucket.org/fenics-project/.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'2016.2.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

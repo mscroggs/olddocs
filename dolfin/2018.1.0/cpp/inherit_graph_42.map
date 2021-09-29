@@ -1,0 +1,9 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$d1/d2c/classdolfin_1_1GenericFile.html" title="Base class for file I/O objects. " alt="" coords="5,132,139,159"/>
+<area shape="rect" id="node2" href="$d5/d51/classdolfin_1_1RAWFile.html" title="Output of data in raw binary format. " alt="" coords="187,5,298,32"/>
+<area shape="rect" id="node3" href="$de/d14/classdolfin_1_1SVGFile.html" title="dolfin::SVGFile" alt="" coords="187,56,299,83"/>
+<area shape="rect" id="node4" href="$d4/d6b/classdolfin_1_1VTKFile.html" title="Output of meshes and functions in VTK format. " alt="" coords="189,107,297,133"/>
+<area shape="rect" id="node5" href="$d2/d6a/classdolfin_1_1X3DFile.html" title="dolfin::X3DFile" alt="" coords="187,157,298,184"/>
+<area shape="rect" id="node6" href="$dc/d7d/classdolfin_1_1XMLFile.html" title="I/O of DOLFIN objects in XML format. " alt="" coords="187,208,298,235"/>
+<area shape="rect" id="node7" href="$d7/d89/classdolfin_1_1XYZFile.html" title="Simple and light file format for use with Xd3d. " alt="" coords="188,259,297,285"/>
+</map>

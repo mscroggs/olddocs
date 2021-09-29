@@ -1,0 +1,777 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3. Hyperelasticity &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../../../index.html"/>
+        <link rel="up" title="Collection of documented demos" href="../../../index.html"/>
+        <link rel="next" title="4. Dual-mixed formulation for Poisson equation" href="../../mixed-poisson-dual/cpp/documentation.html"/>
+        <link rel="prev" title="&lt;no title&gt;" href="../../eigenvalue/cpp/documentation.html"/> 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2016.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../programmers-reference/index.html">C++ Programmer&#8217;s reference for DOLFIN-2016.1.0</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Collection of documented demos</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../biharmonic/cpp/documentation.html">1. Biharmonic equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cahn-hilliard/cpp/documentation.html">2. Cahn-Hilliard equation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3. Hyperelasticity</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#equation-and-problem-definition">3.1. Equation and problem definition</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#elastic-stored-energy-density">3.1.1. Elastic stored energy density</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#demo-parameters">3.1.2. Demo parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#implementation">3.2. Implementation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ufl-form-file">3.2.1. UFL form file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c-program">3.2.2. C++ program</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#complete-code">3.3. Complete code</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#complete-ufl-file">3.3.1. Complete UFL file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#complete-main-file">3.3.2. Complete main file</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../mixed-poisson-dual/cpp/documentation.html">4. Dual-mixed formulation for Poisson equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mixed-poisson/cpp/documentation.html">5. Mixed formulation for Poisson equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../navier-stokes/cpp/documentation.html">6. Incompressible Navier-Stokes equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../poisson/cpp/documentation.html">7. Poisson equation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../quick_reference.html">Quick Programmer&#8217;s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../index.html">Collection of documented demos</a> &raquo;</li>
+      
+    <li>3. Hyperelasticity</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../../_sources/demo/documented/hyperelasticity/cpp/documentation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="hyperelasticity">
+<span id="demo-pde-hyperelasticity-cpp-documentation"></span><h1>3. Hyperelasticity<a class="headerlink" href="#hyperelasticity" title="Permalink to this headline">¶</a></h1>
+<p>This example demonstrates the solution of a three-dimensional
+elasticity problem. In addition to illustrating how to use
+FunctionSpaces, Expressions and how to apply Dirichlet boundary
+conditions, it focuses on how to:</p>
+<ul class="simple">
+<li>Minimise a non-quadratic functional</li>
+<li>Use automatic computation of the directional derivative</li>
+<li>Solve a nonlinear variational problem</li>
+<li>Define compiled sub-domains</li>
+<li>Use specific form compiler optimization options</li>
+</ul>
+<div class="section" id="equation-and-problem-definition">
+<h2>3.1. Equation and problem definition<a class="headerlink" href="#equation-and-problem-definition" title="Permalink to this headline">¶</a></h2>
+<p>By definition, boundary value problems for hyperelastic media can be
+expressed as minimisation problems, and the minimization approach is
+adopted in this example. For a domain <span class="math">\(\Omega \subset
+\mathbb{R}^{d}\)</span>, where <span class="math">\(d\)</span> denotes the spatial dimension, the
+task is to find the displacement field <span class="math">\(u: \Omega \rightarrow
+\mathbb{R}^{d}\)</span> that minimises the total potential energy <span class="math">\(\Pi\)</span>:</p>
+<div class="math">
+\[\min_{u \in V} \Pi\]</div>
+<p>where <span class="math">\(V\)</span> is a suitable function space that satisfies boundary
+conditions on <span class="math">\(u\)</span>.  The total potential energy is given by</p>
+<div class="math">
+\[\Pi = \int_{\Omega} \psi(u) \, {\rm d} x
+- \int_{\Omega} B \cdot u \, {\rm d} x
+- \int_{\partial\Omega} T \cdot u \, {\rm d} s\]</div>
+<p>where <span class="math">\(\psi\)</span> is the elastic stored energy density, <span class="math">\(B\)</span> is a
+body force (per unit reference volume) and <span class="math">\(T\)</span> is a traction force
+(per unit reference area).</p>
+<p>At minimum points of <span class="math">\(\Pi\)</span>, the directional derivative of <span class="math">\(\Pi\)</span>
+with respect to change in <span class="math">\(u\)</span></p>
+<div class="math" id="equation-first_variation">
+<span class="eqno">(1)<a class="headerlink" href="#equation-first_variation" title="Permalink to this equation">¶</a></span>\[L(u; v) = D_{v} \Pi = \left. \frac{d \Pi(u + \epsilon v)}{d\epsilon} \right|_{\epsilon = 0}\]</div>
+<p>is equal to zero for all <span class="math">\(v \in V\)</span>:</p>
+<div class="math">
+\[L(u; v) = 0 \quad \forall \ v \in V.\]</div>
+<p>To minimise the potential energy, a solution to the variational
+equation above is sought. Depending on the potential energy
+<span class="math">\(\psi\)</span>, <span class="math">\(L(u; v)\)</span> can be nonlinear in <span class="math">\(u\)</span>. In such a
+case, the Jacobian of <span class="math">\(L\)</span> is required in order to solve this
+problem using Newton&#8217;s method. The Jacobian of <span class="math">\(L\)</span> is defined as</p>
+<div class="math" id="equation-second_variation">
+<span class="eqno">(2)<a class="headerlink" href="#equation-second_variation" title="Permalink to this equation">¶</a></span>\[a(u; du, v) = D_{du} L = \left. \frac{d L(u + \epsilon du; v)}{d\epsilon} \right|_{\epsilon = 0} .\]</div>
+<div class="section" id="elastic-stored-energy-density">
+<h3>3.1.1. Elastic stored energy density<a class="headerlink" href="#elastic-stored-energy-density" title="Permalink to this headline">¶</a></h3>
+<p>To define the elastic stored energy density, consider the deformation
+gradient <span class="math">\(F\)</span></p>
+<div class="math">
+\[F = I + \nabla u,\]</div>
+<p>the right Cauchy-Green tensor <span class="math">\(C\)</span></p>
+<div class="math">
+\[C = F^{T} F,\]</div>
+<p>and the scalars  <span class="math">\(J\)</span> and <span class="math">\(I_{c}\)</span></p>
+<div class="math">
+\[\begin{split}J     &amp;= \det(F), \\
+I_{c} &amp;= {\rm trace}(C).\end{split}\]</div>
+<p>This demo considers a common neo-Hookean stored energy model of the form</p>
+<div class="math">
+\[\psi =  \frac{\mu}{2} (I_{c} - 3) - \mu \ln(J) + \frac{\lambda}{2}\ln(J)^{2}\]</div>
+<p>where <span class="math">\(\mu\)</span> and <span class="math">\(\lambda\)</span> are the Lame parameters. These
+can be expressed in terms of the more common Young&#8217;s modulus <span class="math">\(E\)</span>
+and Poisson ratio <span class="math">\(\nu\)</span> by:</p>
+<div class="math">
+\[\lambda = \frac{E \nu}{(1 + \nu)(1 - 2\nu)}, \quad  \quad
+\mu     =  \frac{E}{2(1 + \nu)} .\]</div>
+</div>
+<div class="section" id="demo-parameters">
+<h3>3.1.2. Demo parameters<a class="headerlink" href="#demo-parameters" title="Permalink to this headline">¶</a></h3>
+<p>We consider a unit cube domain:</p>
+<ul class="simple">
+<li><span class="math">\(\Omega = (0, 1) \times (0, 1) \times (0, 1)\)</span> (unit cube)</li>
+</ul>
+<p>We use the following definitions of the boundary and boundary conditions:</p>
+<ul>
+<li><p class="first"><span class="math">\(\Gamma_{D_{0}} = 0 \times (0, 1) \times (0, 1)\)</span> (Dirichlet boundary)</p>
+</li>
+<li><p class="first"><span class="math">\(\Gamma_{D_{1}} = 1 \times (0, 1) \times (0, 1)\)</span> (Dirichlet boundary)</p>
+</li>
+<li><p class="first"><span class="math">\(\Gamma_{N} = \partial \Omega \backslash \Gamma_{D}\)</span> (Neumann boundary)</p>
+</li>
+<li><dl class="first docutils">
+<dt>On  <span class="math">\(\Gamma_{D_{0}}\)</span></dt>
+<dd><div class="first last math">
+\[\begin{split}u = (&amp;0, \\
+     &amp;(0.5 + (y - 0.5)\cos(\pi/3) - (z - 0.5)\sin(\pi/3) - y)/2, \\
+     &amp;(0.5 + (y - 0.5)\sin(\pi/3) + (z - 0.5)\cos(\pi/3) - x))/2)\end{split}\]</div>
+</dd>
+</dl>
+</li>
+<li><p class="first">On <span class="math">\(\Gamma_{D_{1}}\)</span>:  <span class="math">\(u = (0, 0, 0)\)</span></p>
+</li>
+<li><p class="first">On <span class="math">\(\Gamma_{N}\)</span>: <span class="math">\(T = (0.1, 0, 0)\)</span></p>
+</li>
+</ul>
+<p>These are the body forces and material parameters used:</p>
+<ul class="simple">
+<li><span class="math">\(B = (0, -0.5, 0)\)</span></li>
+<li><span class="math">\(E    = 10.0\)</span></li>
+<li><span class="math">\(\nu  = 0.3\)</span></li>
+</ul>
+<p>With the above input the solution for <span class="math">\(u\)</span> will look as follows:</p>
+<a class="reference internal image-reference" href="../../../../_images/hyperelasticity_u0.png"><img alt="../../../../_images/hyperelasticity_u0.png" class="align-center" src="../../../../_images/hyperelasticity_u0.png" style="width: 450.0px; height: 300.0px;" /></a>
+<a class="reference internal image-reference" href="../../../../_images/hyperelasticity_u1.png"><img alt="../../../../_images/hyperelasticity_u1.png" class="align-center" src="../../../../_images/hyperelasticity_u1.png" style="width: 450.0px; height: 300.0px;" /></a>
+</div>
+</div>
+<div class="section" id="implementation">
+<h2>3.2. Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
+<p>The implementation is split in two files: a form file containing the
+definition of the variational forms expressed in UFL and the solver which is
+implemented in a C++ file.</p>
+<p>Running this demo requires the files: <a class="reference download internal" href="../../../../_downloads/main2.cpp" download=""><code class="xref download docutils literal"><span class="pre">main.cpp</span></code></a>,
+<a class="reference download internal" href="../../../../_downloads/HyperElasticity.ufl" download=""><code class="xref download docutils literal"><span class="pre">HyperElasticity.ufl</span></code></a> and <a class="reference download internal" href="../../../../_downloads/CMakeLists2.txt" download=""><code class="xref download docutils literal"><span class="pre">CMakeLists.txt</span></code></a>.</p>
+<div class="section" id="ufl-form-file">
+<h3>3.2.1. UFL form file<a class="headerlink" href="#ufl-form-file" title="Permalink to this headline">¶</a></h3>
+<p>The first step is to define the variational problem at hand. We define
+the variational problem in UFL terms in a separate form file
+<a class="reference download internal" href="../../../../_downloads/HyperElasticity.ufl" download=""><code class="xref download docutils literal"><span class="pre">HyperElasticity.ufl</span></code></a>.</p>
+<p>We are interested in solving for a discrete vector field in three
+dimensions, so first we need the appropriate finite element space and
+trial and test functions on this space</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Function spaces</span>
+<span class="n">element</span> <span class="o">=</span> <span class="n">VectorElement</span><span class="p">(</span><span class="s2">&quot;Lagrange&quot;</span><span class="p">,</span> <span class="n">tetrahedron</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Trial and test functions</span>
+<span class="n">du</span> <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>     <span class="c1"># Incremental displacement</span>
+<span class="n">v</span>  <span class="o">=</span> <span class="n">TestFunction</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>      <span class="c1"># Test function</span>
+</pre></div>
+</div>
+<p>Note that <code class="docutils literal"><span class="pre">VectorElement</span></code> creates a finite element space of vector
+fields. The dimension of the vector field (the number of components)
+is assumed to be the same as the spatial dimension (in this case 3),
+unless otherwise specified.</p>
+<p>Next, we will be needing functions for the boundary source <code class="docutils literal"><span class="pre">B</span></code>, the
+traction <code class="docutils literal"><span class="pre">T</span></code> and the displacement solution itself <code class="docutils literal"><span class="pre">u</span></code>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Functions</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">Coefficient</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>        <span class="c1"># Displacement from previous iteration</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">Coefficient</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>        <span class="c1"># Body force per unit volume</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">Coefficient</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>        <span class="c1"># Traction force on the boundary</span>
+</pre></div>
+</div>
+<p>Now, we can define the kinematic quantities involved in the model</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Kinematics</span>
+<span class="n">d</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+<span class="n">I</span> <span class="o">=</span> <span class="n">Identity</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>                 <span class="c1"># Identity tensor</span>
+<span class="n">F</span> <span class="o">=</span> <span class="n">I</span> <span class="o">+</span> <span class="n">grad</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>                 <span class="c1"># Deformation gradient</span>
+<span class="n">C</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">T</span><span class="o">*</span><span class="n">F</span>                       <span class="c1"># Right Cauchy-Green tensor</span>
+
+<span class="c1"># Invariants of deformation tensors</span>
+<span class="n">Ic</span> <span class="o">=</span> <span class="n">tr</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
+<span class="n">J</span>  <span class="o">=</span> <span class="n">det</span><span class="p">(</span><span class="n">F</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Before defining the energy density and thus the total potential
+energy, it only remains to specify constants for the elasticity
+parameters</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Elasticity parameters</span>
+<span class="n">mu</span>    <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="n">tetrahedron</span><span class="p">)</span>
+<span class="n">lmbda</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="n">tetrahedron</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Both the first variation of the potential energy, and the Jacobian of
+the variation, can be automatically computed by a call to
+<code class="docutils literal"><span class="pre">derivative</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Stored strain energy density (compressible neo-Hookean model)</span>
+<span class="n">psi</span> <span class="o">=</span> <span class="p">(</span><span class="n">mu</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">Ic</span> <span class="o">-</span> <span class="mi">3</span><span class="p">)</span> <span class="o">-</span> <span class="n">mu</span><span class="o">*</span><span class="n">ln</span><span class="p">(</span><span class="n">J</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">lmbda</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">ln</span><span class="p">(</span><span class="n">J</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="c1"># Total potential energy</span>
+<span class="n">Pi</span> <span class="o">=</span> <span class="n">psi</span><span class="o">*</span><span class="n">dx</span> <span class="o">-</span> <span class="n">inner</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span> <span class="o">-</span> <span class="n">inner</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span><span class="o">*</span><span class="n">ds</span>
+
+<span class="c1"># First variation of Pi (directional derivative about u in the direction of v)</span>
+<span class="n">F</span> <span class="o">=</span> <span class="n">derivative</span><span class="p">(</span><span class="n">Pi</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+
+<span class="c1"># Compute Jacobian of F</span>
+<span class="n">J</span> <span class="o">=</span> <span class="n">derivative</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">du</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note that <code class="docutils literal"><span class="pre">derivative</span></code> is here used with three arguments: the form
+to be differentiated, the variable (function) we are supposed to
+differentiate with respect too, and the direction the derivative is
+taken in.</p>
+<p>Before the form file can be used in the C++ program, it must be
+compiled using FFC by running (on the command-line):</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>ffc -l dolfin HyperElasticity.ufl
+</pre></div>
+</div>
+<p>Note the flag <code class="docutils literal"><span class="pre">-l</span> <span class="pre">dolfin</span></code> which tells FFC to generate
+DOLFIN-specific wrappers that make it easy to access the generated
+code from within DOLFIN.</p>
+</div>
+<div class="section" id="c-program">
+<h3>3.2.2. C++ program<a class="headerlink" href="#c-program" title="Permalink to this headline">¶</a></h3>
+<p>The main solver is implemented in the <a class="reference download internal" href="../../../../_downloads/main2.cpp" download=""><code class="xref download docutils literal"><span class="pre">main.cpp</span></code></a> file.</p>
+<p>At the top, we include the DOLFIN header file and the generated header
+file &#8220;HyperElasticity.h&#8221; containing the variational forms and function
+spaces.  For convenience we also include the DOLFIN namespace.</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;dolfin.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;HyperElasticity.h&quot;</span><span class="cp"></span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">dolfin</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>We begin by defining two classes, deriving from <a class="reference internal" href="../../../../programmers-reference/mesh/SubDomain.html#_CPPv29SubDomain" title="SubDomain"><code class="xref cpp cpp-class docutils literal"><span class="pre">SubDomain</span></code></a>
+for later use when specifying domains for the boundary conditions.</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// Sub domain for clamp at left end</span>
+<span class="k">class</span> <span class="nc">Left</span> <span class="o">:</span> <span class="k">public</span> <span class="n">SubDomain</span>
+<span class="p">{</span>
+  <span class="kt">bool</span> <span class="n">inside</span><span class="p">(</span><span class="k">const</span> <span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span> <span class="n">x</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">on_boundary</span><span class="p">)</span> <span class="k">const</span>
+  <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&lt;</span> <span class="n">DOLFIN_EPS</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">on_boundary</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">// Sub domain for rotation at right end</span>
+<span class="k">class</span> <span class="nc">Right</span> <span class="o">:</span> <span class="k">public</span> <span class="n">SubDomain</span>
+<span class="p">{</span>
+  <span class="kt">bool</span> <span class="n">inside</span><span class="p">(</span><span class="k">const</span> <span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span> <span class="n">x</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">on_boundary</span><span class="p">)</span> <span class="k">const</span>
+  <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">DOLFIN_EPS</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">on_boundary</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>We also define two classes, deriving from <a class="reference internal" href="../../../../programmers-reference/function/Expression.html#_CPPv210Expression" title="Expression"><code class="xref cpp cpp-class docutils literal"><span class="pre">Expression</span></code></a>, for
+later use when specifying values for the boundary conditions.</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// Dirichlet boundary condition for clamp at left end</span>
+<span class="k">class</span> <span class="nc">Clamp</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Expression</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+
+  <span class="n">Clamp</span><span class="p">()</span> <span class="o">:</span> <span class="n">Expression</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="p">{}</span>
+
+  <span class="kt">void</span> <span class="n">eval</span><span class="p">(</span><span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span> <span class="n">values</span><span class="p">,</span> <span class="k">const</span> <span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span> <span class="n">x</span><span class="p">)</span> <span class="k">const</span>
+  <span class="p">{</span>
+    <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+    <span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+    <span class="n">values</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+  <span class="p">}</span>
+
+<span class="p">};</span>
+
+<span class="c1">// Dirichlet boundary condition for rotation at right end</span>
+<span class="k">class</span> <span class="nc">Rotation</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Expression</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+
+  <span class="n">Rotation</span><span class="p">()</span> <span class="o">:</span> <span class="n">Expression</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="p">{}</span>
+
+  <span class="kt">void</span> <span class="n">eval</span><span class="p">(</span><span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span> <span class="n">values</span><span class="p">,</span> <span class="k">const</span> <span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span> <span class="n">x</span><span class="p">)</span> <span class="k">const</span>
+  <span class="p">{</span>
+    <span class="k">const</span> <span class="kt">double</span> <span class="n">scale</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>
+
+    <span class="c1">// Center of rotation</span>
+    <span class="k">const</span> <span class="kt">double</span> <span class="n">y0</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>
+    <span class="k">const</span> <span class="kt">double</span> <span class="n">z0</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>
+
+    <span class="c1">// Large angle of rotation (60 degrees)</span>
+    <span class="kt">double</span> <span class="n">theta</span> <span class="o">=</span> <span class="mf">1.04719755</span><span class="p">;</span>
+
+    <span class="c1">// New coordinates</span>
+    <span class="kt">double</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y0</span> <span class="o">+</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">y0</span><span class="p">)</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">z0</span><span class="p">)</span><span class="o">*</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">);</span>
+    <span class="kt">double</span> <span class="n">z</span> <span class="o">=</span> <span class="n">z0</span> <span class="o">+</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">y0</span><span class="p">)</span><span class="o">*</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">z0</span><span class="p">)</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">);</span>
+
+    <span class="c1">// Rotate at right end</span>
+    <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+    <span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">scale</span><span class="o">*</span><span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+    <span class="n">values</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">scale</span><span class="o">*</span><span class="p">(</span><span class="n">z</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Next:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+</pre></div>
+</div>
+<p>Inside the <code class="docutils literal"><span class="pre">main</span></code> function, we begin by defining a tetrahedral mesh
+of the domain and the function space on this mesh. Here, we choose to
+create a unit cube mesh with 25 ( = 24 + 1) verices in one direction
+and 17 ( = 16 + 1) vertices in the other two directions. With this
+mesh, we initialize the (finite element) function space defined by the
+generated code.</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// Create mesh and define function space</span>
+<span class="k">auto</span> <span class="n">mesh</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">UnitCubeMesh</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">);</span>
+<span class="k">auto</span> <span class="n">V</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">HyperElasticity</span><span class="o">::</span><span class="n">FunctionSpace</span><span class="o">&gt;</span><span class="p">(</span><span class="n">mesh</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Now, the Dirichlet boundary conditions can be created using the class
+<a class="reference internal" href="../../../../programmers-reference/fem/DirichletBC.html#_CPPv211DirichletBC" title="DirichletBC"><code class="xref cpp cpp-class docutils literal"><span class="pre">DirichletBC</span></code></a>, the previously initialized
+<a class="reference internal" href="../../../../programmers-reference/function/FunctionSpace.html#_CPPv213FunctionSpace" title="FunctionSpace"><code class="xref cpp cpp-class docutils literal"><span class="pre">FunctionSpace</span></code></a> <code class="docutils literal"><span class="pre">V</span></code> and instances of the previously
+listed classes <code class="docutils literal"><span class="pre">Left</span></code> (for the left boundary) and <code class="docutils literal"><span class="pre">Right</span></code> (for the
+right boundary), and <code class="docutils literal"><span class="pre">Clamp</span></code> (for the value on the left boundary)
+and <code class="docutils literal"><span class="pre">Rotation</span></code> (for the value on the right boundary).</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// Define Dirichlet boundaries</span>
+<span class="k">auto</span> <span class="n">left</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Left</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="k">auto</span> <span class="n">right</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Right</span><span class="o">&gt;</span><span class="p">();</span>
+
+<span class="c1">// Define Dirichlet boundary functions</span>
+<span class="k">auto</span> <span class="n">c</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Clamp</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="k">auto</span> <span class="n">r</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Rotation</span><span class="o">&gt;</span><span class="p">();</span>
+
+<span class="c1">// Create Dirichlet boundary conditions</span>
+<span class="n">DirichletBC</span> <span class="nf">bcl</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">left</span><span class="p">);</span>
+<span class="n">DirichletBC</span> <span class="nf">bcr</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">right</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">DirichletBC</span><span class="o">*&gt;</span> <span class="n">bcs</span> <span class="o">=</span> <span class="p">{{</span><span class="o">&amp;</span><span class="n">bcl</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">bcr</span><span class="p">}};</span>
+</pre></div>
+</div>
+<p>The two boundary conditions are collected in the container <code class="docutils literal"><span class="pre">bcs</span></code>.</p>
+<p>We use two instances of the class <a class="reference internal" href="../../../../programmers-reference/function/Constant.html#_CPPv28Constant" title="Constant"><code class="xref cpp cpp-class docutils literal"><span class="pre">Constant</span></code></a> to define the
+source <code class="docutils literal"><span class="pre">B</span></code> and the traction <code class="docutils literal"><span class="pre">T</span></code>.</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// Define source and boundary traction functions</span>
+<span class="k">auto</span> <span class="n">B</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Constant</span><span class="o">&gt;</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">);</span>
+<span class="k">auto</span> <span class="n">T</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Constant</span><span class="o">&gt;</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span>  <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The solution for the displacement will be an instance of the class
+<a class="reference internal" href="../../../../programmers-reference/function/Function.html#_CPPv28Function" title="Function"><code class="xref cpp cpp-class docutils literal"><span class="pre">Function</span></code></a>, living in the function space <code class="docutils literal"><span class="pre">V</span></code>; we define
+it here:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// Define solution function</span>
+<span class="k">auto</span> <span class="n">u</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Function</span><span class="o">&gt;</span><span class="p">(</span><span class="n">V</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Next, we set the material parameters</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// Set material parameters</span>
+<span class="k">const</span> <span class="kt">double</span> <span class="n">E</span>  <span class="o">=</span> <span class="mf">10.0</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">double</span> <span class="n">nu</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">;</span>
+<span class="k">auto</span> <span class="n">mu</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Constant</span><span class="o">&gt;</span><span class="p">(</span><span class="n">E</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">nu</span><span class="p">)));</span>
+<span class="k">auto</span> <span class="n">lambda</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Constant</span><span class="o">&gt;</span><span class="p">(</span><span class="n">E</span><span class="o">*</span><span class="n">nu</span><span class="o">/</span><span class="p">((</span><span class="mi">1</span> <span class="o">+</span> <span class="n">nu</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">nu</span><span class="p">)));</span>
+</pre></div>
+</div>
+<p>Now, we can initialize the bilinear and linear forms (<code class="docutils literal"><span class="pre">a</span></code>, <code class="docutils literal"><span class="pre">L</span></code>)
+using the previously defined <a class="reference internal" href="../../../../programmers-reference/function/FunctionSpace.html#_CPPv213FunctionSpace" title="FunctionSpace"><code class="xref cpp cpp-class docutils literal"><span class="pre">FunctionSpace</span></code></a> <code class="docutils literal"><span class="pre">V</span></code>. We
+attach the material parameters and previously initialized functions to
+the forms.</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// Create (linear) form defining (nonlinear) variational problem</span>
+<span class="n">HyperElasticity</span><span class="o">::</span><span class="n">ResidualForm</span> <span class="n">F</span><span class="p">(</span><span class="n">V</span><span class="p">);</span>
+<span class="n">F</span><span class="p">.</span><span class="n">mu</span> <span class="o">=</span> <span class="n">mu</span><span class="p">;</span> <span class="n">F</span><span class="p">.</span><span class="n">lmbda</span> <span class="o">=</span> <span class="n">lambda</span><span class="p">;</span> <span class="n">F</span><span class="p">.</span><span class="n">u</span> <span class="o">=</span> <span class="n">u</span><span class="p">;</span>
+<span class="n">F</span><span class="p">.</span><span class="n">B</span> <span class="o">=</span> <span class="n">B</span><span class="p">;</span> <span class="n">F</span><span class="p">.</span><span class="n">T</span> <span class="o">=</span> <span class="n">T</span><span class="p">;</span>
+
+<span class="c1">// Create jacobian dF = F&#39; (for use in nonlinear solver).</span>
+<span class="n">HyperElasticity</span><span class="o">::</span><span class="n">JacobianForm</span> <span class="n">J</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">V</span><span class="p">);</span>
+<span class="n">J</span><span class="p">.</span><span class="n">mu</span> <span class="o">=</span> <span class="n">mu</span><span class="p">;</span> <span class="n">J</span><span class="p">.</span><span class="n">lmbda</span> <span class="o">=</span> <span class="n">lambda</span><span class="p">;</span> <span class="n">J</span><span class="p">.</span><span class="n">u</span> <span class="o">=</span> <span class="n">u</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Now, we have specified the variational forms and can consider the
+solution of the variational problem.</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// Solve nonlinear variational problem F(u; v) = 0</span>
+<span class="n">solve</span><span class="p">(</span><span class="n">F</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="o">*</span><span class="n">u</span><span class="p">,</span> <span class="n">bcs</span><span class="p">,</span> <span class="n">J</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Finally, the solution <code class="docutils literal"><span class="pre">u</span></code> is saved to a file named
+<code class="docutils literal"><span class="pre">displacement.pvd</span></code> in VTK format, and the displacement solution is
+plotted.</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// Save solution in VTK format</span>
+<span class="n">File</span> <span class="nf">file</span><span class="p">(</span><span class="s">&quot;displacement.pvd&quot;</span><span class="p">);</span>
+<span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">u</span><span class="p">;</span>
+
+<span class="c1">// Plot solution</span>
+<span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="n">u</span><span class="p">);</span>
+<span class="n">interactive</span><span class="p">();</span>
+
+<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complete-code">
+<h2>3.3. Complete code<a class="headerlink" href="#complete-code" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="complete-ufl-file">
+<h3>3.3.1. Complete UFL file<a class="headerlink" href="#complete-ufl-file" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span></span>
+<span class="c1"># Function spaces</span>
+<span class="n">element</span> <span class="o">=</span> <span class="n">VectorElement</span><span class="p">(</span><span class="s2">&quot;Lagrange&quot;</span><span class="p">,</span> <span class="n">tetrahedron</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Trial and test functions</span>
+<span class="n">du</span> <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>     <span class="c1"># Incremental displacement</span>
+<span class="n">v</span>  <span class="o">=</span> <span class="n">TestFunction</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>      <span class="c1"># Test function</span>
+
+<span class="c1"># Functions</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">Coefficient</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>        <span class="c1"># Displacement from previous iteration</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">Coefficient</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>        <span class="c1"># Body force per unit volume</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">Coefficient</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>        <span class="c1"># Traction force on the boundary</span>
+
+<span class="c1"># Kinematics</span>
+<span class="n">d</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+<span class="n">I</span> <span class="o">=</span> <span class="n">Identity</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>                 <span class="c1"># Identity tensor</span>
+<span class="n">F</span> <span class="o">=</span> <span class="n">I</span> <span class="o">+</span> <span class="n">grad</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>                 <span class="c1"># Deformation gradient</span>
+<span class="n">C</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">T</span><span class="o">*</span><span class="n">F</span>                       <span class="c1"># Right Cauchy-Green tensor</span>
+
+<span class="c1"># Invariants of deformation tensors</span>
+<span class="n">Ic</span> <span class="o">=</span> <span class="n">tr</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
+<span class="n">J</span>  <span class="o">=</span> <span class="n">det</span><span class="p">(</span><span class="n">F</span><span class="p">)</span>
+
+<span class="c1"># Elasticity parameters</span>
+<span class="n">mu</span>    <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="n">tetrahedron</span><span class="p">)</span>
+<span class="n">lmbda</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="n">tetrahedron</span><span class="p">)</span>
+
+<span class="c1"># Stored strain energy density (compressible neo-Hookean model)</span>
+<span class="n">psi</span> <span class="o">=</span> <span class="p">(</span><span class="n">mu</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">Ic</span> <span class="o">-</span> <span class="mi">3</span><span class="p">)</span> <span class="o">-</span> <span class="n">mu</span><span class="o">*</span><span class="n">ln</span><span class="p">(</span><span class="n">J</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">lmbda</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">ln</span><span class="p">(</span><span class="n">J</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="c1"># Total potential energy</span>
+<span class="n">Pi</span> <span class="o">=</span> <span class="n">psi</span><span class="o">*</span><span class="n">dx</span> <span class="o">-</span> <span class="n">inner</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span> <span class="o">-</span> <span class="n">inner</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span><span class="o">*</span><span class="n">ds</span>
+
+<span class="c1"># First variation of Pi (directional derivative about u in the direction of v)</span>
+<span class="n">F</span> <span class="o">=</span> <span class="n">derivative</span><span class="p">(</span><span class="n">Pi</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+
+<span class="c1"># Compute Jacobian of F</span>
+<span class="n">J</span> <span class="o">=</span> <span class="n">derivative</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">du</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="complete-main-file">
+<h3>3.3.2. Complete main file<a class="headerlink" href="#complete-main-file" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;dolfin.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;HyperElasticity.h&quot;</span><span class="cp"></span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">dolfin</span><span class="p">;</span>
+
+<span class="c1">// Sub domain for clamp at left end</span>
+<span class="k">class</span> <span class="nc">Left</span> <span class="o">:</span> <span class="k">public</span> <span class="n">SubDomain</span>
+<span class="p">{</span>
+  <span class="kt">bool</span> <span class="n">inside</span><span class="p">(</span><span class="k">const</span> <span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span> <span class="n">x</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">on_boundary</span><span class="p">)</span> <span class="k">const</span>
+  <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&lt;</span> <span class="n">DOLFIN_EPS</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">on_boundary</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">// Sub domain for rotation at right end</span>
+<span class="k">class</span> <span class="nc">Right</span> <span class="o">:</span> <span class="k">public</span> <span class="n">SubDomain</span>
+<span class="p">{</span>
+  <span class="kt">bool</span> <span class="n">inside</span><span class="p">(</span><span class="k">const</span> <span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span> <span class="n">x</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">on_boundary</span><span class="p">)</span> <span class="k">const</span>
+  <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">DOLFIN_EPS</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">on_boundary</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">// Dirichlet boundary condition for clamp at left end</span>
+<span class="k">class</span> <span class="nc">Clamp</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Expression</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+
+  <span class="n">Clamp</span><span class="p">()</span> <span class="o">:</span> <span class="n">Expression</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="p">{}</span>
+
+  <span class="kt">void</span> <span class="n">eval</span><span class="p">(</span><span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span> <span class="n">values</span><span class="p">,</span> <span class="k">const</span> <span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span> <span class="n">x</span><span class="p">)</span> <span class="k">const</span>
+  <span class="p">{</span>
+    <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+    <span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+    <span class="n">values</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+  <span class="p">}</span>
+
+<span class="p">};</span>
+
+<span class="c1">// Dirichlet boundary condition for rotation at right end</span>
+<span class="k">class</span> <span class="nc">Rotation</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Expression</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+
+  <span class="n">Rotation</span><span class="p">()</span> <span class="o">:</span> <span class="n">Expression</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="p">{}</span>
+
+  <span class="kt">void</span> <span class="n">eval</span><span class="p">(</span><span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span> <span class="n">values</span><span class="p">,</span> <span class="k">const</span> <span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span> <span class="n">x</span><span class="p">)</span> <span class="k">const</span>
+  <span class="p">{</span>
+    <span class="k">const</span> <span class="kt">double</span> <span class="n">scale</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>
+
+    <span class="c1">// Center of rotation</span>
+    <span class="k">const</span> <span class="kt">double</span> <span class="n">y0</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>
+    <span class="k">const</span> <span class="kt">double</span> <span class="n">z0</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>
+
+    <span class="c1">// Large angle of rotation (60 degrees)</span>
+    <span class="kt">double</span> <span class="n">theta</span> <span class="o">=</span> <span class="mf">1.04719755</span><span class="p">;</span>
+
+    <span class="c1">// New coordinates</span>
+    <span class="kt">double</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y0</span> <span class="o">+</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">y0</span><span class="p">)</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">z0</span><span class="p">)</span><span class="o">*</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">);</span>
+    <span class="kt">double</span> <span class="n">z</span> <span class="o">=</span> <span class="n">z0</span> <span class="o">+</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">y0</span><span class="p">)</span><span class="o">*</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">z0</span><span class="p">)</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">);</span>
+
+    <span class="c1">// Rotate at right end</span>
+    <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+    <span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">scale</span><span class="o">*</span><span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+    <span class="n">values</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">scale</span><span class="o">*</span><span class="p">(</span><span class="n">z</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+  <span class="p">}</span>
+
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="c1">// Create mesh and define function space</span>
+  <span class="k">auto</span> <span class="n">mesh</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">UnitCubeMesh</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">);</span>
+  <span class="k">auto</span> <span class="n">V</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">HyperElasticity</span><span class="o">::</span><span class="n">FunctionSpace</span><span class="o">&gt;</span><span class="p">(</span><span class="n">mesh</span><span class="p">);</span>
+
+  <span class="c1">// Define Dirichlet boundaries</span>
+  <span class="k">auto</span> <span class="n">left</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Left</span><span class="o">&gt;</span><span class="p">();</span>
+  <span class="k">auto</span> <span class="n">right</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Right</span><span class="o">&gt;</span><span class="p">();</span>
+
+  <span class="c1">// Define Dirichlet boundary functions</span>
+  <span class="k">auto</span> <span class="n">c</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Clamp</span><span class="o">&gt;</span><span class="p">();</span>
+  <span class="k">auto</span> <span class="n">r</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Rotation</span><span class="o">&gt;</span><span class="p">();</span>
+
+  <span class="c1">// Create Dirichlet boundary conditions</span>
+  <span class="n">DirichletBC</span> <span class="n">bcl</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">left</span><span class="p">);</span>
+  <span class="n">DirichletBC</span> <span class="n">bcr</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">right</span><span class="p">);</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">DirichletBC</span><span class="o">*&gt;</span> <span class="n">bcs</span> <span class="o">=</span> <span class="p">{{</span><span class="o">&amp;</span><span class="n">bcl</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">bcr</span><span class="p">}};</span>
+
+  <span class="c1">// Define source and boundary traction functions</span>
+  <span class="k">auto</span> <span class="n">B</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Constant</span><span class="o">&gt;</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">);</span>
+  <span class="k">auto</span> <span class="n">T</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Constant</span><span class="o">&gt;</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span>  <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">);</span>
+
+  <span class="c1">// Define solution function</span>
+  <span class="k">auto</span> <span class="n">u</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Function</span><span class="o">&gt;</span><span class="p">(</span><span class="n">V</span><span class="p">);</span>
+
+  <span class="c1">// Set material parameters</span>
+  <span class="k">const</span> <span class="kt">double</span> <span class="n">E</span>  <span class="o">=</span> <span class="mf">10.0</span><span class="p">;</span>
+  <span class="k">const</span> <span class="kt">double</span> <span class="n">nu</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">;</span>
+  <span class="k">auto</span> <span class="n">mu</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Constant</span><span class="o">&gt;</span><span class="p">(</span><span class="n">E</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">nu</span><span class="p">)));</span>
+  <span class="k">auto</span> <span class="n">lambda</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Constant</span><span class="o">&gt;</span><span class="p">(</span><span class="n">E</span><span class="o">*</span><span class="n">nu</span><span class="o">/</span><span class="p">((</span><span class="mi">1</span> <span class="o">+</span> <span class="n">nu</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">nu</span><span class="p">)));</span>
+
+  <span class="c1">// Create (linear) form defining (nonlinear) variational problem</span>
+  <span class="n">HyperElasticity</span><span class="o">::</span><span class="n">ResidualForm</span> <span class="n">F</span><span class="p">(</span><span class="n">V</span><span class="p">);</span>
+  <span class="n">F</span><span class="p">.</span><span class="n">mu</span> <span class="o">=</span> <span class="n">mu</span><span class="p">;</span> <span class="n">F</span><span class="p">.</span><span class="n">lmbda</span> <span class="o">=</span> <span class="n">lambda</span><span class="p">;</span> <span class="n">F</span><span class="p">.</span><span class="n">u</span> <span class="o">=</span> <span class="n">u</span><span class="p">;</span>
+  <span class="n">F</span><span class="p">.</span><span class="n">B</span> <span class="o">=</span> <span class="n">B</span><span class="p">;</span> <span class="n">F</span><span class="p">.</span><span class="n">T</span> <span class="o">=</span> <span class="n">T</span><span class="p">;</span>
+
+  <span class="c1">// Create jacobian dF = F&#39; (for use in nonlinear solver).</span>
+  <span class="n">HyperElasticity</span><span class="o">::</span><span class="n">JacobianForm</span> <span class="n">J</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">V</span><span class="p">);</span>
+  <span class="n">J</span><span class="p">.</span><span class="n">mu</span> <span class="o">=</span> <span class="n">mu</span><span class="p">;</span> <span class="n">J</span><span class="p">.</span><span class="n">lmbda</span> <span class="o">=</span> <span class="n">lambda</span><span class="p">;</span> <span class="n">J</span><span class="p">.</span><span class="n">u</span> <span class="o">=</span> <span class="n">u</span><span class="p">;</span>
+
+  <span class="c1">// Solve nonlinear variational problem F(u; v) = 0</span>
+  <span class="n">solve</span><span class="p">(</span><span class="n">F</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="o">*</span><span class="n">u</span><span class="p">,</span> <span class="n">bcs</span><span class="p">,</span> <span class="n">J</span><span class="p">);</span>
+
+  <span class="c1">// Save solution in VTK format</span>
+  <span class="n">File</span> <span class="n">file</span><span class="p">(</span><span class="s">&quot;displacement.pvd&quot;</span><span class="p">);</span>
+  <span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">u</span><span class="p">;</span>
+
+  <span class="c1">// Plot solution</span>
+  <span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="n">u</span><span class="p">);</span>
+  <span class="n">interactive</span><span class="p">();</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../mixed-poisson-dual/cpp/documentation.html" class="btn btn-neutral float-right" title="4. Dual-mixed formulation for Poisson equation" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../../eigenvalue/cpp/documentation.html" class="btn btn-neutral" title="&lt;no title&gt;" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://bitbucket.org/fenics-project/.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'2016.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

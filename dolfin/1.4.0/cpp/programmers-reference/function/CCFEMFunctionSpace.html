@@ -1,0 +1,486 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>CCFEMFunctionSpace.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN function module" href="index.html"/>
+        <link rel="next" title="Constant.h" href="Constant.html"/>
+        <link rel="prev" title="CCFEMFunction.h" href="CCFEMFunction.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.4.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-1.4.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/index.html">DOLFIN common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fem/index.html">DOLFIN fem module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN function module</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="CCFEMFunction.html">CCFEMFunction.h</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">CCFEMFunctionSpace.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Constant.html">Constant.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Expression.html">Expression.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Function.html">Function.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FunctionAXPY.html">FunctionAXPY.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FunctionAssigner.html">FunctionAssigner.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FunctionSpace.html">FunctionSpace.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericFunction.html">GenericFunction.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LagrangeInterpolator.html">LagrangeInterpolator.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SpecialFacetFunction.html">SpecialFacetFunction.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SpecialFunctions.html">SpecialFunctions.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SubSpace.html">SubSpace.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="assign.html">assign.h</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/index.html">DOLFIN geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/index.html">DOLFIN io module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../la/index.html">DOLFIN la module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/index.html">DOLFIN log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mesh/index.html">DOLFIN mesh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot/index.html">DOLFIN plot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer&#8217;s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-1.4.0</a> &raquo;</li>
+      
+          <li><a href="index.html">DOLFIN function module</a> &raquo;</li>
+      
+    <li>CCFEMFunctionSpace.h</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/programmers-reference/function/CCFEMFunctionSpace.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ccfemfunctionspace-h">
+<span id="programmers-reference-cpp-function-ccfemfunctionspace"></span><h1>CCFEMFunctionSpace.h<a class="headerlink" href="#ccfemfunctionspace-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="class">
+<dt id="_CPPv218CCFEMFunctionSpace">
+<span id="CCFEMFunctionSpace"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">CCFEMFunctionSpace</code><a class="headerlink" href="#_CPPv218CCFEMFunctionSpace" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This class represents a cut and composite finite element
+function space (CCFEM) defined on one or more possibly
+intersecting meshes.</p>
+<p>A CCFEM function space may be created from a set of standard
+function spaces by repeatedly calling add(), followed by a call
+to build(). Note that a CCFEM function space is not useful and
+its data structures are empty until build() has been called.</p>
+<dl class="function">
+<dt id="_CPPv2N18CCFEMFunctionSpace18CCFEMFunctionSpaceEv">
+<span id="CCFEMFunctionSpace::CCFEMFunctionSpace"></span><code class="descclassname"></code><code class="descname">CCFEMFunctionSpace</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N18CCFEMFunctionSpace18CCFEMFunctionSpaceEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create empty CCFEM function space</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK18CCFEMFunctionSpace3dimEv">
+<span id="CCFEMFunctionSpace::dimC"></span>std::size_t <code class="descclassname"></code><code class="descname">dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK18CCFEMFunctionSpace3dimEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return dimension of the CCFEM function space</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>std::size_t</dt>
+<dd>The dimension of the CCFEM function space.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK18CCFEMFunctionSpace6dofmapEv">
+<span id="CCFEMFunctionSpace::dofmapC"></span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../fem/CCFEMDofMap.html#_CPPv211CCFEMDofMap" title="CCFEMDofMap">CCFEMDofMap</a>&gt; <code class="descclassname"></code><code class="descname">dofmap</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK18CCFEMFunctionSpace6dofmapEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return CCFEM dofmap</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt><a class="reference internal" href="../fem/CCFEMDofMap.html#_CPPv211CCFEMDofMap" title="CCFEMDofMap"><code class="xref cpp cpp-class docutils literal"><span class="pre">CCFEMDofMap</span></code></a></dt>
+<dd>The dofmap.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK18CCFEMFunctionSpace9num_partsEv">
+<span id="CCFEMFunctionSpace::num_partsC"></span>std::size_t <code class="descclassname"></code><code class="descname">num_parts</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK18CCFEMFunctionSpace9num_partsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the number function spaces (parts) of the CCFEM function space</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>std::size_t</dt>
+<dd>The number of function spaces (parts) of the CCFEM function space.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK18CCFEMFunctionSpace4partENSt6size_tE">
+<span id="CCFEMFunctionSpace::part__std::sC"></span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="FunctionSpace.html#_CPPv213FunctionSpace" title="FunctionSpace">FunctionSpace</a>&gt; <code class="descclassname"></code><code class="descname">part</code><span class="sig-paren">(</span>std::size_t <em>i</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK18CCFEMFunctionSpace4partENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return function space (part) number i</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>i (std::size_t)</dt>
+<dd>The part number</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt><a class="reference internal" href="FunctionSpace.html#_CPPv213FunctionSpace" title="FunctionSpace"><code class="xref cpp cpp-class docutils literal"><span class="pre">FunctionSpace</span></code></a></dt>
+<dd>Function space (part) number i</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK18CCFEMFunctionSpace11uncut_cellsENSt6size_tE">
+<span id="CCFEMFunctionSpace::uncut_cells__std::sC"></span><em class="property">const</em> std::vector&lt;unsigned int&gt; &amp;<code class="descclassname"></code><code class="descname">uncut_cells</code><span class="sig-paren">(</span>std::size_t <em>part</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK18CCFEMFunctionSpace11uncut_cellsENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the list of uncut cells for given part. The uncut cells
+are defined as all cells that don&#8217;t collide with any cells in
+any other part with higher part number.</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>part (std::size_t)</dt>
+<dd>The part number</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>std::vector&lt;unsigned int&gt;</dt>
+<dd>List of uncut cell indices for given part</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK18CCFEMFunctionSpace9cut_cellsENSt6size_tE">
+<span id="CCFEMFunctionSpace::cut_cells__std::sC"></span><em class="property">const</em> std::vector&lt;unsigned int&gt; &amp;<code class="descclassname"></code><code class="descname">cut_cells</code><span class="sig-paren">(</span>std::size_t <em>part</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK18CCFEMFunctionSpace9cut_cellsENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the list of cut cells for given part. The cut cells are
+defined as all cells that collide with the boundary of any
+part with higher part number.</p>
+<p>FIXME: Figure out whether this makes sense; a cell may collide
+with the boundary of part j but may still be covered
+completely by the domain of part j + 1. Possible solution is
+to for each part i check overlapping parts starting from the
+top and working back down to i + 1.</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>part (std::size_t)</dt>
+<dd>The part number</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>std::vector&lt;unsigned int&gt;</dt>
+<dd>List of cut cell indices for given part</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK18CCFEMFunctionSpace13covered_cellsENSt6size_tE">
+<span id="CCFEMFunctionSpace::covered_cells__std::sC"></span><em class="property">const</em> std::vector&lt;unsigned int&gt; &amp;<code class="descclassname"></code><code class="descname">covered_cells</code><span class="sig-paren">(</span>std::size_t <em>part</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK18CCFEMFunctionSpace13covered_cellsENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the list of covered cells for given part. The covered
+cells are defined as all cells that collide with the domain of
+any part with higher part number, but not with the boundary of
+that part; in other words cells that are completely covered by
+any other part (and which therefore are inactive).</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>part (std::size_t)</dt>
+<dd>The part number</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>std::vector&lt;unsigned int&gt;</dt>
+<dd>List of covered cell indices for given part</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK18CCFEMFunctionSpace23collision_map_cut_cellsENSt6size_tE">
+<span id="CCFEMFunctionSpace::collision_map_cut_cells__std::sC"></span><em class="property">const</em> std::map&lt;unsigned int, std::vector&lt;std::pair&lt;std::size_t, unsigned int&gt;&gt;&gt; &amp;<code class="descclassname"></code><code class="descname">collision_map_cut_cells</code><span class="sig-paren">(</span>std::size_t <em>part</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK18CCFEMFunctionSpace23collision_map_cut_cellsENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the collision map for cut cells of the given part</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>part (std::size_t)</dt>
+<dd>The part number</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>std::map&lt;unsigned int, std::vector&lt;std::pair&lt;std::size_t, unsigned int&gt; &gt; &gt;</dt>
+<dd>A map from cell indices of cut cells to a list of
+cutting cells. Each cutting cell is represented as a
+pair (part_number, cutting_cell_index).</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK18CCFEMFunctionSpace25quadrature_rule_cut_cellsENSt6size_tE">
+<span id="CCFEMFunctionSpace::quadrature_rule_cut_cells__std::sC"></span><em class="property">const</em> std::map&lt;unsigned int, std::pair&lt;std::vector&lt;double&gt;, std::vector&lt;double&gt;&gt;&gt; &amp;<code class="descclassname"></code><code class="descname">quadrature_rule_cut_cells</code><span class="sig-paren">(</span>std::size_t <em>part</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK18CCFEMFunctionSpace25quadrature_rule_cut_cellsENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return quadrature rules for cut cells of the given part</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>part (std::size_t)</dt>
+<dd>The part number</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>std::map&lt;unsigned int, std::pair&lt;std::vector&lt;double&gt;, std::vector&lt;double&gt; &gt; &gt;</dt>
+<dd>A map from cell indices of cut cells to a quadrature
+rules. Each quadrature rule is represented as a pair
+of an array of quadrature weights and a corresponding
+flattened array of quadrature points.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N18CCFEMFunctionSpace3addENSt10shared_ptrIK13FunctionSpaceEE">
+<span id="CCFEMFunctionSpace::add__std::shared_ptr:FunctionSpaceC:"></span>void <code class="descclassname"></code><code class="descname">add</code><span class="sig-paren">(</span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="FunctionSpace.html#_CPPv213FunctionSpace" title="FunctionSpace">FunctionSpace</a>&gt; <em>function_space</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N18CCFEMFunctionSpace3addENSt10shared_ptrIK13FunctionSpaceEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add function space (shared pointer version)</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>function_space (<a class="reference internal" href="FunctionSpace.html#_CPPv213FunctionSpace" title="FunctionSpace"><code class="xref cpp cpp-class docutils literal"><span class="pre">FunctionSpace</span></code></a>)</dt>
+<dd>The function space.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N18CCFEMFunctionSpace3addERK13FunctionSpace">
+<span id="CCFEMFunctionSpace::add__FunctionSpaceCR"></span>void <code class="descclassname"></code><code class="descname">add</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="FunctionSpace.html#_CPPv213FunctionSpace" title="FunctionSpace">FunctionSpace</a> &amp;<em>function_space</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N18CCFEMFunctionSpace3addERK13FunctionSpace" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add function space (reference version)</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>function_space (<a class="reference internal" href="FunctionSpace.html#_CPPv213FunctionSpace" title="FunctionSpace"><code class="xref cpp cpp-class docutils literal"><span class="pre">FunctionSpace</span></code></a>)</dt>
+<dd>The function space.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N18CCFEMFunctionSpace5buildEv">
+<span id="CCFEMFunctionSpace::build"></span>void <code class="descclassname"></code><code class="descname">build</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N18CCFEMFunctionSpace5buildEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Build CCFEM function space</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Constant.html" class="btn btn-neutral float-right" title="Constant.h" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="CCFEMFunction.html" class="btn btn-neutral" title="CCFEMFunction.h" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://fenicsproject.org.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.4.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

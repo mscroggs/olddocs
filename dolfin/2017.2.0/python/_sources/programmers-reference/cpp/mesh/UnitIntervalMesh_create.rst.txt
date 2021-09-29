@@ -1,0 +1,10 @@
+.. Documentation for the function dolfin.cpp.mesh.UnitIntervalMesh_create
+
+.. _programmers_reference_cpp_mesh_unitintervalmesh_create:
+
+UnitIntervalMesh_create
+=======================
+
+.. currentmodule:: dolfin.cpp.mesh
+
+.. autofunction:: UnitIntervalMesh_create

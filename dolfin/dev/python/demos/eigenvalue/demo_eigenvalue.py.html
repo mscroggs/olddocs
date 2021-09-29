@@ -1,0 +1,337 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>A simple eigenvalue solver &mdash; DOLFIN  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Built-in meshes" href="../built-in-meshes/demo_built-in-meshes.py.html" />
+    <link rel="prev" title="Poisson equation" href="../poisson/demo_poisson.py.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../using.html">Using DOLFIN</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../demos.html">Demos</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../demos.html#introductory-demos">Introductory demos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../demos.html#more-advanced-demos">More advanced demos</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../demos.html#all-documented-demos">All documented demos</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../poisson/demo_poisson.py.html">Poisson equation</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">A simple eigenvalue solver</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#implementation">Implementation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../built-in-meshes/demo_built-in-meshes.py.html">Built-in meshes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mixed-poisson/demo_mixed-poisson.py.html">Mixed formulation for Poisson equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../biharmonic/demo_biharmonic.py.html">Biharmonic equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../auto-adaptive-poisson/demo_auto-adaptive-poisson.py.html">Auto adaptive Poisson equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cahn-hilliard/demo_cahn-hilliard.py.html">Cahn-Hilliard equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maxwell-eigenvalues/demo_maxwell-eigenvalues.py.html">Stable and unstable finite elements for the Maxwell eigenvalue problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hyperelasticity/demo_hyperelasticity.py.html">Hyperelasticity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nonlinear-poisson/demo_nonlinear-poisson.py.html">Nonlinear Poisson equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../singular-poisson/demo_singular-poisson.py.html">Singular Poisson</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../neumann-poisson/demo_neumann-poisson.py.html">Poisson equation with pure Neumann boundary conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nonmatching-interpolation/demo_nonmatching-interpolation.py.html">Interpolation from a non-matching mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../stokes-iterative/demo_stokes-iterative.py.html">Stokes equations with an iterative solver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elastodynamics/demo_elastodynamics.py.html">Time-integration of elastodynamics equation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">Python API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer.html">Developer resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ChangeLog.html">Change log</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">DOLFIN</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../demos.html">Demos</a> &raquo;</li>
+        
+      <li>A simple eigenvalue solver</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/demos/eigenvalue/demo_eigenvalue.py.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="a-simple-eigenvalue-solver">
+<span id="demo-eigenvalue"></span><h1>A simple eigenvalue solver<a class="headerlink" href="#a-simple-eigenvalue-solver" title="Permalink to this headline">¶</a></h1>
+<p>We recommend that you are familiar with the demo for the Poisson equation
+before looking at this demo.</p>
+<p>If you want a more complex problem, we suggest that you look at the
+other eigenvalue demo.</p>
+<div class="section" id="implementation">
+<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
+<p>This demo is implemented in a single Python file,
+<a class="reference download internal" download="" href="../../_downloads/e33c43dfccb234ebb8b2304900a1d292/demo_eigenvalue.py"><code class="xref download docutils literal notranslate"><span class="pre">demo_eigenvalue.py</span></code></a> and reads in an external mesh
+<a class="reference download internal" download="" href="../../_downloads/f7ba98aff97574b1fb2b337fb859c3ba/box_with_dent.xml.gz"><code class="xref download docutils literal notranslate"><span class="pre">box_with_dent.xml.gz</span></code></a>.</p>
+<p>The eigensolver functionality in DOLFIN relies on the library SLEPc
+which in turn relies on the linear algebra library PETSc. Therefore,
+both PETSc and SLEPc are required for this demo. We can test whether
+PETSc and SLEPc are available, and exit if not, as follows</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">dolfin</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="c1"># Test for PETSc and SLEPc</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">has_linear_algebra_backend</span><span class="p">(</span><span class="s2">&quot;PETSc&quot;</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;DOLFIN has not been configured with PETSc. Exiting.&quot;</span><span class="p">)</span>
+    <span class="n">exit</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">has_slepc</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;DOLFIN has not been configured with SLEPc. Exiting.&quot;</span><span class="p">)</span>
+    <span class="n">exit</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>First, we need to construct the matrix <span class="math notranslate nohighlight">\(A\)</span>. This will be done in
+three steps: defining the mesh and the function space associated with
+it; constructing the variational form defining the matrix; and then
+assembling this form. The code is shown below</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define mesh, function space</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">Mesh</span><span class="p">(</span><span class="s2">&quot;box_with_dent.xml.gz&quot;</span><span class="p">)</span>
+<span class="n">V</span> <span class="o">=</span> <span class="n">FunctionSpace</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="s2">&quot;Lagrange&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Define basis and bilinear form</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">TestFunction</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">grad</span><span class="p">(</span><span class="n">v</span><span class="p">))</span><span class="o">*</span><span class="n">dx</span>
+
+<span class="c1"># Assemble stiffness form</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">PETScMatrix</span><span class="p">()</span>
+<span class="n">assemble</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">tensor</span><span class="o">=</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note that we (in this example) first define the matrix <code class="docutils literal notranslate"><span class="pre">A</span></code> as a
+<code class="xref py py-class docutils literal notranslate"><span class="pre">PETScMatrix</span></code> and then assemble the
+form into it. This is an easy way to ensure that the matrix has the
+right type.</p>
+<p>In order to solve the eigenproblem, we need to define an
+eigensolver. To solve a standard eigenvalue problem, the eigensolver
+is initialized with a single argument, namely the matrix <code class="docutils literal notranslate"><span class="pre">A</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create eigensolver</span>
+<span class="n">eigensolver</span> <span class="o">=</span> <span class="n">SLEPcEigenSolver</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now, we ready solve the eigenproblem by calling the <code class="xref py py-func docutils literal notranslate"><span class="pre">solve</span></code> method of the eigensolver. Note
+that eigenvalue problems tend to be computationally intensive and may
+hence take a while.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute all eigenvalues of A x = \lambda x</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Computing eigenvalues. This can take a minute.&quot;</span><span class="p">)</span>
+<span class="n">eigensolver</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The result is kept by the eigensolver, but can fortunately be
+extracted. Here, we have computed all eigenvalues, and they will be
+sorted by largest magnitude. We can extract the real and complex part
+(<code class="docutils literal notranslate"><span class="pre">r</span></code> and <code class="docutils literal notranslate"><span class="pre">c</span></code>) of the largest eigenvalue and the real and complex
+part of the corresponding eigenvector (<code class="docutils literal notranslate"><span class="pre">ru</span></code> and <code class="docutils literal notranslate"><span class="pre">cu</span></code>) by asking
+for the first eigenpair as follows</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract largest (first) eigenpair</span>
+<span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">rx</span><span class="p">,</span> <span class="n">cx</span> <span class="o">=</span> <span class="n">eigensolver</span><span class="o">.</span><span class="n">get_eigenpair</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Finally, we want to examine the results. The eigenvalue can easily be
+printed. But, the real part of eigenvector is probably most easily
+visualized by constructing the corresponding eigenfunction. This can
+be done by creating a <code class="xref py py-class docutils literal notranslate"><span class="pre">Function</span></code> in the function space <code class="docutils literal notranslate"><span class="pre">V</span></code>
+and the associating eigenvector <code class="docutils literal notranslate"><span class="pre">rx</span></code> with the Function. Then the
+eigenfunction can be manipulated as any other <code class="xref py py-class docutils literal notranslate"><span class="pre">Function</span></code>, and in particular plotted</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Largest eigenvalue: &quot;</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+
+<span class="c1"># Initialize function and assign eigenvector</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+<span class="n">u</span><span class="o">.</span><span class="n">vector</span><span class="p">()[:]</span> <span class="o">=</span> <span class="n">rx</span>
+
+<span class="c1"># Plot eigenfunction</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../built-in-meshes/demo_built-in-meshes.py.html" class="btn btn-neutral float-right" title="Built-in meshes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../poisson/demo_poisson.py.html" class="btn btn-neutral float-left" title="Poisson equation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2017, FEniCS Project
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,490 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>C++ Programmer’s reference for DOLFIN-2016.1.0 &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../index.html"/>
+        <link rel="next" title="DOLFIN adaptivity module" href="adaptivity/index.html"/>
+        <link rel="prev" title="Documentation for DOLFIN-2016.1.0 (C++)" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2016.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">C++ Programmer&#8217;s reference for DOLFIN-2016.1.0</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common/index.html">DOLFIN common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fem/index.html">DOLFIN fem module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="function/index.html">DOLFIN function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geometry/index.html">DOLFIN geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="io/index.html">DOLFIN io module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/index.html">DOLFIN la module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="log/index.html">DOLFIN log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh/index.html">DOLFIN mesh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot/index.html">DOLFIN plot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_reference.html">Quick Programmer&#8217;s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>C++ Programmer&#8217;s reference for DOLFIN-2016.1.0</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/programmers-reference/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="c-programmer-s-reference-for-dolfin-2016-1-0">
+<span id="programmers-reference-index"></span><h1>C++ Programmer&#8217;s reference for DOLFIN-2016.1.0<a class="headerlink" href="#c-programmer-s-reference-for-dolfin-2016-1-0" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="adaptivity/index.html">DOLFIN adaptivity module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="adaptivity/AdaptiveLinearVariationalSolver.html">AdaptiveLinearVariationalSolver.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adaptivity/AdaptiveNonlinearVariationalSolver.html">AdaptiveNonlinearVariationalSolver.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adaptivity/ErrorControl.html">ErrorControl.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adaptivity/Extrapolation.html">Extrapolation.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adaptivity/GenericAdaptiveVariationalSolver.html">GenericAdaptiveVariationalSolver.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adaptivity/GoalFunctional.html">GoalFunctional.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adaptivity/TimeSeries.html">TimeSeries.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adaptivity/adapt.html">adapt.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adaptivity/adaptivesolve.html">adaptivesolve.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adaptivity/marking.html">marking.h</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ale/index.html">DOLFIN ale module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ale/ALE.html">ALE.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ale/MeshDisplacement.html">MeshDisplacement.h</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="common/index.html">DOLFIN common module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="common/Array.html">Array.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common/ArrayView.html">ArrayView.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common/Hierarchical.html">Hierarchical.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common/IndexSet.html">IndexSet.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common/MPI.html">MPI.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common/Set.html">Set.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common/SubSystemsManager.html">SubSystemsManager.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common/Timer.html">Timer.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common/Variable.html">Variable.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common/constants.html">constants.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common/defines.html">defines.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common/init.html">init.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common/timing.html">timing.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common/types.html">types.h</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="fem/index.html">DOLFIN fem module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="fem/Assembler.html">Assembler.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fem/AssemblerBase.html">AssemblerBase.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fem/BasisFunction.html">BasisFunction.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fem/DirichletBC.html">DirichletBC.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fem/DiscreteOperators.html">DiscreteOperators.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fem/DofMap.html">DofMap.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fem/Equation.html">Equation.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fem/FiniteElement.html">FiniteElement.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fem/Form.html">Form.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fem/GenericDofMap.html">GenericDofMap.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fem/LinearVariationalProblem.html">LinearVariationalProblem.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fem/LinearVariationalSolver.html">LinearVariationalSolver.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fem/LocalAssembler.html">LocalAssembler.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fem/LocalSolver.html">LocalSolver.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fem/MultiMeshAssembler.html">MultiMeshAssembler.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fem/MultiMeshDirichletBC.html">MultiMeshDirichletBC.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fem/MultiMeshDofMap.html">MultiMeshDofMap.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fem/MultiMeshForm.html">MultiMeshForm.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fem/NonlinearVariationalProblem.html">NonlinearVariationalProblem.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fem/NonlinearVariationalSolver.html">NonlinearVariationalSolver.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fem/OpenMpAssembler.html">OpenMpAssembler.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fem/PointSource.html">PointSource.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fem/SparsityPatternBuilder.html">SparsityPatternBuilder.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fem/SystemAssembler.html">SystemAssembler.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fem/assemble.html">assemble.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fem/assemble_local.html">assemble_local.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fem/fem_utils.html">fem_utils.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fem/solve.html">solve.h</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="function/index.html">DOLFIN function module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function/Constant.html">Constant.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="function/Expression.html">Expression.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="function/Function.html">Function.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="function/FunctionAXPY.html">FunctionAXPY.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="function/FunctionAssigner.html">FunctionAssigner.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="function/FunctionSpace.html">FunctionSpace.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="function/GenericFunction.html">GenericFunction.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="function/LagrangeInterpolator.html">LagrangeInterpolator.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="function/MultiMeshFunction.html">MultiMeshFunction.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="function/MultiMeshFunctionSpace.html">MultiMeshFunctionSpace.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="function/MultiMeshSubSpace.html">MultiMeshSubSpace.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="function/SpecialFacetFunction.html">SpecialFacetFunction.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="function/SpecialFunctions.html">SpecialFunctions.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="function/assign.html">assign.h</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="generation/index.html">DOLFIN generation module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="generation/BoxMesh.html">BoxMesh.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generation/IntervalMesh.html">IntervalMesh.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generation/RectangleMesh.html">RectangleMesh.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generation/SphericalShellMesh.html">SphericalShellMesh.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generation/UnitCubeMesh.html">UnitCubeMesh.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generation/UnitDiscMesh.html">UnitDiscMesh.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generation/UnitHexMesh.html">UnitHexMesh.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generation/UnitIntervalMesh.html">UnitIntervalMesh.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generation/UnitQuadMesh.html">UnitQuadMesh.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generation/UnitSquareMesh.html">UnitSquareMesh.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generation/UnitTetrahedronMesh.html">UnitTetrahedronMesh.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generation/UnitTriangleMesh.html">UnitTriangleMesh.h</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="geometry/index.html">DOLFIN geometry module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="geometry/BoundingBoxTree.html">BoundingBoxTree.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geometry/BoundingBoxTree3D.html">BoundingBoxTree3D.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geometry/GenericBoundingBoxTree.html">GenericBoundingBoxTree.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geometry/MeshPointIntersection.html">MeshPointIntersection.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geometry/Point.html">Point.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geometry/intersect.html">intersect.h</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="graph/index.html">DOLFIN graph module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="graph/BoostGraphOrdering.html">BoostGraphOrdering.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graph/Graph.html">Graph.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graph/GraphBuilder.html">GraphBuilder.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graph/SCOTCH.html">SCOTCH.h</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="io/index.html">DOLFIN io module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="io/File.html">File.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="io/GenericFile.html">GenericFile.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="io/HDF5Attribute.html">HDF5Attribute.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="io/HDF5File.html">HDF5File.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="io/X3DOM.html">X3DOM.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="io/XDMFFile.html">XDMFFile.h</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="la/index.html">DOLFIN la module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="la/BelosKrylovSolver.html">BelosKrylovSolver.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/BlockMatrix.html">BlockMatrix.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/BlockVector.html">BlockVector.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/CoordinateMatrix.html">CoordinateMatrix.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/DefaultFactory.html">DefaultFactory.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/EigenFactory.html">EigenFactory.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/EigenKrylovSolver.html">EigenKrylovSolver.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/EigenLUSolver.html">EigenLUSolver.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/EigenMatrix.html">EigenMatrix.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/EigenVector.html">EigenVector.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/GenericLUSolver.html">GenericLUSolver.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/GenericLinearAlgebraFactory.html">GenericLinearAlgebraFactory.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/GenericLinearOperator.html">GenericLinearOperator.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/GenericLinearSolver.html">GenericLinearSolver.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/GenericMatrix.html">GenericMatrix.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/GenericTensor.html">GenericTensor.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/GenericVector.html">GenericVector.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/Ifpack2Preconditioner.html">Ifpack2Preconditioner.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/IndexMap.html">IndexMap.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/KrylovSolver.html">KrylovSolver.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/LUSolver.html">LUSolver.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/LinearAlgebraObject.html">LinearAlgebraObject.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/LinearOperator.html">LinearOperator.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/LinearSolver.html">LinearSolver.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/Matrix.html">Matrix.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/MueluPreconditioner.html">MueluPreconditioner.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/PETScBaseMatrix.html">PETScBaseMatrix.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/PETScFactory.html">PETScFactory.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/PETScKrylovSolver.html">PETScKrylovSolver.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/PETScLUSolver.html">PETScLUSolver.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/PETScLinearOperator.html">PETScLinearOperator.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/PETScMatrix.html">PETScMatrix.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/PETScObject.html">PETScObject.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/PETScOptions.html">PETScOptions.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/PETScPreconditioner.html">PETScPreconditioner.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/PETScUserPreconditioner.html">PETScUserPreconditioner.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/PETScVector.html">PETScVector.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/SLEPcEigenSolver.html">SLEPcEigenSolver.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/Scalar.html">Scalar.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/SparsityPattern.html">SparsityPattern.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/TensorLayout.html">TensorLayout.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/TpetraFactory.html">TpetraFactory.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/TpetraMatrix.html">TpetraMatrix.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/TpetraVector.html">TpetraVector.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/TrilinosPreconditioner.html">TrilinosPreconditioner.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/Vector.html">Vector.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/VectorSpaceBasis.html">VectorSpaceBasis.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/solve.html">solve.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="la/test_nullspace.html">test_nullspace.h</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="log/index.html">DOLFIN log module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="log/Event.html">Event.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="log/LogLevel.html">LogLevel.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="log/LogStream.html">LogStream.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="log/Progress.html">Progress.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="log/Table.html">Table.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="log/log.html">log.h</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="math/index.html">DOLFIN math module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="math/Lagrange.html">Lagrange.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math/Legendre.html">Legendre.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math/basic.html">basic.h</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mesh/index.html">DOLFIN mesh module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mesh/BoundaryMesh.html">BoundaryMesh.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh/Cell.html">Cell.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh/CellType.html">CellType.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh/DomainBoundary.html">DomainBoundary.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh/DynamicMeshEditor.html">DynamicMeshEditor.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh/Edge.html">Edge.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh/Face.html">Face.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh/Facet.html">Facet.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh/FacetCell.html">FacetCell.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh/LocalMeshData.html">LocalMeshData.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh/LocalMeshValueCollection.html">LocalMeshValueCollection.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh/Mesh.html">Mesh.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh/MeshColoring.html">MeshColoring.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh/MeshConnectivity.html">MeshConnectivity.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh/MeshData.html">MeshData.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh/MeshDomains.html">MeshDomains.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh/MeshEditor.html">MeshEditor.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh/MeshEntity.html">MeshEntity.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh/MeshEntityIterator.html">MeshEntityIterator.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh/MeshEntityIteratorBase.html">MeshEntityIteratorBase.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh/MeshFunction.html">MeshFunction.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh/MeshGeometry.html">MeshGeometry.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh/MeshHierarchy.html">MeshHierarchy.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh/MeshPartitioning.html">MeshPartitioning.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh/MeshQuality.html">MeshQuality.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh/MeshRenumbering.html">MeshRenumbering.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh/MeshTopology.html">MeshTopology.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh/MeshTransformation.html">MeshTransformation.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh/MeshValueCollection.html">MeshValueCollection.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh/MultiMesh.html">MultiMesh.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh/PeriodicBoundaryComputation.html">PeriodicBoundaryComputation.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh/SubDomain.html">SubDomain.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh/SubMesh.html">SubMesh.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh/SubsetIterator.html">SubsetIterator.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh/Vertex.html">Vertex.h</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="multistage/index.html">DOLFIN multistage module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="multistage/MultiStageScheme.html">MultiStageScheme.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multistage/PointIntegralSolver.html">PointIntegralSolver.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multistage/RKSolver.html">RKSolver.h</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="nls/index.html">DOLFIN nls module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nls/NewtonSolver.html">NewtonSolver.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nls/NonlinearProblem.html">NonlinearProblem.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nls/OptimisationProblem.html">OptimisationProblem.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nls/PETScSNESSolver.html">PETScSNESSolver.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nls/PETScTAOSolver.html">PETScTAOSolver.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nls/TAOLinearBoundSolver.html">TAOLinearBoundSolver.h</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="parameter/index.html">DOLFIN parameter module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parameter/GlobalParameters.html">GlobalParameters.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameter/Parameter.html">Parameter.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameter/Parameters.html">Parameters.h</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="plot/index.html">DOLFIN plot module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="plot/VTKPlotter.html">VTKPlotter.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot/plot.html">plot.h</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="refinement/index.html">DOLFIN refinement module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="refinement/refine.html">refine.h</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="adaptivity/index.html" class="btn btn-neutral float-right" title="DOLFIN adaptivity module" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../index.html" class="btn btn-neutral" title="Documentation for DOLFIN-2016.1.0 (C++)" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://bitbucket.org/fenics-project/.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2016.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

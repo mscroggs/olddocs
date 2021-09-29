@@ -1,0 +1,368 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>LogStream.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN log module" href="index.html"/>
+        <link rel="next" title="Progress.h" href="Progress.html"/>
+        <link rel="prev" title="LogLevel.h" href="LogLevel.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.9.11+
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer’s reference for DOLFIN-2017.1.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/index.html">DOLFIN common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fem/index.html">DOLFIN fem module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html">DOLFIN function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/index.html">DOLFIN geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/index.html">DOLFIN io module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../la/index.html">DOLFIN la module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN log module</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Event.html">Event.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LogLevel.html">LogLevel.h</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">LogStream.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Progress.html">Progress.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Table.html">Table.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="log.html">log.h</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mesh/index.html">DOLFIN mesh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot/index.html">DOLFIN plot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer’s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">DOLFIN</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">C++ Programmer’s reference for DOLFIN-2017.1.0</a> &raquo;</li>
+        
+          <li><a href="index.html">DOLFIN log module</a> &raquo;</li>
+        
+      <li>LogStream.h</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/programmers-reference/log/LogStream.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="logstream-h">
+<span id="programmers-reference-cpp-log-logstream"></span><h1>LogStream.h<a class="headerlink" href="#logstream-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="class">
+<dt id="_CPPv29LogStream">
+<span id="LogStream"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">LogStream</code><a class="headerlink" href="#_CPPv29LogStream" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This class provides functionality similar to standard C++
+streams (std::cout, std::endl) for output but working through
+the DOLFIN log system.</p>
+<dl class="function">
+<dt>
+<code class="descname">enum class Type</code></dt>
+<dd><p>Stream types</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N9LogStream9LogStreamE4Type">
+<span id="LogStream::LogStream__Type"></span><code class="descclassname"></code><code class="descname">LogStream</code><span class="sig-paren">(</span>Type <em>type</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9LogStream9LogStreamE4Type" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create log stream of given type</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N9LogStreamlsERK9LogStream">
+<span id="LogStream::lshift-operator__LogStreamCR"></span><a class="reference internal" href="#_CPPv29LogStream" title="LogStream">LogStream</a> &amp;<code class="descclassname"></code><code class="descname">operator&lt;&lt;</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv29LogStream" title="LogStream">LogStream</a> &amp;<em>stream</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9LogStreamlsERK9LogStream" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Output for log stream</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N9LogStreamlsERKNSt6stringE">
+<span id="LogStream::lshift-operator__ssCR"></span><a class="reference internal" href="#_CPPv29LogStream" title="LogStream">LogStream</a> &amp;<code class="descclassname"></code><code class="descname">operator&lt;&lt;</code><span class="sig-paren">(</span><em class="property">const</em> std::string &amp;<em>s</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9LogStreamlsERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Output for string</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N9LogStreamlsEi">
+<span id="LogStream::lshift-operator__i"></span><a class="reference internal" href="#_CPPv29LogStream" title="LogStream">LogStream</a> &amp;<code class="descclassname"></code><code class="descname">operator&lt;&lt;</code><span class="sig-paren">(</span>int <em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9LogStreamlsEi" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Output for int</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N9LogStreamlsEj">
+<span id="LogStream::lshift-operator__unsigned-i"></span><a class="reference internal" href="#_CPPv29LogStream" title="LogStream">LogStream</a> &amp;<code class="descclassname"></code><code class="descname">operator&lt;&lt;</code><span class="sig-paren">(</span>unsigned int <em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9LogStreamlsEj" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Output for unsigned int</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N9LogStreamlsEl">
+<span id="LogStream::lshift-operator__l-i"></span><a class="reference internal" href="#_CPPv29LogStream" title="LogStream">LogStream</a> &amp;<code class="descclassname"></code><code class="descname">operator&lt;&lt;</code><span class="sig-paren">(</span>long int <em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9LogStreamlsEl" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Output for long int</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descname">LogStream&amp; operator&lt;&lt; (long unsigned int a)</code></dt>
+<dd><p>Output for long int</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N9LogStreamlsEd">
+<span id="LogStream::lshift-operator__double"></span><a class="reference internal" href="#_CPPv29LogStream" title="LogStream">LogStream</a> &amp;<code class="descclassname"></code><code class="descname">operator&lt;&lt;</code><span class="sig-paren">(</span>double <em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9LogStreamlsEd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Output for double</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N9LogStreamlsENSt7complexIdEE">
+<span id="LogStream::lshift-operator__std::complex:double:"></span><a class="reference internal" href="#_CPPv29LogStream" title="LogStream">LogStream</a> &amp;<code class="descclassname"></code><code class="descname">operator&lt;&lt;</code><span class="sig-paren">(</span>std::complex&lt;double&gt; <em>z</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9LogStreamlsENSt7complexIdEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Output for std::complex&lt;double&gt;</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N9LogStreamlsERK8Variable">
+<span id="LogStream::lshift-operator__VariableCR"></span><a class="reference internal" href="#_CPPv29LogStream" title="LogStream">LogStream</a> &amp;<code class="descclassname"></code><code class="descname">operator&lt;&lt;</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../common/Variable.html#_CPPv28Variable" title="Variable">Variable</a> &amp;<em>variable</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9LogStreamlsERK8Variable" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Output for variable (calling str() method)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N9LogStreamlsERK10MeshEntity">
+<span id="LogStream::lshift-operator__MeshEntityCR"></span><a class="reference internal" href="#_CPPv29LogStream" title="LogStream">LogStream</a> &amp;<code class="descclassname"></code><code class="descname">operator&lt;&lt;</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../mesh/MeshEntity.html#_CPPv210MeshEntity" title="MeshEntity">MeshEntity</a> &amp;<em>entity</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9LogStreamlsERK10MeshEntity" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Output for mesh entity (not subclass of Variable for
+efficiency)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N9LogStreamlsERK5Point">
+<span id="LogStream::lshift-operator__PointCR"></span><a class="reference internal" href="#_CPPv29LogStream" title="LogStream">LogStream</a> &amp;<code class="descclassname"></code><code class="descname">operator&lt;&lt;</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../geometry/Point.html#_CPPv25Point" title="Point">Point</a> &amp;<em>point</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9LogStreamlsERK5Point" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Output for point (not subclass of Variable for efficiency)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N9LogStream12setprecisionENSt10streamsizeE">
+<span id="LogStream::setprecision__std::streamsize"></span>void <code class="descclassname"></code><code class="descname">setprecision</code><span class="sig-paren">(</span>std::streamsize <em>n</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9LogStream12setprecisionENSt10streamsizeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set precision</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Progress.html" class="btn btn-neutral float-right" title="Progress.h" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="LogLevel.html" class="btn btn-neutral" title="LogLevel.h" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright DOLFIN Core, https://launchpad.net/~dolfin-core.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.9.11+',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

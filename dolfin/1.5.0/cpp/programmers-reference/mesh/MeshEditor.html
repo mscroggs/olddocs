@@ -1,0 +1,682 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>MeshEditor.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN mesh module" href="index.html"/>
+        <link rel="next" title="MeshEntity.h" href="MeshEntity.html"/>
+        <link rel="prev" title="MeshDomains.h" href="MeshDomains.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-1.5.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/index.html">DOLFIN common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fem/index.html">DOLFIN fem module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html">DOLFIN function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/index.html">DOLFIN geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/index.html">DOLFIN io module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../la/index.html">DOLFIN la module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/index.html">DOLFIN log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN mesh module</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="BoundaryMesh.html">BoundaryMesh.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Cell.html">Cell.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CellType.html">CellType.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DomainBoundary.html">DomainBoundary.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DynamicMeshEditor.html">DynamicMeshEditor.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Edge.html">Edge.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Face.html">Face.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Facet.html">Facet.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FacetCell.html">FacetCell.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LocalMeshData.html">LocalMeshData.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LocalMeshValueCollection.html">LocalMeshValueCollection.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Mesh.html">Mesh.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshColoring.html">MeshColoring.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshConnectivity.html">MeshConnectivity.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshData.html">MeshData.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshDomains.html">MeshDomains.h</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">MeshEditor.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshEntity.html">MeshEntity.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshEntityIterator.html">MeshEntityIterator.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshEntityIteratorBase.html">MeshEntityIteratorBase.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshFunction.html">MeshFunction.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshGeometry.html">MeshGeometry.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshQuality.html">MeshQuality.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshRenumbering.html">MeshRenumbering.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshTopology.html">MeshTopology.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshTransformation.html">MeshTransformation.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshValueCollection.html">MeshValueCollection.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MultiMesh.html">MultiMesh.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PeriodicBoundaryComputation.html">PeriodicBoundaryComputation.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Restriction.html">Restriction.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SubDomain.html">SubDomain.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SubMesh.html">SubMesh.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SubsetIterator.html">SubsetIterator.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Vertex.html">Vertex.h</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot/index.html">DOLFIN plot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer&#8217;s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-1.5.0</a> &raquo;</li>
+      
+          <li><a href="index.html">DOLFIN mesh module</a> &raquo;</li>
+      
+    <li>MeshEditor.h</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/programmers-reference/mesh/MeshEditor.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="mesheditor-h">
+<span id="programmers-reference-cpp-mesh-mesheditor"></span><h1>MeshEditor.h<a class="headerlink" href="#mesheditor-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="class">
+<dt id="_CPPv210MeshEditor">
+<span id="MeshEditor"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">MeshEditor</code><a class="headerlink" href="#_CPPv210MeshEditor" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A simple mesh editor for creating simplicial meshes in 1D, 2D
+and 3D.</p>
+<dl class="function">
+<dt id="_CPPv2N10MeshEditor10MeshEditorEv">
+<span id="MeshEditor::MeshEditor"></span><code class="descclassname"></code><code class="descname">MeshEditor</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10MeshEditor10MeshEditorEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructor</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10MeshEditor4openER4MeshNSt6size_tENSt6size_tE">
+<span id="MeshEditor::open__MeshR.std::s.std::s"></span>void <code class="descclassname"></code><code class="descname">open</code><span class="sig-paren">(</span><a class="reference internal" href="Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em>, std::size_t <em>tdim</em>, std::size_t <em>gdim</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10MeshEditor4openER4MeshNSt6size_tENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Open mesh of given topological and geometrical dimension</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>mesh (<a class="reference internal" href="Mesh.html#_CPPv24Mesh" title="Mesh"><code class="xref cpp cpp-class docutils literal"><span class="pre">Mesh</span></code></a>)</dt>
+<dd>The mesh to open.</dd>
+<dt>tdim (std::size_t)</dt>
+<dd>The topological dimension.</dd>
+<dt>gdim (std::size_t)</dt>
+<dd>The geometrical dimension.</dd>
+</dl>
+</dd>
+<dt><em>Example</em></dt>
+<dd><div class="first last highlight-c++"><div class="highlight"><pre><span></span><span class="n">Mesh</span> <span class="n">mesh</span><span class="p">;</span>
+<span class="n">MeshEditor</span> <span class="n">editor</span><span class="p">;</span>
+<span class="n">editor</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10MeshEditor4openER4MeshN8CellType4TypeENSt6size_tENSt6size_tE">
+<span id="MeshEditor::open__MeshR.CellType::Type.std::s.std::s"></span>void <code class="descclassname"></code><code class="descname">open</code><span class="sig-paren">(</span><a class="reference internal" href="Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em>, <a class="reference internal" href="CellType.html#_CPPv28CellType" title="CellType">CellType</a>::Type <em>type</em>, std::size_t <em>tdim</em>, std::size_t <em>gdim</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10MeshEditor4openER4MeshN8CellType4TypeENSt6size_tENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Open mesh of given cell type, topological and geometrical dimension</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>mesh (<a class="reference internal" href="Mesh.html#_CPPv24Mesh" title="Mesh"><code class="xref cpp cpp-class docutils literal"><span class="pre">Mesh</span></code></a>)</dt>
+<dd>The mesh to open.</dd>
+<dt>type (CellType::Type)</dt>
+<dd>Cell type.</dd>
+<dt>tdim (std::size_t)</dt>
+<dd>The topological dimension.</dd>
+<dt>gdim (std::size_t)</dt>
+<dd>The geometrical dimension.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10MeshEditor4openER4MeshNSt6stringENSt6size_tENSt6size_tE">
+<span id="MeshEditor::open__MeshR.ss.std::s.std::s"></span>void <code class="descclassname"></code><code class="descname">open</code><span class="sig-paren">(</span><a class="reference internal" href="Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em>, std::string <em>type</em>, std::size_t <em>tdim</em>, std::size_t <em>gdim</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10MeshEditor4openER4MeshNSt6stringENSt6size_tENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Open mesh of given cell type, topological and geometrical dimension</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>mesh (<a class="reference internal" href="Mesh.html#_CPPv24Mesh" title="Mesh"><code class="xref cpp cpp-class docutils literal"><span class="pre">Mesh</span></code></a>)</dt>
+<dd>The mesh to open.</dd>
+<dt>type (std::string)</dt>
+<dd>Cell type.</dd>
+<dt>tdim (std::size_t)</dt>
+<dd>The topological dimension.</dd>
+<dt>gdim (std::size_t)</dt>
+<dd>The geometrical dimension.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10MeshEditor13init_verticesENSt6size_tE">
+<span id="MeshEditor::init_vertices__std::s"></span>void <code class="descclassname"></code><code class="descname">init_vertices</code><span class="sig-paren">(</span>std::size_t <em>num_vertices</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10MeshEditor13init_verticesENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Specify number of vertices (serial version)</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>num_vertices (std::size_t)</dt>
+<dd>The number of vertices.</dd>
+</dl>
+</dd>
+<dt><em>Example</em></dt>
+<dd><div class="first last highlight-c++"><div class="highlight"><pre><span></span><span class="n">Mesh</span> <span class="n">mesh</span><span class="p">;</span>
+<span class="n">MeshEditor</span> <span class="n">editor</span><span class="p">;</span>
+<span class="n">editor</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">editor</span><span class="p">.</span><span class="n">init_vertices</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10MeshEditor20init_vertices_globalENSt6size_tENSt6size_tE">
+<span id="MeshEditor::init_vertices_global__std::s.std::s"></span>void <code class="descclassname"></code><code class="descname">init_vertices_global</code><span class="sig-paren">(</span>std::size_t <em>num_local_vertices</em>, std::size_t <em>num_global_vertices</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10MeshEditor20init_vertices_globalENSt6size_tENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Specify number of vertices (distributed version)</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>num_local_vertices (std::size_t)</dt>
+<dd>The number of vertices on this process.</dd>
+<dt>num_global_vertices (std::size_t)</dt>
+<dd>The number of vertices in distributed mesh.</dd>
+</dl>
+</dd>
+<dt><em>Example</em></dt>
+<dd><div class="first last highlight-c++"><div class="highlight"><pre><span></span><span class="n">Mesh</span> <span class="n">mesh</span><span class="p">;</span>
+<span class="n">MeshEditor</span> <span class="n">editor</span><span class="p">;</span>
+<span class="n">editor</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">editor</span><span class="p">.</span><span class="n">init_vertices</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10MeshEditor10init_cellsENSt6size_tE">
+<span id="MeshEditor::init_cells__std::s"></span>void <code class="descclassname"></code><code class="descname">init_cells</code><span class="sig-paren">(</span>std::size_t <em>num_cells</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10MeshEditor10init_cellsENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Specify number of cells (serial version)</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>num_cells (std::size_t)</dt>
+<dd>The number of cells.</dd>
+</dl>
+</dd>
+<dt><em>Example</em></dt>
+<dd><div class="first last highlight-c++"><div class="highlight"><pre><span></span><span class="n">Mesh</span> <span class="n">mesh</span><span class="p">;</span>
+<span class="n">MeshEditor</span> <span class="n">editor</span><span class="p">;</span>
+<span class="n">editor</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">editor</span><span class="p">.</span><span class="n">init_cells</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10MeshEditor17init_cells_globalENSt6size_tENSt6size_tE">
+<span id="MeshEditor::init_cells_global__std::s.std::s"></span>void <code class="descclassname"></code><code class="descname">init_cells_global</code><span class="sig-paren">(</span>std::size_t <em>num_local_cells</em>, std::size_t <em>num_global_cells</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10MeshEditor17init_cells_globalENSt6size_tENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Specify number of cells (distributed version)</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>num_local_cells (std::size_t)</dt>
+<dd>The number of local cells.</dd>
+<dt>num_global_cells (std::size_t)</dt>
+<dd>The number of cells in distributed mesh.</dd>
+</dl>
+</dd>
+<dt><em>Example</em></dt>
+<dd><div class="first last highlight-c++"><div class="highlight"><pre><span></span><span class="n">Mesh</span> <span class="n">mesh</span><span class="p">;</span>
+<span class="n">MeshEditor</span> <span class="n">editor</span><span class="p">;</span>
+<span class="n">editor</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">editor</span><span class="p">.</span><span class="n">init_cells</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10MeshEditor10add_vertexENSt6size_tERK5Point">
+<span id="MeshEditor::add_vertex__std::s.PointCR"></span>void <code class="descclassname"></code><code class="descname">add_vertex</code><span class="sig-paren">(</span>std::size_t <em>index</em>, <em class="property">const</em> <a class="reference internal" href="../geometry/Point.html#_CPPv25Point" title="Point">Point</a> &amp;<em>p</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10MeshEditor10add_vertexENSt6size_tERK5Point" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add vertex v at given point p</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>index (std::size_t)</dt>
+<dd>The vertex (index).</dd>
+<dt>p (<a class="reference internal" href="../geometry/Point.html#_CPPv25Point" title="Point"><code class="xref cpp cpp-class docutils literal"><span class="pre">Point</span></code></a>)</dt>
+<dd>The point.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10MeshEditor10add_vertexENSt6size_tERKNSt6vectorIdEE">
+<span id="MeshEditor::add_vertex__std::s.std::vector:double:CR"></span>void <code class="descclassname"></code><code class="descname">add_vertex</code><span class="sig-paren">(</span>std::size_t <em>index</em>, <em class="property">const</em> std::vector&lt;double&gt; &amp;<em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10MeshEditor10add_vertexENSt6size_tERKNSt6vectorIdEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add vertex v at given coordinate x</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>index (std::size_t)</dt>
+<dd>The vertex (index).</dd>
+<dt>x (std::vector&lt;double&gt;)</dt>
+<dd>The x-coordinates.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10MeshEditor10add_vertexENSt6size_tEd">
+<span id="MeshEditor::add_vertex__std::s.double"></span>void <code class="descclassname"></code><code class="descname">add_vertex</code><span class="sig-paren">(</span>std::size_t <em>index</em>, double <em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10MeshEditor10add_vertexENSt6size_tEd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add vertex v at given point x (for a 1D mesh)</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>index (std::size_t)</dt>
+<dd>The vertex (index).</dd>
+<dt>x (double)</dt>
+<dd>The x-coordinate.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10MeshEditor10add_vertexENSt6size_tEdd">
+<span id="MeshEditor::add_vertex__std::s.double.double"></span>void <code class="descclassname"></code><code class="descname">add_vertex</code><span class="sig-paren">(</span>std::size_t <em>index</em>, double <em>x</em>, double <em>y</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10MeshEditor10add_vertexENSt6size_tEdd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add vertex v at given point (x, y) (for a 2D mesh)</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>index (std::size_t)</dt>
+<dd>The vertex (index).</dd>
+<dt>x (double)</dt>
+<dd>The x-coordinate.</dd>
+<dt>y (double)</dt>
+<dd>The y-coordinate.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10MeshEditor10add_vertexENSt6size_tEddd">
+<span id="MeshEditor::add_vertex__std::s.double.double.double"></span>void <code class="descclassname"></code><code class="descname">add_vertex</code><span class="sig-paren">(</span>std::size_t <em>index</em>, double <em>x</em>, double <em>y</em>, double <em>z</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10MeshEditor10add_vertexENSt6size_tEddd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add vertex v at given point (x, y, z) (for a 3D mesh)</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>index (std::size_t)</dt>
+<dd>The vertex (index).</dd>
+<dt>x (double)</dt>
+<dd>The x-coordinate.</dd>
+<dt>y (double)</dt>
+<dd>The y-coordinate.</dd>
+<dt>z (double)</dt>
+<dd>The z-coordinate.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10MeshEditor17add_vertex_globalENSt6size_tENSt6size_tERK5Point">
+<span id="MeshEditor::add_vertex_global__std::s.std::s.PointCR"></span>void <code class="descclassname"></code><code class="descname">add_vertex_global</code><span class="sig-paren">(</span>std::size_t <em>local_index</em>, std::size_t <em>global_index</em>, <em class="property">const</em> <a class="reference internal" href="../geometry/Point.html#_CPPv25Point" title="Point">Point</a> &amp;<em>p</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10MeshEditor17add_vertex_globalENSt6size_tENSt6size_tERK5Point" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add vertex v at given point p</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>local_index (std::size_t)</dt>
+<dd>The vertex (local index).</dd>
+<dt>global_index (std::size_t)</dt>
+<dd>The vertex (global_index).</dd>
+<dt>p (<a class="reference internal" href="../geometry/Point.html#_CPPv25Point" title="Point"><code class="xref cpp cpp-class docutils literal"><span class="pre">Point</span></code></a>)</dt>
+<dd>The point.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10MeshEditor17add_vertex_globalENSt6size_tENSt6size_tERKNSt6vectorIdEE">
+<span id="MeshEditor::add_vertex_global__std::s.std::s.std::vector:double:CR"></span>void <code class="descclassname"></code><code class="descname">add_vertex_global</code><span class="sig-paren">(</span>std::size_t <em>local_index</em>, std::size_t <em>global_index</em>, <em class="property">const</em> std::vector&lt;double&gt; &amp;<em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10MeshEditor17add_vertex_globalENSt6size_tENSt6size_tERKNSt6vectorIdEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add vertex v at given coordinate x</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>local_index (std::size_t)</dt>
+<dd>The vertex (local index).</dd>
+<dt>global_index (std::size_t)</dt>
+<dd>The vertex (global_index).</dd>
+<dt>x (std::vector&lt;double&gt;)</dt>
+<dd>The x-coordinates.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10MeshEditor8add_cellENSt6size_tENSt6size_tENSt6size_tE">
+<span id="MeshEditor::add_cell__std::s.std::s.std::s"></span>void <code class="descclassname"></code><code class="descname">add_cell</code><span class="sig-paren">(</span>std::size_t <em>c</em>, std::size_t <em>v0</em>, std::size_t <em>v1</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10MeshEditor8add_cellENSt6size_tENSt6size_tENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add cell with given vertices (1D)</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>c (std::size_t)</dt>
+<dd>The cell (index).</dd>
+<dt>v0 (std::vector&lt;std::size_t&gt;)</dt>
+<dd>The first vertex (local index).</dd>
+<dt>v1 (std::vector&lt;std::size_t&gt;)</dt>
+<dd>The second vertex (local index).</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10MeshEditor8add_cellENSt6size_tENSt6size_tENSt6size_tENSt6size_tE">
+<span id="MeshEditor::add_cell__std::s.std::s.std::s.std::s"></span>void <code class="descclassname"></code><code class="descname">add_cell</code><span class="sig-paren">(</span>std::size_t <em>c</em>, std::size_t <em>v0</em>, std::size_t <em>v1</em>, std::size_t <em>v2</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10MeshEditor8add_cellENSt6size_tENSt6size_tENSt6size_tENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add cell with given vertices (2D)</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>c (std::size_t)</dt>
+<dd>The cell (index).</dd>
+<dt>v0 (std::vector&lt;std::size_t&gt;)</dt>
+<dd>The first vertex (local index).</dd>
+<dt>v1 (std::vector&lt;std::size_t&gt;)</dt>
+<dd>The second vertex (local index).</dd>
+<dt>v2 (std::vector&lt;std::size_t&gt;)</dt>
+<dd>The third vertex (local index).</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10MeshEditor8add_cellENSt6size_tENSt6size_tENSt6size_tENSt6size_tENSt6size_tE">
+<span id="MeshEditor::add_cell__std::s.std::s.std::s.std::s.std::s"></span>void <code class="descclassname"></code><code class="descname">add_cell</code><span class="sig-paren">(</span>std::size_t <em>c</em>, std::size_t <em>v0</em>, std::size_t <em>v1</em>, std::size_t <em>v2</em>, std::size_t <em>v3</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10MeshEditor8add_cellENSt6size_tENSt6size_tENSt6size_tENSt6size_tENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add cell with given vertices (3D)</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>c (std::size_t)</dt>
+<dd>The cell (index).</dd>
+<dt>v0 (std::vector&lt;std::size_t&gt;)</dt>
+<dd>The first vertex (local index).</dd>
+<dt>v1 (std::vector&lt;std::size_t&gt;)</dt>
+<dd>The second vertex (local index).</dd>
+<dt>v2 (std::vector&lt;std::size_t&gt;)</dt>
+<dd>The third vertex (local index).</dd>
+<dt>v3 (std::vector&lt;std::size_t&gt;)</dt>
+<dd>The fourth vertex (local index).</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10MeshEditor8add_cellENSt6size_tERKNSt6vectorINSt6size_tEEE">
+<span id="MeshEditor::add_cell__std::s.std::vector:std::s:CR"></span>void <code class="descclassname"></code><code class="descname">add_cell</code><span class="sig-paren">(</span>std::size_t <em>c</em>, <em class="property">const</em> std::vector&lt;std::size_t&gt; &amp;<em>v</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10MeshEditor8add_cellENSt6size_tERKNSt6vectorINSt6size_tEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add cell with given vertices</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>c (std::size_t)</dt>
+<dd>The cell (index).</dd>
+<dt>v (std::vector&lt;std::size_t&gt;)</dt>
+<dd>The vertex indices (local indices)</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10MeshEditor8add_cellENSt6size_tENSt6size_tERKNSt6vectorINSt6size_tEEE">
+<span id="MeshEditor::add_cell__std::s.std::s.std::vector:std::s:CR"></span>void <code class="descclassname"></code><code class="descname">add_cell</code><span class="sig-paren">(</span>std::size_t <em>local_index</em>, std::size_t <em>global_index</em>, <em class="property">const</em> std::vector&lt;std::size_t&gt; &amp;<em>v</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10MeshEditor8add_cellENSt6size_tENSt6size_tERKNSt6vectorINSt6size_tEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add cell with given vertices</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>local_index (std::size_t)</dt>
+<dd>The cell (index).</dd>
+<dt>global_index (std::size_t)</dt>
+<dd>The global (user) cell index.</dd>
+<dt>v (std::vector&lt;std::size_t&gt;)</dt>
+<dd>The vertex indices (local indices)</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10MeshEditor5closeEb">
+<span id="MeshEditor::close__b"></span>void <code class="descclassname"></code><code class="descname">close</code><span class="sig-paren">(</span>bool <em>order</em> = true<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10MeshEditor5closeEb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Close mesh, finish editing, and order entities locally</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>order (bool)</dt>
+<dd>Order entities locally if true. Default values is true.</dd>
+</dl>
+</dd>
+<dt><em>Example</em></dt>
+<dd><div class="first last highlight-c++"><div class="highlight"><pre><span></span><span class="n">MeshEditor</span> <span class="n">editor</span><span class="p">;</span>
+<span class="n">editor</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="p">...</span>
+<span class="n">editor</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="MeshEntity.html" class="btn btn-neutral float-right" title="MeshEntity.h" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="MeshDomains.html" class="btn btn-neutral" title="MeshDomains.h" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://bitbucket.org/fenics-project/.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.5.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

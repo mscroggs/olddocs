@@ -1,0 +1,489 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>GenericDofMap.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN fem module" href="index.html"/>
+        <link rel="next" title="LinearVariationalProblem.h" href="LinearVariationalProblem.html"/>
+        <link rel="prev" title="Form.h" href="Form.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2016.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-2016.1.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/index.html">DOLFIN common module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN fem module</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Assembler.html">Assembler.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AssemblerBase.html">AssemblerBase.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BasisFunction.html">BasisFunction.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DirichletBC.html">DirichletBC.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DiscreteOperators.html">DiscreteOperators.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DofMap.html">DofMap.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Equation.html">Equation.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FiniteElement.html">FiniteElement.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Form.html">Form.h</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">GenericDofMap.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LinearVariationalProblem.html">LinearVariationalProblem.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LinearVariationalSolver.html">LinearVariationalSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LocalAssembler.html">LocalAssembler.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LocalSolver.html">LocalSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MultiMeshAssembler.html">MultiMeshAssembler.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MultiMeshDirichletBC.html">MultiMeshDirichletBC.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MultiMeshDofMap.html">MultiMeshDofMap.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MultiMeshForm.html">MultiMeshForm.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NonlinearVariationalProblem.html">NonlinearVariationalProblem.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NonlinearVariationalSolver.html">NonlinearVariationalSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="OpenMpAssembler.html">OpenMpAssembler.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PointSource.html">PointSource.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SparsityPatternBuilder.html">SparsityPatternBuilder.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SystemAssembler.html">SystemAssembler.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="assemble.html">assemble.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="assemble_local.html">assemble_local.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fem_utils.html">fem_utils.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solve.html">solve.h</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html">DOLFIN function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/index.html">DOLFIN geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/index.html">DOLFIN io module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../la/index.html">DOLFIN la module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/index.html">DOLFIN log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mesh/index.html">DOLFIN mesh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot/index.html">DOLFIN plot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer&#8217;s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-2016.1.0</a> &raquo;</li>
+      
+          <li><a href="index.html">DOLFIN fem module</a> &raquo;</li>
+      
+    <li>GenericDofMap.h</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/programmers-reference/fem/GenericDofMap.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="genericdofmap-h">
+<span id="programmers-reference-cpp-fem-genericdofmap"></span><h1>GenericDofMap.h<a class="headerlink" href="#genericdofmap-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="class">
+<dt id="_CPPv213GenericDofMap">
+<span id="GenericDofMap"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">GenericDofMap</code><a class="headerlink" href="#_CPPv213GenericDofMap" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Parent class(es)</em></p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="../common/Variable.html#_CPPv28Variable" title="Variable"><code class="xref cpp cpp-class docutils literal"><span class="pre">Variable</span></code></a></li>
+</ul>
+</div></blockquote>
+<p>This class provides a generic interface for dof maps</p>
+<dl class="function">
+<dt id="_CPPv2N13GenericDofMap13GenericDofMapEv">
+<span id="GenericDofMap::GenericDofMap"></span><code class="descclassname"></code><code class="descname">GenericDofMap</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N13GenericDofMap13GenericDofMapEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructor</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13GenericDofMap7is_viewEv">
+<span id="GenericDofMap::is_viewC"></span>bool <code class="descclassname"></code><code class="descname">is_view</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK13GenericDofMap7is_viewEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>True if dof map is a view into another map (is a sub-dofmap)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13GenericDofMap16global_dimensionEv">
+<span id="GenericDofMap::global_dimensionC"></span>std::size_t <code class="descclassname"></code><code class="descname">global_dimension</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK13GenericDofMap16global_dimensionEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the dimension of the global finite element function
+space</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13GenericDofMap15local_dimensionENSt6stringE">
+<span id="GenericDofMap::local_dimension__ssC"></span>std::size_t <code class="descclassname"></code><code class="descname">local_dimension</code><span class="sig-paren">(</span>std::string <em>type</em><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK13GenericDofMap15local_dimensionENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return number of owned (type=&#8221;owned&#8221;), unowned
+(type=&#8221;unowned&#8221;), or all (type=&#8221;all&#8221;) dofs in the map on this
+process</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13GenericDofMap14cell_dimensionENSt6size_tE">
+<span id="GenericDofMap::cell_dimension__std::sC"></span>std::size_t <code class="descclassname"></code><code class="descname">cell_dimension</code><span class="sig-paren">(</span>std::size_t <em>index</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13GenericDofMap14cell_dimensionENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the dimension of the local finite element function
+space on a cell (deprecated API)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13GenericDofMap18max_cell_dimensionEv">
+<span id="GenericDofMap::max_cell_dimensionC"></span>std::size_t <code class="descclassname"></code><code class="descname">max_cell_dimension</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13GenericDofMap18max_cell_dimensionEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the maximum dimension of the local finite element
+function space (deprecated API)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13GenericDofMap16num_element_dofsENSt6size_tE">
+<span id="GenericDofMap::num_element_dofs__std::sC"></span>std::size_t <code class="descclassname"></code><code class="descname">num_element_dofs</code><span class="sig-paren">(</span>std::size_t <em>index</em><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK13GenericDofMap16num_element_dofsENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the dimension of the local finite element function
+space on a cell</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13GenericDofMap16max_element_dofsEv">
+<span id="GenericDofMap::max_element_dofsC"></span>std::size_t <code class="descclassname"></code><code class="descname">max_element_dofs</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK13GenericDofMap16max_element_dofsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the maximum dimension of the local finite element
+function space</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13GenericDofMap15num_entity_dofsENSt6size_tE">
+<span id="GenericDofMap::num_entity_dofs__std::sC"></span>std::size_t <code class="descclassname"></code><code class="descname">num_entity_dofs</code><span class="sig-paren">(</span>std::size_t <em>dim</em><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK13GenericDofMap15num_entity_dofsENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the number of dofs for a given entity dimension</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13GenericDofMap14num_facet_dofsEv">
+<span id="GenericDofMap::num_facet_dofsC"></span>std::size_t <code class="descclassname"></code><code class="descname">num_facet_dofs</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK13GenericDofMap14num_facet_dofsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return number of facet dofs</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13GenericDofMap15ownership_rangeEv">
+<span id="GenericDofMap::ownership_rangeC"></span>std::pair&lt;std::size_t, std::size_t&gt; <code class="descclassname"></code><code class="descname">ownership_range</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK13GenericDofMap15ownership_rangeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the ownership range (dofs in this range are owned by
+this process)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13GenericDofMap17off_process_ownerEv">
+<span id="GenericDofMap::off_process_ownerC"></span><em class="property">const</em> std::vector&lt;int&gt; &amp;<code class="descclassname"></code><code class="descname">off_process_owner</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK13GenericDofMap17off_process_ownerEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return map from nonlocal-dofs (that appear in local dof map)
+to owning process</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13GenericDofMap9cell_dofsENSt6size_tE">
+<span id="GenericDofMap::cell_dofs__std::sC"></span><a class="reference internal" href="../common/ArrayView.html#_CPPv29ArrayView" title="ArrayView">ArrayView</a>&lt;<em class="property">const</em> dolfin::la_index&gt; <code class="descclassname"></code><code class="descname">cell_dofs</code><span class="sig-paren">(</span>std::size_t <em>cell_index</em><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK13GenericDofMap9cell_dofsENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Local-to-global mapping of dofs on a cell</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13GenericDofMap19tabulate_facet_dofsERNSt6vectorINSt6size_tEEENSt6size_tE">
+<span id="GenericDofMap::tabulate_facet_dofs__std::vector:std::s:R.std::sC"></span>void <code class="descclassname"></code><code class="descname">tabulate_facet_dofs</code><span class="sig-paren">(</span>std::vector&lt;std::size_t&gt; &amp;<em>dofs</em>, std::size_t <em>local_facet</em><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK13GenericDofMap19tabulate_facet_dofsERNSt6vectorINSt6size_tEEENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Tabulate local-local facet dofs</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13GenericDofMap20tabulate_entity_dofsERNSt6vectorINSt6size_tEEENSt6size_tENSt6size_tE">
+<span id="GenericDofMap::tabulate_entity_dofs__std::vector:std::s:R.std::s.std::sC"></span>void <code class="descclassname"></code><code class="descname">tabulate_entity_dofs</code><span class="sig-paren">(</span>std::vector&lt;std::size_t&gt; &amp;<em>dofs</em>, std::size_t <em>dim</em>, std::size_t <em>local_entity</em><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK13GenericDofMap20tabulate_entity_dofsERNSt6vectorINSt6size_tEEENSt6size_tENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Tabulate the local-to-local mapping of dofs on entity
+(dim, local_entity)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13GenericDofMap20tabulate_global_dofsERNSt6vectorINSt6size_tEEE">
+<span id="GenericDofMap::tabulate_global_dofs__std::vector:std::s:RC"></span>void <code class="descclassname"></code><code class="descname">tabulate_global_dofs</code><span class="sig-paren">(</span>std::vector&lt;std::size_t&gt; &amp;<em>dofs</em><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK13GenericDofMap20tabulate_global_dofsERNSt6vectorINSt6size_tEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Tabulate globally supported dofs</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13GenericDofMap4copyEv">
+<span id="GenericDofMap::copyC"></span>std::shared_ptr&lt;<a class="reference internal" href="#_CPPv213GenericDofMap" title="GenericDofMap">GenericDofMap</a>&gt; <code class="descclassname"></code><code class="descname">copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK13GenericDofMap4copyEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create a copy of the dof map</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13GenericDofMap6createERK4Mesh">
+<span id="GenericDofMap::create__MeshCRC"></span>std::shared_ptr&lt;<a class="reference internal" href="#_CPPv213GenericDofMap" title="GenericDofMap">GenericDofMap</a>&gt; <code class="descclassname"></code><code class="descname">create</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>new_mesh</em><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK13GenericDofMap6createERK4Mesh" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create a new dof map on new mesh</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13GenericDofMap18extract_sub_dofmapERKNSt6vectorINSt6size_tEEERK4Mesh">
+<span id="GenericDofMap::extract_sub_dofmap__std::vector:std::s:CR.MeshCRC"></span>std::shared_ptr&lt;<a class="reference internal" href="#_CPPv213GenericDofMap" title="GenericDofMap">GenericDofMap</a>&gt; <code class="descclassname"></code><code class="descname">extract_sub_dofmap</code><span class="sig-paren">(</span><em class="property">const</em> std::vector&lt;std::size_t&gt; &amp;<em>component</em>, <em class="property">const</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK13GenericDofMap18extract_sub_dofmapERKNSt6vectorINSt6size_tEEERK4Mesh" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Extract sub dofmap component</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13GenericDofMap8collapseERNSt13unordered_mapINSt6size_tENSt6size_tEEERK4Mesh">
+<span id="GenericDofMap::collapse__std::unordered_map:std::s.std::s:R.MeshCRC"></span>std::shared_ptr&lt;<a class="reference internal" href="#_CPPv213GenericDofMap" title="GenericDofMap">GenericDofMap</a>&gt; <code class="descclassname"></code><code class="descname">collapse</code><span class="sig-paren">(</span>std::unordered_map&lt;std::size_t, std::size_t&gt; &amp;<em>collapsed_map</em>, <em class="property">const</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK13GenericDofMap8collapseERNSt13unordered_mapINSt6size_tENSt6size_tEEERK4Mesh" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create a &#8220;collapsed&#8221; a dofmap (collapses from a sub-dofmap view)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13GenericDofMap4dofsERK4MeshNSt6size_tE">
+<span id="GenericDofMap::dofs__MeshCR.std::sC"></span>std::vector&lt;dolfin::la_index&gt; <code class="descclassname"></code><code class="descname">dofs</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em>, std::size_t <em>dim</em><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK13GenericDofMap4dofsERK4MeshNSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return list of dof indices on this process that belong to mesh
+entities of dimension dim</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13GenericDofMap4dofsEv">
+<span id="GenericDofMap::dofsC"></span>std::vector&lt;dolfin::la_index&gt; <code class="descclassname"></code><code class="descname">dofs</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK13GenericDofMap4dofsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return list of global dof indices on this process</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13GenericDofMap3setER13GenericVectord">
+<span id="GenericDofMap::set__GenericVectorR.doubleC"></span>void <code class="descclassname"></code><code class="descname">set</code><span class="sig-paren">(</span><a class="reference internal" href="../la/GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>x</em>, double <em>value</em><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK13GenericDofMap3setER13GenericVectord" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set dof entries in vector to a specified value. Parallel
+layout of vector must be consistent with dof map range. This
+function is typically used to construct the null space of a
+matrix operator</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13GenericDofMap23local_to_global_unownedEv">
+<span id="GenericDofMap::local_to_global_unownedC"></span><em class="property">const</em> std::vector&lt;std::size_t&gt; &amp;<code class="descclassname"></code><code class="descname">local_to_global_unowned</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK13GenericDofMap23local_to_global_unownedEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the map from unowned local dofmap nodes to global dofmap
+nodes. Dofmap node is dof index modulo block size.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13GenericDofMap9index_mapEv">
+<span id="GenericDofMap::index_mapC"></span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../la/IndexMap.html#_CPPv28IndexMap" title="IndexMap">IndexMap</a>&gt; <code class="descclassname"></code><code class="descname">index_map</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK13GenericDofMap9index_mapEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Index map (const access)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13GenericDofMap29tabulate_local_to_global_dofsERNSt6vectorINSt6size_tEEE">
+<span id="GenericDofMap::tabulate_local_to_global_dofs__std::vector:std::s:RC"></span>void <code class="descclassname"></code><code class="descname">tabulate_local_to_global_dofs</code><span class="sig-paren">(</span>std::vector&lt;std::size_t&gt; &amp;<em>local_to_global_map</em><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK13GenericDofMap29tabulate_local_to_global_dofsERNSt6vectorINSt6size_tEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Tabulate map between local (process) and global dof indices</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13GenericDofMap21local_to_global_indexEi">
+<span id="GenericDofMap::local_to_global_index__iC"></span>std::size_t <code class="descclassname"></code><code class="descname">local_to_global_index</code><span class="sig-paren">(</span>int <em>local_index</em><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK13GenericDofMap21local_to_global_indexEi" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return global dof index corresponding to a given local index</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13GenericDofMap12shared_nodesEv">
+<span id="GenericDofMap::shared_nodesC"></span><em class="property">const</em> std::unordered_map&lt;int, std::vector&lt;int&gt;&gt; &amp;<code class="descclassname"></code><code class="descname">shared_nodes</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK13GenericDofMap12shared_nodesEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return map from shared nodes to the processes (not including
+the current process) that share it.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13GenericDofMap10neighboursEv">
+<span id="GenericDofMap::neighboursC"></span><em class="property">const</em> std::set&lt;int&gt; &amp;<code class="descclassname"></code><code class="descname">neighbours</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK13GenericDofMap10neighboursEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return set of processes that share dofs with the this process</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N13GenericDofMap18clear_sub_map_dataEv">
+<span id="GenericDofMap::clear_sub_map_data"></span>void <code class="descclassname"></code><code class="descname">clear_sub_map_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span> = 0<a class="headerlink" href="#_CPPv2N13GenericDofMap18clear_sub_map_dataEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clear any data required to build sub-dofmaps (this is to
+reduce memory use)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13GenericDofMap3strEb">
+<span id="GenericDofMap::str__bC"></span>std::string <code class="descclassname"></code><code class="descname">str</code><span class="sig-paren">(</span>bool <em>verbose</em><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK13GenericDofMap3strEb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return informal string representation (pretty-print)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13GenericDofMap10block_sizeEv">
+<span id="GenericDofMap::block_sizeC"></span>int <code class="descclassname"></code><code class="descname">block_size</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK13GenericDofMap10block_sizeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get block size</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="LinearVariationalProblem.html" class="btn btn-neutral float-right" title="LinearVariationalProblem.h" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Form.html" class="btn btn-neutral" title="Form.h" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://bitbucket.org/fenics-project/.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'2016.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

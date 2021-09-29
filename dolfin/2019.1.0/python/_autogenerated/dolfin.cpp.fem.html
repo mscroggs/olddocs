@@ -1,0 +1,985 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>dolfin.cpp.fem &mdash; DOLFIN  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="dolfin.cpp.function" href="dolfin.cpp.function.html" />
+    <link rel="prev" title="dolfin.cpp.common" href="dolfin.cpp.common.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../using.html">Using DOLFIN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../demos.html">Demos</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">Python API reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.adaptivity.html">dolfin.cpp.adaptivity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.ale.html">dolfin.cpp.ale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.common.html">dolfin.cpp.common</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">dolfin.cpp.fem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.function.html">dolfin.cpp.function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.generation.html">dolfin.cpp.generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.geometry.html">dolfin.cpp.geometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.graph.html">dolfin.cpp.graph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.io.html">dolfin.cpp.io</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.log.html">dolfin.cpp.log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.math.html">dolfin.cpp.math</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.mesh.html">dolfin.cpp.mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.multistage.html">dolfin.cpp.multistage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.parameter.html">dolfin.cpp.parameter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.refinement.html">dolfin.cpp.refinement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.common.html">dolfin.common</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.fem.html">dolfin.fem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.function.html">dolfin.function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.io.html">dolfin.io</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.jit.html">dolfin.jit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.la.html">dolfin.la</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.multistage.html">dolfin.multistage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.parameter.html">dolfin.parameter</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../developer.html">Developer resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ChangeLog.html">Change log</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DOLFIN</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../api.html">Python API reference</a> &raquo;</li>
+        
+      <li>dolfin.cpp.fem</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/_autogenerated/dolfin.cpp.fem.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-dolfin.cpp.fem">
+<span id="dolfin-cpp-fem"></span><h1>dolfin.cpp.fem<a class="headerlink" href="#module-dolfin.cpp.fem" title="Permalink to this headline">¶</a></h1>
+<p>FEM module</p>
+<p class="rubric">Functions</p>
+<table class="longtable docutils align-center">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dolfin.cpp.fem.adapt" title="dolfin.cpp.fem.adapt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">adapt</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#dolfin.cpp.fem.assemble" title="dolfin.cpp.fem.assemble"><code class="xref py py-obj docutils literal notranslate"><span class="pre">assemble</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dolfin.cpp.fem.assemble_local" title="dolfin.cpp.fem.assemble_local"><code class="xref py py-obj docutils literal notranslate"><span class="pre">assemble_local</span></code></a>(arg0, arg1)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#dolfin.cpp.fem.assemble_system" title="dolfin.cpp.fem.assemble_system"><code class="xref py py-obj docutils literal notranslate"><span class="pre">assemble_system</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dolfin.cpp.fem.create_mesh" title="dolfin.cpp.fem.create_mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_mesh</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#dolfin.cpp.fem.dof_to_vertex_map" title="dolfin.cpp.fem.dof_to_vertex_map"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dof_to_vertex_map</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dolfin.cpp.fem.get_coordinates" title="dolfin.cpp.fem.get_coordinates"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_coordinates</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#dolfin.cpp.fem.make_ufc_dofmap" title="dolfin.cpp.fem.make_ufc_dofmap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">make_ufc_dofmap</span></code></a>(arg0)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dolfin.cpp.fem.make_ufc_finite_element" title="dolfin.cpp.fem.make_ufc_finite_element"><code class="xref py py-obj docutils literal notranslate"><span class="pre">make_ufc_finite_element</span></code></a>(arg0)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#dolfin.cpp.fem.make_ufc_form" title="dolfin.cpp.fem.make_ufc_form"><code class="xref py py-obj docutils literal notranslate"><span class="pre">make_ufc_form</span></code></a>(arg0)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dolfin.cpp.fem.set_coordinates" title="dolfin.cpp.fem.set_coordinates"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_coordinates</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#dolfin.cpp.fem.vertex_to_dof_map" title="dolfin.cpp.fem.vertex_to_dof_map"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vertex_to_dof_map</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Classes</p>
+<table class="longtable docutils align-center">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dolfin.cpp.fem.Assembler" title="dolfin.cpp.fem.Assembler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Assembler</span></code></a></p></td>
+<td><p>DOLFIN Assembler object</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">AssemblerBase</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dolfin.cpp.fem.DirichletBC" title="dolfin.cpp.fem.DirichletBC"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DirichletBC</span></code></a></p></td>
+<td><p>DOLFIN DirichletBC object</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">DiscreteOperators</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dolfin.cpp.fem.DofMap" title="dolfin.cpp.fem.DofMap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DofMap</span></code></a></p></td>
+<td><p>DOLFIN DofMap object</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#dolfin.cpp.fem.FiniteElement" title="dolfin.cpp.fem.FiniteElement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FiniteElement</span></code></a></p></td>
+<td><p>DOLFIN FiniteElement object</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dolfin.cpp.fem.Form" title="dolfin.cpp.fem.Form"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Form</span></code></a></p></td>
+<td><p>DOLFIN Form object</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#dolfin.cpp.fem.GenericDofMap" title="dolfin.cpp.fem.GenericDofMap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GenericDofMap</span></code></a></p></td>
+<td><p>DOLFIN DofMap object</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">LinearVariationalProblem</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#dolfin.cpp.fem.LinearVariationalSolver" title="dolfin.cpp.fem.LinearVariationalSolver"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LinearVariationalSolver</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">LocalSolver</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#dolfin.cpp.fem.MultiMeshAssembler" title="dolfin.cpp.fem.MultiMeshAssembler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MultiMeshAssembler</span></code></a></p></td>
+<td><p>DOLFIN MultiMeshAssembler object</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dolfin.cpp.fem.MultiMeshDirichletBC" title="dolfin.cpp.fem.MultiMeshDirichletBC"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MultiMeshDirichletBC</span></code></a></p></td>
+<td><p>DOLFIN MultiMeshDirichletBC object</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#dolfin.cpp.fem.MultiMeshDofMap" title="dolfin.cpp.fem.MultiMeshDofMap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MultiMeshDofMap</span></code></a></p></td>
+<td><p>DOLFIN MultiMeshDofMap object</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dolfin.cpp.fem.MultiMeshForm" title="dolfin.cpp.fem.MultiMeshForm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MultiMeshForm</span></code></a></p></td>
+<td><p>DOLFIN MultiForm object</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">NonlinearVariationalProblem</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dolfin.cpp.fem.NonlinearVariationalSolver" title="dolfin.cpp.fem.NonlinearVariationalSolver"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NonlinearVariationalSolver</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">PETScDMCollection</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">PointSource</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SparsityPatternBuilder</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dolfin.cpp.fem.SystemAssembler" title="dolfin.cpp.fem.SystemAssembler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SystemAssembler</span></code></a></p></td>
+<td><p>DOLFIN SystemAssembler object</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#dolfin.cpp.fem.ufc_dofmap" title="dolfin.cpp.fem.ufc_dofmap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ufc_dofmap</span></code></a></p></td>
+<td><p>UFC dofmap object</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dolfin.cpp.fem.ufc_finite_element" title="dolfin.cpp.fem.ufc_finite_element"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ufc_finite_element</span></code></a></p></td>
+<td><p>UFC finite element object</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#dolfin.cpp.fem.ufc_form" title="dolfin.cpp.fem.ufc_form"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ufc_form</span></code></a></p></td>
+<td><p>UFC form object</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="class">
+<dt id="dolfin.cpp.fem.Assembler">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.fem.</code><code class="descname">Assembler</code><a class="headerlink" href="#dolfin.cpp.fem.Assembler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.cpp.fem.AssemblerBase</span></code></p>
+<p>DOLFIN Assembler object</p>
+<dl class="method">
+<dt id="dolfin.cpp.fem.Assembler.assemble">
+<code class="descname">assemble</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.Assembler</em>, <em>arg0: dolfin::GenericTensor</em>, <em>arg1: dolfin::Form</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.fem.Assembler.assemble" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.fem.DirichletBC">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.fem.</code><code class="descname">DirichletBC</code><a class="headerlink" href="#dolfin.cpp.fem.DirichletBC" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dolfin.cpp.common.html#dolfin.cpp.common.Variable" title="dolfin.cpp.common.Variable"><code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.cpp.common.Variable</span></code></a></p>
+<p>DOLFIN DirichletBC object</p>
+<dl class="method">
+<dt id="dolfin.cpp.fem.DirichletBC.apply">
+<code class="descname">apply</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.fem.DirichletBC.apply" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li><p>apply(self: dolfin.cpp.fem.DirichletBC, arg0: dolfin::GenericVector) -&gt; None</p></li>
+<li><p>apply(self: dolfin.cpp.fem.DirichletBC, arg0: dolfin::GenericMatrix) -&gt; None</p></li>
+<li><p>apply(self: dolfin.cpp.fem.DirichletBC, arg0: dolfin::GenericMatrix, arg1: dolfin::GenericVector) -&gt; None</p></li>
+<li><p>apply(self: dolfin.cpp.fem.DirichletBC, arg0: dolfin::GenericVector, arg1: dolfin::GenericVector) -&gt; None</p></li>
+<li><p>apply(self: dolfin.cpp.fem.DirichletBC, arg0: dolfin::GenericMatrix, arg1: dolfin::GenericVector, arg2: dolfin::GenericVector) -&gt; None</p></li>
+</ol>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.DirichletBC.function_space">
+<code class="descname">function_space</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.DirichletBC</em><span class="sig-paren">)</span> &#x2192; dolfin.cpp.function.FunctionSpace<a class="headerlink" href="#dolfin.cpp.fem.DirichletBC.function_space" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.DirichletBC.get_boundary_values">
+<code class="descname">get_boundary_values</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.DirichletBC</em><span class="sig-paren">)</span> &#x2192; Dict[int, float]<a class="headerlink" href="#dolfin.cpp.fem.DirichletBC.get_boundary_values" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.DirichletBC.homogenize">
+<code class="descname">homogenize</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.DirichletBC</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.fem.DirichletBC.homogenize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.DirichletBC.markers">
+<code class="descname">markers</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.DirichletBC</em><span class="sig-paren">)</span> &#x2192; List[int]<a class="headerlink" href="#dolfin.cpp.fem.DirichletBC.markers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.DirichletBC.method">
+<code class="descname">method</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.DirichletBC</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#dolfin.cpp.fem.DirichletBC.method" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.DirichletBC.set_value">
+<code class="descname">set_value</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.fem.DirichletBC.set_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li><p>set_value(self: dolfin.cpp.fem.DirichletBC, arg0: dolfin.cpp.function.GenericFunction) -&gt; None</p></li>
+<li><p>set_value(self: dolfin.cpp.fem.DirichletBC, arg0: object) -&gt; None</p></li>
+</ol>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.DirichletBC.user_sub_domain">
+<code class="descname">user_sub_domain</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.DirichletBC</em><span class="sig-paren">)</span> &#x2192; dolfin.cpp.mesh.SubDomain<a class="headerlink" href="#dolfin.cpp.fem.DirichletBC.user_sub_domain" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.DirichletBC.value">
+<code class="descname">value</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.DirichletBC</em><span class="sig-paren">)</span> &#x2192; dolfin.cpp.function.GenericFunction<a class="headerlink" href="#dolfin.cpp.fem.DirichletBC.value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.DirichletBC.zero">
+<code class="descname">zero</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.DirichletBC</em>, <em>arg0: dolfin::GenericMatrix</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.fem.DirichletBC.zero" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.DirichletBC.zero_columns">
+<code class="descname">zero_columns</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.DirichletBC</em>, <em>A: dolfin::GenericMatrix</em>, <em>b: dolfin::GenericVector</em>, <em>diagonal_value: float=0.0</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.fem.DirichletBC.zero_columns" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.fem.DofMap">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.fem.</code><code class="descname">DofMap</code><a class="headerlink" href="#dolfin.cpp.fem.DofMap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#dolfin.cpp.fem.GenericDofMap" title="dolfin.cpp.fem.GenericDofMap"><code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.cpp.fem.GenericDofMap</span></code></a></p>
+<p>DOLFIN DofMap object</p>
+<dl class="method">
+<dt id="dolfin.cpp.fem.DofMap.cell_dofs">
+<code class="descname">cell_dofs</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.DofMap</em>, <em>arg0: int</em><span class="sig-paren">)</span> &#x2192; numpy.ndarray[int32[m, 1]]<a class="headerlink" href="#dolfin.cpp.fem.DofMap.cell_dofs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.DofMap.ownership_range">
+<code class="descname">ownership_range</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.DofMap</em><span class="sig-paren">)</span> &#x2192; Tuple[int, int]<a class="headerlink" href="#dolfin.cpp.fem.DofMap.ownership_range" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.fem.FiniteElement">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.fem.</code><code class="descname">FiniteElement</code><a class="headerlink" href="#dolfin.cpp.fem.FiniteElement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pybind11_builtins.pybind11_object</span></code></p>
+<p>DOLFIN FiniteElement object</p>
+<dl class="method">
+<dt id="dolfin.cpp.fem.FiniteElement.evaluate_basis">
+<code class="descname">evaluate_basis</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.FiniteElement, arg0: int, arg1: numpy.ndarray[float64], arg2: numpy.ndarray[float64], arg3: int</em><span class="sig-paren">)</span> &#x2192; numpy.ndarray[float64]<a class="headerlink" href="#dolfin.cpp.fem.FiniteElement.evaluate_basis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate basis function i at given point x in cell.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.FiniteElement.evaluate_basis_all">
+<code class="descname">evaluate_basis_all</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.FiniteElement, arg0: numpy.ndarray[float64], arg1: numpy.ndarray[float64], arg2: int</em><span class="sig-paren">)</span> &#x2192; numpy.ndarray[float64]<a class="headerlink" href="#dolfin.cpp.fem.FiniteElement.evaluate_basis_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate order n derivatives of all basis functions at given point x in cell.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.FiniteElement.evaluate_basis_derivatives">
+<code class="descname">evaluate_basis_derivatives</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.FiniteElement, arg0: int, arg1: int, arg2: numpy.ndarray[float64], arg3: numpy.ndarray[float64], arg4: int</em><span class="sig-paren">)</span> &#x2192; numpy.ndarray[float64]<a class="headerlink" href="#dolfin.cpp.fem.FiniteElement.evaluate_basis_derivatives" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate order n derivatives of basis function i at given point x in cell.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.FiniteElement.evaluate_basis_derivatives_all">
+<code class="descname">evaluate_basis_derivatives_all</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.FiniteElement, arg0: int, arg1: numpy.ndarray[float64], arg2: numpy.ndarray[float64], arg3: int</em><span class="sig-paren">)</span> &#x2192; numpy.ndarray[float64]<a class="headerlink" href="#dolfin.cpp.fem.FiniteElement.evaluate_basis_derivatives_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate all basis functions at given point x in cell.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.FiniteElement.evaluate_dofs">
+<code class="descname">evaluate_dofs</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.FiniteElement, arg0: object, arg1: numpy.ndarray[float64], arg2: int, arg3: dolfin.cpp.mesh.Cell</em><span class="sig-paren">)</span> &#x2192; numpy.ndarray[float64]<a class="headerlink" href="#dolfin.cpp.fem.FiniteElement.evaluate_dofs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate degrees of freedom on element for a given function</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.FiniteElement.geometric_dimension">
+<code class="descname">geometric_dimension</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.FiniteElement</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.fem.FiniteElement.geometric_dimension" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.FiniteElement.num_sub_elements">
+<code class="descname">num_sub_elements</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.FiniteElement</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.fem.FiniteElement.num_sub_elements" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.FiniteElement.signature">
+<code class="descname">signature</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.FiniteElement</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#dolfin.cpp.fem.FiniteElement.signature" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.FiniteElement.space_dimension">
+<code class="descname">space_dimension</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.FiniteElement</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.fem.FiniteElement.space_dimension" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.FiniteElement.tabulate_dof_coordinates">
+<code class="descname">tabulate_dof_coordinates</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.FiniteElement</em>, <em>arg0: dolfin.cpp.mesh.Cell</em><span class="sig-paren">)</span> &#x2192; numpy.ndarray[float64[m, n]]<a class="headerlink" href="#dolfin.cpp.fem.FiniteElement.tabulate_dof_coordinates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tabulate coordinates of dofs on cell</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.FiniteElement.value_dimension">
+<code class="descname">value_dimension</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.FiniteElement</em>, <em>arg0: int</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.fem.FiniteElement.value_dimension" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.fem.Form">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.fem.</code><code class="descname">Form</code><a class="headerlink" href="#dolfin.cpp.fem.Form" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pybind11_builtins.pybind11_object</span></code></p>
+<p>DOLFIN Form object</p>
+<dl class="method">
+<dt id="dolfin.cpp.fem.Form.function_space">
+<code class="descname">function_space</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.Form</em>, <em>arg0: int</em><span class="sig-paren">)</span> &#x2192; dolfin.cpp.function.FunctionSpace<a class="headerlink" href="#dolfin.cpp.fem.Form.function_space" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return function space for i-th argument</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.Form.function_spaces">
+<code class="descname">function_spaces</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.Form</em><span class="sig-paren">)</span> &#x2192; List[dolfin.cpp.function.FunctionSpace]<a class="headerlink" href="#dolfin.cpp.fem.Form.function_spaces" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return function spaces for arguments</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.Form.mesh">
+<code class="descname">mesh</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.Form</em><span class="sig-paren">)</span> &#x2192; dolfin.cpp.mesh.Mesh<a class="headerlink" href="#dolfin.cpp.fem.Form.mesh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.Form.num_coefficients">
+<code class="descname">num_coefficients</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.Form</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.fem.Form.num_coefficients" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return number of coefficients in form</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.Form.original_coefficient_position">
+<code class="descname">original_coefficient_position</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.Form</em>, <em>arg0: int</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.fem.Form.original_coefficient_position" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.Form.rank">
+<code class="descname">rank</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.Form</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.fem.Form.rank" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.Form.set_cell_domains">
+<code class="descname">set_cell_domains</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.Form</em>, <em>arg0: dolfin.cpp.mesh.MeshFunctionSizet</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.fem.Form.set_cell_domains" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.Form.set_coefficient">
+<code class="descname">set_coefficient</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.fem.Form.set_coefficient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li><p>set_coefficient(self: dolfin.cpp.fem.Form, arg0: int, arg1: dolfin.cpp.function.GenericFunction) -&gt; None</p></li>
+</ol>
+<p>Doc</p>
+<ol class="arabic simple" start="2">
+<li><p>set_coefficient(self: dolfin.cpp.fem.Form, arg0: str, arg1: dolfin.cpp.function.GenericFunction) -&gt; None</p></li>
+</ol>
+<p>Doc</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.Form.set_exterior_facet_domains">
+<code class="descname">set_exterior_facet_domains</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.Form</em>, <em>arg0: dolfin.cpp.mesh.MeshFunctionSizet</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.fem.Form.set_exterior_facet_domains" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.Form.set_interior_facet_domains">
+<code class="descname">set_interior_facet_domains</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.Form</em>, <em>arg0: dolfin.cpp.mesh.MeshFunctionSizet</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.fem.Form.set_interior_facet_domains" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.Form.set_mesh">
+<code class="descname">set_mesh</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.Form</em>, <em>arg0: dolfin.cpp.mesh.Mesh</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.fem.Form.set_mesh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.Form.set_vertex_domains">
+<code class="descname">set_vertex_domains</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.Form</em>, <em>arg0: dolfin.cpp.mesh.MeshFunctionSizet</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.fem.Form.set_vertex_domains" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.fem.GenericDofMap">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.fem.</code><code class="descname">GenericDofMap</code><a class="headerlink" href="#dolfin.cpp.fem.GenericDofMap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dolfin.cpp.common.html#dolfin.cpp.common.Variable" title="dolfin.cpp.common.Variable"><code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.cpp.common.Variable</span></code></a></p>
+<p>DOLFIN DofMap object</p>
+<dl class="method">
+<dt id="dolfin.cpp.fem.GenericDofMap.block_size">
+<code class="descname">block_size</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.GenericDofMap</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.fem.GenericDofMap.block_size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.GenericDofMap.cell_dofs">
+<code class="descname">cell_dofs</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.GenericDofMap</em>, <em>arg0: int</em><span class="sig-paren">)</span> &#x2192; numpy.ndarray[int32[m, 1]]<a class="headerlink" href="#dolfin.cpp.fem.GenericDofMap.cell_dofs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.GenericDofMap.clear_sub_map_data">
+<code class="descname">clear_sub_map_data</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.GenericDofMap</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.fem.GenericDofMap.clear_sub_map_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.GenericDofMap.dofs">
+<code class="descname">dofs</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.fem.GenericDofMap.dofs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li><p>dofs(self: dolfin.cpp.fem.GenericDofMap) -&gt; List[int]</p></li>
+<li><p>dofs(self: dolfin.cpp.fem.GenericDofMap, arg0: dolfin.cpp.mesh.Mesh, arg1: int) -&gt; List[int]</p></li>
+</ol>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.GenericDofMap.entity_closure_dofs">
+<code class="descname">entity_closure_dofs</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.fem.GenericDofMap.entity_closure_dofs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li><p>entity_closure_dofs(self: dolfin.cpp.fem.GenericDofMap, arg0: dolfin.cpp.mesh.Mesh, arg1: int) -&gt; List[int]</p></li>
+<li><p>entity_closure_dofs(self: dolfin.cpp.fem.GenericDofMap, arg0: dolfin.cpp.mesh.Mesh, arg1: int, arg2: List[int]) -&gt; List[int]</p></li>
+</ol>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.GenericDofMap.entity_dofs">
+<code class="descname">entity_dofs</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.fem.GenericDofMap.entity_dofs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li><p>entity_dofs(self: dolfin.cpp.fem.GenericDofMap, arg0: dolfin.cpp.mesh.Mesh, arg1: int) -&gt; List[int]</p></li>
+<li><p>entity_dofs(self: dolfin.cpp.fem.GenericDofMap, arg0: dolfin.cpp.mesh.Mesh, arg1: int, arg2: List[int]) -&gt; List[int]</p></li>
+</ol>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.GenericDofMap.global_dimension">
+<code class="descname">global_dimension</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.GenericDofMap</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.fem.GenericDofMap.global_dimension" title="Permalink to this definition">¶</a></dt>
+<dd><p>The dimension of the global finite element function space</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.GenericDofMap.index_map">
+<code class="descname">index_map</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.GenericDofMap</em><span class="sig-paren">)</span> &#x2192; dolfin::IndexMap<a class="headerlink" href="#dolfin.cpp.fem.GenericDofMap.index_map" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.GenericDofMap.local_to_global_index">
+<code class="descname">local_to_global_index</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.GenericDofMap</em>, <em>arg0: int</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.fem.GenericDofMap.local_to_global_index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.GenericDofMap.local_to_global_unowned">
+<code class="descname">local_to_global_unowned</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.GenericDofMap</em><span class="sig-paren">)</span> &#x2192; numpy.ndarray[uint64[m, 1]]<a class="headerlink" href="#dolfin.cpp.fem.GenericDofMap.local_to_global_unowned" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return view into unowned part of local-to-global map</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.GenericDofMap.neighbours">
+<code class="descname">neighbours</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.GenericDofMap</em><span class="sig-paren">)</span> &#x2192; Set[int]<a class="headerlink" href="#dolfin.cpp.fem.GenericDofMap.neighbours" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.GenericDofMap.num_entity_dofs">
+<code class="descname">num_entity_dofs</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.GenericDofMap</em>, <em>arg0: int</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.fem.GenericDofMap.num_entity_dofs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.GenericDofMap.off_process_owner">
+<code class="descname">off_process_owner</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.GenericDofMap</em><span class="sig-paren">)</span> &#x2192; List[int]<a class="headerlink" href="#dolfin.cpp.fem.GenericDofMap.off_process_owner" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.GenericDofMap.set">
+<code class="descname">set</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.GenericDofMap</em>, <em>arg0: dolfin::GenericVector</em>, <em>arg1: float</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.fem.GenericDofMap.set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.GenericDofMap.shared_nodes">
+<code class="descname">shared_nodes</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.GenericDofMap</em><span class="sig-paren">)</span> &#x2192; Dict[int, List[int]]<a class="headerlink" href="#dolfin.cpp.fem.GenericDofMap.shared_nodes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.GenericDofMap.tabulate_entity_dofs">
+<code class="descname">tabulate_entity_dofs</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.GenericDofMap</em>, <em>arg0: int</em>, <em>arg1: int</em><span class="sig-paren">)</span> &#x2192; numpy.ndarray[uint64]<a class="headerlink" href="#dolfin.cpp.fem.GenericDofMap.tabulate_entity_dofs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.GenericDofMap.tabulate_local_to_global_dofs">
+<code class="descname">tabulate_local_to_global_dofs</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.fem.GenericDofMap.tabulate_local_to_global_dofs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li><p>tabulate_local_to_global_dofs(self: dolfin.cpp.fem.GenericDofMap, arg0: List[int]) -&gt; None</p></li>
+<li><p>tabulate_local_to_global_dofs(self: dolfin.cpp.fem.GenericDofMap) -&gt; numpy.ndarray[uint64]</p></li>
+</ol>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.fem.LinearVariationalSolver">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.fem.</code><code class="descname">LinearVariationalSolver</code><a class="headerlink" href="#dolfin.cpp.fem.LinearVariationalSolver" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dolfin.cpp.common.html#dolfin.cpp.common.Variable" title="dolfin.cpp.common.Variable"><code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.cpp.common.Variable</span></code></a></p>
+<dl class="method">
+<dt id="dolfin.cpp.fem.LinearVariationalSolver.default_parameters">
+<code class="descname">default_parameters</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; dolfin::Parameters<a class="headerlink" href="#dolfin.cpp.fem.LinearVariationalSolver.default_parameters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.LinearVariationalSolver.solve">
+<code class="descname">solve</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.LinearVariationalSolver</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.fem.LinearVariationalSolver.solve" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.fem.MultiMeshAssembler">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.fem.</code><code class="descname">MultiMeshAssembler</code><a class="headerlink" href="#dolfin.cpp.fem.MultiMeshAssembler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pybind11_builtins.pybind11_object</span></code></p>
+<p>DOLFIN MultiMeshAssembler object</p>
+<dl class="method">
+<dt id="dolfin.cpp.fem.MultiMeshAssembler.assemble">
+<code class="descname">assemble</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.MultiMeshAssembler</em>, <em>arg0: dolfin::GenericTensor</em>, <em>arg1: dolfin.cpp.fem.MultiMeshForm</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.fem.MultiMeshAssembler.assemble" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.fem.MultiMeshDirichletBC">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.fem.</code><code class="descname">MultiMeshDirichletBC</code><a class="headerlink" href="#dolfin.cpp.fem.MultiMeshDirichletBC" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pybind11_builtins.pybind11_object</span></code></p>
+<p>DOLFIN MultiMeshDirichletBC object</p>
+<dl class="method">
+<dt id="dolfin.cpp.fem.MultiMeshDirichletBC.apply">
+<code class="descname">apply</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.fem.MultiMeshDirichletBC.apply" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li><p>apply(self: dolfin.cpp.fem.MultiMeshDirichletBC, arg0: dolfin::GenericVector) -&gt; None</p></li>
+<li><p>apply(self: dolfin.cpp.fem.MultiMeshDirichletBC, arg0: dolfin::GenericMatrix) -&gt; None</p></li>
+<li><p>apply(self: dolfin.cpp.fem.MultiMeshDirichletBC, arg0: dolfin::GenericMatrix, arg1: dolfin::GenericVector) -&gt; None</p></li>
+<li><p>apply(self: dolfin.cpp.fem.MultiMeshDirichletBC, arg0: dolfin::GenericVector, arg1: dolfin::GenericVector) -&gt; None</p></li>
+<li><p>apply(self: dolfin.cpp.fem.MultiMeshDirichletBC, arg0: dolfin::GenericMatrix, arg1: dolfin::GenericVector, arg2: dolfin::GenericVector) -&gt; None</p></li>
+</ol>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.MultiMeshDirichletBC.function_space">
+<code class="descname">function_space</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.MultiMeshDirichletBC</em><span class="sig-paren">)</span> &#x2192; dolfin.cpp.function.MultiMeshFunctionSpace<a class="headerlink" href="#dolfin.cpp.fem.MultiMeshDirichletBC.function_space" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.MultiMeshDirichletBC.homogenize">
+<code class="descname">homogenize</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.MultiMeshDirichletBC</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.fem.MultiMeshDirichletBC.homogenize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.MultiMeshDirichletBC.zero">
+<code class="descname">zero</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.MultiMeshDirichletBC</em>, <em>arg0: dolfin::GenericMatrix</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.fem.MultiMeshDirichletBC.zero" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.fem.MultiMeshDofMap">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.fem.</code><code class="descname">MultiMeshDofMap</code><a class="headerlink" href="#dolfin.cpp.fem.MultiMeshDofMap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pybind11_builtins.pybind11_object</span></code></p>
+<p>DOLFIN MultiMeshDofMap object</p>
+<dl class="method">
+<dt id="dolfin.cpp.fem.MultiMeshDofMap.inactive_dofs">
+<code class="descname">inactive_dofs</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.MultiMeshDofMap</em>, <em>arg0: dolfin.cpp.mesh.MultiMesh</em>, <em>arg1: int</em><span class="sig-paren">)</span> &#x2192; List[int]<a class="headerlink" href="#dolfin.cpp.fem.MultiMeshDofMap.inactive_dofs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.fem.MultiMeshForm">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.fem.</code><code class="descname">MultiMeshForm</code><a class="headerlink" href="#dolfin.cpp.fem.MultiMeshForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pybind11_builtins.pybind11_object</span></code></p>
+<p>DOLFIN MultiForm object</p>
+<dl class="method">
+<dt id="dolfin.cpp.fem.MultiMeshForm.add">
+<code class="descname">add</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.MultiMeshForm</em>, <em>arg0: dolfin.cpp.fem.Form</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.fem.MultiMeshForm.add" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.MultiMeshForm.build">
+<code class="descname">build</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.MultiMeshForm</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.fem.MultiMeshForm.build" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.MultiMeshForm.set_multimesh_coefficient">
+<code class="descname">set_multimesh_coefficient</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.MultiMeshForm</em>, <em>arg0: int</em>, <em>arg1: dolfin.cpp.function.MultiMeshFunction</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.fem.MultiMeshForm.set_multimesh_coefficient" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.fem.NonlinearVariationalSolver">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.fem.</code><code class="descname">NonlinearVariationalSolver</code><a class="headerlink" href="#dolfin.cpp.fem.NonlinearVariationalSolver" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dolfin.cpp.common.html#dolfin.cpp.common.Variable" title="dolfin.cpp.common.Variable"><code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.cpp.common.Variable</span></code></a></p>
+<dl class="method">
+<dt id="dolfin.cpp.fem.NonlinearVariationalSolver.default_parameters">
+<code class="descname">default_parameters</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; dolfin::Parameters<a class="headerlink" href="#dolfin.cpp.fem.NonlinearVariationalSolver.default_parameters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.fem.NonlinearVariationalSolver.solve">
+<code class="descname">solve</code><span class="sig-paren">(</span><em>self: dolfin.cpp.fem.NonlinearVariationalSolver</em><span class="sig-paren">)</span> &#x2192; Tuple[int, bool]<a class="headerlink" href="#dolfin.cpp.fem.NonlinearVariationalSolver.solve" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.fem.SystemAssembler">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.fem.</code><code class="descname">SystemAssembler</code><a class="headerlink" href="#dolfin.cpp.fem.SystemAssembler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.cpp.fem.AssemblerBase</span></code></p>
+<p>DOLFIN SystemAssembler object</p>
+<dl class="method">
+<dt id="dolfin.cpp.fem.SystemAssembler.assemble">
+<code class="descname">assemble</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.fem.SystemAssembler.assemble" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li><p>assemble(self: dolfin.cpp.fem.SystemAssembler, arg0: dolfin::GenericMatrix, arg1: dolfin::GenericVector) -&gt; None</p></li>
+<li><p>assemble(self: dolfin.cpp.fem.SystemAssembler, arg0: dolfin::GenericMatrix) -&gt; None</p></li>
+<li><p>assemble(self: dolfin.cpp.fem.SystemAssembler, arg0: dolfin::GenericVector) -&gt; None</p></li>
+<li><p>assemble(self: dolfin.cpp.fem.SystemAssembler, arg0: dolfin::GenericMatrix, arg1: dolfin::GenericVector, arg2: dolfin::GenericVector) -&gt; None</p></li>
+<li><p>assemble(self: dolfin.cpp.fem.SystemAssembler, arg0: dolfin::GenericVector, arg1: dolfin::GenericVector) -&gt; None</p></li>
+</ol>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="dolfin.cpp.fem.adapt">
+<code class="descclassname">dolfin.cpp.fem.</code><code class="descname">adapt</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.fem.adapt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li><p>adapt(arg0: dolfin.cpp.mesh.Mesh) -&gt; dolfin.cpp.mesh.Mesh</p></li>
+</ol>
+<p>Mapping between parent and child entities has to be set in refined mesh. See various refinement algorithms and <cite>parameters[‘refinement_algorithm’]</cite>.</p>
+<ol class="arabic simple" start="2">
+<li><p>adapt(arg0: dolfin.cpp.mesh.MeshFunctionSizet, arg1: dolfin.cpp.mesh.Mesh) -&gt; dolfin.cpp.mesh.MeshFunctionSizet</p></li>
+</ol>
+</dd></dl>
+
+<dl class="function">
+<dt id="dolfin.cpp.fem.assemble">
+<code class="descclassname">dolfin.cpp.fem.</code><code class="descname">assemble</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.fem.assemble" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li><p>assemble(arg0: dolfin::GenericTensor, arg1: dolfin.cpp.fem.Form) -&gt; None</p></li>
+<li><p>assemble(arg0: dolfin.cpp.fem.Form) -&gt; float</p></li>
+</ol>
+</dd></dl>
+
+<dl class="function">
+<dt id="dolfin.cpp.fem.assemble_local">
+<code class="descclassname">dolfin.cpp.fem.</code><code class="descname">assemble_local</code><span class="sig-paren">(</span><em>arg0: dolfin.cpp.fem.Form</em>, <em>arg1: dolfin.cpp.mesh.Cell</em><span class="sig-paren">)</span> &#x2192; numpy.ndarray[float64[m, n]]<a class="headerlink" href="#dolfin.cpp.fem.assemble_local" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="dolfin.cpp.fem.assemble_system">
+<code class="descclassname">dolfin.cpp.fem.</code><code class="descname">assemble_system</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.fem.assemble_system" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li><p>assemble_system(arg0: dolfin::GenericMatrix, arg1: dolfin::GenericVector, arg2: dolfin.cpp.fem.Form, arg3: dolfin.cpp.fem.Form, arg4: List[dolfin.cpp.fem.DirichletBC]) -&gt; None</p></li>
+<li><p>assemble_system(arg0: dolfin::GenericMatrix, arg1: dolfin::GenericVector, arg2: dolfin.cpp.fem.Form, arg3: dolfin.cpp.fem.Form, arg4: List[dolfin.cpp.fem.DirichletBC], arg5: dolfin::GenericVector) -&gt; None</p></li>
+</ol>
+</dd></dl>
+
+<dl class="function">
+<dt id="dolfin.cpp.fem.create_mesh">
+<code class="descclassname">dolfin.cpp.fem.</code><code class="descname">create_mesh</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.fem.create_mesh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li><p>create_mesh(arg0: dolfin.cpp.function.Function) -&gt; dolfin.cpp.mesh.Mesh</p></li>
+<li><p>create_mesh(arg0: object) -&gt; dolfin.cpp.mesh.Mesh</p></li>
+</ol>
+</dd></dl>
+
+<dl class="function">
+<dt id="dolfin.cpp.fem.dof_to_vertex_map">
+<code class="descclassname">dolfin.cpp.fem.</code><code class="descname">dof_to_vertex_map</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.fem.dof_to_vertex_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li><p>dof_to_vertex_map(arg0: dolfin.cpp.function.FunctionSpace) -&gt; List[int]</p></li>
+<li><p>dof_to_vertex_map(arg0: object) -&gt; numpy.ndarray[uint64]</p></li>
+</ol>
+</dd></dl>
+
+<dl class="function">
+<dt id="dolfin.cpp.fem.get_coordinates">
+<code class="descclassname">dolfin.cpp.fem.</code><code class="descname">get_coordinates</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.fem.get_coordinates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li><p>get_coordinates(arg0: dolfin.cpp.function.Function, arg1: dolfin.cpp.mesh.MeshGeometry) -&gt; None</p></li>
+<li><p>get_coordinates(arg0: object, arg1: dolfin.cpp.mesh.MeshGeometry) -&gt; None</p></li>
+</ol>
+</dd></dl>
+
+<dl class="function">
+<dt id="dolfin.cpp.fem.make_ufc_dofmap">
+<code class="descclassname">dolfin.cpp.fem.</code><code class="descname">make_ufc_dofmap</code><span class="sig-paren">(</span><em>arg0: int</em><span class="sig-paren">)</span> &#x2192; dolfin.cpp.fem.ufc_dofmap<a class="headerlink" href="#dolfin.cpp.fem.make_ufc_dofmap" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="dolfin.cpp.fem.make_ufc_finite_element">
+<code class="descclassname">dolfin.cpp.fem.</code><code class="descname">make_ufc_finite_element</code><span class="sig-paren">(</span><em>arg0: int</em><span class="sig-paren">)</span> &#x2192; dolfin.cpp.fem.ufc_finite_element<a class="headerlink" href="#dolfin.cpp.fem.make_ufc_finite_element" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="dolfin.cpp.fem.make_ufc_form">
+<code class="descclassname">dolfin.cpp.fem.</code><code class="descname">make_ufc_form</code><span class="sig-paren">(</span><em>arg0: int</em><span class="sig-paren">)</span> &#x2192; dolfin.cpp.fem.ufc_form<a class="headerlink" href="#dolfin.cpp.fem.make_ufc_form" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="dolfin.cpp.fem.set_coordinates">
+<code class="descclassname">dolfin.cpp.fem.</code><code class="descname">set_coordinates</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.fem.set_coordinates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li><p>set_coordinates(arg0: dolfin.cpp.mesh.MeshGeometry, arg1: dolfin.cpp.function.Function) -&gt; None</p></li>
+<li><p>set_coordinates(arg0: dolfin.cpp.mesh.MeshGeometry, arg1: object) -&gt; None</p></li>
+</ol>
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.fem.ufc_dofmap">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.fem.</code><code class="descname">ufc_dofmap</code><a class="headerlink" href="#dolfin.cpp.fem.ufc_dofmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pybind11_builtins.pybind11_object</span></code></p>
+<p>UFC dofmap object</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.fem.ufc_finite_element">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.fem.</code><code class="descname">ufc_finite_element</code><a class="headerlink" href="#dolfin.cpp.fem.ufc_finite_element" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pybind11_builtins.pybind11_object</span></code></p>
+<p>UFC finite element object</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.fem.ufc_form">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.fem.</code><code class="descname">ufc_form</code><a class="headerlink" href="#dolfin.cpp.fem.ufc_form" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pybind11_builtins.pybind11_object</span></code></p>
+<p>UFC form object</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="dolfin.cpp.fem.vertex_to_dof_map">
+<code class="descclassname">dolfin.cpp.fem.</code><code class="descname">vertex_to_dof_map</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.fem.vertex_to_dof_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li><p>vertex_to_dof_map(arg0: dolfin.cpp.function.FunctionSpace) -&gt; numpy.ndarray[int32]</p></li>
+<li><p>vertex_to_dof_map(arg0: object) -&gt; numpy.ndarray[int32]</p></li>
+</ol>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="dolfin.cpp.function.html" class="btn btn-neutral float-right" title="dolfin.cpp.function" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="dolfin.cpp.common.html" class="btn btn-neutral float-left" title="dolfin.cpp.common" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, FEniCS Project
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

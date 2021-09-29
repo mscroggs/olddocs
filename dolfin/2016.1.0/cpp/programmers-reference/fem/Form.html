@@ -1,0 +1,777 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Form.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN fem module" href="index.html"/>
+        <link rel="next" title="GenericDofMap.h" href="GenericDofMap.html"/>
+        <link rel="prev" title="FiniteElement.h" href="FiniteElement.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2016.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-2016.1.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/index.html">DOLFIN common module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN fem module</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Assembler.html">Assembler.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AssemblerBase.html">AssemblerBase.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BasisFunction.html">BasisFunction.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DirichletBC.html">DirichletBC.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DiscreteOperators.html">DiscreteOperators.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DofMap.html">DofMap.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Equation.html">Equation.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FiniteElement.html">FiniteElement.h</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Form.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericDofMap.html">GenericDofMap.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LinearVariationalProblem.html">LinearVariationalProblem.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LinearVariationalSolver.html">LinearVariationalSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LocalAssembler.html">LocalAssembler.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LocalSolver.html">LocalSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MultiMeshAssembler.html">MultiMeshAssembler.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MultiMeshDirichletBC.html">MultiMeshDirichletBC.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MultiMeshDofMap.html">MultiMeshDofMap.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MultiMeshForm.html">MultiMeshForm.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NonlinearVariationalProblem.html">NonlinearVariationalProblem.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NonlinearVariationalSolver.html">NonlinearVariationalSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="OpenMpAssembler.html">OpenMpAssembler.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PointSource.html">PointSource.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SparsityPatternBuilder.html">SparsityPatternBuilder.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SystemAssembler.html">SystemAssembler.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="assemble.html">assemble.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="assemble_local.html">assemble_local.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fem_utils.html">fem_utils.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solve.html">solve.h</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html">DOLFIN function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/index.html">DOLFIN geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/index.html">DOLFIN io module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../la/index.html">DOLFIN la module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/index.html">DOLFIN log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mesh/index.html">DOLFIN mesh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot/index.html">DOLFIN plot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer&#8217;s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-2016.1.0</a> &raquo;</li>
+      
+          <li><a href="index.html">DOLFIN fem module</a> &raquo;</li>
+      
+    <li>Form.h</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/programmers-reference/fem/Form.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="form-h">
+<span id="programmers-reference-cpp-fem-form"></span><h1>Form.h<a class="headerlink" href="#form-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="class">
+<dt id="_CPPv24Form">
+<span id="Form"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">Form</code><a class="headerlink" href="#_CPPv24Form" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Parent class(es)</em></p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="#_CPPv24Form" title="Form"><code class="xref cpp cpp-class docutils literal"><span class="pre">Hierarchical</span></code></a></li>
+</ul>
+</div></blockquote>
+<p>Base class for UFC code generated by FFC for DOLFIN with option -l.</p>
+<p>A note on the order of trial and test spaces: FEniCS numbers
+argument spaces starting with the leading dimension of the
+corresponding tensor (matrix). In other words, the test space is
+numbered 0 and the trial space is numbered 1. However, in order
+to have a notation that agrees with most existing finite element
+literature, in particular</p>
+<blockquote>
+<div>a = a(u, v)</div></blockquote>
+<p>the spaces are numbered from right to</p>
+<blockquote>
+<div>a: V_1 x V_0 -&gt; R</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Figure out how to write this in math mode without it getting
+messed up in the Python version.</p>
+</div>
+<p>This is reflected in the ordering of the spaces that should be
+supplied to generated subclasses. In particular, when a bilinear
+form is initialized, it should be initialized as</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">(</span><span class="n">V_1</span><span class="p">,</span> <span class="n">V_0</span><span class="p">)</span> <span class="o">=</span> <span class="p">...</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal"><span class="pre">V_1</span></code> is the trial space and <code class="docutils literal"><span class="pre">V_0</span></code> is the test space.
+However, when a form is initialized by a list of argument spaces
+(the variable <code class="docutils literal"><span class="pre">function_spaces</span></code> in the constructors below, the
+list of spaces should start with space number 0 (the test space)
+and then space number 1 (the trial space).</p>
+<dl class="function">
+<dt id="_CPPv2N4Form4FormENSt6size_tENSt6size_tE">
+<span id="Form::Form__std::s.std::s"></span><code class="descclassname"></code><code class="descname">Form</code><span class="sig-paren">(</span>std::size_t <em>rank</em>, std::size_t <em>num_coefficients</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Form4FormENSt6size_tENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create form of given rank with given number of coefficients</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>rank (std::size_t)</dt>
+<dd>The rank.</dd>
+<dt>num_coefficients (std::size_t)</dt>
+<dd>The number of coefficients.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4Form4FormENSt10shared_ptrIKN3ufc4formEEENSt6vectorINSt10shared_ptrIK13FunctionSpaceEEEE">
+<span id="Form::Form__std::shared_ptr:ufc::formC:.std::vector:std::shared_ptr:FunctionSpaceC::"></span><code class="descclassname"></code><code class="descname">Form</code><span class="sig-paren">(</span>std::shared_ptr&lt;<em class="property">const</em> ufc::form&gt; <em>ufc_form</em>, std::vector&lt;std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../function/FunctionSpace.html#_CPPv213FunctionSpace" title="FunctionSpace">FunctionSpace</a>&gt;&gt; <em>function_spaces</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Form4FormENSt10shared_ptrIKN3ufc4formEEENSt6vectorINSt10shared_ptrIK13FunctionSpaceEEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create form (shared data)</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>ufc_form (ufc::form)</dt>
+<dd>The UFC form.</dd>
+<dt>function_spaces (std::vector&lt;<a class="reference internal" href="../function/FunctionSpace.html#_CPPv213FunctionSpace" title="FunctionSpace"><code class="xref cpp cpp-class docutils literal"><span class="pre">FunctionSpace</span></code></a>&gt;)</dt>
+<dd>Vector of function spaces.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Form4rankEv">
+<span id="Form::rankC"></span>std::size_t <code class="descclassname"></code><code class="descname">rank</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Form4rankEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return rank of form (bilinear form = 2, linear form = 1,
+functional = 0, etc)</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>std::size_t</dt>
+<dd>The rank of the form.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Form16num_coefficientsEv">
+<span id="Form::num_coefficientsC"></span>std::size_t <code class="descclassname"></code><code class="descname">num_coefficients</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Form16num_coefficientsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return number of coefficients</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>std::size_t</dt>
+<dd>The number of coefficients.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Form29original_coefficient_positionENSt6size_tE">
+<span id="Form::original_coefficient_position__std::sC"></span>std::size_t <code class="descclassname"></code><code class="descname">original_coefficient_position</code><span class="sig-paren">(</span>std::size_t <em>i</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Form29original_coefficient_positionENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return original coefficient position for each coefficient (0 &lt;= i &lt; n)</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>std::size_t</dt>
+<dd>The position of coefficient i in original ufl form coefficients.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Form8coloringENSt6size_tE">
+<span id="Form::coloring__std::sC"></span>std::vector&lt;std::size_t&gt; <code class="descclassname"></code><code class="descname">coloring</code><span class="sig-paren">(</span>std::size_t <em>entity_dim</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Form8coloringENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return coloring type for colored (multi-threaded) assembly of form
+over a mesh entity of a given dimension</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>entity_dim (std::size_t)</dt>
+<dd>Dimension.</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>std::vector&lt;std::size_t&gt;</dt>
+<dd>Coloring type.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4Form8set_meshENSt10shared_ptrIK4MeshEE">
+<span id="Form::set_mesh__std::shared_ptr:MeshC:"></span>void <code class="descclassname"></code><code class="descname">set_mesh</code><span class="sig-paren">(</span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a>&gt; <em>mesh</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Form8set_meshENSt10shared_ptrIK4MeshEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set mesh, necessary for functionals when there are no function spaces</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>mesh (<a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh"><code class="xref cpp cpp-class docutils literal"><span class="pre">Mesh</span></code></a>)</dt>
+<dd>The mesh.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Form4meshEv">
+<span id="Form::meshC"></span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a>&gt; <code class="descclassname"></code><code class="descname">mesh</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Form4meshEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Extract common mesh from form</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt><a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh"><code class="xref cpp cpp-class docutils literal"><span class="pre">Mesh</span></code></a></dt>
+<dd>Shared pointer to the mesh.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Form14function_spaceENSt6size_tE">
+<span id="Form::function_space__std::sC"></span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../function/FunctionSpace.html#_CPPv213FunctionSpace" title="FunctionSpace">FunctionSpace</a>&gt; <code class="descclassname"></code><code class="descname">function_space</code><span class="sig-paren">(</span>std::size_t <em>i</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Form14function_spaceENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return function space for given argument</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>i (std::size_t)</dt>
+<dd>Index</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt><a class="reference internal" href="../function/FunctionSpace.html#_CPPv213FunctionSpace" title="FunctionSpace"><code class="xref cpp cpp-class docutils literal"><span class="pre">FunctionSpace</span></code></a></dt>
+<dd>Function space shared pointer.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Form15function_spacesEv">
+<span id="Form::function_spacesC"></span>std::vector&lt;std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../function/FunctionSpace.html#_CPPv213FunctionSpace" title="FunctionSpace">FunctionSpace</a>&gt;&gt; <code class="descclassname"></code><code class="descname">function_spaces</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Form15function_spacesEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return function spaces for arguments</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>std::vector&lt;<a class="reference internal" href="../function/FunctionSpace.html#_CPPv213FunctionSpace" title="FunctionSpace"><code class="xref cpp cpp-class docutils literal"><span class="pre">FunctionSpace</span></code></a>&gt;</dt>
+<dd>Vector of function space shared pointers.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4Form15set_coefficientENSt6size_tENSt10shared_ptrIK15GenericFunctionEE">
+<span id="Form::set_coefficient__std::s.std::shared_ptr:GenericFunctionC:"></span>void <code class="descclassname"></code><code class="descname">set_coefficient</code><span class="sig-paren">(</span>std::size_t <em>i</em>, std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../function/GenericFunction.html#_CPPv215GenericFunction" title="GenericFunction">GenericFunction</a>&gt; <em>coefficient</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Form15set_coefficientENSt6size_tENSt10shared_ptrIK15GenericFunctionEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set coefficient with given number (shared pointer version)</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>i (std::size_t)</dt>
+<dd>The given number.</dd>
+<dt>coefficient (<a class="reference internal" href="../function/GenericFunction.html#_CPPv215GenericFunction" title="GenericFunction"><code class="xref cpp cpp-class docutils literal"><span class="pre">GenericFunction</span></code></a>)</dt>
+<dd>The coefficient.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4Form15set_coefficientENSt6stringENSt10shared_ptrIK15GenericFunctionEE">
+<span id="Form::set_coefficient__ss.std::shared_ptr:GenericFunctionC:"></span>void <code class="descclassname"></code><code class="descname">set_coefficient</code><span class="sig-paren">(</span>std::string <em>name</em>, std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../function/GenericFunction.html#_CPPv215GenericFunction" title="GenericFunction">GenericFunction</a>&gt; <em>coefficient</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Form15set_coefficientENSt6stringENSt10shared_ptrIK15GenericFunctionEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set coefficient with given name (shared pointer version)</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>name (std::string)</dt>
+<dd>The name.</dd>
+<dt>coefficient (<a class="reference internal" href="../function/GenericFunction.html#_CPPv215GenericFunction" title="GenericFunction"><code class="xref cpp cpp-class docutils literal"><span class="pre">GenericFunction</span></code></a>)</dt>
+<dd>The coefficient.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4Form16set_coefficientsENSt3mapINSt6stringENSt10shared_ptrIK15GenericFunctionEEEE">
+<span id="Form::set_coefficients__std::map:ss.std::shared_ptr:GenericFunctionC::"></span>void <code class="descclassname"></code><code class="descname">set_coefficients</code><span class="sig-paren">(</span>std::map&lt;std::string, std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../function/GenericFunction.html#_CPPv215GenericFunction" title="GenericFunction">GenericFunction</a>&gt;&gt; <em>coefficients</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Form16set_coefficientsENSt3mapINSt6stringENSt10shared_ptrIK15GenericFunctionEEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set all coefficients in given map. All coefficients in the
+given map, which may contain only a subset of the coefficients
+of the form, will be set.</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>coefficients (std::map&lt;std::string, <a class="reference internal" href="../function/GenericFunction.html#_CPPv215GenericFunction" title="GenericFunction"><code class="xref cpp cpp-class docutils literal"><span class="pre">GenericFunction</span></code></a>&gt;)</dt>
+<dd>The map of coefficients.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4Form21set_some_coefficientsENSt3mapINSt6stringENSt10shared_ptrIK15GenericFunctionEEEE">
+<span id="Form::set_some_coefficients__std::map:ss.std::shared_ptr:GenericFunctionC::"></span>void <code class="descclassname"></code><code class="descname">set_some_coefficients</code><span class="sig-paren">(</span>std::map&lt;std::string, std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../function/GenericFunction.html#_CPPv215GenericFunction" title="GenericFunction">GenericFunction</a>&gt;&gt; <em>coefficients</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Form21set_some_coefficientsENSt3mapINSt6stringENSt10shared_ptrIK15GenericFunctionEEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set some coefficients in given map. Each coefficient in the
+given map will be set, if the name of the coefficient matches
+the name of a coefficient in the form.</p>
+<p>This is useful when reusing the same coefficient map for
+several forms, or when some part of the form has been
+outcommented (for testing) in the UFL file, which means that
+the coefficient and attaching it to the form does not need to
+be outcommented in a C++ program using code from the generated
+UFL file.</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>coefficients (std::map&lt;std::string, <a class="reference internal" href="../function/GenericFunction.html#_CPPv215GenericFunction" title="GenericFunction"><code class="xref cpp cpp-class docutils literal"><span class="pre">GenericFunction</span></code></a>&gt;)</dt>
+<dd>The map of coefficients.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Form11coefficientENSt6size_tE">
+<span id="Form::coefficient__std::sC"></span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../function/GenericFunction.html#_CPPv215GenericFunction" title="GenericFunction">GenericFunction</a>&gt; <code class="descclassname"></code><code class="descname">coefficient</code><span class="sig-paren">(</span>std::size_t <em>i</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Form11coefficientENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return coefficient with given number</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>i (std::size_t)</dt>
+<dd>Index</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt><a class="reference internal" href="../function/GenericFunction.html#_CPPv215GenericFunction" title="GenericFunction"><code class="xref cpp cpp-class docutils literal"><span class="pre">GenericFunction</span></code></a></dt>
+<dd>The coefficient.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Form11coefficientENSt6stringE">
+<span id="Form::coefficient__ssC"></span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../function/GenericFunction.html#_CPPv215GenericFunction" title="GenericFunction">GenericFunction</a>&gt; <code class="descclassname"></code><code class="descname">coefficient</code><span class="sig-paren">(</span>std::string <em>name</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Form11coefficientENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return coefficient with given name</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>name (std::string)</dt>
+<dd>The name.</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt><a class="reference internal" href="../function/GenericFunction.html#_CPPv215GenericFunction" title="GenericFunction"><code class="xref cpp cpp-class docutils literal"><span class="pre">GenericFunction</span></code></a></dt>
+<dd>The coefficient.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Form12coefficientsEv">
+<span id="Form::coefficientsC"></span>std::vector&lt;std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../function/GenericFunction.html#_CPPv215GenericFunction" title="GenericFunction">GenericFunction</a>&gt;&gt; <code class="descclassname"></code><code class="descname">coefficients</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Form12coefficientsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return all coefficients</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>std::vector&lt;<a class="reference internal" href="../function/GenericFunction.html#_CPPv215GenericFunction" title="GenericFunction"><code class="xref cpp cpp-class docutils literal"><span class="pre">GenericFunction</span></code></a>&gt;</dt>
+<dd>All coefficients.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Form18coefficient_numberERKNSt6stringE">
+<span id="Form::coefficient_number__ssCRC"></span>std::size_t <code class="descclassname"></code><code class="descname">coefficient_number</code><span class="sig-paren">(</span><em class="property">const</em> std::string &amp;<em>name</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Form18coefficient_numberERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the number of the coefficient with this name</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>name (std::string)</dt>
+<dd>The name.</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>std::size_t</dt>
+<dd>The number of the coefficient with the given name.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Form16coefficient_nameENSt6size_tE">
+<span id="Form::coefficient_name__std::sC"></span>std::string <code class="descclassname"></code><code class="descname">coefficient_name</code><span class="sig-paren">(</span>std::size_t <em>i</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Form16coefficient_nameENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the name of the coefficient with this number</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>i (std::size_t)</dt>
+<dd>The number</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>std::string</dt>
+<dd>The name of the coefficient with the given number.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Form12cell_domainsEv">
+<span id="Form::cell_domainsC"></span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction">MeshFunction</a>&lt;std::size_t&gt;&gt; <code class="descclassname"></code><code class="descname">cell_domains</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Form12cell_domainsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return cell domains (zero pointer if no domains have been
+specified)</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt><a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction"><code class="xref cpp cpp-class docutils literal"><span class="pre">MeshFunction</span></code></a> &lt;std::size_t&gt;</dt>
+<dd>The cell domains.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Form22exterior_facet_domainsEv">
+<span id="Form::exterior_facet_domainsC"></span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction">MeshFunction</a>&lt;std::size_t&gt;&gt; <code class="descclassname"></code><code class="descname">exterior_facet_domains</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Form22exterior_facet_domainsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return exterior facet domains (zero pointer if no domains have
+been specified)</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>std::shared_ptr&lt;<a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction"><code class="xref cpp cpp-class docutils literal"><span class="pre">MeshFunction</span></code></a> &lt;std::size_t&gt;&gt;</dt>
+<dd>The exterior facet domains.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Form22interior_facet_domainsEv">
+<span id="Form::interior_facet_domainsC"></span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction">MeshFunction</a>&lt;std::size_t&gt;&gt; <code class="descclassname"></code><code class="descname">interior_facet_domains</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Form22interior_facet_domainsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return interior facet domains (zero pointer if no domains have
+been specified)</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt><a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction"><code class="xref cpp cpp-class docutils literal"><span class="pre">MeshFunction</span></code></a> &lt;std::size_t&gt;</dt>
+<dd>The interior facet domains.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Form14vertex_domainsEv">
+<span id="Form::vertex_domainsC"></span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction">MeshFunction</a>&lt;std::size_t&gt;&gt; <code class="descclassname"></code><code class="descname">vertex_domains</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Form14vertex_domainsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return vertex domains (zero pointer if no domains have been
+specified)</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt><a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction"><code class="xref cpp cpp-class docutils literal"><span class="pre">MeshFunction</span></code></a> &lt;std::size_t&gt;</dt>
+<dd>The vertex domains.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4Form16set_cell_domainsENSt10shared_ptrIK12MeshFunctionINSt6size_tEEEE">
+<span id="Form::set_cell_domains__std::shared_ptr:MeshFunction:std::s:C:"></span>void <code class="descclassname"></code><code class="descname">set_cell_domains</code><span class="sig-paren">(</span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction">MeshFunction</a>&lt;std::size_t&gt;&gt; <em>cell_domains</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Form16set_cell_domainsENSt10shared_ptrIK12MeshFunctionINSt6size_tEEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set cell domains</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>cell_domains (<a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction"><code class="xref cpp cpp-class docutils literal"><span class="pre">MeshFunction</span></code></a> &lt;std::size_t&gt;)</dt>
+<dd>The cell domains.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4Form26set_exterior_facet_domainsENSt10shared_ptrIK12MeshFunctionINSt6size_tEEEE">
+<span id="Form::set_exterior_facet_domains__std::shared_ptr:MeshFunction:std::s:C:"></span>void <code class="descclassname"></code><code class="descname">set_exterior_facet_domains</code><span class="sig-paren">(</span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction">MeshFunction</a>&lt;std::size_t&gt;&gt; <em>exterior_facet_domains</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Form26set_exterior_facet_domainsENSt10shared_ptrIK12MeshFunctionINSt6size_tEEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set exterior facet domains</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>exterior_facet_domains (<a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction"><code class="xref cpp cpp-class docutils literal"><span class="pre">MeshFunction</span></code></a> &lt;std::size_t&gt;)</dt>
+<dd>The exterior facet domains.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4Form26set_interior_facet_domainsENSt10shared_ptrIK12MeshFunctionINSt6size_tEEEE">
+<span id="Form::set_interior_facet_domains__std::shared_ptr:MeshFunction:std::s:C:"></span>void <code class="descclassname"></code><code class="descname">set_interior_facet_domains</code><span class="sig-paren">(</span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction">MeshFunction</a>&lt;std::size_t&gt;&gt; <em>interior_facet_domains</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Form26set_interior_facet_domainsENSt10shared_ptrIK12MeshFunctionINSt6size_tEEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set interior facet domains</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>interior_facet_domains (<a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction"><code class="xref cpp cpp-class docutils literal"><span class="pre">MeshFunction</span></code></a> &lt;std::size_t&gt;)</dt>
+<dd>The interior facet domains.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4Form18set_vertex_domainsENSt10shared_ptrIK12MeshFunctionINSt6size_tEEEE">
+<span id="Form::set_vertex_domains__std::shared_ptr:MeshFunction:std::s:C:"></span>void <code class="descclassname"></code><code class="descname">set_vertex_domains</code><span class="sig-paren">(</span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction">MeshFunction</a>&lt;std::size_t&gt;&gt; <em>vertex_domains</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Form18set_vertex_domainsENSt10shared_ptrIK12MeshFunctionINSt6size_tEEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set vertex domains</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>vertex_domains (<a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction"><code class="xref cpp cpp-class docutils literal"><span class="pre">MeshFunction</span></code></a> &lt;std::size_t&gt;)</dt>
+<dd>The vertex domains.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Form8ufc_formEv">
+<span id="Form::ufc_formC"></span>std::shared_ptr&lt;<em class="property">const</em> ufc::form&gt; <code class="descclassname"></code><code class="descname">ufc_form</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Form8ufc_formEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return UFC form shared pointer</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>ufc::form</dt>
+<dd>The UFC form.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Form5checkEv">
+<span id="Form::checkC"></span>void <code class="descclassname"></code><code class="descname">check</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Form5checkEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Check function spaces and coefficients</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4FormeqERK4Form">
+<span id="Form::eq-operator__FormCRC"></span><a class="reference internal" href="Equation.html#_CPPv28Equation" title="Equation">Equation</a> <code class="descclassname"></code><code class="descname">operator==</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv24Form" title="Form">Form</a> &amp;<em>rhs</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4FormeqERK4Form" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Comparison operator, returning equation lhs == rhs</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4FormeqEi">
+<span id="Form::eq-operator__iC"></span><a class="reference internal" href="Equation.html#_CPPv28Equation" title="Equation">Equation</a> <code class="descclassname"></code><code class="descname">operator==</code><span class="sig-paren">(</span>int <em>rhs</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4FormeqEi" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Comparison operator, returning equation lhs == 0</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="GenericDofMap.html" class="btn btn-neutral float-right" title="GenericDofMap.h" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="FiniteElement.html" class="btn btn-neutral" title="FiniteElement.h" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://bitbucket.org/fenics-project/.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'2016.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+dolfin.cpp.multistage
+=====================
+
+.. automodule:: dolfin.cpp.multistage
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      MultiStageScheme
+      PointIntegralSolver
+      RKSolver
+   
+   
+
+   
+   
+   

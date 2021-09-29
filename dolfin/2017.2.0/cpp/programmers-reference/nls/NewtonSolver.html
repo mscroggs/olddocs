@@ -1,0 +1,539 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>NewtonSolver.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN nls module" href="index.html"/>
+        <link rel="next" title="NonlinearProblem.h" href="NonlinearProblem.html"/>
+        <link rel="prev" title="DOLFIN nls module" href="index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.9.11+
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer’s reference for DOLFIN-2017.2.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/index.html">DOLFIN common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fem/index.html">DOLFIN fem module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html">DOLFIN function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/index.html">DOLFIN geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/index.html">DOLFIN io module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../la/index.html">DOLFIN la module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/index.html">DOLFIN log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mesh/index.html">DOLFIN mesh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN nls module</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">NewtonSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NonlinearProblem.html">NonlinearProblem.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="OptimisationProblem.html">OptimisationProblem.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScSNESSolver.html">PETScSNESSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScTAOSolver.html">PETScTAOSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TAOLinearBoundSolver.html">TAOLinearBoundSolver.h</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer’s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">DOLFIN</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">C++ Programmer’s reference for DOLFIN-2017.2.0</a> &raquo;</li>
+        
+          <li><a href="index.html">DOLFIN nls module</a> &raquo;</li>
+        
+      <li>NewtonSolver.h</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/programmers-reference/nls/NewtonSolver.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="newtonsolver-h">
+<span id="programmers-reference-cpp-nls-newtonsolver"></span><h1>NewtonSolver.h<a class="headerlink" href="#newtonsolver-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="class">
+<dt id="_CPPv212NewtonSolver">
+<span id="NewtonSolver"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">NewtonSolver</code><a class="headerlink" href="#_CPPv212NewtonSolver" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Parent class(es)</em></p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="../common/Variable.html#_CPPv28Variable" title="Variable"><code class="xref cpp cpp-class docutils literal"><span class="pre">Variable</span></code></a></li>
+</ul>
+</div></blockquote>
+<p>This class defines a Newton solver for nonlinear systems of
+equations of the form <span class="math">\(F(x) = 0\)</span>.</p>
+<dl class="function">
+<dt id="_CPPv2N12NewtonSolver12NewtonSolverE8MPI_Comm">
+<span id="NewtonSolver::NewtonSolver__MPI_Comm"></span><em class="property">explicit</em> <code class="descclassname"></code><code class="descname">NewtonSolver</code><span class="sig-paren">(</span>MPI_Comm <em>comm</em> = MPI_COMM_WORLD<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12NewtonSolver12NewtonSolverE8MPI_Comm" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create nonlinear solver</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12NewtonSolver12NewtonSolverE8MPI_CommNSt10shared_ptrI19GenericLinearSolverEER27GenericLinearAlgebraFactory">
+<span id="NewtonSolver::NewtonSolver__MPI_Comm.std::shared_ptr:GenericLinearSolver:.GenericLinearAlgebraFactoryR"></span><code class="descclassname"></code><code class="descname">NewtonSolver</code><span class="sig-paren">(</span>MPI_Comm <em>comm</em>, std::shared_ptr&lt;<a class="reference internal" href="../la/GenericLinearSolver.html#_CPPv219GenericLinearSolver" title="GenericLinearSolver">GenericLinearSolver</a>&gt; <em>solver</em>, <a class="reference internal" href="../la/GenericLinearAlgebraFactory.html#_CPPv227GenericLinearAlgebraFactory" title="GenericLinearAlgebraFactory">GenericLinearAlgebraFactory</a> &amp;<em>factory</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12NewtonSolver12NewtonSolverE8MPI_CommNSt10shared_ptrI19GenericLinearSolverEER27GenericLinearAlgebraFactory" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create nonlinear solver using provided linear solver</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>comm (_MPI_Ccmm_)</dt>
+<dd>The MPI communicator.</dd>
+<dt>solver (<a class="reference internal" href="../la/GenericLinearSolver.html#_CPPv219GenericLinearSolver" title="GenericLinearSolver"><code class="xref cpp cpp-class docutils literal"><span class="pre">GenericLinearSolver</span></code></a>)</dt>
+<dd>The linear solver.</dd>
+<dt>factory (<a class="reference internal" href="../la/GenericLinearAlgebraFactory.html#_CPPv227GenericLinearAlgebraFactory" title="GenericLinearAlgebraFactory"><code class="xref cpp cpp-class docutils literal"><span class="pre">GenericLinearAlgebraFactory</span></code></a>)</dt>
+<dd>The factory.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12NewtonSolver5solveER16NonlinearProblemR13GenericVector">
+<span id="NewtonSolver::solve__NonlinearProblemR.GenericVectorR"></span>std::pair&lt;std::size_t, bool&gt; <code class="descclassname"></code><code class="descname">solve</code><span class="sig-paren">(</span><a class="reference internal" href="NonlinearProblem.html#_CPPv216NonlinearProblem" title="NonlinearProblem">NonlinearProblem</a> &amp;<em>nonlinear_function</em>, <a class="reference internal" href="../la/GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12NewtonSolver5solveER16NonlinearProblemR13GenericVector" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Solve abstract nonlinear problem <span class="math">\(F(x) = 0\)</span> for given
+<span class="math">\(F\)</span> and Jacobian <span class="math">\(\dfrac{\partial F}{\partial x}\)</span>.</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>nonlinear_function (<a class="reference internal" href="NonlinearProblem.html#_CPPv216NonlinearProblem" title="NonlinearProblem"><code class="xref cpp cpp-class docutils literal"><span class="pre">NonlinearProblem</span></code></a>)</dt>
+<dd>The nonlinear problem.</dd>
+<dt>x (<a class="reference internal" href="../la/GenericVector.html#_CPPv213GenericVector" title="GenericVector"><code class="xref cpp cpp-class docutils literal"><span class="pre">GenericVector</span></code></a>)</dt>
+<dd>The vector.</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>std::pair&lt;std::size_t, bool&gt;</dt>
+<dd>Pair of number of Newton iterations, and whether
+iteration converged)</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12NewtonSolver9iterationEv">
+<span id="NewtonSolver::iterationC"></span>std::size_t <code class="descclassname"></code><code class="descname">iteration</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12NewtonSolver9iterationEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return current Newton iteration number</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>std::size_t</dt>
+<dd>The iteration number.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12NewtonSolver17krylov_iterationsEv">
+<span id="NewtonSolver::krylov_iterationsC"></span>std::size_t <code class="descclassname"></code><code class="descname">krylov_iterations</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12NewtonSolver17krylov_iterationsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return number of Krylov iterations elapsed since
+solve started</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>std::size_t</dt>
+<dd>The number of iterations.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12NewtonSolver8residualEv">
+<span id="NewtonSolver::residualC"></span>double <code class="descclassname"></code><code class="descname">residual</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12NewtonSolver8residualEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return current residual</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>double</dt>
+<dd>Current residual.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12NewtonSolver9residual0Ev">
+<span id="NewtonSolver::residual0C"></span>double <code class="descclassname"></code><code class="descname">residual0</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12NewtonSolver9residual0Ev" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return initial residual</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>double</dt>
+<dd>Initial residual.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12NewtonSolver17relative_residualEv">
+<span id="NewtonSolver::relative_residualC"></span>double <code class="descclassname"></code><code class="descname">relative_residual</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12NewtonSolver17relative_residualEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return current relative residual</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>double</dt>
+<dd>Current relative residual.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12NewtonSolver13linear_solverEv">
+<span id="NewtonSolver::linear_solverC"></span><a class="reference internal" href="../la/GenericLinearSolver.html#_CPPv219GenericLinearSolver" title="GenericLinearSolver">GenericLinearSolver</a> &amp;<code class="descclassname"></code><code class="descname">linear_solver</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12NewtonSolver13linear_solverEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the linear solver</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt><a class="reference internal" href="../la/GenericLinearSolver.html#_CPPv219GenericLinearSolver" title="GenericLinearSolver"><code class="xref cpp cpp-class docutils literal"><span class="pre">GenericLinearSolver</span></code></a></dt>
+<dd>The linear solver.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12NewtonSolver18default_parametersEv">
+<span id="NewtonSolver::default_parameters"></span><em class="property">static</em> <a class="reference internal" href="../parameter/Parameters.html#_CPPv210Parameters" title="Parameters">Parameters</a> <code class="descclassname"></code><code class="descname">default_parameters</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12NewtonSolver18default_parametersEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Default parameter values</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt><a class="reference internal" href="../parameter/Parameters.html#_CPPv210Parameters" title="Parameters"><code class="xref cpp cpp-class docutils literal"><span class="pre">Parameters</span></code></a></dt>
+<dd>Parameter values.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12NewtonSolver24set_relaxation_parameterEd">
+<span id="NewtonSolver::set_relaxation_parameter__double"></span>void <code class="descclassname"></code><code class="descname">set_relaxation_parameter</code><span class="sig-paren">(</span>double <em>relaxation_parameter</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12NewtonSolver24set_relaxation_parameterEd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set relaxation parameter. Default value 1.0 means full
+Newton method, value smaller than 1.0 relaxes the method
+by shrinking effective Newton step size by the given factor.</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>relaxation_parameter(double)</dt>
+<dd>Relaxation parameter value.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12NewtonSolver24get_relaxation_parameterEv">
+<span id="NewtonSolver::get_relaxation_parameter"></span>double <code class="descclassname"></code><code class="descname">get_relaxation_parameter</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12NewtonSolver24get_relaxation_parameterEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get relaxation parameter</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>double</dt>
+<dd>Relaxation parameter value.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12NewtonSolver9convergedERK13GenericVectorRK16NonlinearProblemNSt6size_tE">
+<span id="NewtonSolver::converged__GenericVectorCR.NonlinearProblemCR.std::s"></span>bool <code class="descclassname"></code><code class="descname">converged</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../la/GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>r</em>, <em class="property">const</em> <a class="reference internal" href="NonlinearProblem.html#_CPPv216NonlinearProblem" title="NonlinearProblem">NonlinearProblem</a> &amp;<em>nonlinear_problem</em>, std::size_t <em>iteration</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12NewtonSolver9convergedERK13GenericVectorRK16NonlinearProblemNSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Convergence test. It may be overloaded using virtual inheritance and
+this base criterion may be called from derived, both in C++ and Python.</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>r (<a class="reference internal" href="../la/GenericVector.html#_CPPv213GenericVector" title="GenericVector"><code class="xref cpp cpp-class docutils literal"><span class="pre">GenericVector</span></code></a>)</dt>
+<dd>Residual for criterion evaluation.</dd>
+<dt>nonlinear_problem (<a class="reference internal" href="NonlinearProblem.html#_CPPv216NonlinearProblem" title="NonlinearProblem"><code class="xref cpp cpp-class docutils literal"><span class="pre">NonlinearProblem</span></code></a>)</dt>
+<dd>The nonlinear problem.</dd>
+<dt>iteration (std::size_t)</dt>
+<dd>Newton iteration number.</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>bool</dt>
+<dd>Whether convergence occurred.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12NewtonSolver12solver_setupENSt10shared_ptrIK13GenericMatrixEENSt10shared_ptrIK13GenericMatrixEERK16NonlinearProblemNSt6size_tE">
+<span id="NewtonSolver::solver_setup__std::shared_ptr:GenericMatrixC:.std::shared_ptr:GenericMatrixC:.NonlinearProblemCR.std::s"></span>void <code class="descclassname"></code><code class="descname">solver_setup</code><span class="sig-paren">(</span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../la/GenericMatrix.html#_CPPv213GenericMatrix" title="GenericMatrix">GenericMatrix</a>&gt; <em>A</em>, std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../la/GenericMatrix.html#_CPPv213GenericMatrix" title="GenericMatrix">GenericMatrix</a>&gt; <em>P</em>, <em class="property">const</em> <a class="reference internal" href="NonlinearProblem.html#_CPPv216NonlinearProblem" title="NonlinearProblem">NonlinearProblem</a> &amp;<em>nonlinear_problem</em>, std::size_t <em>iteration</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12NewtonSolver12solver_setupENSt10shared_ptrIK13GenericMatrixEENSt10shared_ptrIK13GenericMatrixEERK16NonlinearProblemNSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Setup solver to be used with system matrix A and preconditioner
+matrix P. It may be overloaded to get finer control over linear
+solver setup, various linesearch tricks, etc. Note that minimal
+implementation should call <em>set_operators</em> method of the linear
+solver.</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>A (_std::shared_ptr&lt;const GenericMatrix&gt;_)</dt>
+<dd>System Jacobian matrix.</dd>
+<dt>J (_std::shared_ptr&lt;const GenericMatrix&gt;_)</dt>
+<dd>System preconditioner matrix.</dd>
+<dt>nonlinear_problem (<a class="reference internal" href="NonlinearProblem.html#_CPPv216NonlinearProblem" title="NonlinearProblem"><code class="xref cpp cpp-class docutils literal"><span class="pre">NonlinearProblem</span></code></a>)</dt>
+<dd>The nonlinear problem.</dd>
+<dt>iteration (std::size_t)</dt>
+<dd>Newton iteration number.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12NewtonSolver15update_solutionER13GenericVectorRK13GenericVectordRK16NonlinearProblemNSt6size_tE">
+<span id="NewtonSolver::update_solution__GenericVectorR.GenericVectorCR.double.NonlinearProblemCR.std::s"></span>void <code class="descclassname"></code><code class="descname">update_solution</code><span class="sig-paren">(</span><a class="reference internal" href="../la/GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>x</em>, <em class="property">const</em> <a class="reference internal" href="../la/GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>dx</em>, double <em>relaxation_parameter</em>, <em class="property">const</em> <a class="reference internal" href="NonlinearProblem.html#_CPPv216NonlinearProblem" title="NonlinearProblem">NonlinearProblem</a> &amp;<em>nonlinear_problem</em>, std::size_t <em>iteration</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12NewtonSolver15update_solutionER13GenericVectorRK13GenericVectordRK16NonlinearProblemNSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Update solution vector by computed Newton step. Default
+update is given by formula:</p>
+<div class="highlight-default"><div class="highlight"><pre><span class="n">x</span> <span class="o">-=</span> <span class="n">relaxation_parameter</span><span class="o">*</span><span class="n">dx</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>x (_GenericVector&gt;_)</dt>
+<dd>The solution vector to be updated.</dd>
+<dt>dx (_GenericVector&gt;_)</dt>
+<dd>The update vector computed by Newton step.</dd>
+<dt>relaxation_parameter (double)</dt>
+<dd>Newton relaxation parameter.</dd>
+<dt>nonlinear_problem (<a class="reference internal" href="NonlinearProblem.html#_CPPv216NonlinearProblem" title="NonlinearProblem"><code class="xref cpp cpp-class docutils literal"><span class="pre">NonlinearProblem</span></code></a>)</dt>
+<dd>The nonlinear problem.</dd>
+<dt>iteration (std::size_t)</dt>
+<dd>Newton iteration number.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="NonlinearProblem.html" class="btn btn-neutral float-right" title="NonlinearProblem.h" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="DOLFIN nls module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright DOLFIN Core, https://launchpad.net/~dolfin-core.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.9.11+',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

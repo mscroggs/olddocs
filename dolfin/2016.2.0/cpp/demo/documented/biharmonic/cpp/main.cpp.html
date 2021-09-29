@@ -1,0 +1,375 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Biharmonic equation (C++) &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../../../index.html"/> 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2016.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../programmers-reference/index.html">C++ Programmer&#8217;s reference for DOLFIN-2016.2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../quick_reference.html">Quick Programmer&#8217;s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+      
+    <li>Biharmonic equation (C++)</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../../_sources/demo/documented/biharmonic/cpp/main.cpp.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="biharmonic-equation-c">
+<h1>Biharmonic equation (C++)<a class="headerlink" href="#biharmonic-equation-c" title="Permalink to this headline">¶</a></h1>
+<p>This demo illustrates how to:</p>
+<ul class="simple">
+<li>Solve a linear partial differential equation</li>
+<li>Use a discontinuous Galerkin method</li>
+<li>Solve a fourth-order differential equation</li>
+</ul>
+<p>The solution for <span class="math">\(u\)</span> in this demo will look as follows:</p>
+<a class="reference internal image-reference" href="../../../../_images/biharmonic_u.png"><img alt="../../../../_images/biharmonic_u.png" src="../../../../_images/biharmonic_u.png" style="width: 384.75px; height: 231.0px;" /></a>
+<div class="section" id="equation-and-problem-definition">
+<h2>Equation and problem definition<a class="headerlink" href="#equation-and-problem-definition" title="Permalink to this headline">¶</a></h2>
+<p>The biharmonic equation is a fourth-order elliptic equation. On the
+domain <span class="math">\(\Omega \subset \mathbb{R}^{d}\)</span>, <span class="math">\(1 \le d \le 3\)</span>,
+it reads</p>
+<div class="math">
+\[\nabla^{4} u = f \quad {\rm in} \ \Omega,\]</div>
+<p>where <span class="math">\(\nabla^{4} \equiv \nabla^{2} \nabla^{2}\)</span> is the
+biharmonic operator and <span class="math">\(f\)</span> is a prescribed source term. To
+formulate a complete boundary value problem, the biharmonic equation
+must be complemented by suitable boundary conditions.</p>
+<p>Multiplying the biharmonic equation by a test function and integrating
+by parts twice leads to a problem second-order derivatives, which
+would requires <span class="math">\(H^{2}\)</span> conforming (roughly <span class="math">\(C^{1}\)</span>
+continuous) basis functions.  To solve the biharmonic equation using
+Lagrange finite element basis functions, the biharmonic equation can
+be split into two second-order equations (see the Mixed Poisson demo
+for a mixed method for the Poisson equation), or a variational
+formulation can be constructed that imposes weak continuity of normal
+derivatives between finite element cells.  The demo uses a
+discontinuous Galerkin approach to impose continuity of the normal
+derivative weakly.</p>
+<p>Consider a triangulation <span class="math">\(\mathcal{T}\)</span> of the domain
+<span class="math">\(\Omega\)</span>, where the set of interior facets is denoted by
+<span class="math">\(\mathcal{E}_h^{\rm int}\)</span>.  Functions evaluated on opposite
+sides of a facet are indicated by the subscripts &#8216;<span class="math">\(+\)</span>&#8216; and
+&#8216;<span class="math">\(-\)</span>&#8216;.  Using the standard continuous Lagrange finite element
+space</p>
+<div class="math">
+\[V = \left\{v \in H^{1}_{0}(\Omega)\,:\, v \in P_{k}(K) \ \forall \ K \in \mathcal{T} \right\}\]</div>
+<p>and considering the boundary conditions</p>
+<div class="math">
+\[\begin{split}u            &amp;= 0 \quad {\rm on} \ \partial\Omega \\
+\nabla^{2} u &amp;= 0 \quad {\rm on} \ \partial\Omega\end{split}\]</div>
+<p>a weak formulation of the biharmonic problem reads: find <span class="math">\(u \in
+V\)</span> such that</p>
+<div class="math">
+\[a(u,v)=L(v) \quad \forall \ v \in V,\]</div>
+<p>where the bilinear form is</p>
+<div class="math">
+\[a(u, v) = \sum_{K \in \mathcal{T}} \int_{K} \nabla^{2} u \nabla^{2} v \, {\rm d}x \
++\sum_{E \in \mathcal{E}_h^{\rm int}}\left(\int_{E} \frac{\alpha}{h_E} [\!\![ \nabla u ]\!\!] [\!\![ \nabla v ]\!\!] \, {\rm d}s
+- \int_{E} \left&lt;\nabla^{2} u \right&gt;[\!\![ \nabla v ]\!\!]  \, {\rm d}s
+- \int_{E} [\!\![ \nabla u ]\!\!]  \left&lt;\nabla^{2} v \right&gt;  \, {\rm d}s\right)\]</div>
+<p>and the linear form is</p>
+<div class="math">
+\[L(v) = \int_{\Omega} fv \, {\rm d}x\]</div>
+<p>Furthermore, <span class="math">\(\left&lt; u \right&gt; = \frac{1}{2} (u_{+} + u_{-})\)</span>, <span class="math">\([\!\![
+w ]\!\!]  = w_{+} \cdot n_{+} + w_{-} \cdot n_{-}\)</span>, <span class="math">\(\alpha \ge
+0\)</span> is a penalty parameter and <span class="math">\(h_E\)</span> is a measure of the cell size.</p>
+<p>The input parameters for this demo are defined as follows:</p>
+<ul class="simple">
+<li><span class="math">\(\Omega = [0,1] \times [0,1]\)</span> (a unit square)</li>
+<li><span class="math">\(\alpha = 8.0\)</span> (penalty parameter)</li>
+<li><span class="math">\(f = 4.0 \pi^4\sin(\pi x)\sin(\pi y)\)</span> (source term)</li>
+</ul>
+</div>
+<div class="section" id="implementation">
+<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
+<p>The implementation is split in two files, a form file containing the
+definition of the variational forms expressed in UFL and the solver
+which is implemented in a C++ file.</p>
+<p>Running this demo requires the files: <a class="reference download internal" href="../../../../_downloads/main1.cpp" download=""><code class="xref download docutils literal"><span class="pre">main.cpp</span></code></a>,
+<a class="reference download internal" href="../../../../_downloads/Biharmonic.ufl" download=""><code class="xref download docutils literal"><span class="pre">Biharmonic.ufl</span></code></a> and <a class="reference download internal" href="../../../../_downloads/CMakeLists1.txt" download=""><code class="xref download docutils literal"><span class="pre">CMakeLists.txt</span></code></a>.</p>
+<div class="section" id="ufl-form-file">
+<h3>UFL form file<a class="headerlink" href="#ufl-form-file" title="Permalink to this headline">¶</a></h3>
+<p>The UFL file is implemented in <a class="reference download internal" href="../../../../_downloads/Biharmonic.ufl" download=""><code class="xref download docutils literal"><span class="pre">Biharmonic.ufl</span></code></a>, and the
+explanation of the UFL file can be found at <a class="reference internal" href="Biharmonic.ufl.html"><span class="doc">here</span></a>.</p>
+</div>
+<div class="section" id="c-program">
+<h3>C++ program<a class="headerlink" href="#c-program" title="Permalink to this headline">¶</a></h3>
+<p>The DOLFIN interface and the code generated from the UFL input is
+included, and the DOLFIN namespace is used:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;dolfin.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;Biharmonic.h&quot;</span><span class="cp"></span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">dolfin</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>A class <code class="docutils literal"><span class="pre">Source</span></code> is defined for the function <span class="math">\(f\)</span>, with the
+function <code class="docutils literal"><span class="pre">Expression::eval</span></code> overloaded:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="c1">// Source term</span>
+<span class="k">class</span> <span class="nc">Source</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Expression</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+
+  <span class="kt">void</span> <span class="n">eval</span><span class="p">(</span><span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span> <span class="n">values</span><span class="p">,</span> <span class="k">const</span> <span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span> <span class="n">x</span><span class="p">)</span> <span class="k">const</span>
+  <span class="p">{</span>
+    <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">4.0</span><span class="o">*</span><span class="n">std</span><span class="o">::</span><span class="n">pow</span><span class="p">(</span><span class="n">DOLFIN_PI</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span><span class="o">*</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">sin</span><span class="p">(</span><span class="n">DOLFIN_PI</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="n">std</span><span class="o">::</span><span class="n">sin</span><span class="p">(</span><span class="n">DOLFIN_PI</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+  <span class="p">}</span>
+
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>A boundary subdomain is defined, which in this case is the entire
+boundary:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="c1">// Sub domain for Dirichlet boundary condition</span>
+<span class="k">class</span> <span class="nc">DirichletBoundary</span> <span class="o">:</span> <span class="k">public</span> <span class="n">SubDomain</span>
+<span class="p">{</span>
+  <span class="kt">bool</span> <span class="n">inside</span><span class="p">(</span><span class="k">const</span> <span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span> <span class="n">x</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">on_boundary</span><span class="p">)</span> <span class="k">const</span>
+  <span class="p">{</span> <span class="k">return</span> <span class="n">on_boundary</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>The main part of the program is begun, and a mesh is created with 32
+vertices in each direction:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="c1">// Make mesh ghosted for evaluation of DG terms</span>
+  <span class="n">parameters</span><span class="p">[</span><span class="s">&quot;ghost_mode&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;shared_facet&quot;</span><span class="p">;</span>
+
+  <span class="c1">// Create mesh</span>
+  <span class="k">auto</span> <span class="n">mesh</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">UnitSquareMesh</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The source function, a function for the cell size and the penalty term
+are declared:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="c1">// Create functions</span>
+<span class="k">auto</span> <span class="n">f</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Source</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="k">auto</span> <span class="n">alpha</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Constant</span><span class="o">&gt;</span><span class="p">(</span><span class="mf">8.0</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>A function space object, which is defined in the generated code, is
+created:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="c1">// Create function space</span>
+<span class="k">auto</span> <span class="n">V</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Biharmonic</span><span class="o">::</span><span class="n">FunctionSpace</span><span class="o">&gt;</span><span class="p">(</span><span class="n">mesh</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The Dirichlet boundary condition on <span class="math">\(u\)</span> is constructed by
+defining a <a class="reference internal" href="../../../../programmers-reference/function/Constant.html#_CPPv28Constant" title="Constant"><code class="xref cpp cpp-class docutils literal"><span class="pre">Constant</span></code></a> which is equal to zero, defining the
+boundary (<code class="docutils literal"><span class="pre">DirichletBoundary</span></code>), and using these, together with
+<code class="docutils literal"><span class="pre">V</span></code>, to create <code class="docutils literal"><span class="pre">bc</span></code>:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="c1">// Define boundary condition</span>
+<span class="k">auto</span> <span class="n">u0</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Constant</span><span class="o">&gt;</span><span class="p">(</span><span class="mf">0.0</span><span class="p">);</span>
+<span class="k">auto</span> <span class="n">boundary</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">DirichletBoundary</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="n">DirichletBC</span> <span class="nf">bc</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">u0</span><span class="p">,</span> <span class="n">boundary</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Using the function space <code class="docutils literal"><span class="pre">V</span></code>, the bilinear and linear forms are
+created, and function are attached:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="c1">// Define variational problem</span>
+<span class="n">Biharmonic</span><span class="o">::</span><span class="n">BilinearForm</span> <span class="n">a</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">V</span><span class="p">);</span>
+<span class="n">Biharmonic</span><span class="o">::</span><span class="n">LinearForm</span> <span class="n">L</span><span class="p">(</span><span class="n">V</span><span class="p">);</span>
+<span class="n">a</span><span class="p">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">alpha</span><span class="p">;</span> <span class="n">L</span><span class="p">.</span><span class="n">f</span> <span class="o">=</span> <span class="n">f</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>A <a class="reference internal" href="../../../../programmers-reference/function/Function.html#_CPPv28Function" title="Function"><code class="xref cpp cpp-class docutils literal"><span class="pre">Function</span></code></a> is created to hold the solution and the
+problem is solved:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="c1">// Compute solution</span>
+<span class="n">Function</span> <span class="nf">u</span><span class="p">(</span><span class="n">V</span><span class="p">);</span>
+<span class="n">solve</span><span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">L</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">bc</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The solution is then written to a file in VTK format and plotted to
+the screen:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span></span>  <span class="c1">// Save solution in VTK format</span>
+  <span class="n">File</span> <span class="nf">file</span><span class="p">(</span><span class="s">&quot;biharmonic.pvd&quot;</span><span class="p">);</span>
+  <span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="n">u</span><span class="p">;</span>
+
+  <span class="c1">// Plot solution</span>
+  <span class="n">plot</span><span class="p">(</span><span class="n">u</span><span class="p">);</span>
+  <span class="n">interactive</span><span class="p">();</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://bitbucket.org/fenics-project/.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'2016.2.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

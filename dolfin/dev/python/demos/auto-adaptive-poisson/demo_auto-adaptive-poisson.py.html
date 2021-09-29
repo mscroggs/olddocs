@@ -1,0 +1,451 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Auto adaptive Poisson equation &mdash; DOLFIN  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Cahn-Hilliard equation" href="../cahn-hilliard/demo_cahn-hilliard.py.html" />
+    <link rel="prev" title="Biharmonic equation" href="../biharmonic/demo_biharmonic.py.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../using.html">Using DOLFIN</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../demos.html">Demos</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../demos.html#introductory-demos">Introductory demos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../demos.html#more-advanced-demos">More advanced demos</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../demos.html#all-documented-demos">All documented demos</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../poisson/demo_poisson.py.html">Poisson equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../eigenvalue/demo_eigenvalue.py.html">A simple eigenvalue solver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../built-in-meshes/demo_built-in-meshes.py.html">Built-in meshes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mixed-poisson/demo_mixed-poisson.py.html">Mixed formulation for Poisson equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../biharmonic/demo_biharmonic.py.html">Biharmonic equation</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Auto adaptive Poisson equation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#equation-and-problem-definition">Equation and problem definition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#implementation">Implementation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../cahn-hilliard/demo_cahn-hilliard.py.html">Cahn-Hilliard equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maxwell-eigenvalues/demo_maxwell-eigenvalues.py.html">Stable and unstable finite elements for the Maxwell eigenvalue problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hyperelasticity/demo_hyperelasticity.py.html">Hyperelasticity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nonlinear-poisson/demo_nonlinear-poisson.py.html">Nonlinear Poisson equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../singular-poisson/demo_singular-poisson.py.html">Singular Poisson</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../neumann-poisson/demo_neumann-poisson.py.html">Poisson equation with pure Neumann boundary conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nonmatching-interpolation/demo_nonmatching-interpolation.py.html">Interpolation from a non-matching mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../stokes-iterative/demo_stokes-iterative.py.html">Stokes equations with an iterative solver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elastodynamics/demo_elastodynamics.py.html">Time-integration of elastodynamics equation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">Python API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer.html">Developer resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ChangeLog.html">Change log</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">DOLFIN</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../demos.html">Demos</a> &raquo;</li>
+        
+      <li>Auto adaptive Poisson equation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/demos/auto-adaptive-poisson/demo_auto-adaptive-poisson.py.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="auto-adaptive-poisson-equation">
+<h1>Auto adaptive Poisson equation<a class="headerlink" href="#auto-adaptive-poisson-equation" title="Permalink to this headline">¶</a></h1>
+<p>This demo is implemented in a single Python file,
+<a class="reference download internal" download="" href="../../_downloads/c5e2106cf254d24f54cca96f19bd92a0/demo_auto-adaptive-poisson.py"><code class="xref download docutils literal notranslate"><span class="pre">demo_auto-adaptive-poisson.py</span></code></a>, which contains both the
+variational forms and the solver.</p>
+<p>In this demo we will use goal oriented adaptivity and error control
+which applies a duality technique to derive error estimates taken
+directly from the computed solution which then are used to weight
+local residuals. To this end, we derive an <span class="math notranslate nohighlight">\(\textit{a
+posteriori}\)</span> error estimate and error indicators. We define a goal
+functional <span class="math notranslate nohighlight">\(\mathcal{M} : V \rightarrow \mathbb{R}\)</span>, which
+expresses the localized physical properties of the solution of a
+simulation. The objective of goal oriented adaptive error control is
+to minimize computational work to obtain a given level of accuracy in
+<span class="math notranslate nohighlight">\(\mathcal{M}\)</span>.</p>
+<p>We will thus illustrate how to:</p>
+<ul class="simple">
+<li><p>Solve a linear partial differential equation with automatic adaptive
+mesh refinement</p></li>
+<li><p>Define a goal functional</p></li>
+<li><p>Use <code class="xref py py-class docutils literal notranslate"><span class="pre">AdaptiveLinearVariationalSolver</span></code></p></li>
+</ul>
+<p>The two solutions for u in this demo will look as follows, where the
+first is the unrefined while the second is the refined solution:</p>
+<a class="reference internal image-reference" href="../../_images/u_unrefined.png"><img alt="../../_images/u_unrefined.png" src="../../_images/u_unrefined.png" style="width: 450.0px; height: 300.0px;" /></a>
+<a class="reference internal image-reference" href="../../_images/u_refined.png"><img alt="../../_images/u_refined.png" src="../../_images/u_refined.png" style="width: 450.0px; height: 300.0px;" /></a>
+<div class="section" id="equation-and-problem-definition">
+<h2>Equation and problem definition<a class="headerlink" href="#equation-and-problem-definition" title="Permalink to this headline">¶</a></h2>
+<p>The Poisson equation is the canonical elliptic partial differential
+equation. For a domain <span class="math notranslate nohighlight">\(\Omega \subset \mathbb{R}^n\)</span> with
+boundary <span class="math notranslate nohighlight">\(\partial \Omega = \Gamma_{D} \cup \Gamma_{N}\)</span>, the
+Poisson equation with particular boundary conditions reads:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}- \nabla^{2} u &amp;= f \quad {\rm in} \ \Omega, \\
+u &amp;= 0 \quad {\rm on} \ \Gamma_{D}, \\
+\nabla u \cdot n &amp;= g \quad {\rm on} \ \Gamma_{N}. \\\end{split}\]</div>
+<p>Here, <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> are input data and n denotes the outward
+directed boundary normal. The variational form of Poisson equation
+reads: find <span class="math notranslate nohighlight">\(u \in V\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[a(u, v) = L(v) \quad \forall \ v \in \hat{V},\]</div>
+<p>which we will call the continous primal problem, where <span class="math notranslate nohighlight">\(V\)</span>,
+<span class="math notranslate nohighlight">\(\hat{V}\)</span> are the trial- and test spaces and</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}a(u, v) &amp;= \int_{\Omega} \nabla u \cdot \nabla v \, {\rm d} x, \\
+L(v)    &amp;= \int_{\Omega} f v \, {\rm d} x + \int_{\Gamma_{N}} g v \, {\rm d} s.\end{split}\]</div>
+<p>The expression <span class="math notranslate nohighlight">\(a(u, v)\)</span> is the bilinear form and <span class="math notranslate nohighlight">\(L(v)\)</span>
+is the linear form. It is assumed that all functions in <span class="math notranslate nohighlight">\(V\)</span>
+satisfy the Dirichlet boundary conditions (<span class="math notranslate nohighlight">\(u = 0 \ {\rm on} \
+\Gamma_{D}\)</span>).</p>
+<p>The above definitions is that of the continuous problem. In the actual
+computer implementation we use a descrete formulation which reads:
+find <span class="math notranslate nohighlight">\(u \in V_h\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[a(u_h, v) = L(v) \quad \forall \ v \in \hat{V}_h.\]</div>
+<p>We will refer to the above equation as the discrete primal
+problem. Here, <span class="math notranslate nohighlight">\(V_h\)</span> and <span class="math notranslate nohighlight">\(\hat{V_h}\)</span> are finite
+dimensional subspaces.</p>
+<p>The weak residual is defined as</p>
+<div class="math notranslate nohighlight">
+\[r(v) = L(v) - a(u_h, v).\]</div>
+<p>By the Galerkin orthogonality, we have</p>
+<div class="math notranslate nohighlight">
+\[r(v) = L(v) - a(u_h, v) = a(u_h, v) -  a(u_h, v) = 0\,\, \forall v \in \hat{V}_{h},\]</div>
+<p>which means that the residual vanishes for all functions in
+<span class="math notranslate nohighlight">\(\hat{V}_{h}\)</span>. This property is used further in the derivation
+of the error estimates. wish to compute a solution <span class="math notranslate nohighlight">\(u_h\)</span> to the
+discrete primal problem defined above such that for a given tolerance
+<span class="math notranslate nohighlight">\(\mathrm{TOL}\)</span> we have</p>
+<div class="math notranslate nohighlight">
+\[\eta = \left| \mathcal{M}(u_h) - \mathcal{u_h} \right| \leq \mathrm{TOL}.\]</div>
+<p>Next we derive an <span class="math notranslate nohighlight">\(\textit{a posteriori}\)</span> error estimate by
+defining the discrete dual variational problem: find <span class="math notranslate nohighlight">\(z_h \in
+V_h^*\)</span> such that</p>
+<p>Here <span class="math notranslate nohighlight">\(V^*, \hat{V}_h^*\)</span> are the dual trial- and test spaces and
+<span class="math notranslate nohighlight">\(a^* : V^* \times \hat{V}^* \rightarrow \mathbb{R}\)</span> is the
+adjoint of <span class="math notranslate nohighlight">\(a\)</span> such that <span class="math notranslate nohighlight">\(a^*(v,w) = a(w,v)\)</span>. We find that</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{M}(u - \mathcal{u_h}) = a^*(z, u - u_h) = a(u - u_h, z) = a(u,z) - a(u_h,z) = L(z) - a(u_h,z) = r(z)\]</div>
+<p>and by Galerkin orthogonality we have <span class="math notranslate nohighlight">\(r(z) = r(z - v_h)\,\,
+\forall v_h \in \hat{V}_h\)</span>. Note that the residual vanishes if
+<span class="math notranslate nohighlight">\(z \in \hat{V}_h^*\)</span> and has to either be approximated in a
+higher order element space or one may use an extrapolation. The choice
+of goal functional depends on what quantity you are interested in.
+Here, we take the goal functional to be defined as</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{M}(u) = \int_{\Omega}  u dx.\]</div>
+<p>We use <span class="math notranslate nohighlight">\(D\ddot{o}rfler\)</span> marking as the mesh marking procedure.</p>
+<p>In this demo, we shall consider the following definitions of the input
+functions, the domain, and the boundaries:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\Omega = [0,1] \times [0,1]\,\)</span> (a unit square)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Gamma_{D} = \{(0, y) \cup (1, y) \subset \partial \Omega\}\,\)</span> (Dirichlet boundary)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Gamma_{N} = \{(x, 0) \cup (x, 1) \subset \partial \Omega\}\,\)</span> (Neumann boundary)</p></li>
+<li><p><span class="math notranslate nohighlight">\(g = \sin(5x)\,\)</span> (normal derivative)</p></li>
+<li><p><span class="math notranslate nohighlight">\(f = 10\exp(-((x - 0.5)^2 + (y - 0.5)^2) / 0.02)\,\)</span> (source term)</p></li>
+</ul>
+</div>
+<div class="section" id="implementation">
+<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
+<p>This description goes through the implementation (in
+<a class="reference download internal" download="" href="../../_downloads/c5e2106cf254d24f54cca96f19bd92a0/demo_auto-adaptive-poisson.py"><code class="xref download docutils literal notranslate"><span class="pre">demo_auto-adaptive-poisson.py</span></code></a>) of a solver for the above
+described Poisson equation step-by-step.</p>
+<p>First, the necessary modules are imported:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">dolfin</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+<p>We begin by defining a mesh of the domain and a finite element
+function space V relative to this mesh. We used the built-in mesh
+provided by the class <code class="xref py py-class docutils literal notranslate"><span class="pre">UnitSquareMesh</span></code>. In order to create a mesh
+consisting of 8 x 8 squares with each square divided into two
+triangles, we do as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create mesh and define function space</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">UnitSquareMesh</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="n">V</span> <span class="o">=</span> <span class="n">FunctionSpace</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="s2">&quot;Lagrange&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The second argument to <code class="xref py py-class docutils literal notranslate"><span class="pre">FunctionSpace</span></code>, “Lagrange”, is the finite
+element family, while the third argument specifies the polynomial
+degree. Thus, in this case, our space V consists of first-order,
+continuous Lagrange finite element functions (or in order words,
+continuous piecewise linear polynomials).</p>
+<p>Next, we want to consider the Dirichlet boundary condition. In our
+case, we want to say that the points (x, y) such that x = 0 or x = 1
+are inside on the inside of <span class="math notranslate nohighlight">\(\Gamma_D\)</span>. (Note that because of
+rounding-off errors, it is often wise to instead specify <span class="math notranslate nohighlight">\(x &lt;
+\epsilon\)</span> or <span class="math notranslate nohighlight">\(x &gt; 1 - \epsilon\)</span> where <span class="math notranslate nohighlight">\(\epsilon\)</span> is a
+small number (such as machine precision).)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define boundary condition</span>
+<span class="n">u0</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+<span class="n">bc</span> <span class="o">=</span> <span class="n">DirichletBC</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">u0</span><span class="p">,</span> <span class="s2">&quot;x[0] &lt; DOLFIN_EPS || x[0] &gt; 1.0 - DOLFIN_EPS&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Next, we want to express the variational problem. First, we need to
+specify the trial function u and the test function v, both living in
+the function space V. We do this by defining a
+<code class="xref py py-class docutils literal notranslate"><span class="pre">TrialFunction</span></code>
+and a <code class="xref py py-class docutils literal notranslate"><span class="pre">TestFunction</span></code> on the previously defined
+<code class="xref py py-class docutils literal notranslate"><span class="pre">FunctionSpace</span></code> V.</p>
+<p>Further, the source f and the boundary normal derivative g are
+involved in the variational forms, and hence we must specify
+these. Both f and g are given by simple mathematical formulas, and can
+be easily declared using the <code class="xref py py-class docutils literal notranslate"><span class="pre">Expression</span></code> class. Note that the strings
+defining f and g use C++ syntax since, for efficiency, DOLFIN will
+generate and compile C++ code for these expressions at run-time.</p>
+<p>With these ingredients, we can write down the bilinear form a and the
+linear form L (using UFL operators). In summary, this reads:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define variational problem</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">TestFunction</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">Expression</span><span class="p">(</span><span class="s2">&quot;10*exp(-(pow(x[0] - 0.5, 2) + pow(x[1] - 0.5, 2)) / 0.02)&quot;</span><span class="p">,</span>
+               <span class="n">degree</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">Expression</span><span class="p">(</span><span class="s2">&quot;sin(5*x[0])&quot;</span><span class="p">,</span> <span class="n">degree</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">inner</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">grad</span><span class="p">(</span><span class="n">v</span><span class="p">))</span><span class="o">*</span><span class="n">dx</span><span class="p">()</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">f</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">dx</span><span class="p">()</span> <span class="o">+</span> <span class="n">g</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">ds</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Now, we have specified the variational forms and can consider the
+solution of the variational problem. First, we need to define a
+<code class="xref py py-class docutils literal notranslate"><span class="pre">Function</span></code> u to represent the
+solution. (Upon initialization, it is simply set to the zero
+function.) A Function represents a function living in a finite element
+function space.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define function for the solution</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then define the goal functional:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define goal functional (quantity of interest)</span>
+<span class="n">M</span> <span class="o">=</span> <span class="n">u</span><span class="o">*</span><span class="n">dx</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Next we specify the error tolerance for when the refinement shall stop:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define error tolerance</span>
+<span class="n">tol</span> <span class="o">=</span> <span class="mf">1.e-5</span>
+</pre></div>
+</div>
+<p>Now, we have specified the variational forms and can consider the
+solution of the variational problem. First, we define the
+<code class="xref py py-class docutils literal notranslate"><span class="pre">LinearVariationalProblem</span></code> function with the arguments
+a, L, u and bc. Next we send this problem to the
+<code class="xref py py-class docutils literal notranslate"><span class="pre">AdaptiveLinearVariationalSolver</span></code> together with the
+goal functional. Note that one may also choose several adaptations in
+the error control. At last we solve the problem with the defined
+tolerance:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solve equation a = L with respect to u and the given boundary</span>
+<span class="c1"># conditions, such that the estimated error (measured in M) is less</span>
+<span class="c1"># than tol</span>
+<span class="n">problem</span> <span class="o">=</span> <span class="n">LinearVariationalProblem</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">bc</span><span class="p">)</span>
+<span class="n">solver</span> <span class="o">=</span> <span class="n">AdaptiveLinearVariationalSolver</span><span class="p">(</span><span class="n">problem</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;error_control&quot;</span><span class="p">][</span><span class="s2">&quot;dual_variational_solver&quot;</span><span class="p">][</span><span class="s2">&quot;linear_solver&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;cg&quot;</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;error_control&quot;</span><span class="p">][</span><span class="s2">&quot;dual_variational_solver&quot;</span><span class="p">][</span><span class="s2">&quot;symmetric&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">tol</span><span class="p">)</span>
+
+<span class="n">solver</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+
+<span class="c1"># Plot solution(s)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">root_node</span><span class="p">(),</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Solution on initial mesh&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">leaf_node</span><span class="p">(),</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Solution on final mesh&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../cahn-hilliard/demo_cahn-hilliard.py.html" class="btn btn-neutral float-right" title="Cahn-Hilliard equation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../biharmonic/demo_biharmonic.py.html" class="btn btn-neutral float-left" title="Biharmonic equation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2017, FEniCS Project
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

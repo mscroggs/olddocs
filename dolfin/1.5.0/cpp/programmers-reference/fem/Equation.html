@@ -1,0 +1,313 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Equation.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN fem module" href="index.html"/>
+        <link rel="next" title="FiniteElement.h" href="FiniteElement.html"/>
+        <link rel="prev" title="DofMap.h" href="DofMap.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-1.5.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/index.html">DOLFIN common module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN fem module</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Assembler.html">Assembler.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AssemblerBase.html">AssemblerBase.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BasisFunction.html">BasisFunction.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DirichletBC.html">DirichletBC.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DofMap.html">DofMap.h</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Equation.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FiniteElement.html">FiniteElement.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Form.html">Form.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericDofMap.html">GenericDofMap.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LinearVariationalProblem.html">LinearVariationalProblem.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LinearVariationalSolver.html">LinearVariationalSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LocalSolver.html">LocalSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MultiMeshAssembler.html">MultiMeshAssembler.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MultiMeshDirichletBC.html">MultiMeshDirichletBC.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MultiMeshDofMap.html">MultiMeshDofMap.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MultiMeshForm.html">MultiMeshForm.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NonlinearVariationalProblem.html">NonlinearVariationalProblem.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NonlinearVariationalSolver.html">NonlinearVariationalSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="OpenMpAssembler.html">OpenMpAssembler.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PointSource.html">PointSource.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SparsityPatternBuilder.html">SparsityPatternBuilder.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SystemAssembler.html">SystemAssembler.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="assemble.html">assemble.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fem_utils.html">fem_utils.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solve.html">solve.h</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html">DOLFIN function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/index.html">DOLFIN geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/index.html">DOLFIN io module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../la/index.html">DOLFIN la module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/index.html">DOLFIN log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mesh/index.html">DOLFIN mesh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot/index.html">DOLFIN plot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer&#8217;s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-1.5.0</a> &raquo;</li>
+      
+          <li><a href="index.html">DOLFIN fem module</a> &raquo;</li>
+      
+    <li>Equation.h</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/programmers-reference/fem/Equation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="equation-h">
+<span id="programmers-reference-cpp-fem-equation"></span><h1>Equation.h<a class="headerlink" href="#equation-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="class">
+<dt id="_CPPv28Equation">
+<span id="Equation"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">Equation</code><a class="headerlink" href="#_CPPv28Equation" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This class represents a variational equation lhs == rhs.
+The equation can be either linear or nonlinear:</p>
+<ol class="arabic simple">
+<li>Linear (a == L), in which case a must be a bilinear form
+and L must be a linear form.</li>
+<li>Nonlinear (F == 0), in which case F must be a linear form.</li>
+</ol>
+<dl class="function">
+<dt id="_CPPv2N8Equation8EquationENSt10shared_ptrIK4FormEENSt10shared_ptrIK4FormEE">
+<span id="Equation::Equation__std::shared_ptr:FormC:.std::shared_ptr:FormC:"></span><code class="descclassname"></code><code class="descname">Equation</code><span class="sig-paren">(</span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="Form.html#_CPPv24Form" title="Form">Form</a>&gt; <em>a</em>, std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="Form.html#_CPPv24Form" title="Form">Form</a>&gt; <em>L</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8Equation8EquationENSt10shared_ptrIK4FormEENSt10shared_ptrIK4FormEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create equation a == L</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8Equation8EquationENSt10shared_ptrIK4FormEEi">
+<span id="Equation::Equation__std::shared_ptr:FormC:.i"></span><code class="descclassname"></code><code class="descname">Equation</code><span class="sig-paren">(</span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="Form.html#_CPPv24Form" title="Form">Form</a>&gt; <em>F</em>, int <em>rhs</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8Equation8EquationENSt10shared_ptrIK4FormEEi" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create equation F == 0</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK8Equation9is_linearEv">
+<span id="Equation::is_linearC"></span>bool <code class="descclassname"></code><code class="descname">is_linear</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK8Equation9is_linearEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Check whether equation is linear</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK8Equation3lhsEv">
+<span id="Equation::lhsC"></span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="Form.html#_CPPv24Form" title="Form">Form</a>&gt; <code class="descclassname"></code><code class="descname">lhs</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK8Equation3lhsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return form for left-hand side</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK8Equation3rhsEv">
+<span id="Equation::rhsC"></span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="Form.html#_CPPv24Form" title="Form">Form</a>&gt; <code class="descclassname"></code><code class="descname">rhs</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK8Equation3rhsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return form for right-hand side</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK8Equation7rhs_intEv">
+<span id="Equation::rhs_intC"></span>int <code class="descclassname"></code><code class="descname">rhs_int</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK8Equation7rhs_intEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return value for right-hand side</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="FiniteElement.html" class="btn btn-neutral float-right" title="FiniteElement.h" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="DofMap.html" class="btn btn-neutral" title="DofMap.h" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://bitbucket.org/fenics-project/.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.5.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

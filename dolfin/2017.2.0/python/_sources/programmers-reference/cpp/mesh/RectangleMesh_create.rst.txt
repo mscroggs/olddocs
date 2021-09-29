@@ -1,0 +1,10 @@
+.. Documentation for the function dolfin.cpp.mesh.RectangleMesh_create
+
+.. _programmers_reference_cpp_mesh_rectanglemesh_create:
+
+RectangleMesh_create
+====================
+
+.. currentmodule:: dolfin.cpp.mesh
+
+.. autofunction:: RectangleMesh_create

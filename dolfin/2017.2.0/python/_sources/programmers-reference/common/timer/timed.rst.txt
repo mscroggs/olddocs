@@ -1,0 +1,10 @@
+.. Documentation for the function dolfin.common.timer.timed
+
+.. _programmers_reference_common_timer_timed:
+
+timed
+=====
+
+.. currentmodule:: dolfin.common.timer
+
+.. autofunction:: timed

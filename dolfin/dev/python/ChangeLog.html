@@ -1,0 +1,2410 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Change log &mdash; DOLFIN  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Contributing" href="contributing.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using.html">Using DOLFIN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="demos.html">Demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Python API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer.html">Developer resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Change log</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#dev0">2019.2.0.dev0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">2019.1.0 (2019-04-19)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">2018.1.0 (2018-06-14)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">2017.2.0 (2017-12-05)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">2017.1.0 (2017-05-09)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">2016.2.0 [2016-11-30]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id9">2016.1.0 [2016-06-23]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id10">1.6.0 [2015-07-28]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id13">1.5.0 [2015-01-12]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id14">1.4.0 [2014-06-02]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id15">1.3.0 [2014-01-07]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id16">1.2.0 [2013-03-24]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id17">1.1.0 [2013-01-08]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id18">1.0.0 [2011-12-07]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rc2-2011-11-28">1.0-rc2 [2011-11-28]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rc1-2011-11-21">1.0-rc1 [2011-11-21]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#beta2-2011-10-26">1.0-beta2 [2011-10-26]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#beta-2011-08-11">1.0-beta [2011-08-11]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id19">0.9.11 [2011-05-16]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id20">0.9.10 [2011-02-23]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id21">0.9.9 [2010-09-01]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id22">0.9.8 [2010-07-01]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id23">0.9.7 [2010-02-17]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id24">0.9.6 [2010-02-03]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id25">0.9.5 [2009-12-03]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id26">0.9.4 [2009-10-12]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id27">0.9.3 [2009-09-25]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id28">0.9.2 [2009-04-07]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id29">0.9.1 [2009-02-17]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id30">0.9.0 [2009-01-05]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id31">0.8.1 [2008-10-20]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id32">0.8.0 [2008-06-23]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id33">0.7.3 [2008-04-30]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id34">0.7.2 [2008-02-18]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id35">0.7.1 [2007-08-31]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id36">0.7.0-1 [2007-06-22]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id37">0.7.0 [2007-06-20]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id38">0.6.4 [2006-12-01]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id39">0.6.3 [2006-10-27]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id40">0.6.2-1 [2006-09-06]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id41">0.6.2 [2006-09-05]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id42">0.6.1 [2006-03-28]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id43">0.6.0 [2006-03-01]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id44">0.5.12 [2006-01-12]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id45">0.5.11 [2005-12-15]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id46">0.5.10 [2005-10-11]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id47">0.5.9 [2005-09-23]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id48">0.5.8 [2005-07-05]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id49">0.5.7 [2005-06-23]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id50">0.5.6 [2005-05-17]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id51">0.5.5 [2005-04-26]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id52">0.5.4 [2005-03-29]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id53">0.5.3 [2005-02-26]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id54">0.5.2 [2005-01-26]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id55">0.5.1 [2004-11-10]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id56">0.5.0 [2004-08-18]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id57">0.4.11 [2004-04-23]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id58">0.4.10</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id59">0.4.9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id60">0.4.8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id61">0.4.7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id62">0.4.6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id63">0.4.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id64">0.4.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id65">0.4.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id66">0.4.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id67">0.4.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id68">0.4.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id69">0.3.12</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id70">0.3.11</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id71">0.3.10</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id72">0.3.9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id73">0.3.8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id74">0.3.7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id75">0.3.6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id76">0.3.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id77">0.3.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id78">0.3.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id79">0.3.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id80">0.3.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id81">0.3.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id82">0.2.11-1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id83">0.2.11</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id84">0.2.10-1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id85">0.2.10</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id86">0.2.8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id87">0.2.7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id88">0.2.6 [2002-02-19]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id89">0.2.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id90">0.2.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id91">0.2.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id92">0.2.2:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id93">0.2.1:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id94">0.2.0:</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">DOLFIN</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Change log</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/ChangeLog.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="change-log">
+<h1>Change log<a class="headerlink" href="#change-log" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="dev0">
+<h2>2019.2.0.dev0<a class="headerlink" href="#dev0" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>No changes yet.</p></li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h2>2019.1.0 (2019-04-19)<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Support for shape calculus operations, see file:
+<code class="docutils literal notranslate"><span class="pre">python/test/unit/fem/test_coordinatederivative.py</span></code></p></li>
+<li><p>Support for PETSc and SLEPc 3.10.</p></li>
+<li><p>Documented Python elastodynamics demo.</p></li>
+<li><p>Various bug fixes, e.g. memory leaks, build issues.</p></li>
+<li><p>Enhancements and additions to pybind11-based Python interface.</p></li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2>2018.1.0 (2018-06-14)<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Remove python2 support.</p></li>
+<li><p>Remove SWIG (now use pybind11 for wrapping C++)</p></li>
+<li><p>Rename <code class="docutils literal notranslate"><span class="pre">mpi_comm_world()</span></code> to <code class="docutils literal notranslate"><span class="pre">MPI.comm_world</span></code>.</p></li>
+<li><p>Removed <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">fenics</span> <span class="pre">import</span> <span class="pre">*</span></code>, use <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">dolfin</span> <span class="pre">import</span> <span class="pre">*</span></code></p></li>
+<li><p>Rename <code class="docutils literal notranslate"><span class="pre">ERROR</span></code>, <code class="docutils literal notranslate"><span class="pre">CRITICAL</span></code> etc. to <code class="docutils literal notranslate"><span class="pre">LogLevel.ERROR</span></code>, <code class="docutils literal notranslate"><span class="pre">LogLevel.CRITICAL</span></code>.</p></li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2>2017.2.0 (2017-12-05)<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Remove <code class="docutils literal notranslate"><span class="pre">UnitQuadMesh</span></code> and <code class="docutils literal notranslate"><span class="pre">UnitHexMesh</span></code>. Now use <code class="docutils literal notranslate"><span class="pre">UnitSquareMesh</span></code> and
+<code class="docutils literal notranslate"><span class="pre">UnitCubeMesh</span></code> with cell type qualifiers.</p></li>
+<li><p>Remove <code class="docutils literal notranslate"><span class="pre">MeshEditor::open</span></code> without cell type. Now you must explicitly
+specify CellType when opening a <code class="docutils literal notranslate"><span class="pre">Mesh</span></code> with <code class="docutils literal notranslate"><span class="pre">MeshEditor</span></code>.</p></li>
+<li><p>Rename <code class="docutils literal notranslate"><span class="pre">Mesh::size_global</span></code> to <code class="docutils literal notranslate"><span class="pre">Mesh::num_entities_global</span></code>.</p></li>
+<li><p>Remove <code class="docutils literal notranslate"><span class="pre">Mesh::size</span></code>. Use <code class="docutils literal notranslate"><span class="pre">Mesh::num_entities</span></code> instead.</p></li>
+<li><p>Improved mesh topology computation performance.</p></li>
+<li><p>Remove excessive calls to MPI init. It may now be necessary in some
+cases to explicitly intialise MPI.</p></li>
+<li><p>Improvements to sparsity pattern computation.</p></li>
+<li><p>Addition of some interfaces using <code class="docutils literal notranslate"><span class="pre">Eigen::Map/ref</span></code> in addition to
+<code class="docutils literal notranslate"><span class="pre">dolfin::Array(View)</span></code>.  <a href="#id4"><span class="problematic" id="id5">``</span></a>dolfin::Array(View)``interfaces will be
+removed in favour of Eigen interfaces in the next release.</p></li>
+<li><p>Update pkg-config (dolfin.pc) file.</p></li>
+<li><p>CMake modernisations, with more use of exported targets.</p></li>
+<li><p>Add experimental pybind11 generated Python interface. Will replace
+the SWIG generated interface in the 2018.1 release.</p></li>
+<li><p>Remove redundant SLEPc interfaces. Fixes issue <a class="reference external" href="https://bitbucket.org/fenics-project/dolfin/issues/908">#908</a>.</p></li>
+<li><p>Bump required Boost version to 1.55.</p></li>
+<li><p>Remove PETScUserPreconditioner (was unused and untested).</p></li>
+<li><p>Remove VTK plotting backend. Plotting is no longer available from
+the C++ interface. Basic plotting is available using <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>
+and <code class="docutils literal notranslate"><span class="pre">x3dom</span></code> backends via the <code class="docutils literal notranslate"><span class="pre">plot()</span></code> free function in the
+Python interface. Users are advised to move to e.g.  Paraview for
+more demanding plotting needs.</p></li>
+<li><p>Updates for <code class="docutils literal notranslate"><span class="pre">ufc::finite_element::evaluate_vertex_values</span></code>
+interface change.</p></li>
+<li><p>Add new methods <code class="docutils literal notranslate"><span class="pre">XDMFFile::write_checkpoint</span></code>,
+<code class="docutils literal notranslate"><span class="pre">XDMFFile::read_checkpoint</span></code> to write and read (checkpoint)
+functions.</p></li>
+<li><p>Implement marking vertex and edge mesh functions by
+<code class="docutils literal notranslate"><span class="pre">SubDomain::mark()</span></code> using <code class="docutils literal notranslate"><span class="pre">on_boundary</span></code> flag.</p></li>
+<li><p>Fix quadratic scaling in PETSc matrix allocation with global dofs;
+assembly with <code class="docutils literal notranslate"><span class="pre">Real</span></code> space now exhibits linear scaling in number
+of dofs.</p></li>
+<li><p>Add assembly for quadrilateral and hexahedral meshes with CG and DG
+elements.</p></li>
+<li><p>Updates for some demos and tests to show usage of quadrilateral and
+hexahedral meshes.</p></li>
+<li><p>Deprecate <code class="docutils literal notranslate"><span class="pre">CellSize</span></code> (equivalent to <code class="docutils literal notranslate"><span class="pre">2*Circumradius</span></code>)
+in favour of new <code class="docutils literal notranslate"><span class="pre">CellDiameter</span></code>; add <code class="docutils literal notranslate"><span class="pre">MinCellEdgeLength</span></code>
+and <code class="docutils literal notranslate"><span class="pre">MaxCellEdgeLength</span></code></p></li>
+<li><p>Deprecate subclassing of <code class="docutils literal notranslate"><span class="pre">Expression</span></code> in Python; new Python class
+<code class="docutils literal notranslate"><span class="pre">UserExpression</span></code> introduced for user overloads</p></li>
+<li><p>Deprecate <code class="docutils literal notranslate"><span class="pre">VertexFunction</span></code>, <code class="docutils literal notranslate"><span class="pre">EdgeFunction</span></code>, <code class="docutils literal notranslate"><span class="pre">FaceFunction</span></code>,
+<code class="docutils literal notranslate"><span class="pre">FacetFunction</span></code>, <code class="docutils literal notranslate"><span class="pre">CellFunction</span></code>; use <code class="docutils literal notranslate"><span class="pre">MeshFunction</span></code> instead</p></li>
+</ul>
+</div>
+<div class="section" id="id7">
+<h2>2017.1.0 (2017-05-09)<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Refactor PETScLUSolver to use functionality from
+PETScKrylovSolver. Simplify interface for solving transposed
+systems. Fixes #815.</p></li>
+<li><p>Switch default Python version to Python 3. Use
+<cite>-DDOLFIN_USE_PYTHON3=off</cite> to build with Python 2.</p></li>
+<li><p>Remove redundant <code class="docutils literal notranslate"><span class="pre">solve_transpose</span></code> functions (use solve with bool
+argument instead)</p></li>
+<li><p>Remove OpenMpAsssmebler</p></li>
+<li><p>Remove MPI communicator as argument in GenericVector::init functions
+(communicator should be passed via constructor)</p></li>
+<li><p>Remove <code class="docutils literal notranslate"><span class="pre">Function::operator[+-*/]</span></code> to prevent memory corruption problems
+(does not affect Python interface)</p></li>
+<li><p>Fix XDMF3 output of time series. The default output method is now to assume
+that all functions have different meshes, and that the meshes change from
+time step to time step. Two parameters control the output, one limits each
+function to only one mesh for the whole time series, turn off the default
+on parameter <code class="docutils literal notranslate"><span class="pre">rewrite_function_mesh</span></code> to enable this. You can also make
+all functions share the same mesh and time series, which currently is better
+supported in Paraview than the alternative, turn on <code class="docutils literal notranslate"><span class="pre">functions_share_mesh</span></code>
+for this. These two parameters can also be combined in case all functions
+share the same mesh at all time steps. This creates minimal size files.</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">PETScSNESSolver</span></code> and <code class="docutils literal notranslate"><span class="pre">PETScTAOSolver</span></code> constructor accepting
+both communicator and type</p></li>
+<li><p>Expression(“f[0]*f[1]”, f=obj) notation now supported for non-scalar
+GenericFunction obj</p></li>
+<li><p>Expression(“f”, f=obj) notation now supports obj of MeshFunction types
+(only cell based)</p></li>
+<li><p>Fix MPI deadlock in case of instant compilation failure</p></li>
+<li><p>Allow using <code class="docutils literal notranslate"><span class="pre">Timer</span></code> as context manager and add <code class="docutils literal notranslate"><span class="pre">timed</span></code> decorator
+to measure timings of functions and methods</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">NonlinearProblem::J_pc</span></code> and support preconditioning matrix in
+<code class="docutils literal notranslate"><span class="pre">NewtonSolver</span></code>, <code class="docutils literal notranslate"><span class="pre">PETScSNESSolver</span></code> and <code class="docutils literal notranslate"><span class="pre">PETScTAOSolver</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="id8">
+<h2>2016.2.0 [2016-11-30]<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Updates to XDMFFile interface, now fully supporting MeshFunction and
+MeshValueCollection with multiple named datasets in one file (useful for
+volume/boundary markers). Time series now only when a time is explicitly
+specified for each step. Full support for ASCII/XML XDMF.</p></li>
+<li><p>Improved X3DOM support</p></li>
+<li><p>Improved detection of UFC</p></li>
+<li><p>Add CMake option <cite>-DDOLFIN_USE_PYTHON3</cite> to create a Python 3 build</p></li>
+<li><p>Require CMake version 3.5 or higher</p></li>
+<li><p>Add pylit to generate demo doc from rst</p></li>
+<li><p>More careful checks of Dirichlet BC function spaces</p></li>
+<li><p>Change definition of FunctionSpace::component()</p></li>
+<li><p>Adaptive solving now works for tensor-valued unknowns</p></li>
+<li><p>Improve logging of PETSc errors; details logged at level TRACE</p></li>
+</ul>
+</div>
+<div class="section" id="id9">
+<h2>2016.1.0 [2016-06-23]<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Remove support for ‘uint’-valued MeshFunction (replaced by ‘size_t’)</p></li>
+<li><p>Major performance improvements and simplifications of the XDMF IO.</p></li>
+<li><p>Remove Zoltan graph partitioning interface</p></li>
+<li><p>Add new algorithm for computing mesh entiites. Typical speed-up of
+two with gcc and four with clang. Reduced memory usage for meshes
+with irregularly numbered cells.</p></li>
+<li><p>Remove STLMatrix, STLVector, MUMPSLUSolver and PastixLUSolver
+classes</p></li>
+<li><p>Remove PETScPreconditioner::set_near_nullspace and add
+PETScMatrix::set_near_nullspace</p></li>
+<li><p>Build system updates for VTK 7.0</p></li>
+<li><p>Remove XDMF from File interface. XDMF is XML based, and has many
+possibilities for file access, which are not accessible through the
+limited File interface and “&lt;&lt;” “&gt;&gt;” operators. Instead of File, use
+XDMFFile, and use XDMFFile.read() and XDMFFile.write() for
+I/O. Demos and tests have been updated to show usage.  XDMF now also
+supports ASCII I/O in serial, useful for compatibility with users
+who do not have the HDF5 library available.</p></li>
+<li><p>Require polynomial degree or finite element for Expressions in the
+Python interface (fixes Issue #355,
+<a class="reference external" href="https://bitbucket.org/fenics-project/dolfin/issues/355">https://bitbucket.org/fenics-project/dolfin/issues/355</a>)</p></li>
+<li><p>Switch to Google Test framwork for C++ unit tests</p></li>
+<li><p>Fix bug when reading domain data from mesh file for a ghosted mesh</p></li>
+<li><p>Add interface for manipulating mesh geometry using (higher-order) FE
+functions: free functions set_coordinates, get_coordinates,
+create_mesh</p></li>
+<li><p>Fix bug when reading domain data from mesh file for a ghosted mesh.</p></li>
+<li><p>Remove reference versions of constructors for many classes that
+store a pointer/reference to the object passed to the
+constructor. This is an intrusive interface change for C++ users,
+but necessary to improve code maintainabilty and to improve memory
+safety. The Python interface is (virtually) unaffected.</p></li>
+<li><p>Remove class SubSpace. Using FunctionSpace::sub(…) instead</p></li>
+<li><p>Remove reference versions constructors of NonlinearVariationalSolver</p></li>
+<li><p>Remove setting of bounds from NonlinearVariationalSolver (was
+already available through NonlinearVariationalProblem)</p></li>
+<li><p>Update Trilinos support to include Amesos2, and better support from
+Python</p></li>
+<li><p>Rewrite interface of TensorLayout and SparsityPattern;
+local-to-global maps now handled using new IndexMap class;
+GenericSparsityPattern class removed</p></li>
+<li><p>Remove QT (was an optional dependency)</p></li>
+<li><p>PETScTAOSolver::solve() now returns a pair of number of iterations
+(std::size_t) and whether iteration converged (bool)</p></li>
+<li><p>Better quality refinement in 2D in Plaza algorithm, by choosing
+refinement pattern based on max/min edge ratio</p></li>
+<li><p>Removed refine_cell() method in CellTypes</p></li>
+<li><p>Enable marker refinement to work in parallel for 1D meshes too</p></li>
+<li><p>Add std::abort to Python exception hook to avoid parallel deadlocks</p></li>
+<li><p>Extend dof_to_vertex_map with unowned dofs, thus making
+dof_to_vertex_map an inverse of vertex_to_dof_map</p></li>
+<li><p>Clean-up in PyDOLFIN function space design, issue #576</p></li>
+<li><p>Deprecate MixedFunctionSpace and EnrichedFunctionSpace in favour of
+initialization by suitable UFL element</p></li>
+<li><p>Add experimental matplotlib-based plotting backend, see mplot demo</p></li>
+<li><p>Remove method argument of DirichletBC::get_boundary_values()</p></li>
+<li><p>Change return types of free functions adapt() to shared_ptr</p></li>
+</ul>
+</div>
+<div class="section" id="id10">
+<h2>1.6.0 [2015-07-28]<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Remove redundant pressure boundary condition in Stokes demos</p></li>
+<li><p>Require Point in RectangleMesh and BoxMesh constructors</p></li>
+<li><p>Remove BinaryFile (TimeSeries now requires HDF5)</p></li>
+<li><p>Add (highly experimental) support for Tpetra matrices and vectors
+from Trilinos, interfacing to Belos, Amesos2, IfPack2 and Muelu.</p></li>
+<li><p>Enable (highly experimental) support for Quadrilateral and
+Hexahedral meshes, including some I/O, but no assembly yet.</p></li>
+<li><p>Enable UMFPACK and CHOLMOD solvers with Eigen backend</p></li>
+<li><p>Add an MPI_Comm to logger, currently defaulted to MPI_COMM_WORLD
+allowing better control over output in parallel</p></li>
+<li><p>Experimental output of quadratic geometry in XDMF files, allows more
+exact visualisation of P2 Functions</p></li>
+<li><p>Remove GenericMatrix::compressed (see Issue #61)</p></li>
+<li><p>Deprecate and PETScKryloveSolver::set_nullspace() and add
+PETScMatrix::set_nullspace()</p></li>
+<li><p>Remove uBLAS backend</p></li>
+<li><p>Remove UmfpackLUSolver and CholmodSolver</p></li>
+<li><p>Add EigenMatrix/Vector::data()</p></li>
+<li><p>Remove GenericMatrix/Vector::data() and GenericMatrix/Vector::data()
+(to use backends that support data(), cast first to backend type,
+e.g.  A = A.as_backend_type()</p></li>
+<li><p>Remove cmake.local, replaced by fenics-install-component.sh</p></li>
+<li><p>Make interior facet integrals define - and + cells ordered by
+cell_domains value.</p></li>
+<li><p>Remove deprecated arguments <a href="#id11"><span class="problematic" id="id12">*</span></a>_domains from assemble() and Form().</p></li>
+<li><p>Change measure definition notation from dx[mesh_function] to
+dx(subdomain_data=mesh_function).</p></li>
+<li><p>Set locale to “C” before reading from file</p></li>
+<li><p>Change GenericDofMap::cell_dofs return type from const
+std::vector&lt;..&gt;&amp; to ArrayView&lt;const ..&gt;</p></li>
+<li><p>Add ArrayView class for views into arrays</p></li>
+<li><p>Change fall back linear algebra backend to Eigen</p></li>
+<li><p>Add Eigen linear algebra backend</p></li>
+<li><p>Remove deprecated GenericDofMap::geometric_dim function (fixes Issue
+#443)</p></li>
+<li><p>Add quadrature rules for multimesh/cut-cell integration up to order
+6</p></li>
+<li><p>Implement MPI reductions and XML ouput of Table class</p></li>
+<li><p>list_timings() is now collective and returns MPI average across
+processes</p></li>
+<li><p>Add dump_timings_to_xml()</p></li>
+<li><p>Add enum TimingType { wall, user, system } for selecting wall-clock,
+user and system time in timing routines</p></li>
+<li><p>Bump required SWIG version to 3.0.3</p></li>
+<li><p>Increase default maximum iterations in NewtonSolver to 50.</p></li>
+<li><p>Deprecate Python free function homogenize(bc) in favour of member
+function DirichletBC::homogenize()</p></li>
+</ul>
+</div>
+<div class="section" id="id13">
+<h2>1.5.0 [2015-01-12]<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>DG demos working in parallel</p></li>
+<li><p>Simplify re-use of LU factorisations</p></li>
+<li><p>CMake 3 compatibility</p></li>
+<li><p>Make underlying SLEPc object accessible</p></li>
+<li><p>Full support for linear algebra backends with 64-bit integers</p></li>
+<li><p>Add smoothed aggregation AMG elasticity demo</p></li>
+<li><p>Add support for slepc4py</p></li>
+<li><p>Some self-assignment fixes in mesh data structures</p></li>
+<li><p>Deprecated GenericDofMap::geometric_dimension()</p></li>
+<li><p>Experimental support for ghosted meshes (overlapping region in
+parallel)</p></li>
+<li><p>Significant memory reduction in dofmap storage</p></li>
+<li><p>Re-write dofmap construction with significant performance and
+scaling improvements in parallel</p></li>
+<li><p>Switch to local (process-wise) indexing for dof indices</p></li>
+<li><p>Support local (process-wise) indexing in linear algerbra backends</p></li>
+<li><p>Added support for PETSc 3.5, require version &gt;= 3.3</p></li>
+<li><p>Exposed DofMap::tabulate_local_to_global_dofs,
+MeshEntity::sharing_processes in Python</p></li>
+<li><p>Added GenericDofmap::local_dimension(“all”|”owned”|”unowned”)</p></li>
+<li><p>Added access to SLEPc or slepc4py EPS object of SLEPcEigenSolver
+(requires slepc4py version &gt;= 3.5.1)</p></li>
+<li><p>LinearOperator can now be accessed using petsc4py</p></li>
+<li><p>Add interface (PETScTAOSolver) for the PETSc nonlinear
+(bound-constrained) optimisation solver (TAO)</p></li>
+<li><p>Add GenericMatrix::nnz() function to return number of nonzero
+entries in matrix (fixes #110)</p></li>
+<li><p>Add smoothed aggregation algerbraic multigrid demo for elasticity</p></li>
+<li><p>Add argument ‘function’ to project, to store the result into a
+preallocated function</p></li>
+<li><p>Remove CGAL dependency and mesh generation, now provided by mshr</p></li>
+<li><p>Python 2.7 required</p></li>
+<li><p>Add experimental Python 3 support. Need swig version 3.0.3 or later</p></li>
+<li><p>Move to py.test, speed up unit tests and make tests more robust in
+parallel</p></li>
+<li><p>Repeated initialization of PETScMatrix is now an error</p></li>
+<li><p>MPI interface change: num_processes -&gt; size, process_number -&gt; rank</p></li>
+<li><p>Add optional argument project(…, function=f), to avoid superfluous
+allocation</p></li>
+<li><p>Remove excessive printing of points during extrapolation</p></li>
+<li><p>Clean up DG demos by dropping restrictions of Constants: c(‘+’) -&gt; c</p></li>
+<li><p>Fix systemassembler warning when a and L both provide the same
+subdomain data.</p></li>
+<li><p>Require mesh instead of cell argument to FacetArea, FacetNormal,
+CellSize, CellVolume, SpatialCoordinate, Circumradius,
+MinFacetEdgeLength, MaxFacetEdgeLength</p></li>
+<li><p>Remove argument reset_sparsity to assemble()</p></li>
+<li><p>Simplify assemble() and Form() signature: remove arguments mesh,
+coefficients, function_spaces, common_cell. These are now all found
+by inspecting the UFL form</p></li>
+<li><p>Speed up assembly of forms with multiple integrals depending on
+different functions, e.g. f*dx(1) + g*dx(2).</p></li>
+<li><p>Handle accessing of GenericVectors using numpy arrays in python
+layer instead of in hard-to-maintain C++ layer</p></li>
+<li><p>Add support for mpi groups in jit-compilation</p></li>
+<li><p>Make access to HDFAttributes more dict like</p></li>
+<li><p>Add 1st and 2nd order Rush Larsen schemes for the
+PointIntegralSolver</p></li>
+<li><p>Add vertex assembler for PointIntegrals</p></li>
+<li><p>Add support for assembly of custom_integral</p></li>
+<li><p>Add support for multimesh assembly, function spaces, dofmaps and
+functions</p></li>
+<li><p>Fix to Cell-Point collision detection to prevent Points inside the
+mesh from falling between Cells due to rounding errors</p></li>
+<li><p>Enable reordering of cells and vertices in parallel via SCOTCH and
+the Giibs-Poole-Stockmeyer algorithm</p></li>
+<li><p>Efficiency improvements in dof assignment in parallel, working on
+HPC up to 24000 cores</p></li>
+<li><p>Introduction of PlazaRefinement methods based on refinement of the
+Mesh skeleton, giving better quality refinement in 3D in parallel</p></li>
+<li><p>Basic support for ‘ghost cells’ allowing integration over interior
+facets in parallel</p></li>
+</ul>
+</div>
+<div class="section" id="id14">
+<h2>1.4.0 [2014-06-02]<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Feature: Add set_diagonal (with GenericVector) to GenericMatrix</p></li>
+<li><p>Fix many bugs associated with cell orientations on manifolds</p></li>
+<li><p>Force all global dofs to be ordered last and to be on the last
+process in parallel</p></li>
+<li><p>Speed up dof reordering of mixed space including global dofs by
+removing the latter from graph reordering</p></li>
+<li><p>Force all dofs on a shared facet to be owned by the same process</p></li>
+<li><p>Add FEniCS (‘fenics’) Python module, identical with DOLFIN Python
+module</p></li>
+<li><p>Add function Form::set_some_coefficients()</p></li>
+<li><p>Remove Boost.MPI dependency</p></li>
+<li><p>Change GenericMatrix::compresss to return a new matrix (7be3a29)</p></li>
+<li><p>Add function GenericTensor::empty()</p></li>
+<li><p>Deprecate resizing of linear algebra via the GenericFoo interfaces
+(fixes #213)</p></li>
+<li><p>Deprecate MPI::process_number() in favour of MPI::rank(MPI_Comm)</p></li>
+<li><p>Use PETSc built-in reference counting to manage lifetime of wrapped
+PETSc objects</p></li>
+<li><p>Remove random access function from MeshEntityIterator (fixes #178)</p></li>
+<li><p>Add support for VTK 6 (fixes #149)</p></li>
+<li><p>Use MPI communicator in interfaces. Permits the creation of
+distributed and local objects, e.g. Meshes.</p></li>
+<li><p>Reduce memory usage and increase speed of mesh topology computation</p></li>
+</ul>
+</div>
+<div class="section" id="id15">
+<h2>1.3.0 [2014-01-07]<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Feature: Enable assignment of sparse MeshValueCollections to
+MeshFunctions</p></li>
+<li><p>Feature: Add free function assign that is used for sub function
+assignment</p></li>
+<li><p>Feature: Add class FunctionAssigner that cache dofs for sub function
+assignment</p></li>
+<li><p>Fix runtime dependency on checking swig version</p></li>
+<li><p>Deprecate DofMap member methods vertex_to_dof_map and
+dof_to_vertex_map</p></li>
+<li><p>Add free functions: vertex_to_dof_map and dof_to_vertex_map, and
+correct the ordering of the map.</p></li>
+<li><p>Introduce CompiledSubDomain a more robust version of
+compiled_subdomains, which is now deprecated</p></li>
+<li><p>CMake now takes care of calling the correct generate-foo script if
+so needed.</p></li>
+<li><p>Feature: Add new built-in computational geometry library
+(BoundingBoxTree)</p></li>
+<li><p>Feature: Add support for setting name and label to an Expression
+when constructed</p></li>
+<li><p>Feature: Add support for passing a scalar GenericFunction as default
+value to a CompiledExpression</p></li>
+<li><p>Feature: Add support for distance queries for 3-D meshes</p></li>
+<li><p>Feature: Add PointIntegralSolver, which uses the MultiStageSchemes
+to solve local ODEs at Vertices</p></li>
+<li><p>Feature: Add RKSolver and MultiStageScheme for general time integral
+solvers</p></li>
+<li><p>Feature: Add support for assigning a Function with linear
+combinations of Functions, which lives in the same FunctionSpace</p></li>
+<li><p>Added Python wrapper for SystemAssembler</p></li>
+<li><p>Added a demo using compiled_extension_module with separate source
+files</p></li>
+<li><p>Fixes for NumPy 1.7</p></li>
+<li><p>Remove DOLFIN wrapper code (moved to FFC)</p></li>
+<li><p>Add set_options_prefix to PETScKrylovSolver</p></li>
+<li><p>Remove base class BoundarCondition</p></li>
+<li><p>Set block size for PETScMatrix when available from TensorLayout</p></li>
+<li><p>Add support to get block compressed format from STLMatrix</p></li>
+<li><p>Add detection of block structures in the dofmap for vector equations</p></li>
+<li><p>Expose PETSc GAMG parameters</p></li>
+<li><p>Modify SystemAssembler to support separate assembly of A and b</p></li>
+</ul>
+</div>
+<div class="section" id="id16">
+<h2>1.2.0 [2013-03-24]<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Fixes bug where child/parent hierarchy in Python were destroyed</p></li>
+<li><p>Add utility script dolfin-get-demos</p></li>
+<li><p>MeshFunctions in python now support iterable protocol</p></li>
+<li><p>Add timed VTK output for Mesh and MeshFunction in addtion to
+Functions</p></li>
+<li><p>Expose ufc::dofmap::tabulate_entity_dofs to GenericDofMap interface</p></li>
+<li><p>Expose ufc::dofmap::num_entity_dofs to GenericDofMap interface</p></li>
+<li><p>Allow setting of row dof coordinates in preconditioners (only works
+with PETSc backed for now)</p></li>
+<li><p>Expose more PETSc/ML parameters</p></li>
+<li><p>Improve speed to tabulating coordinates in some DofMap functions</p></li>
+<li><p>Feature: Add support for passing a Constant as default value to a
+CompiledExpression</p></li>
+<li><p>Fix bug in dimension check for 1-D ALE</p></li>
+<li><p>Remove some redundant graph code</p></li>
+<li><p>Improvements in speed of parallel dual graph builder</p></li>
+<li><p>Fix bug in XMDF output for cell-based Functions</p></li>
+<li><p>Fixes for latest version of clang compiler</p></li>
+<li><p>LocalSolver class added to efficiently solve cell-wise problems</p></li>
+<li><p>New implementation of periodic boundary conditions. Now incorporated
+into the dofmap</p></li>
+<li><p>Optional arguments to assemblers removed</p></li>
+<li><p>SymmetricAssembler removed</p></li>
+<li><p>Domains for assemblers can now only be attached to forms</p></li>
+<li><p>SubMesh can now be constructed without a CellFunction argument, if
+the MeshDomain contains marked celldomains.</p></li>
+<li><p>MeshDomains are propagated to a SubMesh during construction</p></li>
+<li><p>Simplify generation of a MeshFunction from MeshDomains: No need to
+call mesh_function with mesh</p></li>
+<li><p>Rename dolfin-config.cmake to DOLFINConfig.cmake</p></li>
+<li><p>Use CMake to configure JIT compilation of extension modules</p></li>
+<li><p>Feature: Add vertex_to_dof_map to DofMap, which map vertex indices
+to dolfin dofs</p></li>
+<li><p>Feature: Add support for solving on m dimensional meshes embedded in
+n &gt;= m dimensions</p></li>
+</ul>
+</div>
+<div class="section" id="id17">
+<h2>1.1.0 [2013-01-08]<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Add support for solving singular problems with Krylov solvers (PETSc
+only)</p></li>
+<li><p>Add new typedef dolfin::la_index for consistent indexing with linear
+algebra backends.</p></li>
+<li><p>Change default unsigned integer type to std::size_t</p></li>
+<li><p>Add support to attaching operator null space to preconditioner
+(required for smoothed aggregation AMG)</p></li>
+<li><p>Add basic interface to the PETSc AMG preconditioner</p></li>
+<li><p>Make SCOTCH default graph partitioner (GNU-compatible free license,
+unlike ParMETIS)</p></li>
+<li><p>Add scalable construction of mesh dual graph for mesh partitioning</p></li>
+<li><p>Improve performance of mesh building in parallel</p></li>
+<li><p>Add mesh output to SVG</p></li>
+<li><p>Add support for Facet and cell markers to mesh converted from
+Diffpack</p></li>
+<li><p>Add support for Facet and cell markers/attributes to mesh converted
+from Triangle</p></li>
+<li><p>Change interface for auto-adaptive solvers: these now take the goal
+functional as a constructor argument</p></li>
+<li><p>Add memory usage monitor: monitor_memory_usage()</p></li>
+<li><p>Compare mesh hash in interpolate_vertex_values</p></li>
+<li><p>Add hash() for Mesh and MeshTopology</p></li>
+<li><p>Expose GenericVector::operator{+=,-=,+,-}(double) to Python</p></li>
+<li><p>Add function Function::compute_vertex_values not needing a mesh
+argument</p></li>
+<li><p>Add support for XDMF and HDF5</p></li>
+<li><p>Add new interface LinearOperator for matrix-free linear systems</p></li>
+<li><p>Remove MTL4 linear algebra backend</p></li>
+<li><p>Rename down_cast –&gt; as_type in C++ / as_backend_type in Python</p></li>
+<li><p>Remove KrylovMatrix interface</p></li>
+<li><p>Remove quadrature classes</p></li>
+<li><p>JIT compiled C++ code can now include a dolfin namespace</p></li>
+<li><p>Expression string parsing now understand C++ namespace such as
+std::cosh</p></li>
+<li><p>Fix bug in Expression so one can pass min, max</p></li>
+<li><p>Fix bug in SystemAssembler, where mesh.init(D-1, D) was not called
+before assemble</p></li>
+<li><p>Fix bug where the reference count of Py_None was not increased</p></li>
+<li><p>Fix bug in reading TimeSeries of size smaller than 3</p></li>
+<li><p>Improve code design for Mesh FooIterators to avoid dubious down cast</p></li>
+<li><p>Bug fix in destruction of PETSc user preconditioners</p></li>
+<li><p>Add CellVolume(mesh) convenience wrapper to Python interface for UFL
+function</p></li>
+<li><p>Fix bug in producing outward pointing normals of BoundaryMesh</p></li>
+<li><p>Fix bug introduced by SWIG 2.0.5, where typemaps of templated
+typedefs are not handled correctly</p></li>
+<li><p>Fix bug introduced by SWIG 2.0.5, which treated uint as Python long</p></li>
+<li><p>Add check that sample points for TimeSeries are monotone</p></li>
+<li><p>Fix handling of parameter “report” in Krylov solvers</p></li>
+<li><p>Add new linear algebra backend “PETScCusp” for GPU-accelerated
+linear algebra</p></li>
+<li><p>Add sparray method in the Python interface of GenericMatrix,
+requires scipy.sparse</p></li>
+<li><p>Make methods that return a view of contiguous c-arrays, via a NumPy
+array, keep a reference from the object so it wont get out of scope</p></li>
+<li><p>Add parameter: “use_petsc_signal_handler”, which enables/disable
+PETSc system signals</p></li>
+<li><p>Avoid unnecessary resize of result vector for A*b</p></li>
+<li><p>MPI functionality for distributing values between neighbours</p></li>
+<li><p>SystemAssembler now works in parallel with topological/geometric
+boundary search</p></li>
+<li><p>New symmetric assembler with ability for stand-alone RHS assemble</p></li>
+<li><p>Major speed-up of DirichletBC computation and mesh marking</p></li>
+<li><p>Major speed-up of assembly of functions and expressions</p></li>
+<li><p>Major speed-up of mesh topology computation</p></li>
+<li><p>Add simple 2D and 3D mesh generation (via CGAL)</p></li>
+<li><p>Add creation of mesh from triangulations of points (via CGAL)</p></li>
+<li><p>Split the SWIG interface into six combined modules instead of one</p></li>
+<li><p>Add has_foo to easy check what solver and preconditioners are
+available</p></li>
+<li><p>Add convenience functions for listing available
+linear_algebra_backends</p></li>
+<li><p>Change naming convention for cpp unit tests test.cpp -&gt; Foo.cpp</p></li>
+<li><p>Added cpp unit test for GenericVector::operator{-,+,*,/}= for all la
+backends</p></li>
+<li><p>Add functionality for rotating meshes</p></li>
+<li><p>Add mesh generation based on NETGEN constructive solid geometry</p></li>
+<li><p>Generalize SparsityPattern and STLMatrix to support column-wise
+storage</p></li>
+<li><p>Add interfaces to wrap PaStiX and MUMPS direct solvers</p></li>
+<li><p>Add CoordinateMatrix class</p></li>
+<li><p>Make STLMatrix work in parallel</p></li>
+<li><p>Remove all tr1::tuple and use boost::tuple</p></li>
+<li><p>Fix wrong link in Python quick reference.</p></li>
+</ul>
+</div>
+<div class="section" id="id18">
+<h2>1.0.0 [2011-12-07]<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Change return value of IntervalCell::facet_area() 0.0 –&gt; 1.0.</p></li>
+<li><p>Recompile all forms with FFC 1.0.0</p></li>
+<li><p>Fix for CGAL 3.9 on OS X</p></li>
+<li><p>Improve docstrings for Box and Rectangle</p></li>
+<li><p>Check number of dofs on local patch in extrapolation</p></li>
+</ul>
+</div>
+<div class="section" id="rc2-2011-11-28">
+<h2>1.0-rc2 [2011-11-28]<a class="headerlink" href="#rc2-2011-11-28" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Fix bug in 1D mesh refinement</p></li>
+<li><p>Fix bug in handling of subdirectories for TimeSeries</p></li>
+<li><p>Fix logic behind vector assignment, especially in parallel</p></li>
+</ul>
+</div>
+<div class="section" id="rc1-2011-11-21">
+<h2>1.0-rc1 [2011-11-21]<a class="headerlink" href="#rc1-2011-11-21" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>33 bugs fixed</p></li>
+<li><p>Implement traversal of bounding box trees for all codimensions</p></li>
+<li><p>Edit and improve all error messages</p></li>
+<li><p>Added [un]equality operator to FunctionSpace</p></li>
+<li><p>Remove batch compilation of Expression (Expressions) from Python
+interface</p></li>
+<li><p>Added get_value to MeshValueCollection</p></li>
+<li><p>Added assignment operator to MeshValueCollection</p></li>
+</ul>
+</div>
+<div class="section" id="beta2-2011-10-26">
+<h2>1.0-beta2 [2011-10-26]<a class="headerlink" href="#beta2-2011-10-26" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Change search path of parameter file to
+~/.fenics/dolfin_parameters.xml</p></li>
+<li><p>Add functions Parameters::has_parameter,
+Parameters::has_parameter_set</p></li>
+<li><p>Added option to store all connectivities in a mesh for TimeSeries
+(false by default)</p></li>
+<li><p>Added option for gzip compressed binary files for TimeSeries</p></li>
+<li><p>Propagate global parameters to Krylov and LU solvers</p></li>
+<li><p>Fix OpenMp assemble of scalars</p></li>
+<li><p>Make OpenMP assemble over sub domains work</p></li>
+<li><p>DirichletBC.get_boundary_values, FunctionSpace.collapse now return a
+dict in Python</p></li>
+<li><p>Changed name of has_la_backend to has_linear_algebra_backend</p></li>
+<li><p>Added has_foo functions which can be used instead of the HAS_FOO
+defines</p></li>
+<li><p>Less trict check on kwargs for compiled Expression</p></li>
+<li><p>Add option to not right-justify tables</p></li>
+<li><p>Rename summary –&gt; list_timings</p></li>
+<li><p>Add function list_linear_solver_methods</p></li>
+<li><p>Add function list_lu_solver_methods</p></li>
+<li><p>Add function list_krylov_solver_methods</p></li>
+<li><p>Add function list_krylov_solver_preconditioners</p></li>
+<li><p>Support subdomains in SystemAssembler (not for interior facet
+integrals)</p></li>
+<li><p>Add option functionality apply(“flush”) to PETScMatrix</p></li>
+<li><p>Add option finalize_tensor=true to assemble functions</p></li>
+<li><p>Solver parameters can now be passed to solve</p></li>
+<li><p>Remove deprecated function Variable::disp()</p></li>
+<li><p>Remove deprecated function logging()</p></li>
+<li><p>Add new class MeshValueCollection</p></li>
+<li><p>Add new class MeshDomains replacing old storage of boundary markers
+as part of MeshData. The following names are no longer supported:
+- boundary_facet_cells
+- boundary_facet_numbers
+- boundary_indicators
+- material_indicators
+- cell_domains
+- interior_facet_domains
+- exterior_facet_domains</p></li>
+<li><p>Rename XML tag &lt;meshfunction&gt; –&gt; &lt;mesh_function&gt;</p></li>
+<li><p>Rename SubMesh data “global_vertex_indices” –&gt;
+“parent_vertex_indices”</p></li>
+<li><p>Get XML input/output of boundary markers working again</p></li>
+<li><p>Get FacetArea working again</p></li>
+</ul>
+</div>
+<div class="section" id="beta-2011-08-11">
+<h2>1.0-beta [2011-08-11]<a class="headerlink" href="#beta-2011-08-11" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Print percentage of non-zero entries when computing sparsity
+patterns</p></li>
+<li><p>Use ufl.Real for Constant in Python interface</p></li>
+<li><p>Add Dirichlet boundary condition argument to Python project function</p></li>
+<li><p>Add remove functionality for parameter sets</p></li>
+<li><p>Added out typemap for vector of shared_ptr objects</p></li>
+<li><p>Fix typemap bug for list of shared_ptr objects</p></li>
+<li><p>Support parallel XML vector io</p></li>
+<li><p>Add support for gzipped XML output</p></li>
+<li><p>Use pugixml for XML output</p></li>
+<li><p>Move XML SAX parser to libxml2 SAX2 interface</p></li>
+<li><p>Simplify XML io</p></li>
+<li><p>Change interface for variational problems, class VariationalProblem
+removed</p></li>
+<li><p>Add solve interface: solve(a == L), solve(F == 0)</p></li>
+<li><p>Add new classes Linear/NonlinearVariationalProblem</p></li>
+<li><p>Add new classes Linear/NonlinearVariationalSolver</p></li>
+<li><p>Ad form class aliases ResidualForm and Jacobian form in wrapper code</p></li>
+<li><p>Default argument to variables in Expression are passed as kwargs in
+the Python interface</p></li>
+<li><p>Add has_openmp as utility function in Python interface</p></li>
+<li><p>Add improved error reporting using dolfin_error</p></li>
+<li><p>Use Boost to compute Legendre polynolials</p></li>
+<li><p>Remove ode code</p></li>
+<li><p>Handle parsing of unrecognized command-line parameters</p></li>
+<li><p>All const std::vector&lt;foo&gt;&amp; now return a read-only NumPy array</p></li>
+<li><p>Make a robust macro for generating a NumPy array from data</p></li>
+<li><p>Exposing low level fem functionality to Python, by adding a Cell -&gt;
+ufc::cell typemap</p></li>
+<li><p>Added ufl_cell as a method to Mesh in Python interface</p></li>
+<li><p>Fix memory leak in Zoltan interface</p></li>
+<li><p>Remove some ‘new’ for arrays in favour of std::vector</p></li>
+<li><p>Added cell as an optional argument to Constant</p></li>
+<li><p>Prevent the use of non contiguous NumPy arrays for most typemaps</p></li>
+<li><p>Point can now be used to evaluate a Function or Expression in Python</p></li>
+<li><p>Fixed dimension check for Function and Expression eval in Python</p></li>
+<li><p>Fix compressed VTK output for tensors in 2D</p></li>
+</ul>
+</div>
+<div class="section" id="id19">
+<h2>0.9.11 [2011-05-16]<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Change license from LGPL v2.1 to LGPL v3 or later</p></li>
+<li><p>Moved meshconverter to dolfin_utils</p></li>
+<li><p>Add support for conversion of material markers for Gmsh meshes</p></li>
+<li><p>Add support for point sources (class PointSource)</p></li>
+<li><p>Rename logging –&gt; set_log_active</p></li>
+<li><p>Add parameter “clear_on_write” to TimeSeries</p></li>
+<li><p>Add support for input/output of nested parameter sets</p></li>
+<li><p>Check for dimensions in linear solvers</p></li>
+<li><p>Add support for automated error control for variational problems</p></li>
+<li><p>Add support for refinement of MeshFunctions after mesh refinement</p></li>
+<li><p>Change order of test and trial spaces in Form constructors</p></li>
+<li><p>Make SWIG version &gt;= 2.0 a requirement</p></li>
+<li><p>Recognize subdomain data in Assembler from both Form and Mesh</p></li>
+<li><p>Add storage for subdomains (cell_domains etc) in Form class</p></li>
+<li><p>Rename MeshData “boundary facet cells” –&gt; “boundary_facet_cells”</p></li>
+<li><p>Rename MeshData “boundary facet numbers” –&gt;
+“boundary_facet_numbers”</p></li>
+<li><p>Rename MeshData “boundary indicators” –&gt; “boundary_indicators”</p></li>
+<li><p>Rename MeshData “exterior facet domains” –&gt;
+“exterior_facet_domains”</p></li>
+<li><p>Updates for UFC 2.0.1</p></li>
+<li><p>Add FiniteElement::evaluate_basis_derivatives_all</p></li>
+<li><p>Add support for VTK output of facet-based MeshFunctions</p></li>
+<li><p>Change default log level from PROGRESS to INFO</p></li>
+<li><p>Add copy functions to FiniteElement and DofMap</p></li>
+<li><p>Simplify DofMap</p></li>
+<li><p>Interpolate vector values when reading from time series</p></li>
+</ul>
+</div>
+<div class="section" id="id20">
+<h2>0.9.10 [2011-02-23]<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Updates for UFC 2.0.0</p></li>
+<li><p>Handle TimeSeries stored backward in time (automatic reversal)</p></li>
+<li><p>Automatic storage of hierarchy during refinement</p></li>
+<li><p>Remove directory/library ‘main’, merged into ‘common’</p></li>
+<li><p>dolfin_init –&gt; init, dolfin_set_precision –&gt; set_precision</p></li>
+<li><p>Remove need for mesh argument to functional assembly when possible</p></li>
+<li><p>Add function set_output_stream</p></li>
+<li><p>Add operator () for evaluation at points for Function/Expression in
+C++</p></li>
+<li><p>Add abs() to GenericVector interface</p></li>
+<li><p>Fix bug for local refinement of manifolds</p></li>
+<li><p>Interface change: VariationalProblem now takes: a, L or F, (dF)</p></li>
+<li><p>Map linear algebra objects to processes consistently with mesh
+partition</p></li>
+<li><p>Lots of improvemenst to parallel assembly, dof maps and linear
+algebra</p></li>
+<li><p>Add lists supported_elements and supported_elements_for_plotting in
+Python</p></li>
+<li><p>Add script dolfin-plot for plotting meshes and elements from the
+command-line</p></li>
+<li><p>Add support for plotting elements from Python</p></li>
+<li><p>Add experimental OpenMP assembler</p></li>
+<li><p>Thread-safe fixed in Function class</p></li>
+<li><p>Make GenericFunction::eval thread-safe (Data class removed)</p></li>
+<li><p>Optimize and speedup topology computation (mesh.init())</p></li>
+<li><p>Add function Mesh::clean() for cleaning out auxilliary topology data</p></li>
+<li><p>Improve speed and accuracy of timers</p></li>
+<li><p>Fix bug in 3D uniform mesh refinement</p></li>
+<li><p>Add built-in meshes UnitTriangle and UnitTetrahedron</p></li>
+<li><p>Only create output directories when they don’t exist</p></li>
+<li><p>Make it impossible to set the linear algebra backend to something
+illegal</p></li>
+<li><p>Overload value_shape instead of dim for userdefined Python
+Expressions</p></li>
+<li><p>Permit unset parameters</p></li>
+<li><p>Search only for BLAS library (not cblas.h)</p></li>
+</ul>
+</div>
+<div class="section" id="id21">
+<h2>0.9.9 [2010-09-01]<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Change build system to CMake</p></li>
+<li><p>Add named MeshFunctions: VertexFunction, EdgeFunction, FaceFunction,
+FacetFunction, CellFunction</p></li>
+<li><p>Allow setting constant boundary conditions directly without using
+Constant</p></li>
+<li><p>Allow setting boundary conditions based on string (“x[0] == 0.0”)</p></li>
+<li><p>Create missing directories if specified as part of file names</p></li>
+<li><p>Allow re-use of preconditioners for most backends</p></li>
+<li><p>Fixes for UMFPACK solver on some 32 bit machines</p></li>
+<li><p>Provide access to more Hypre preconditioners via PETSc</p></li>
+<li><p>Updates for SLEPc 3.1</p></li>
+<li><p>Improve and implement re-use of LU factorizations for all backends</p></li>
+<li><p>Fix bug in refinement of MeshFunctions</p></li>
+</ul>
+</div>
+<div class="section" id="id22">
+<h2>0.9.8 [2010-07-01]<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Optimize and improve StabilityAnalysis.</p></li>
+<li><p>Use own implementation of binary search in ODESolution (takes
+advantage of previous values as initial guess)</p></li>
+<li><p>Improve reading ODESolution spanning multiple files</p></li>
+<li><p>Dramatic speedup of progress bar (and algorithms using it)</p></li>
+<li><p>Fix bug in writing meshes embedded higher dimensions to M-files</p></li>
+<li><p>Zero vector in uBLASVector::resize() to fix spurious bug in Krylov
+solver</p></li>
+<li><p>Handle named fields (u.rename()) in VTK output</p></li>
+<li><p>Bug fix in computation of FacetArea for tetrahedrons</p></li>
+<li><p>Add support for direct plotting of Dirichlet boundary conditions:
+plot(bc)</p></li>
+<li><p>Updates for PETSc 3.1</p></li>
+<li><p>Add relaxation parameter to NewtonSolver</p></li>
+<li><p>Implement collapse of renumbered dof maps (serial and parallel)</p></li>
+<li><p>Simplification of DofMapBuilder for parallel dof maps</p></li>
+<li><p>Improve and simplify DofMap</p></li>
+<li><p>Add Armadillo dependency for dense linear algebra</p></li>
+<li><p>Remove LAPACKFoo wrappers</p></li>
+<li><p>Add abstract base class GenericDofMap</p></li>
+<li><p>Zero small values in VTK output to avoid VTK crashes</p></li>
+<li><p>Handle MeshFunction/markers in homogenize bc</p></li>
+<li><p>Make preconditioner selectable in VariationalProblem (new parameter)</p></li>
+<li><p>Read/write meshes in binary format</p></li>
+<li><p>Add parameter “use_ident” in DirichletBC</p></li>
+<li><p>Issue error by default when solvers don’t converge (parameter
+“error_on_convergence”)</p></li>
+<li><p>Add option to print matrix/vector for a VariationalProblem</p></li>
+<li><p>Trilinos backend now works in parallel</p></li>
+<li><p>Remove Mesh refine members functions. Use free refine(…) functions
+instead</p></li>
+<li><p>Remove AdapativeObjects</p></li>
+<li><p>Add Stokes demo using the MINI element</p></li>
+<li><p>Interface change: operator+ now used to denote enriched function
+spaces</p></li>
+<li><p>Interface change: operator+ –&gt; operator* for mixed elements</p></li>
+<li><p>Add option ‘allow_extrapolation’ useful when interpolating to
+refined meshes</p></li>
+<li><p>Add SpatialCoordinates demo</p></li>
+<li><p>Add functionality for accessing time series sample times:
+vector_times(), mesh_times()</p></li>
+<li><p>Add functionality for snapping mesh to curved boundaries during
+refinement</p></li>
+<li><p>Add functionality for smoothing the boundary of a mesh</p></li>
+<li><p>Speedup assembly over exterior facets by not using BoundaryMesh</p></li>
+<li><p>Mesh refinement improvements, remove unecessary copying in Python
+interface</p></li>
+<li><p>Clean PETSc and Epetra Krylov solvers</p></li>
+<li><p>Add separate preconditioner classes for PETSc and Epetra solvers</p></li>
+<li><p>Add function ident_zeros for inserting one on diagonal for zero rows</p></li>
+<li><p>Add LU support for Trilinos interface</p></li>
+</ul>
+</div>
+<div class="section" id="id23">
+<h2>0.9.7 [2010-02-17]<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Add support for specifying facet orientation in assembly over
+interior facets</p></li>
+<li><p>Allow user to choose which LU package PETScLUSolver uses</p></li>
+<li><p>Add computation of intersection between arbitrary mesh entities</p></li>
+<li><p>Random access to MeshEntitiyIterators</p></li>
+<li><p>Modify SWIG flags to prevent leak when using SWIG director feature</p></li>
+<li><p>Fix memory leak in std::vector&lt;Foo*&gt; typemaps</p></li>
+<li><p>Add interface for SCOTCH for parallel mesh partitioning</p></li>
+<li><p>Bug fix in SubDomain::mark, fixes bug in DirichletBC based on
+SubDomain::inside</p></li>
+<li><p>Improvements in time series class, recognizing old stored values</p></li>
+<li><p>Add FacetCell class useful in algorithms iterating over boundary
+facets</p></li>
+<li><p>Rename reconstruct –&gt; extrapolate</p></li>
+<li><p>Remove GTS dependency</p></li>
+</ul>
+</div>
+<div class="section" id="id24">
+<h2>0.9.6 [2010-02-03]<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Simplify access to form compiler parameters, now integrated with
+global parameters</p></li>
+<li><p>Add DofMap member function to return set of dofs</p></li>
+<li><p>Fix memory leak in the LA interface</p></li>
+<li><p>Do not import cos, sin, exp from NumPy to avoid clash with UFL
+functions</p></li>
+<li><p>Fix bug in MTL4Vector assignment</p></li>
+<li><p>Remove sandbox (moved to separate repository)</p></li>
+<li><p>Remove matrix factory (dolfin/mf)</p></li>
+<li><p>Update .ufl files for changes in UFL</p></li>
+<li><p>Added swig/import/foo.i for easy type importing from dolfin modules</p></li>
+<li><p>Allow optional argument cell when creating Expression</p></li>
+<li><p>Change name of Expression argument cpparg –&gt; cppcode</p></li>
+<li><p>Add simple constructor (dim0, dim1) for C++ matrix Expressions</p></li>
+<li><p>Add example demonstrating the use of cpparg (C++ code in Python)</p></li>
+<li><p>Add least squares solver for dense systems (wrapper for DGELS)</p></li>
+<li><p>New linear algebra wrappers for LAPACK matrices and vectors</p></li>
+<li><p>Experimental support for reconstruction of higher order functions</p></li>
+<li><p>Modified interface for eval() and inside() in C++ using Array</p></li>
+<li><p>Introduce new Array class for simplified wrapping of arrays in SWIG</p></li>
+<li><p>Improved functionality for intersection detection</p></li>
+<li><p>Re-implementation of intersection detection using CGAL</p></li>
+</ul>
+</div>
+<div class="section" id="id25">
+<h2>0.9.5 [2009-12-03]<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Set appropriate parameters for symmetric eigenvalue problems with
+SLEPc</p></li>
+<li><p>Fix for performance regression in recent uBLAS releases</p></li>
+<li><p>Simplify Expression interface: f = Expression(“sin(x[0])”)</p></li>
+<li><p>Simplify Constant interface: c = Constant(1.0)</p></li>
+<li><p>Fix bug in periodic boundary conditions</p></li>
+<li><p>Add simple script dolfin-tetgen for generating DOLFIN XML meshes
+from STL</p></li>
+<li><p>Make XML parser append/overwrite parameter set when reading
+parameters from file</p></li>
+<li><p>Refinement of function spaces and automatic interpolation of member
+functions</p></li>
+<li><p>Allow setting global parameters for Krylov solver</p></li>
+<li><p>Fix handling of Constants in Python interface to avoid repeated JIT
+compilation</p></li>
+<li><p>Allow simple specification of subdomains in Python without needing
+to subclass SubDomain</p></li>
+<li><p>Add function homogenize() for simple creation of homogeneous BCs
+from given BCs</p></li>
+<li><p>Add copy constructor and possibility to change value for DirichletBC</p></li>
+<li><p>Add simple wrapper for ufl.cell.n. FacetNormal(mesh) now works again
+in Python.</p></li>
+<li><p>Support apply(A), apply(b) and apply(b, x) in PeriodicBC</p></li>
+<li><p>Enable setting spectral transformation for SLEPc eigenvalue solver</p></li>
+</ul>
+</div>
+<div class="section" id="id26">
+<h2>0.9.4 [2009-10-12]<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Remove set, get and operator() methods from MeshFunction</p></li>
+<li><p>Added const and none const T &amp;operator[uint/MeshEntity] to
+MeshFunction</p></li>
+<li><p>More clean up in SWIG interface files, remove global renames and
+ignores</p></li>
+<li><p>Update Python interface to Expression, with extended tests for value
+ranks</p></li>
+<li><p>Removed DiscreteFunction class</p></li>
+<li><p>Require value_shape and geometric_dimension in Expression</p></li>
+<li><p>Introduce new class Expression replacing user-defined Functions</p></li>
+<li><p>interpolate_vertex_values –&gt; compute_vertex_values</p></li>
+<li><p>std::map&lt;std::string, Coefficient&gt; replaces generated CoefficientSet
+code</p></li>
+<li><p>Cleanup logic in Function class as a result of new Expression class</p></li>
+<li><p>Introduce new Coefficient base class for form coefficients</p></li>
+<li><p>Replace CellSize::min,max by Mesh::hmin,hmax</p></li>
+<li><p>Use MUMPS instead of UMFPACK as default direct solver in both serial
+and parallel</p></li>
+<li><p>Fix bug in SystemAssembler</p></li>
+<li><p>Remove support for PETSc 2.3 and support PETSc 3.0.0 only</p></li>
+<li><p>Remove FacetNormal Function. Use UFL facet normal instead.</p></li>
+<li><p>Add update() function to FunctionSpace and DofMap for use in
+adaptive mesh refinement</p></li>
+<li><p>Require mesh in constructor of functionals (C++) or argument to
+assemble (Python)</p></li>
+</ul>
+</div>
+<div class="section" id="id27">
+<h2>0.9.3 [2009-09-25]<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Add global parameter “ffc_representation” for form representation in
+FFC JIT compiler</p></li>
+<li><p>Make norm() function handle both vectors and functions in Python</p></li>
+<li><p>Speedup periodic boundary conditions and make work for mixed
+(vector-valued) elements</p></li>
+<li><p>Add possibilities to use any number numpy array when assigning
+matrices and vectors</p></li>
+<li><p>Add possibilities to use any integer numpy array for indices in
+matrices and vectors</p></li>
+<li><p>Fix for int typemaps in PyDOLFIN</p></li>
+<li><p>Split mult into mult and transpmult</p></li>
+<li><p>Filter out PETSc argument when parsing command-line parameters</p></li>
+<li><p>Extend comments to SWIG interface files</p></li>
+<li><p>Add copyright statements to SWIG interface files (not finished yet)</p></li>
+<li><p>Add typemaps for misc std::vector&lt;types&gt; in PyDOLFIN</p></li>
+<li><p>Remove dependencies on std_vector.i reducing SWIG wrapper code size</p></li>
+<li><p>Use relative %includes in dolfin.i</p></li>
+<li><p>Changed names on SWIG interface files dolfin_foo.i -&gt; foo.i</p></li>
+<li><p>Add function interpolate() in Python interface</p></li>
+<li><p>Fix typmaps for uint in python 2.6</p></li>
+<li><p>Use TypeError instead of ValueError in typechecks in typmaps.i</p></li>
+<li><p>Add in/out shared_ptr&lt;Epetra_FEFoo&gt; typemaps for PyDOLFIN</p></li>
+<li><p>Fix JIT compiling in parallel</p></li>
+<li><p>Add a compile_extension_module function in PyDOLFIN</p></li>
+<li><p>Fix bug in Python vector assignment</p></li>
+<li><p>Add support for compressed base64 encoded VTK files (using zlib)</p></li>
+<li><p>Add support for base64 encoded VTK files</p></li>
+<li><p>Experimental support for parallel assembly and solve</p></li>
+<li><p>Bug fix in project() function, update to UFL syntax</p></li>
+<li><p>Remove disp() functions and replace by info(foo, true)</p></li>
+<li><p>Add fem unit test (Python)</p></li>
+<li><p>Clean up SystemAssembler</p></li>
+<li><p>Enable assemble_system through PyDOLFIN</p></li>
+<li><p>Add ‘norm’ to GenericMatrix</p></li>
+<li><p>Efficiency improvements in NewtonSolver</p></li>
+<li><p>Rename NewtonSolver::get_iteration() to NewtonSolver::iteration()</p></li>
+<li><p>Improvements to EpetraKrylovSolver::solve</p></li>
+<li><p>Add constructor Vector::Vector(const GenericVector&amp; x)</p></li>
+<li><p>Remove SCons deprecation warnings</p></li>
+<li><p>Memory leak fix in PETScKrylovSolver</p></li>
+<li><p>Rename dolfin_assert -&gt; assert and use C++ version</p></li>
+<li><p>Fix debug/optimise flags</p></li>
+<li><p>Remove AvgMeshSize, InvMeshSize, InvFacetArea from SpecialFunctions</p></li>
+<li><p>Rename MeshSize -&gt; CellSize</p></li>
+<li><p>Rewrite parameter system with improved support for command-line
+parsing, localization of parameters (per class) and usability from
+Python</p></li>
+<li><p>Remove OutflowFacet from SpecialFunctions</p></li>
+<li><p>Rename interpolate(double*) –&gt; interpolate_vertex_values(double*)</p></li>
+<li><p>Add Python version of Cahn-Hilliard demo</p></li>
+<li><p>Fix bug in assemble.py</p></li>
+<li><p>Permit interpolation of functions between non-matching meshes</p></li>
+<li><p>Remove Function::Function(std::string filename)</p></li>
+<li><p>Transition to new XML io</p></li>
+<li><p>Remove GenericSparsityPattern::sort</p></li>
+<li><p>Require sorted/unsorted parameter in SparsityPattern constructor</p></li>
+<li><p>Improve performance of SparsityPattern::insert</p></li>
+<li><p>Replace enums with strings for linear algebra and built-in meshes</p></li>
+<li><p>Allow direct access to Constant value</p></li>
+<li><p>Initialize entities in MeshEntity constructor automatically and
+check range</p></li>
+<li><p>Add unit tests to the memorycheck</p></li>
+<li><p>Add call to clean up libxml2 parser at exit</p></li>
+<li><p>Remove unecessary arguments in DofMap member functions</p></li>
+<li><p>Remove reference constructors from DofMap, FiniteElement and
+FunctionSpace</p></li>
+<li><p>Use a shared_ptr to store the mesh in DofMap objects</p></li>
+<li><p>Interface change for wrapper code: PoissonBilinearForm –&gt;
+Poisson::BilinearForm</p></li>
+<li><p>Add function info_underline() for writing underlined messages</p></li>
+<li><p>Rename message() –&gt; info() for “compatibility” with Python logging
+module</p></li>
+<li><p>Add elementwise multiplication in GeneriVector interface</p></li>
+<li><p>GenericVector interface in PyDOLFIN now support the sequence
+protocol</p></li>
+<li><p>Rename of camelCaps functions names: fooBar –&gt; foo_bar Note:
+mesh.numVertices() –&gt; mesh.num_vertices(), mesh.numCells() –&gt;
+mesh.num_cells()</p></li>
+<li><p>Add slicing capabilities for GenericMatrix interface in PyDOLFIN
+(only getitem)</p></li>
+<li><p>Add slicing capabilities for GenericVector interface in PyDOLFIN</p></li>
+<li><p>Add sum to GenericVector interface</p></li>
+</ul>
+</div>
+<div class="section" id="id28">
+<h2>0.9.2 [2009-04-07]<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Enable setting parameters for Newton solver in VariationalProblem</p></li>
+<li><p>Simplified and improved implementation of C++ plotting, calling
+Viper on command-line</p></li>
+<li><p>Remove precompiled elements and projections</p></li>
+<li><p>Automatically interpolate user-defined functions on assignment</p></li>
+<li><p>Add new built-in function MeshCoordinates, useful in ALE simulations</p></li>
+<li><p>Add new constructor to Function class, Function(V, “vector.xml”)</p></li>
+<li><p>Remove class Array (using std::vector instead)</p></li>
+<li><p>Add vector_mapping data to MeshData</p></li>
+<li><p>Use std::vector instead of Array in MeshData</p></li>
+<li><p>Add assignment operator and copy constructor for MeshFunction</p></li>
+<li><p>Add function mesh.move(other_mesh) for moving mesh according to
+matching mesh (for FSI)</p></li>
+<li><p>Add function mesh.move(u) for moving mesh according to displacement
+function (for FSI)</p></li>
+<li><p>Add macro dolfin_not_implemented()</p></li>
+<li><p>Add new interpolate() function for interpolation of user-defined
+function to discrete</p></li>
+<li><p>Make _function_space protected in Function</p></li>
+<li><p>Added access to crs data from python for uBLAS and MTL4 backend</p></li>
+</ul>
+</div>
+<div class="section" id="id29">
+<h2>0.9.1 [2009-02-17]<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Check Rectangle and Box for non-zero dimensions</p></li>
+<li><p>ODE solvers now solve the dual problem</p></li>
+<li><p>New class SubMesh for simple extraction of matching meshes for sub
+domains</p></li>
+<li><p>Improvements of multiprecision ODE solver</p></li>
+<li><p>Fix Function class copy constructor</p></li>
+<li><p>Bug fixes for errornorm(), updates for new interface</p></li>
+<li><p>Interface update for MeshData: createMeshFunction –&gt;
+create_mesh_function etc</p></li>
+<li><p>Interface update for Rectangle and Box</p></li>
+<li><p>Add elastodynamics demo</p></li>
+<li><p>Fix memory leak in IntersectionDetector/GTSInterface</p></li>
+<li><p>Add check for swig version, in jit and compile functions</p></li>
+<li><p>Bug fix in dolfin-order script for gzipped files</p></li>
+<li><p>Make shared_ptr work across C++/Python interface</p></li>
+<li><p>Replace std::tr1::shared_ptr with boost::shared_ptr</p></li>
+<li><p>Bug fix in transfinite mean-value interpolation</p></li>
+<li><p>Less annoying progress bar (silent when progress is fast)</p></li>
+<li><p>Fix assignment operator for MeshData</p></li>
+<li><p>Improved adaptive mesh refinement (recursive Rivara) producing
+better quality meshes</p></li>
+</ul>
+</div>
+<div class="section" id="id30">
+<h2>0.9.0 [2009-01-05]<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Cross-platform fixes</p></li>
+<li><p>PETScMatrix::copy fix</p></li>
+<li><p>Some Trilinos fixes</p></li>
+<li><p>Improvements in MeshData class</p></li>
+<li><p>Do not use initial guess in Newton solver</p></li>
+<li><p>Change OutflowFacet to IsOutflowFacet and change syntax</p></li>
+<li><p>Used shared_ptr for underling linear algebra objects</p></li>
+<li><p>Cache subspaces in FunctionSpace</p></li>
+<li><p>Improved plotting, now support plot(grad(u)), plot(div(u)) etc</p></li>
+<li><p>Simple handling of JIT-compiled functions</p></li>
+<li><p>Sign change (bug fix) in increment for Newton solver</p></li>
+<li><p>New class VariationalProblem replacing LinearPDE and NonlinearPDE</p></li>
+<li><p>Parallel parsing and partitioning of meshes (experimental)</p></li>
+<li><p>Add script dolfin-order for ordering mesh files</p></li>
+<li><p>Add new class SubSpace (replacing SubSystem)</p></li>
+<li><p>Add new class FunctionSpace</p></li>
+<li><p>Complete redesign of Function class hierarchy, now a single Function
+class</p></li>
+<li><p>Increased use of shared_ptr in Function, FunctionSpace, etc</p></li>
+<li><p>New interface for boundary conditions, form not necessary</p></li>
+<li><p>Allow simple setting of coefficient functions based on names (not
+their index)</p></li>
+<li><p>Don’t order mesh automatically, meshes must now be ordered
+explicitly</p></li>
+<li><p>Simpler definition of user-defined functions (constructors not
+necessary)</p></li>
+<li><p>Make mesh iterators const to allow for const-correct Mesh code</p></li>
+</ul>
+</div>
+<div class="section" id="id31">
+<h2>0.8.1 [2008-10-20]<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Add option to use ML multigrid preconditioner through PETSc</p></li>
+<li><p>Interface change for ODE solvers: uBLASVector –&gt; double*</p></li>
+<li><p>Remove homotopy solver</p></li>
+<li><p>Remove typedef real, now using plain double instead</p></li>
+<li><p>Add various operators -=, += to GenericMatrix</p></li>
+<li><p>Don’t use -Werror when compiling SWIG generated code</p></li>
+<li><p>Remove init(n) and init(m, n) from GenericVector/Matrix. Use resize
+and zero instead</p></li>
+<li><p>Add new function is_combatible() for checking compatibility of
+boundary conditions</p></li>
+<li><p>Use x as initial guess in Krylov solvers (PETSc, uBLAS, ITL)</p></li>
+<li><p>Add new function errornorm()</p></li>
+<li><p>Add harmonic ALE mesh smoothing</p></li>
+<li><p>Refinements of Graph class</p></li>
+<li><p>Add CholmodCholeskySlover (direct solver for symmetric matrices)</p></li>
+<li><p>Implement application of Dirichlet boundary conditions within
+assembly loop</p></li>
+<li><p>Improve efficiency of SparsityPattern</p></li>
+<li><p>Allow a variable number of smoothings</p></li>
+<li><p>Add class Table for pretty-printing of tables</p></li>
+<li><p>Add experimental MTL4 linear algebra backend</p></li>
+<li><p>Add OutflowFacet to SpecialFunctions for DG transport problems</p></li>
+<li><p>Remove unmaintained OpenDX file format</p></li>
+<li><p>Fix problem with mesh smoothing near nonconvex corners</p></li>
+<li><p>Simple projection of functions in Python</p></li>
+<li><p>Add file format: XYZ for use with Xd3d</p></li>
+<li><p>Add built-in meshes: UnitCircle, Box, Rectangle, UnitSphere</p></li>
+</ul>
+</div>
+<div class="section" id="id32">
+<h2>0.8.0 [2008-06-23]<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Fix input of matrix data from XML</p></li>
+<li><p>Add function normalize()</p></li>
+<li><p>Integration with VMTK for reading DOLFIN XML meshes produced by VMTK</p></li>
+<li><p>Extend mesh XML format to handle boundary indicators</p></li>
+<li><p>Add support for attaching arbitrarily named data to meshes</p></li>
+<li><p>Add support for dynamically choosing the linear algebra backend</p></li>
+<li><p>Add Epetra/Trilinos linear solvers</p></li>
+<li><p>Add setrow() to matrix interface</p></li>
+<li><p>Add new solver SingularSolver for solving singular (pressure)
+systems</p></li>
+<li><p>Add MeshSize::min(), max() for easy computation of smallest/largest
+mesh size</p></li>
+<li><p>LinearSolver now handles all backends and linear solvers</p></li>
+<li><p>Add access to normal in Function, useful for inflow boundary
+conditions</p></li>
+<li><p>Remove GMRES and LU classes, use solve() instead</p></li>
+<li><p>Improve solve() function, now handles both LU and Krylov +
+preconditioners</p></li>
+<li><p>Add ALE mesh interpolation (moving mesh according to new boundary
+coordinates)</p></li>
+</ul>
+</div>
+<div class="section" id="id33">
+<h2>0.7.3 [2008-04-30]<a class="headerlink" href="#id33" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Add support for Epetra/Trilinos</p></li>
+<li><p>Bug fix for order of values in interpolate_vertex_values, now
+according to UFC</p></li>
+<li><p>Boundary meshes are now always oriented with respect to outward
+facet normals</p></li>
+<li><p>Improved linear algebra, both in C++ and Python</p></li>
+<li><p>Make periodic boundary conditions work in Python</p></li>
+<li><p>Fix saving of user-defined functions</p></li>
+<li><p>Improve plotting</p></li>
+<li><p>Simple computation of various norms of functions from Python</p></li>
+<li><p>Evaluation of Functions at arbitrary points in a mesh</p></li>
+<li><p>Fix bug in assembling over exterior facets (subdomains were ignored)</p></li>
+<li><p>Make progress bar less annoying</p></li>
+<li><p>New scons-based build system replaces autotools</p></li>
+<li><p>Fix bug when choosing iterative solver from Python</p></li>
+</ul>
+</div>
+<div class="section" id="id34">
+<h2>0.7.2 [2008-02-18]<a class="headerlink" href="#id34" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Improve sparsity pattern generator efficiency</p></li>
+<li><p>Dimension-independent sparsity pattern generator</p></li>
+<li><p>Add support for setting strong boundary values for DG elements</p></li>
+<li><p>Add option setting boundary conditions based on geometrical search</p></li>
+<li><p>Check UMFPACK return argument for warnings/errors</p></li>
+<li><p>Simplify setting simple Dirichlet boundary conditions</p></li>
+<li><p>Much improved integration with FFC in PyDOLFIN</p></li>
+<li><p>Caching of forms by JIT compiler now works</p></li>
+<li><p>Updates for UFC 1.1</p></li>
+<li><p>Catch exceptions in PyDOLFIN</p></li>
+<li><p>Work on linear algebra interfaces GenericTensor/Matrix/Vector</p></li>
+<li><p>Add linear algebra factory (backend) interface</p></li>
+<li><p>Add support for 1D meshes</p></li>
+<li><p>Make Assembler independent of linear algebra backend</p></li>
+<li><p>Add manager for handling sub systems (PETSc and MPI)</p></li>
+<li><p>Add parallel broadcast of Mesh and MeshFunction</p></li>
+<li><p>Add experimental support for parallel assembly</p></li>
+<li><p>Use PETSc MPI matrices when running in parallel</p></li>
+<li><p>Add predefined functions FacetNormal and AvgMeshSize</p></li>
+<li><p>Add left/right/crisscross options for UnitSquare</p></li>
+<li><p>Add more Python demos</p></li>
+<li><p>Add support for Exodus II format in dolfin-convert</p></li>
+<li><p>Autogenerate docstrings for PyDOLFIN</p></li>
+<li><p>Various small bug fixes and improvements</p></li>
+</ul>
+</div>
+<div class="section" id="id35">
+<h2>0.7.1 [2007-08-31]<a class="headerlink" href="#id35" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Integrate FFC form language into PyDOLFIN</p></li>
+<li><p>Just-in-time (JIT) compilation of variational forms</p></li>
+<li><p>Conversion from from Diffpack grid format to DOLFIN XML</p></li>
+<li><p>Name change: BoundaryCondition –&gt; DirichletBC</p></li>
+<li><p>Add support for periodic boundary conditions: class PeriodicBC</p></li>
+<li><p>Redesign default linear algebra interface (Matrix, Vector,
+KrylovSolver, etc)</p></li>
+<li><p>Add function to return Vector associated with a DiscreteFunction</p></li>
+</ul>
+</div>
+<div class="section" id="id36">
+<h2>0.7.0-1 [2007-06-22]<a class="headerlink" href="#id36" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Recompile all forms with latest FFC release</p></li>
+<li><p>Remove typedefs SparseMatrix and SparseVector</p></li>
+<li><p>Fix includes in LinearPDE</p></li>
+<li><p>Rename DofMaps -&gt; DofMapSet</p></li>
+</ul>
+</div>
+<div class="section" id="id37">
+<h2>0.7.0 [2007-06-20]<a class="headerlink" href="#id37" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Move to UFC interface for code generation</p></li>
+<li><p>Major rewrite, restructure, cleanup</p></li>
+<li><p>Add support for Brezzi-Douglas-Marini (BDM) elements</p></li>
+<li><p>Add support for Raviart-Thomas (RT) elements</p></li>
+<li><p>Add support for Discontinuous Galerkin (DG) methods</p></li>
+<li><p>Add support for mesh partitioning (through SCOTCH)</p></li>
+<li><p>Handle both UMFPACK and UFSPARSE</p></li>
+<li><p>Local mesh refinement</p></li>
+<li><p>Mesh smoothing</p></li>
+<li><p>Built-in plotting (through Viper)</p></li>
+<li><p>Cleanup log system</p></li>
+<li><p>Numerous fixes for mesh, in particular MeshFunction</p></li>
+<li><p>Much improved Python bindings for mesh</p></li>
+<li><p>Fix Python interface for vertex and cell maps in boundary
+computation</p></li>
+</ul>
+</div>
+<div class="section" id="id38">
+<h2>0.6.4 [2006-12-01]<a class="headerlink" href="#id38" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Switch from Python Numeric to Python NumPy</p></li>
+<li><p>Improved mesh Python bindings</p></li>
+<li><p>Add input/output support for MeshFunction</p></li>
+<li><p>Change Mesh::vertices() –&gt; Mesh::coordinates()</p></li>
+<li><p>Fix bug in output of mesh to MATLAB format</p></li>
+<li><p>Add plasticty module (experimental)</p></li>
+<li><p>Fix configure test for Python dev (patch from Åsmund Ødegård)</p></li>
+<li><p>Add mesh benchmark</p></li>
+<li><p>Fix memory leak in mesh (data not deleted correctly in MeshTopology)</p></li>
+<li><p>Fix detection of curses libraries</p></li>
+<li><p>Remove Tecplot output format</p></li>
+</ul>
+</div>
+<div class="section" id="id39">
+<h2>0.6.3 [2006-10-27]<a class="headerlink" href="#id39" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Move to new mesh library</p></li>
+<li><p>Remove dolfin-config and move to pkg-config</p></li>
+<li><p>Remove unused classes PArray, PList, Table, Tensor</p></li>
+<li><p>Visualization of 2D solutions in OpenDX is now supported (3D
+supported before)</p></li>
+<li><p>Add support for evaluation of functionals</p></li>
+<li><p>Fix bug in Vector::sum() for uBLAS vectors</p></li>
+</ul>
+</div>
+<div class="section" id="id40">
+<h2>0.6.2-1 [2006-09-06]<a class="headerlink" href="#id40" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Fix compilation error when using –enable-petsc
+(dolfin::uBLASVector::PETScVector undefined)</p></li>
+</ul>
+</div>
+<div class="section" id="id41">
+<h2>0.6.2 [2006-09-05]<a class="headerlink" href="#id41" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Finish chapter in manual on linear algebra</p></li>
+<li><p>Enable PyDOLFIN by default, use –disable-pydolfin to disable</p></li>
+<li><p>Disable PETSc by default, use –enable-petsc to enable</p></li>
+<li><p>Modify ODE solver interface for u0() and f()</p></li>
+<li><p>Add class ConvectionMatrix</p></li>
+<li><p>Readd classes LoadVector, MassMatrix, StiffnessMatrix</p></li>
+<li><p>Add matrix factory for simple creation of standard finite element
+matrices</p></li>
+<li><p>Collect static solvers in LU and GMRES</p></li>
+<li><p>Bug fixes for Python interface PyDOLFIN</p></li>
+<li><p>Enable use of direct solver for ODE solver (experimental)</p></li>
+<li><p>Remove demo bistable</p></li>
+<li><p>Restructure and cleanup linear algebra</p></li>
+<li><p>Use UMFPACK for LU solver with uBLAS matrix types</p></li>
+<li><p>Add templated wrapper class for different uBLAS matrix types</p></li>
+<li><p>Add ILU preconditioning for uBLAS matrices</p></li>
+<li><p>Add Krylov solver for uBLAS sparse matrices (GMRES and BICGSTAB)</p></li>
+<li><p>Add first version of new mesh library (NewMesh, experimental)</p></li>
+<li><p>Add Parametrized::readParameters() to trigger reading of values on
+set()</p></li>
+<li><p>Remove output of zeros in Octave matrix file format</p></li>
+<li><p>Use uBLAS-based vector for Vector if PETSc disabled</p></li>
+<li><p>Add wrappers for uBLAS compressed_matrix class</p></li>
+<li><p>Compute eigenvalues using SLEPc (an extension of PETSc)</p></li>
+<li><p>Clean up assembly and linear algebra</p></li>
+<li><p>Add function to solve Ax = b for dense matrices and dense vectors</p></li>
+<li><p>Make it possible to compile without PETSc (–disable-petsc)</p></li>
+<li><p>Much improved ODE solvers</p></li>
+<li><p>Complete multi-adaptive benchmarks reaction and wave</p></li>
+<li><p>Assemble boundary integrals</p></li>
+<li><p>FEM class cleaned up.</p></li>
+<li><p>Fix multi-adaptive benchmark problem reaction</p></li>
+<li><p>Small fixes for Intel C++ compiler version 9.1</p></li>
+<li><p>Test for Intel C++ compiler and configure appropriately</p></li>
+<li><p>Add new classes DenseMatrix and DenseVector (wrappers for ublas)</p></li>
+<li><p>Fix bug in conversion from Gmsh format</p></li>
+</ul>
+</div>
+<div class="section" id="id42">
+<h2>0.6.1 [2006-03-28]<a class="headerlink" href="#id42" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Regenerate build system in makedist script</p></li>
+<li><p>Update for new FFC syntax: BasisFunction –&gt; TestFunction,
+TrialFunction</p></li>
+<li><p>Fixes for conversion script dolfin-convert</p></li>
+<li><p>Initial cleanups and fixes for ODE solvers</p></li>
+<li><p>Numerous small fixes to improve portability</p></li>
+<li><p>Remove dolfin:: qualifier on output &lt;&lt; in Parameter.h</p></li>
+<li><p>Don’t use anonymous classes in demos, gives errors with some
+compilers</p></li>
+<li><p>Remove KrylovSolver::solver()</p></li>
+<li><p>Fix bug in convection-diffusion demo (boundary condition for
+pressure), use direct solver</p></li>
+<li><p>LinearPDE and NewonSolver use umfpack LU solver by default (if
+available) when doing direct solve</p></li>
+<li><p>Set PETSc matrix type through Matrix constructor</p></li>
+<li><p>Allow linear solver and preconditioner type to be passed to
+NewtonSolver</p></li>
+<li><p>Fix bug in Stokes demos (wrong boundary conditions)</p></li>
+<li><p>Cleanup Krylov solver</p></li>
+<li><p>Remove KrylovSolver::setPreconditioner() etc. and move to
+constructors</p></li>
+<li><p>Remove KrylovSolver::setRtol() etc. and replace with parameters</p></li>
+<li><p>Fix remaining name changes: noFoo() –&gt; numFoo()</p></li>
+<li><p>Add Cahn-Hilliard equation demo</p></li>
+<li><p>NewtonSolver option to use residual or incremental convergence
+criterion</p></li>
+<li><p>Add separate function to nls to test for convergence of Newton
+iterations</p></li>
+<li><p>Fix bug in dolfin-config (wrong version number)</p></li>
+</ul>
+</div>
+<div class="section" id="id43">
+<h2>0.6.0 [2006-03-01]<a class="headerlink" href="#id43" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Fix bug in XML output format (writing multiple objects)</p></li>
+<li><p>Fix bug in XML matrix output format (handle zero rows)</p></li>
+<li><p>Add new nonlinear PDE demo</p></li>
+<li><p>Restructure PDE class to use envelope-letter design</p></li>
+<li><p>Add precompiled finite elements for q &lt;= 5</p></li>
+<li><p>Add FiniteElementSpec and factor function for FiniteElement</p></li>
+<li><p>Add input/output of Function to DOLFIN XML</p></li>
+<li><p>Name change: dof –&gt; node</p></li>
+<li><p>Name change: noFoo() –&gt; numFoo()</p></li>
+<li><p>Add conversion from gmsh format in dolfin-convert script</p></li>
+<li><p>Updates for PETSc 2.3.1</p></li>
+<li><p>Add new type of Function (constant)</p></li>
+<li><p>Simplify use of Function class</p></li>
+<li><p>Add new demo Stokes + convection-diffusion</p></li>
+<li><p>Add new demo Stokes (equal-order stabilized)</p></li>
+<li><p>Add new demo Stokes (Taylor-Hood)</p></li>
+<li><p>Add new parameter for KrylovSolvers: “monitor convergence”</p></li>
+<li><p>Add conversion script dolfin-convert for various mesh formats</p></li>
+<li><p>Add new demo elasticity</p></li>
+<li><p>Move poisson demo to src/demo/pde/poisson</p></li>
+<li><p>Move to Mercurial (hg) from CVS</p></li>
+<li><p>Use libtool to build libraries (including shared)</p></li>
+</ul>
+</div>
+<div class="section" id="id44">
+<h2>0.5.12 [2006-01-12]<a class="headerlink" href="#id44" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Make Stokes solver dimension independent (2D/3D)</p></li>
+<li><p>Make Poisson solver dimension independent (2D/3D)</p></li>
+<li><p>Fix sparse matrix output format for MATLAB</p></li>
+<li><p>Modify demo problem for Stokes, add exact solution and compute error</p></li>
+<li><p>Change interface for boundary conditions: operator() –&gt; eval()</p></li>
+<li><p>Add two benchmark problems for the Navier-Stokes solver</p></li>
+<li><p>Add support for 2D/3D selection in Navier-Stokes solver</p></li>
+<li><p>Move tic()/toc() to timing.h</p></li>
+<li><p>Navier-Stokes solver back online</p></li>
+<li><p>Make Solver a subclass of Parametrized</p></li>
+<li><p>Add support for localization of parameters</p></li>
+<li><p>Redesign of parameter system</p></li>
+</ul>
+</div>
+<div class="section" id="id45">
+<h2>0.5.11 [2005-12-15]<a class="headerlink" href="#id45" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Add script monitor for monitoring memory usage</p></li>
+<li><p>Remove meminfo.h (not portable)</p></li>
+<li><p>Remove dependence on parameter system in log system</p></li>
+<li><p>Don’t use drand48() (not portable)</p></li>
+<li><p>Don’t use strcasecmp() (not portable)</p></li>
+<li><p>Remove sysinfo.h and class System (not portable)</p></li>
+<li><p>Don’t include &lt;sys/utsname.h&gt; (not portable)</p></li>
+<li><p>Change ::show() –&gt; ::disp() everywhere</p></li>
+<li><p>Clean out old quadrature classes on triangles and tetrahedra</p></li>
+<li><p>Clean out old sparse matrix code</p></li>
+<li><p>Update chapter on Functions in manual</p></li>
+<li><p>Use std::map to store parameters</p></li>
+<li><p>Implement class KrylovSolver</p></li>
+<li><p>Name change: Node –&gt; Vertex</p></li>
+<li><p>Add nonlinear solver demos</p></li>
+<li><p>Add support for picking sub functions and components of functions</p></li>
+<li><p>Update interface for FiniteElement for latest FFC version</p></li>
+<li><p>Improve and restructure implementation of the Function class</p></li>
+<li><p>Dynamically adjust safety factor during integration</p></li>
+<li><p>Improve output Matrix::disp()</p></li>
+<li><p>Check residual at end of time step, reject step if too large</p></li>
+<li><p>Implement Vector::sum()</p></li>
+<li><p>Implement nonlinear solver</p></li>
+<li><p>New option for ODE solver: “save final solution” –&gt; solution.data</p></li>
+<li><p>New ODE test problem: reaction</p></li>
+<li><p>Fixes for automake 1.9 (nobase_include_HEADERS)</p></li>
+<li><p>Reorganize build system, remove fake install and require make
+install</p></li>
+<li><p>Add checks for non-standard PETSc component HYPRE in NSE solver</p></li>
+<li><p>Make GMRES solver return the number of iterations</p></li>
+<li><p>Add installation script for Python interface</p></li>
+<li><p>Add Matrix Market format (Haiko Etzel)</p></li>
+<li><p>Automatically reinitialize GMRES solver when system size changes</p></li>
+<li><p>Implement cout &lt;&lt; for class Vector</p></li>
+</ul>
+</div>
+<div class="section" id="id46">
+<h2>0.5.10 [2005-10-11]<a class="headerlink" href="#id46" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Modify ODE solver interface: add T to constructor</p></li>
+<li><p>Fix compilation on AMD 64 bit systems (add -fPIC)</p></li>
+<li><p>Add new BLAS mode for form evaluation</p></li>
+<li><p>Change enum types in File to lowercase</p></li>
+<li><p>Change default file type for .m to Octave</p></li>
+<li><p>Add experimental Python interface PyDOLFIN</p></li>
+<li><p>Fix compilation for gcc 4.0</p></li>
+</ul>
+</div>
+<div class="section" id="id47">
+<h2>0.5.9 [2005-09-23]<a class="headerlink" href="#id47" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Add Stokes module</p></li>
+<li><p>Support for arbitrary mixed elements through FFC</p></li>
+<li><p>VTK output interface now handles time-dependent functions
+automatically</p></li>
+<li><p>Fix cout for empty matrix</p></li>
+<li><p>Change dolfin_start() –&gt; dolfin_end()</p></li>
+<li><p>Add chapters to manual: about, log system, parameters, reference
+elements, installation, contributing, license</p></li>
+<li><p>Use new template fenicsmanual.cls for manual</p></li>
+<li><p>Add compiler flag -U__STRICT_ANSI__ when compiling under Cygwin</p></li>
+<li><p>Add class EigenvalueSolver</p></li>
+</ul>
+</div>
+<div class="section" id="id48">
+<h2>0.5.8 [2005-07-05]<a class="headerlink" href="#id48" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Add new output format Paraview/VTK (Garth N. Wells)</p></li>
+<li><p>Update Tecplot interface</p></li>
+<li><p>Move to PETSc 2.3.0</p></li>
+<li><p>Complete support for general order Lagrange elements in triangles
+and tetrahedra</p></li>
+<li><p>Add test problem in src/demo/fem/convergence/ for general Lagrange
+elements</p></li>
+<li><p>Make FEM::assemble() estimate the number of nonzeros in each row</p></li>
+<li><p>Implement Matrix::init(M, N, nzmax)</p></li>
+<li><p>Add Matrix::nz(), Matrix::nzsum() and Matrix::nzmax()</p></li>
+<li><p>Improve Mesh::disp()</p></li>
+<li><p>Add FiniteElement::disp() and FEM::disp() (useful for debugging)</p></li>
+<li><p>Remove old class SparseMatrix</p></li>
+<li><p>Change FEM::setBC() –&gt; FEM::applyBC()</p></li>
+<li><p>Change Mesh::tetrahedrons –&gt; Mesh::tetrahedra</p></li>
+<li><p>Implement Dirichlet boundary conditions for tetrahedra</p></li>
+<li><p>Implement Face::contains(const Point&amp; p)</p></li>
+<li><p>Add test for shape dimension of mesh and form in FEM::assemble()</p></li>
+<li><p>Move src/demo/fem/ demo to src/demo/fem/simple/</p></li>
+<li><p>Add README file in src/demo/poisson/ (simple manual)</p></li>
+<li><p>Add simple demo program src/demo/poisson/</p></li>
+<li><p>Update computation of alignment of faces to match FFC/FIAT</p></li>
+</ul>
+</div>
+<div class="section" id="id49">
+<h2>0.5.7 [2005-06-23]<a class="headerlink" href="#id49" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Clean up ODE test problems</p></li>
+<li><p>Implement automatic detection of sparsity pattern from given matrix</p></li>
+<li><p>Clean up homotopy solver</p></li>
+<li><p>Implement automatic computation of Jacobian</p></li>
+<li><p>Add support for assembly of non-square systems (Andy Terrel)</p></li>
+<li><p>Make ODE solver report average number of iterations</p></li>
+<li><p>Make progress bar write first update at 0%</p></li>
+<li><p>Initialize all values of u before solution in multi-adaptive solver,
+not only components given by dependencies</p></li>
+<li><p>Allow user to modify and verify a converging homotopy path</p></li>
+<li><p>Make homotopy solver save a list of the solutions</p></li>
+<li><p>Add Matrix::norm()</p></li>
+<li><p>Add new test problem for CES economy</p></li>
+<li><p>Remove cast from Parameter to const char* (use std::string)</p></li>
+<li><p>Make solution data filename optional for homotopy solver</p></li>
+<li><p>Append homotopy solution data to file during solution</p></li>
+<li><p>Add dolfin::seed(int) for optionally seeding random number generator</p></li>
+<li><p>Remove dolfin::max,min (use std::max,min)</p></li>
+<li><p>Add polynomial-integer (true polynomial) form of general CES system</p></li>
+<li><p>Compute multi-adaptive efficiency index</p></li>
+<li><p>Updates for gcc 4.0 (patches by Garth N. Wells)</p></li>
+<li><p>Add Matrix::mult(const real x[], uint row) (temporary fix, assumes
+uniprocessor case)</p></li>
+<li><p>Add Matrix::mult(const Vector&amp; x, uint row) (temporary fix, assumes
+uniprocessor case)</p></li>
+<li><p>Update shortcuts MassMatrix and StiffnessMatrix to new system</p></li>
+<li><p>Add missing friend to Face.h (reported by Garth N. Wells)</p></li>
+</ul>
+</div>
+<div class="section" id="id50">
+<h2>0.5.6 [2005-05-17]<a class="headerlink" href="#id50" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Implementation of boundary conditions for general order Lagrange
+(experimental)</p></li>
+<li><p>Use interpolation function automatically generated by FFC</p></li>
+<li><p>Put computation of map into class AffineMap</p></li>
+<li><p>Clean up assembly</p></li>
+<li><p>Use dof maps automatically generated by FFC (experimental)</p></li>
+<li><p>Modify interface FiniteElement for new version of FFC</p></li>
+<li><p>Update ODE homotopy test problems</p></li>
+<li><p>Add cross product to class Point</p></li>
+<li><p>Sort mesh entities locally according to ordering used by FIAT and
+FFC</p></li>
+<li><p>Add new format for dof maps (preparation for higher-order elements)</p></li>
+<li><p>Code cleanups: NewFoo –&gt; Foo complete</p></li>
+<li><p>Updates for new version of FFC (0.1.7)</p></li>
+<li><p>Bypass log system when finalizing PETSc (may be out of scope)</p></li>
+</ul>
+</div>
+<div class="section" id="id51">
+<h2>0.5.5 [2005-04-26]<a class="headerlink" href="#id51" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Fix broken log system, curses works again</p></li>
+<li><p>Much improved multi-adaptive time-stepping</p></li>
+<li><p>Move elasticity module to new system based on FFC</p></li>
+<li><p>Add boundary conditions for systems</p></li>
+<li><p>Improve regulation of time steps</p></li>
+<li><p>Clean out old assembly classes</p></li>
+<li><p>Clean out old form classes</p></li>
+<li><p>Remove kernel module map</p></li>
+<li><p>Remove kernel module element</p></li>
+<li><p>Move convection-diffusion module to new system based on FFC</p></li>
+<li><p>Add iterators for cell neighbors of edges and faces</p></li>
+<li><p>Implement polynomial for of CES economy</p></li>
+<li><p>Rename all new linear algebra classes: NewFoo –&gt; Foo</p></li>
+<li><p>Clean out old linear algebra</p></li>
+<li><p>Speedup setting of boundary conditions (add MAT_KEEP_ZEROED_ROWS)</p></li>
+<li><p>Fix bug for option –disable-curses</p></li>
+</ul>
+</div>
+<div class="section" id="id52">
+<h2>0.5.4 [2005-03-29]<a class="headerlink" href="#id52" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Remove option to compile with PETSc 2.2.0 (2.2.1 required)</p></li>
+<li><p>Make make install work again (fix missing includes)</p></li>
+<li><p>Add support for mixing multiple finite elements (through FFC)</p></li>
+<li><p>Improve functionality of homotopy solver</p></li>
+<li><p>Simple creation of piecewise linear functions (without having an
+element)</p></li>
+<li><p>Simple creation of piecewise linear elements</p></li>
+<li><p>Add support of automatic creation of simple meshes (unit cube, unit
+square)</p></li>
+</ul>
+</div>
+<div class="section" id="id53">
+<h2>0.5.3 [2005-02-26]<a class="headerlink" href="#id53" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Change to PETSc version 2.2.1</p></li>
+<li><p>Add flag –with-petsc=&lt;path&gt; to configure script</p></li>
+<li><p>Move Poisson’s equation to system based on FFC</p></li>
+<li><p>Add support for automatic creation of homotopies</p></li>
+<li><p>Make all ODE solvers automatically handle complex ODEs: (M) z’ =
+f(z,t)</p></li>
+<li><p>Implement version of mono-adaptive solver for implicit ODEs: M u’ =
+f(u,t)</p></li>
+<li><p>Implement Newton’s method for multi- and mono-adaptive ODE solvers</p></li>
+<li><p>Update PETSc wrappers NewVector, NewMatrix, and NewGMRES</p></li>
+<li><p>Fix initialization of PETSc</p></li>
+<li><p>Add mono-adaptive cG(q) and dG(q) solvers (experimental)</p></li>
+<li><p>Implementation of new assebly: NewFEM, using output from FFC</p></li>
+<li><p>Add access to mesh for nodes, cells, faces and edges</p></li>
+<li><p>Add Tecplot I/O interface; contributed by Garth N. Wells</p></li>
+</ul>
+</div>
+<div class="section" id="id54">
+<h2>0.5.2 [2005-01-26]<a class="headerlink" href="#id54" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Benchmarks for DOLFIN vs PETSc (src/demo/form and src/demo/test)</p></li>
+<li><p>Complete rewrite of the multi-adaptive ODE solver (experimental)</p></li>
+<li><p>Add wrapper for PETSc GMRES solver</p></li>
+<li><p>Update class Point with new operators</p></li>
+<li><p>Complete rewrite of the multi-adaptive solver to improve performance</p></li>
+<li><p>Add PETSc wrappers NewMatrix and NewVector</p></li>
+<li><p>Add DOLFIN/PETSc benchmarks</p></li>
+</ul>
+</div>
+<div class="section" id="id55">
+<h2>0.5.1 [2004-11-10]<a class="headerlink" href="#id55" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Experimental support for automatic generation of forms using FFC</p></li>
+<li><p>Allow user to supply Jacobian to ODE solver</p></li>
+<li><p>Add optional test to check if a dependency already exists (Sparsity)</p></li>
+<li><p>Modify sparse matrix output (Matrix::show())</p></li>
+<li><p>Add FGMRES solver in new format (patch from eriksv)</p></li>
+<li><p>Add non-const version of quick-access of sparse matrices</p></li>
+<li><p>Add linear mappings for simple computation of derivatives</p></li>
+<li><p>Add check of matrix dimensions for ODE sparsity pattern</p></li>
+<li><p>Include missing cmath in Function.cpp</p></li>
+</ul>
+</div>
+<div class="section" id="id56">
+<h2>0.5.0 [2004-08-18]<a class="headerlink" href="#id56" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>First prototype of new form evaluation system</p></li>
+<li><p>New classes Jacobi, SOR, Richardson (preconditioners and linear
+solvers)</p></li>
+<li><p>Add integrals on the boundary (ds), partly working</p></li>
+<li><p>Add maps from boundary of reference cell</p></li>
+<li><p>Add evaluation of map from reference cell</p></li>
+<li><p>New Matrix functions: max, min, norm, and sum of rows and columns
+(erik)</p></li>
+<li><p>Derivatives/gradients of ElementFunction (coefficients f.ex.)
+implemented</p></li>
+<li><p>Enable assignment to all elements of a NewArray</p></li>
+<li><p>Add functions Boundary::noNodes(), noFaces(), noEdges()</p></li>
+<li><p>New class GaussSeidel (preconditioner and linear solver)</p></li>
+<li><p>New classes Preconditioner and LinearSolver</p></li>
+<li><p>Bug fix for tetrahedral mesh refinement (ingelstrom)</p></li>
+<li><p>Add iterators for Edge and Face on Boundary</p></li>
+<li><p>Add functionality to Map: bdet() and cell()</p></li>
+<li><p>Add connectivity face-cell and edge-cell</p></li>
+<li><p>New interface for assembly: Galerkin –&gt; FEM</p></li>
+<li><p>Bug fix for PDE systems of size &gt; 3</p></li>
+</ul>
+</div>
+<div class="section" id="id57">
+<h2>0.4.11 [2004-04-23]<a class="headerlink" href="#id57" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Add multigrid solver (experimental)</p></li>
+<li><p>Update manual</p></li>
+</ul>
+</div>
+<div class="section" id="id58">
+<h2>0.4.10<a class="headerlink" href="#id58" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Automatic model reduction (experimental)</p></li>
+<li><p>Fix bug in ParticleSystem (divide by mass)</p></li>
+<li><p>Improve control of integration (add function ODE::update())</p></li>
+<li><p>Load/save parameters in XML-format</p></li>
+<li><p>Add assembly test</p></li>
+<li><p>Add simple StiffnessMatrix, MassMatrix, and LoadVector</p></li>
+<li><p>Change dK –&gt; dx</p></li>
+<li><p>Change dx() –&gt; ddx()</p></li>
+<li><p>Add support for GiD file format</p></li>
+<li><p>Add performance tests for multi-adaptivity (both stiff and
+non-stiff)</p></li>
+<li><p>First version of Newton for the multi-adaptive solver</p></li>
+<li><p>Test for Newton for the multi-adaptive solver</p></li>
+</ul>
+</div>
+<div class="section" id="id59">
+<h2>0.4.9<a class="headerlink" href="#id59" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Add multi-adaptive solver for the bistable equation</p></li>
+<li><p>Add BiCGSTAB solver (thsv)</p></li>
+<li><p>Fix bug in SOR (thsv)</p></li>
+<li><p>Improved visual program for OpenDX</p></li>
+<li><p>Fix OpenDX file format for scalar functions</p></li>
+<li><p>Allow access to samples of multi-adaptive solution</p></li>
+<li><p>New patch from thsv for gcc 3.4.0 and 3.5.0</p></li>
+<li><p>Make progress step a parameter</p></li>
+<li><p>New function ODE::sparse(const Matrix&amp; A)</p></li>
+<li><p>Access nodes, cells, edges, faces by id</p></li>
+<li><p>New function Matrix::lump()</p></li>
+</ul>
+</div>
+<div class="section" id="id60">
+<h2>0.4.8<a class="headerlink" href="#id60" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Add support for systems (jansson and bengzon)</p></li>
+<li><p>Add new module wave</p></li>
+<li><p>Add new module wave-vector</p></li>
+<li><p>Add new module elasticity</p></li>
+<li><p>Add new module elasticity-stationary</p></li>
+<li><p>Multi-adaptive updates</p></li>
+<li><p>Fix compilation error in LogStream</p></li>
+<li><p>Fix local Newton iteration for higher order elements</p></li>
+<li><p>Init matrix to given type</p></li>
+<li><p>Add output of cG(q) and dG(q) weights in matrix format</p></li>
+<li><p>Fix numbering of frames from plotslab script</p></li>
+<li><p>Add png output for plotslab script</p></li>
+<li><p>Add script for running stiff test problems, plot solutions</p></li>
+<li><p>Fix bug in MeshInit (node neighbors of node)</p></li>
+<li><p>Modify output of sysinfo()</p></li>
+<li><p>Compile with -Wall -Werror -pedantic -ansi -std=c++98 (thsv)</p></li>
+</ul>
+</div>
+<div class="section" id="id61">
+<h2>0.4.7<a class="headerlink" href="#id61" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Make all stiff test problems work</p></li>
+<li><p>Display status report also when using step()</p></li>
+<li><p>Improve adaptive damping for stiff problems (remove spikes)</p></li>
+<li><p>Modify Octave/Matlab format for solution data (speed improvement)</p></li>
+<li><p>Adaptive sampling of solution (optional)</p></li>
+<li><p>Restructure stiff test problems</p></li>
+<li><p>Check if value of right-hand side is valid</p></li>
+<li><p>Modify divergence test in AdaptiveIterationLevel1</p></li>
+</ul>
+</div>
+<div class="section" id="id62">
+<h2>0.4.6<a class="headerlink" href="#id62" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Save vectors and matrices from Matlab/Octave (foufas)</p></li>
+<li><p>Rename writexml.m to xmlmesh.m</p></li>
+<li><p>Inlining of important functions</p></li>
+<li><p>Optimize evaluation of elements</p></li>
+<li><p>Optimize Lagrange polynomials</p></li>
+<li><p>Optimize sparsity: use stl containers</p></li>
+<li><p>Optimize choice of discrete residual for multi-adaptive solver</p></li>
+<li><p>Don’t save solution in benchmark proble</p></li>
+<li><p>Improve computation of divergence factor for underdamped systems</p></li>
+<li><p>Don’t check residual on first slab for fixed time step</p></li>
+<li><p>Decrease largest (default) time step to 0.1</p></li>
+<li><p>Add missing &lt;cmath&gt; in TimeStepper</p></li>
+<li><p>Move real into dolfin namespace</p></li>
+</ul>
+</div>
+<div class="section" id="id63">
+<h2>0.4.5<a class="headerlink" href="#id63" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Rename function.h to enable compilation under Cygwin</p></li>
+<li><p>Add new benchmark problem for multi-adaptive solver</p></li>
+<li><p>Bug fix for ParticleSystem</p></li>
+<li><p>Initialization of first time step</p></li>
+<li><p>Improve time step regulation (threshold)</p></li>
+<li><p>Improve stabilization</p></li>
+<li><p>Improve TimeStepper interface (Ko Project)</p></li>
+<li><p>Use iterators instead of recursively calling TimeSlab::update()</p></li>
+<li><p>Clean up ODESolver</p></li>
+<li><p>Add iterators for elements in time slabs and element groups</p></li>
+<li><p>Add -f to creation of symbolic links</p></li>
+</ul>
+</div>
+<div class="section" id="id64">
+<h2>0.4.4<a class="headerlink" href="#id64" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Add support for 3D graphics in Octave using Open Inventor (jj)</p></li>
+</ul>
+</div>
+<div class="section" id="id65">
+<h2>0.4.3<a class="headerlink" href="#id65" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Stabilization of multi-adaptive solver (experimental)</p></li>
+<li><p>Improved non-support for curses (–disable-curses)</p></li>
+<li><p>New class MechanicalSystem for simulating mechanical systems</p></li>
+<li><p>Save debug info from primal and dual (plotslab.m)</p></li>
+<li><p>Fix bug in progress bar</p></li>
+<li><p>Add missing include file in Components.h (kakr)</p></li>
+<li><p>New function dolfin_end(const char* msg, …)</p></li>
+<li><p>Move numerical differentiation to RHS</p></li>
+<li><p>New class Event for limited display of messages</p></li>
+<li><p>Fix bug in LogStream (large numbers in floating point format)</p></li>
+<li><p>Specify individual time steps for different components</p></li>
+<li><p>Compile without warnings</p></li>
+<li><p>Add -Werror to option enable-debug</p></li>
+<li><p>Specify individual methods for different components</p></li>
+<li><p>Fix bug in dGqMethods</p></li>
+<li><p>Fix bug (delete old block) in ElementData</p></li>
+<li><p>Add parameters for method and order</p></li>
+<li><p>New test problem reaction</p></li>
+<li><p>New class FixedPointIteration</p></li>
+<li><p>Fix bug in grid refinement</p></li>
+</ul>
+</div>
+<div class="section" id="id66">
+<h2>0.4.2<a class="headerlink" href="#id66" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Fix bug in computation of residual (divide by k)</p></li>
+<li><p>Add automatic generation and solution of the dual problem</p></li>
+<li><p>Automatic selection of file names for primal and dual</p></li>
+<li><p>Fix bug in progress bar (TerminalLogger)</p></li>
+<li><p>Many updates of multi-adaptive solver</p></li>
+<li><p>Add class ODEFunction</p></li>
+<li><p>Update function class hierarchies</p></li>
+<li><p>Move functions to a separate directory</p></li>
+<li><p>Store multi-adaptive solution binary on disk with cache</p></li>
+</ul>
+</div>
+<div class="section" id="id67">
+<h2>0.4.1<a class="headerlink" href="#id67" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>First version of multi-adaptive solver working</p></li>
+<li><p>Clean up file formats</p></li>
+<li><p>Start changing from int to unsigned int where necessary</p></li>
+<li><p>Fix bool-&gt;int when using stdard in Parameter</p></li>
+<li><p>Add NewArray and NewList (will replace Array and List)</p></li>
+</ul>
+</div>
+<div class="section" id="id68">
+<h2>0.4.0<a class="headerlink" href="#id68" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Initiation of the FEniCS project</p></li>
+<li><p>Change syntax of mesh files: grid -&gt; mesh</p></li>
+<li><p>Create symbolic links instead of copying files</p></li>
+<li><p>Tanganyika -&gt; ODE</p></li>
+<li><p>Add Heat module</p></li>
+<li><p>Grid -&gt; Mesh</p></li>
+<li><p>Move forms and mappings to separate libraries</p></li>
+<li><p>Fix missing include of DirectSolver.h</p></li>
+</ul>
+</div>
+<div class="section" id="id69">
+<h2>0.3.12<a class="headerlink" href="#id69" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Adaptive grid refinement (!)</p></li>
+<li><p>Add User Manual</p></li>
+<li><p>Add function dolfin_log() to turn logging on/off</p></li>
+<li><p>Change from pointers to references for Node, Cell, Edge, Face</p></li>
+<li><p>Update writexml.m</p></li>
+<li><p>Add new grid files and rename old grid files</p></li>
+</ul>
+</div>
+<div class="section" id="id70">
+<h2>0.3.11<a class="headerlink" href="#id70" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Add configure option –disable-curses</p></li>
+<li><p>Grid refinement updates</p></li>
+<li><p>Make OpenDX file format work for grids (output)</p></li>
+<li><p>Add volume() and diameter() in cell</p></li>
+<li><p>New classes TriGridRefinement and TetGridRefinement</p></li>
+<li><p>Add iterators for faces and edges on a boundary</p></li>
+<li><p>New class GridHierarchy</p></li>
+</ul>
+</div>
+<div class="section" id="id71">
+<h2>0.3.10<a class="headerlink" href="#id71" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Use new boundary structure in Galerkin</p></li>
+<li><p>Make dolfin_start() and dolfin_end() work</p></li>
+<li><p>Make dolfin_assert() raise segmentation fault for plain text mode</p></li>
+<li><p>Add configure option –enable-debug</p></li>
+<li><p>Use autoreconf instead of scripts/preconfigure</p></li>
+<li><p>Rename configure.in -&gt; configure.ac</p></li>
+<li><p>New class FaceIterator</p></li>
+<li><p>New class Face</p></li>
+<li><p>Move computation of boundary from GridInit to BoundaryInit</p></li>
+<li><p>New class BoundaryData</p></li>
+<li><p>New class BoundaryInit</p></li>
+<li><p>New class Boundary</p></li>
+<li><p>Make InitGrid compute edges</p></li>
+<li><p>Add test program for generic matrix in src/demo/la</p></li>
+<li><p>Clean up Grid classes</p></li>
+<li><p>Add new class GridRefinementData</p></li>
+<li><p>Move data from Cell to GenericCell</p></li>
+<li><p>Make GMRES work with user defined matrix, only mult() needed</p></li>
+<li><p>GMRES now uses only one function to compute residual()</p></li>
+<li><p>Change Matrix structure (a modified envelope/letter)</p></li>
+<li><p>Update script checkerror.m for Poisson</p></li>
+<li><p>Add function dolfin_info_aptr()</p></li>
+<li><p>Add cast to element pointer for iterators</p></li>
+<li><p>Clean up and improve the Tensor class</p></li>
+<li><p>New class: List</p></li>
+<li><p>Name change: List -&gt; Table</p></li>
+<li><p>Name change: ShortList -&gt; Array</p></li>
+<li><p>Make functions in GridRefinement static</p></li>
+<li><p>Make functions in GridInit static</p></li>
+<li><p>Fix bug in GridInit (eriksv)</p></li>
+<li><p>Add output to OpenDX format for 3D grids</p></li>
+<li><p>Clean up ShortList class</p></li>
+<li><p>Clean up List class</p></li>
+<li><p>New class ODE, Equation replaced by PDE</p></li>
+<li><p>Add Lorenz test problem</p></li>
+<li><p>Add new problem type for ODEs</p></li>
+<li><p>Add new module ode</p></li>
+<li><p>Work on multi-adaptive ODE solver (lots of new stuff)</p></li>
+<li><p>Work on grid refinement</p></li>
+<li><p>Write all macros in LoggerMacros in one line</p></li>
+<li><p>Add transpose functions to Matrix (Erik)</p></li>
+</ul>
+</div>
+<div class="section" id="id72">
+<h2>0.3.9<a class="headerlink" href="#id72" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Update Krylov solver (Erik, Johan)</p></li>
+<li><p>Add new LU factorization and LU solve (Niklas)</p></li>
+<li><p>Add benchmark test in src/demo/bench</p></li>
+<li><p>Add silent logger</p></li>
+</ul>
+</div>
+<div class="section" id="id73">
+<h2>0.3.8<a class="headerlink" href="#id73" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Make sure dolfin-config is regenerated every time</p></li>
+<li><p>Add demo program for cG(q) and dG(q)</p></li>
+<li><p>Add dG(q) precalc of nodal points and weights</p></li>
+<li><p>Add cG(q) precalc of nodal points and weights</p></li>
+<li><p>Fix a bug in configure.in (AC_INIT with README)</p></li>
+<li><p>Add Lagrange polynomials</p></li>
+<li><p>Add multiplication with transpose</p></li>
+<li><p>Add scalar products with rows and columns</p></li>
+<li><p>Add A[i][j] index operator for quick access to dense matrix</p></li>
+</ul>
+</div>
+<div class="section" id="id74">
+<h2>0.3.7<a class="headerlink" href="#id74" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Add new Matlab-like syntax like A(i,all) = x or A(3,all) = A(4,all)</p></li>
+<li><p>Add dolfin_assert() macro enabled if debug is defined</p></li>
+<li><p>Redesign of Matrix/DenseMatrix/SparseMatrix to use Matrix as common
+interface</p></li>
+<li><p>Include missing cmath in Legendre.cpp and GaussianQuadrature.cpp</p></li>
+</ul>
+</div>
+<div class="section" id="id75">
+<h2>0.3.6<a class="headerlink" href="#id75" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Add output functionality in DenseMatrix</p></li>
+<li><p>Add high precision solver to DirectSolver</p></li>
+<li><p>Clean up error messages in Matrix</p></li>
+<li><p>Make solvers directly accessible through Matrix and DenseMatrix</p></li>
+<li><p>Add quadrature (Gauss, Radau, and Lobatto) from Tanganyika</p></li>
+<li><p>Start merge with Tanganyika</p></li>
+<li><p>Add support for automatic documentation using doxygen</p></li>
+<li><p>Update configure scripts</p></li>
+<li><p>Add greeting at end of compilation</p></li>
+</ul>
+</div>
+<div class="section" id="id76">
+<h2>0.3.5<a class="headerlink" href="#id76" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Define version number only in the file configure.in</p></li>
+<li><p>Fix compilation problem (missing depcomp)</p></li>
+</ul>
+</div>
+<div class="section" id="id77">
+<h2>0.3.4<a class="headerlink" href="#id77" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Fix bugs in some of the ElementFunction operators</p></li>
+<li><p>Make convection-diffusion solver work again</p></li>
+<li><p>Fix bug in integration, move multiplication with the determinant</p></li>
+<li><p>Fix memory leaks in ElementFunction</p></li>
+<li><p>Add parameter to choose output format</p></li>
+<li><p>Make OctaveFile and MatlabFile subclasses of MFile</p></li>
+<li><p>Add classes ScalarExpressionFunction and VectorExpressionFunction</p></li>
+<li><p>Make progress bars work cleaner</p></li>
+<li><p>Get ctrl-c in curses logger</p></li>
+<li><p>Remove &lt;Problem&gt;Settings-classes and use dolfin_parameter()</p></li>
+<li><p>Redesign settings to match the structure of the log system</p></li>
+<li><p>Add vector functions: Function::Vector</p></li>
+<li><p>Add vector element functions: ElementFunction::Vector</p></li>
+</ul>
+</div>
+<div class="section" id="id78">
+<h2>0.3.3<a class="headerlink" href="#id78" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Increased functionality of curses-based interface</p></li>
+<li><p>Add progress bars to log system</p></li>
+</ul>
+</div>
+<div class="section" id="id79">
+<h2>0.3.2<a class="headerlink" href="#id79" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>More work on grid refinement</p></li>
+<li><p>Add new curses based log system</p></li>
+</ul>
+</div>
+<div class="section" id="id80">
+<h2>0.3.1<a class="headerlink" href="#id80" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Makefile updates: make install should now work properly</p></li>
+<li><p>KrylovSolver updates</p></li>
+<li><p>Preparation for grid refinement</p></li>
+<li><p>Matrix and Vector updates</p></li>
+</ul>
+</div>
+<div class="section" id="id81">
+<h2>0.3.0<a class="headerlink" href="#id81" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Make poisson work again, other modules still not working</p></li>
+<li><p>Add output format for octave</p></li>
+<li><p>Fix code to compile with g++-3.2 -Wall -Werror</p></li>
+<li><p>New operators for Matrix</p></li>
+<li><p>New and faster GMRES solver (speedup factor 4)</p></li>
+<li><p>Changed name from SparseMatrix to Matrix</p></li>
+<li><p>Remove old unused code</p></li>
+<li><p>Add subdirectory math containing mathematical functions</p></li>
+<li><p>Better access for A(i,j) += to improve speed in assembling</p></li>
+<li><p>Add benchmark for linear algebra</p></li>
+<li><p>New definition of finite element</p></li>
+<li><p>Add algebra for function spaces</p></li>
+<li><p>Convert grids in data/grids to xml.gz</p></li>
+<li><p>Add iterators for Nodes and Cells</p></li>
+<li><p>Change from .hh to .h</p></li>
+<li><p>Add operators to Vector class (foufas)</p></li>
+<li><p>Add dependence on libxml2</p></li>
+<li><p>Change from .C to .cpp to make Jim happy.</p></li>
+<li><p>Change input/output functionality to streams</p></li>
+<li><p>Change to new data structure for Grid</p></li>
+<li><p>Change to object-oriented API at top level</p></li>
+<li><p>Add use of C++ namespaces</p></li>
+<li><p>Complete and major restructuring of the code</p></li>
+<li><p>Fix compilation error in src/config</p></li>
+<li><p>Fix name of keyword for convection-diffusion</p></li>
+</ul>
+</div>
+<div class="section" id="id82">
+<h2>0.2.11-1<a class="headerlink" href="#id82" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Fix compilation error (<cite>source</cite>) on Solaris</p></li>
+</ul>
+</div>
+<div class="section" id="id83">
+<h2>0.2.11<a class="headerlink" href="#id83" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Automate build process to simplify addition of new modules</p></li>
+<li><p>Fix bug in matlab_write_field() (walter)</p></li>
+<li><p>Fix bug in SparseMatrix::GetCopy() (foufas)</p></li>
+</ul>
+</div>
+<div class="section" id="id84">
+<h2>0.2.10-1<a class="headerlink" href="#id84" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Fix compilation errors on RedHat (thsv)</p></li>
+</ul>
+</div>
+<div class="section" id="id85">
+<h2>0.2.10<a class="headerlink" href="#id85" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Fix compilation of problems to use correct compiler</p></li>
+<li><p>Change default test problems to the ones in the report</p></li>
+<li><p>Improve memory management using mpatrol for tracking allocations</p></li>
+<li><p>Change bool to int for va_arg, seems to be a problem with gcc &gt; 3.0</p></li>
+<li><p>Improve input / output support: GiD, Matlab, OpenDX</p></li>
+</ul>
+</div>
+<div class="section" id="id86">
+<h2>0.2.8<a class="headerlink" href="#id86" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Navier-Stokes starting to work again</p></li>
+<li><p>Add Navier-Stokes 2d</p></li>
+<li><p>Bug fixes</p></li>
+</ul>
+</div>
+<div class="section" id="id87">
+<h2>0.2.7<a class="headerlink" href="#id87" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Add support for 2D problems</p></li>
+<li><p>Add module convection-diffusion</p></li>
+<li><p>Add local/global fields in equation/problem</p></li>
+<li><p>Bug fixes</p></li>
+<li><p>Navier-Stokes updates (still broken)</p></li>
+</ul>
+</div>
+<div class="section" id="id88">
+<h2>0.2.6 [2002-02-19]<a class="headerlink" href="#id88" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Navier-Stokes updates (still broken)</p></li>
+<li><p>Output to matlab format</p></li>
+</ul>
+</div>
+<div class="section" id="id89">
+<h2>0.2.5<a class="headerlink" href="#id89" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Add variational formulation with overloaded operators for systems</p></li>
+<li><p>ShapeFunction/LocalField/FiniteElement according to Scott &amp; Brenner</p></li>
+</ul>
+</div>
+<div class="section" id="id90">
+<h2>0.2.4<a class="headerlink" href="#id90" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Add boundary conditions</p></li>
+<li><p>Poisson seems to work ok</p></li>
+</ul>
+</div>
+<div class="section" id="id91">
+<h2>0.2.3<a class="headerlink" href="#id91" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Add GMRES solver</p></li>
+<li><p>Add CG solver</p></li>
+<li><p>Add direct solver</p></li>
+<li><p>Add Poisson solver</p></li>
+<li><p>Big changes to the organisation of the source tree</p></li>
+<li><p>Add kwdist.sh script</p></li>
+<li><p>Bug fixes</p></li>
+</ul>
+</div>
+<div class="section" id="id92">
+<h2>0.2.2:<a class="headerlink" href="#id92" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Remove curses temporarily</p></li>
+</ul>
+</div>
+<div class="section" id="id93">
+<h2>0.2.1:<a class="headerlink" href="#id93" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Remove all PETSc stuff. Finally!</p></li>
+<li><p>Gauss-Seidel cannot handle the pressure equation</p></li>
+</ul>
+</div>
+<div class="section" id="id94">
+<h2>0.2.0:<a class="headerlink" href="#id94" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>First GPL release</p></li>
+<li><p>Remove all of Klas Samuelssons proprietary grid code</p></li>
+<li><p>Adaptivity and refinement broken, include in next release</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="contributing.html" class="btn btn-neutral float-left" title="Contributing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2017, FEniCS Project
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

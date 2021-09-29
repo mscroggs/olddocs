@@ -1,0 +1,793 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>dolfin.multistage.rushlarsenschemes &mdash; DOLFIN  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../using.html">Using DOLFIN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../demos.html">Demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">Python API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../developer.html">Developer resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ChangeLog.html">Change log</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">DOLFIN</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>dolfin.multistage.rushlarsenschemes</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for dolfin.multistage.rushlarsenschemes</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;This module defines different MultiStageScheme classes based on the</span>
+<span class="sd">Rush Larsen expicit integration schemes which can be passed to a</span>
+<span class="sd">PointIntegralSolver</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># Copyright (C) 2014 Johan Hake</span>
+<span class="c1">#</span>
+<span class="c1"># This file is part of DOLFIN.</span>
+<span class="c1">#</span>
+<span class="c1"># DOLFIN is free software: you can redistribute it and/or modify</span>
+<span class="c1"># it under the terms of the GNU Lesser General Public License as published by</span>
+<span class="c1"># the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c1"># (at your option) any later version.</span>
+<span class="c1">#</span>
+<span class="c1"># DOLFIN is distributed in the hope that it will be useful,</span>
+<span class="c1"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the</span>
+<span class="c1"># GNU Lesser General Public License for more details.</span>
+<span class="c1">#</span>
+<span class="c1"># You should have received a copy of the GNU Lesser General Public License</span>
+<span class="c1"># along with DOLFIN. If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+
+<span class="kn">import</span> <span class="nn">functools</span>
+<span class="kn">import</span> <span class="nn">ufl</span>
+
+<span class="kn">from</span> <span class="nn">dolfin.function.constant</span> <span class="k">import</span> <span class="n">Constant</span>
+<span class="kn">from</span> <span class="nn">dolfin.function.function</span> <span class="k">import</span> <span class="n">Function</span>
+<span class="kn">from</span> <span class="nn">dolfin.fem.formmanipulations</span> <span class="k">import</span> <span class="n">derivative</span>
+<span class="kn">from</span> <span class="nn">dolfin.multistage.factorize</span> <span class="k">import</span> <span class="n">extract_tested_expressions</span>
+<span class="kn">from</span> <span class="nn">dolfin.fem.form</span> <span class="k">import</span> <span class="n">Form</span>
+<span class="kn">from</span> <span class="nn">dolfin.multistage.multistagescheme</span> <span class="k">import</span> <span class="p">(</span><span class="n">MultiStageScheme</span><span class="p">,</span>
+                                                <span class="n">_check_form</span><span class="p">,</span> <span class="n">_time_dependent_expressions</span><span class="p">,</span>
+                                                <span class="n">_replace_dict_time_dependent_expression</span><span class="p">,</span> <span class="n">safe_action</span><span class="p">,</span>
+                                                <span class="n">safe_adjoint</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">dolfin</span> <span class="k">import</span> <span class="n">DOLFIN_EPS</span>
+<span class="kn">from</span> <span class="nn">dolfin</span> <span class="k">import</span> <span class="n">TrialFunction</span>
+
+<span class="kn">import</span> <span class="nn">ufl.algorithms</span>
+<span class="kn">from</span> <span class="nn">ufl.algorithms</span> <span class="k">import</span> <span class="p">(</span><span class="n">expand_derivatives</span><span class="p">,</span> <span class="n">expand_indices</span><span class="p">,</span>
+                            <span class="n">extract_coefficients</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_rush_larsen_step</span><span class="p">(</span><span class="n">rhs_exprs</span><span class="p">,</span> <span class="n">diff_rhs_exprs</span><span class="p">,</span> <span class="n">linear_terms</span><span class="p">,</span>
+                      <span class="n">system_size</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">stage_solution</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span>
+                      <span class="n">v</span><span class="p">,</span> <span class="n">DX</span><span class="p">,</span> <span class="n">time_dep_expressions</span><span class="p">):</span>
+
+    <span class="c1"># If we need to replace the original solution with stage solution</span>
+    <span class="n">repl</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">stage_solution</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+        <span class="k">if</span> <span class="n">system_size</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">repl</span> <span class="o">=</span> <span class="p">{</span><span class="n">y0</span><span class="p">:</span> <span class="n">stage_solution</span><span class="p">}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">repl</span> <span class="o">=</span> <span class="p">{</span><span class="n">y0</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="n">stage_solution</span><span class="p">}</span>
+
+    <span class="c1"># If we have time dependent expressions</span>
+    <span class="k">if</span> <span class="n">time_dep_expressions</span> <span class="ow">and</span> <span class="nb">abs</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">c</span><span class="p">))</span> <span class="o">&gt;</span> <span class="n">DOLFIN_EPS</span><span class="p">:</span>
+        <span class="n">time_</span> <span class="o">=</span> <span class="n">time</span>
+        <span class="n">time</span> <span class="o">=</span> <span class="n">time</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+
+        <span class="n">repl</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">_replace_dict_time_dependent_expression</span><span class="p">(</span><span class="n">time_dep_expressions</span><span class="p">,</span>
+                                                            <span class="n">time_</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">c</span><span class="p">)))</span>
+        <span class="n">repl</span><span class="p">[</span><span class="n">time_</span><span class="p">]</span> <span class="o">=</span> <span class="n">time</span>
+
+    <span class="c1"># If all terms are linear (using generalized=True) we add a safe</span>
+    <span class="c1"># guard to the linearized term. See below</span>
+    <span class="n">safe_guard</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">linear_terms</span><span class="p">)</span> <span class="o">==</span> <span class="n">system_size</span>
+
+    <span class="c1"># Add componentwise contribution to rl form</span>
+    <span class="n">rl_ufl_form</span> <span class="o">=</span> <span class="n">ufl</span><span class="o">.</span><span class="n">zero</span><span class="p">()</span>
+    <span class="n">num_rl_steps</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">system_size</span><span class="p">):</span>
+
+        <span class="c1"># forward euler step</span>
+        <span class="n">fe_du_i</span> <span class="o">=</span> <span class="n">rhs_exprs</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span> <span class="o">*</span> <span class="n">dt</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+
+        <span class="c1"># If exact integration</span>
+        <span class="k">if</span> <span class="n">linear_terms</span><span class="p">[</span><span class="n">ind</span><span class="p">]:</span>
+            <span class="n">num_rl_steps</span> <span class="o">+=</span> <span class="mi">1</span>
+
+            <span class="c1"># Rush Larsen step Safeguard the divisor: let&#39;s hope</span>
+            <span class="c1"># diff_rhs_exprs[ind] is never 1.0e-16!  Let&#39;s get rid of</span>
+            <span class="c1"># this when the conditional fixes land properly in UFL.</span>
+            <span class="n">eps</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="mf">1.0e-16</span><span class="p">)</span>
+            <span class="n">rl_du_i</span> <span class="o">=</span> <span class="n">rhs_exprs</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="n">diff_rhs_exprs</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span> <span class="o">+</span> <span class="n">eps</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span>
+                <span class="n">ufl</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">diff_rhs_exprs</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span> <span class="o">*</span> <span class="n">dt</span><span class="p">)</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">)</span>
+
+            <span class="c1"># If safe guard</span>
+            <span class="k">if</span> <span class="n">safe_guard</span><span class="p">:</span>
+                <span class="n">du_i</span> <span class="o">=</span> <span class="n">ufl</span><span class="o">.</span><span class="n">conditional</span><span class="p">(</span><span class="n">ufl</span><span class="o">.</span><span class="n">lt</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">diff_rhs_exprs</span><span class="p">[</span><span class="n">ind</span><span class="p">]),</span> <span class="mf">1e-8</span><span class="p">),</span> <span class="n">fe_du_i</span><span class="p">,</span> <span class="n">rl_du_i</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">du_i</span> <span class="o">=</span> <span class="n">rl_du_i</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">du_i</span> <span class="o">=</span> <span class="n">fe_du_i</span>
+
+        <span class="c1"># If we should replace solution in form with stage solution</span>
+        <span class="k">if</span> <span class="n">repl</span><span class="p">:</span>
+            <span class="n">du_i</span> <span class="o">=</span> <span class="n">ufl</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">du_i</span><span class="p">,</span> <span class="n">repl</span><span class="p">)</span>
+
+        <span class="n">rl_ufl_form</span> <span class="o">+=</span> <span class="p">(</span><span class="n">y0</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span> <span class="o">+</span> <span class="n">du_i</span><span class="p">)</span> <span class="o">*</span> <span class="n">v</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">rl_ufl_form</span> <span class="o">*</span> <span class="n">DX</span>
+
+
+<span class="k">def</span> <span class="nf">_find_linear_terms</span><span class="p">(</span><span class="n">rhs_exprs</span><span class="p">,</span> <span class="n">u</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Help function that takes a list of rhs expressions and return a</span>
+<span class="sd">    list of bools determining what component, rhs_exprs[i], is linear</span>
+<span class="sd">    wrt u[i].</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">uu</span> <span class="o">=</span> <span class="p">[</span><span class="n">Constant</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">rhs_exprs</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">rhs_exprs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">repl</span> <span class="o">=</span> <span class="p">{</span><span class="n">u</span><span class="p">:</span> <span class="n">ufl</span><span class="o">.</span><span class="n">as_vector</span><span class="p">(</span><span class="n">uu</span><span class="p">)}</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">repl</span> <span class="o">=</span> <span class="p">{</span><span class="n">u</span><span class="p">:</span> <span class="n">uu</span><span class="p">[</span><span class="mi">0</span><span class="p">]}</span>
+
+    <span class="n">linear_terms</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ui</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">uu</span><span class="p">):</span>
+        <span class="n">comp_i_s</span> <span class="o">=</span> <span class="n">expand_indices</span><span class="p">(</span><span class="n">ufl</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">rhs_exprs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">repl</span><span class="p">))</span>
+        <span class="n">linear_terms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ui</span> <span class="ow">in</span> <span class="n">extract_coefficients</span><span class="p">(</span><span class="n">comp_i_s</span><span class="p">)</span> <span class="ow">and</span>
+                            <span class="n">ui</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">extract_coefficients</span><span class="p">(</span>
+                                <span class="n">expand_derivatives</span><span class="p">(</span><span class="n">ufl</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">comp_i_s</span><span class="p">,</span> <span class="n">ui</span><span class="p">))))</span>
+    <span class="k">return</span> <span class="n">linear_terms</span>
+
+
+<span class="k">def</span> <span class="nf">_rush_larsen_scheme_generator</span><span class="p">(</span><span class="n">rhs_form</span><span class="p">,</span> <span class="n">solution</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span> <span class="n">generalized</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generates a list of forms and solutions for a given Butcher</span>
+<span class="sd">    tableau</span>
+
+<span class="sd">    *Arguments*</span>
+<span class="sd">        rhs_form (ufl.Form)</span>
+<span class="sd">            A UFL form representing the rhs for a time differentiated equation</span>
+<span class="sd">        solution (_Function_)</span>
+<span class="sd">            The prognostic variable</span>
+<span class="sd">        time (_Constant_)</span>
+<span class="sd">            A Constant holding the time at the start of the time step</span>
+<span class="sd">        order (int)</span>
+<span class="sd">            The order of the scheme</span>
+<span class="sd">        generalized (bool)</span>
+<span class="sd">            If True generate a generalized Rush Larsen scheme, linearizing all</span>
+<span class="sd">            components.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">DX</span> <span class="o">=</span> <span class="n">_check_form</span><span class="p">(</span><span class="n">rhs_form</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">DX</span> <span class="o">!=</span> <span class="n">ufl</span><span class="o">.</span><span class="n">dP</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Expected a form with a Pointintegral.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Create time step</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+
+    <span class="c1"># Get test function</span>
+    <span class="c1">#    arguments = rhs_form.arguments()</span>
+    <span class="c1">#    coefficients = rhs_form.coefficients()</span>
+
+    <span class="c1"># Get time dependent expressions</span>
+    <span class="n">time_dep_expressions</span> <span class="o">=</span> <span class="n">_time_dependent_expressions</span><span class="p">(</span><span class="n">rhs_form</span><span class="p">,</span> <span class="n">time</span><span class="p">)</span>
+
+    <span class="c1"># Extract rhs expressions from form</span>
+    <span class="n">rhs_integrand</span> <span class="o">=</span> <span class="n">rhs_form</span><span class="o">.</span><span class="n">integrals</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">integrand</span><span class="p">()</span>
+    <span class="n">rhs_exprs</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">extract_tested_expressions</span><span class="p">(</span><span class="n">rhs_integrand</span><span class="p">)</span>
+    <span class="n">vector_rhs</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">ufl_shape</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">v</span><span class="o">.</span><span class="n">ufl_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span>
+
+    <span class="n">system_size</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">ufl_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">vector_rhs</span> <span class="k">else</span> <span class="mi">1</span>
+
+    <span class="c1"># Fix for indexing of v for scalar expressions</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">v</span> <span class="k">if</span> <span class="n">vector_rhs</span> <span class="k">else</span> <span class="p">[</span><span class="n">v</span><span class="p">]</span>
+
+    <span class="c1"># Extract linear terms if not using generalized Rush Larsen</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">generalized</span><span class="p">:</span>
+        <span class="n">linear_terms</span> <span class="o">=</span> <span class="n">_find_linear_terms</span><span class="p">(</span><span class="n">rhs_exprs</span><span class="p">,</span> <span class="n">solution</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">linear_terms</span> <span class="o">=</span> <span class="p">[</span><span class="kc">True</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">system_size</span><span class="p">)]</span>
+
+    <span class="c1"># Wrap the rhs expressions into a ufl vector type</span>
+    <span class="n">rhs_exprs</span> <span class="o">=</span> <span class="n">ufl</span><span class="o">.</span><span class="n">as_vector</span><span class="p">([</span><span class="n">rhs_exprs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">system_size</span><span class="p">)])</span>
+    <span class="n">rhs_jac</span> <span class="o">=</span> <span class="n">ufl</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">rhs_exprs</span><span class="p">,</span> <span class="n">solution</span><span class="p">)</span>
+
+    <span class="c1"># Takes time!</span>
+    <span class="k">if</span> <span class="n">vector_rhs</span><span class="p">:</span>
+        <span class="n">diff_rhs_exprs</span> <span class="o">=</span> <span class="p">[</span><span class="n">expand_indices</span><span class="p">(</span><span class="n">expand_derivatives</span><span class="p">(</span><span class="n">rhs_jac</span><span class="p">[</span><span class="n">ind</span><span class="p">,</span> <span class="n">ind</span><span class="p">]))</span>
+                          <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">system_size</span><span class="p">)]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">diff_rhs_exprs</span> <span class="o">=</span> <span class="p">[</span><span class="n">expand_indices</span><span class="p">(</span><span class="n">expand_derivatives</span><span class="p">(</span><span class="n">rhs_jac</span><span class="p">[</span><span class="mi">0</span><span class="p">]))]</span>
+        <span class="n">solution</span> <span class="o">=</span> <span class="p">[</span><span class="n">solution</span><span class="p">]</span>
+
+    <span class="n">ufl_stage_forms</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">dolfin_stage_forms</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">dt_stage_offsets</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Stage solutions (3 per order rhs, linearized, and final step)</span>
+    <span class="c1"># If 2nd order the final step for 1 step is a stage</span>
+    <span class="k">if</span> <span class="n">order</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">stage_solutions</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">rl_ufl_form</span> <span class="o">=</span> <span class="n">_rush_larsen_step</span><span class="p">(</span><span class="n">rhs_exprs</span><span class="p">,</span> <span class="n">diff_rhs_exprs</span><span class="p">,</span> <span class="n">linear_terms</span><span class="p">,</span>
+                                        <span class="n">system_size</span><span class="p">,</span> <span class="n">solution</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span>
+                                        <span class="mf">0.0</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">DX</span><span class="p">,</span> <span class="n">time_dep_expressions</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">order</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+
+        <span class="c1"># Stage solution for order 2</span>
+        <span class="k">if</span> <span class="n">vector_rhs</span><span class="p">:</span>
+            <span class="n">stage_solutions</span> <span class="o">=</span> <span class="p">[</span><span class="n">Function</span><span class="p">(</span><span class="n">solution</span><span class="o">.</span><span class="n">function_space</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;y_1/2&quot;</span><span class="p">)]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">stage_solutions</span> <span class="o">=</span> <span class="p">[</span><span class="n">Function</span><span class="p">(</span><span class="n">solution</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">function_space</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;y_1/2&quot;</span><span class="p">)]</span>
+
+        <span class="n">stage_form</span> <span class="o">=</span> <span class="n">_rush_larsen_step</span><span class="p">(</span><span class="n">rhs_exprs</span><span class="p">,</span> <span class="n">diff_rhs_exprs</span><span class="p">,</span>
+                                       <span class="n">linear_terms</span><span class="p">,</span> <span class="n">system_size</span><span class="p">,</span>
+                                       <span class="n">solution</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span>
+                                       <span class="mf">0.0</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">DX</span><span class="p">,</span>
+                                       <span class="n">time_dep_expressions</span><span class="p">)</span>
+
+        <span class="n">rl_ufl_form</span> <span class="o">=</span> <span class="n">_rush_larsen_step</span><span class="p">(</span><span class="n">rhs_exprs</span><span class="p">,</span> <span class="n">diff_rhs_exprs</span><span class="p">,</span>
+                                        <span class="n">linear_terms</span><span class="p">,</span> <span class="n">system_size</span><span class="p">,</span>
+                                        <span class="n">solution</span><span class="p">,</span> <span class="n">stage_solutions</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                                        <span class="n">dt</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">DX</span><span class="p">,</span>
+                                        <span class="n">time_dep_expressions</span><span class="p">)</span>
+
+        <span class="n">ufl_stage_forms</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">stage_form</span><span class="p">])</span>
+        <span class="n">dolfin_stage_forms</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">Form</span><span class="p">(</span><span class="n">stage_form</span><span class="p">)])</span>
+
+    <span class="c1"># Get last stage form</span>
+    <span class="n">last_stage</span> <span class="o">=</span> <span class="n">Form</span><span class="p">(</span><span class="n">rl_ufl_form</span><span class="p">)</span>
+
+    <span class="n">human_form</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">rush larsen </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s2">&quot;generalized &quot;</span> <span class="k">if</span> <span class="n">generalized</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                                       <span class="nb">str</span><span class="p">(</span><span class="n">order</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">rhs_form</span><span class="p">,</span> <span class="n">linear_terms</span><span class="p">,</span> <span class="n">ufl_stage_forms</span><span class="p">,</span> <span class="n">dolfin_stage_forms</span><span class="p">,</span> <span class="n">last_stage</span><span class="p">,</span> \
+        <span class="n">stage_solutions</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">dt_stage_offsets</span><span class="p">,</span> <span class="n">human_form</span><span class="p">,</span> <span class="kc">None</span>
+
+
+<span class="k">def</span> <span class="nf">_rush_larsen_scheme_generator_tlm</span><span class="p">(</span><span class="n">rhs_form</span><span class="p">,</span> <span class="n">solution</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span>
+                                      <span class="n">generalized</span><span class="p">,</span> <span class="n">perturbation</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generates a list of forms and solutions for the tangent</span>
+<span class="sd">    linearisation of the Rush-Larsen scheme</span>
+
+<span class="sd">    *Arguments*</span>
+<span class="sd">        rhs_form (ufl.Form)</span>
+<span class="sd">            A UFL form representing the rhs for a time differentiated equation</span>
+<span class="sd">        solution (_Function_)</span>
+<span class="sd">            The prognostic variable</span>
+<span class="sd">        time (_Constant_)</span>
+<span class="sd">            A Constant holding the time at the start of the time step</span>
+<span class="sd">        order (int)</span>
+<span class="sd">            The order of the scheme</span>
+<span class="sd">        generalized (bool)</span>
+<span class="sd">            If True generate a generalized Rush Larsen scheme, linearizing all</span>
+<span class="sd">            components.</span>
+<span class="sd">        perturbation (Function)</span>
+<span class="sd">            The vector on which we compute the tangent linear action.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">DX</span> <span class="o">=</span> <span class="n">_check_form</span><span class="p">(</span><span class="n">rhs_form</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">DX</span> <span class="o">!=</span> <span class="n">ufl</span><span class="o">.</span><span class="n">dP</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Expected a form with a Pointintegral.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Create time step</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+
+    <span class="c1"># Get test function</span>
+    <span class="c1">#    arguments = rhs_form.arguments()</span>
+    <span class="c1">#    coefficients = rhs_form.coefficients()</span>
+
+    <span class="c1"># Get time dependent expressions</span>
+    <span class="n">time_dep_expressions</span> <span class="o">=</span> <span class="n">_time_dependent_expressions</span><span class="p">(</span><span class="n">rhs_form</span><span class="p">,</span> <span class="n">time</span><span class="p">)</span>
+
+    <span class="c1"># Extract rhs expressions from form</span>
+    <span class="n">rhs_integrand</span> <span class="o">=</span> <span class="n">rhs_form</span><span class="o">.</span><span class="n">integrals</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">integrand</span><span class="p">()</span>
+    <span class="n">rhs_exprs</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">extract_tested_expressions</span><span class="p">(</span><span class="n">rhs_integrand</span><span class="p">)</span>
+    <span class="n">vector_rhs</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">ufl_shape</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">v</span><span class="o">.</span><span class="n">ufl_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span>
+
+    <span class="n">system_size</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">ufl_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">vector_rhs</span> <span class="k">else</span> <span class="mi">1</span>
+
+    <span class="c1"># Fix for indexing of v for scalar expressions</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">v</span> <span class="k">if</span> <span class="n">vector_rhs</span> <span class="k">else</span> <span class="p">[</span><span class="n">v</span><span class="p">]</span>
+
+    <span class="c1"># Extract linear terms if not using generalized Rush Larsen</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">generalized</span><span class="p">:</span>
+        <span class="n">linear_terms</span> <span class="o">=</span> <span class="n">_find_linear_terms</span><span class="p">(</span><span class="n">rhs_exprs</span><span class="p">,</span> <span class="n">solution</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">linear_terms</span> <span class="o">=</span> <span class="p">[</span><span class="kc">True</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">system_size</span><span class="p">)]</span>
+
+    <span class="c1"># Wrap the rhs expressions into a ufl vector type</span>
+    <span class="n">rhs_exprs</span> <span class="o">=</span> <span class="n">ufl</span><span class="o">.</span><span class="n">as_vector</span><span class="p">([</span><span class="n">rhs_exprs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">system_size</span><span class="p">)])</span>
+    <span class="n">rhs_jac</span> <span class="o">=</span> <span class="n">ufl</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">rhs_exprs</span><span class="p">,</span> <span class="n">solution</span><span class="p">)</span>
+
+    <span class="c1"># Takes time!</span>
+    <span class="k">if</span> <span class="n">vector_rhs</span><span class="p">:</span>
+        <span class="n">diff_rhs_exprs</span> <span class="o">=</span> <span class="p">[</span><span class="n">expand_indices</span><span class="p">(</span><span class="n">expand_derivatives</span><span class="p">(</span><span class="n">rhs_jac</span><span class="p">[</span><span class="n">ind</span><span class="p">,</span> <span class="n">ind</span><span class="p">]))</span>
+                          <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">system_size</span><span class="p">)]</span>
+        <span class="n">soln</span> <span class="o">=</span> <span class="n">solution</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">diff_rhs_exprs</span> <span class="o">=</span> <span class="p">[</span><span class="n">expand_indices</span><span class="p">(</span><span class="n">expand_derivatives</span><span class="p">(</span><span class="n">rhs_jac</span><span class="p">[</span><span class="mi">0</span><span class="p">]))]</span>
+        <span class="n">solution</span> <span class="o">=</span> <span class="p">[</span><span class="n">solution</span><span class="p">]</span>
+        <span class="n">soln</span> <span class="o">=</span> <span class="n">solution</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">ufl_stage_forms</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">dolfin_stage_forms</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">dt_stage_offsets</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">trial</span> <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">soln</span><span class="o">.</span><span class="n">function_space</span><span class="p">())</span>
+
+    <span class="c1"># Stage solutions (3 per order rhs, linearized, and final step)</span>
+    <span class="c1"># If 2nd order the final step for 1 step is a stage</span>
+    <span class="k">if</span> <span class="n">order</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">stage_solutions</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># Fetch the original step</span>
+        <span class="n">rl_ufl_form</span> <span class="o">=</span> <span class="n">_rush_larsen_step</span><span class="p">(</span><span class="n">rhs_exprs</span><span class="p">,</span> <span class="n">diff_rhs_exprs</span><span class="p">,</span>
+                                        <span class="n">linear_terms</span><span class="p">,</span> <span class="n">system_size</span><span class="p">,</span>
+                                        <span class="n">solution</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span>
+                                        <span class="mf">0.0</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">DX</span><span class="p">,</span>
+                                        <span class="n">time_dep_expressions</span><span class="p">)</span>
+
+        <span class="n">rl_ufl_form</span> <span class="o">=</span> <span class="n">safe_action</span><span class="p">(</span><span class="n">derivative</span><span class="p">(</span><span class="n">rl_ufl_form</span><span class="p">,</span> <span class="n">soln</span><span class="p">,</span> <span class="n">trial</span><span class="p">),</span> <span class="n">perturbation</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="n">order</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="c1"># Stage solution for order 2</span>
+        <span class="n">fn_space</span> <span class="o">=</span> <span class="n">soln</span><span class="o">.</span><span class="n">function_space</span><span class="p">()</span>
+
+        <span class="n">stage_solutions</span> <span class="o">=</span> <span class="p">[</span><span class="n">Function</span><span class="p">(</span><span class="n">fn_space</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;y_1/2&quot;</span><span class="p">),</span>
+                           <span class="n">Function</span><span class="p">(</span><span class="n">fn_space</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;y_dot_1/2&quot;</span><span class="p">),</span>
+                           <span class="n">Function</span><span class="p">(</span><span class="n">fn_space</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;y_1&quot;</span><span class="p">)]</span>
+
+        <span class="n">y_half_form</span> <span class="o">=</span> <span class="n">_rush_larsen_step</span><span class="p">(</span><span class="n">rhs_exprs</span><span class="p">,</span> <span class="n">diff_rhs_exprs</span><span class="p">,</span>
+                                        <span class="n">linear_terms</span><span class="p">,</span> <span class="n">system_size</span><span class="p">,</span>
+                                        <span class="n">solution</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span>
+                                        <span class="mf">0.0</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">DX</span><span class="p">,</span>
+                                        <span class="n">time_dep_expressions</span><span class="p">)</span>
+
+        <span class="n">y_dot_half_form</span> <span class="o">=</span> <span class="n">safe_action</span><span class="p">(</span><span class="n">derivative</span><span class="p">(</span><span class="n">y_half_form</span><span class="p">,</span> <span class="n">soln</span><span class="p">,</span> <span class="n">trial</span><span class="p">),</span> <span class="n">perturbation</span><span class="p">)</span>
+
+        <span class="n">y_one_form</span> <span class="o">=</span> <span class="n">_rush_larsen_step</span><span class="p">(</span><span class="n">rhs_exprs</span><span class="p">,</span> <span class="n">diff_rhs_exprs</span><span class="p">,</span>
+                                       <span class="n">linear_terms</span><span class="p">,</span> <span class="n">system_size</span><span class="p">,</span>
+                                       <span class="n">solution</span><span class="p">,</span> <span class="n">stage_solutions</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                                       <span class="n">dt</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">DX</span><span class="p">,</span>
+                                       <span class="n">time_dep_expressions</span><span class="p">)</span>
+
+        <span class="n">rl_ufl_form</span> <span class="o">=</span> <span class="n">safe_action</span><span class="p">(</span><span class="n">derivative</span><span class="p">(</span><span class="n">y_one_form</span><span class="p">,</span> <span class="n">soln</span><span class="p">,</span> <span class="n">trial</span><span class="p">),</span> <span class="n">perturbation</span><span class="p">)</span> <span class="o">+</span> \
+            <span class="n">safe_action</span><span class="p">(</span><span class="n">derivative</span><span class="p">(</span><span class="n">y_one_form</span><span class="p">,</span> <span class="n">stage_solutions</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">trial</span><span class="p">),</span> <span class="n">stage_solutions</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="n">ufl_stage_forms</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">y_half_form</span><span class="p">])</span>
+        <span class="n">ufl_stage_forms</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">y_dot_half_form</span><span class="p">])</span>
+        <span class="n">ufl_stage_forms</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">y_one_form</span><span class="p">])</span>
+        <span class="n">dolfin_stage_forms</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">Form</span><span class="p">(</span><span class="n">y_half_form</span><span class="p">)])</span>
+        <span class="n">dolfin_stage_forms</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">Form</span><span class="p">(</span><span class="n">y_dot_half_form</span><span class="p">)])</span>
+        <span class="n">dolfin_stage_forms</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">Form</span><span class="p">(</span><span class="n">y_one_form</span><span class="p">)])</span>
+
+    <span class="c1"># Get last stage form</span>
+    <span class="n">last_stage</span> <span class="o">=</span> <span class="n">Form</span><span class="p">(</span><span class="n">rl_ufl_form</span><span class="p">)</span>
+
+    <span class="n">human_form</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">rush larsen </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s2">&quot;generalized &quot;</span> <span class="k">if</span> <span class="n">generalized</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                                       <span class="nb">str</span><span class="p">(</span><span class="n">order</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">rhs_form</span><span class="p">,</span> <span class="n">linear_terms</span><span class="p">,</span> <span class="n">ufl_stage_forms</span><span class="p">,</span> <span class="n">dolfin_stage_forms</span><span class="p">,</span> <span class="n">last_stage</span><span class="p">,</span> \
+        <span class="n">stage_solutions</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">dt_stage_offsets</span><span class="p">,</span> <span class="n">human_form</span><span class="p">,</span> <span class="n">perturbation</span>
+
+
+<span class="k">def</span> <span class="nf">_rush_larsen_scheme_generator_adm</span><span class="p">(</span><span class="n">rhs_form</span><span class="p">,</span> <span class="n">solution</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span>
+                                      <span class="n">generalized</span><span class="p">,</span> <span class="n">perturbation</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generates a list of forms and solutions for the adjoint</span>
+<span class="sd">    linearisation of the Rush-Larsen scheme</span>
+
+<span class="sd">    *Arguments*</span>
+<span class="sd">        rhs_form (ufl.Form)</span>
+<span class="sd">            A UFL form representing the rhs for a time differentiated equation</span>
+<span class="sd">        solution (_Function_)</span>
+<span class="sd">            The prognostic variable</span>
+<span class="sd">        time (_Constant_)</span>
+<span class="sd">            A Constant holding the time at the start of the time step</span>
+<span class="sd">        order (int)</span>
+<span class="sd">            The order of the scheme</span>
+<span class="sd">        generalized (bool)</span>
+<span class="sd">            If True generate a generalized Rush Larsen scheme, linearizing all</span>
+<span class="sd">            components.</span>
+<span class="sd">        perturbation (Function)</span>
+<span class="sd">            The vector on which we compute the adjoint action.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">DX</span> <span class="o">=</span> <span class="n">_check_form</span><span class="p">(</span><span class="n">rhs_form</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">DX</span> <span class="o">!=</span> <span class="n">ufl</span><span class="o">.</span><span class="n">dP</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Expected a form with a Pointintegral.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Create time step</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+
+    <span class="c1"># Get test function</span>
+    <span class="c1">#    arguments = rhs_form.arguments()</span>
+    <span class="c1">#    coefficients = rhs_form.coefficients()</span>
+
+    <span class="c1"># Get time dependent expressions</span>
+    <span class="n">time_dep_expressions</span> <span class="o">=</span> <span class="n">_time_dependent_expressions</span><span class="p">(</span><span class="n">rhs_form</span><span class="p">,</span> <span class="n">time</span><span class="p">)</span>
+
+    <span class="c1"># Extract rhs expressions from form</span>
+    <span class="n">rhs_integrand</span> <span class="o">=</span> <span class="n">rhs_form</span><span class="o">.</span><span class="n">integrals</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">integrand</span><span class="p">()</span>
+    <span class="n">rhs_exprs</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">extract_tested_expressions</span><span class="p">(</span><span class="n">rhs_integrand</span><span class="p">)</span>
+    <span class="n">vector_rhs</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">ufl_shape</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">v</span><span class="o">.</span><span class="n">ufl_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span>
+
+    <span class="n">system_size</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">ufl_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">vector_rhs</span> <span class="k">else</span> <span class="mi">1</span>
+
+    <span class="c1"># Fix for indexing of v for scalar expressions</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">v</span> <span class="k">if</span> <span class="n">vector_rhs</span> <span class="k">else</span> <span class="p">[</span><span class="n">v</span><span class="p">]</span>
+
+    <span class="c1"># Extract linear terms if not using generalized Rush Larsen</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">generalized</span><span class="p">:</span>
+        <span class="n">linear_terms</span> <span class="o">=</span> <span class="n">_find_linear_terms</span><span class="p">(</span><span class="n">rhs_exprs</span><span class="p">,</span> <span class="n">solution</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">linear_terms</span> <span class="o">=</span> <span class="p">[</span><span class="kc">True</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">system_size</span><span class="p">)]</span>
+
+    <span class="c1"># Wrap the rhs expressions into a ufl vector type</span>
+    <span class="n">rhs_exprs</span> <span class="o">=</span> <span class="n">ufl</span><span class="o">.</span><span class="n">as_vector</span><span class="p">([</span><span class="n">rhs_exprs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">system_size</span><span class="p">)])</span>
+    <span class="n">rhs_jac</span> <span class="o">=</span> <span class="n">ufl</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">rhs_exprs</span><span class="p">,</span> <span class="n">solution</span><span class="p">)</span>
+
+    <span class="c1"># Takes time!</span>
+    <span class="k">if</span> <span class="n">vector_rhs</span><span class="p">:</span>
+        <span class="n">diff_rhs_exprs</span> <span class="o">=</span> <span class="p">[</span><span class="n">expand_indices</span><span class="p">(</span><span class="n">expand_derivatives</span><span class="p">(</span><span class="n">rhs_jac</span><span class="p">[</span><span class="n">ind</span><span class="p">,</span> <span class="n">ind</span><span class="p">]))</span>
+                          <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">system_size</span><span class="p">)]</span>
+        <span class="n">soln</span> <span class="o">=</span> <span class="n">solution</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">diff_rhs_exprs</span> <span class="o">=</span> <span class="p">[</span><span class="n">expand_indices</span><span class="p">(</span><span class="n">expand_derivatives</span><span class="p">(</span><span class="n">rhs_jac</span><span class="p">[</span><span class="mi">0</span><span class="p">]))]</span>
+        <span class="n">solution</span> <span class="o">=</span> <span class="p">[</span><span class="n">solution</span><span class="p">]</span>
+        <span class="n">soln</span> <span class="o">=</span> <span class="n">solution</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">ufl_stage_forms</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">dolfin_stage_forms</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">dt_stage_offsets</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">trial</span> <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">soln</span><span class="o">.</span><span class="n">function_space</span><span class="p">())</span>
+
+    <span class="c1"># Stage solutions (3 per order rhs, linearized, and final step)</span>
+    <span class="c1"># If 2nd order the final step for 1 step is a stage</span>
+    <span class="k">if</span> <span class="n">order</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">stage_solutions</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># Fetch the original step</span>
+        <span class="n">rl_ufl_form</span> <span class="o">=</span> <span class="n">_rush_larsen_step</span><span class="p">(</span><span class="n">rhs_exprs</span><span class="p">,</span> <span class="n">diff_rhs_exprs</span><span class="p">,</span>
+                                        <span class="n">linear_terms</span><span class="p">,</span> <span class="n">system_size</span><span class="p">,</span>
+                                        <span class="n">solution</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span>
+                                        <span class="mf">0.0</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">DX</span><span class="p">,</span>
+                                        <span class="n">time_dep_expressions</span><span class="p">)</span>
+
+        <span class="c1"># If this is commented out, we don&#39;t get NaNs.  Yhy is</span>
+        <span class="c1"># solution a list of length zero anyway?</span>
+        <span class="n">rl_ufl_form</span> <span class="o">=</span> <span class="n">safe_action</span><span class="p">(</span><span class="n">safe_adjoint</span><span class="p">(</span><span class="n">derivative</span><span class="p">(</span><span class="n">rl_ufl_form</span><span class="p">,</span> <span class="n">soln</span><span class="p">,</span> <span class="n">trial</span><span class="p">)),</span>
+                                  <span class="n">perturbation</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="n">order</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="c1"># Stage solution for order 2</span>
+        <span class="n">fn_space</span> <span class="o">=</span> <span class="n">soln</span><span class="o">.</span><span class="n">function_space</span><span class="p">()</span>
+
+        <span class="n">stage_solutions</span> <span class="o">=</span> <span class="p">[</span><span class="n">Function</span><span class="p">(</span><span class="n">fn_space</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;y_1/2&quot;</span><span class="p">),</span>
+                           <span class="n">Function</span><span class="p">(</span><span class="n">fn_space</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;y_1&quot;</span><span class="p">),</span>
+                           <span class="n">Function</span><span class="p">(</span><span class="n">fn_space</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;y_bar_1/2&quot;</span><span class="p">)]</span>
+
+        <span class="n">y_half_form</span> <span class="o">=</span> <span class="n">_rush_larsen_step</span><span class="p">(</span><span class="n">rhs_exprs</span><span class="p">,</span> <span class="n">diff_rhs_exprs</span><span class="p">,</span>
+                                        <span class="n">linear_terms</span><span class="p">,</span> <span class="n">system_size</span><span class="p">,</span>
+                                        <span class="n">solution</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span>
+                                        <span class="mf">0.0</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">DX</span><span class="p">,</span>
+                                        <span class="n">time_dep_expressions</span><span class="p">)</span>
+
+        <span class="n">y_one_form</span> <span class="o">=</span> <span class="n">_rush_larsen_step</span><span class="p">(</span><span class="n">rhs_exprs</span><span class="p">,</span> <span class="n">diff_rhs_exprs</span><span class="p">,</span>
+                                       <span class="n">linear_terms</span><span class="p">,</span> <span class="n">system_size</span><span class="p">,</span>
+                                       <span class="n">solution</span><span class="p">,</span> <span class="n">stage_solutions</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                                       <span class="n">dt</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">DX</span><span class="p">,</span>
+                                       <span class="n">time_dep_expressions</span><span class="p">)</span>
+
+        <span class="n">y_bar_half_form</span> <span class="o">=</span> <span class="n">safe_action</span><span class="p">(</span><span class="n">safe_adjoint</span><span class="p">(</span><span class="n">derivative</span><span class="p">(</span><span class="n">y_one_form</span><span class="p">,</span>
+                                                              <span class="n">stage_solutions</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">trial</span><span class="p">)),</span> <span class="n">perturbation</span><span class="p">)</span>
+
+        <span class="n">rl_ufl_form</span> <span class="o">=</span> <span class="n">safe_action</span><span class="p">(</span><span class="n">safe_adjoint</span><span class="p">(</span><span class="n">derivative</span><span class="p">(</span><span class="n">y_one_form</span><span class="p">,</span> <span class="n">soln</span><span class="p">,</span> <span class="n">trial</span><span class="p">)),</span> <span class="n">perturbation</span><span class="p">)</span> <span class="o">+</span> \
+            <span class="n">safe_action</span><span class="p">(</span><span class="n">safe_adjoint</span><span class="p">(</span><span class="n">derivative</span><span class="p">(</span><span class="n">y_half_form</span><span class="p">,</span> <span class="n">soln</span><span class="p">,</span> <span class="n">trial</span><span class="p">)),</span> <span class="n">stage_solutions</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+
+        <span class="n">ufl_stage_forms</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">y_half_form</span><span class="p">])</span>
+        <span class="n">ufl_stage_forms</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">y_one_form</span><span class="p">])</span>
+        <span class="n">ufl_stage_forms</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">y_bar_half_form</span><span class="p">])</span>
+        <span class="n">dolfin_stage_forms</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">Form</span><span class="p">(</span><span class="n">y_half_form</span><span class="p">)])</span>
+        <span class="n">dolfin_stage_forms</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">Form</span><span class="p">(</span><span class="n">y_one_form</span><span class="p">)])</span>
+        <span class="n">dolfin_stage_forms</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">Form</span><span class="p">(</span><span class="n">y_bar_half_form</span><span class="p">)])</span>
+
+    <span class="c1"># Get last stage form</span>
+    <span class="n">last_stage</span> <span class="o">=</span> <span class="n">Form</span><span class="p">(</span><span class="n">rl_ufl_form</span><span class="p">)</span>
+
+    <span class="n">human_form</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">rush larsen </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s2">&quot;generalized &quot;</span> <span class="k">if</span> <span class="n">generalized</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                                       <span class="nb">str</span><span class="p">(</span><span class="n">order</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">rhs_form</span><span class="p">,</span> <span class="n">linear_terms</span><span class="p">,</span> <span class="n">ufl_stage_forms</span><span class="p">,</span> <span class="n">dolfin_stage_forms</span><span class="p">,</span> <span class="n">last_stage</span><span class="p">,</span> \
+        <span class="n">stage_solutions</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">dt_stage_offsets</span><span class="p">,</span> <span class="n">human_form</span><span class="p">,</span> <span class="n">perturbation</span>
+
+
+<div class="viewcode-block" id="RushLarsenScheme"><a class="viewcode-back" href="../../../_autogenerated/dolfin.multistage.html#dolfin.multistage.RushLarsenScheme">[docs]</a><span class="k">class</span> <span class="nc">RushLarsenScheme</span><span class="p">(</span><span class="n">MultiStageScheme</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs_form</span><span class="p">,</span> <span class="n">solution</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span> <span class="n">generalized</span><span class="p">,</span>
+                 <span class="n">generator</span><span class="o">=</span><span class="n">_rush_larsen_scheme_generator</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rhs_form</span> <span class="o">=</span> <span class="n">rhs_form</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_solution</span> <span class="o">=</span> <span class="n">solution</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_t</span> <span class="o">=</span> <span class="n">time</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_order</span> <span class="o">=</span> <span class="n">order</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_generalized</span> <span class="o">=</span> <span class="n">generalized</span>
+
+        <span class="c1"># FIXME: What with bcs?</span>
+        <span class="n">bcs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">time</span> <span class="o">=</span> <span class="n">time</span> <span class="ow">or</span> <span class="n">Constant</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">order</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Expected order to be either 1 or 2&quot;</span><span class="p">)</span>
+
+        <span class="n">rhs_form</span><span class="p">,</span> <span class="n">ufl_stage_forms</span><span class="p">,</span> <span class="n">linear_terms</span><span class="p">,</span> <span class="n">dofin_stage_forms</span><span class="p">,</span> <span class="n">last_stage</span><span class="p">,</span> \
+            <span class="n">stage_solutions</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">dt_stage_offsets</span><span class="p">,</span> <span class="n">human_form</span><span class="p">,</span> <span class="n">contraction</span> <span class="o">=</span> \
+            <span class="n">generator</span><span class="p">(</span><span class="n">rhs_form</span><span class="p">,</span> <span class="n">solution</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span> <span class="n">generalized</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">linear_terms</span> <span class="o">=</span> <span class="n">linear_terms</span>
+
+        <span class="c1"># All stages are explicit</span>
+        <span class="n">jacobian_indices</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">stage_solutions</span><span class="p">]</span>
+
+        <span class="c1"># Highjack a and b to hold parameters for RushLarsen scheme generation</span>
+        <span class="n">MultiStageScheme</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs_form</span><span class="p">,</span> <span class="n">ufl_stage_forms</span><span class="p">,</span>
+                                  <span class="n">dofin_stage_forms</span><span class="p">,</span> <span class="n">last_stage</span><span class="p">,</span>
+                                  <span class="n">stage_solutions</span><span class="p">,</span> <span class="n">solution</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span>
+                                  <span class="n">dt_stage_offsets</span><span class="p">,</span> <span class="n">jacobian_indices</span><span class="p">,</span>
+                                  <span class="n">order</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                                  <span class="n">human_form</span><span class="p">,</span> <span class="n">bcs</span><span class="p">,</span> <span class="n">contraction</span><span class="p">)</span>
+
+<div class="viewcode-block" id="RushLarsenScheme.to_tlm"><a class="viewcode-back" href="../../../_autogenerated/dolfin.multistage.html#dolfin.multistage.RushLarsenScheme.to_tlm">[docs]</a>    <span class="k">def</span> <span class="nf">to_tlm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">perturbation</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return another RushLarsenScheme that implements the tangent</span>
+<span class="sd">        linearisation of the ODE solver.</span>
+
+<span class="sd">        This takes \dot{y_n} (the derivative of y_n with respect to a</span>
+<span class="sd">        parameter) and computes \dot{y_n+1} (the derivative of y_n+1</span>
+<span class="sd">        with respect to that parameter).</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">generator</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span><span class="n">_rush_larsen_scheme_generator_tlm</span><span class="p">,</span>
+                                      <span class="n">perturbation</span><span class="o">=</span><span class="n">perturbation</span><span class="p">)</span>
+        <span class="n">new_solution</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_solution</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">new_form</span> <span class="o">=</span> <span class="n">ufl</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_rhs_form</span><span class="p">,</span> <span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_solution</span><span class="p">:</span> <span class="n">new_solution</span><span class="p">})</span>
+        <span class="k">return</span> <span class="n">RushLarsenScheme</span><span class="p">(</span><span class="n">new_form</span><span class="p">,</span> <span class="n">new_solution</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_t</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_order</span><span class="p">,</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">_generalized</span><span class="p">,</span> <span class="n">generator</span><span class="o">=</span><span class="n">generator</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RushLarsenScheme.to_adm"><a class="viewcode-back" href="../../../_autogenerated/dolfin.multistage.html#dolfin.multistage.RushLarsenScheme.to_adm">[docs]</a>    <span class="k">def</span> <span class="nf">to_adm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">perturbation</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return another RushLarsenScheme that implements the adjoint</span>
+<span class="sd">        linearisation of the ODE solver.</span>
+
+<span class="sd">        This takes \bar{y_n+1} (the derivative of y_n+1 with respect to a</span>
+<span class="sd">        parameter) and computes \bar{y_n} (the derivative of y_n</span>
+<span class="sd">        with respect to that parameter).</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">generator</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span><span class="n">_rush_larsen_scheme_generator_adm</span><span class="p">,</span>
+                                      <span class="n">perturbation</span><span class="o">=</span><span class="n">perturbation</span><span class="p">)</span>
+        <span class="n">new_solution</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_solution</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">new_form</span> <span class="o">=</span> <span class="n">ufl</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_rhs_form</span><span class="p">,</span> <span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_solution</span><span class="p">:</span> <span class="n">new_solution</span><span class="p">})</span>
+        <span class="k">return</span> <span class="n">RushLarsenScheme</span><span class="p">(</span><span class="n">new_form</span><span class="p">,</span> <span class="n">new_solution</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_t</span><span class="p">,</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">_order</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generalized</span><span class="p">,</span>
+                                <span class="n">generator</span><span class="o">=</span><span class="n">generator</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="RL1"><a class="viewcode-back" href="../../../_autogenerated/dolfin.multistage.html#dolfin.multistage.RL1">[docs]</a><span class="k">class</span> <span class="nc">RL1</span><span class="p">(</span><span class="n">RushLarsenScheme</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;First order Rush Larsen Scheme</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs_form</span><span class="p">,</span> <span class="n">solution</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">RushLarsenScheme</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs_form</span><span class="p">,</span> <span class="n">solution</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="RL2"><a class="viewcode-back" href="../../../_autogenerated/dolfin.multistage.html#dolfin.multistage.RL2">[docs]</a><span class="k">class</span> <span class="nc">RL2</span><span class="p">(</span><span class="n">RushLarsenScheme</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Second order Rush Larsen Scheme</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs_form</span><span class="p">,</span> <span class="n">solution</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">RushLarsenScheme</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs_form</span><span class="p">,</span> <span class="n">solution</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">generalized</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GRL1"><a class="viewcode-back" href="../../../_autogenerated/dolfin.multistage.html#dolfin.multistage.GRL1">[docs]</a><span class="k">class</span> <span class="nc">GRL1</span><span class="p">(</span><span class="n">RushLarsenScheme</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    First order generalized Rush Larsen Scheme</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs_form</span><span class="p">,</span> <span class="n">solution</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">RushLarsenScheme</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs_form</span><span class="p">,</span> <span class="n">solution</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GRL2"><a class="viewcode-back" href="../../../_autogenerated/dolfin.multistage.html#dolfin.multistage.GRL2">[docs]</a><span class="k">class</span> <span class="nc">GRL2</span><span class="p">(</span><span class="n">RushLarsenScheme</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Second order generalized Rush Larsen Scheme</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs_form</span><span class="p">,</span> <span class="n">solution</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">RushLarsenScheme</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs_form</span><span class="p">,</span> <span class="n">solution</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span></div>
+
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="n">name</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">attr</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="nb">globals</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+           <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="nb">type</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="n">MultiStageScheme</span><span class="p">)]</span>
+
+<span class="n">__all__</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;MultiStageScheme&quot;</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, FEniCS Project
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

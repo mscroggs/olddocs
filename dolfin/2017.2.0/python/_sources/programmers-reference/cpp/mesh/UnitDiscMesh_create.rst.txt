@@ -1,0 +1,10 @@
+.. Documentation for the function dolfin.cpp.mesh.UnitDiscMesh_create
+
+.. _programmers_reference_cpp_mesh_unitdiscmesh_create:
+
+UnitDiscMesh_create
+===================
+
+.. currentmodule:: dolfin.cpp.mesh
+
+.. autofunction:: UnitDiscMesh_create

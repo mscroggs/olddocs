@@ -1,0 +1,10 @@
+.. Documentation for the function dolfin.cpp.mesh.BoxMesh_create
+
+.. _programmers_reference_cpp_mesh_boxmesh_create:
+
+BoxMesh_create
+==============
+
+.. currentmodule:: dolfin.cpp.mesh
+
+.. autofunction:: BoxMesh_create

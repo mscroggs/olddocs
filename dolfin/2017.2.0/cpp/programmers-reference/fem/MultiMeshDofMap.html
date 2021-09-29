@@ -1,0 +1,408 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>MultiMeshDofMap.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN fem module" href="index.html"/>
+        <link rel="next" title="MultiMeshForm.h" href="MultiMeshForm.html"/>
+        <link rel="prev" title="MultiMeshDirichletBC.h" href="MultiMeshDirichletBC.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.9.11+
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer’s reference for DOLFIN-2017.2.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/index.html">DOLFIN common module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN fem module</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Assembler.html">Assembler.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AssemblerBase.html">AssemblerBase.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BasisFunction.html">BasisFunction.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DirichletBC.html">DirichletBC.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DiscreteOperators.html">DiscreteOperators.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DofMap.html">DofMap.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Equation.html">Equation.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FiniteElement.html">FiniteElement.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Form.html">Form.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericDofMap.html">GenericDofMap.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LinearVariationalProblem.html">LinearVariationalProblem.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LinearVariationalSolver.html">LinearVariationalSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LocalAssembler.html">LocalAssembler.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LocalSolver.html">LocalSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MultiMeshAssembler.html">MultiMeshAssembler.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MultiMeshDirichletBC.html">MultiMeshDirichletBC.h</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">MultiMeshDofMap.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MultiMeshForm.html">MultiMeshForm.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NonlinearVariationalProblem.html">NonlinearVariationalProblem.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NonlinearVariationalSolver.html">NonlinearVariationalSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PETScDMCollection.html">PETScDMCollection.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PointSource.html">PointSource.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SparsityPatternBuilder.html">SparsityPatternBuilder.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SystemAssembler.html">SystemAssembler.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="assemble.html">assemble.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="assemble_local.html">assemble_local.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fem_utils.html">fem_utils.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solve.html">solve.h</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html">DOLFIN function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/index.html">DOLFIN geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/index.html">DOLFIN io module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../la/index.html">DOLFIN la module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/index.html">DOLFIN log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mesh/index.html">DOLFIN mesh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer’s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">DOLFIN</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">C++ Programmer’s reference for DOLFIN-2017.2.0</a> &raquo;</li>
+        
+          <li><a href="index.html">DOLFIN fem module</a> &raquo;</li>
+        
+      <li>MultiMeshDofMap.h</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/programmers-reference/fem/MultiMeshDofMap.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="multimeshdofmap-h">
+<span id="programmers-reference-cpp-fem-multimeshdofmap"></span><h1>MultiMeshDofMap.h<a class="headerlink" href="#multimeshdofmap-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="class">
+<dt id="_CPPv215MultiMeshDofMap">
+<span id="MultiMeshDofMap"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">MultiMeshDofMap</code><a class="headerlink" href="#_CPPv215MultiMeshDofMap" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This class handles the mapping of degrees of freedom for MultiMesh
+function spaces.</p>
+<dl class="function">
+<dt id="_CPPv2N15MultiMeshDofMap15MultiMeshDofMapEv">
+<span id="MultiMeshDofMap::MultiMeshDofMap"></span><code class="descclassname"></code><code class="descname">MultiMeshDofMap</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N15MultiMeshDofMap15MultiMeshDofMapEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructor</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N15MultiMeshDofMap15MultiMeshDofMapERK15MultiMeshDofMap">
+<span id="MultiMeshDofMap::MultiMeshDofMap__MultiMeshDofMapCR"></span><code class="descclassname"></code><code class="descname">MultiMeshDofMap</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv2N15MultiMeshDofMap15MultiMeshDofMapEv" title="MultiMeshDofMap::MultiMeshDofMap">MultiMeshDofMap</a> &amp;<em>dofmap</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N15MultiMeshDofMap15MultiMeshDofMapERK15MultiMeshDofMap" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Copy constructor</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK15MultiMeshDofMap9num_partsEv">
+<span id="MultiMeshDofMap::num_partsC"></span>std::size_t <code class="descclassname"></code><code class="descname">num_parts</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK15MultiMeshDofMap9num_partsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the number dofmaps (parts) of the MultiMesh dofmap</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>std::size_t</dt>
+<dd>The number of dofmaps (parts) of the MultiMesh dofmap</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK15MultiMeshDofMap4partENSt6size_tE">
+<span id="MultiMeshDofMap::part__std::sC"></span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="GenericDofMap.html#_CPPv213GenericDofMap" title="GenericDofMap">GenericDofMap</a>&gt; <code class="descclassname"></code><code class="descname">part</code><span class="sig-paren">(</span>std::size_t <em>i</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK15MultiMeshDofMap4partENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return dofmap (part) number i</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt><a class="reference internal" href="GenericDofMap.html#_CPPv213GenericDofMap" title="GenericDofMap"><code class="xref cpp cpp-class docutils literal"><span class="pre">GenericDofMap</span></code></a></dt>
+<dd>Dofmap (part) number i</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N15MultiMeshDofMap3addENSt10shared_ptrIK13GenericDofMapEE">
+<span id="MultiMeshDofMap::add__std::shared_ptr:GenericDofMapC:"></span>void <code class="descclassname"></code><code class="descname">add</code><span class="sig-paren">(</span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="GenericDofMap.html#_CPPv213GenericDofMap" title="GenericDofMap">GenericDofMap</a>&gt; <em>dofmap</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N15MultiMeshDofMap3addENSt10shared_ptrIK13GenericDofMapEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add dofmap</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>dofmap (<a class="reference internal" href="GenericDofMap.html#_CPPv213GenericDofMap" title="GenericDofMap"><code class="xref cpp cpp-class docutils literal"><span class="pre">GenericDofMap</span></code></a>)</dt>
+<dd>The dofmap.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N15MultiMeshDofMap5buildERK22MultiMeshFunctionSpaceRKNSt6vectorIN6dolfin8la_indexEEE">
+<span id="MultiMeshDofMap::build__MultiMeshFunctionSpaceCR.std::vector:dolfin::la_index:CR"></span>void <code class="descclassname"></code><code class="descname">build</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../function/MultiMeshFunctionSpace.html#_CPPv222MultiMeshFunctionSpace" title="MultiMeshFunctionSpace">MultiMeshFunctionSpace</a> &amp;<em>function_space</em>, <em class="property">const</em> std::vector&lt;dolfin::la_index&gt; &amp;<em>offsets</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N15MultiMeshDofMap5buildERK22MultiMeshFunctionSpaceRKNSt6vectorIN6dolfin8la_indexEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Build MultiMesh dofmap</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N15MultiMeshDofMap5clearEv">
+<span id="MultiMeshDofMap::clear"></span>void <code class="descclassname"></code><code class="descname">clear</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N15MultiMeshDofMap5clearEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clear MultiMesh dofmap</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK15MultiMeshDofMap16global_dimensionEv">
+<span id="MultiMeshDofMap::global_dimensionC"></span>std::size_t <code class="descclassname"></code><code class="descname">global_dimension</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK15MultiMeshDofMap16global_dimensionEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the dimension of the global finite element function
+space</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK15MultiMeshDofMap15ownership_rangeEv">
+<span id="MultiMeshDofMap::ownership_rangeC"></span>std::pair&lt;std::size_t, std::size_t&gt; <code class="descclassname"></code><code class="descname">ownership_range</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK15MultiMeshDofMap15ownership_rangeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the ownership range (dofs in this range are owned by
+this process)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK15MultiMeshDofMap17off_process_ownerEv">
+<span id="MultiMeshDofMap::off_process_ownerC"></span><em class="property">const</em> std::vector&lt;int&gt; &amp;<code class="descclassname"></code><code class="descname">off_process_owner</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK15MultiMeshDofMap17off_process_ownerEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return map from nonlocal-dofs (that appear in local dof map)
+to owning process</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK15MultiMeshDofMap9index_mapEv">
+<span id="MultiMeshDofMap::index_mapC"></span>std::shared_ptr&lt;<a class="reference internal" href="../la/IndexMap.html#_CPPv28IndexMap" title="IndexMap">IndexMap</a>&gt; <code class="descclassname"></code><code class="descname">index_map</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK15MultiMeshDofMap9index_mapEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the map</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK15MultiMeshDofMap3strEb">
+<span id="MultiMeshDofMap::str__bC"></span>std::string <code class="descclassname"></code><code class="descname">str</code><span class="sig-paren">(</span>bool <em>verbose</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK15MultiMeshDofMap3strEb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return informal string representation (pretty-print)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK15MultiMeshDofMap13inactive_dofsERK9MultiMeshNSt6size_tE">
+<span id="MultiMeshDofMap::inactive_dofs__MultiMeshCR.std::sC"></span>std::vector&lt;dolfin::la_index&gt; <code class="descclassname"></code><code class="descname">inactive_dofs</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../mesh/MultiMesh.html#_CPPv29MultiMesh" title="MultiMesh">MultiMesh</a> &amp;<em>multimesh</em>, std::size_t <em>part_id</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK15MultiMeshDofMap13inactive_dofsERK9MultiMeshNSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return inactive dofs</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="MultiMeshForm.html" class="btn btn-neutral float-right" title="MultiMeshForm.h" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="MultiMeshDirichletBC.html" class="btn btn-neutral" title="MultiMeshDirichletBC.h" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright DOLFIN Core, https://launchpad.net/~dolfin-core.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.9.11+',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

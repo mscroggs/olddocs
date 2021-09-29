@@ -1,0 +1,685 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Point.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN geometry module" href="index.html"/>
+        <link rel="next" title="intersect.h" href="intersect.html"/>
+        <link rel="prev" title="MeshPointIntersection.h" href="MeshPointIntersection.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.4.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-1.4.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/index.html">DOLFIN common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fem/index.html">DOLFIN fem module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html">DOLFIN function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN geometry module</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="BoundingBoxTree.html">BoundingBoxTree.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BoundingBoxTree3D.html">BoundingBoxTree3D.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericBoundingBoxTree.html">GenericBoundingBoxTree.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ImplicitSurface.html">ImplicitSurface.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshPointIntersection.html">MeshPointIntersection.h</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Point.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intersect.html">intersect.h</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/index.html">DOLFIN io module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../la/index.html">DOLFIN la module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/index.html">DOLFIN log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mesh/index.html">DOLFIN mesh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot/index.html">DOLFIN plot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer&#8217;s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-1.4.0</a> &raquo;</li>
+      
+          <li><a href="index.html">DOLFIN geometry module</a> &raquo;</li>
+      
+    <li>Point.h</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/programmers-reference/geometry/Point.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="point-h">
+<span id="programmers-reference-cpp-geometry-point"></span><h1>Point.h<a class="headerlink" href="#point-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="class">
+<dt id="_CPPv25Point">
+<span id="Point"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">Point</code><a class="headerlink" href="#_CPPv25Point" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A Point represents a point in <span class="math">\(\mathbb{R}^3\)</span> with
+coordinates <span class="math">\(x, y, z,\)</span> or alternatively, a vector in
+<span class="math">\(\mathbb{R}^3\)</span>, supporting standard operations like the
+norm, distances, scalar and vector products etc.</p>
+<dl class="function">
+<dt id="_CPPv2N5Point5PointEKdKdKd">
+<span id="Point::Point__doubleC.doubleC.doubleC"></span><code class="descclassname"></code><code class="descname">Point</code><span class="sig-paren">(</span><em class="property">const</em> double <em>x</em> = 0.0, <em class="property">const</em> double <em>y</em> = 0.0, <em class="property">const</em> double <em>z</em> = 0.0<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N5Point5PointEKdKdKd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create a point at (x, y, z). Default value (0, 0, 0).</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>x (double)</dt>
+<dd>The x-coordinate.</dd>
+<dt>y (double)</dt>
+<dd>The y-coordinate.</dd>
+<dt>z (double)</dt>
+<dd>The z-coordinate.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N5Point5PointENSt6size_tEPKd">
+<span id="Point::Point__std::s.doubleCP"></span><code class="descclassname"></code><code class="descname">Point</code><span class="sig-paren">(</span>std::size_t <em>dim</em>, <em class="property">const</em> double *<em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N5Point5PointENSt6size_tEPKd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create point from array</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>dim (std::size_t)</dt>
+<dd>Dimension of the array.</dd>
+<dt>x (double)</dt>
+<dd>The array to create a Point from.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N5Point5PointERK5Point">
+<span id="Point::Point__PointCR"></span><code class="descclassname"></code><code class="descname">Point</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv2N5Point5PointEKdKdKd" title="Point::Point">Point</a> &amp;<em>p</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N5Point5PointERK5Point" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Copy constructor</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>p (<a class="reference internal" href="#_CPPv2N5Point5PointEKdKdKd" title="Point::Point"><code class="xref cpp cpp-class docutils literal"><span class="pre">Point</span></code></a>)</dt>
+<dd>The object to be copied.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N5PointixENSt6size_tE">
+<span id="Point::subscript-operator__std::s"></span>double &amp;<code class="descclassname"></code><code class="descname">operator[]</code><span class="sig-paren">(</span>std::size_t <em>i</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N5PointixENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return address of coordinate in direction i</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>i (std::size_t)</dt>
+<dd>Direction.</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>double</dt>
+<dd>Adress of coordinate in the given direction.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK5PointixENSt6size_tE">
+<span id="Point::subscript-operator__std::sC"></span>double <code class="descclassname"></code><code class="descname">operator[]</code><span class="sig-paren">(</span>std::size_t <em>i</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK5PointixENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return coordinate in direction i</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>i (std::size_t)</dt>
+<dd>Direction.</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>double</dt>
+<dd>The coordinate in the given direction.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK5Point1xEv">
+<span id="Point::xC"></span>double <code class="descclassname"></code><code class="descname">x</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK5Point1xEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return x-coordinate</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>double</dt>
+<dd>The x-coordinate.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK5Point1yEv">
+<span id="Point::yC"></span>double <code class="descclassname"></code><code class="descname">y</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK5Point1yEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return y-coordinate</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>double</dt>
+<dd>The y-coordinate.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK5Point1zEv">
+<span id="Point::zC"></span>double <code class="descclassname"></code><code class="descname">z</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK5Point1zEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return z-coordinate</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>double</dt>
+<dd>The z-coordinate.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N5Point11coordinatesEv">
+<span id="Point::coordinates"></span>double *<code class="descclassname"></code><code class="descname">coordinates</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N5Point11coordinatesEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return coordinate array</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>list of doubles</dt>
+<dd>The coordinates.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK5Point11coordinatesEv">
+<span id="Point::coordinatesC"></span><em class="property">const</em> double *<code class="descclassname"></code><code class="descname">coordinates</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK5Point11coordinatesEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return coordinate array (const. version)</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>list of doubles</dt>
+<dd>The coordinates.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK5PointplERK5Point">
+<span id="Point::add-operator__PointCRC"></span><a class="reference internal" href="#_CPPv25Point" title="Point">Point</a> <code class="descclassname"></code><code class="descname">operator+</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv25Point" title="Point">Point</a> &amp;<em>p</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK5PointplERK5Point" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Compute sum of two points</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK5PointmiERK5Point">
+<span id="Point::sub-operator__PointCRC"></span><a class="reference internal" href="#_CPPv25Point" title="Point">Point</a> <code class="descclassname"></code><code class="descname">operator-</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv25Point" title="Point">Point</a> &amp;<em>p</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK5PointmiERK5Point" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Compute difference of two points</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N5PointpLERK5Point">
+<span id="Point::add-assign-operator__PointCR"></span><em class="property">const</em> <a class="reference internal" href="#_CPPv25Point" title="Point">Point</a> &amp;<code class="descclassname"></code><code class="descname">operator+=</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv25Point" title="Point">Point</a> &amp;<em>p</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N5PointpLERK5Point" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add given point</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N5PointmIERK5Point">
+<span id="Point::sub-assign-operator__PointCR"></span><em class="property">const</em> <a class="reference internal" href="#_CPPv25Point" title="Point">Point</a> &amp;<code class="descclassname"></code><code class="descname">operator-=</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv25Point" title="Point">Point</a> &amp;<em>p</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N5PointmIERK5Point" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Subtract given point</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N5PointmiEv">
+<span id="Point::sub-operator"></span><a class="reference internal" href="#_CPPv25Point" title="Point">Point</a> <code class="descclassname"></code><code class="descname">operator-</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N5PointmiEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Unary minus</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK5PointmlEd">
+<span id="Point::mul-operator__doubleC"></span><a class="reference internal" href="#_CPPv25Point" title="Point">Point</a> <code class="descclassname"></code><code class="descname">operator*</code><span class="sig-paren">(</span>double <em>a</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK5PointmlEd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Multiplication with scalar</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N5PointmLEd">
+<span id="Point::mul-assign-operator__double"></span><em class="property">const</em> <a class="reference internal" href="#_CPPv25Point" title="Point">Point</a> &amp;<code class="descclassname"></code><code class="descname">operator*=</code><span class="sig-paren">(</span>double <em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N5PointmLEd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Incremental multiplication with scalar</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK5PointdvEd">
+<span id="Point::div-operator__doubleC"></span><a class="reference internal" href="#_CPPv25Point" title="Point">Point</a> <code class="descclassname"></code><code class="descname">operator/</code><span class="sig-paren">(</span>double <em>a</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK5PointdvEd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Division by scalar</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N5PointdVEd">
+<span id="Point::div-assign-operator__double"></span><em class="property">const</em> <a class="reference internal" href="#_CPPv25Point" title="Point">Point</a> &amp;<code class="descclassname"></code><code class="descname">operator/=</code><span class="sig-paren">(</span>double <em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N5PointdVEd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Incremental division by scalar</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N5PointaSERK5Point">
+<span id="Point::assign-operator__PointCR"></span><em class="property">const</em> <a class="reference internal" href="#_CPPv25Point" title="Point">Point</a> &amp;<code class="descclassname"></code><code class="descname">operator=</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv25Point" title="Point">Point</a> &amp;<em>p</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N5PointaSERK5Point" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Assignment operator</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK5Point16squared_distanceERK5Point">
+<span id="Point::squared_distance__PointCRC"></span>double <code class="descclassname"></code><code class="descname">squared_distance</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv25Point" title="Point">Point</a> &amp;<em>p</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK5Point16squared_distanceERK5Point" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Compute squared distance to given point</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>p (<a class="reference internal" href="#_CPPv25Point" title="Point"><code class="xref cpp cpp-class docutils literal"><span class="pre">Point</span></code></a>)</dt>
+<dd>The point to compute distance to.</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>double</dt>
+<dd>The squared distance.</dd>
+</dl>
+</dd>
+<dt><em>Example</em></dt>
+<dd><div class="first highlight-c++"><div class="highlight"><pre><span></span><span class="n">Point</span> <span class="nf">p1</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="n">Point</span> <span class="nf">p2</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+<span class="n">info</span><span class="p">(</span><span class="s">&quot;%g&quot;</span><span class="p">,</span> <span class="n">p1</span><span class="p">.</span><span class="n">squared_distance</span><span class="p">(</span><span class="n">p2</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>output:</p>
+<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="mi">6</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK5Point8distanceERK5Point">
+<span id="Point::distance__PointCRC"></span>double <code class="descclassname"></code><code class="descname">distance</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv25Point" title="Point">Point</a> &amp;<em>p</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK5Point8distanceERK5Point" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Compute distance to given point</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>p (<a class="reference internal" href="#_CPPv25Point" title="Point"><code class="xref cpp cpp-class docutils literal"><span class="pre">Point</span></code></a>)</dt>
+<dd>The point to compute distance to.</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>double</dt>
+<dd>The distance.</dd>
+</dl>
+</dd>
+<dt><em>Example</em></dt>
+<dd><div class="first highlight-c++"><div class="highlight"><pre><span></span><span class="n">Point</span> <span class="nf">p1</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="n">Point</span> <span class="nf">p2</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+<span class="n">info</span><span class="p">(</span><span class="s">&quot;%g&quot;</span><span class="p">,</span> <span class="n">p1</span><span class="p">.</span><span class="n">distance</span><span class="p">(</span><span class="n">p2</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>output:</p>
+<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="mi">6</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK5Point4normEv">
+<span id="Point::normC"></span>double <code class="descclassname"></code><code class="descname">norm</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK5Point4normEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Compute norm of point representing a vector from the origin</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>double</dt>
+<dd>The (Euclidean) norm of the vector from the origin to
+the point.</dd>
+</dl>
+</dd>
+<dt><em>Example</em></dt>
+<dd><div class="first highlight-c++"><div class="highlight"><pre><span></span><span class="n">Point</span> <span class="nf">p</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">);</span>
+<span class="n">info</span><span class="p">(</span><span class="s">&quot;%g&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">norm</span><span class="p">());</span>
+</pre></div>
+</div>
+<p>output:</p>
+<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="mi">3</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK5Point12squared_normEv">
+<span id="Point::squared_normC"></span>double <code class="descclassname"></code><code class="descname">squared_norm</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK5Point12squared_normEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Compute norm of point representing a vector from the origin</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>double</dt>
+<dd>The squared (Euclidean) norm of the vector from the
+origin of the point.</dd>
+</dl>
+</dd>
+<dt><em>Example</em></dt>
+<dd><div class="first highlight-c++"><div class="highlight"><pre><span></span><span class="n">Point</span> <span class="nf">p</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">);</span>
+<span class="n">info</span><span class="p">(</span><span class="s">&quot;%g&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">squared_norm</span><span class="p">());</span>
+</pre></div>
+</div>
+<p>output:</p>
+<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="mi">9</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK5Point5crossERK5Point">
+<span id="Point::cross__PointCRC"></span><em class="property">const</em> <a class="reference internal" href="#_CPPv25Point" title="Point">Point</a> <code class="descclassname"></code><code class="descname">cross</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv25Point" title="Point">Point</a> &amp;<em>p</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK5Point5crossERK5Point" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Compute cross product with given vector</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>p (<a class="reference internal" href="#_CPPv25Point" title="Point"><code class="xref cpp cpp-class docutils literal"><span class="pre">Point</span></code></a>)</dt>
+<dd>Another point.</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>Point</dt>
+<dd>The cross product.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK5Point3dotERK5Point">
+<span id="Point::dot__PointCRC"></span>double <code class="descclassname"></code><code class="descname">dot</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv25Point" title="Point">Point</a> &amp;<em>p</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK5Point3dotERK5Point" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Compute dot product with given vector</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>p (<a class="reference internal" href="#_CPPv25Point" title="Point"><code class="xref cpp cpp-class docutils literal"><span class="pre">Point</span></code></a>)</dt>
+<dd>Another point.</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>double</dt>
+<dd>The dot product.</dd>
+</dl>
+</dd>
+<dt><em>Example</em></dt>
+<dd><div class="first highlight-c++"><div class="highlight"><pre><span></span><span class="n">Point</span> <span class="nf">p1</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">);</span>
+<span class="n">Point</span> <span class="nf">p2</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">);</span>
+<span class="n">info</span><span class="p">(</span><span class="s">&quot;%g&quot;</span><span class="p">,</span> <span class="n">p1</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">p2</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>output:</p>
+<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="mi">2</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK5Point6rotateERK5Pointd">
+<span id="Point::rotate__PointCR.doubleC"></span><a class="reference internal" href="#_CPPv25Point" title="Point">Point</a> <code class="descclassname"></code><code class="descname">rotate</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv25Point" title="Point">Point</a> &amp;<em>a</em>, double <em>theta</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK5Point6rotateERK5Pointd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Rotate around a given axis</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>a (<a class="reference internal" href="#_CPPv25Point" title="Point"><code class="xref cpp cpp-class docutils literal"><span class="pre">Point</span></code></a>)</dt>
+<dd>The axis to rotate around. Must be unit length.</dd>
+<dt>theta (_double_)</dt>
+<dd>The rotation angle.</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>Point</dt>
+<dd>The rotated point.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK5Point3strEb">
+<span id="Point::str__bC"></span>std::string <code class="descclassname"></code><code class="descname">str</code><span class="sig-paren">(</span>bool <em>verbose</em> = false<span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK5Point3strEb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return informal string representation (pretty-print)</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>verbose (bool)</dt>
+<dd>Flag to turn on additional output.</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>std::string</dt>
+<dd>An informal representation of the function space.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N5PointmlEdRK5Point">
+<span id="Point::mul-operator__double.PointCR"></span><a class="reference internal" href="#_CPPv25Point" title="Point">Point</a> <code class="descclassname"></code><code class="descname">operator*</code><span class="sig-paren">(</span>double <em>a</em>, <em class="property">const</em> <a class="reference internal" href="#_CPPv25Point" title="Point">Point</a> &amp;<em>p</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N5PointmlEdRK5Point" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Multiplication with scalar</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="intersect.html" class="btn btn-neutral float-right" title="intersect.h" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="MeshPointIntersection.html" class="btn btn-neutral" title="MeshPointIntersection.h" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://fenicsproject.org.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.4.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

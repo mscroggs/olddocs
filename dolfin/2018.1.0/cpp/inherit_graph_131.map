@@ -1,0 +1,95 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node2" href="$dd/d8b/classdolfin_1_1BasisFunction.html" title="Represention of a finite element basis function. " alt="" coords="295,56,445,83"/>
+<area shape="rect" id="node3" href="$da/d17/classdolfin_1_1GenericFunction.html" title="dolfin::GenericFunction" alt="" coords="287,107,453,133"/>
+<area shape="rect" id="node4" href="$d1/d2e/classdolfin_1_1Expression.html" title="dolfin::Expression" alt="" coords="583,107,716,133"/>
+<area shape="rect" id="node10" href="$d2/d42/classdolfin_1_1Function.html" title="dolfin::Function" alt="" coords="591,161,708,188"/>
+<area shape="rect" id="node5" href="$d7/db1/classdolfin_1_1Constant.html" title="This class represents a constant&#45;valued expression. " alt="" coords="889,56,1011,83"/>
+<area shape="rect" id="node6" href="$df/d4b/classdolfin_1_1FacetArea.html" title="dolfin::FacetArea" alt="" coords="886,107,1014,133"/>
+<area shape="rect" id="node7" href="$d7/dd1/classdolfin_1_1MeshCoordinates.html" title="This Function represents the mesh coordinates on a given mesh. " alt="" coords="863,157,1037,184"/>
+<area shape="rect" id="node8" href="$d7/d92/classdolfin_1_1MeshDisplacement.html" title="dolfin::MeshDisplacement" alt="" coords="857,208,1043,235"/>
+<area shape="rect" id="node9" href="$d4/d3e/classdolfin_1_1SpecialFacetFunction.html" title="dolfin::SpecialFacetFunction" alt="" coords="851,5,1049,32"/>
+<area shape="rect" id="node11" href="$d3/de3/classdolfin_1_1Hierarchical.html" title="dolfin::Hierarchical\&lt; T \&gt;" alt="" coords="17,209,193,236"/>
+<area shape="rect" id="node12" href="$d0/d94/classdolfin_1_1MeshFunction.html" title="dolfin::MeshFunction\l\&lt; std::size_t \&gt;" alt="" coords="295,223,445,265"/>
+<area shape="rect" id="node13" href="$d3/de3/classdolfin_1_1Hierarchical.html" title="dolfin::Hierarchical\l\&lt; DirichletBC \&gt;" alt="" coords="35,261,174,302"/>
+<area shape="rect" id="node14" href="$d1/d95/classdolfin_1_1DirichletBC.html" title="Interface for setting (strong) Dirichlet boundary conditions. " alt="" coords="303,289,437,316"/>
+<area shape="rect" id="node15" href="$d3/de3/classdolfin_1_1Hierarchical.html" title="dolfin::Hierarchical\l\&lt; ErrorControl \&gt;" alt="" coords="35,326,174,367"/>
+<area shape="rect" id="node16" href="$d6/d7d/classdolfin_1_1ErrorControl.html" title="(Goal&#45;oriented) Error Control class. " alt="" coords="299,340,441,367"/>
+<area shape="rect" id="node17" href="$d3/de3/classdolfin_1_1Hierarchical.html" title="dolfin::Hierarchical\l\&lt; Function \&gt;" alt="" coords="301,158,439,199"/>
+<area shape="rect" id="node18" href="$d3/de3/classdolfin_1_1Hierarchical.html" title="dolfin::Hierarchical\l\&lt; FunctionSpace \&gt;" alt="" coords="32,391,177,433"/>
+<area shape="rect" id="node19" href="$dc/deb/classdolfin_1_1FunctionSpace.html" title="dolfin::FunctionSpace" alt="" coords="291,391,449,417"/>
+<area shape="rect" id="node20" href="$d3/de3/classdolfin_1_1Hierarchical.html" title="dolfin::Hierarchical\l\&lt; Mesh \&gt;" alt="" coords="35,457,174,498"/>
+<area shape="rect" id="node21" href="$da/dfc/classdolfin_1_1Mesh.html" title="dolfin::Mesh" alt="" coords="321,441,419,468"/>
+<area shape="rect" id="node22" href="$d3/dcc/classdolfin_1_1BoundaryMesh.html" title="dolfin::BoundaryMesh" alt="" coords="570,543,729,569"/>
+<area shape="rect" id="node23" href="$d1/dd7/classdolfin_1_1BoxMesh.html" title="dolfin::BoxMesh" alt="" coords="588,340,711,367"/>
+<area shape="rect" id="node25" href="$dc/d02/classdolfin_1_1IntervalMesh.html" title="dolfin::IntervalMesh" alt="" coords="577,391,722,417"/>
+<area shape="rect" id="node27" href="$d9/d16/classdolfin_1_1RectangleMesh.html" title="dolfin::RectangleMesh" alt="" coords="569,441,729,468"/>
+<area shape="rect" id="node29" href="$d1/dff/classdolfin_1_1SubMesh.html" title="dolfin::SubMesh" alt="" coords="588,492,711,519"/>
+<area shape="rect" id="node24" href="$d6/d96/classdolfin_1_1UnitCubeMesh.html" title="dolfin::UnitCubeMesh" alt="" coords="871,340,1029,367"/>
+<area shape="rect" id="node26" href="$d5/da4/classdolfin_1_1UnitIntervalMesh.html" title="dolfin::UnitIntervalMesh" alt="" coords="865,391,1035,417"/>
+<area shape="rect" id="node28" href="$de/dac/classdolfin_1_1UnitSquareMesh.html" title="dolfin::UnitSquareMesh" alt="" coords="865,441,1035,468"/>
+<area shape="rect" id="node30" href="$d3/de3/classdolfin_1_1Hierarchical.html" title="dolfin::Hierarchical\l\&lt; MeshFunction\&lt; T \&gt; \&gt;" alt="" coords="17,522,193,563"/>
+<area shape="rect" id="node31" href="$d0/d94/classdolfin_1_1MeshFunction.html" title="dolfin::MeshFunction\&lt; T \&gt;" alt="" coords="276,492,464,519"/>
+<area shape="rect" id="node32" href="$d1/d64/classdolfin_1_1PETScObject.html" title="dolfin::PETScObject" alt="" coords="33,2075,177,2101"/>
+<area shape="rect" id="node33" href="$d0/d3d/classdolfin_1_1PETScBaseMatrix.html" title="dolfin::PETScBaseMatrix" alt="" coords="562,1805,737,1832"/>
+<area shape="rect" id="node36" href="$d8/d3b/classdolfin_1_1PETScDMCollection.html" title="dolfin::PETScDMCollection" alt="" coords="277,2277,463,2304"/>
+<area shape="rect" id="node37" href="$df/df1/classdolfin_1_1PETScKrylovSolver.html" title="dolfin::PETScKrylovSolver" alt="" coords="559,1755,740,1781"/>
+<area shape="rect" id="node38" href="$d5/d49/classdolfin_1_1PETScPreconditioner.html" title="dolfin::PETScPreconditioner" alt="" coords="273,1872,467,1899"/>
+<area shape="rect" id="node39" href="$d8/dad/classdolfin_1_1PETScSNESSolver.html" title="dolfin::PETScSNESSolver" alt="" coords="281,2075,459,2101"/>
+<area shape="rect" id="node40" href="$db/d74/classdolfin_1_1PETScTAOSolver.html" title="dolfin::PETScTAOSolver" alt="" coords="286,2125,454,2152"/>
+<area shape="rect" id="node41" href="$d5/d9e/classdolfin_1_1PETScVector.html" title="dolfin::PETScVector" alt="" coords="1139,1263,1283,1289"/>
+<area shape="rect" id="node42" href="$d9/df4/classdolfin_1_1SLEPcEigenSolver.html" title="dolfin::SLEPcEigenSolver" alt="" coords="281,1923,459,1949"/>
+<area shape="rect" id="node43" href="$d0/dcb/classdolfin_1_1TAOLinearBoundSolver.html" title="dolfin::TAOLinearBoundSolver" alt="" coords="265,1973,475,2000"/>
+<area shape="rect" id="node34" href="$d1/dd8/classdolfin_1_1PETScLinearOperator.html" title="PETSc version of the GenericLinearOperator. " alt="" coords="851,1541,1049,1568"/>
+<area shape="rect" id="node35" href="$d4/db0/classdolfin_1_1PETScMatrix.html" title="dolfin::PETScMatrix" alt="" coords="1139,1600,1282,1627"/>
+<area shape="rect" id="node44" href="$da/d46/classdolfin_1_1TrilinosPreconditioner.html" title="This class provides a common base for Trilinos preconditioners. " alt="" coords="5,1796,204,1823"/>
+<area shape="rect" id="node45" href="$d6/d66/classdolfin_1_1Ifpack2Preconditioner.html" title="Implements preconditioners using Ifpack2 from Trilinos. " alt="" coords="269,1821,471,1848"/>
+<area shape="rect" id="node46" href="$df/d34/classdolfin_1_1MueluPreconditioner.html" title="Implements Muelu preconditioner from Trilinos. " alt="" coords="273,1771,467,1797"/>
+<area shape="rect" id="node47" href="$d8/df0/classdolfin_1_1Variable.html" title="Common base class for DOLFIN variables. " alt="" coords="47,1096,162,1123"/>
+<area shape="rect" id="node48" href="$d0/d1c/classdolfin_1_1GenericAdaptiveVariationalSolver.html" title="dolfin::GenericAdaptiveVariational\lSolver" alt="" coords="252,811,488,853"/>
+<area shape="rect" id="node51" href="$dd/dc3/classdolfin_1_1GenericDofMap.html" title="This class provides a generic interface for dof maps. " alt="" coords="289,877,451,904"/>
+<area shape="rect" id="node53" href="$d4/d2b/classdolfin_1_1GenericLinearSolver.html" title="This class provides a general solver for linear systems Ax = b. " alt="" coords="274,1501,466,1528"/>
+<area shape="rect" id="node62" href="$df/d18/classdolfin_1_1HDF5File.html" title="dolfin::HDF5File" alt="" coords="311,928,429,955"/>
+<area shape="rect" id="node63" href="$d3/d63/classdolfin_1_1Lagrange.html" title="dolfin::Lagrange" alt="" coords="308,979,432,1005"/>
+<area shape="rect" id="node64" href="$db/d42/classdolfin_1_1LinearAlgebraObject.html" title="dolfin::LinearAlgebraObject" alt="" coords="273,1299,467,1325"/>
+<area shape="rect" id="node78" href="$d9/de7/classdolfin_1_1LinearVariationalSolver.html" title="This class implements a solver for linear variational problems. " alt="" coords="285,1030,455,1071"/>
+<area shape="rect" id="node79" href="$d4/d43/classdolfin_1_1LocalMeshData.html" title="This class stores mesh data on a local processor corresponding to a portion of a (larger) global mesh..." alt="" coords="289,1096,451,1123"/>
+<area shape="rect" id="node80" href="$d5/d78/classdolfin_1_1MeshData.html" title="dolfin::MeshData" alt="" coords="305,1147,435,1173"/>
+<area shape="rect" id="node81" href="$de/dac/classdolfin_1_1MeshTopology.html" title="dolfin::MeshTopology" alt="" coords="293,1197,447,1224"/>
+<area shape="rect" id="node82" href="$d0/db6/classdolfin_1_1MeshValueCollection.html" title="dolfin::MeshValueCollection\&lt; T \&gt;" alt="" coords="254,1248,486,1275"/>
+<area shape="rect" id="node83" href="$da/d83/classdolfin_1_1MultiMesh.html" title="dolfin::MultiMesh" alt="" coords="306,1349,434,1376"/>
+<area shape="rect" id="node84" href="$df/dca/classdolfin_1_1MultiMeshFunction.html" title="dolfin::MultiMeshFunction" alt="" coords="279,1400,461,1427"/>
+<area shape="rect" id="node85" href="$d6/dad/classdolfin_1_1MultiMeshFunctionSpace.html" title="dolfin::MultiMeshFunction\lSpace" alt="" coords="279,746,461,787"/>
+<area shape="rect" id="node87" href="$dc/dc8/classdolfin_1_1MultiStageScheme.html" title="Place&#45;holder for forms and solutions for a multi&#45;stage Butcher tableau based method. " alt="" coords="277,1451,463,1477"/>
+<area shape="rect" id="node88" href="$dc/d2a/classdolfin_1_1NewtonSolver.html" title="dolfin::NewtonSolver" alt="" coords="294,1552,446,1579"/>
+<area shape="rect" id="node89" href="$db/d4e/classdolfin_1_1NonlinearVariationalSolver.html" title="dolfin::NonlinearVariational\lSolver" alt="" coords="274,1603,466,1645"/>
+<area shape="rect" id="node90" href="$db/d63/classdolfin_1_1PointIntegralSolver.html" title="This class is a time integrator for general Runge Kutta forms. " alt="" coords="278,1669,462,1696"/>
+<area shape="rect" id="node91" href="$dc/dd5/classdolfin_1_1Table.html" title="dolfin::Table" alt="" coords="322,543,418,569"/>
+<area shape="rect" id="node92" href="$df/dc9/classdolfin_1_1TensorLayout.html" title="dolfin::TensorLayout" alt="" coords="296,593,444,620"/>
+<area shape="rect" id="node93" href="$d4/dd9/classdolfin_1_1TimeSeries.html" title="dolfin::TimeSeries" alt="" coords="303,644,437,671"/>
+<area shape="rect" id="node94" href="$de/d71/classdolfin_1_1XDMFFile.html" title="Read and write Mesh, Function, MeshFunction and other objects in XDMF. " alt="" coords="310,695,430,721"/>
+<area shape="rect" id="node49" href="$dc/d96/classdolfin_1_1AdaptiveLinearVariationalSolver.html" title="dolfin::AdaptiveLinearVariational\lSolver" alt="" coords="536,775,763,817"/>
+<area shape="rect" id="node50" href="$d5/df6/classdolfin_1_1AdaptiveNonlinearVariationalSolver.html" title="dolfin::AdaptiveNonlinear\lVariationalSolver" alt="" coords="559,841,740,882"/>
+<area shape="rect" id="node52" href="$d7/daf/classdolfin_1_1DofMap.html" title="Degree&#45;of&#45;freedom map. " alt="" coords="593,907,706,933"/>
+<area shape="rect" id="node54" href="$d5/d1b/classdolfin_1_1Amesos2LUSolver.html" title="dolfin::Amesos2LUSolver" alt="" coords="559,1451,739,1477"/>
+<area shape="rect" id="node55" href="$d1/d0a/classdolfin_1_1BelosKrylovSolver.html" title="dolfin::BelosKrylovSolver" alt="" coords="561,1501,738,1528"/>
+<area shape="rect" id="node56" href="$d8/d83/classdolfin_1_1EigenKrylovSolver.html" title="dolfin::EigenKrylovSolver" alt="" coords="561,1552,738,1579"/>
+<area shape="rect" id="node57" href="$d5/d5e/classdolfin_1_1EigenLUSolver.html" title="dolfin::EigenLUSolver" alt="" coords="572,1603,727,1629"/>
+<area shape="rect" id="node58" href="$d0/d25/classdolfin_1_1KrylovSolver.html" title="dolfin::KrylovSolver" alt="" coords="578,1653,721,1680"/>
+<area shape="rect" id="node59" href="$da/d10/classdolfin_1_1LinearSolver.html" title="This class provides a general solver for linear systems Ax = b. " alt="" coords="578,1704,721,1731"/>
+<area shape="rect" id="node60" href="$df/d3b/classdolfin_1_1LUSolver.html" title="LU solver for the built&#45;in LA backends. " alt="" coords="589,1349,709,1376"/>
+<area shape="rect" id="node61" href="$d6/d0e/classdolfin_1_1PETScLUSolver.html" title="dolfin::PETScLUSolver" alt="" coords="570,1400,729,1427"/>
+<area shape="rect" id="node65" href="$da/d6a/classdolfin_1_1GenericLinearOperator.html" title="dolfin::GenericLinearOperator" alt="" coords="545,1299,754,1325"/>
+<area shape="rect" id="node72" href="$db/ddc/classdolfin_1_1GenericTensor.html" title="A common interface for arbitrary rank tensors. " alt="" coords="572,1244,727,1271"/>
+<area shape="rect" id="node66" href="$df/dc8/classdolfin_1_1GenericLinearAlgebraFactory_1_1NotImplementedLinearOperator.html" title="dolfin::GenericLinearAlgebra\lFactory::NotImplementedLinearOperator" alt="" coords="811,1403,1089,1445"/>
+<area shape="rect" id="node67" href="$dd/d5f/classdolfin_1_1GenericMatrix.html" title="This class defines a common interface for matrices. " alt="" coords="874,1301,1026,1328"/>
+<area shape="rect" id="node71" href="$df/dc9/classdolfin_1_1LinearOperator.html" title="dolfin::LinearOperator" alt="" coords="870,1352,1030,1379"/>
+<area shape="rect" id="node68" href="$d4/d63/classdolfin_1_1EigenMatrix.html" title="dolfin::EigenMatrix" alt="" coords="1141,1313,1280,1340"/>
+<area shape="rect" id="node69" href="$d5/d04/classdolfin_1_1Matrix.html" title="dolfin::Matrix" alt="" coords="1159,1364,1262,1391"/>
+<area shape="rect" id="node70" href="$d3/d2c/classdolfin_1_1TpetraMatrix.html" title="dolfin::TpetraMatrix" alt="" coords="1139,1415,1283,1441"/>
+<area shape="rect" id="node73" href="$d6/da4/classdolfin_1_1GenericVector.html" title="This class defines a common interface for vectors. " alt="" coords="873,1219,1027,1245"/>
+<area shape="rect" id="node77" href="$db/d01/classdolfin_1_1Scalar.html" title="dolfin::Scalar" alt="" coords="898,1168,1002,1195"/>
+<area shape="rect" id="node74" href="$df/d4b/classdolfin_1_1EigenVector.html" title="dolfin::EigenVector" alt="" coords="1141,1111,1281,1137"/>
+<area shape="rect" id="node75" href="$d3/dfd/classdolfin_1_1TpetraVector.html" title="dolfin::TpetraVector" alt="" coords="1137,1161,1284,1188"/>
+<area shape="rect" id="node76" href="$d7/da5/classdolfin_1_1Vector.html" title="dolfin::Vector" alt="" coords="1158,1212,1263,1239"/>
+<area shape="rect" id="node86" href="$d1/d83/classdolfin_1_1MultiMeshSubSpace.html" title="dolfin::MultiMeshSubSpace" alt="" coords="553,724,746,751"/>
+</map>

@@ -1,0 +1,399 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>FiniteElement.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN fem module" href="index.html"/>
+        <link rel="next" title="Form.h" href="Form.html"/>
+        <link rel="prev" title="Equation.h" href="Equation.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-1.5.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/index.html">DOLFIN common module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN fem module</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Assembler.html">Assembler.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AssemblerBase.html">AssemblerBase.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BasisFunction.html">BasisFunction.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DirichletBC.html">DirichletBC.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DofMap.html">DofMap.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Equation.html">Equation.h</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">FiniteElement.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Form.html">Form.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericDofMap.html">GenericDofMap.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LinearVariationalProblem.html">LinearVariationalProblem.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LinearVariationalSolver.html">LinearVariationalSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LocalSolver.html">LocalSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MultiMeshAssembler.html">MultiMeshAssembler.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MultiMeshDirichletBC.html">MultiMeshDirichletBC.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MultiMeshDofMap.html">MultiMeshDofMap.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MultiMeshForm.html">MultiMeshForm.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NonlinearVariationalProblem.html">NonlinearVariationalProblem.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NonlinearVariationalSolver.html">NonlinearVariationalSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="OpenMpAssembler.html">OpenMpAssembler.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PointSource.html">PointSource.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SparsityPatternBuilder.html">SparsityPatternBuilder.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SystemAssembler.html">SystemAssembler.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="assemble.html">assemble.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fem_utils.html">fem_utils.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solve.html">solve.h</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html">DOLFIN function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/index.html">DOLFIN geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/index.html">DOLFIN io module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../la/index.html">DOLFIN la module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/index.html">DOLFIN log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mesh/index.html">DOLFIN mesh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot/index.html">DOLFIN plot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer&#8217;s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-1.5.0</a> &raquo;</li>
+      
+          <li><a href="index.html">DOLFIN fem module</a> &raquo;</li>
+      
+    <li>FiniteElement.h</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/programmers-reference/fem/FiniteElement.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="finiteelement-h">
+<span id="programmers-reference-cpp-fem-finiteelement"></span><h1>FiniteElement.h<a class="headerlink" href="#finiteelement-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="class">
+<dt id="_CPPv213FiniteElement">
+<span id="FiniteElement"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">FiniteElement</code><a class="headerlink" href="#_CPPv213FiniteElement" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This is a wrapper for a UFC finite element (ufc::finite_element).</p>
+<dl class="function">
+<dt id="_CPPv2N13FiniteElement13FiniteElementENSt10shared_ptrIKN3ufc14finite_elementEEE">
+<span id="FiniteElement::FiniteElement__std::shared_ptr:ufc::finite_elementC:"></span><code class="descclassname"></code><code class="descname">FiniteElement</code><span class="sig-paren">(</span>std::shared_ptr&lt;<em class="property">const</em> ufc::finite_element&gt; <em>element</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N13FiniteElement13FiniteElementENSt10shared_ptrIKN3ufc14finite_elementEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create finite element from UFC finite element (data may be shared)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13FiniteElement9signatureEv">
+<span id="FiniteElement::signatureC"></span>std::string <code class="descclassname"></code><code class="descname">signature</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13FiniteElement9signatureEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return a string identifying the finite element</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13FiniteElement10cell_shapeEv">
+<span id="FiniteElement::cell_shapeC"></span>ufc::shape <code class="descclassname"></code><code class="descname">cell_shape</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13FiniteElement10cell_shapeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the cell shape</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13FiniteElement15space_dimensionEv">
+<span id="FiniteElement::space_dimensionC"></span>std::size_t <code class="descclassname"></code><code class="descname">space_dimension</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13FiniteElement15space_dimensionEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the dimension of the finite element function space</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13FiniteElement10value_rankEv">
+<span id="FiniteElement::value_rankC"></span>std::size_t <code class="descclassname"></code><code class="descname">value_rank</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13FiniteElement10value_rankEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the rank of the value space</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13FiniteElement15value_dimensionENSt6size_tE">
+<span id="FiniteElement::value_dimension__std::sC"></span>std::size_t <code class="descclassname"></code><code class="descname">value_dimension</code><span class="sig-paren">(</span>std::size_t <em>i</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13FiniteElement15value_dimensionENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the dimension of the value space for axis i</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13FiniteElement14evaluate_basisENSt6size_tEPdPKdPKdi">
+<span id="FiniteElement::evaluate_basis__std::s.doubleP.doubleCP.doubleCP.iC"></span>void <code class="descclassname"></code><code class="descname">evaluate_basis</code><span class="sig-paren">(</span>std::size_t <em>i</em>, double *<em>values</em>, <em class="property">const</em> double *<em>x</em>, <em class="property">const</em> double *<em>vertex_coordinates</em>, int <em>cell_orientation</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13FiniteElement14evaluate_basisENSt6size_tEPdPKdPKdi" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Evaluate basis function i at given point in cell</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13FiniteElement18evaluate_basis_allEPdPKdPKdi">
+<span id="FiniteElement::evaluate_basis_all__doubleP.doubleCP.doubleCP.iC"></span>void <code class="descclassname"></code><code class="descname">evaluate_basis_all</code><span class="sig-paren">(</span>double *<em>values</em>, <em class="property">const</em> double *<em>x</em>, <em class="property">const</em> double *<em>vertex_coordinates</em>, int <em>cell_orientation</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13FiniteElement18evaluate_basis_allEPdPKdPKdi" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Evaluate all basis functions at given point in cell</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13FiniteElement26evaluate_basis_derivativesEjjPdPKdPKdi">
+<span id="FiniteElement::evaluate_basis_derivatives__unsigned-i.unsigned-i.doubleP.doubleCP.doubleCP.iC"></span>void <code class="descclassname"></code><code class="descname">evaluate_basis_derivatives</code><span class="sig-paren">(</span>unsigned int <em>i</em>, unsigned int <em>n</em>, double *<em>values</em>, <em class="property">const</em> double *<em>x</em>, <em class="property">const</em> double *<em>vertex_coordinates</em>, int <em>cell_orientation</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13FiniteElement26evaluate_basis_derivativesEjjPdPKdPKdi" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Evaluate order n derivatives of basis function i at given point in cell</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13FiniteElement30evaluate_basis_derivatives_allEjPdPKdPKdi">
+<span id="FiniteElement::evaluate_basis_derivatives_all__unsigned-i.doubleP.doubleCP.doubleCP.iC"></span>void <code class="descclassname"></code><code class="descname">evaluate_basis_derivatives_all</code><span class="sig-paren">(</span>unsigned int <em>n</em>, double *<em>values</em>, <em class="property">const</em> double *<em>x</em>, <em class="property">const</em> double *<em>vertex_coordinates</em>, int <em>cell_orientation</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13FiniteElement30evaluate_basis_derivatives_allEjPdPKdPKdi" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Evaluate order n derivatives of all basis functions at given
+point in cell</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13FiniteElement12evaluate_dofENSt6size_tERKN3ufc8functionEPKdiRKN3ufc4cellE">
+<span id="FiniteElement::evaluate_dof__std::s.ufc::functionCR.doubleCP.i.ufc::cellCRC"></span>double <code class="descclassname"></code><code class="descname">evaluate_dof</code><span class="sig-paren">(</span>std::size_t <em>i</em>, <em class="property">const</em> ufc::function &amp;<em>function</em>, <em class="property">const</em> double *<em>vertex_coordinates</em>, int <em>cell_orientation</em>, <em class="property">const</em> ufc::cell &amp;<em>c</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13FiniteElement12evaluate_dofENSt6size_tERKN3ufc8functionEPKdiRKN3ufc4cellE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Evaluate linear functional for dof i on the function f</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13FiniteElement13evaluate_dofsEPdRKN3ufc8functionEPKdiRKN3ufc4cellE">
+<span id="FiniteElement::evaluate_dofs__doubleP.ufc::functionCR.doubleCP.i.ufc::cellCRC"></span>void <code class="descclassname"></code><code class="descname">evaluate_dofs</code><span class="sig-paren">(</span>double *<em>values</em>, <em class="property">const</em> ufc::function &amp;<em>f</em>, <em class="property">const</em> double *<em>vertex_coordinates</em>, int <em>cell_orientation</em>, <em class="property">const</em> ufc::cell &amp;<em>c</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13FiniteElement13evaluate_dofsEPdRKN3ufc8functionEPKdiRKN3ufc4cellE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Evaluate linear functionals for all dofs on the function f</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13FiniteElement25interpolate_vertex_valuesEPdPdPKdiRKN3ufc4cellE">
+<span id="FiniteElement::interpolate_vertex_values__doubleP.doubleP.doubleCP.i.ufc::cellCRC"></span>void <code class="descclassname"></code><code class="descname">interpolate_vertex_values</code><span class="sig-paren">(</span>double *<em>vertex_values</em>, double *<em>coefficients</em>, <em class="property">const</em> double *<em>vertex_coordinates</em>, int <em>cell_orientation</em>, <em class="property">const</em> ufc::cell &amp;<em>cell</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13FiniteElement25interpolate_vertex_valuesEPdPdPKdiRKN3ufc4cellE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Interpolate vertex values from dof values</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13FiniteElement23map_from_reference_cellEPdPKdRKN3ufc4cellE">
+<span id="FiniteElement::map_from_reference_cell__doubleP.doubleCP.ufc::cellCRC"></span>void <code class="descclassname"></code><code class="descname">map_from_reference_cell</code><span class="sig-paren">(</span>double *<em>x</em>, <em class="property">const</em> double *<em>xhat</em>, <em class="property">const</em> ufc::cell &amp;<em>c</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13FiniteElement23map_from_reference_cellEPdPKdRKN3ufc4cellE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Map coordinate xhat from reference cell to coordinate x in cell</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13FiniteElement21map_to_reference_cellEPdPKdRKN3ufc4cellE">
+<span id="FiniteElement::map_to_reference_cell__doubleP.doubleCP.ufc::cellCRC"></span>void <code class="descclassname"></code><code class="descname">map_to_reference_cell</code><span class="sig-paren">(</span>double *<em>xhat</em>, <em class="property">const</em> double *<em>x</em>, <em class="property">const</em> ufc::cell &amp;<em>c</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13FiniteElement21map_to_reference_cellEPdPKdRKN3ufc4cellE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Map from coordinate x in cell to coordinate xhat in reference cell</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13FiniteElement16num_sub_elementsEv">
+<span id="FiniteElement::num_sub_elementsC"></span>std::size_t <code class="descclassname"></code><code class="descname">num_sub_elements</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13FiniteElement16num_sub_elementsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the number of sub elements (for a mixed element)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13FiniteElement4hashEv">
+<span id="FiniteElement::hashC"></span>std::size_t <code class="descclassname"></code><code class="descname">hash</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13FiniteElement4hashEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return simple hash of the signature string</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13FiniteElement18create_sub_elementENSt6size_tE">
+<span id="FiniteElement::create_sub_element__std::sC"></span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="#_CPPv213FiniteElement" title="FiniteElement">FiniteElement</a>&gt; <code class="descclassname"></code><code class="descname">create_sub_element</code><span class="sig-paren">(</span>std::size_t <em>i</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13FiniteElement18create_sub_elementENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create a new finite element for sub element i (for a mixed element)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13FiniteElement6createEv">
+<span id="FiniteElement::createC"></span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="#_CPPv213FiniteElement" title="FiniteElement">FiniteElement</a>&gt; <code class="descclassname"></code><code class="descname">create</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13FiniteElement6createEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create a new class instance</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13FiniteElement19extract_sub_elementERKNSt6vectorINSt6size_tEEE">
+<span id="FiniteElement::extract_sub_element__std::vector:std::s:CRC"></span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="#_CPPv213FiniteElement" title="FiniteElement">FiniteElement</a>&gt; <code class="descclassname"></code><code class="descname">extract_sub_element</code><span class="sig-paren">(</span><em class="property">const</em> std::vector&lt;std::size_t&gt; &amp;<em>component</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13FiniteElement19extract_sub_elementERKNSt6vectorINSt6size_tEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Extract sub finite element for component</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13FiniteElement11ufc_elementEv">
+<span id="FiniteElement::ufc_elementC"></span>std::shared_ptr&lt;<em class="property">const</em> ufc::finite_element&gt; <code class="descclassname"></code><code class="descname">ufc_element</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13FiniteElement11ufc_elementEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return underlying UFC element. Intended for libray usage only
+and may change.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Form.html" class="btn btn-neutral float-right" title="Form.h" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Equation.html" class="btn btn-neutral" title="Equation.h" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://bitbucket.org/fenics-project/.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.5.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

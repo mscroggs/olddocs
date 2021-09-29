@@ -1,0 +1,20 @@
+.. Index file for the dolfin.common.globalparameters module.
+
+.. _programmers_reference_common_globalparameters_index:
+
+dolfin.common.globalparameters module
+*************************************
+
+Functions:
+
+.. toctree::
+    :maxdepth: 1
+
+    ffc_default_parameters
+
+Module docstring:
+
+.. automodule:: dolfin.common.globalparameters
+   :no-members:
+   :no-undoc-members:
+   :no-show-inheritance:

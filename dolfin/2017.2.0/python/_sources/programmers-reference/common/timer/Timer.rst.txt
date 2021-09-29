@@ -1,0 +1,13 @@
+.. Documentation for the class dolfin.common.timer.Timer
+
+.. _programmers_reference_common_timer_timer:
+
+Timer
+=====
+
+.. currentmodule:: dolfin.common.timer
+
+.. autoclass:: Timer
+   :members:
+   :undoc-members:
+   :show-inheritance:

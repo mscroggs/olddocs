@@ -1,0 +1,403 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>log.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN log module" href="index.html"/>
+        <link rel="next" title="DOLFIN math module" href="../math/index.html"/>
+        <link rel="prev" title="Table.h" href="Table.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-1.3.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/index.html">DOLFIN common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fem/index.html">DOLFIN fem module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html">DOLFIN function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/index.html">DOLFIN geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/index.html">DOLFIN io module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../la/index.html">DOLFIN la module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN log module</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Event.html">Event.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LogLevel.html">LogLevel.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LogStream.html">LogStream.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Progress.html">Progress.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Table.html">Table.h</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">log.h</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mesh/index.html">DOLFIN mesh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot/index.html">DOLFIN plot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer&#8217;s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-1.3.0</a> &raquo;</li>
+      
+          <li><a href="index.html">DOLFIN log module</a> &raquo;</li>
+      
+    <li>log.h</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/programmers-reference/log/log.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="log-h">
+<span id="programmers-reference-cpp-log-log"></span><h1>log.h<a class="headerlink" href="#log-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="function">
+<dt id="_CPPv24infoNSt6stringEz">
+<span id="info__ss.z"></span>void <code class="descclassname"></code><code class="descname">info</code><span class="sig-paren">(</span>std::string <em>msg</em>, ...<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv24infoNSt6stringEz" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The DOLFIN log system provides the following set of functions for
+uniform handling of log messages, warnings and errors. In addition,
+macros are provided for debug messages and dolfin_assertions.</p>
+<p>Only messages with a debug level higher than or equal to the current
+log level are printed (the default being zero). Logging may also be
+turned off by calling set_log_active(false).
+Print message</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv24infoRK10Parametersb">
+<span id="info__ParametersCR.b"></span>void <code class="descclassname"></code><code class="descname">info</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../parameter/Parameters.html#_CPPv210Parameters" title="Parameters">Parameters</a> &amp;<em>parameters</em>, bool <em>verbose</em> = false<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv24infoRK10Parametersb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Print parameter (using output of str() method)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv24infoRK8Variableb">
+<span id="info__VariableCR.b"></span>void <code class="descclassname"></code><code class="descname">info</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../common/Variable.html#_CPPv28Variable" title="Variable">Variable</a> &amp;<em>variable</em>, bool <em>verbose</em> = false<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv24infoRK8Variableb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Print variable (using output of str() method)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv211info_streamRNSt7ostreamENSt6stringE">
+<span id="info_stream__osR.ss"></span>void <code class="descclassname"></code><code class="descname">info_stream</code><span class="sig-paren">(</span>std::ostream &amp;<em>out</em>, std::string <em>msg</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv211info_streamRNSt7ostreamENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Print message to stream</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv214info_underlineNSt6stringEz">
+<span id="info_underline__ss.z"></span>void <code class="descclassname"></code><code class="descname">info_underline</code><span class="sig-paren">(</span>std::string <em>msg</em>, ...<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv214info_underlineNSt6stringEz" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Print underlined message</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv27warningNSt6stringEz">
+<span id="warning__ss.z"></span>void <code class="descclassname"></code><code class="descname">warning</code><span class="sig-paren">(</span>std::string <em>msg</em>, ...<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv27warningNSt6stringEz" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Print warning</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv25errorNSt6stringEz">
+<span id="error__ss.z"></span>void <code class="descclassname"></code><code class="descname">error</code><span class="sig-paren">(</span>std::string <em>msg</em>, ...<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv25errorNSt6stringEz" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Print error message and throw an exception.
+Note to developers: this function should not be used internally
+in DOLFIN. Use the more informative dolfin_error instead.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv212dolfin_errorNSt6stringENSt6stringENSt6stringEz">
+<span id="dolfin_error__ss.ss.ss.z"></span>void <code class="descclassname"></code><code class="descname">dolfin_error</code><span class="sig-paren">(</span>std::string <em>location</em>, std::string <em>task</em>, std::string <em>reason</em>, ...<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv212dolfin_errorNSt6stringENSt6stringENSt6stringEz" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Print error message. Prefer this to the above generic error message.</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>location (std::string)</dt>
+<dd>Name of the file from which the error message was generated.</dd>
+<dt>task (std::string)</dt>
+<dd>Name of the task that failed.
+Note that this string should begin with lowercase.
+Note that this string should not be punctuated.</dd>
+<dt>reason (std::string)</dt>
+<dd>A format string explaining the reason for the failure.
+Note that this string should begin with uppercase.
+Note that this string should not be punctuated.
+Note that this string may contain printf style formatting.</dd>
+<dt>... (primitive types like int, uint, double, bool)</dt>
+<dd>Optional arguments for the format string.</dd>
+</dl>
+</dd>
+</dl>
+<p>Developers should read the file dolfin/log/README in the DOLFIN
+source tree for further notes about the use of this function.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv211deprecationNSt6stringENSt6stringENSt6stringEz">
+<span id="deprecation__ss.ss.ss.z"></span>void <code class="descclassname"></code><code class="descname">deprecation</code><span class="sig-paren">(</span>std::string <em>feature</em>, std::string <em>version</em>, std::string <em>message</em>, ...<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv211deprecationNSt6stringENSt6stringENSt6stringEz" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Issue deprecation warning for removed feature</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>feature (std::string)</dt>
+<dd>Name of the feature that has been removed.</dd>
+<dt>version (std::string)</dt>
+<dd>Version number of the release in which the feature was removed.</dd>
+<dt>message (std::string)</dt>
+<dd>A format string explaining the deprecation.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv23logiNSt6stringEz">
+<span id="log__i.ss.z"></span>void <code class="descclassname"></code><code class="descname">log</code><span class="sig-paren">(</span>int <em>debug_level</em>, std::string <em>msg</em>, ...<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv23logiNSt6stringEz" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Print message at given debug level</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv25beginNSt6stringEz">
+<span id="begin__ss.z"></span>void <code class="descclassname"></code><code class="descname">begin</code><span class="sig-paren">(</span>std::string <em>msg</em>, ...<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv25beginNSt6stringEz" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Begin task (increase indentation level)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv25beginiNSt6stringEz">
+<span id="begin__i.ss.z"></span>void <code class="descclassname"></code><code class="descname">begin</code><span class="sig-paren">(</span>int <em>debug_level</em>, std::string <em>msg</em>, ...<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv25beginiNSt6stringEz" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Begin task (increase indentation level)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv23endv">
+<span id="end"></span>void <code class="descclassname"></code><code class="descname">end</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv23endv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>End task (decrease indentation level)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv214set_log_activeb">
+<span id="set_log_active__b"></span>void <code class="descclassname"></code><code class="descname">set_log_active</code><span class="sig-paren">(</span>bool <em>active</em> = true<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv214set_log_activeb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Turn logging on or off</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv213set_log_leveli">
+<span id="set_log_level__i"></span>void <code class="descclassname"></code><code class="descname">set_log_level</code><span class="sig-paren">(</span>int <em>level</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv213set_log_leveli" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set log level</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv217set_output_streamRNSt7ostreamE">
+<span id="set_output_stream__osR"></span>void <code class="descclassname"></code><code class="descname">set_output_stream</code><span class="sig-paren">(</span>std::ostream &amp;<em>out</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv217set_output_streamRNSt7ostreamE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set output stream</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv213get_log_levelv">
+<span id="get_log_level"></span>int <code class="descclassname"></code><code class="descname">get_log_level</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv213get_log_levelv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get log level</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv220monitor_memory_usagev">
+<span id="monitor_memory_usage"></span>void <code class="descclassname"></code><code class="descname">monitor_memory_usage</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv220monitor_memory_usagev" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Monitor memory usage. Call this function at the start of a
+program to continuously monitor the memory usage of the process.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv223not_working_in_parallelNSt6stringE">
+<span id="not_working_in_parallel__ss"></span>void <code class="descclassname"></code><code class="descname">not_working_in_parallel</code><span class="sig-paren">(</span>std::string <em>what</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv223not_working_in_parallelNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Report that functionality has not (yet) been implemented to work
+in parallel</p>
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../math/index.html" class="btn btn-neutral float-right" title="DOLFIN math module" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Table.html" class="btn btn-neutral" title="Table.h" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://fenicsproject.org.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.3.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

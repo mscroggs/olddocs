@@ -1,0 +1,679 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Time-integration of elastodynamics equation &mdash; DOLFIN  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Python API reference" href="../../api.html" />
+    <link rel="prev" title="Stokes equations with an iterative solver" href="../stokes-iterative/demo_stokes-iterative.py.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../using.html">Using DOLFIN</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../demos.html">Demos</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../demos.html#introductory-demos">Introductory demos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../demos.html#more-advanced-demos">More advanced demos</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../demos.html#all-documented-demos">All documented demos</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../poisson/demo_poisson.py.html">Poisson equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../eigenvalue/demo_eigenvalue.py.html">A simple eigenvalue solver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../built-in-meshes/demo_built-in-meshes.py.html">Built-in meshes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mixed-poisson/demo_mixed-poisson.py.html">Mixed formulation for Poisson equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../biharmonic/demo_biharmonic.py.html">Biharmonic equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../auto-adaptive-poisson/demo_auto-adaptive-poisson.py.html">Auto adaptive Poisson equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cahn-hilliard/demo_cahn-hilliard.py.html">Cahn-Hilliard equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maxwell-eigenvalues/demo_maxwell-eigenvalues.py.html">Stable and unstable finite elements for the Maxwell eigenvalue problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hyperelasticity/demo_hyperelasticity.py.html">Hyperelasticity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nonlinear-poisson/demo_nonlinear-poisson.py.html">Nonlinear Poisson equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../singular-poisson/demo_singular-poisson.py.html">Singular Poisson</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../neumann-poisson/demo_neumann-poisson.py.html">Poisson equation with pure Neumann boundary conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nonmatching-interpolation/demo_nonmatching-interpolation.py.html">Interpolation from a non-matching mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../stokes-iterative/demo_stokes-iterative.py.html">Stokes equations with an iterative solver</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Time-integration of elastodynamics equation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#introduction-and-elastodynamics-equation">Introduction and elastodynamics equation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#time-discretization-using-the-generalized-alpha-method">Time discretization using the generalized-<span class="math notranslate nohighlight">\(\alpha\)</span> method</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#analyzing-the-results">Analyzing the results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">Python API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer.html">Developer resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ChangeLog.html">Change log</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">DOLFIN</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../demos.html">Demos</a> &raquo;</li>
+        
+      <li>Time-integration of elastodynamics equation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/demos/elastodynamics/demo_elastodynamics.py.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="time-integration-of-elastodynamics-equation">
+<span id="demo-elastodynamics"></span><h1>Time-integration of elastodynamics equation<a class="headerlink" href="#time-integration-of-elastodynamics-equation" title="Permalink to this headline">¶</a></h1>
+<p>This demo is implemented in a single Python file,
+<a class="reference download internal" download="" href="../../_downloads/c77fbaa3a69e585fae8c203928c088a6/demo_elastodynamics.py"><code class="xref download docutils literal notranslate"><span class="pre">demo_elastodynamics.py</span></code></a>, which contains both the
+variational forms and the solver.</p>
+<p>This demo shows how to perform time integration of transient elastodynamics using the generalized-<span class="math notranslate nohighlight">\(\alpha\)</span> method <a class="reference internal" href="#erl2002" id="id1"><span>[ERL2002]</span></a>. In particular it demonstrates how to:</p>
+<ul class="simple">
+<li><p>formulate mass and damping forms of the elastodynamics equation</p></li>
+<li><p>implement the generalized-<span class="math notranslate nohighlight">\(\alpha\)</span> method and its influence on the solution</p></li>
+<li><p>perform efficient computation of stresses using <code class="docutils literal notranslate"><span class="pre">LocalSolver</span></code></p></li>
+</ul>
+<p>The deformed structure evolution over time along with the axial stress will look as follows:</p>
+<a class="reference internal image-reference" href="../../_images/elastodynamics-transient_deformation.gif"><img alt="../../_images/elastodynamics-transient_deformation.gif" class="align-center" src="../../_images/elastodynamics-transient_deformation.gif" style="width: 70%;" /></a>
+<div class="section" id="introduction-and-elastodynamics-equation">
+<h2>Introduction and elastodynamics equation<a class="headerlink" href="#introduction-and-elastodynamics-equation" title="Permalink to this headline">¶</a></h2>
+<p>The elastodynamics equation combine the balance of linear momentum:</p>
+<div class="math notranslate nohighlight">
+\[\nabla \cdot \sigma + \rho b = \rho \ddot{u}\]</div>
+<p>where <span class="math notranslate nohighlight">\(u\)</span> is the displacement vector field, <span class="math notranslate nohighlight">\(\ddot{u}=\partial^2 u/\partial t^2\)</span> is the acceleration,
+<span class="math notranslate nohighlight">\(\rho\)</span> the material density, <span class="math notranslate nohighlight">\(b\)</span> a given body force and <span class="math notranslate nohighlight">\(\sigma\)</span> the stress tensor which is related
+to the displacement through a constitutive equation. In the case of isotropic linearized elasticity, one has:</p>
+<div class="math notranslate nohighlight">
+\[\sigma =\lambda \text{tr}(\varepsilon)\mathbb{1} + 2\mu\varepsilon\]</div>
+<p>where <span class="math notranslate nohighlight">\(\varepsilon = (\nabla u + (\nabla u)^T)/2\)</span> is the linearized strain tensor, <span class="math notranslate nohighlight">\(\mathbb{1}\)</span> is the
+identity of second-rank tensors and <span class="math notranslate nohighlight">\(\lambda=\dfrac{E\nu}{(1+\nu)(1-2\nu)},\mu=\dfrac{E}{2(1+\nu)}\)</span> are the
+Lame coefficients given as functions of the Young modulus <span class="math notranslate nohighlight">\(E\)</span> and the Poisson ratio <span class="math notranslate nohighlight">\(\nu\)</span>.</p>
+<p>The weak form is readily obtained by integrating by part the balance equation using a test function <span class="math notranslate nohighlight">\(v\in V\)</span>
+with <span class="math notranslate nohighlight">\(V\)</span> being a suitable function space that satisfies the displacement boundary conditions:</p>
+<div class="math notranslate nohighlight">
+\[\int_{\Omega} \rho \ddot{u}\cdot v \, {\rm d} x + \int_{\Omega} \sigma(u):\varepsilon(v) \, {\rm d} x =
+\int_{\Omega} \rho b \cdot v  \, {\rm d} x + \int_{\partial\Omega} (\sigma\cdot n) \cdot v \, {\rm d} s \quad \text{for all } v\in V\]</div>
+<p>The previous equation can be written as follows:</p>
+<div class="math notranslate nohighlight">
+\[\text{Find }u\in V\text{ such that } m(\ddot{u},v) + k(u,v) = L(v) \quad \text{for all } v\in V\]</div>
+<p>where <span class="math notranslate nohighlight">\(m\)</span> is the symmetric bilinear form associated with the mass matrix and <span class="math notranslate nohighlight">\(k\)</span> the one associated with the stiffness matrix.</p>
+<p>After introducing the finite element space interpolation, one obtains the corresponding discretized evolution equation:</p>
+<div class="math notranslate nohighlight">
+\[\text{Find }\{u\}\in\mathbb{R}^n\text{ such that } \{v\}^T[M]\{\ddot{u}\} + \{v\}^T[K]\{u\} = \{v\}^T\{F\} \quad \text{for all } \{v\}\in\mathbb{R}^n\]</div>
+<p>which is a generalized <span class="math notranslate nohighlight">\(n\)</span>-dof harmonic oscillator equation.</p>
+<p>Quite often in structural dynamics, structures do not oscillate perfectly but lose energy through various dissipative mechanisms (friction with air or supports,
+internal dissipation through plasticity, damage, etc.). Dissipative terms can be introduced at the level of the constitutive equation if these mechanisms are well
+known but quite often it is not the case. Dissipation can then be modeled by adding an <em>ad hoc</em> damping term depending on the structure velocity <span class="math notranslate nohighlight">\(\dot{u}\)</span>
+to the previous evolution equation:</p>
+<div class="math notranslate nohighlight">
+\[\text{Find }u\in V\text{ such that } m(\ddot{u},v) + c(\dot{u},v) + k(u,v) = L(v) \quad \text{for all } v\in V\]</div>
+<p>The damping form will be considered here as bilinear and symmetric, being therefore associated with a damping matrix <span class="math notranslate nohighlight">\([C]\)</span>.</p>
+<div class="section" id="rayleigh-damping">
+<h3>Rayleigh damping<a class="headerlink" href="#rayleigh-damping" title="Permalink to this headline">¶</a></h3>
+<p>When little is known about the origin of damping in the structure, a popular choice for the damping matrix, known as <em>Rayleigh damping</em>, consists in using
+a linear combination of the mass and stiffness matrix <span class="math notranslate nohighlight">\([C] = \eta_M[M]+\eta_K[K]\)</span> with two positive parameters <span class="math notranslate nohighlight">\(\eta_M,\eta_K\)</span> which
+can be fitted against experimental measures for instance (usually by measuring the damping ratio of two natural modes of vibration).</p>
+</div>
+</div>
+<div class="section" id="time-discretization-using-the-generalized-alpha-method">
+<h2>Time discretization using the generalized-<span class="math notranslate nohighlight">\(\alpha\)</span> method<a class="headerlink" href="#time-discretization-using-the-generalized-alpha-method" title="Permalink to this headline">¶</a></h2>
+<p>We now introduce a time discretization of the interval study <span class="math notranslate nohighlight">\([0;T]\)</span> in <span class="math notranslate nohighlight">\(N+1\)</span> time increments <span class="math notranslate nohighlight">\(t_0=0,t_1,\ldots,t_N,t_{N+1}=T\)</span>
+with <span class="math notranslate nohighlight">\(\Delta t=T/N\)</span> denoting the time step (supposed constant). The resolution will make use of the generalized-<span class="math notranslate nohighlight">\(\alpha\)</span> method
+which can be seen as an extension of the widely used Newmark-<span class="math notranslate nohighlight">\(\beta\)</span> method in structural dynamics. As an implicit method, it is unconditionally
+stable for a proper choice of coefficients so that quite large time steps can be used. It also allows for high frequency dissipation and offers a
+second-order accuracy, i.e. in <span class="math notranslate nohighlight">\(O(\Delta t^2)\)</span>.</p>
+<p>The method consists in solving the dynamic evolution equation at intermediate time between <span class="math notranslate nohighlight">\(t_n\)</span> and <span class="math notranslate nohighlight">\(t_{n+1}\)</span> as follows:</p>
+<div class="math notranslate nohighlight">
+\[[M]\{\ddot{u}_{n+1-\alpha_m}\} + [C]\{\dot{u}_{n+1-\alpha_f}\}+[K]\{u_{n+1-\alpha_f}\} = \{F(t_{n+1-\alpha_f})\}\]</div>
+<p>with the notation <span class="math notranslate nohighlight">\(X_{n+1-\alpha} = (1-\alpha)X_{n+1}+\alpha X_{n}\)</span>. In addition, the following approximation for the displacement and velocity
+at <span class="math notranslate nohighlight">\(t_{n+1}\)</span> are used:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+\{u_{n+1}\} &amp;= \{u_{n}\}+\Delta t \{\dot{u}_{n}\} + \dfrac{\Delta t^2}{2}\left((1-2\beta)\{\ddot{u}_{n}\}+2\beta\{\ddot{u}_{n+1}\}\right) \\
+\{\dot{u}_{n+1}\} &amp;= \{\dot{u}_{n}\} + \Delta t\left((1-\gamma)\{\ddot{u}_{n}\}+\gamma\{\ddot{u}_{n+1}\}\right)
+\end{align*}\end{split}\]</div>
+<p>It can be seen that these are the relations of the Newmark method. The latter is therefore obtained as a particular case when <span class="math notranslate nohighlight">\(\alpha_f=\alpha_m=0\)</span>.</p>
+<p>The problem can then be formulated in terms of unkown displacement at <span class="math notranslate nohighlight">\(t_{n+1}\)</span> with:</p>
+<div class="math notranslate nohighlight">
+\[\{\ddot{u}_{n+1}\} = \dfrac{1}{\beta\Delta t^2}\left(\{u_{n+1}\} - \{u_{n}\}-\Delta t \{\dot{u}_{n}\} \right) - \dfrac{1-2\beta}{2\beta}\{\ddot{u}_{n}\}\]</div>
+<p>After plugging into the evolution and rearranging the known and unknown terms, one obtains the following system to solve:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+  [\bar{K}]\{u_{n+1}\} &amp;= \{F(t_{n+1-\alpha_f})\} - \alpha_f[K]\{u_n\} \\
+       &amp;- [C](c_1\{u_n\}+c_2\{\dot{u}_n\}+c_3\{\ddot{u}_n\})-[M](m_1\{u_n\}+m_2\{\dot{u}_n\}+m_3\{\ddot{u}_n\})
+\end{align*}\end{split}\]</div>
+<dl class="simple">
+<dt>where:</dt><dd><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\([\bar{K}] = [K]+c_1[C]+m_1[M]\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(c_1 = \dfrac{\gamma(1-\alpha_f)}{\beta\Delta t}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(c_2 = 1-\gamma(1-\alpha_f)/\beta\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(c_3 = \Delta t(1-\alpha_f)(1-\dfrac{\gamma}{2\beta})\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(m_1 = \dfrac{(1-\alpha_m)}{\beta\Delta t^2}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(m_2 = \dfrac{(1-\alpha_m)}{\beta\Delta t}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(m_3 = 1-\dfrac{1-\alpha_m}{2\beta}\)</span></p></li>
+</ul>
+</dd>
+</dl>
+<p>Once the linear system has been solved for <span class="math notranslate nohighlight">\(\{u_{n+1}\}\)</span>, the new velocity and acceleration are computed using the previous formulae.</p>
+<div class="section" id="popular-choice-of-parameters">
+<h3>Popular choice of parameters<a class="headerlink" href="#popular-choice-of-parameters" title="Permalink to this headline">¶</a></h3>
+<p>The most popular choice for the parameters is: <span class="math notranslate nohighlight">\(\alpha_m,\alpha_f \leq 1/2\)</span> and <span class="math notranslate nohighlight">\(\gamma=\dfrac{1}{2}+\alpha_m-\alpha_f\)</span>,
+<span class="math notranslate nohighlight">\(\beta=\dfrac{1}{4}\left(\gamma+\dfrac{1}{2}\right)^2\)</span> which ensures unconditional stability, optimal dissipation and second-order accuracy.</p>
+</div>
+</div>
+<div class="section" id="implementation">
+<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
+<p>We consider a rectangular beam clamped at one end and loaded by a uniform vertical traction at the other end.
+After importing the relevant modules, the mesh and subdomains for boundary conditions are defined:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dolfin</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Form compiler options</span>
+<span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;form_compiler&quot;</span><span class="p">][</span><span class="s2">&quot;cpp_optimize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;form_compiler&quot;</span><span class="p">][</span><span class="s2">&quot;optimize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="c1"># Define mesh</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">BoxMesh</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.04</span><span class="p">),</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># Sub domain for clamp at left end</span>
+<span class="k">def</span> <span class="nf">left</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">on_boundary</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">near</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mf">0.</span><span class="p">)</span> <span class="ow">and</span> <span class="n">on_boundary</span>
+
+<span class="c1"># Sub domain for rotation at right end</span>
+<span class="k">def</span> <span class="nf">right</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">on_boundary</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">near</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mf">1.</span><span class="p">)</span> <span class="ow">and</span> <span class="n">on_boundary</span>
+</pre></div>
+</div>
+<p>Material parameters for the elastic constitutive relation, the material density <span class="math notranslate nohighlight">\(\rho\)</span>
+for the mass matrix and the two parameters defining the Rayleigh damping <span class="math notranslate nohighlight">\(\eta_M,\eta_K\)</span>
+(initially zero damping is considered but this value can be changed) are now defined:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Elastic parameters</span>
+<span class="n">E</span>  <span class="o">=</span> <span class="mf">1000.0</span>
+<span class="n">nu</span> <span class="o">=</span> <span class="mf">0.3</span>
+<span class="n">mu</span>    <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="n">E</span> <span class="o">/</span> <span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">nu</span><span class="p">)))</span>
+<span class="n">lmbda</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="n">E</span><span class="o">*</span><span class="n">nu</span> <span class="o">/</span> <span class="p">((</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">nu</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="mf">2.0</span><span class="o">*</span><span class="n">nu</span><span class="p">)))</span>
+
+<span class="c1"># Mass density</span>
+<span class="n">rho</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+
+<span class="c1"># Rayleigh damping coefficients</span>
+<span class="n">eta_m</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="mf">0.</span><span class="p">)</span>
+<span class="n">eta_k</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="mf">0.</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Parameters used for the time discretization scheme are now defined. First, the four parameters used by the
+generalized-<span class="math notranslate nohighlight">\(\alpha\)</span> method are chosen. Here, we used the optimal dissipation and second-order accuracy
+choice for <span class="math notranslate nohighlight">\(\beta\)</span> and <span class="math notranslate nohighlight">\(\gamma\)</span>, namely <span class="math notranslate nohighlight">\(\beta=\dfrac{1}{4}\left(\gamma+\dfrac{1}{2}\right)^2\)</span> and
+<span class="math notranslate nohighlight">\(\gamma=\dfrac{1}{2}+\alpha_m-\alpha_f\)</span> with <span class="math notranslate nohighlight">\(\alpha_m=0.2\)</span> and <span class="math notranslate nohighlight">\(\alpha_f=0.4\)</span> ensuring unconditional stability:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generalized-alpha method parameters</span>
+<span class="n">alpha_m</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">alpha_f</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="mf">0.4</span><span class="p">)</span>
+<span class="n">gamma</span>   <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="mf">0.5</span><span class="o">+</span><span class="n">alpha_f</span><span class="o">-</span><span class="n">alpha_m</span><span class="p">)</span>
+<span class="n">beta</span>    <span class="o">=</span> <span class="n">Constant</span><span class="p">((</span><span class="n">gamma</span><span class="o">+</span><span class="mf">0.5</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mf">4.</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We also define the final time of the interval, the number of time steps and compute the associated time interval
+between two steps:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Time-stepping parameters</span>
+<span class="n">T</span>       <span class="o">=</span> <span class="mf">4.0</span>
+<span class="n">Nsteps</span>  <span class="o">=</span> <span class="mi">50</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="n">T</span><span class="o">/</span><span class="n">Nsteps</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We now define the time-dependent loading. Body forces are zero and the imposed loading consists of a uniform vertical traction
+applied at the <code class="docutils literal notranslate"><span class="pre">right</span></code> extremity. The loading amplitude will vary linearly from <span class="math notranslate nohighlight">\(0\)</span> to <span class="math notranslate nohighlight">\(p_0=1\)</span> over the time interval
+<span class="math notranslate nohighlight">\([0;T_c=T/5]\)</span>, after <span class="math notranslate nohighlight">\(T_c\)</span> the loading is removed. For this purpose, we used the following JIT-compiled <code class="docutils literal notranslate"><span class="pre">Expression</span></code>.
+In particular, it uses a conditional syntax using operators <code class="docutils literal notranslate"><span class="pre">?</span></code> and <code class="docutils literal notranslate"><span class="pre">:</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">p0</span> <span class="o">=</span> <span class="mf">1.</span>
+<span class="n">cutoff_Tc</span> <span class="o">=</span> <span class="n">T</span><span class="o">/</span><span class="mi">5</span>
+<span class="c1"># Define the loading as an expression depending on t</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">Expression</span><span class="p">((</span><span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="s2">&quot;t &lt;= tc ? p0*t/tc : 0&quot;</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">),</span> <span class="n">t</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">tc</span><span class="o">=</span><span class="n">cutoff_Tc</span><span class="p">,</span> <span class="n">p0</span><span class="o">=</span><span class="n">p0</span><span class="p">,</span> <span class="n">degree</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>A standard vectorial <span class="math notranslate nohighlight">\(P^1\)</span> FunctionSpace is now defined for the displacement, velocity and acceleration fields. We also
+define a tensorial DG-0 FunctionSpace for saving the stress field evolution:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define function space for displacement, velocity and acceleration</span>
+<span class="n">V</span> <span class="o">=</span> <span class="n">VectorFunctionSpace</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="s2">&quot;CG&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="c1"># Define function space for stresses</span>
+<span class="n">Vsig</span> <span class="o">=</span> <span class="n">TensorFunctionSpace</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="s2">&quot;DG&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Test and trial functions are defined and the unkown displacement (corresponding to <span class="math notranslate nohighlight">\(\{u_{n+1}\}\)</span> for the current time step)
+will be represented by the Function <code class="docutils literal notranslate"><span class="pre">u</span></code>. Displacement, velocity and acceleration fields of the previous increment
+<span class="math notranslate nohighlight">\(t_n\)</span> will respectively be represented by functions <code class="docutils literal notranslate"><span class="pre">u_old</span></code>, <code class="docutils literal notranslate"><span class="pre">v_old</span></code> and <code class="docutils literal notranslate"><span class="pre">a_old</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Test and trial functions</span>
+<span class="n">du</span> <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+<span class="n">u_</span> <span class="o">=</span> <span class="n">TestFunction</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+<span class="c1"># Current (unknown) displacement</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Displacement&quot;</span><span class="p">)</span>
+<span class="c1"># Fields from previous time step (displacement, velocity, acceleration)</span>
+<span class="n">u_old</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+<span class="n">v_old</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+<span class="n">a_old</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We now use a <code class="docutils literal notranslate"><span class="pre">MeshFunction</span></code> for distinguishing the different boundaries and mark the right extremity using an <code class="docutils literal notranslate"><span class="pre">AutoSubDomain</span></code>.
+The exterior surface measure <code class="docutils literal notranslate"><span class="pre">ds</span></code> is then defined using the boundary subdomains. Simple Dirichlet boundary conditions are also defined at the left extremity:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create mesh function over the cell facets</span>
+<span class="n">boundary_subdomains</span> <span class="o">=</span> <span class="n">MeshFunction</span><span class="p">(</span><span class="s2">&quot;size_t&quot;</span><span class="p">,</span> <span class="n">mesh</span><span class="p">,</span> <span class="n">mesh</span><span class="o">.</span><span class="n">topology</span><span class="p">()</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">boundary_subdomains</span><span class="o">.</span><span class="n">set_all</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">force_boundary</span> <span class="o">=</span> <span class="n">AutoSubDomain</span><span class="p">(</span><span class="n">right</span><span class="p">)</span>
+<span class="n">force_boundary</span><span class="o">.</span><span class="n">mark</span><span class="p">(</span><span class="n">boundary_subdomains</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># Define measure for boundary condition integral</span>
+<span class="n">dss</span> <span class="o">=</span> <span class="n">ds</span><span class="p">(</span><span class="n">subdomain_data</span><span class="o">=</span><span class="n">boundary_subdomains</span><span class="p">)</span>
+
+<span class="c1"># Set up boundary condition at left end</span>
+<span class="n">zero</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">((</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">))</span>
+<span class="n">bc</span> <span class="o">=</span> <span class="n">DirichletBC</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">zero</span><span class="p">,</span> <span class="n">left</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Python functions are now defined to obtain the elastic stress tensor <span class="math notranslate nohighlight">\(\sigma\)</span> (linear isotropic elasticity), the bilinear mass and stiffness forms as well
+as the damping form obtained as a linear combination of the mass and stiffness forms (Rayleigh damping). The linear form corresponding to the work of external forces is also defined:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Stress tensor</span>
+<span class="k">def</span> <span class="nf">sigma</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">2.0</span><span class="o">*</span><span class="n">mu</span><span class="o">*</span><span class="n">sym</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">r</span><span class="p">))</span> <span class="o">+</span> <span class="n">lmbda</span><span class="o">*</span><span class="n">tr</span><span class="p">(</span><span class="n">sym</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">r</span><span class="p">)))</span><span class="o">*</span><span class="n">Identity</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">r</span><span class="p">))</span>
+
+<span class="c1"># Mass form</span>
+<span class="k">def</span> <span class="nf">m</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">u_</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">rho</span><span class="o">*</span><span class="n">inner</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">u_</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span>
+
+<span class="c1"># Elastic stiffness form</span>
+<span class="k">def</span> <span class="nf">k</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">u_</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">inner</span><span class="p">(</span><span class="n">sigma</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">sym</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">u_</span><span class="p">)))</span><span class="o">*</span><span class="n">dx</span>
+
+<span class="c1"># Rayleigh damping form</span>
+<span class="k">def</span> <span class="nf">c</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">u_</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">eta_m</span><span class="o">*</span><span class="n">m</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">u_</span><span class="p">)</span> <span class="o">+</span> <span class="n">eta_k</span><span class="o">*</span><span class="n">k</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">u_</span><span class="p">)</span>
+
+<span class="c1"># Work of external forces</span>
+<span class="k">def</span> <span class="nf">Wext</span><span class="p">(</span><span class="n">u_</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">dot</span><span class="p">(</span><span class="n">u_</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span><span class="o">*</span><span class="n">dss</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Functions for implementing the time stepping scheme are also defined. <code class="docutils literal notranslate"><span class="pre">update_a</span></code> returns <span class="math notranslate nohighlight">\(\{\ddot{u}_{n+1}\}\)</span>
+as a function of the variables at the previous increment and of the new displacement <span class="math notranslate nohighlight">\(\{u_{n+1}\}\)</span>. The function accepts a keyword <code class="docutils literal notranslate"><span class="pre">ufl</span></code> so that the expressions involved can be used with UFL representations if <code class="docutils literal notranslate"><span class="pre">True</span></code> or with array of values if <code class="docutils literal notranslate"><span class="pre">False</span></code> (we will make use of both possibilities later).
+In particular, the time step <code class="docutils literal notranslate"><span class="pre">dt</span></code> and time-stepping scheme parameters are either <code class="docutils literal notranslate"><span class="pre">Constant</span></code> or floats depending on the case.
+Function <code class="docutils literal notranslate"><span class="pre">update_v</span></code> does the same but for the new velocity <span class="math notranslate nohighlight">\(\{\dot{u}_{n+1}\}\)</span> as a function of the previous variables
+and of the new acceleration. Finally, function <code class="docutils literal notranslate"><span class="pre">update_fields</span></code> performs the final update at the end of the time step when the new
+displacement <span class="math notranslate nohighlight">\(\{u_{n+1}\}\)</span> has effectively been computed. In this context, the new acceleration and velocities are computed
+using the vector representation of the different fields. The variables keeping track of the values at the previous increment are now assigned the new values computed for the current increment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Update formula for acceleration</span>
+<span class="c1"># a = 1/(2*beta)*((u - u0 - v0*dt)/(0.5*dt*dt) - (1-2*beta)*a0)</span>
+<span class="k">def</span> <span class="nf">update_a</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">u_old</span><span class="p">,</span> <span class="n">v_old</span><span class="p">,</span> <span class="n">a_old</span><span class="p">,</span> <span class="n">ufl</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">ufl</span><span class="p">:</span>
+        <span class="n">dt_</span> <span class="o">=</span> <span class="n">dt</span>
+        <span class="n">beta_</span> <span class="o">=</span> <span class="n">beta</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">dt_</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+        <span class="n">beta_</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">u</span><span class="o">-</span><span class="n">u_old</span><span class="o">-</span><span class="n">dt_</span><span class="o">*</span><span class="n">v_old</span><span class="p">)</span><span class="o">/</span><span class="n">beta_</span><span class="o">/</span><span class="n">dt_</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">beta_</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="o">/</span><span class="n">beta_</span><span class="o">*</span><span class="n">a_old</span>
+
+<span class="c1"># Update formula for velocity</span>
+<span class="c1"># v = dt * ((1-gamma)*a0 + gamma*a) + v0</span>
+<span class="k">def</span> <span class="nf">update_v</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">u_old</span><span class="p">,</span> <span class="n">v_old</span><span class="p">,</span> <span class="n">a_old</span><span class="p">,</span> <span class="n">ufl</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">ufl</span><span class="p">:</span>
+        <span class="n">dt_</span> <span class="o">=</span> <span class="n">dt</span>
+        <span class="n">gamma_</span> <span class="o">=</span> <span class="n">gamma</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">dt_</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+        <span class="n">gamma_</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">gamma</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">v_old</span> <span class="o">+</span> <span class="n">dt_</span><span class="o">*</span><span class="p">((</span><span class="mi">1</span><span class="o">-</span><span class="n">gamma_</span><span class="p">)</span><span class="o">*</span><span class="n">a_old</span> <span class="o">+</span> <span class="n">gamma_</span><span class="o">*</span><span class="n">a</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">update_fields</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">u_old</span><span class="p">,</span> <span class="n">v_old</span><span class="p">,</span> <span class="n">a_old</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Update fields at the end of each time step.&quot;&quot;&quot;</span>
+
+    <span class="c1"># Get vectors (references)</span>
+    <span class="n">u_vec</span><span class="p">,</span> <span class="n">u0_vec</span>  <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">vector</span><span class="p">(),</span> <span class="n">u_old</span><span class="o">.</span><span class="n">vector</span><span class="p">()</span>
+    <span class="n">v0_vec</span><span class="p">,</span> <span class="n">a0_vec</span> <span class="o">=</span> <span class="n">v_old</span><span class="o">.</span><span class="n">vector</span><span class="p">(),</span> <span class="n">a_old</span><span class="o">.</span><span class="n">vector</span><span class="p">()</span>
+
+    <span class="c1"># use update functions using vector arguments</span>
+    <span class="n">a_vec</span> <span class="o">=</span> <span class="n">update_a</span><span class="p">(</span><span class="n">u_vec</span><span class="p">,</span> <span class="n">u0_vec</span><span class="p">,</span> <span class="n">v0_vec</span><span class="p">,</span> <span class="n">a0_vec</span><span class="p">,</span> <span class="n">ufl</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">v_vec</span> <span class="o">=</span> <span class="n">update_v</span><span class="p">(</span><span class="n">a_vec</span><span class="p">,</span> <span class="n">u0_vec</span><span class="p">,</span> <span class="n">v0_vec</span><span class="p">,</span> <span class="n">a0_vec</span><span class="p">,</span> <span class="n">ufl</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="c1"># Update (u_old &lt;- u)</span>
+    <span class="n">v_old</span><span class="o">.</span><span class="n">vector</span><span class="p">()[:],</span> <span class="n">a_old</span><span class="o">.</span><span class="n">vector</span><span class="p">()[:]</span> <span class="o">=</span> <span class="n">v_vec</span><span class="p">,</span> <span class="n">a_vec</span>
+    <span class="n">u_old</span><span class="o">.</span><span class="n">vector</span><span class="p">()[:]</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">vector</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The system variational form is now built by expressing the new acceleration <span class="math notranslate nohighlight">\(\{\ddot{u}_{n+1}\}\)</span> as a function of
+the TrialFunction <code class="docutils literal notranslate"><span class="pre">du</span></code> using <code class="docutils literal notranslate"><span class="pre">update_a</span></code>, which here works as a UFL expression. Using this new acceleration, the same is
+done for the new velocity using <code class="docutils literal notranslate"><span class="pre">update_v</span></code>. Intermediate averages using parameters <span class="math notranslate nohighlight">\(\alpha_m,\alpha_f\)</span> of the generalized- <span class="math notranslate nohighlight">\(\alpha\)</span>
+method are obtained with a user-defined fuction <code class="docutils literal notranslate"><span class="pre">avg</span></code>. The weak form evolution equation is then written using all these
+quantities. Since the problem is linear, we then extract the bilinear and linear parts using <code class="docutils literal notranslate"><span class="pre">rhs</span></code> and <code class="docutils literal notranslate"><span class="pre">lhs</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">avg</span><span class="p">(</span><span class="n">x_old</span><span class="p">,</span> <span class="n">x_new</span><span class="p">,</span> <span class="n">alpha</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">alpha</span><span class="o">*</span><span class="n">x_old</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">alpha</span><span class="p">)</span><span class="o">*</span><span class="n">x_new</span>
+
+<span class="c1"># Residual</span>
+<span class="n">a_new</span> <span class="o">=</span> <span class="n">update_a</span><span class="p">(</span><span class="n">du</span><span class="p">,</span> <span class="n">u_old</span><span class="p">,</span> <span class="n">v_old</span><span class="p">,</span> <span class="n">a_old</span><span class="p">,</span> <span class="n">ufl</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">v_new</span> <span class="o">=</span> <span class="n">update_v</span><span class="p">(</span><span class="n">a_new</span><span class="p">,</span> <span class="n">u_old</span><span class="p">,</span> <span class="n">v_old</span><span class="p">,</span> <span class="n">a_old</span><span class="p">,</span> <span class="n">ufl</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">m</span><span class="p">(</span><span class="n">avg</span><span class="p">(</span><span class="n">a_old</span><span class="p">,</span> <span class="n">a_new</span><span class="p">,</span> <span class="n">alpha_m</span><span class="p">),</span> <span class="n">u_</span><span class="p">)</span> <span class="o">+</span> <span class="n">c</span><span class="p">(</span><span class="n">avg</span><span class="p">(</span><span class="n">v_old</span><span class="p">,</span> <span class="n">v_new</span><span class="p">,</span> <span class="n">alpha_f</span><span class="p">),</span> <span class="n">u_</span><span class="p">)</span> \
+       <span class="o">+</span> <span class="n">k</span><span class="p">(</span><span class="n">avg</span><span class="p">(</span><span class="n">u_old</span><span class="p">,</span> <span class="n">du</span><span class="p">,</span> <span class="n">alpha_f</span><span class="p">),</span> <span class="n">u_</span><span class="p">)</span> <span class="o">-</span> <span class="n">Wext</span><span class="p">(</span><span class="n">u_</span><span class="p">)</span>
+<span class="n">a_form</span> <span class="o">=</span> <span class="n">lhs</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+<span class="n">L_form</span> <span class="o">=</span> <span class="n">rhs</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Alternatively, the use of <code class="docutils literal notranslate"><span class="pre">derivative</span></code> can be made for non-linear problems for instance or one can also directly
+formulate the system to solve, involving the modified stiffness matrix <span class="math notranslate nohighlight">\([\bar{K}]\)</span> and the various coefficients introduced earlier.</p>
+<p>Since the system matrix to solve is the same for each time step (constant time step), it is not necessary to factorize the system at each increment.
+It can be done once and for all and only perform assembly of the varying right-hand side and backsubstitution to obtain the solution
+much more efficiently. This is done by defining a <code class="docutils literal notranslate"><span class="pre">LUSolver</span></code> object while PETSc handles caching factorizations:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define solver for reusing factorization</span>
+<span class="n">K</span><span class="p">,</span> <span class="n">res</span> <span class="o">=</span> <span class="n">assemble_system</span><span class="p">(</span><span class="n">a_form</span><span class="p">,</span> <span class="n">L_form</span><span class="p">,</span> <span class="n">bc</span><span class="p">)</span>
+<span class="n">solver</span> <span class="o">=</span> <span class="n">LUSolver</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="s2">&quot;mumps&quot;</span><span class="p">)</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;symmetric&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<p>We now initiate the time stepping loop. We will keep track of the beam vertical tip displacement over time as well as the different
+parts of the system total energy. We will also compute the stress field and save it, along with the displacement field, in a <code class="docutils literal notranslate"><span class="pre">XDMFFile</span></code>.
+The option <cite>flush_ouput</cite> enables to open the result file before the loop is finished, the <code class="docutils literal notranslate"><span class="pre">function_share_mesh</span></code> option tells that only one
+mesh is used for all functions of a given time step (displacement and stress) while the <code class="docutils literal notranslate"><span class="pre">rewrite_function_mesh</span></code> enforces that the same mesh
+is used for all time steps. These two options enables writing the mesh information only once instead of <span class="math notranslate nohighlight">\(2N_{steps}\)</span> times:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Time-stepping</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">Nsteps</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">u_tip</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nsteps</span><span class="o">+</span><span class="mi">1</span><span class="p">,))</span>
+<span class="n">energies</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nsteps</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">E_damp</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">E_ext</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">sig</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="n">Vsig</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;sigma&quot;</span><span class="p">)</span>
+<span class="n">xdmf_file</span> <span class="o">=</span> <span class="n">XDMFFile</span><span class="p">(</span><span class="s2">&quot;elastodynamics-results.xdmf&quot;</span><span class="p">)</span>
+<span class="n">xdmf_file</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;flush_output&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">xdmf_file</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;functions_share_mesh&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">xdmf_file</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;rewrite_function_mesh&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+</pre></div>
+</div>
+<p>The time loop is now started, the loading is first evaluated at <span class="math notranslate nohighlight">\(t=t_{n+1-\alpha_f}\)</span>. The corresponding system right-hand side is then
+assembled and the system is solved. The different fields are then updated with the newly computed quantities. Finally, some post-processing is
+performed: stresses are computed and written to the result file and the tip displacement and the different energies are recorded:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">local_project</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Element-wise projection using LocalSolver&quot;&quot;&quot;</span>
+    <span class="n">dv</span> <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+    <span class="n">v_</span> <span class="o">=</span> <span class="n">TestFunction</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+    <span class="n">a_proj</span> <span class="o">=</span> <span class="n">inner</span><span class="p">(</span><span class="n">dv</span><span class="p">,</span> <span class="n">v_</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span>
+    <span class="n">b_proj</span> <span class="o">=</span> <span class="n">inner</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">v_</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span>
+    <span class="n">solver</span> <span class="o">=</span> <span class="n">LocalSolver</span><span class="p">(</span><span class="n">a_proj</span><span class="p">,</span> <span class="n">b_proj</span><span class="p">)</span>
+    <span class="n">solver</span><span class="o">.</span><span class="n">factorize</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">u</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">u</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+        <span class="n">solver</span><span class="o">.</span><span class="n">solve_local_rhs</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">u</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">solver</span><span class="o">.</span><span class="n">solve_local_rhs</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+        <span class="k">return</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">time</span><span class="p">)):</span>
+
+    <span class="n">t</span> <span class="o">=</span> <span class="n">time</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Time: &quot;</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+
+    <span class="c1"># Forces are evaluated at t_{n+1-alpha_f}=t_{n+1}-alpha_f*dt</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">t</span> <span class="o">=</span> <span class="n">t</span><span class="o">-</span><span class="nb">float</span><span class="p">(</span><span class="n">alpha_f</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span>
+
+    <span class="c1"># Solve for new displacement</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">assemble</span><span class="p">(</span><span class="n">L_form</span><span class="p">)</span>
+    <span class="n">bc</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+    <span class="n">solver</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">vector</span><span class="p">(),</span> <span class="n">res</span><span class="p">)</span>
+
+
+    <span class="c1"># Update old fields with new quantities</span>
+    <span class="n">update_fields</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">u_old</span><span class="p">,</span> <span class="n">v_old</span><span class="p">,</span> <span class="n">a_old</span><span class="p">)</span>
+
+    <span class="c1"># Save solution to XDMF format</span>
+    <span class="n">xdmf_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+
+    <span class="c1"># Compute stresses and save to file</span>
+    <span class="n">local_project</span><span class="p">(</span><span class="n">sigma</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">Vsig</span><span class="p">,</span> <span class="n">sig</span><span class="p">)</span>
+    <span class="n">xdmf_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+
+    <span class="n">p</span><span class="o">.</span><span class="n">t</span> <span class="o">=</span> <span class="n">t</span>
+    <span class="c1"># Record tip displacement and compute energies</span>
+    <span class="c1"># Note: Only works in serial</span>
+    <span class="k">if</span> <span class="n">MPI</span><span class="o">.</span><span class="n">comm_world</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">u_tip</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span><span class="p">(</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">E_elas</span> <span class="o">=</span> <span class="n">assemble</span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="n">k</span><span class="p">(</span><span class="n">u_old</span><span class="p">,</span> <span class="n">u_old</span><span class="p">))</span>
+    <span class="n">E_kin</span> <span class="o">=</span> <span class="n">assemble</span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="n">m</span><span class="p">(</span><span class="n">v_old</span><span class="p">,</span> <span class="n">v_old</span><span class="p">))</span>
+    <span class="n">E_damp</span> <span class="o">+=</span> <span class="n">dt</span><span class="o">*</span><span class="n">assemble</span><span class="p">(</span><span class="n">c</span><span class="p">(</span><span class="n">v_old</span><span class="p">,</span> <span class="n">v_old</span><span class="p">))</span>
+    <span class="c1"># E_ext += assemble(Wext(u-u_old))</span>
+    <span class="n">E_tot</span> <span class="o">=</span> <span class="n">E_elas</span><span class="o">+</span><span class="n">E_kin</span><span class="o">+</span><span class="n">E_damp</span> <span class="c1">#-E_ext</span>
+    <span class="n">energies</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">E_elas</span><span class="p">,</span> <span class="n">E_kin</span><span class="p">,</span> <span class="n">E_damp</span><span class="p">,</span> <span class="n">E_tot</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Note that in the above, the stresses are computed using a <code class="docutils literal notranslate"><span class="pre">LocalSolver</span></code> through the <code class="docutils literal notranslate"><span class="pre">local_project</span></code> function. Since the stress function space
+is a DG-0 space, the projection on this space can be performed element-wise in a very efficient manner. We therefore take advantage of the <code class="docutils literal notranslate"><span class="pre">LocalSolver</span></code>
+functionality which is precisely dedicated to such situations. Since this projection is performed at each time step, the savings in terms of computing
+time can be quite important.</p>
+<p>As regards the computation of the various energies, the elastic and kinetic energies are respectively given by:</p>
+<div class="math notranslate nohighlight">
+\[E_{elas} = \int_{\Omega} \dfrac{1}{2}\sigma(u):\varepsilon(u) \, {\rm d} x\]</div>
+<div class="math notranslate nohighlight">
+\[E_{kin} = \int_{\Omega} \dfrac{1}{2}\rho \dot{u}\cdot\dot{u} \, {\rm d} x\]</div>
+<p>which are readily computed from the respective stiffness and mass forms <code class="docutils literal notranslate"><span class="pre">k</span></code> and <code class="docutils literal notranslate"><span class="pre">m</span></code> and the current displacement and velocity. The energy related to damping
+is computed from the corresponding dissipation term <span class="math notranslate nohighlight">\(\mathcal{D}=c(\dot{u},\dot{u})\)</span> and integrated over time:</p>
+<div class="math notranslate nohighlight">
+\[E_{damp} = \int_0^T \mathcal{D} \, {\rm d} t\]</div>
+<p>As for the work developed by the external forces, the contribution to the energy is added at each time step. Finally, the total energy of the sytem is given by:</p>
+<div class="math notranslate nohighlight">
+\[E_{tot} = E_{elas}+E_{kin}+E_{damp}-E_{ext}\]</div>
+<p>When the time evolution loop is finished, the evolution of the tip displacement as well as the different contributions of the energy are plotted as functions of time:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">MPI</span><span class="o">.</span><span class="n">comm_world</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="c1"># Plot tip displacement evolution</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">u_tip</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Tip displacement&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">MPI</span><span class="o">.</span><span class="n">comm_world</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+    <span class="c1"># Plot energies evolution</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">energies</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">((</span><span class="s2">&quot;elastic&quot;</span><span class="p">,</span> <span class="s2">&quot;kinetic&quot;</span><span class="p">,</span> <span class="s2">&quot;damping&quot;</span><span class="p">,</span> <span class="s2">&quot;total&quot;</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Energies&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.0011</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="analyzing-the-results">
+<h2>Analyzing the results<a class="headerlink" href="#analyzing-the-results" title="Permalink to this headline">¶</a></h2>
+<p>We first consider the case of zero Rayleigh damping <span class="math notranslate nohighlight">\(\eta_M=\eta_K=0\)</span>. In this case, it can be observed that the evolution of the total energy depends
+on the choice of the time-stepping scheme parameters. With <span class="math notranslate nohighlight">\(\alpha_m=\alpha_f=0\)</span>, we recover the Newmark-<span class="math notranslate nohighlight">\(\beta\)</span> method with <span class="math notranslate nohighlight">\(\beta=0.25,\gamma=0.5\)</span>.
+This scheme is known for being conservative. This can be observed (figure-left) in the constant total energy for <span class="math notranslate nohighlight">\(t\geq T_c\)</span> when the loading is removed. On the contrary,
+for non zero alpha parameters, e.g. <span class="math notranslate nohighlight">\(\alpha_m=0.2, \alpha_f=0.4\)</span>, it can be observed (figure-right) that the energy is decreasing during this phase, indicating numerical damping.
+For both cases, the scheme is unconditionally stable. Moreover, these differences vanish when reducing the time step.</p>
+<div class="figure align-center" id="id2">
+<a class="reference internal image-reference" href="../../_images/elastodynamics-energies_newmark.png"><img alt="../../_images/elastodynamics-energies_newmark.png" src="../../_images/elastodynamics-energies_newmark.png" style="width: 60%;" /></a>
+<p class="caption"><span class="caption-text">Newmark-<span class="math notranslate nohighlight">\(\beta\)</span> method <span class="math notranslate nohighlight">\(\alpha_m=\alpha_f=0\)</span></span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id3">
+<a class="reference internal image-reference" href="../../_images/elastodynamics-energies_generalized_alpha.png"><img alt="../../_images/elastodynamics-energies_generalized_alpha.png" src="../../_images/elastodynamics-energies_generalized_alpha.png" style="width: 60%;" /></a>
+<p class="caption"><span class="caption-text">Generalized-<span class="math notranslate nohighlight">\(\alpha\)</span> with <span class="math notranslate nohighlight">\(\alpha_m=0.2, \alpha_f=0.4\)</span></span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<p>For non-zero Rayleigh damping <span class="math notranslate nohighlight">\(\eta_M=\eta_K=0.01\)</span>, the total energy including viscous dissipation tends to oscillate around a constant value, with oscillations vanishing for decreasing time steps.</p>
+<a class="reference internal image-reference" href="../../_images/elastodynamics-energies_generalized_alpha_damping.png"><img alt="../../_images/elastodynamics-energies_generalized_alpha_damping.png" class="align-center" src="../../_images/elastodynamics-energies_generalized_alpha_damping.png" style="width: 60%;" /></a>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<dl class="citation">
+<dt class="label" id="erl2002"><span class="brackets"><a class="fn-backref" href="#id1">ERL2002</a></span></dt>
+<dd><p>Silvano Erlicher, Luca Bonaventura, Oreste Bursi. The analysis of the Generalized-alpha method for non-linear dynamic problems. Computational Mechanics, Springer Verlag, 2002, 28, pp.83-104, doi:10.1007/s00466-001-0273-z</p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../api.html" class="btn btn-neutral float-right" title="Python API reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../stokes-iterative/demo_stokes-iterative.py.html" class="btn btn-neutral float-left" title="Stokes equations with an iterative solver" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, FEniCS Project
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

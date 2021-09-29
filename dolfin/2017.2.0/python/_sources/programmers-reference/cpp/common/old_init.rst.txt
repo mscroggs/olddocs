@@ -1,0 +1,10 @@
+.. Documentation for the function dolfin.cpp.common.old_init
+
+.. _programmers_reference_cpp_common_old_init:
+
+old_init
+========
+
+.. currentmodule:: dolfin.cpp.common
+
+.. autofunction:: old_init

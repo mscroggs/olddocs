@@ -1,0 +1,56 @@
+
+.. Documentation for the header file dolfin/fem/PointSource.h
+
+.. _programmers_reference_cpp_fem_pointsource:
+
+PointSource.h
+=============
+
+.. note::
+    
+    The documentation on this page was automatically extracted from the
+    DOLFIN C++ code and may need to be edited or expanded.
+    
+
+.. cpp:class:: PointSource
+
+    This class provides an easy mechanism for adding a point
+    quantities (Dirac delta function) to variational problems. The
+    associated function space must be scalar in order for the inner
+    product with the (scalar) Dirac delta function to be well
+    defined. For each of the constructors, Points passed to
+    PointSource will be copied.
+    
+    Note: the interface to this class will likely change.
+
+
+    .. cpp:function:: PointSource(std::shared_ptr<const FunctionSpace> V, const Point& p, double magnitude=1.0)
+    
+        Create point source at given point of given magnitude
+
+
+    .. cpp:function:: PointSource(std::shared_ptr<const FunctionSpace> V, const std::vector<std::pair<const Point*, double>> sources)
+    
+        Create point sources at given points of given magnitudes
+
+
+    .. cpp:function:: PointSource(std::shared_ptr<const FunctionSpace> V0, std::shared_ptr<const FunctionSpace> V1, const Point& p, double magnitude=1.0)
+    
+        Create point source at given point of given magnitude
+
+
+    .. cpp:function:: PointSource(std::shared_ptr<const FunctionSpace> V0, std::shared_ptr<const FunctionSpace> V1, const std::vector<std::pair<const Point*, double>> sources)
+    
+        Create point sources at given points of given magnitudes
+
+
+    .. cpp:function:: void apply(GenericVector& b)
+    
+        Apply (add) point source to right-hand side vector
+
+
+    .. cpp:function:: void apply(GenericMatrix& A)
+    
+        Apply (add) point source to matrix
+
+

@@ -1,0 +1,890 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4. Incompressible Navier-Stokes equations &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../../../index.html"/>
+        <link rel="up" title="Collection of documented demos" href="../../../index.html"/>
+        <link rel="next" title="&lt;no title&gt;" href="../../neumann-poisson/cpp/documentation.html"/>
+        <link rel="prev" title="3. Mixed formulation for Poisson equation" href="../../mixed-poisson/cpp/documentation.html"/> 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2016.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../programmers-reference/index.html">C++ Programmer&#8217;s reference for DOLFIN-2016.2.0</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Collection of documented demos</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../cahn-hilliard/cpp/documentation.html">1. Cahn-Hilliard equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hyperelasticity/cpp/documentation.html">2. Hyperelasticity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mixed-poisson/cpp/documentation.html">3. Mixed formulation for Poisson equation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4. Incompressible Navier-Stokes equations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#equation-and-solution-method">4.1. Equation and solution method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#problem-definition">4.2. Problem definition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#implementation">4.3. Implementation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ufl-form-files">4.3.1. UFL form files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c-program">4.3.2. C++ program</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#complete-code">4.4. Complete code</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#complete-ufl-files">4.4.1. Complete UFL files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#complete-main-file">4.4.2. Complete main file</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../quick_reference.html">Quick Programmer&#8217;s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../index.html">Collection of documented demos</a> &raquo;</li>
+      
+    <li>4. Incompressible Navier-Stokes equations</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../../_sources/demo/documented/navier-stokes/cpp/documentation.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="incompressible-navier-stokes-equations">
+<span id="demo-pde-navier-stokes-cpp-documentation"></span><h1>4. Incompressible Navier-Stokes equations<a class="headerlink" href="#incompressible-navier-stokes-equations" title="Permalink to this headline">¶</a></h1>
+<p>This demo solves the incompressible Navier-Stokes equations. It
+illustrates how to:</p>
+<ul class="simple">
+<li>Implement a splitting method where different fields are coupled
+via a set of partial differential equations</li>
+<li>Use different iterative solvers and different preconditioners for
+different steps of the solution process</li>
+<li>Use time-dependent Expressions</li>
+<li>Set boundary conditions based on geometric constraints</li>
+<li>Perform time-stepping</li>
+</ul>
+<div class="section" id="equation-and-solution-method">
+<h2>4.1. Equation and solution method<a class="headerlink" href="#equation-and-solution-method" title="Permalink to this headline">¶</a></h2>
+<p>We consider the incompressible Navier-Stokes equations on a domain
+<span class="math">\(\Omega \subset \mathbb{R}^2\)</span>, consisting of a pair of momentum
+and continuity equations:</p>
+<div class="math">
+\[\begin{split}\dot{u} + \nabla u \cdot u - \nu \Delta u + \nabla p &amp;= f, \\
+\nabla \cdot u = 0.\end{split}\]</div>
+<p>Here, <span class="math">\(u\)</span> is the unknown velocity, <span class="math">\(p\)</span> is the unknown
+pressure, <span class="math">\(\nu\)</span> is the kinematic viscosity, and <span class="math">\(f\)</span> is a
+given source. There exist many solution strategies for the
+incompressible Navier-Stokes equations. One of the oldest is the
+splitting method proposed by Chorin (1968) and Temam (1969), often
+refered to as Chorin&#8217;s method.</p>
+<p>In Chorin&#8217;s method, one first ignores the pressure in the momentum
+equation and computes the <em>tentative velocity</em> <span class="math">\(u_h^{\star}\)</span>
+according to:</p>
+<div class="math">
+\[\langle (u_h^{\star} - u_h^{n-1}) / \Delta t_n, v \rangle +
+\langle \nabla u_h^{n-1} \cdot u_h^{n-1}, v \rangle +
+\langle \nu \nabla u_h^{\star}, \nabla v \rangle =
+\langle f, v \rangle .\]</div>
+<p>Here, <span class="math">\(\langle \cdot, \cdot \rangle\)</span> denotes the
+<span class="math">\(L^2(\Omega)\)</span> inner product.  Subsequently, the velocity is
+projected to the space of divergence free fields. This step may be
+obtained by subtracting the variational problem for the tentative
+velocity <span class="math">\(u_h^{\star}\)</span> from the incompressible Navier-Stokes
+equations and using the continuity equation. One obtains the following
+pair of equations for computing the velocity <span class="math">\(u_h^n\)</span> and
+pressure <span class="math">\(p_h^n\)</span> at time <span class="math">\(t = t_n\)</span> based on the tentative
+velocity <span class="math">\(u_h^{\star}\)</span>:</p>
+<div class="math">
+\[\begin{split}\langle \nabla p^n, \nabla q \rangle &amp;=
+  - \langle \nabla \cdot u_h^{\star}, q \rangle / \Delta t_n, \\
+\langle u_h^n, v \rangle &amp;=
+   \langle u_h^{\star}, v \rangle - \Delta t_n \langle \nabla p^n, v \rangle.\end{split}\]</div>
+</div>
+<div class="section" id="problem-definition">
+<h2>4.2. Problem definition<a class="headerlink" href="#problem-definition" title="Permalink to this headline">¶</a></h2>
+<p>In this demo, we solve the incompressible Navier-Stokes equations on
+an L-shaped domain. The L-shape is the subset of the unit square
+obtained by removing the upper right quadrant.</p>
+<p>The flow is driven by an oscillating pressure
+<span class="math">\(p_{\mathrm{in}}(t) = \sin 3t\)</span> at the inflow <span class="math">\(y = 1\)</span> while
+the pressure is kept constant <span class="math">\(p_{\mathrm{out}} = 0\)</span> at the
+outflow <span class="math">\(x = 1\)</span>.</p>
+<p>At the inflow and outflow, we impose free flow (&#8220;do nothing&#8221;) boundary
+conditions for the velocity and no-slip boundary conditions on the
+remaining boundary.</p>
+<p>The (kinematic) viscosity is set to <span class="math">\(\nu = 0.01\)</span>, the time step
+is <span class="math">\(\Delta t = 0.01\)</span> and the length of the time interval is
+<span class="math">\(T = 3\)</span>. The solution is computed using continuous vector-valued
+piecewise quadratics for the velocity, and continuous scalar piecewise
+linears for the pressure (the Taylor-Hood elements).</p>
+<p>With the above input the solution for the velocity <span class="math">\(u\)</span> and pressure
+<span class="math">\(p\)</span> will look as follows:</p>
+<a class="reference internal image-reference" href="../../../../_images/navier-stokes_u.png"><img alt="../../../../_images/navier-stokes_u.png" class="align-center" src="../../../../_images/navier-stokes_u.png" style="width: 450.0px; height: 300.0px;" /></a>
+<a class="reference internal image-reference" href="../../../../_images/navier-stokes_p.png"><img alt="../../../../_images/navier-stokes_p.png" class="align-center" src="../../../../_images/navier-stokes_p.png" style="width: 450.0px; height: 300.0px;" /></a>
+</div>
+<div class="section" id="implementation">
+<h2>4.3. Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
+<p>The implementation is split in four files: three form files containing the
+definition of the variational forms expressed in UFL and a C++ file
+containing the actual solver.</p>
+<p>Running this demo requires the files: <a class="reference download internal" href="../../../../_downloads/main7.cpp" download=""><code class="xref download docutils literal"><span class="pre">main.cpp</span></code></a>,
+<a class="reference download internal" href="../../../../_downloads/TentativeVelocity.ufl" download=""><code class="xref download docutils literal"><span class="pre">TentativeVelocity.ufl</span></code></a>, <a class="reference download internal" href="../../../../_downloads/VelocityUpdate.ufl" download=""><code class="xref download docutils literal"><span class="pre">VelocityUpdate.ufl</span></code></a>,
+<a class="reference download internal" href="../../../../_downloads/PressureUpdate.ufl" download=""><code class="xref download docutils literal"><span class="pre">PressureUpdate.ufl</span></code></a> and <a class="reference download internal" href="../../../../_downloads/CMakeLists7.txt" download=""><code class="xref download docutils literal"><span class="pre">CMakeLists.txt</span></code></a>.</p>
+<div class="section" id="ufl-form-files">
+<h3>4.3.1. UFL form files<a class="headerlink" href="#ufl-form-files" title="Permalink to this headline">¶</a></h3>
+<p>The variational forms for the three steps of Chorin&#8217;s method are
+implemented in three separate UFL form files.</p>
+<p>The variational problem for the tentative velocity is implemented as
+follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Define function spaces (P2-P1)</span>
+<span class="n">V</span> <span class="o">=</span> <span class="n">VectorElement</span><span class="p">(</span><span class="s2">&quot;Lagrange&quot;</span><span class="p">,</span> <span class="n">triangle</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">Q</span> <span class="o">=</span> <span class="n">FiniteElement</span><span class="p">(</span><span class="s2">&quot;Lagrange&quot;</span><span class="p">,</span> <span class="n">triangle</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Define trial and test functions</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">TestFunction</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+
+<span class="c1"># Define coefficients</span>
+<span class="n">k</span>  <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="n">triangle</span><span class="p">)</span>
+<span class="n">u0</span> <span class="o">=</span> <span class="n">Coefficient</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+<span class="n">f</span>  <span class="o">=</span> <span class="n">Coefficient</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+<span class="n">nu</span> <span class="o">=</span> <span class="mf">0.01</span>
+
+<span class="c1"># Define bilinear and linear forms</span>
+<span class="n">eq</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">k</span><span class="p">)</span><span class="o">*</span><span class="n">inner</span><span class="p">(</span><span class="n">u</span> <span class="o">-</span> <span class="n">u0</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span> <span class="o">+</span> <span class="n">inner</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">u0</span><span class="p">)</span><span class="o">*</span><span class="n">u0</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span> <span class="o">+</span> \
+    <span class="n">nu</span><span class="o">*</span><span class="n">inner</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">grad</span><span class="p">(</span><span class="n">v</span><span class="p">))</span><span class="o">*</span><span class="n">dx</span> <span class="o">-</span> <span class="n">inner</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">lhs</span><span class="p">(</span><span class="n">eq</span><span class="p">)</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">rhs</span><span class="p">(</span><span class="n">eq</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The variational problem for the pressure update is implemented as
+follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Define function spaces (P2-P1)</span>
+<span class="n">V</span> <span class="o">=</span> <span class="n">VectorElement</span><span class="p">(</span><span class="s2">&quot;Lagrange&quot;</span><span class="p">,</span> <span class="n">triangle</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">Q</span> <span class="o">=</span> <span class="n">FiniteElement</span><span class="p">(</span><span class="s2">&quot;Lagrange&quot;</span><span class="p">,</span> <span class="n">triangle</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Define trial and test functions</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">TestFunction</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>
+
+<span class="c1"># Define coefficients</span>
+<span class="n">k</span>  <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="n">triangle</span><span class="p">)</span>
+<span class="n">u1</span> <span class="o">=</span> <span class="n">Coefficient</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+
+<span class="c1"># Define bilinear and linear forms</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">inner</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">p</span><span class="p">),</span> <span class="n">grad</span><span class="p">(</span><span class="n">q</span><span class="p">))</span><span class="o">*</span><span class="n">dx</span>
+<span class="n">L</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">k</span><span class="p">)</span><span class="o">*</span><span class="n">div</span><span class="p">(</span><span class="n">u1</span><span class="p">)</span><span class="o">*</span><span class="n">q</span><span class="o">*</span><span class="n">dx</span>
+</pre></div>
+</div>
+<p>The variational problem for the velocity update is implemented as
+follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Define function spaces (P2-P1)</span>
+<span class="n">V</span> <span class="o">=</span> <span class="n">VectorElement</span><span class="p">(</span><span class="s2">&quot;Lagrange&quot;</span><span class="p">,</span> <span class="n">triangle</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">Q</span> <span class="o">=</span> <span class="n">FiniteElement</span><span class="p">(</span><span class="s2">&quot;Lagrange&quot;</span><span class="p">,</span> <span class="n">triangle</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Define trial and test functions</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">TestFunction</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+
+<span class="c1"># Define coefficients</span>
+<span class="n">k</span>  <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="n">triangle</span><span class="p">)</span>
+<span class="n">u1</span> <span class="o">=</span> <span class="n">Coefficient</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">Coefficient</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>
+
+<span class="c1"># Define bilinear and linear forms</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">inner</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">inner</span><span class="p">(</span><span class="n">u1</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span> <span class="o">-</span> <span class="n">k</span><span class="o">*</span><span class="n">inner</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">p1</span><span class="p">),</span> <span class="n">v</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span>
+</pre></div>
+</div>
+<p>Before the form files can be used in the C++ program, they must be
+compiled using FFC:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>ffc -l dolfin TentativeVelocity.ufl
+ffc -l dolfin VelocityUpdate.ufl
+ffc -l dolfin PressureUpdate.ufl
+</pre></div>
+</div>
+<p>Note the flag <code class="docutils literal"><span class="pre">-l</span> <span class="pre">dolfin</span></code> which tells FFC to generate
+DOLFIN-specific wrappers that make it easy to access the generated
+code from within DOLFIN.</p>
+</div>
+<div class="section" id="c-program">
+<h3>4.3.2. C++ program<a class="headerlink" href="#c-program" title="Permalink to this headline">¶</a></h3>
+<p>In the C++ program, <a class="reference download internal" href="../../../../_downloads/main7.cpp" download=""><code class="xref download docutils literal"><span class="pre">main.cpp</span></code></a>, we start by including
+<code class="docutils literal"><span class="pre">dolfin.h</span></code> and the generated header files:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;dolfin.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;TentativeVelocity.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;PressureUpdate.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;VelocityUpdate.h&quot;</span><span class="cp"></span>
+</pre></div>
+</div>
+<p>To be able to use classes and functions from the DOLFIN namespace
+directly, we write</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">dolfin</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Next, we define the subdomains that we will use to specify boundary
+conditions. We do this by defining subclasses of
+<a class="reference internal" href="../../../../programmers-reference/mesh/SubDomain.html#_CPPv29SubDomain" title="SubDomain"><code class="xref cpp cpp-class docutils literal"><span class="pre">SubDomain</span></code></a> and overloading the function <code class="docutils literal"><span class="pre">inside</span></code>:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// Define noslip domain</span>
+<span class="k">class</span> <span class="nc">NoslipDomain</span> <span class="o">:</span> <span class="k">public</span> <span class="n">SubDomain</span>
+<span class="p">{</span>
+  <span class="kt">bool</span> <span class="n">inside</span><span class="p">(</span><span class="k">const</span> <span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span> <span class="n">x</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">on_boundary</span><span class="p">)</span> <span class="k">const</span>
+  <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">on_boundary</span> <span class="o">&amp;&amp;</span>
+            <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">DOLFIN_EPS</span> <span class="o">||</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">DOLFIN_EPS</span> <span class="o">||</span>
+             <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span> <span class="o">-</span> <span class="n">DOLFIN_EPS</span> <span class="o">&amp;&amp;</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span> <span class="o">-</span> <span class="n">DOLFIN_EPS</span><span class="p">)));</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">// Define inflow domain</span>
+<span class="k">class</span> <span class="nc">InflowDomain</span> <span class="o">:</span> <span class="k">public</span> <span class="n">SubDomain</span>
+<span class="p">{</span>
+  <span class="kt">bool</span> <span class="n">inside</span><span class="p">(</span><span class="k">const</span> <span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span> <span class="n">x</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">on_boundary</span><span class="p">)</span> <span class="k">const</span>
+  <span class="p">{</span> <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">DOLFIN_EPS</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">// Define inflow domain</span>
+<span class="k">class</span> <span class="nc">OutflowDomain</span> <span class="o">:</span> <span class="k">public</span> <span class="n">SubDomain</span>
+<span class="p">{</span>
+  <span class="kt">bool</span> <span class="n">inside</span><span class="p">(</span><span class="k">const</span> <span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span> <span class="n">x</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">on_boundary</span><span class="p">)</span> <span class="k">const</span>
+  <span class="p">{</span> <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">DOLFIN_EPS</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>We also define a subclass of <a class="reference internal" href="../../../../programmers-reference/function/Expression.html#_CPPv210Expression" title="Expression"><code class="xref cpp cpp-class docutils literal"><span class="pre">Expression</span></code></a> which we will use
+to specify the time-dependent boundary value for the pressure at the
+inflow.</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// Define pressure boundary value at inflow</span>
+<span class="k">class</span> <span class="nc">InflowPressure</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Expression</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+
+  <span class="c1">// Constructor</span>
+  <span class="n">InflowPressure</span><span class="p">()</span> <span class="o">:</span> <span class="n">t</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="p">{}</span>
+
+  <span class="c1">// Evaluate pressure at inflow</span>
+  <span class="kt">void</span> <span class="n">eval</span><span class="p">(</span><span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span> <span class="n">values</span><span class="p">,</span> <span class="k">const</span> <span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span> <span class="n">x</span><span class="p">)</span> <span class="k">const</span>
+  <span class="p">{</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="mf">3.0</span><span class="o">*</span><span class="n">t</span><span class="p">);</span> <span class="p">}</span>
+
+  <span class="c1">// Current time</span>
+  <span class="kt">double</span> <span class="n">t</span><span class="p">;</span>
+
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Note that the member variable <code class="docutils literal"><span class="pre">t</span></code> is not automatically updated
+during time-stepping, so we must remember to manually update the value
+of the current time in each time step.</p>
+<p>Once we have defined all classes we will use to write our program, we
+start our C++ program by writing</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+</pre></div>
+</div>
+<p>For the parallel case, we turn off log messages from processes other than
+the the root process to avoid excessive output:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// Print log messages only from the root process in parallel</span>
+<span class="n">parameters</span><span class="p">[</span><span class="s">&quot;std_out_all_processes&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>We then load the mesh for the L-shaped domain from file:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// Load mesh from file</span>
+<span class="k">auto</span> <span class="n">mesh</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Mesh</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;../lshape.xml.gz&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>We next define a pair of function spaces <span class="math">\(V\)</span> and <span class="math">\(Q\)</span> for
+the velocity and pressure, and test and trial functions on these
+spaces:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// Create function spaces</span>
+<span class="k">auto</span> <span class="n">V</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">VelocityUpdate</span><span class="o">::</span><span class="n">FunctionSpace</span><span class="o">&gt;</span><span class="p">(</span><span class="n">mesh</span><span class="p">);</span>
+<span class="k">auto</span> <span class="n">Q</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">PressureUpdate</span><span class="o">::</span><span class="n">FunctionSpace</span><span class="o">&gt;</span><span class="p">(</span><span class="n">mesh</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The time step and the length of the interval are defined by:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// Set parameter values</span>
+<span class="kt">double</span> <span class="n">dt</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">;</span>
+<span class="kt">double</span> <span class="n">T</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>We next define the time-dependent pressure boundary value, and zero
+scalar and vector constants that will be used for boundary conditions
+below.</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// Define values for boundary conditions</span>
+<span class="k">auto</span> <span class="n">p_in</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">InflowPressure</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="k">auto</span> <span class="n">zero</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Constant</span><span class="o">&gt;</span><span class="p">(</span><span class="mf">0.0</span><span class="p">);</span>
+<span class="k">auto</span> <span class="n">zero_vector</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Constant</span><span class="o">&gt;</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Before we can define our boundary conditions, we also need to
+instantiate the classes we defined above for the boundary subdomains:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// Define subdomains for boundary conditions</span>
+<span class="k">auto</span> <span class="n">noslip_domain</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">NoslipDomain</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="k">auto</span> <span class="n">inflow_domain</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">InflowDomain</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="k">auto</span> <span class="n">outflow_domain</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">OutflowDomain</span><span class="o">&gt;</span><span class="p">()</span> <span class="p">;</span>
+</pre></div>
+</div>
+<p>We may now define the boundary conditions for the velocity and
+pressure. We define one no-slip boundary condition for the velocity
+and a pair of boundary conditions for the pressure at the inflow and
+outflow boundaries:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// Define boundary conditions</span>
+<span class="n">DirichletBC</span> <span class="nf">noslip</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">zero_vector</span><span class="p">,</span> <span class="n">noslip_domain</span><span class="p">);</span>
+<span class="n">DirichletBC</span> <span class="nf">inflow</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="n">p_in</span><span class="p">,</span> <span class="n">inflow_domain</span><span class="p">);</span>
+<span class="n">DirichletBC</span> <span class="nf">outflow</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="n">zero</span><span class="p">,</span> <span class="n">outflow_domain</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">DirichletBC</span><span class="o">*&gt;</span> <span class="n">bcu</span> <span class="o">=</span> <span class="p">{</span><span class="o">&amp;</span><span class="n">noslip</span><span class="p">};</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">DirichletBC</span><span class="o">*&gt;</span> <span class="n">bcp</span> <span class="o">=</span> <span class="p">{{</span><span class="o">&amp;</span><span class="n">inflow</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">outflow</span><span class="p">}};</span>
+</pre></div>
+</div>
+<p>We collect the boundary conditions in the two arrays <code class="docutils literal"><span class="pre">bcu</span></code> and
+<code class="docutils literal"><span class="pre">bcp</span></code> so that we may easily iterate over them below when we apply
+the boundary conditions. This makes it easy to add new boundary
+conditions or use this demo program to solve the Navier-Stokes
+equations on other geometries.</p>
+<p>We next define the functions and the coefficients that will be used
+below:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// Create functions</span>
+<span class="k">auto</span> <span class="n">u0</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Function</span><span class="o">&gt;</span><span class="p">(</span><span class="n">V</span><span class="p">);</span>
+<span class="k">auto</span> <span class="n">u1</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Function</span><span class="o">&gt;</span><span class="p">(</span><span class="n">V</span><span class="p">);</span>
+<span class="k">auto</span> <span class="n">p1</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Function</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Q</span><span class="p">);</span>
+
+<span class="c1">// Create coefficients</span>
+<span class="k">auto</span> <span class="n">k</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Constant</span><span class="o">&gt;</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
+<span class="k">auto</span> <span class="n">f</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Constant</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The next step is now to define the variational problems for the three
+steps of Chorin&#8217;s method. We do this by instantiating the classes
+generated from our UFL form files:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// Create forms</span>
+<span class="n">TentativeVelocity</span><span class="o">::</span><span class="n">BilinearForm</span> <span class="n">a1</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">V</span><span class="p">);</span>
+<span class="n">TentativeVelocity</span><span class="o">::</span><span class="n">LinearForm</span> <span class="n">L1</span><span class="p">(</span><span class="n">V</span><span class="p">);</span>
+<span class="n">PressureUpdate</span><span class="o">::</span><span class="n">BilinearForm</span> <span class="n">a2</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="n">Q</span><span class="p">);</span>
+<span class="n">PressureUpdate</span><span class="o">::</span><span class="n">LinearForm</span> <span class="n">L2</span><span class="p">(</span><span class="n">Q</span><span class="p">);</span>
+<span class="n">VelocityUpdate</span><span class="o">::</span><span class="n">BilinearForm</span> <span class="n">a3</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">V</span><span class="p">);</span>
+<span class="n">VelocityUpdate</span><span class="o">::</span><span class="n">LinearForm</span> <span class="n">L3</span><span class="p">(</span><span class="n">V</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Since the forms depend on coefficients, we have to attach the
+coefficients defined above to the appropriate forms:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// Set coefficients</span>
+<span class="n">a1</span><span class="p">.</span><span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="p">;</span> <span class="n">L1</span><span class="p">.</span><span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="p">;</span> <span class="n">L1</span><span class="p">.</span><span class="n">u0</span> <span class="o">=</span> <span class="n">u0</span><span class="p">;</span> <span class="n">L1</span><span class="p">.</span><span class="n">f</span> <span class="o">=</span> <span class="n">f</span><span class="p">;</span>
+<span class="n">L2</span><span class="p">.</span><span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="p">;</span> <span class="n">L2</span><span class="p">.</span><span class="n">u1</span> <span class="o">=</span> <span class="n">u1</span><span class="p">;</span>
+<span class="n">L3</span><span class="p">.</span><span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="p">;</span> <span class="n">L3</span><span class="p">.</span><span class="n">u1</span> <span class="o">=</span> <span class="n">u1</span><span class="p">;</span> <span class="n">L3</span><span class="p">.</span><span class="n">p1</span> <span class="o">=</span> <span class="n">p1</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Since the bilinear forms do not depend on any coefficients that change
+during time-stepping, the corresponding matrices remain constant. We
+may therefore assemble these before the time-stepping begins:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// Assemble matrices</span>
+<span class="n">Matrix</span> <span class="n">A1</span><span class="p">,</span> <span class="n">A2</span><span class="p">,</span> <span class="n">A3</span><span class="p">;</span>
+<span class="n">assemble</span><span class="p">(</span><span class="n">A1</span><span class="p">,</span> <span class="n">a1</span><span class="p">);</span>
+<span class="n">assemble</span><span class="p">(</span><span class="n">A2</span><span class="p">,</span> <span class="n">a2</span><span class="p">);</span>
+<span class="n">assemble</span><span class="p">(</span><span class="n">A3</span><span class="p">,</span> <span class="n">a3</span><span class="p">);</span>
+
+<span class="c1">// Create vectors</span>
+<span class="n">Vector</span> <span class="n">b1</span><span class="p">,</span> <span class="n">b2</span><span class="p">,</span> <span class="n">b3</span><span class="p">;</span>
+
+<span class="c1">// Use amg preconditioner if available</span>
+<span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">prec</span><span class="p">(</span><span class="n">has_krylov_solver_preconditioner</span><span class="p">(</span><span class="s">&quot;amg&quot;</span><span class="p">)</span> <span class="o">?</span> <span class="s">&quot;amg&quot;</span> <span class="o">:</span> <span class="s">&quot;default&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>We also created the vectors that will be used below to assemble
+right-hand sides.</p>
+<p>During time-stepping, we will store the solution in VTK format
+(readable by MayaVi and Paraview). We therefore create a pair of files
+that can be used to store the solution. Specifying the <code class="docutils literal"><span class="pre">.pvd</span></code> suffix
+signals that the solution should be stored in VTK format:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// Create files for storing solution</span>
+<span class="n">File</span> <span class="nf">ufile</span><span class="p">(</span><span class="s">&quot;results/velocity.pvd&quot;</span><span class="p">);</span>
+<span class="n">File</span> <span class="nf">pfile</span><span class="p">(</span><span class="s">&quot;results/pressure.pvd&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The time-stepping loop is now implemented as follows:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// Time-stepping</span>
+<span class="kt">double</span> <span class="n">t</span> <span class="o">=</span> <span class="n">dt</span><span class="p">;</span>
+<span class="k">while</span> <span class="p">(</span><span class="n">t</span> <span class="o">&lt;</span> <span class="n">T</span> <span class="o">+</span> <span class="n">DOLFIN_EPS</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">// Update pressure boundary condition</span>
+  <span class="n">p_in</span><span class="o">-&gt;</span><span class="n">t</span> <span class="o">=</span> <span class="n">t</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>We remember to update the current time for the time-dependent pressure
+boundary value.</p>
+<p>For each of the three steps of Chorin&#8217;s method, we assemble the
+right-hand side, apply boundary conditions, and solve a linear
+system. Note the different use of preconditioners. Incomplete LU
+factorization is used for the computation of the tentative velocity
+and the velocity update, while algebraic multigrid is used for the
+pressure equation if available:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// Compute tentative velocity step</span>
+<span class="n">begin</span><span class="p">(</span><span class="s">&quot;Computing tentative velocity&quot;</span><span class="p">);</span>
+<span class="n">assemble</span><span class="p">(</span><span class="n">b1</span><span class="p">,</span> <span class="n">L1</span><span class="p">);</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">bcu</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+  <span class="n">bcu</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">apply</span><span class="p">(</span><span class="n">A1</span><span class="p">,</span> <span class="n">b1</span><span class="p">);</span>
+<span class="n">solve</span><span class="p">(</span><span class="n">A1</span><span class="p">,</span> <span class="o">*</span><span class="n">u1</span><span class="o">-&gt;</span><span class="n">vector</span><span class="p">(),</span> <span class="n">b1</span><span class="p">,</span> <span class="s">&quot;gmres&quot;</span><span class="p">,</span> <span class="s">&quot;default&quot;</span><span class="p">);</span>
+<span class="n">end</span><span class="p">();</span>
+
+<span class="c1">// Pressure correction</span>
+<span class="n">begin</span><span class="p">(</span><span class="s">&quot;Computing pressure correction&quot;</span><span class="p">);</span>
+<span class="n">assemble</span><span class="p">(</span><span class="n">b2</span><span class="p">,</span> <span class="n">L2</span><span class="p">);</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">bcp</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">bcp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">apply</span><span class="p">(</span><span class="n">A2</span><span class="p">,</span> <span class="n">b2</span><span class="p">);</span>
+  <span class="n">bcp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">apply</span><span class="p">(</span><span class="o">*</span><span class="n">p1</span><span class="o">-&gt;</span><span class="n">vector</span><span class="p">());</span>
+<span class="p">}</span>
+<span class="n">solve</span><span class="p">(</span><span class="n">A2</span><span class="p">,</span> <span class="o">*</span><span class="n">p1</span><span class="o">-&gt;</span><span class="n">vector</span><span class="p">(),</span> <span class="n">b2</span><span class="p">,</span> <span class="s">&quot;bicgstab&quot;</span><span class="p">,</span> <span class="n">prec</span><span class="p">);</span>
+<span class="n">end</span><span class="p">();</span>
+
+<span class="c1">// Velocity correction</span>
+<span class="n">begin</span><span class="p">(</span><span class="s">&quot;Computing velocity correction&quot;</span><span class="p">);</span>
+<span class="n">assemble</span><span class="p">(</span><span class="n">b3</span><span class="p">,</span> <span class="n">L3</span><span class="p">);</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">bcu</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+  <span class="n">bcu</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">apply</span><span class="p">(</span><span class="n">A3</span><span class="p">,</span> <span class="n">b3</span><span class="p">);</span>
+<span class="n">solve</span><span class="p">(</span><span class="n">A3</span><span class="p">,</span> <span class="o">*</span><span class="n">u1</span><span class="o">-&gt;</span><span class="n">vector</span><span class="p">(),</span> <span class="n">b3</span><span class="p">,</span> <span class="s">&quot;gmres&quot;</span><span class="p">,</span> <span class="s">&quot;default&quot;</span><span class="p">);</span>
+<span class="n">end</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Note the use of <code class="docutils literal"><span class="pre">begin</span></code> and <code class="docutils literal"><span class="pre">end</span></code>; these improve the readability
+of the output from the program by adding indentation to diagnostic
+messages.</p>
+<p>At the end of the time-stepping loop, we store the solution to file
+and update values for the next time step:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// Save to file</span>
+<span class="n">ufile</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">u1</span><span class="p">;</span>
+<span class="n">pfile</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">p1</span><span class="p">;</span>
+
+<span class="c1">// Move to next time step</span>
+<span class="o">*</span><span class="n">u0</span> <span class="o">=</span> <span class="o">*</span><span class="n">u1</span><span class="p">;</span>
+<span class="n">t</span> <span class="o">+=</span> <span class="n">dt</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Finally, we plot the solution and the program is finished:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span>  <span class="c1">// Plot solution</span>
+  <span class="n">plot</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="s">&quot;Pressure&quot;</span><span class="p">);</span>
+  <span class="n">plot</span><span class="p">(</span><span class="n">u1</span><span class="p">,</span> <span class="s">&quot;Velocity&quot;</span><span class="p">);</span>
+  <span class="n">interactive</span><span class="p">();</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complete-code">
+<h2>4.4. Complete code<a class="headerlink" href="#complete-code" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="complete-ufl-files">
+<h3>4.4.1. Complete UFL files<a class="headerlink" href="#complete-ufl-files" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span></span>
+<span class="c1"># Define function spaces (P2-P1)</span>
+<span class="n">V</span> <span class="o">=</span> <span class="n">VectorElement</span><span class="p">(</span><span class="s2">&quot;Lagrange&quot;</span><span class="p">,</span> <span class="n">triangle</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">Q</span> <span class="o">=</span> <span class="n">FiniteElement</span><span class="p">(</span><span class="s2">&quot;Lagrange&quot;</span><span class="p">,</span> <span class="n">triangle</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Define trial and test functions</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">TestFunction</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+
+<span class="c1"># Define coefficients</span>
+<span class="n">k</span>  <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="n">triangle</span><span class="p">)</span>
+<span class="n">u0</span> <span class="o">=</span> <span class="n">Coefficient</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+<span class="n">f</span>  <span class="o">=</span> <span class="n">Coefficient</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+<span class="n">nu</span> <span class="o">=</span> <span class="mf">0.01</span>
+
+<span class="c1"># Define bilinear and linear forms</span>
+<span class="n">eq</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">k</span><span class="p">)</span><span class="o">*</span><span class="n">inner</span><span class="p">(</span><span class="n">u</span> <span class="o">-</span> <span class="n">u0</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span> <span class="o">+</span> <span class="n">inner</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">u0</span><span class="p">)</span><span class="o">*</span><span class="n">u0</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span> <span class="o">+</span> \
+    <span class="n">nu</span><span class="o">*</span><span class="n">inner</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">grad</span><span class="p">(</span><span class="n">v</span><span class="p">))</span><span class="o">*</span><span class="n">dx</span> <span class="o">-</span> <span class="n">inner</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span>
+<span class="n">a</span>  <span class="o">=</span> <span class="n">lhs</span><span class="p">(</span><span class="n">eq</span><span class="p">)</span>
+<span class="n">L</span>  <span class="o">=</span> <span class="n">rhs</span><span class="p">(</span><span class="n">eq</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span></span>
+<span class="c1"># Define function spaces (P2-P1)</span>
+<span class="n">V</span> <span class="o">=</span> <span class="n">VectorElement</span><span class="p">(</span><span class="s2">&quot;Lagrange&quot;</span><span class="p">,</span> <span class="n">triangle</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">Q</span> <span class="o">=</span> <span class="n">FiniteElement</span><span class="p">(</span><span class="s2">&quot;Lagrange&quot;</span><span class="p">,</span> <span class="n">triangle</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Define trial and test functions</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">TestFunction</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+
+<span class="c1"># Define coefficients</span>
+<span class="n">k</span>  <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="n">triangle</span><span class="p">)</span>
+<span class="n">u1</span> <span class="o">=</span> <span class="n">Coefficient</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">Coefficient</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>
+
+<span class="c1"># Define bilinear and linear forms</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">inner</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">inner</span><span class="p">(</span><span class="n">u1</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span> <span class="o">-</span> <span class="n">k</span><span class="o">*</span><span class="n">inner</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">p1</span><span class="p">),</span> <span class="n">v</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span></span>
+<span class="c1"># Define function spaces (P2-P1)</span>
+<span class="n">V</span> <span class="o">=</span> <span class="n">VectorElement</span><span class="p">(</span><span class="s2">&quot;Lagrange&quot;</span><span class="p">,</span> <span class="n">triangle</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">Q</span> <span class="o">=</span> <span class="n">FiniteElement</span><span class="p">(</span><span class="s2">&quot;Lagrange&quot;</span><span class="p">,</span> <span class="n">triangle</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Define trial and test functions</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">TestFunction</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>
+
+<span class="c1"># Define coefficients</span>
+<span class="n">k</span>  <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="n">triangle</span><span class="p">)</span>
+<span class="n">u1</span> <span class="o">=</span> <span class="n">Coefficient</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+
+<span class="c1"># Define bilinear and linear forms</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">inner</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">p</span><span class="p">),</span> <span class="n">grad</span><span class="p">(</span><span class="n">q</span><span class="p">))</span><span class="o">*</span><span class="n">dx</span>
+<span class="n">L</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">k</span><span class="p">)</span><span class="o">*</span><span class="n">div</span><span class="p">(</span><span class="n">u1</span><span class="p">)</span><span class="o">*</span><span class="n">q</span><span class="o">*</span><span class="n">dx</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="complete-main-file">
+<h3>4.4.2. Complete main file<a class="headerlink" href="#complete-main-file" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;dolfin.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;TentativeVelocity.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;PressureUpdate.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;VelocityUpdate.h&quot;</span><span class="cp"></span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">dolfin</span><span class="p">;</span>
+
+<span class="c1">// Define noslip domain</span>
+<span class="k">class</span> <span class="nc">NoslipDomain</span> <span class="o">:</span> <span class="k">public</span> <span class="n">SubDomain</span>
+<span class="p">{</span>
+  <span class="kt">bool</span> <span class="n">inside</span><span class="p">(</span><span class="k">const</span> <span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span> <span class="n">x</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">on_boundary</span><span class="p">)</span> <span class="k">const</span>
+  <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">on_boundary</span> <span class="o">&amp;&amp;</span>
+            <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">DOLFIN_EPS</span> <span class="o">||</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">DOLFIN_EPS</span> <span class="o">||</span>
+             <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span> <span class="o">-</span> <span class="n">DOLFIN_EPS</span> <span class="o">&amp;&amp;</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span> <span class="o">-</span> <span class="n">DOLFIN_EPS</span><span class="p">)));</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">// Define inflow domain</span>
+<span class="k">class</span> <span class="nc">InflowDomain</span> <span class="o">:</span> <span class="k">public</span> <span class="n">SubDomain</span>
+<span class="p">{</span>
+  <span class="kt">bool</span> <span class="n">inside</span><span class="p">(</span><span class="k">const</span> <span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span> <span class="n">x</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">on_boundary</span><span class="p">)</span> <span class="k">const</span>
+  <span class="p">{</span> <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">DOLFIN_EPS</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">// Define inflow domain</span>
+<span class="k">class</span> <span class="nc">OutflowDomain</span> <span class="o">:</span> <span class="k">public</span> <span class="n">SubDomain</span>
+<span class="p">{</span>
+  <span class="kt">bool</span> <span class="n">inside</span><span class="p">(</span><span class="k">const</span> <span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span> <span class="n">x</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">on_boundary</span><span class="p">)</span> <span class="k">const</span>
+  <span class="p">{</span> <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">DOLFIN_EPS</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">// Define pressure boundary value at inflow</span>
+<span class="k">class</span> <span class="nc">InflowPressure</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Expression</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+
+  <span class="c1">// Constructor</span>
+  <span class="n">InflowPressure</span><span class="p">()</span> <span class="o">:</span> <span class="n">t</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="p">{}</span>
+
+  <span class="c1">// Evaluate pressure at inflow</span>
+  <span class="kt">void</span> <span class="n">eval</span><span class="p">(</span><span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span> <span class="n">values</span><span class="p">,</span> <span class="k">const</span> <span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span> <span class="n">x</span><span class="p">)</span> <span class="k">const</span>
+  <span class="p">{</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="mf">3.0</span><span class="o">*</span><span class="n">t</span><span class="p">);</span> <span class="p">}</span>
+
+  <span class="c1">// Current time</span>
+  <span class="kt">double</span> <span class="n">t</span><span class="p">;</span>
+
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="c1">// Print log messages only from the root process in parallel</span>
+  <span class="n">parameters</span><span class="p">[</span><span class="s">&quot;std_out_all_processes&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+
+  <span class="c1">// Load mesh from file</span>
+  <span class="k">auto</span> <span class="n">mesh</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Mesh</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;../lshape.xml.gz&quot;</span><span class="p">);</span>
+
+  <span class="c1">// Create function spaces</span>
+  <span class="k">auto</span> <span class="n">V</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">VelocityUpdate</span><span class="o">::</span><span class="n">FunctionSpace</span><span class="o">&gt;</span><span class="p">(</span><span class="n">mesh</span><span class="p">);</span>
+  <span class="k">auto</span> <span class="n">Q</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">PressureUpdate</span><span class="o">::</span><span class="n">FunctionSpace</span><span class="o">&gt;</span><span class="p">(</span><span class="n">mesh</span><span class="p">);</span>
+
+  <span class="c1">// Set parameter values</span>
+  <span class="kt">double</span> <span class="n">dt</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">;</span>
+  <span class="kt">double</span> <span class="n">T</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+
+  <span class="c1">// Define values for boundary conditions</span>
+  <span class="k">auto</span> <span class="n">p_in</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">InflowPressure</span><span class="o">&gt;</span><span class="p">();</span>
+  <span class="k">auto</span> <span class="n">zero</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Constant</span><span class="o">&gt;</span><span class="p">(</span><span class="mf">0.0</span><span class="p">);</span>
+  <span class="k">auto</span> <span class="n">zero_vector</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Constant</span><span class="o">&gt;</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">);</span>
+
+  <span class="c1">// Define subdomains for boundary conditions</span>
+  <span class="k">auto</span> <span class="n">noslip_domain</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">NoslipDomain</span><span class="o">&gt;</span><span class="p">();</span>
+  <span class="k">auto</span> <span class="n">inflow_domain</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">InflowDomain</span><span class="o">&gt;</span><span class="p">();</span>
+  <span class="k">auto</span> <span class="n">outflow_domain</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">OutflowDomain</span><span class="o">&gt;</span><span class="p">()</span> <span class="p">;</span>
+
+  <span class="c1">// Define boundary conditions</span>
+  <span class="n">DirichletBC</span> <span class="n">noslip</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">zero_vector</span><span class="p">,</span> <span class="n">noslip_domain</span><span class="p">);</span>
+  <span class="n">DirichletBC</span> <span class="n">inflow</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="n">p_in</span><span class="p">,</span> <span class="n">inflow_domain</span><span class="p">);</span>
+  <span class="n">DirichletBC</span> <span class="n">outflow</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="n">zero</span><span class="p">,</span> <span class="n">outflow_domain</span><span class="p">);</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">DirichletBC</span><span class="o">*&gt;</span> <span class="n">bcu</span> <span class="o">=</span> <span class="p">{</span><span class="o">&amp;</span><span class="n">noslip</span><span class="p">};</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">DirichletBC</span><span class="o">*&gt;</span> <span class="n">bcp</span> <span class="o">=</span> <span class="p">{{</span><span class="o">&amp;</span><span class="n">inflow</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">outflow</span><span class="p">}};</span>
+
+  <span class="c1">// Create functions</span>
+  <span class="k">auto</span> <span class="n">u0</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Function</span><span class="o">&gt;</span><span class="p">(</span><span class="n">V</span><span class="p">);</span>
+  <span class="k">auto</span> <span class="n">u1</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Function</span><span class="o">&gt;</span><span class="p">(</span><span class="n">V</span><span class="p">);</span>
+  <span class="k">auto</span> <span class="n">p1</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Function</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Q</span><span class="p">);</span>
+
+  <span class="c1">// Create coefficients</span>
+  <span class="k">auto</span> <span class="n">k</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Constant</span><span class="o">&gt;</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
+  <span class="k">auto</span> <span class="n">f</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Constant</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+
+  <span class="c1">// Create forms</span>
+  <span class="n">TentativeVelocity</span><span class="o">::</span><span class="n">BilinearForm</span> <span class="n">a1</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">V</span><span class="p">);</span>
+  <span class="n">TentativeVelocity</span><span class="o">::</span><span class="n">LinearForm</span> <span class="n">L1</span><span class="p">(</span><span class="n">V</span><span class="p">);</span>
+  <span class="n">PressureUpdate</span><span class="o">::</span><span class="n">BilinearForm</span> <span class="n">a2</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="n">Q</span><span class="p">);</span>
+  <span class="n">PressureUpdate</span><span class="o">::</span><span class="n">LinearForm</span> <span class="n">L2</span><span class="p">(</span><span class="n">Q</span><span class="p">);</span>
+  <span class="n">VelocityUpdate</span><span class="o">::</span><span class="n">BilinearForm</span> <span class="n">a3</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">V</span><span class="p">);</span>
+  <span class="n">VelocityUpdate</span><span class="o">::</span><span class="n">LinearForm</span> <span class="n">L3</span><span class="p">(</span><span class="n">V</span><span class="p">);</span>
+
+  <span class="c1">// Set coefficients</span>
+  <span class="n">a1</span><span class="p">.</span><span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="p">;</span> <span class="n">L1</span><span class="p">.</span><span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="p">;</span> <span class="n">L1</span><span class="p">.</span><span class="n">u0</span> <span class="o">=</span> <span class="n">u0</span><span class="p">;</span> <span class="n">L1</span><span class="p">.</span><span class="n">f</span> <span class="o">=</span> <span class="n">f</span><span class="p">;</span>
+  <span class="n">L2</span><span class="p">.</span><span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="p">;</span> <span class="n">L2</span><span class="p">.</span><span class="n">u1</span> <span class="o">=</span> <span class="n">u1</span><span class="p">;</span>
+  <span class="n">L3</span><span class="p">.</span><span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="p">;</span> <span class="n">L3</span><span class="p">.</span><span class="n">u1</span> <span class="o">=</span> <span class="n">u1</span><span class="p">;</span> <span class="n">L3</span><span class="p">.</span><span class="n">p1</span> <span class="o">=</span> <span class="n">p1</span><span class="p">;</span>
+
+  <span class="c1">// Assemble matrices</span>
+  <span class="n">Matrix</span> <span class="n">A1</span><span class="p">,</span> <span class="n">A2</span><span class="p">,</span> <span class="n">A3</span><span class="p">;</span>
+  <span class="n">assemble</span><span class="p">(</span><span class="n">A1</span><span class="p">,</span> <span class="n">a1</span><span class="p">);</span>
+  <span class="n">assemble</span><span class="p">(</span><span class="n">A2</span><span class="p">,</span> <span class="n">a2</span><span class="p">);</span>
+  <span class="n">assemble</span><span class="p">(</span><span class="n">A3</span><span class="p">,</span> <span class="n">a3</span><span class="p">);</span>
+
+  <span class="c1">// Create vectors</span>
+  <span class="n">Vector</span> <span class="n">b1</span><span class="p">,</span> <span class="n">b2</span><span class="p">,</span> <span class="n">b3</span><span class="p">;</span>
+
+  <span class="c1">// Use amg preconditioner if available</span>
+  <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">prec</span><span class="p">(</span><span class="n">has_krylov_solver_preconditioner</span><span class="p">(</span><span class="s">&quot;amg&quot;</span><span class="p">)</span> <span class="o">?</span> <span class="s">&quot;amg&quot;</span> <span class="o">:</span> <span class="s">&quot;default&quot;</span><span class="p">);</span>
+
+  <span class="c1">// Create files for storing solution</span>
+  <span class="n">File</span> <span class="n">ufile</span><span class="p">(</span><span class="s">&quot;results/velocity.pvd&quot;</span><span class="p">);</span>
+  <span class="n">File</span> <span class="n">pfile</span><span class="p">(</span><span class="s">&quot;results/pressure.pvd&quot;</span><span class="p">);</span>
+
+  <span class="c1">// Time-stepping</span>
+  <span class="kt">double</span> <span class="n">t</span> <span class="o">=</span> <span class="n">dt</span><span class="p">;</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">t</span> <span class="o">&lt;</span> <span class="n">T</span> <span class="o">+</span> <span class="n">DOLFIN_EPS</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="c1">// Update pressure boundary condition</span>
+    <span class="n">p_in</span><span class="o">-&gt;</span><span class="n">t</span> <span class="o">=</span> <span class="n">t</span><span class="p">;</span>
+
+    <span class="c1">// Compute tentative velocity step</span>
+    <span class="n">begin</span><span class="p">(</span><span class="s">&quot;Computing tentative velocity&quot;</span><span class="p">);</span>
+    <span class="n">assemble</span><span class="p">(</span><span class="n">b1</span><span class="p">,</span> <span class="n">L1</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">bcu</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+      <span class="n">bcu</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">apply</span><span class="p">(</span><span class="n">A1</span><span class="p">,</span> <span class="n">b1</span><span class="p">);</span>
+    <span class="n">solve</span><span class="p">(</span><span class="n">A1</span><span class="p">,</span> <span class="o">*</span><span class="n">u1</span><span class="o">-&gt;</span><span class="n">vector</span><span class="p">(),</span> <span class="n">b1</span><span class="p">,</span> <span class="s">&quot;gmres&quot;</span><span class="p">,</span> <span class="s">&quot;default&quot;</span><span class="p">);</span>
+    <span class="n">end</span><span class="p">();</span>
+
+    <span class="c1">// Pressure correction</span>
+    <span class="n">begin</span><span class="p">(</span><span class="s">&quot;Computing pressure correction&quot;</span><span class="p">);</span>
+    <span class="n">assemble</span><span class="p">(</span><span class="n">b2</span><span class="p">,</span> <span class="n">L2</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">bcp</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">bcp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">apply</span><span class="p">(</span><span class="n">A2</span><span class="p">,</span> <span class="n">b2</span><span class="p">);</span>
+      <span class="n">bcp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">apply</span><span class="p">(</span><span class="o">*</span><span class="n">p1</span><span class="o">-&gt;</span><span class="n">vector</span><span class="p">());</span>
+    <span class="p">}</span>
+    <span class="n">solve</span><span class="p">(</span><span class="n">A2</span><span class="p">,</span> <span class="o">*</span><span class="n">p1</span><span class="o">-&gt;</span><span class="n">vector</span><span class="p">(),</span> <span class="n">b2</span><span class="p">,</span> <span class="s">&quot;bicgstab&quot;</span><span class="p">,</span> <span class="n">prec</span><span class="p">);</span>
+    <span class="n">end</span><span class="p">();</span>
+
+    <span class="c1">// Velocity correction</span>
+    <span class="n">begin</span><span class="p">(</span><span class="s">&quot;Computing velocity correction&quot;</span><span class="p">);</span>
+    <span class="n">assemble</span><span class="p">(</span><span class="n">b3</span><span class="p">,</span> <span class="n">L3</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">bcu</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+      <span class="n">bcu</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">apply</span><span class="p">(</span><span class="n">A3</span><span class="p">,</span> <span class="n">b3</span><span class="p">);</span>
+    <span class="n">solve</span><span class="p">(</span><span class="n">A3</span><span class="p">,</span> <span class="o">*</span><span class="n">u1</span><span class="o">-&gt;</span><span class="n">vector</span><span class="p">(),</span> <span class="n">b3</span><span class="p">,</span> <span class="s">&quot;gmres&quot;</span><span class="p">,</span> <span class="s">&quot;default&quot;</span><span class="p">);</span>
+    <span class="n">end</span><span class="p">();</span>
+
+    <span class="c1">// Save to file</span>
+    <span class="n">ufile</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">u1</span><span class="p">;</span>
+    <span class="n">pfile</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">p1</span><span class="p">;</span>
+
+    <span class="c1">// Move to next time step</span>
+    <span class="o">*</span><span class="n">u0</span> <span class="o">=</span> <span class="o">*</span><span class="n">u1</span><span class="p">;</span>
+    <span class="n">t</span> <span class="o">+=</span> <span class="n">dt</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;t = &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">t</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Plot solution</span>
+  <span class="n">plot</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="s">&quot;Pressure&quot;</span><span class="p">);</span>
+  <span class="n">plot</span><span class="p">(</span><span class="n">u1</span><span class="p">,</span> <span class="s">&quot;Velocity&quot;</span><span class="p">);</span>
+  <span class="n">interactive</span><span class="p">();</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../neumann-poisson/cpp/documentation.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../../mixed-poisson/cpp/documentation.html" class="btn btn-neutral" title="3. Mixed formulation for Poisson equation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://bitbucket.org/fenics-project/.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'2016.2.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

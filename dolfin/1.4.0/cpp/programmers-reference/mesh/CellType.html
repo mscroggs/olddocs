@@ -1,0 +1,455 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>CellType.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN mesh module" href="index.html"/>
+        <link rel="next" title="DomainBoundary.h" href="DomainBoundary.html"/>
+        <link rel="prev" title="Cell.h" href="Cell.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.4.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-1.4.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/index.html">DOLFIN common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fem/index.html">DOLFIN fem module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html">DOLFIN function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/index.html">DOLFIN geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/index.html">DOLFIN io module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../la/index.html">DOLFIN la module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/index.html">DOLFIN log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN mesh module</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="BoundaryMesh.html">BoundaryMesh.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Cell.html">Cell.h</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">CellType.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DomainBoundary.html">DomainBoundary.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DynamicMeshEditor.html">DynamicMeshEditor.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Edge.html">Edge.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Face.html">Face.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Facet.html">Facet.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FacetCell.html">FacetCell.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LocalMeshData.html">LocalMeshData.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LocalMeshValueCollection.html">LocalMeshValueCollection.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Mesh.html">Mesh.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshColoring.html">MeshColoring.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshConnectivity.html">MeshConnectivity.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshData.html">MeshData.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshDomains.html">MeshDomains.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshEditor.html">MeshEditor.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshEntity.html">MeshEntity.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshEntityIterator.html">MeshEntityIterator.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshEntityIteratorBase.html">MeshEntityIteratorBase.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshFunction.html">MeshFunction.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshGeometry.html">MeshGeometry.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshQuality.html">MeshQuality.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshRenumbering.html">MeshRenumbering.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshTopology.html">MeshTopology.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshTransformation.html">MeshTransformation.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshValueCollection.html">MeshValueCollection.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PeriodicBoundaryComputation.html">PeriodicBoundaryComputation.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Restriction.html">Restriction.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SubDomain.html">SubDomain.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SubMesh.html">SubMesh.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SubsetIterator.html">SubsetIterator.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Vertex.html">Vertex.h</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot/index.html">DOLFIN plot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer&#8217;s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-1.4.0</a> &raquo;</li>
+      
+          <li><a href="index.html">DOLFIN mesh module</a> &raquo;</li>
+      
+    <li>CellType.h</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/programmers-reference/mesh/CellType.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="celltype-h">
+<span id="programmers-reference-cpp-mesh-celltype"></span><h1>CellType.h<a class="headerlink" href="#celltype-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="class">
+<dt id="_CPPv28CellType">
+<span id="CellType"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">CellType</code><a class="headerlink" href="#_CPPv28CellType" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This class provides a common interface for different cell types.
+Each cell type implements mesh functionality that is specific to
+a certain type of cell.</p>
+<dl class="function">
+<dt id="_CPPv2N8CellType8CellTypeE4Type4Type">
+<span id="CellType::CellType__Type.Type"></span><code class="descclassname"></code><code class="descname">CellType</code><span class="sig-paren">(</span>Type <em>cell_type</em>, Type <em>facet_type</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8CellType8CellTypeE4Type4Type" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructor</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8CellType6createE4Type">
+<span id="CellType::create__Type"></span><em class="property">static</em> <a class="reference internal" href="#_CPPv28CellType" title="CellType">CellType</a> *<code class="descclassname"></code><code class="descname">create</code><span class="sig-paren">(</span>Type <em>type</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8CellType6createE4Type" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create cell type from type (factory function)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8CellType6createENSt6stringE">
+<span id="CellType::create__ss"></span><em class="property">static</em> <a class="reference internal" href="#_CPPv28CellType" title="CellType">CellType</a> *<code class="descclassname"></code><code class="descname">create</code><span class="sig-paren">(</span>std::string <em>type</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8CellType6createENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create cell type from string (factory function)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8CellType11string2typeENSt6stringE">
+<span id="CellType::string2type__ss"></span><em class="property">static</em> Type <code class="descclassname"></code><code class="descname">string2type</code><span class="sig-paren">(</span>std::string <em>type</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8CellType11string2typeENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Convert from string to cell type</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8CellType11type2stringE4Type">
+<span id="CellType::type2string__Type"></span><em class="property">static</em> std::string <code class="descclassname"></code><code class="descname">type2string</code><span class="sig-paren">(</span>Type <em>type</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8CellType11type2stringE4Type" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Convert from cell type to string</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK8CellType9cell_typeEv">
+<span id="CellType::cell_typeC"></span>Type <code class="descclassname"></code><code class="descname">cell_type</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK8CellType9cell_typeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return type of cell</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK8CellType10facet_typeEv">
+<span id="CellType::facet_typeC"></span>Type <code class="descclassname"></code><code class="descname">facet_type</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK8CellType10facet_typeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return type of cell for facets</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK8CellType3dimEv">
+<span id="CellType::dimC"></span>std::size_t <code class="descclassname"></code><code class="descname">dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK8CellType3dimEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return topological dimension of cell</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK8CellType12num_entitiesENSt6size_tE">
+<span id="CellType::num_entities__std::sC"></span>std::size_t <code class="descclassname"></code><code class="descname">num_entities</code><span class="sig-paren">(</span>std::size_t <em>dim</em><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK8CellType12num_entitiesENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return number of entitites of given topological dimension</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK8CellType12num_verticesENSt6size_tE">
+<span id="CellType::num_vertices__std::sC"></span>std::size_t <code class="descclassname"></code><code class="descname">num_vertices</code><span class="sig-paren">(</span>std::size_t <em>dim</em><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK8CellType12num_verticesENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return number of vertices for entity of given topological dimension</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK8CellType11orientationERK4Cell">
+<span id="CellType::orientation__CellCRC"></span>std::size_t <code class="descclassname"></code><code class="descname">orientation</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="Cell.html#_CPPv24Cell" title="Cell">Cell</a> &amp;<em>cell</em><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK8CellType11orientationERK4Cell" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return orientation of the cell (assuming flat space)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK8CellType11orientationERK4CellRK5Point">
+<span id="CellType::orientation__CellCR.PointCRC"></span>std::size_t <code class="descclassname"></code><code class="descname">orientation</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="Cell.html#_CPPv24Cell" title="Cell">Cell</a> &amp;<em>cell</em>, <em class="property">const</em> <a class="reference internal" href="../geometry/Point.html#_CPPv25Point" title="Point">Point</a> &amp;<em>up</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK8CellType11orientationERK4CellRK5Point" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return orientation of the cell relative to given up direction</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK8CellType15create_entitiesERNSt6vectorINSt6vectorIjEEEENSt6size_tEPKj">
+<span id="CellType::create_entities__std::vector:std::vector:unsigned-i::R.std::s.unsigned-iCPC"></span>void <code class="descclassname"></code><code class="descname">create_entities</code><span class="sig-paren">(</span>std::vector&lt;std::vector&lt;unsigned int&gt;&gt; &amp;<em>e</em>, std::size_t <em>dim</em>, <em class="property">const</em> unsigned int *<em>v</em><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK8CellType15create_entitiesERNSt6vectorINSt6vectorIjEEEENSt6size_tEPKj" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create entities e of given topological dimension from vertices v</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK8CellType11refine_cellER4CellR10MeshEditorRNSt6size_tE">
+<span id="CellType::refine_cell__CellR.MeshEditorR.std::sRC"></span>void <code class="descclassname"></code><code class="descname">refine_cell</code><span class="sig-paren">(</span><a class="reference internal" href="Cell.html#_CPPv24Cell" title="Cell">Cell</a> &amp;<em>cell</em>, <a class="reference internal" href="MeshEditor.html#_CPPv210MeshEditor" title="MeshEditor">MeshEditor</a> &amp;<em>editor</em>, std::size_t &amp;<em>current_cell</em><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK8CellType11refine_cellER4CellR10MeshEditorRNSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Refine cell uniformly</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK8CellType6volumeERK10MeshEntity">
+<span id="CellType::volume__MeshEntityCRC"></span>double <code class="descclassname"></code><code class="descname">volume</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="MeshEntity.html#_CPPv210MeshEntity" title="MeshEntity">MeshEntity</a> &amp;<em>entity</em><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK8CellType6volumeERK10MeshEntity" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Compute (generalized) volume of mesh entity</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK8CellType8diameterERK10MeshEntity">
+<span id="CellType::diameter__MeshEntityCRC"></span>double <code class="descclassname"></code><code class="descname">diameter</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="MeshEntity.html#_CPPv210MeshEntity" title="MeshEntity">MeshEntity</a> &amp;<em>entity</em><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK8CellType8diameterERK10MeshEntity" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Compute diameter of mesh entity</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK8CellType8inradiusERK4Cell">
+<span id="CellType::inradius__CellCRC"></span>double <code class="descclassname"></code><code class="descname">inradius</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="Cell.html#_CPPv24Cell" title="Cell">Cell</a> &amp;<em>cell</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK8CellType8inradiusERK4Cell" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Compute inradius of cell</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK8CellType12radius_ratioERK4Cell">
+<span id="CellType::radius_ratio__CellCRC"></span>double <code class="descclassname"></code><code class="descname">radius_ratio</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="Cell.html#_CPPv24Cell" title="Cell">Cell</a> &amp;<em>cell</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK8CellType12radius_ratioERK4Cell" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Compute dim*inradius/circumradius for given cell</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK8CellType16squared_distanceERK4CellRK5Point">
+<span id="CellType::squared_distance__CellCR.PointCRC"></span>double <code class="descclassname"></code><code class="descname">squared_distance</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="Cell.html#_CPPv24Cell" title="Cell">Cell</a> &amp;<em>cell</em>, <em class="property">const</em> <a class="reference internal" href="../geometry/Point.html#_CPPv25Point" title="Point">Point</a> &amp;<em>point</em><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK8CellType16squared_distanceERK4CellRK5Point" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Compute squared distance to given point</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK8CellType6normalERK4CellNSt6size_tENSt6size_tE">
+<span id="CellType::normal__CellCR.std::s.std::sC"></span>double <code class="descclassname"></code><code class="descname">normal</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="Cell.html#_CPPv24Cell" title="Cell">Cell</a> &amp;<em>cell</em>, std::size_t <em>facet</em>, std::size_t <em>i</em><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK8CellType6normalERK4CellNSt6size_tENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Compute component i of normal of given facet with respect to the cell</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK8CellType6normalERK4CellNSt6size_tE">
+<span id="CellType::normal__CellCR.std::sC"></span><a class="reference internal" href="../geometry/Point.html#_CPPv25Point" title="Point">Point</a> <code class="descclassname"></code><code class="descname">normal</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="Cell.html#_CPPv24Cell" title="Cell">Cell</a> &amp;<em>cell</em>, std::size_t <em>facet</em><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK8CellType6normalERK4CellNSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Compute of given facet with respect to the cell</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK8CellType11cell_normalERK4Cell">
+<span id="CellType::cell_normal__CellCRC"></span><a class="reference internal" href="../geometry/Point.html#_CPPv25Point" title="Point">Point</a> <code class="descclassname"></code><code class="descname">cell_normal</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="Cell.html#_CPPv24Cell" title="Cell">Cell</a> &amp;<em>cell</em><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK8CellType11cell_normalERK4Cell" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Compute normal to given cell (viewed as embedded in 3D)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK8CellType10facet_areaERK4CellNSt6size_tE">
+<span id="CellType::facet_area__CellCR.std::sC"></span>double <code class="descclassname"></code><code class="descname">facet_area</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="Cell.html#_CPPv24Cell" title="Cell">Cell</a> &amp;<em>cell</em>, std::size_t <em>facet</em><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK8CellType10facet_areaERK4CellNSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Compute the area/length of given facet with respect to the cell</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK8CellType5orderER4CellRKNSt6vectorINSt6size_tEEE">
+<span id="CellType::order__CellR.std::vector:std::s:CRC"></span>void <code class="descclassname"></code><code class="descname">order</code><span class="sig-paren">(</span><a class="reference internal" href="Cell.html#_CPPv24Cell" title="Cell">Cell</a> &amp;<em>cell</em>, <em class="property">const</em> std::vector&lt;std::size_t&gt; &amp;<em>local_to_global_vertex_indices</em><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK8CellType5orderER4CellRKNSt6vectorINSt6size_tEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Order entities locally</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK8CellType7orderedERK4CellRKNSt6vectorINSt6size_tEEE">
+<span id="CellType::ordered__CellCR.std::vector:std::s:CRC"></span>bool <code class="descclassname"></code><code class="descname">ordered</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="Cell.html#_CPPv24Cell" title="Cell">Cell</a> &amp;<em>cell</em>, <em class="property">const</em> std::vector&lt;std::size_t&gt; &amp;<em>local_to_global_vertex_indices</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK8CellType7orderedERK4CellRKNSt6vectorINSt6size_tEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Check if entities are ordered</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK8CellType8collidesERK4CellRK5Point">
+<span id="CellType::collides__CellCR.PointCRC"></span>bool <code class="descclassname"></code><code class="descname">collides</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="Cell.html#_CPPv24Cell" title="Cell">Cell</a> &amp;<em>cell</em>, <em class="property">const</em> <a class="reference internal" href="../geometry/Point.html#_CPPv25Point" title="Point">Point</a> &amp;<em>point</em><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK8CellType8collidesERK4CellRK5Point" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Check whether given point collides with cell</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK8CellType8collidesERK4CellRK10MeshEntity">
+<span id="CellType::collides__CellCR.MeshEntityCRC"></span>bool <code class="descclassname"></code><code class="descname">collides</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="Cell.html#_CPPv24Cell" title="Cell">Cell</a> &amp;<em>cell</em>, <em class="property">const</em> <a class="reference internal" href="MeshEntity.html#_CPPv210MeshEntity" title="MeshEntity">MeshEntity</a> &amp;<em>entity</em><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK8CellType8collidesERK4CellRK10MeshEntity" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Check whether given entity collides with cell</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK8CellType24triangulate_intersectionERK4CellRK4Cell">
+<span id="CellType::triangulate_intersection__CellCR.CellCRC"></span>std::vector&lt;double&gt; <code class="descclassname"></code><code class="descname">triangulate_intersection</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="Cell.html#_CPPv24Cell" title="Cell">Cell</a> &amp;<em>c0</em>, <em class="property">const</em> <a class="reference internal" href="Cell.html#_CPPv24Cell" title="Cell">Cell</a> &amp;<em>c1</em><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK8CellType24triangulate_intersectionERK4CellRK4Cell" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Compute triangulation of intersection of two cells</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK8CellType11descriptionEb">
+<span id="CellType::description__bC"></span>std::string <code class="descclassname"></code><code class="descname">description</code><span class="sig-paren">(</span>bool <em>plural</em><span class="sig-paren">)</span> <em class="property">const</em> = 0<a class="headerlink" href="#_CPPv2NK8CellType11descriptionEb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return description of cell type</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="DomainBoundary.html" class="btn btn-neutral float-right" title="DomainBoundary.h" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Cell.html" class="btn btn-neutral" title="Cell.h" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://fenicsproject.org.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.4.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

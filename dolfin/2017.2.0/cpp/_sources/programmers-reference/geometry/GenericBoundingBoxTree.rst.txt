@@ -1,0 +1,225 @@
+
+.. Documentation for the header file dolfin/geometry/GenericBoundingBoxTree.h
+
+.. _programmers_reference_cpp_geometry_genericboundingboxtree:
+
+GenericBoundingBoxTree.h
+========================
+
+.. note::
+    
+    The documentation on this page was automatically extracted from the
+    DOLFIN C++ code and may need to be edited or expanded.
+    
+
+.. cpp:class:: GenericBoundingBoxTree
+
+    Base class for bounding box implementations (envelope-letter
+    design)
+
+
+    .. cpp:function:: GenericBoundingBoxTree()
+    
+        Constructor
+
+
+    .. cpp:function:: static std::shared_ptr<GenericBoundingBoxTree> create(unsigned int dim)
+    
+        Factory function returning (empty) tree of appropriate dimension
+
+
+    .. cpp:function:: void build(const Mesh& mesh, std::size_t tdim)
+    
+        Build bounding box tree for mesh entities of given dimension
+
+
+    .. cpp:function:: void build(const std::vector<Point>& points)
+    
+        Build bounding box tree for point cloud
+
+
+    .. cpp:function:: std::vector<unsigned int> compute_collisions(const Point& point) const
+    
+        Compute all collisions between bounding boxes and :cpp:class:`Point`
+
+
+    .. cpp:function:: std::pair<std::vector<unsigned int>, std::vector<unsigned int> > compute_collisions(const GenericBoundingBoxTree& tree) const
+    
+        Compute all collisions between bounding boxes and :cpp:class:`BoundingBoxTree`
+
+
+    .. cpp:function:: std::vector<unsigned int> compute_entity_collisions(const Point& point, const Mesh& mesh) const
+    
+        Compute all collisions between entities and :cpp:class:`Point`
+
+
+    .. cpp:function:: std::vector<unsigned int> compute_process_collisions(const Point& point) const
+    
+        Compute all collisions between processes and :cpp:class:`Point`
+
+
+    .. cpp:function:: std::pair<std::vector<unsigned int>, std::vector<unsigned int> > compute_entity_collisions(const GenericBoundingBoxTree& tree, const Mesh& mesh_A, const Mesh& mesh_B) const
+    
+        Compute all collisions between entities and :cpp:class:`BoundingBoxTree`
+
+
+    .. cpp:function:: unsigned int compute_first_collision(const Point& point) const
+    
+        Compute first collision between bounding boxes and :cpp:class:`Point`
+
+
+    .. cpp:function:: unsigned int compute_first_entity_collision(const Point& point, const Mesh& mesh) const
+    
+        Compute first collision between entities and :cpp:class:`Point`
+
+
+    .. cpp:function:: std::pair<unsigned int, double> compute_closest_entity(const Point& point, const Mesh& mesh) const
+    
+        Compute closest entity and distance to :cpp:class:`Point`
+
+
+    .. cpp:function:: std::pair<unsigned int, double> compute_closest_point(const Point& point) const
+    
+        Compute closest point and distance to :cpp:class:`Point`
+
+
+    .. cpp:function:: std::string str(bool verbose=false)
+    
+        Print out for debugging
+
+
+    .. cpp:function:: void clear()
+    
+        Clear existing data if any
+
+
+    .. cpp:function:: unsigned int _build(const std::vector<double>& leaf_bboxes, const std::vector<unsigned int>::iterator& begin, const std::vector<unsigned int>::iterator& end, std::size_t gdim)
+    
+        Build bounding box tree for entities (recursive)
+
+
+    .. cpp:function:: unsigned int _build(const std::vector<Point>& points, const std::vector<unsigned int>::iterator& begin, const std::vector<unsigned int>::iterator& end, std::size_t gdim)
+    
+        Build bounding box tree for points (recursive)
+
+
+    .. cpp:function:: void build_point_search_tree(const Mesh& mesh) const
+    
+        Compute point search tree if not already done
+
+
+    .. cpp:function:: void compute_bbox_of_entity(double* b, const MeshEntity& entity, std::size_t gdim) const
+    
+        Compute bounding box of mesh entity
+
+
+    .. cpp:function:: void sort_points(std::size_t axis, const std::vector<Point>& points, const std::vector<unsigned int>::iterator& begin, const std::vector<unsigned int>::iterator& middle, const std::vector<unsigned int>::iterator& end)
+    
+        Sort points along given axis
+
+
+    .. cpp:function:: unsigned int add_bbox(const BBox& bbox, const double* b, std::size_t gdim)
+    
+        Add bounding box and coordinates
+
+
+    .. cpp:function:: const BBox& get_bbox(unsigned int node) const
+    
+        Return bounding box for given node
+
+
+    .. cpp:function:: unsigned int num_bboxes() const
+    
+        Return number of bounding boxes
+
+
+    .. cpp:function:: unsigned int add_point(const BBox& bbox, const Point& point, std::size_t gdim)
+    
+        Add bounding box and point coordinates
+
+
+    .. cpp:function:: bool is_leaf(const BBox& bbox, unsigned int node) const
+    
+        Check whether bounding box is a leaf node
+
+
+    .. cpp:function:: less_x_point(const std::vector<Point>& points)
+    
+        Constructor
+
+
+    .. cpp:function:: bool operator()(unsigned int i, unsigned int j)
+    
+        Comparison operator
+
+
+    .. cpp:function:: less_y_point(const std::vector<Point>& points)
+    
+        Constructor
+
+
+    .. cpp:function:: bool operator()(unsigned int i, unsigned int j)
+    
+        Comparison operator
+
+
+    .. cpp:function:: less_z_point(const std::vector<Point>& points)
+    
+        Constructor
+
+
+    .. cpp:function:: bool operator()(unsigned int i, unsigned int j)
+    
+        Comparison operator
+
+
+    .. cpp:function:: std::size_t gdim() const = 0
+    
+        Return geometric dimension
+
+
+    .. cpp:function:: const double* get_bbox_coordinates(unsigned int node) const = 0
+    
+        Return bounding box coordinates for node
+
+
+    .. cpp:function:: bool point_in_bbox(const double* x, unsigned int node) const = 0
+    
+        Check whether point (x) is in bounding box (node)
+
+
+    .. cpp:function:: bool bbox_in_bbox(const double* a, unsigned int node) const = 0
+    
+        Check whether bounding box (a) collides with bounding box (node)
+
+
+    .. cpp:function:: double compute_squared_distance_bbox(const double* x, unsigned int node) const = 0
+    
+        Compute squared distance between point and bounding box
+
+
+    .. cpp:function:: double compute_squared_distance_point(const double* x, unsigned int node) const = 0
+    
+        Compute squared distance between point and point
+
+
+    .. cpp:function:: void compute_bbox_of_bboxes(double* bbox, std::size_t& axis, const std::vector<double>& leaf_bboxes, const std::vector<unsigned int>::iterator& begin, const std::vector<unsigned int>::iterator& end) = 0
+    
+        Compute bounding box of bounding boxes
+
+
+    .. cpp:function:: void compute_bbox_of_points(double* bbox, std::size_t& axis, const std::vector<Point>& points, const std::vector<unsigned int>::iterator& begin, const std::vector<unsigned int>::iterator& end) = 0
+    
+        Compute bounding box of points
+
+
+    .. cpp:function:: void sort_bboxes(std::size_t axis, const std::vector<double>& leaf_bboxes, const std::vector<unsigned int>::iterator& begin, const std::vector<unsigned int>::iterator& middle, const std::vector<unsigned int>::iterator& end) = 0
+    
+        Sort leaf bounding boxes along given axis
+
+
+    .. cpp:function:: void tree_print(std::stringstream& s, unsigned int i)
+    
+        Print out recursively, for debugging
+
+

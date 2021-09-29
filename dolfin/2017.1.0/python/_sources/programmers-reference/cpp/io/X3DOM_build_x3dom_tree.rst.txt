@@ -1,0 +1,10 @@
+.. Documentation for the function dolfin.cpp.io.X3DOM_build_x3dom_tree
+
+.. _programmers_reference_cpp_io_x3dom_build_x3dom_tree:
+
+X3DOM_build_x3dom_tree
+======================
+
+.. currentmodule:: dolfin.cpp.io
+
+.. autofunction:: X3DOM_build_x3dom_tree

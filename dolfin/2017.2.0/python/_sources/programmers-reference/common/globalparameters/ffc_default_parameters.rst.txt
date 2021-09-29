@@ -1,0 +1,10 @@
+.. Documentation for the function dolfin.common.globalparameters.ffc_default_parameters
+
+.. _programmers_reference_common_globalparameters_ffc_default_parameters:
+
+ffc_default_parameters
+======================
+
+.. currentmodule:: dolfin.common.globalparameters
+
+.. autofunction:: ffc_default_parameters

@@ -1,0 +1,342 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Set.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN common module" href="index.html"/>
+        <link rel="next" title="SubSystemsManager.h" href="SubSystemsManager.html"/>
+        <link rel="prev" title="MPI.h" href="MPI.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.4.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-1.4.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN common module</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Array.html">Array.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Hierarchical.html">Hierarchical.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="IndexSet.html">IndexSet.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MPI.html">MPI.h</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Set.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SubSystemsManager.html">SubSystemsManager.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Timer.html">Timer.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Variable.html">Variable.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="constants.html">constants.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="defines.html">defines.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="init.html">init.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="timing.html">timing.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="types.html">types.h</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../fem/index.html">DOLFIN fem module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html">DOLFIN function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/index.html">DOLFIN geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/index.html">DOLFIN io module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../la/index.html">DOLFIN la module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/index.html">DOLFIN log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mesh/index.html">DOLFIN mesh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot/index.html">DOLFIN plot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer&#8217;s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-1.4.0</a> &raquo;</li>
+      
+          <li><a href="index.html">DOLFIN common module</a> &raquo;</li>
+      
+    <li>Set.h</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/programmers-reference/common/Set.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="set-h">
+<span id="programmers-reference-cpp-common-set"></span><h1>Set.h<a class="headerlink" href="#set-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="class">
+<dt id="_CPPv23Set">
+<span id="Set"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">Set</code><a class="headerlink" href="#_CPPv23Set" title="Permalink to this definition">¶</a><br /></dt>
+<dd><dl class="function">
+<dt id="_CPPv2N3Set3SetEv">
+<span id="Set::Set"></span><code class="descclassname"></code><code class="descname">Set</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N3Set3SetEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create empty set</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N3Set3SetERNSt6vectorI1TEE">
+<span id="Set::Set__std::vector:T:R"></span><code class="descclassname"></code><code class="descname">Set</code><span class="sig-paren">(</span>std::vector&lt;T&gt; &amp;<em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N3Set3SetERNSt6vectorI1TEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Wrap std::vectpr as a set. Contents will be erased.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N3Set3SetERKN6dolfin3SetI1TEE">
+<span id="Set::Set__dolfin::Set:T:CR"></span><code class="descclassname"></code><code class="descname">Set</code><span class="sig-paren">(</span><em class="property">const</em> dolfin::Set&lt;T&gt; &amp;<em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N3Set3SetERKN6dolfin3SetI1TEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Copy constructor</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N3Set4findERK1T">
+<span id="Set::find__TCR"></span>iterator <code class="descclassname"></code><code class="descname">find</code><span class="sig-paren">(</span><em class="property">const</em> T &amp;<em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N3Set4findERK1T" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Find entry in set and return an iterator to the entry</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK3Set4findERK1T">
+<span id="Set::find__TCRC"></span>const_iterator <code class="descclassname"></code><code class="descname">find</code><span class="sig-paren">(</span><em class="property">const</em> T &amp;<em>x</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK3Set4findERK1T" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Find entry in set and return an iterator to the entry (const)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N3Set6insertERK1T">
+<span id="Set::insert__TCR"></span>bool <code class="descclassname"></code><code class="descname">insert</code><span class="sig-paren">(</span><em class="property">const</em> T &amp;<em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N3Set6insertERK1T" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Insert entry</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N3Set6insertEK7InputItK7InputIt">
+<span id="Set::insert__InputItC.InputItC"></span>void <code class="descclassname"></code><code class="descname">insert</code><span class="sig-paren">(</span><em class="property">const</em> InputIt <em>first</em>, <em class="property">const</em> InputIt <em>last</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N3Set6insertEK7InputItK7InputIt" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Insert entries</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK3Set4sizeEv">
+<span id="Set::sizeC"></span>std::size_t <code class="descclassname"></code><code class="descname">size</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK3Set4sizeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set size</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N3Set5eraseERK1T">
+<span id="Set::erase__TCR"></span>void <code class="descclassname"></code><code class="descname">erase</code><span class="sig-paren">(</span><em class="property">const</em> T &amp;<em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N3Set5eraseERK1T" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Erase an entry</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N3Set4sortEv">
+<span id="Set::sort"></span>void <code class="descclassname"></code><code class="descname">sort</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N3Set4sortEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sort set</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N3Set5clearEv">
+<span id="Set::clear"></span>void <code class="descclassname"></code><code class="descname">clear</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N3Set5clearEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clear set</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK3SetixENSt6size_tE">
+<span id="Set::subscript-operator__std::sC"></span>T <code class="descclassname"></code><code class="descname">operator[]</code><span class="sig-paren">(</span>std::size_t <em>n</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK3SetixENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Index the nth entry in the set</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK3Set3setEv">
+<span id="Set::setC"></span><em class="property">const</em> std::vector&lt;T&gt; &amp;<code class="descclassname"></code><code class="descname">set</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK3Set3setEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the vector that stores the data in the Set</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N3Set3setEv">
+<span id="Set::set"></span>std::vector&lt;T&gt; &amp;<code class="descclassname"></code><code class="descname">set</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N3Set3setEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the vector that stores the data in the Set</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="SubSystemsManager.html" class="btn btn-neutral float-right" title="SubSystemsManager.h" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="MPI.html" class="btn btn-neutral" title="MPI.h" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://fenicsproject.org.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.4.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

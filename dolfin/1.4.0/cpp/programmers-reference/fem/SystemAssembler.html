@@ -1,0 +1,354 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>SystemAssembler.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN fem module" href="index.html"/>
+        <link rel="next" title="assemble.h" href="assemble.html"/>
+        <link rel="prev" title="SparsityPatternBuilder.h" href="SparsityPatternBuilder.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.4.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-1.4.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/index.html">DOLFIN common module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN fem module</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Assembler.html">Assembler.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AssemblerBase.html">AssemblerBase.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BasisFunction.html">BasisFunction.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CCFEMAssembler.html">CCFEMAssembler.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CCFEMDofMap.html">CCFEMDofMap.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CCFEMForm.html">CCFEMForm.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DirichletBC.html">DirichletBC.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DofMap.html">DofMap.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Equation.html">Equation.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FiniteElement.html">FiniteElement.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Form.html">Form.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericDofMap.html">GenericDofMap.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LinearVariationalProblem.html">LinearVariationalProblem.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LinearVariationalSolver.html">LinearVariationalSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LocalSolver.html">LocalSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NonlinearVariationalProblem.html">NonlinearVariationalProblem.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NonlinearVariationalSolver.html">NonlinearVariationalSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="OpenMpAssembler.html">OpenMpAssembler.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PointSource.html">PointSource.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SparsityPatternBuilder.html">SparsityPatternBuilder.h</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">SystemAssembler.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="assemble.html">assemble.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fem_utils.html">fem_utils.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solve.html">solve.h</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html">DOLFIN function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/index.html">DOLFIN geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/index.html">DOLFIN io module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../la/index.html">DOLFIN la module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/index.html">DOLFIN log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mesh/index.html">DOLFIN mesh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot/index.html">DOLFIN plot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer&#8217;s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-1.4.0</a> &raquo;</li>
+      
+          <li><a href="index.html">DOLFIN fem module</a> &raquo;</li>
+      
+    <li>SystemAssembler.h</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/programmers-reference/fem/SystemAssembler.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="systemassembler-h">
+<span id="programmers-reference-cpp-fem-systemassembler"></span><h1>SystemAssembler.h<a class="headerlink" href="#systemassembler-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="class">
+<dt id="_CPPv215SystemAssembler">
+<span id="SystemAssembler"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">SystemAssembler</code><a class="headerlink" href="#_CPPv215SystemAssembler" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Parent class(es)</em></p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="AssemblerBase.html#_CPPv213AssemblerBase" title="AssemblerBase"><code class="xref cpp cpp-class docutils literal"><span class="pre">AssemblerBase</span></code></a></li>
+</ul>
+</div></blockquote>
+<p>This class provides an assembler for systems of the form
+Ax = b. It differs from the default DOLFIN assembler in that it
+applies boundary conditions at the time of assembly, which
+preserves any symmetries in A.</p>
+<dl class="function">
+<dt id="_CPPv2N15SystemAssembler15SystemAssemblerERK4FormRK4Form">
+<span id="SystemAssembler::SystemAssembler__FormCR.FormCR"></span><code class="descclassname"></code><code class="descname">SystemAssembler</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="Form.html#_CPPv24Form" title="Form">Form</a> &amp;<em>a</em>, <em class="property">const</em> <a class="reference internal" href="Form.html#_CPPv24Form" title="Form">Form</a> &amp;<em>L</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N15SystemAssembler15SystemAssemblerERK4FormRK4Form" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructor</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N15SystemAssembler15SystemAssemblerERK4FormRK4FormRK11DirichletBC">
+<span id="SystemAssembler::SystemAssembler__FormCR.FormCR.DirichletBCCR"></span><code class="descclassname"></code><code class="descname">SystemAssembler</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="Form.html#_CPPv24Form" title="Form">Form</a> &amp;<em>a</em>, <em class="property">const</em> <a class="reference internal" href="Form.html#_CPPv24Form" title="Form">Form</a> &amp;<em>L</em>, <em class="property">const</em> <a class="reference internal" href="DirichletBC.html#_CPPv211DirichletBC" title="DirichletBC">DirichletBC</a> &amp;<em>bc</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N15SystemAssembler15SystemAssemblerERK4FormRK4FormRK11DirichletBC" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructor</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N15SystemAssembler15SystemAssemblerERK4FormRK4FormKNSt6vectorIPK11DirichletBCEE">
+<span id="SystemAssembler::SystemAssembler__FormCR.FormCR.std::vector:DirichletBCCP:C"></span><code class="descclassname"></code><code class="descname">SystemAssembler</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="Form.html#_CPPv24Form" title="Form">Form</a> &amp;<em>a</em>, <em class="property">const</em> <a class="reference internal" href="Form.html#_CPPv24Form" title="Form">Form</a> &amp;<em>L</em>, <em class="property">const</em> std::vector&lt;<em class="property">const</em> <a class="reference internal" href="DirichletBC.html#_CPPv211DirichletBC" title="DirichletBC">DirichletBC</a> *&gt; <em>bcs</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N15SystemAssembler15SystemAssemblerERK4FormRK4FormKNSt6vectorIPK11DirichletBCEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructor</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N15SystemAssembler15SystemAssemblerENSt10shared_ptrIK4FormEENSt10shared_ptrIK4FormEE">
+<span id="SystemAssembler::SystemAssembler__std::shared_ptr:FormC:.std::shared_ptr:FormC:"></span><code class="descclassname"></code><code class="descname">SystemAssembler</code><span class="sig-paren">(</span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="Form.html#_CPPv24Form" title="Form">Form</a>&gt; <em>a</em>, std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="Form.html#_CPPv24Form" title="Form">Form</a>&gt; <em>L</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N15SystemAssembler15SystemAssemblerENSt10shared_ptrIK4FormEENSt10shared_ptrIK4FormEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructor</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N15SystemAssembler15SystemAssemblerENSt10shared_ptrIK4FormEENSt10shared_ptrIK4FormEERK11DirichletBC">
+<span id="SystemAssembler::SystemAssembler__std::shared_ptr:FormC:.std::shared_ptr:FormC:.DirichletBCCR"></span><code class="descclassname"></code><code class="descname">SystemAssembler</code><span class="sig-paren">(</span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="Form.html#_CPPv24Form" title="Form">Form</a>&gt; <em>a</em>, std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="Form.html#_CPPv24Form" title="Form">Form</a>&gt; <em>L</em>, <em class="property">const</em> <a class="reference internal" href="DirichletBC.html#_CPPv211DirichletBC" title="DirichletBC">DirichletBC</a> &amp;<em>bc</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N15SystemAssembler15SystemAssemblerENSt10shared_ptrIK4FormEENSt10shared_ptrIK4FormEERK11DirichletBC" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructor</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N15SystemAssembler15SystemAssemblerENSt10shared_ptrIK4FormEENSt10shared_ptrIK4FormEEKNSt6vectorIPK11DirichletBCEE">
+<span id="SystemAssembler::SystemAssembler__std::shared_ptr:FormC:.std::shared_ptr:FormC:.std::vector:DirichletBCCP:C"></span><code class="descclassname"></code><code class="descname">SystemAssembler</code><span class="sig-paren">(</span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="Form.html#_CPPv24Form" title="Form">Form</a>&gt; <em>a</em>, std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="Form.html#_CPPv24Form" title="Form">Form</a>&gt; <em>L</em>, <em class="property">const</em> std::vector&lt;<em class="property">const</em> <a class="reference internal" href="DirichletBC.html#_CPPv211DirichletBC" title="DirichletBC">DirichletBC</a> *&gt; <em>bcs</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N15SystemAssembler15SystemAssemblerENSt10shared_ptrIK4FormEENSt10shared_ptrIK4FormEEKNSt6vectorIPK11DirichletBCEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructor</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N15SystemAssembler8assembleER13GenericMatrixR13GenericVector">
+<span id="SystemAssembler::assemble__GenericMatrixR.GenericVectorR"></span>void <code class="descclassname"></code><code class="descname">assemble</code><span class="sig-paren">(</span><a class="reference internal" href="../la/GenericMatrix.html#_CPPv213GenericMatrix" title="GenericMatrix">GenericMatrix</a> &amp;<em>A</em>, <a class="reference internal" href="../la/GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N15SystemAssembler8assembleER13GenericMatrixR13GenericVector" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Assemble system (A, b)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N15SystemAssembler8assembleER13GenericMatrix">
+<span id="SystemAssembler::assemble__GenericMatrixR"></span>void <code class="descclassname"></code><code class="descname">assemble</code><span class="sig-paren">(</span><a class="reference internal" href="../la/GenericMatrix.html#_CPPv213GenericMatrix" title="GenericMatrix">GenericMatrix</a> &amp;<em>A</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N15SystemAssembler8assembleER13GenericMatrix" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Assemble matrix A</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N15SystemAssembler8assembleER13GenericVector">
+<span id="SystemAssembler::assemble__GenericVectorR"></span>void <code class="descclassname"></code><code class="descname">assemble</code><span class="sig-paren">(</span><a class="reference internal" href="../la/GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N15SystemAssembler8assembleER13GenericVector" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Assemble vector b</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N15SystemAssembler8assembleER13GenericMatrixR13GenericVectorRK13GenericVector">
+<span id="SystemAssembler::assemble__GenericMatrixR.GenericVectorR.GenericVectorCR"></span>void <code class="descclassname"></code><code class="descname">assemble</code><span class="sig-paren">(</span><a class="reference internal" href="../la/GenericMatrix.html#_CPPv213GenericMatrix" title="GenericMatrix">GenericMatrix</a> &amp;<em>A</em>, <a class="reference internal" href="../la/GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>b</em>, <em class="property">const</em> <a class="reference internal" href="../la/GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>x0</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N15SystemAssembler8assembleER13GenericMatrixR13GenericVectorRK13GenericVector" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Assemble system (A, b) for (negative) increment dx, where
+x = x0 - dx is solution to system a == -L subject to bcs.
+Suitable for use inside a (quasi-)Newton solver.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N15SystemAssembler8assembleER13GenericVectorRK13GenericVector">
+<span id="SystemAssembler::assemble__GenericVectorR.GenericVectorCR"></span>void <code class="descclassname"></code><code class="descname">assemble</code><span class="sig-paren">(</span><a class="reference internal" href="../la/GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>b</em>, <em class="property">const</em> <a class="reference internal" href="../la/GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>x0</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N15SystemAssembler8assembleER13GenericVectorRK13GenericVector" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Assemble rhs vector b for (negative) increment dx, where
+x = x0 - dx is solution to system a == -L subject to bcs.
+Suitable for use inside a (quasi-)Newton solver.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="_CPPv27Scratch">
+<span id="Scratch"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">Scratch</code><a class="headerlink" href="#_CPPv27Scratch" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="assemble.html" class="btn btn-neutral float-right" title="assemble.h" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="SparsityPatternBuilder.html" class="btn btn-neutral" title="SparsityPatternBuilder.h" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://fenicsproject.org.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.4.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

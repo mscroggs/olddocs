@@ -1,0 +1,778 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Cell.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN mesh module" href="index.html"/>
+        <link rel="next" title="CellType.h" href="CellType.html"/>
+        <link rel="prev" title="BoundaryMesh.h" href="BoundaryMesh.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2016.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-2016.1.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/index.html">DOLFIN common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fem/index.html">DOLFIN fem module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html">DOLFIN function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/index.html">DOLFIN geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/index.html">DOLFIN io module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../la/index.html">DOLFIN la module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/index.html">DOLFIN log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN mesh module</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="BoundaryMesh.html">BoundaryMesh.h</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Cell.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CellType.html">CellType.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DomainBoundary.html">DomainBoundary.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DynamicMeshEditor.html">DynamicMeshEditor.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Edge.html">Edge.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Face.html">Face.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Facet.html">Facet.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FacetCell.html">FacetCell.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LocalMeshData.html">LocalMeshData.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LocalMeshValueCollection.html">LocalMeshValueCollection.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Mesh.html">Mesh.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshColoring.html">MeshColoring.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshConnectivity.html">MeshConnectivity.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshData.html">MeshData.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshDomains.html">MeshDomains.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshEditor.html">MeshEditor.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshEntity.html">MeshEntity.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshEntityIterator.html">MeshEntityIterator.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshEntityIteratorBase.html">MeshEntityIteratorBase.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshFunction.html">MeshFunction.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshGeometry.html">MeshGeometry.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshHierarchy.html">MeshHierarchy.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshPartitioning.html">MeshPartitioning.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshQuality.html">MeshQuality.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshRenumbering.html">MeshRenumbering.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshTopology.html">MeshTopology.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshTransformation.html">MeshTransformation.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshValueCollection.html">MeshValueCollection.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MultiMesh.html">MultiMesh.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PeriodicBoundaryComputation.html">PeriodicBoundaryComputation.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SubDomain.html">SubDomain.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SubMesh.html">SubMesh.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SubsetIterator.html">SubsetIterator.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Vertex.html">Vertex.h</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot/index.html">DOLFIN plot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer&#8217;s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-2016.1.0</a> &raquo;</li>
+      
+          <li><a href="index.html">DOLFIN mesh module</a> &raquo;</li>
+      
+    <li>Cell.h</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/programmers-reference/mesh/Cell.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="cell-h">
+<span id="programmers-reference-cpp-mesh-cell"></span><h1>Cell.h<a class="headerlink" href="#cell-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="class">
+<dt id="_CPPv24Cell">
+<span id="Cell"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">Cell</code><a class="headerlink" href="#_CPPv24Cell" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Parent class(es)</em></p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="MeshEntity.html#_CPPv210MeshEntity" title="MeshEntity"><code class="xref cpp cpp-class docutils literal"><span class="pre">MeshEntity</span></code></a></li>
+</ul>
+</div></blockquote>
+<p>A Cell is a <a class="reference internal" href="MeshEntity.html#_CPPv210MeshEntity" title="MeshEntity"><code class="xref cpp cpp-class docutils literal"><span class="pre">MeshEntity</span></code></a> of topological codimension 0.</p>
+<dl class="function">
+<dt id="_CPPv2N4Cell4CellEv">
+<span id="Cell::Cell"></span><code class="descclassname"></code><code class="descname">Cell</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Cell4CellEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create empty cell</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4Cell4CellERK4MeshNSt6size_tE">
+<span id="Cell::Cell__MeshCR.std::s"></span><code class="descclassname"></code><code class="descname">Cell</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em>, std::size_t <em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Cell4CellERK4MeshNSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create cell on given mesh with given index</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>mesh (<a class="reference internal" href="Mesh.html#_CPPv24Mesh" title="Mesh"><code class="xref cpp cpp-class docutils literal"><span class="pre">Mesh</span></code></a>)</dt>
+<dd>The mesh.</dd>
+<dt>index (std::size_t)</dt>
+<dd>The index.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Cell4typeEv">
+<span id="Cell::typeC"></span><a class="reference internal" href="CellType.html#_CPPv28CellType" title="CellType">CellType</a>::Type <code class="descclassname"></code><code class="descname">type</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Cell4typeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return type of cell</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Cell12num_verticesEv">
+<span id="Cell::num_verticesC"></span>std::size_t <code class="descclassname"></code><code class="descname">num_vertices</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Cell12num_verticesEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return number of vertices of cell</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Cell11orientationEv">
+<span id="Cell::orientationC"></span>std::size_t <code class="descclassname"></code><code class="descname">orientation</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Cell11orientationEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Compute orientation of cell</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>std::size_t</dt>
+<dd>Orientation of the cell (0 is &#8216;up&#8217;/&#8217;right&#8217;, 1 is &#8216;down&#8217;/&#8217;left&#8217;)</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Cell11orientationERK5Point">
+<span id="Cell::orientation__PointCRC"></span>std::size_t <code class="descclassname"></code><code class="descname">orientation</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../geometry/Point.html#_CPPv25Point" title="Point">Point</a> &amp;<em>up</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Cell11orientationERK5Point" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Compute orientation of cell relative to given &#8216;up&#8217; direction</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>up (<a class="reference internal" href="../geometry/Point.html#_CPPv25Point" title="Point"><code class="xref cpp cpp-class docutils literal"><span class="pre">Point</span></code></a>)</dt>
+<dd>The direction defined as &#8216;up&#8217;</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>std::size_t</dt>
+<dd>Orientation of the cell (0 is &#8216;same&#8217;, 1 is &#8216;opposite&#8217;)</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Cell6volumeEv">
+<span id="Cell::volumeC"></span>double <code class="descclassname"></code><code class="descname">volume</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Cell6volumeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Compute (generalized) volume of cell</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>double</dt>
+<dd>The volume of the cell.</dd>
+</dl>
+</dd>
+<dt><em>Example</em></dt>
+<dd><div class="first highlight-c++"><div class="highlight"><pre><span></span><span class="n">UnitSquare</span> <span class="nf">mesh</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">Cell</span> <span class="nf">cell</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="n">info</span><span class="p">(</span><span class="s">&quot;%g&quot;</span><span class="p">,</span> <span class="n">cell</span><span class="p">.</span><span class="n">volume</span><span class="p">());</span>
+</pre></div>
+</div>
+<p>output:</p>
+<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="mf">0.5</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Cell1hEv">
+<span id="Cell::hC"></span>double <code class="descclassname"></code><code class="descname">h</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Cell1hEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Compute greatest distance between any two vertices</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>double</dt>
+<dd>The greatest distance between any two vertices of the cell.</dd>
+</dl>
+</dd>
+<dt><em>Example</em></dt>
+<dd><div class="first highlight-c++"><div class="highlight"><pre><span></span><span class="n">UnitSquareMesh</span> <span class="nf">mesh</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">Cell</span> <span class="nf">cell</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="n">info</span><span class="p">(</span><span class="s">&quot;%g&quot;</span><span class="p">,</span> <span class="n">cell</span><span class="p">.</span><span class="n">h</span><span class="p">());</span>
+</pre></div>
+</div>
+<p>output:</p>
+<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="mf">1.41421</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Cell8diameterEv">
+<span id="Cell::diameterC"></span>double <code class="descclassname"></code><code class="descname">diameter</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Cell8diameterEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Compute diameter of cell (deprecated)</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>double</dt>
+<dd>The diameter of the cell.</dd>
+</dl>
+</dd>
+<dt><em>Example</em></dt>
+<dd><div class="first highlight-c++"><div class="highlight"><pre><span></span><span class="n">UnitSquareMesh</span> <span class="nf">mesh</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">Cell</span> <span class="nf">cell</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="n">info</span><span class="p">(</span><span class="s">&quot;%g&quot;</span><span class="p">,</span> <span class="n">cell</span><span class="p">.</span><span class="n">diameter</span><span class="p">());</span>
+</pre></div>
+</div>
+<p>output:</p>
+<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="mf">1.41421</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Cell12circumradiusEv">
+<span id="Cell::circumradiusC"></span>double <code class="descclassname"></code><code class="descname">circumradius</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Cell12circumradiusEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Compute circumradius of cell</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>double</dt>
+<dd>The circumradius of the cell.</dd>
+</dl>
+</dd>
+<dt><em>Example</em></dt>
+<dd><div class="first highlight-c++"><div class="highlight"><pre><span></span><span class="n">UnitSquareMesh</span> <span class="nf">mesh</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">Cell</span> <span class="nf">cell</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="n">info</span><span class="p">(</span><span class="s">&quot;%g&quot;</span><span class="p">,</span> <span class="n">cell</span><span class="p">.</span><span class="n">circumradius</span><span class="p">());</span>
+</pre></div>
+</div>
+<p>output:</p>
+<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="mf">0.707106</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Cell8inradiusEv">
+<span id="Cell::inradiusC"></span>double <code class="descclassname"></code><code class="descname">inradius</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Cell8inradiusEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Compute inradius of cell</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>double</dt>
+<dd>Radius of the sphere inscribed in the cell.</dd>
+</dl>
+</dd>
+<dt><em>Example</em></dt>
+<dd><div class="first highlight-c++"><div class="highlight"><pre><span></span><span class="n">UnitSquareMesh</span> <span class="nf">mesh</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">Cell</span> <span class="nf">cell</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="n">info</span><span class="p">(</span><span class="s">&quot;%g&quot;</span><span class="p">,</span> <span class="n">cell</span><span class="p">.</span><span class="n">inradius</span><span class="p">());</span>
+</pre></div>
+</div>
+<p>output:</p>
+<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="mf">0.29289</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Cell12radius_ratioEv">
+<span id="Cell::radius_ratioC"></span>double <code class="descclassname"></code><code class="descname">radius_ratio</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Cell12radius_ratioEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Compute ratio of inradius to circumradius times dim for cell.
+Useful as cell quality measure. Returns 1. for equilateral
+and 0. for degenerate cell.
+See Jonathan Richard Shewchuk: What Is a Good Linear Finite Element?,
+online: <a class="reference external" href="http://www.cs.berkeley.edu/~jrs/papers/elemj.pdf">http://www.cs.berkeley.edu/~jrs/papers/elemj.pdf</a></p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>double</dt>
+<dd>topological_dimension * inradius / circumradius</dd>
+</dl>
+</dd>
+<dt><em>Example</em></dt>
+<dd><div class="first highlight-c++"><div class="highlight"><pre><span></span><span class="n">UnitSquareMesh</span> <span class="nf">mesh</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">Cell</span> <span class="nf">cell</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="n">info</span><span class="p">(</span><span class="s">&quot;%g&quot;</span><span class="p">,</span> <span class="n">cell</span><span class="p">.</span><span class="n">radius_ratio</span><span class="p">());</span>
+</pre></div>
+</div>
+<p>output:</p>
+<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="mf">0.828427</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Cell16squared_distanceERK5Point">
+<span id="Cell::squared_distance__PointCRC"></span>double <code class="descclassname"></code><code class="descname">squared_distance</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../geometry/Point.html#_CPPv25Point" title="Point">Point</a> &amp;<em>point</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Cell16squared_distanceERK5Point" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Compute squared distance to given point.</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>point (<a class="reference internal" href="../geometry/Point.html#_CPPv25Point" title="Point"><code class="xref cpp cpp-class docutils literal"><span class="pre">Point</span></code></a>)</dt>
+<dd>The point.</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>double</dt>
+<dd>The squared distance to the point.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Cell8distanceERK5Point">
+<span id="Cell::distance__PointCRC"></span>double <code class="descclassname"></code><code class="descname">distance</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../geometry/Point.html#_CPPv25Point" title="Point">Point</a> &amp;<em>point</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Cell8distanceERK5Point" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Compute distance to given point.</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>point (<a class="reference internal" href="../geometry/Point.html#_CPPv25Point" title="Point"><code class="xref cpp cpp-class docutils literal"><span class="pre">Point</span></code></a>)</dt>
+<dd>The point.</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>double</dt>
+<dd>The distance to the point.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Cell6normalENSt6size_tENSt6size_tE">
+<span id="Cell::normal__std::s.std::sC"></span>double <code class="descclassname"></code><code class="descname">normal</code><span class="sig-paren">(</span>std::size_t <em>facet</em>, std::size_t <em>i</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Cell6normalENSt6size_tENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Compute component i of normal of given facet with respect to the cell</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>facet (std::size_t)</dt>
+<dd>Index of facet.</dd>
+<dt>i (std::size_t)</dt>
+<dd>Component.</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>double</dt>
+<dd>Component i of the normal of the facet.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Cell6normalENSt6size_tE">
+<span id="Cell::normal__std::sC"></span><a class="reference internal" href="../geometry/Point.html#_CPPv25Point" title="Point">Point</a> <code class="descclassname"></code><code class="descname">normal</code><span class="sig-paren">(</span>std::size_t <em>facet</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Cell6normalENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Compute normal of given facet with respect to the cell</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>facet (std::size_t)</dt>
+<dd>Index of facet.</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt><a class="reference internal" href="../geometry/Point.html#_CPPv25Point" title="Point"><code class="xref cpp cpp-class docutils literal"><span class="pre">Point</span></code></a></dt>
+<dd>Normal of the facet.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Cell11cell_normalEv">
+<span id="Cell::cell_normalC"></span><a class="reference internal" href="../geometry/Point.html#_CPPv25Point" title="Point">Point</a> <code class="descclassname"></code><code class="descname">cell_normal</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Cell11cell_normalEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Compute normal to cell itself (viewed as embedded in 3D)</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt><a class="reference internal" href="../geometry/Point.html#_CPPv25Point" title="Point"><code class="xref cpp cpp-class docutils literal"><span class="pre">Point</span></code></a></dt>
+<dd>Normal of the cell</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Cell10facet_areaENSt6size_tE">
+<span id="Cell::facet_area__std::sC"></span>double <code class="descclassname"></code><code class="descname">facet_area</code><span class="sig-paren">(</span>std::size_t <em>facet</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Cell10facet_areaENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Compute the area/length of given facet with respect to the cell</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>facet (std::size_t)</dt>
+<dd>Index of the facet.</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>double</dt>
+<dd>Area/length of the facet.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4Cell5orderERKNSt6vectorINSt6size_tEEE">
+<span id="Cell::order__std::vector:std::s:CR"></span>void <code class="descclassname"></code><code class="descname">order</code><span class="sig-paren">(</span><em class="property">const</em> std::vector&lt;std::size_t&gt; &amp;<em>local_to_global_vertex_indices</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Cell5orderERKNSt6vectorINSt6size_tEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Order entities locally</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>global_vertex_indices (_std::vector&lt;std::size_t&gt;_)</dt>
+<dd>The global vertex indices.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Cell7orderedERKNSt6vectorINSt6size_tEEE">
+<span id="Cell::ordered__std::vector:std::s:CRC"></span>bool <code class="descclassname"></code><code class="descname">ordered</code><span class="sig-paren">(</span><em class="property">const</em> std::vector&lt;std::size_t&gt; &amp;<em>local_to_global_vertex_indices</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Cell7orderedERKNSt6vectorINSt6size_tEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Check if entities are ordered</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>global_vertex_indices (_std::vector&lt;std::size_t&gt;)</dt>
+<dd>The global vertex indices.</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>bool</dt>
+<dd>True iff ordered.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Cell8containsERK5Point">
+<span id="Cell::contains__PointCRC"></span>bool <code class="descclassname"></code><code class="descname">contains</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../geometry/Point.html#_CPPv25Point" title="Point">Point</a> &amp;<em>point</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Cell8containsERK5Point" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Check whether given point is contained in cell. This function is
+identical to the function collides(point).</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>point (<a class="reference internal" href="../geometry/Point.html#_CPPv25Point" title="Point"><code class="xref cpp cpp-class docutils literal"><span class="pre">Point</span></code></a>)</dt>
+<dd>The point to be checked.</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>bool</dt>
+<dd>True iff point is contained in cell.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Cell8collidesERK5Point">
+<span id="Cell::collides__PointCRC"></span>bool <code class="descclassname"></code><code class="descname">collides</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../geometry/Point.html#_CPPv25Point" title="Point">Point</a> &amp;<em>point</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Cell8collidesERK5Point" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Check whether given point collides with cell</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>point (<a class="reference internal" href="../geometry/Point.html#_CPPv25Point" title="Point"><code class="xref cpp cpp-class docutils literal"><span class="pre">Point</span></code></a>)</dt>
+<dd>The point to be checked.</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>bool</dt>
+<dd>True iff point collides with cell.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Cell8collidesERK10MeshEntity">
+<span id="Cell::collides__MeshEntityCRC"></span>bool <code class="descclassname"></code><code class="descname">collides</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="MeshEntity.html#_CPPv210MeshEntity" title="MeshEntity">MeshEntity</a> &amp;<em>entity</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Cell8collidesERK10MeshEntity" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Check whether given entity collides with cell</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>entity (<a class="reference internal" href="MeshEntity.html#_CPPv210MeshEntity" title="MeshEntity"><code class="xref cpp cpp-class docutils literal"><span class="pre">MeshEntity</span></code></a>)</dt>
+<dd>The cell to be checked.</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>bool</dt>
+<dd>True iff entity collides with cell.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Cell24triangulate_intersectionERK10MeshEntity">
+<span id="Cell::triangulate_intersection__MeshEntityCRC"></span>std::vector&lt;double&gt; <code class="descclassname"></code><code class="descname">triangulate_intersection</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="MeshEntity.html#_CPPv210MeshEntity" title="MeshEntity">MeshEntity</a> &amp;<em>entity</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Cell24triangulate_intersectionERK10MeshEntity" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Compute triangulation of intersection with given entity</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>entity (<a class="reference internal" href="MeshEntity.html#_CPPv210MeshEntity" title="MeshEntity"><code class="xref cpp cpp-class docutils literal"><span class="pre">MeshEntity</span></code></a>)</dt>
+<dd>The entity with which to intersect.</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>std::vector&lt;double&gt;</dt>
+<dd>A flattened array of simplices of dimension
+num_simplices x num_vertices x gdim =
+num_simplices x (tdim + 1) x gdim</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Cell19get_coordinate_dofsERNSt6vectorIdEE">
+<span id="Cell::get_coordinate_dofs__std::vector:double:RC"></span>void <code class="descclassname"></code><code class="descname">get_coordinate_dofs</code><span class="sig-paren">(</span>std::vector&lt;double&gt; &amp;<em>coordinates</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Cell19get_coordinate_dofsERNSt6vectorIdEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get cell coordinate dofs (not vertex coordinates)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Cell22get_vertex_coordinatesERNSt6vectorIdEE">
+<span id="Cell::get_vertex_coordinates__std::vector:double:RC"></span>void <code class="descclassname"></code><code class="descname">get_vertex_coordinates</code><span class="sig-paren">(</span>std::vector&lt;double&gt; &amp;<em>coordinates</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Cell22get_vertex_coordinatesERNSt6vectorIdEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get cell vertex coordinates (not coordinate dofs)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Cell13get_cell_dataERN3ufc4cellEi">
+<span id="Cell::get_cell_data__ufc::cellR.iC"></span>void <code class="descclassname"></code><code class="descname">get_cell_data</code><span class="sig-paren">(</span>ufc::cell &amp;<em>ufc_cell</em>, int <em>local_facet</em> = -1<span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Cell13get_cell_dataERN3ufc4cellEi" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Fill UFC cell with miscellaneous data</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Cell17get_cell_topologyERN3ufc4cellE">
+<span id="Cell::get_cell_topology__ufc::cellRC"></span>void <code class="descclassname"></code><code class="descname">get_cell_topology</code><span class="sig-paren">(</span>ufc::cell &amp;<em>ufc_cell</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Cell17get_cell_topologyERN3ufc4cellE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Fill UFC cell with topology data</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="_CPPv212CellFunction">
+<span id="CellFunction"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">CellFunction</code><a class="headerlink" href="#_CPPv212CellFunction" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Parent class(es)</em></p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="xref cpp cpp-class docutils literal"><span class="pre">MeshFunction</span></code></li>
+</ul>
+</div></blockquote>
+<p>A CellFunction is a MeshFunction of topological codimension 0.</p>
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="CellType.html" class="btn btn-neutral float-right" title="CellType.h" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="BoundaryMesh.html" class="btn btn-neutral" title="BoundaryMesh.h" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://bitbucket.org/fenics-project/.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'2016.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

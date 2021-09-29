@@ -1,0 +1,1869 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>dolfin.cpp.mesh &mdash; DOLFIN  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="dolfin.cpp.multistage" href="dolfin.cpp.multistage.html" />
+    <link rel="prev" title="dolfin.cpp.math" href="dolfin.cpp.math.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../using.html">Using DOLFIN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../demos.html">Demos</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">Python API reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.adaptivity.html">dolfin.cpp.adaptivity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.ale.html">dolfin.cpp.ale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.common.html">dolfin.cpp.common</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.fem.html">dolfin.cpp.fem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.function.html">dolfin.cpp.function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.generation.html">dolfin.cpp.generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.geometry.html">dolfin.cpp.geometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.graph.html">dolfin.cpp.graph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.io.html">dolfin.cpp.io</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.log.html">dolfin.cpp.log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.math.html">dolfin.cpp.math</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">dolfin.cpp.mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.multistage.html">dolfin.cpp.multistage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.parameter.html">dolfin.cpp.parameter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.cpp.refinement.html">dolfin.cpp.refinement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.common.html">dolfin.common</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.fem.html">dolfin.fem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.function.html">dolfin.function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.io.html">dolfin.io</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.jit.html">dolfin.jit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.la.html">dolfin.la</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.multistage.html">dolfin.multistage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin.parameter.html">dolfin.parameter</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../developer.html">Developer resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DOLFIN</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../api.html">Python API reference</a> &raquo;</li>
+        
+      <li>dolfin.cpp.mesh</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/_autogenerated/dolfin.cpp.mesh.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-dolfin.cpp.mesh">
+<span id="dolfin-cpp-mesh"></span><h1>dolfin.cpp.mesh<a class="headerlink" href="#module-dolfin.cpp.mesh" title="Permalink to this headline">¶</a></h1>
+<p>Mesh library module</p>
+<p class="rubric">Functions</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#dolfin.cpp.mesh.cells" title="dolfin.cpp.mesh.cells"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cells</span></code></a>(*args,&nbsp;**kwargs)</td>
+<td>Overloaded function.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#dolfin.cpp.mesh.edges" title="dolfin.cpp.mesh.edges"><code class="xref py py-obj docutils literal notranslate"><span class="pre">edges</span></code></a>(*args,&nbsp;**kwargs)</td>
+<td>Overloaded function.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#dolfin.cpp.mesh.entities" title="dolfin.cpp.mesh.entities"><code class="xref py py-obj docutils literal notranslate"><span class="pre">entities</span></code></a>(*args,&nbsp;**kwargs)</td>
+<td>Overloaded function.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#dolfin.cpp.mesh.faces" title="dolfin.cpp.mesh.faces"><code class="xref py py-obj docutils literal notranslate"><span class="pre">faces</span></code></a>(*args,&nbsp;**kwargs)</td>
+<td>Overloaded function.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#dolfin.cpp.mesh.facets" title="dolfin.cpp.mesh.facets"><code class="xref py py-obj docutils literal notranslate"><span class="pre">facets</span></code></a>(*args,&nbsp;**kwargs)</td>
+<td>Overloaded function.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#dolfin.cpp.mesh.make_dolfin_subdomain" title="dolfin.cpp.mesh.make_dolfin_subdomain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">make_dolfin_subdomain</span></code></a>(arg0)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#dolfin.cpp.mesh.vertices" title="dolfin.cpp.mesh.vertices"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vertices</span></code></a>(*args,&nbsp;**kwargs)</td>
+<td>Overloaded function.</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Classes</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#dolfin.cpp.mesh.BoundaryMesh" title="dolfin.cpp.mesh.BoundaryMesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BoundaryMesh</span></code></a></td>
+<td>DOLFIN BoundaryMesh object</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#dolfin.cpp.mesh.Cell" title="dolfin.cpp.mesh.Cell"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Cell</span></code></a></td>
+<td>DOLFIN Cell object</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#dolfin.cpp.mesh.CellIterator" title="dolfin.cpp.mesh.CellIterator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CellIterator</span></code></a></td>
+<td>DOLFIN CellIterator object</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">CellType</span></code></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#dolfin.cpp.mesh.DomainBoundary" title="dolfin.cpp.mesh.DomainBoundary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DomainBoundary</span></code></a></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#dolfin.cpp.mesh.Edge" title="dolfin.cpp.mesh.Edge"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Edge</span></code></a></td>
+<td>DOLFIN Edge object</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#dolfin.cpp.mesh.EdgeIterator" title="dolfin.cpp.mesh.EdgeIterator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EdgeIterator</span></code></a></td>
+<td>DOLFIN EdgeIterator object</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#dolfin.cpp.mesh.Face" title="dolfin.cpp.mesh.Face"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Face</span></code></a></td>
+<td>DOLFIN Face object</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#dolfin.cpp.mesh.FaceIterator" title="dolfin.cpp.mesh.FaceIterator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FaceIterator</span></code></a></td>
+<td>DOLFIN FaceIterator object</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#dolfin.cpp.mesh.Facet" title="dolfin.cpp.mesh.Facet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Facet</span></code></a></td>
+<td>DOLFIN Facet object</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#dolfin.cpp.mesh.FacetIterator" title="dolfin.cpp.mesh.FacetIterator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FacetIterator</span></code></a></td>
+<td>DOLFIN FacetIterator object</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#dolfin.cpp.mesh.Mesh" title="dolfin.cpp.mesh.Mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mesh</span></code></a></td>
+<td>DOLFIN Mesh object</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">MeshColoring</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#dolfin.cpp.mesh.MeshConnectivity" title="dolfin.cpp.mesh.MeshConnectivity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MeshConnectivity</span></code></a></td>
+<td>DOLFIN MeshConnectivity object</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#dolfin.cpp.mesh.MeshData" title="dolfin.cpp.mesh.MeshData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MeshData</span></code></a></td>
+<td>Mesh data object</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#dolfin.cpp.mesh.MeshDomains" title="dolfin.cpp.mesh.MeshDomains"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MeshDomains</span></code></a></td>
+<td>Mesh domains object</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#dolfin.cpp.mesh.MeshEditor" title="dolfin.cpp.mesh.MeshEditor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MeshEditor</span></code></a></td>
+<td>DOLFIN MeshEditor object</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#dolfin.cpp.mesh.MeshEntity" title="dolfin.cpp.mesh.MeshEntity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MeshEntity</span></code></a></td>
+<td>DOLFIN MeshEntity object</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#dolfin.cpp.mesh.MeshEntityIterator" title="dolfin.cpp.mesh.MeshEntityIterator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MeshEntityIterator</span></code></a></td>
+<td>DOLFIN MeshEntityIterator object</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#dolfin.cpp.mesh.MeshFunctionBool" title="dolfin.cpp.mesh.MeshFunctionBool"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MeshFunctionBool</span></code></a></td>
+<td>DOLFIN MeshFunction object</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#dolfin.cpp.mesh.MeshFunctionDouble" title="dolfin.cpp.mesh.MeshFunctionDouble"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MeshFunctionDouble</span></code></a></td>
+<td>DOLFIN MeshFunction object</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#dolfin.cpp.mesh.MeshFunctionInt" title="dolfin.cpp.mesh.MeshFunctionInt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MeshFunctionInt</span></code></a></td>
+<td>DOLFIN MeshFunction object</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#dolfin.cpp.mesh.MeshFunctionSizet" title="dolfin.cpp.mesh.MeshFunctionSizet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MeshFunctionSizet</span></code></a></td>
+<td>DOLFIN MeshFunction object</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#dolfin.cpp.mesh.MeshGeometry" title="dolfin.cpp.mesh.MeshGeometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MeshGeometry</span></code></a></td>
+<td>DOLFIN MeshGeometry object</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#dolfin.cpp.mesh.MeshQuality" title="dolfin.cpp.mesh.MeshQuality"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MeshQuality</span></code></a></td>
+<td>DOLFIN MeshQuality class</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#dolfin.cpp.mesh.MeshTopology" title="dolfin.cpp.mesh.MeshTopology"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MeshTopology</span></code></a></td>
+<td>DOLFIN MeshTopology object</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">MeshTransformation</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#dolfin.cpp.mesh.MeshValueCollection_bool" title="dolfin.cpp.mesh.MeshValueCollection_bool"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MeshValueCollection_bool</span></code></a></td>
+<td>DOLFIN MeshValueCollection object</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#dolfin.cpp.mesh.MeshValueCollection_double" title="dolfin.cpp.mesh.MeshValueCollection_double"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MeshValueCollection_double</span></code></a></td>
+<td>DOLFIN MeshValueCollection object</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#dolfin.cpp.mesh.MeshValueCollection_int" title="dolfin.cpp.mesh.MeshValueCollection_int"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MeshValueCollection_int</span></code></a></td>
+<td>DOLFIN MeshValueCollection object</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#dolfin.cpp.mesh.MeshValueCollection_sizet" title="dolfin.cpp.mesh.MeshValueCollection_sizet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MeshValueCollection_sizet</span></code></a></td>
+<td>DOLFIN MeshValueCollection object</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#dolfin.cpp.mesh.MultiMesh" title="dolfin.cpp.mesh.MultiMesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MultiMesh</span></code></a></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">PeriodicBoundaryComputation</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#dolfin.cpp.mesh.SubDomain" title="dolfin.cpp.mesh.SubDomain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SubDomain</span></code></a></td>
+<td>DOLFIN SubDomain object</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#dolfin.cpp.mesh.SubMesh" title="dolfin.cpp.mesh.SubMesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SubMesh</span></code></a></td>
+<td>DOLFIN SubMesh</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">SubsetIterator</span></code></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#dolfin.cpp.mesh.Vertex" title="dolfin.cpp.mesh.Vertex"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vertex</span></code></a></td>
+<td>DOLFIN Vertex object</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#dolfin.cpp.mesh.VertexIterator" title="dolfin.cpp.mesh.VertexIterator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VertexIterator</span></code></a></td>
+<td>DOLFIN VertexIterator object</td>
+</tr>
+</tbody>
+</table>
+<dl class="class">
+<dt id="dolfin.cpp.mesh.BoundaryMesh">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.mesh.</code><code class="descname">BoundaryMesh</code><a class="headerlink" href="#dolfin.cpp.mesh.BoundaryMesh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#dolfin.cpp.mesh.Mesh" title="dolfin.cpp.mesh.Mesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.cpp.mesh.Mesh</span></code></a></p>
+<p>DOLFIN BoundaryMesh object</p>
+<dl class="method">
+<dt id="dolfin.cpp.mesh.BoundaryMesh.entity_map">
+<code class="descname">entity_map</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.mesh.BoundaryMesh.entity_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>entity_map(self: dolfin.cpp.mesh.BoundaryMesh, arg0: int) -&gt; dolfin::MeshFunction&lt;unsigned long&gt;</li>
+<li>entity_map(self: dolfin.cpp.mesh.BoundaryMesh, arg0: int) -&gt; dolfin::MeshFunction&lt;unsigned long&gt;</li>
+</ol>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.mesh.Cell">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.mesh.</code><code class="descname">Cell</code><a class="headerlink" href="#dolfin.cpp.mesh.Cell" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#dolfin.cpp.mesh.MeshEntity" title="dolfin.cpp.mesh.MeshEntity"><code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.cpp.mesh.MeshEntity</span></code></a></p>
+<p>DOLFIN Cell object</p>
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Cell.cell_normal">
+<code class="descname">cell_normal</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Cell</em><span class="sig-paren">)</span> &#x2192; dolfin::Point<a class="headerlink" href="#dolfin.cpp.mesh.Cell.cell_normal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Cell.circumradius">
+<code class="descname">circumradius</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Cell</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#dolfin.cpp.mesh.Cell.circumradius" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Cell.collides">
+<code class="descname">collides</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.mesh.Cell.collides" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>collides(self: dolfin.cpp.mesh.Cell, arg0: dolfin::Point) -&gt; bool</li>
+<li>collides(self: dolfin.cpp.mesh.Cell, arg0: dolfin.cpp.mesh.MeshEntity) -&gt; bool</li>
+</ol>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Cell.contains">
+<code class="descname">contains</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Cell</em>, <em>arg0: dolfin::Point</em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#dolfin.cpp.mesh.Cell.contains" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Cell.distance">
+<code class="descname">distance</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Cell</em>, <em>arg0: dolfin::Point</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#dolfin.cpp.mesh.Cell.distance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Cell.facet_area">
+<code class="descname">facet_area</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Cell</em>, <em>arg0: int</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#dolfin.cpp.mesh.Cell.facet_area" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Cell.get_vertex_coordinates">
+<code class="descname">get_vertex_coordinates</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Cell</em><span class="sig-paren">)</span> &#x2192; List[float]<a class="headerlink" href="#dolfin.cpp.mesh.Cell.get_vertex_coordinates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get cell vertex coordinates</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Cell.h">
+<code class="descname">h</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Cell</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#dolfin.cpp.mesh.Cell.h" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Cell.inradius">
+<code class="descname">inradius</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Cell</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#dolfin.cpp.mesh.Cell.inradius" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Cell.normal">
+<code class="descname">normal</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Cell</em>, <em>arg0: int</em><span class="sig-paren">)</span> &#x2192; dolfin::Point<a class="headerlink" href="#dolfin.cpp.mesh.Cell.normal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Cell.orientation">
+<code class="descname">orientation</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.mesh.Cell.orientation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>orientation(self: dolfin.cpp.mesh.Cell) -&gt; int</li>
+<li>orientation(self: dolfin.cpp.mesh.Cell, arg0: dolfin::Point) -&gt; int</li>
+</ol>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Cell.radius_ratio">
+<code class="descname">radius_ratio</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Cell</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#dolfin.cpp.mesh.Cell.radius_ratio" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Cell.volume">
+<code class="descname">volume</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Cell</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#dolfin.cpp.mesh.Cell.volume" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.mesh.CellIterator">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.mesh.</code><code class="descname">CellIterator</code><a class="headerlink" href="#dolfin.cpp.mesh.CellIterator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pybind11_builtins.pybind11_object</span></code></p>
+<p>DOLFIN CellIterator object</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.mesh.DomainBoundary">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.mesh.</code><code class="descname">DomainBoundary</code><a class="headerlink" href="#dolfin.cpp.mesh.DomainBoundary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#dolfin.cpp.mesh.SubDomain" title="dolfin.cpp.mesh.SubDomain"><code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.cpp.mesh.SubDomain</span></code></a></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.mesh.Edge">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.mesh.</code><code class="descname">Edge</code><a class="headerlink" href="#dolfin.cpp.mesh.Edge" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#dolfin.cpp.mesh.MeshEntity" title="dolfin.cpp.mesh.MeshEntity"><code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.cpp.mesh.MeshEntity</span></code></a></p>
+<p>DOLFIN Edge object</p>
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Edge.dot">
+<code class="descname">dot</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Edge</em>, <em>arg0: dolfin.cpp.mesh.Edge</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#dolfin.cpp.mesh.Edge.dot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Edge.length">
+<code class="descname">length</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Edge</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#dolfin.cpp.mesh.Edge.length" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.mesh.EdgeIterator">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.mesh.</code><code class="descname">EdgeIterator</code><a class="headerlink" href="#dolfin.cpp.mesh.EdgeIterator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pybind11_builtins.pybind11_object</span></code></p>
+<p>DOLFIN EdgeIterator object</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.mesh.Face">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.mesh.</code><code class="descname">Face</code><a class="headerlink" href="#dolfin.cpp.mesh.Face" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#dolfin.cpp.mesh.MeshEntity" title="dolfin.cpp.mesh.MeshEntity"><code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.cpp.mesh.MeshEntity</span></code></a></p>
+<p>DOLFIN Face object</p>
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Face.area">
+<code class="descname">area</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Face</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#dolfin.cpp.mesh.Face.area" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Face.normal">
+<code class="descname">normal</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.mesh.Face.normal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>normal(self: dolfin.cpp.mesh.Face) -&gt; dolfin::Point</li>
+<li>normal(self: dolfin.cpp.mesh.Face, arg0: int) -&gt; float</li>
+</ol>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.mesh.FaceIterator">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.mesh.</code><code class="descname">FaceIterator</code><a class="headerlink" href="#dolfin.cpp.mesh.FaceIterator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pybind11_builtins.pybind11_object</span></code></p>
+<p>DOLFIN FaceIterator object</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.mesh.Facet">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.mesh.</code><code class="descname">Facet</code><a class="headerlink" href="#dolfin.cpp.mesh.Facet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#dolfin.cpp.mesh.MeshEntity" title="dolfin.cpp.mesh.MeshEntity"><code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.cpp.mesh.MeshEntity</span></code></a></p>
+<p>DOLFIN Facet object</p>
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Facet.exterior">
+<code class="descname">exterior</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Facet</em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#dolfin.cpp.mesh.Facet.exterior" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Facet.normal">
+<code class="descname">normal</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.mesh.Facet.normal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>normal(self: dolfin.cpp.mesh.Facet) -&gt; dolfin::Point</li>
+<li>normal(self: dolfin.cpp.mesh.Facet, arg0: int) -&gt; float</li>
+</ol>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.mesh.FacetIterator">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.mesh.</code><code class="descname">FacetIterator</code><a class="headerlink" href="#dolfin.cpp.mesh.FacetIterator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pybind11_builtins.pybind11_object</span></code></p>
+<p>DOLFIN FacetIterator object</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.mesh.Mesh">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.mesh.</code><code class="descname">Mesh</code><a class="headerlink" href="#dolfin.cpp.mesh.Mesh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dolfin.cpp.common.html#dolfin.cpp.common.Variable" title="dolfin.cpp.common.Variable"><code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.cpp.common.Variable</span></code></a></p>
+<p>DOLFIN Mesh object</p>
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Mesh.bounding_box_tree">
+<code class="descname">bounding_box_tree</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Mesh</em><span class="sig-paren">)</span> &#x2192; dolfin::BoundingBoxTree<a class="headerlink" href="#dolfin.cpp.mesh.Mesh.bounding_box_tree" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Mesh.cell_name">
+<code class="descname">cell_name</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Mesh</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#dolfin.cpp.mesh.Mesh.cell_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Mesh.cell_orientations">
+<code class="descname">cell_orientations</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Mesh</em><span class="sig-paren">)</span> &#x2192; List[int]<a class="headerlink" href="#dolfin.cpp.mesh.Mesh.cell_orientations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Mesh.cells">
+<code class="descname">cells</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Mesh</em><span class="sig-paren">)</span> &#x2192; array<a class="headerlink" href="#dolfin.cpp.mesh.Mesh.cells" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Mesh.color">
+<code class="descname">color</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.mesh.Mesh.color" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>color(self: dolfin.cpp.mesh.Mesh, arg0: str) -&gt; List[int]</li>
+<li>color(self: dolfin.cpp.mesh.Mesh, arg0: List[int]) -&gt; List[int]</li>
+</ol>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Mesh.coordinates">
+<code class="descname">coordinates</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Mesh</em><span class="sig-paren">)</span> &#x2192; numpy.ndarray[float64[m, n], flags.writeable, flags.c_contiguous]<a class="headerlink" href="#dolfin.cpp.mesh.Mesh.coordinates" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Mesh.data">
+<code class="descname">data</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Mesh</em><span class="sig-paren">)</span> &#x2192; dolfin::MeshData<a class="headerlink" href="#dolfin.cpp.mesh.Mesh.data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Data associated with a mesh</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Mesh.domains">
+<code class="descname">domains</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Mesh</em><span class="sig-paren">)</span> &#x2192; dolfin::MeshDomains<a class="headerlink" href="#dolfin.cpp.mesh.Mesh.domains" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Mesh.geometric_dimension">
+<code class="descname">geometric_dimension</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.mesh.Mesh.geometric_dimension" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns geometric dimension for ufl interface</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Mesh.geometry">
+<code class="descname">geometry</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Mesh</em><span class="sig-paren">)</span> &#x2192; dolfin.cpp.mesh.MeshGeometry<a class="headerlink" href="#dolfin.cpp.mesh.Mesh.geometry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mesh geometry</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Mesh.hash">
+<code class="descname">hash</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Mesh</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.Mesh.hash" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Mesh.hmax">
+<code class="descname">hmax</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Mesh</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#dolfin.cpp.mesh.Mesh.hmax" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Mesh.hmin">
+<code class="descname">hmin</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Mesh</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#dolfin.cpp.mesh.Mesh.hmin" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Mesh.id">
+<code class="descname">id</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Mesh</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.Mesh.id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Mesh.init">
+<code class="descname">init</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.mesh.Mesh.init" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>init(self: dolfin.cpp.mesh.Mesh) -&gt; None</li>
+<li>init(self: dolfin.cpp.mesh.Mesh, arg0: int) -&gt; int</li>
+<li>init(self: dolfin.cpp.mesh.Mesh, arg0: int, arg1: int) -&gt; None</li>
+</ol>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Mesh.init_cell_orientations">
+<code class="descname">init_cell_orientations</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.mesh.Mesh.init_cell_orientations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>init_cell_orientations(self: dolfin.cpp.mesh.Mesh, arg0: dolfin.cpp.function.Expression) -&gt; None</li>
+<li>init_cell_orientations(self: dolfin.cpp.mesh.Mesh, arg0: object) -&gt; None</li>
+</ol>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Mesh.init_global">
+<code class="descname">init_global</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Mesh</em>, <em>arg0: int</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.mesh.Mesh.init_global" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Mesh.mpi_comm">
+<code class="descname">mpi_comm</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Mesh</em><span class="sig-paren">)</span> &#x2192; MPICommWrapper<a class="headerlink" href="#dolfin.cpp.mesh.Mesh.mpi_comm" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Mesh.num_cells">
+<code class="descname">num_cells</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Mesh</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.Mesh.num_cells" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of cells</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Mesh.num_edges">
+<code class="descname">num_edges</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Mesh</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.Mesh.num_edges" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of edges</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Mesh.num_entities">
+<code class="descname">num_entities</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Mesh</em>, <em>arg0: int</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.Mesh.num_entities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of mesh entities</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Mesh.num_entities_global">
+<code class="descname">num_entities_global</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Mesh</em>, <em>arg0: int</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.Mesh.num_entities_global" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Mesh.num_faces">
+<code class="descname">num_faces</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Mesh</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.Mesh.num_faces" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of faces</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Mesh.num_facets">
+<code class="descname">num_facets</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Mesh</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.Mesh.num_facets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of facets</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Mesh.num_vertices">
+<code class="descname">num_vertices</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Mesh</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.Mesh.num_vertices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of vertices</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Mesh.order">
+<code class="descname">order</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Mesh</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.mesh.Mesh.order" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Mesh.ordered">
+<code class="descname">ordered</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Mesh</em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#dolfin.cpp.mesh.Mesh.ordered" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Mesh.rmax">
+<code class="descname">rmax</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Mesh</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#dolfin.cpp.mesh.Mesh.rmax" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Mesh.rmin">
+<code class="descname">rmin</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Mesh</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#dolfin.cpp.mesh.Mesh.rmin" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Mesh.rotate">
+<code class="descname">rotate</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.mesh.Mesh.rotate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>rotate(self: dolfin.cpp.mesh.Mesh, arg0: float, arg1: int, arg2: dolfin::Point) -&gt; None</li>
+<li>rotate(self: dolfin.cpp.mesh.Mesh, angle: float, axis: int=2) -&gt; None</li>
+</ol>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Mesh.scale">
+<code class="descname">scale</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Mesh</em>, <em>arg0: float</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.mesh.Mesh.scale" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Mesh.smooth">
+<code class="descname">smooth</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Mesh</em>, <em>num_iterations: int=1</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.mesh.Mesh.smooth" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Mesh.smooth_boundary">
+<code class="descname">smooth_boundary</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Mesh</em>, <em>arg0: int</em>, <em>arg1: bool</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.mesh.Mesh.smooth_boundary" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Mesh.snap_boundary">
+<code class="descname">snap_boundary</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Mesh</em>, <em>subdomain: dolfin::SubDomain</em>, <em>harmonic_smoothing: bool=True</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.mesh.Mesh.snap_boundary" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Mesh.topology">
+<code class="descname">topology</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Mesh</em><span class="sig-paren">)</span> &#x2192; dolfin.cpp.mesh.MeshTopology<a class="headerlink" href="#dolfin.cpp.mesh.Mesh.topology" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mesh topology</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Mesh.translate">
+<code class="descname">translate</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Mesh</em>, <em>arg0: dolfin::Point</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.mesh.Mesh.translate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Mesh.type">
+<code class="descname">type</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Mesh</em><span class="sig-paren">)</span> &#x2192; dolfin.cpp.mesh.CellType<a class="headerlink" href="#dolfin.cpp.mesh.Mesh.type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Mesh.ufl_coordinate_element">
+<code class="descname">ufl_coordinate_element</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.mesh.Mesh.ufl_coordinate_element" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the finite element of the coordinate vector field of this
+domain.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Mesh.ufl_domain">
+<code class="descname">ufl_domain</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.mesh.Mesh.ufl_domain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the ufl domain corresponding to the mesh.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Mesh.ufl_id">
+<code class="descname">ufl_id</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Mesh</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.Mesh.ufl_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.mesh.MeshConnectivity">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.mesh.</code><code class="descname">MeshConnectivity</code><a class="headerlink" href="#dolfin.cpp.mesh.MeshConnectivity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pybind11_builtins.pybind11_object</span></code></p>
+<p>DOLFIN MeshConnectivity object</p>
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshConnectivity.size">
+<code class="descname">size</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.mesh.MeshConnectivity.size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>size(self: dolfin.cpp.mesh.MeshConnectivity) -&gt; int</li>
+<li>size(self: dolfin.cpp.mesh.MeshConnectivity, arg0: int) -&gt; int</li>
+</ol>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.mesh.MeshData">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.mesh.</code><code class="descname">MeshData</code><a class="headerlink" href="#dolfin.cpp.mesh.MeshData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dolfin.cpp.common.html#dolfin.cpp.common.Variable" title="dolfin.cpp.common.Variable"><code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.cpp.common.Variable</span></code></a></p>
+<p>Mesh data object</p>
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshData.array">
+<code class="descname">array</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshData</em>, <em>arg0: str</em>, <em>arg1: int</em><span class="sig-paren">)</span> &#x2192; numpy.ndarray[uint64]<a class="headerlink" href="#dolfin.cpp.mesh.MeshData.array" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshData.create_array">
+<code class="descname">create_array</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshData</em>, <em>arg0: str</em>, <em>arg1: int</em><span class="sig-paren">)</span> &#x2192; List[int]<a class="headerlink" href="#dolfin.cpp.mesh.MeshData.create_array" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.mesh.MeshDomains">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.mesh.</code><code class="descname">MeshDomains</code><a class="headerlink" href="#dolfin.cpp.mesh.MeshDomains" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pybind11_builtins.pybind11_object</span></code></p>
+<p>Mesh domains object</p>
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshDomains.get_marker">
+<code class="descname">get_marker</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshDomains</em>, <em>arg0: int</em>, <em>arg1: int</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.MeshDomains.get_marker" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshDomains.init">
+<code class="descname">init</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshDomains</em>, <em>arg0: int</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.mesh.MeshDomains.init" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshDomains.markers">
+<code class="descname">markers</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshDomains</em>, <em>arg0: int</em><span class="sig-paren">)</span> &#x2192; Dict[int, int]<a class="headerlink" href="#dolfin.cpp.mesh.MeshDomains.markers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshDomains.set_marker">
+<code class="descname">set_marker</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshDomains, arg0: Tuple[int, int], arg1: int</em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#dolfin.cpp.mesh.MeshDomains.set_marker" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.mesh.MeshEditor">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.mesh.</code><code class="descname">MeshEditor</code><a class="headerlink" href="#dolfin.cpp.mesh.MeshEditor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pybind11_builtins.pybind11_object</span></code></p>
+<p>DOLFIN MeshEditor object</p>
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshEditor.add_cell">
+<code class="descname">add_cell</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshEditor, arg0: int, arg1: List[int]</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.mesh.MeshEditor.add_cell" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshEditor.add_vertex">
+<code class="descname">add_vertex</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.mesh.MeshEditor.add_vertex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>add_vertex(self: dolfin.cpp.mesh.MeshEditor, arg0: int, arg1: dolfin::Point) -&gt; None</li>
+<li>add_vertex(self: dolfin.cpp.mesh.MeshEditor, arg0: int, arg1: List[float]) -&gt; None</li>
+</ol>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshEditor.add_vertex_global">
+<code class="descname">add_vertex_global</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.mesh.MeshEditor.add_vertex_global" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>add_vertex_global(self: dolfin.cpp.mesh.MeshEditor, arg0: int, arg1: int, arg2: dolfin::Point) -&gt; None</li>
+<li>add_vertex_global(self: dolfin.cpp.mesh.MeshEditor, arg0: int, arg1: int, arg2: List[float]) -&gt; None</li>
+</ol>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshEditor.close">
+<code class="descname">close</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshEditor</em>, <em>order: bool=True</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.mesh.MeshEditor.close" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshEditor.init_cells">
+<code class="descname">init_cells</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshEditor</em>, <em>arg0: int</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.mesh.MeshEditor.init_cells" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshEditor.init_cells_global">
+<code class="descname">init_cells_global</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshEditor</em>, <em>arg0: int</em>, <em>arg1: int</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.mesh.MeshEditor.init_cells_global" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshEditor.init_vertices">
+<code class="descname">init_vertices</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshEditor</em>, <em>arg0: int</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.mesh.MeshEditor.init_vertices" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshEditor.init_vertices_global">
+<code class="descname">init_vertices_global</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshEditor</em>, <em>arg0: int</em>, <em>arg1: int</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.mesh.MeshEditor.init_vertices_global" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshEditor.open">
+<code class="descname">open</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshEditor</em>, <em>mesh: dolfin.cpp.mesh.Mesh</em>, <em>type: str</em>, <em>tdim: int</em>, <em>gdim: int</em>, <em>degree: int=1</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.mesh.MeshEditor.open" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.mesh.MeshEntity">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.mesh.</code><code class="descname">MeshEntity</code><a class="headerlink" href="#dolfin.cpp.mesh.MeshEntity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pybind11_builtins.pybind11_object</span></code></p>
+<p>DOLFIN MeshEntity object</p>
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshEntity.dim">
+<code class="descname">dim</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshEntity</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.MeshEntity.dim" title="Permalink to this definition">¶</a></dt>
+<dd><p>Topological dimension</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshEntity.entities">
+<code class="descname">entities</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshEntity</em>, <em>arg0: int</em><span class="sig-paren">)</span> &#x2192; numpy.ndarray[uint32[m, 1]]<a class="headerlink" href="#dolfin.cpp.mesh.MeshEntity.entities" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshEntity.global_index">
+<code class="descname">global_index</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshEntity</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.MeshEntity.global_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Global index</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshEntity.index">
+<code class="descname">index</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshEntity</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.MeshEntity.index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Index</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshEntity.is_ghost">
+<code class="descname">is_ghost</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshEntity</em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#dolfin.cpp.mesh.MeshEntity.is_ghost" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshEntity.is_shared">
+<code class="descname">is_shared</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshEntity</em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#dolfin.cpp.mesh.MeshEntity.is_shared" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshEntity.mesh">
+<code class="descname">mesh</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshEntity</em><span class="sig-paren">)</span> &#x2192; dolfin.cpp.mesh.Mesh<a class="headerlink" href="#dolfin.cpp.mesh.MeshEntity.mesh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Associated mesh</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshEntity.midpoint">
+<code class="descname">midpoint</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshEntity</em><span class="sig-paren">)</span> &#x2192; dolfin::Point<a class="headerlink" href="#dolfin.cpp.mesh.MeshEntity.midpoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Midpoint of Entity</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshEntity.num_entities">
+<code class="descname">num_entities</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshEntity</em>, <em>arg0: int</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.MeshEntity.num_entities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of incident entities of given dimension</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshEntity.num_global_entities">
+<code class="descname">num_global_entities</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshEntity</em>, <em>arg0: int</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.MeshEntity.num_global_entities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Global number of incident entities of given dimension</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshEntity.sharing_processes">
+<code class="descname">sharing_processes</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshEntity</em><span class="sig-paren">)</span> &#x2192; Set[int]<a class="headerlink" href="#dolfin.cpp.mesh.MeshEntity.sharing_processes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.mesh.MeshEntityIterator">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.mesh.</code><code class="descname">MeshEntityIterator</code><a class="headerlink" href="#dolfin.cpp.mesh.MeshEntityIterator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pybind11_builtins.pybind11_object</span></code></p>
+<p>DOLFIN MeshEntityIterator object</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.mesh.MeshFunctionBool">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.mesh.</code><code class="descname">MeshFunctionBool</code><a class="headerlink" href="#dolfin.cpp.mesh.MeshFunctionBool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dolfin.cpp.common.html#dolfin.cpp.common.Variable" title="dolfin.cpp.common.Variable"><code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.cpp.common.Variable</span></code></a></p>
+<p>DOLFIN MeshFunction object</p>
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshFunctionBool.array">
+<code class="descname">array</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshFunctionBool</em><span class="sig-paren">)</span> &#x2192; numpy.ndarray[bool[m, 1], flags.writeable]<a class="headerlink" href="#dolfin.cpp.mesh.MeshFunctionBool.array" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshFunctionBool.dim">
+<code class="descname">dim</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshFunctionBool</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.MeshFunctionBool.dim" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshFunctionBool.id">
+<code class="descname">id</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshFunctionBool</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.MeshFunctionBool.id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshFunctionBool.mesh">
+<code class="descname">mesh</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshFunctionBool</em><span class="sig-paren">)</span> &#x2192; dolfin.cpp.mesh.Mesh<a class="headerlink" href="#dolfin.cpp.mesh.MeshFunctionBool.mesh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshFunctionBool.set_all">
+<code class="descname">set_all</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshFunctionBool</em>, <em>arg0: bool</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.mesh.MeshFunctionBool.set_all" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshFunctionBool.set_value">
+<code class="descname">set_value</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.mesh.MeshFunctionBool.set_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>set_value(self: dolfin.cpp.mesh.MeshFunctionBool, arg0: int, arg1: bool) -&gt; None</li>
+<li>set_value(self: dolfin.cpp.mesh.MeshFunctionBool, arg0: int, arg1: bool, arg2: dolfin.cpp.mesh.Mesh) -&gt; None</li>
+</ol>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshFunctionBool.set_values">
+<code class="descname">set_values</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshFunctionBool, arg0: List[bool]</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.mesh.MeshFunctionBool.set_values" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshFunctionBool.size">
+<code class="descname">size</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshFunctionBool</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.MeshFunctionBool.size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshFunctionBool.ufl_id">
+<code class="descname">ufl_id</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshFunctionBool</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.MeshFunctionBool.ufl_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshFunctionBool.where_equal">
+<code class="descname">where_equal</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshFunctionBool</em>, <em>arg0: bool</em><span class="sig-paren">)</span> &#x2192; List[int]<a class="headerlink" href="#dolfin.cpp.mesh.MeshFunctionBool.where_equal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.mesh.MeshFunctionDouble">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.mesh.</code><code class="descname">MeshFunctionDouble</code><a class="headerlink" href="#dolfin.cpp.mesh.MeshFunctionDouble" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dolfin.cpp.common.html#dolfin.cpp.common.Variable" title="dolfin.cpp.common.Variable"><code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.cpp.common.Variable</span></code></a></p>
+<p>DOLFIN MeshFunction object</p>
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshFunctionDouble.array">
+<code class="descname">array</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshFunctionDouble</em><span class="sig-paren">)</span> &#x2192; numpy.ndarray[float64[m, 1], flags.writeable]<a class="headerlink" href="#dolfin.cpp.mesh.MeshFunctionDouble.array" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshFunctionDouble.dim">
+<code class="descname">dim</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshFunctionDouble</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.MeshFunctionDouble.dim" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshFunctionDouble.id">
+<code class="descname">id</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshFunctionDouble</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.MeshFunctionDouble.id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshFunctionDouble.mesh">
+<code class="descname">mesh</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshFunctionDouble</em><span class="sig-paren">)</span> &#x2192; dolfin.cpp.mesh.Mesh<a class="headerlink" href="#dolfin.cpp.mesh.MeshFunctionDouble.mesh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshFunctionDouble.set_all">
+<code class="descname">set_all</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshFunctionDouble</em>, <em>arg0: float</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.mesh.MeshFunctionDouble.set_all" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshFunctionDouble.set_value">
+<code class="descname">set_value</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.mesh.MeshFunctionDouble.set_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>set_value(self: dolfin.cpp.mesh.MeshFunctionDouble, arg0: int, arg1: float) -&gt; None</li>
+<li>set_value(self: dolfin.cpp.mesh.MeshFunctionDouble, arg0: int, arg1: float, arg2: dolfin.cpp.mesh.Mesh) -&gt; None</li>
+</ol>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshFunctionDouble.set_values">
+<code class="descname">set_values</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshFunctionDouble, arg0: List[float]</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.mesh.MeshFunctionDouble.set_values" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshFunctionDouble.size">
+<code class="descname">size</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshFunctionDouble</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.MeshFunctionDouble.size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshFunctionDouble.ufl_id">
+<code class="descname">ufl_id</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshFunctionDouble</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.MeshFunctionDouble.ufl_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshFunctionDouble.where_equal">
+<code class="descname">where_equal</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshFunctionDouble</em>, <em>arg0: float</em><span class="sig-paren">)</span> &#x2192; List[int]<a class="headerlink" href="#dolfin.cpp.mesh.MeshFunctionDouble.where_equal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.mesh.MeshFunctionInt">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.mesh.</code><code class="descname">MeshFunctionInt</code><a class="headerlink" href="#dolfin.cpp.mesh.MeshFunctionInt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dolfin.cpp.common.html#dolfin.cpp.common.Variable" title="dolfin.cpp.common.Variable"><code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.cpp.common.Variable</span></code></a></p>
+<p>DOLFIN MeshFunction object</p>
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshFunctionInt.array">
+<code class="descname">array</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshFunctionInt</em><span class="sig-paren">)</span> &#x2192; numpy.ndarray[int32[m, 1], flags.writeable]<a class="headerlink" href="#dolfin.cpp.mesh.MeshFunctionInt.array" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshFunctionInt.dim">
+<code class="descname">dim</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshFunctionInt</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.MeshFunctionInt.dim" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshFunctionInt.id">
+<code class="descname">id</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshFunctionInt</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.MeshFunctionInt.id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshFunctionInt.mesh">
+<code class="descname">mesh</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshFunctionInt</em><span class="sig-paren">)</span> &#x2192; dolfin.cpp.mesh.Mesh<a class="headerlink" href="#dolfin.cpp.mesh.MeshFunctionInt.mesh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshFunctionInt.set_all">
+<code class="descname">set_all</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshFunctionInt</em>, <em>arg0: int</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.mesh.MeshFunctionInt.set_all" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshFunctionInt.set_value">
+<code class="descname">set_value</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.mesh.MeshFunctionInt.set_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>set_value(self: dolfin.cpp.mesh.MeshFunctionInt, arg0: int, arg1: int) -&gt; None</li>
+<li>set_value(self: dolfin.cpp.mesh.MeshFunctionInt, arg0: int, arg1: int, arg2: dolfin.cpp.mesh.Mesh) -&gt; None</li>
+</ol>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshFunctionInt.set_values">
+<code class="descname">set_values</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshFunctionInt, arg0: List[int]</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.mesh.MeshFunctionInt.set_values" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshFunctionInt.size">
+<code class="descname">size</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshFunctionInt</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.MeshFunctionInt.size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshFunctionInt.ufl_id">
+<code class="descname">ufl_id</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshFunctionInt</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.MeshFunctionInt.ufl_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshFunctionInt.where_equal">
+<code class="descname">where_equal</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshFunctionInt</em>, <em>arg0: int</em><span class="sig-paren">)</span> &#x2192; List[int]<a class="headerlink" href="#dolfin.cpp.mesh.MeshFunctionInt.where_equal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.mesh.MeshFunctionSizet">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.mesh.</code><code class="descname">MeshFunctionSizet</code><a class="headerlink" href="#dolfin.cpp.mesh.MeshFunctionSizet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dolfin.cpp.common.html#dolfin.cpp.common.Variable" title="dolfin.cpp.common.Variable"><code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.cpp.common.Variable</span></code></a></p>
+<p>DOLFIN MeshFunction object</p>
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshFunctionSizet.array">
+<code class="descname">array</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshFunctionSizet</em><span class="sig-paren">)</span> &#x2192; numpy.ndarray[uint64[m, 1], flags.writeable]<a class="headerlink" href="#dolfin.cpp.mesh.MeshFunctionSizet.array" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshFunctionSizet.dim">
+<code class="descname">dim</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshFunctionSizet</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.MeshFunctionSizet.dim" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshFunctionSizet.id">
+<code class="descname">id</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshFunctionSizet</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.MeshFunctionSizet.id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshFunctionSizet.mesh">
+<code class="descname">mesh</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshFunctionSizet</em><span class="sig-paren">)</span> &#x2192; dolfin.cpp.mesh.Mesh<a class="headerlink" href="#dolfin.cpp.mesh.MeshFunctionSizet.mesh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshFunctionSizet.set_all">
+<code class="descname">set_all</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshFunctionSizet</em>, <em>arg0: int</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.mesh.MeshFunctionSizet.set_all" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshFunctionSizet.set_value">
+<code class="descname">set_value</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.mesh.MeshFunctionSizet.set_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>set_value(self: dolfin.cpp.mesh.MeshFunctionSizet, arg0: int, arg1: int) -&gt; None</li>
+<li>set_value(self: dolfin.cpp.mesh.MeshFunctionSizet, arg0: int, arg1: int, arg2: dolfin.cpp.mesh.Mesh) -&gt; None</li>
+</ol>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshFunctionSizet.set_values">
+<code class="descname">set_values</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshFunctionSizet, arg0: List[int]</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.mesh.MeshFunctionSizet.set_values" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshFunctionSizet.size">
+<code class="descname">size</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshFunctionSizet</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.MeshFunctionSizet.size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshFunctionSizet.ufl_id">
+<code class="descname">ufl_id</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshFunctionSizet</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.MeshFunctionSizet.ufl_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshFunctionSizet.where_equal">
+<code class="descname">where_equal</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshFunctionSizet</em>, <em>arg0: int</em><span class="sig-paren">)</span> &#x2192; List[int]<a class="headerlink" href="#dolfin.cpp.mesh.MeshFunctionSizet.where_equal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.mesh.MeshGeometry">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.mesh.</code><code class="descname">MeshGeometry</code><a class="headerlink" href="#dolfin.cpp.mesh.MeshGeometry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pybind11_builtins.pybind11_object</span></code></p>
+<p>DOLFIN MeshGeometry object</p>
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshGeometry.degree">
+<code class="descname">degree</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshGeometry</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.MeshGeometry.degree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Degree</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshGeometry.dim">
+<code class="descname">dim</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshGeometry</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.MeshGeometry.dim" title="Permalink to this definition">¶</a></dt>
+<dd><p>Geometrical dimension</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshGeometry.get_entity_index">
+<code class="descname">get_entity_index</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshGeometry</em>, <em>arg0: int</em>, <em>arg1: int</em>, <em>arg2: int</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.MeshGeometry.get_entity_index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshGeometry.num_entity_coordinates">
+<code class="descname">num_entity_coordinates</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshGeometry</em>, <em>arg0: int</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.MeshGeometry.num_entity_coordinates" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.mesh.MeshQuality">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.mesh.</code><code class="descname">MeshQuality</code><a class="headerlink" href="#dolfin.cpp.mesh.MeshQuality" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pybind11_builtins.pybind11_object</span></code></p>
+<p>DOLFIN MeshQuality class</p>
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshQuality.aspect_ratio_gamma">
+<code class="descname">aspect_ratio_gamma</code><span class="sig-paren">(</span><em>arg0: dolfin.cpp.mesh.Mesh</em><span class="sig-paren">)</span> &#x2192; dolfin.cpp.mesh.MeshFunctionDouble<a class="headerlink" href="#dolfin.cpp.mesh.MeshQuality.aspect_ratio_gamma" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshQuality.dihedral_angles_matplotlib_histogram">
+<code class="descname">dihedral_angles_matplotlib_histogram</code><span class="sig-paren">(</span><em>arg0: dolfin.cpp.mesh.Mesh</em>, <em>arg1: int</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#dolfin.cpp.mesh.MeshQuality.dihedral_angles_matplotlib_histogram" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshQuality.dihedral_angles_min_max">
+<code class="descname">dihedral_angles_min_max</code><span class="sig-paren">(</span><em>arg0: dolfin.cpp.mesh.Mesh</em><span class="sig-paren">)</span> &#x2192; Tuple[float, float]<a class="headerlink" href="#dolfin.cpp.mesh.MeshQuality.dihedral_angles_min_max" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshQuality.radius_ratio_histogram_data">
+<code class="descname">radius_ratio_histogram_data</code><span class="sig-paren">(</span><em>arg0: dolfin.cpp.mesh.Mesh</em>, <em>arg1: int</em><span class="sig-paren">)</span> &#x2192; Tuple[List[float], List[float]]<a class="headerlink" href="#dolfin.cpp.mesh.MeshQuality.radius_ratio_histogram_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshQuality.radius_ratio_matplotlib_histogram">
+<code class="descname">radius_ratio_matplotlib_histogram</code><span class="sig-paren">(</span><em>mesh: dolfin.cpp.mesh.Mesh</em>, <em>num_bins: int=50</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#dolfin.cpp.mesh.MeshQuality.radius_ratio_matplotlib_histogram" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshQuality.radius_ratio_min_max">
+<code class="descname">radius_ratio_min_max</code><span class="sig-paren">(</span><em>arg0: dolfin.cpp.mesh.Mesh</em><span class="sig-paren">)</span> &#x2192; Tuple[float, float]<a class="headerlink" href="#dolfin.cpp.mesh.MeshQuality.radius_ratio_min_max" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshQuality.radius_ratios">
+<code class="descname">radius_ratios</code><span class="sig-paren">(</span><em>arg0: dolfin.cpp.mesh.Mesh</em><span class="sig-paren">)</span> &#x2192; dolfin.cpp.mesh.MeshFunctionDouble<a class="headerlink" href="#dolfin.cpp.mesh.MeshQuality.radius_ratios" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.mesh.MeshTopology">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.mesh.</code><code class="descname">MeshTopology</code><a class="headerlink" href="#dolfin.cpp.mesh.MeshTopology" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dolfin.cpp.common.html#dolfin.cpp.common.Variable" title="dolfin.cpp.common.Variable"><code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.cpp.common.Variable</span></code></a></p>
+<p>DOLFIN MeshTopology object</p>
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshTopology.cell_owner">
+<code class="descname">cell_owner</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshTopology</em><span class="sig-paren">)</span> &#x2192; List[int]<a class="headerlink" href="#dolfin.cpp.mesh.MeshTopology.cell_owner" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshTopology.dim">
+<code class="descname">dim</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshTopology</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.MeshTopology.dim" title="Permalink to this definition">¶</a></dt>
+<dd><p>Topological dimension</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshTopology.ghost_offset">
+<code class="descname">ghost_offset</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshTopology</em>, <em>arg0: int</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.MeshTopology.ghost_offset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshTopology.global_indices">
+<code class="descname">global_indices</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshTopology</em>, <em>arg0: int</em><span class="sig-paren">)</span> &#x2192; numpy.ndarray[int64]<a class="headerlink" href="#dolfin.cpp.mesh.MeshTopology.global_indices" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshTopology.hash">
+<code class="descname">hash</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshTopology</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.MeshTopology.hash" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshTopology.have_global_indices">
+<code class="descname">have_global_indices</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshTopology</em>, <em>arg0: int</em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#dolfin.cpp.mesh.MeshTopology.have_global_indices" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshTopology.have_shared_entities">
+<code class="descname">have_shared_entities</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshTopology</em>, <em>arg0: int</em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#dolfin.cpp.mesh.MeshTopology.have_shared_entities" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshTopology.init">
+<code class="descname">init</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.mesh.MeshTopology.init" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>init(self: dolfin.cpp.mesh.MeshTopology, arg0: int) -&gt; None</li>
+<li>init(self: dolfin.cpp.mesh.MeshTopology, arg0: int, arg1: int, arg2: int) -&gt; None</li>
+</ol>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshTopology.init_global_indices">
+<code class="descname">init_global_indices</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshTopology</em>, <em>arg0: int</em>, <em>arg1: int</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.mesh.MeshTopology.init_global_indices" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshTopology.set_global_index">
+<code class="descname">set_global_index</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshTopology</em>, <em>arg0: int</em>, <em>arg1: int</em>, <em>arg2: int</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.mesh.MeshTopology.set_global_index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshTopology.shared_entities">
+<code class="descname">shared_entities</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshTopology</em>, <em>arg0: int</em><span class="sig-paren">)</span> &#x2192; Dict[int, Set[int]]<a class="headerlink" href="#dolfin.cpp.mesh.MeshTopology.shared_entities" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshTopology.size">
+<code class="descname">size</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshTopology</em>, <em>arg0: int</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.MeshTopology.size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshTopology.str">
+<code class="descname">str</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshTopology</em>, <em>arg0: bool</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#dolfin.cpp.mesh.MeshTopology.str" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.mesh.MeshValueCollection_bool">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.mesh.</code><code class="descname">MeshValueCollection_bool</code><a class="headerlink" href="#dolfin.cpp.mesh.MeshValueCollection_bool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dolfin.cpp.common.html#dolfin.cpp.common.Variable" title="dolfin.cpp.common.Variable"><code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.cpp.common.Variable</span></code></a></p>
+<p>DOLFIN MeshValueCollection object</p>
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshValueCollection_bool.assign">
+<code class="descname">assign</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.mesh.MeshValueCollection_bool.assign" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>assign(self: dolfin.cpp.mesh.MeshValueCollection_bool, arg0: dolfin.cpp.mesh.MeshFunctionBool) -&gt; None</li>
+<li>assign(self: dolfin.cpp.mesh.MeshValueCollection_bool, arg0: dolfin.cpp.mesh.MeshValueCollection_bool) -&gt; None</li>
+</ol>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshValueCollection_bool.dim">
+<code class="descname">dim</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshValueCollection_bool</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.MeshValueCollection_bool.dim" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshValueCollection_bool.get_value">
+<code class="descname">get_value</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshValueCollection_bool</em>, <em>arg0: int</em>, <em>arg1: int</em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#dolfin.cpp.mesh.MeshValueCollection_bool.get_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshValueCollection_bool.set_value">
+<code class="descname">set_value</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.mesh.MeshValueCollection_bool.set_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>set_value(self: dolfin.cpp.mesh.MeshValueCollection_bool, arg0: int, arg1: bool) -&gt; bool</li>
+<li>set_value(self: dolfin.cpp.mesh.MeshValueCollection_bool, arg0: int, arg1: int, arg2: bool) -&gt; bool</li>
+</ol>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshValueCollection_bool.size">
+<code class="descname">size</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshValueCollection_bool</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.MeshValueCollection_bool.size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshValueCollection_bool.values">
+<code class="descname">values</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshValueCollection_bool</em><span class="sig-paren">)</span> &#x2192; Dict[Tuple[int, int], bool]<a class="headerlink" href="#dolfin.cpp.mesh.MeshValueCollection_bool.values" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.mesh.MeshValueCollection_double">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.mesh.</code><code class="descname">MeshValueCollection_double</code><a class="headerlink" href="#dolfin.cpp.mesh.MeshValueCollection_double" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dolfin.cpp.common.html#dolfin.cpp.common.Variable" title="dolfin.cpp.common.Variable"><code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.cpp.common.Variable</span></code></a></p>
+<p>DOLFIN MeshValueCollection object</p>
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshValueCollection_double.assign">
+<code class="descname">assign</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.mesh.MeshValueCollection_double.assign" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>assign(self: dolfin.cpp.mesh.MeshValueCollection_double, arg0: dolfin.cpp.mesh.MeshFunctionDouble) -&gt; None</li>
+<li>assign(self: dolfin.cpp.mesh.MeshValueCollection_double, arg0: dolfin.cpp.mesh.MeshValueCollection_double) -&gt; None</li>
+</ol>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshValueCollection_double.dim">
+<code class="descname">dim</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshValueCollection_double</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.MeshValueCollection_double.dim" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshValueCollection_double.get_value">
+<code class="descname">get_value</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshValueCollection_double</em>, <em>arg0: int</em>, <em>arg1: int</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#dolfin.cpp.mesh.MeshValueCollection_double.get_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshValueCollection_double.set_value">
+<code class="descname">set_value</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.mesh.MeshValueCollection_double.set_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>set_value(self: dolfin.cpp.mesh.MeshValueCollection_double, arg0: int, arg1: float) -&gt; bool</li>
+<li>set_value(self: dolfin.cpp.mesh.MeshValueCollection_double, arg0: int, arg1: int, arg2: float) -&gt; bool</li>
+</ol>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshValueCollection_double.size">
+<code class="descname">size</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshValueCollection_double</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.MeshValueCollection_double.size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshValueCollection_double.values">
+<code class="descname">values</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshValueCollection_double</em><span class="sig-paren">)</span> &#x2192; Dict[Tuple[int, int], float]<a class="headerlink" href="#dolfin.cpp.mesh.MeshValueCollection_double.values" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.mesh.MeshValueCollection_int">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.mesh.</code><code class="descname">MeshValueCollection_int</code><a class="headerlink" href="#dolfin.cpp.mesh.MeshValueCollection_int" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dolfin.cpp.common.html#dolfin.cpp.common.Variable" title="dolfin.cpp.common.Variable"><code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.cpp.common.Variable</span></code></a></p>
+<p>DOLFIN MeshValueCollection object</p>
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshValueCollection_int.assign">
+<code class="descname">assign</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.mesh.MeshValueCollection_int.assign" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>assign(self: dolfin.cpp.mesh.MeshValueCollection_int, arg0: dolfin.cpp.mesh.MeshFunctionInt) -&gt; None</li>
+<li>assign(self: dolfin.cpp.mesh.MeshValueCollection_int, arg0: dolfin.cpp.mesh.MeshValueCollection_int) -&gt; None</li>
+</ol>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshValueCollection_int.dim">
+<code class="descname">dim</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshValueCollection_int</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.MeshValueCollection_int.dim" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshValueCollection_int.get_value">
+<code class="descname">get_value</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshValueCollection_int</em>, <em>arg0: int</em>, <em>arg1: int</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.MeshValueCollection_int.get_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshValueCollection_int.set_value">
+<code class="descname">set_value</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.mesh.MeshValueCollection_int.set_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>set_value(self: dolfin.cpp.mesh.MeshValueCollection_int, arg0: int, arg1: int) -&gt; bool</li>
+<li>set_value(self: dolfin.cpp.mesh.MeshValueCollection_int, arg0: int, arg1: int, arg2: int) -&gt; bool</li>
+</ol>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshValueCollection_int.size">
+<code class="descname">size</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshValueCollection_int</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.MeshValueCollection_int.size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshValueCollection_int.values">
+<code class="descname">values</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshValueCollection_int</em><span class="sig-paren">)</span> &#x2192; Dict[Tuple[int, int], int]<a class="headerlink" href="#dolfin.cpp.mesh.MeshValueCollection_int.values" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.mesh.MeshValueCollection_sizet">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.mesh.</code><code class="descname">MeshValueCollection_sizet</code><a class="headerlink" href="#dolfin.cpp.mesh.MeshValueCollection_sizet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dolfin.cpp.common.html#dolfin.cpp.common.Variable" title="dolfin.cpp.common.Variable"><code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.cpp.common.Variable</span></code></a></p>
+<p>DOLFIN MeshValueCollection object</p>
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshValueCollection_sizet.assign">
+<code class="descname">assign</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.mesh.MeshValueCollection_sizet.assign" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>assign(self: dolfin.cpp.mesh.MeshValueCollection_sizet, arg0: dolfin.cpp.mesh.MeshFunctionSizet) -&gt; None</li>
+<li>assign(self: dolfin.cpp.mesh.MeshValueCollection_sizet, arg0: dolfin.cpp.mesh.MeshValueCollection_sizet) -&gt; None</li>
+</ol>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshValueCollection_sizet.dim">
+<code class="descname">dim</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshValueCollection_sizet</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.MeshValueCollection_sizet.dim" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshValueCollection_sizet.get_value">
+<code class="descname">get_value</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshValueCollection_sizet</em>, <em>arg0: int</em>, <em>arg1: int</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.MeshValueCollection_sizet.get_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshValueCollection_sizet.set_value">
+<code class="descname">set_value</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.mesh.MeshValueCollection_sizet.set_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>set_value(self: dolfin.cpp.mesh.MeshValueCollection_sizet, arg0: int, arg1: int) -&gt; bool</li>
+<li>set_value(self: dolfin.cpp.mesh.MeshValueCollection_sizet, arg0: int, arg1: int, arg2: int) -&gt; bool</li>
+</ol>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshValueCollection_sizet.size">
+<code class="descname">size</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshValueCollection_sizet</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.MeshValueCollection_sizet.size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MeshValueCollection_sizet.values">
+<code class="descname">values</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MeshValueCollection_sizet</em><span class="sig-paren">)</span> &#x2192; Dict[Tuple[int, int], int]<a class="headerlink" href="#dolfin.cpp.mesh.MeshValueCollection_sizet.values" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.mesh.MultiMesh">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.mesh.</code><code class="descname">MultiMesh</code><a class="headerlink" href="#dolfin.cpp.mesh.MultiMesh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dolfin.cpp.common.html#dolfin.cpp.common.Variable" title="dolfin.cpp.common.Variable"><code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.cpp.common.Variable</span></code></a></p>
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MultiMesh.add">
+<code class="descname">add</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MultiMesh</em>, <em>arg0: dolfin.cpp.mesh.Mesh</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.mesh.MultiMesh.add" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MultiMesh.auto_cover">
+<code class="descname">auto_cover</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MultiMesh</em>, <em>arg0: int</em>, <em>arg1: dolfin::Point</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.mesh.MultiMesh.auto_cover" title="Permalink to this definition">¶</a></dt>
+<dd><p>Marks all uncut and cut cells connected to the given point as covered.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MultiMesh.build">
+<code class="descname">build</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MultiMesh</em>, <em>quadrature_order: int=2</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.mesh.MultiMesh.build" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MultiMesh.compute_area">
+<code class="descname">compute_area</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MultiMesh</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#dolfin.cpp.mesh.MultiMesh.compute_area" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MultiMesh.compute_volume">
+<code class="descname">compute_volume</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MultiMesh</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#dolfin.cpp.mesh.MultiMesh.compute_volume" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MultiMesh.covered_cells">
+<code class="descname">covered_cells</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MultiMesh</em>, <em>arg0: int</em><span class="sig-paren">)</span> &#x2192; List[int]<a class="headerlink" href="#dolfin.cpp.mesh.MultiMesh.covered_cells" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MultiMesh.cut_cells">
+<code class="descname">cut_cells</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MultiMesh</em>, <em>arg0: int</em><span class="sig-paren">)</span> &#x2192; List[int]<a class="headerlink" href="#dolfin.cpp.mesh.MultiMesh.cut_cells" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MultiMesh.mark_covered">
+<code class="descname">mark_covered</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MultiMesh, arg0: int, arg1: List[int]</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.mesh.MultiMesh.mark_covered" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function that marks a set of cells, given by indicies in a list, as covered.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MultiMesh.num_parts">
+<code class="descname">num_parts</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MultiMesh</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dolfin.cpp.mesh.MultiMesh.num_parts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MultiMesh.part">
+<code class="descname">part</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MultiMesh</em>, <em>arg0: int</em><span class="sig-paren">)</span> &#x2192; dolfin.cpp.mesh.Mesh<a class="headerlink" href="#dolfin.cpp.mesh.MultiMesh.part" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MultiMesh.quadrature_rules_cut_cells">
+<code class="descname">quadrature_rules_cut_cells</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MultiMesh</em>, <em>arg0: int</em>, <em>arg1: int</em><span class="sig-paren">)</span> &#x2192; Tuple[List[float], List[float]]<a class="headerlink" href="#dolfin.cpp.mesh.MultiMesh.quadrature_rules_cut_cells" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MultiMesh.quadrature_rules_interface">
+<code class="descname">quadrature_rules_interface</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.mesh.MultiMesh.quadrature_rules_interface" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>quadrature_rules_interface(self: dolfin.cpp.mesh.MultiMesh, arg0: int) -&gt; Dict[int, List[Tuple[List[float], List[float]]]]</li>
+<li>quadrature_rules_interface(self: dolfin.cpp.mesh.MultiMesh, arg0: int, arg1: int) -&gt; List[Tuple[List[float], List[float]]]</li>
+</ol>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MultiMesh.ufl_cell">
+<code class="descname">ufl_cell</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.mesh.MultiMesh.ufl_cell" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the ufl cell of the mesh.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MultiMesh.ufl_coordinate_element">
+<code class="descname">ufl_coordinate_element</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.mesh.MultiMesh.ufl_coordinate_element" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the finite element of the coordinate vector field of this domain.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MultiMesh.ufl_domain">
+<code class="descname">ufl_domain</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.mesh.MultiMesh.ufl_domain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the ufl domain corresponding to the mesh.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MultiMesh.ufl_id">
+<code class="descname">ufl_id</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.mesh.MultiMesh.ufl_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an id that UFL can use to decide if two objects are the same.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.MultiMesh.uncut_cells">
+<code class="descname">uncut_cells</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.MultiMesh</em>, <em>arg0: int</em><span class="sig-paren">)</span> &#x2192; List[int]<a class="headerlink" href="#dolfin.cpp.mesh.MultiMesh.uncut_cells" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.mesh.SubDomain">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.mesh.</code><code class="descname">SubDomain</code><a class="headerlink" href="#dolfin.cpp.mesh.SubDomain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pybind11_builtins.pybind11_object</span></code></p>
+<p>DOLFIN SubDomain object</p>
+<dl class="method">
+<dt id="dolfin.cpp.mesh.SubDomain.get_property">
+<code class="descname">get_property</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.SubDomain</em>, <em>arg0: str</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#dolfin.cpp.mesh.SubDomain.get_property" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.SubDomain.inside">
+<code class="descname">inside</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.SubDomain, arg0: numpy.ndarray[float64[m, 1]], arg1: bool</em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#dolfin.cpp.mesh.SubDomain.inside" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.SubDomain.map">
+<code class="descname">map</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.SubDomain, arg0: numpy.ndarray[float64[m, 1]], arg1: numpy.ndarray[float64[m, 1], flags.writeable]</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.mesh.SubDomain.map" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.SubDomain.mark">
+<code class="descname">mark</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.mesh.SubDomain.mark" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>mark(self: dolfin.cpp.mesh.SubDomain, meshfunction: dolfin.cpp.mesh.MeshFunctionSizet, marker: int, check_midpoint: bool=True) -&gt; None</li>
+<li>mark(self: dolfin.cpp.mesh.SubDomain, meshfunction: dolfin.cpp.mesh.MeshFunctionDouble, marker: float, check_midpoint: bool=True) -&gt; None</li>
+<li>mark(self: dolfin.cpp.mesh.SubDomain, meshfunction: dolfin.cpp.mesh.MeshFunctionBool, marker: bool, check_midpoint: bool=True) -&gt; None</li>
+</ol>
+</dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.SubDomain.mark_cells">
+<code class="descname">mark_cells</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.SubDomain</em>, <em>mesh: dolfin.cpp.mesh.Mesh</em>, <em>sub_domain: int</em>, <em>check_midpoint: bool=True</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.mesh.SubDomain.mark_cells" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.SubDomain.mark_facets">
+<code class="descname">mark_facets</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.SubDomain</em>, <em>mesh: dolfin.cpp.mesh.Mesh</em>, <em>sub_domain: int</em>, <em>check_midpoint: bool=True</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.mesh.SubDomain.mark_facets" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.SubDomain.set_property">
+<code class="descname">set_property</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.SubDomain</em>, <em>arg0: str</em>, <em>arg1: float</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#dolfin.cpp.mesh.SubDomain.set_property" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.mesh.SubMesh">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.mesh.</code><code class="descname">SubMesh</code><a class="headerlink" href="#dolfin.cpp.mesh.SubMesh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#dolfin.cpp.mesh.Mesh" title="dolfin.cpp.mesh.Mesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.cpp.mesh.Mesh</span></code></a></p>
+<p>DOLFIN SubMesh</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.mesh.Vertex">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.mesh.</code><code class="descname">Vertex</code><a class="headerlink" href="#dolfin.cpp.mesh.Vertex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#dolfin.cpp.mesh.MeshEntity" title="dolfin.cpp.mesh.MeshEntity"><code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin.cpp.mesh.MeshEntity</span></code></a></p>
+<p>DOLFIN Vertex object</p>
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Vertex.point">
+<code class="descname">point</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Vertex</em><span class="sig-paren">)</span> &#x2192; dolfin::Point<a class="headerlink" href="#dolfin.cpp.mesh.Vertex.point" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dolfin.cpp.mesh.Vertex.x">
+<code class="descname">x</code><span class="sig-paren">(</span><em>self: dolfin.cpp.mesh.Vertex</em>, <em>arg0: int</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#dolfin.cpp.mesh.Vertex.x" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dolfin.cpp.mesh.VertexIterator">
+<em class="property">class </em><code class="descclassname">dolfin.cpp.mesh.</code><code class="descname">VertexIterator</code><a class="headerlink" href="#dolfin.cpp.mesh.VertexIterator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pybind11_builtins.pybind11_object</span></code></p>
+<p>DOLFIN VertexIterator object</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="dolfin.cpp.mesh.cells">
+<code class="descclassname">dolfin.cpp.mesh.</code><code class="descname">cells</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.mesh.cells" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>cells(mesh: dolfin.cpp.mesh.Mesh, type: str=’regular’) -&gt; dolfin.cpp.mesh.CellIterator</li>
+<li>cells(arg0: dolfin.cpp.mesh.MeshEntity) -&gt; dolfin.cpp.mesh.CellIterator</li>
+</ol>
+</dd></dl>
+
+<dl class="function">
+<dt id="dolfin.cpp.mesh.edges">
+<code class="descclassname">dolfin.cpp.mesh.</code><code class="descname">edges</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.mesh.edges" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>edges(mesh: dolfin.cpp.mesh.Mesh, type: str=’regular’) -&gt; dolfin.cpp.mesh.EdgeIterator</li>
+<li>edges(arg0: dolfin.cpp.mesh.MeshEntity) -&gt; dolfin.cpp.mesh.EdgeIterator</li>
+</ol>
+</dd></dl>
+
+<dl class="function">
+<dt id="dolfin.cpp.mesh.entities">
+<code class="descclassname">dolfin.cpp.mesh.</code><code class="descname">entities</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.mesh.entities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>entities(arg0: dolfin.cpp.mesh.Mesh, arg1: int) -&gt; dolfin.cpp.mesh.MeshEntityIterator</li>
+<li>entities(arg0: dolfin.cpp.mesh.MeshEntity, arg1: int) -&gt; dolfin.cpp.mesh.MeshEntityIterator</li>
+</ol>
+</dd></dl>
+
+<dl class="function">
+<dt id="dolfin.cpp.mesh.faces">
+<code class="descclassname">dolfin.cpp.mesh.</code><code class="descname">faces</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.mesh.faces" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>faces(mesh: dolfin.cpp.mesh.Mesh, type: str=’regular’) -&gt; dolfin.cpp.mesh.FaceIterator</li>
+<li>faces(arg0: dolfin.cpp.mesh.MeshEntity) -&gt; dolfin.cpp.mesh.FaceIterator</li>
+</ol>
+</dd></dl>
+
+<dl class="function">
+<dt id="dolfin.cpp.mesh.facets">
+<code class="descclassname">dolfin.cpp.mesh.</code><code class="descname">facets</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.mesh.facets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>facets(mesh: dolfin.cpp.mesh.Mesh, type: str=’regular’) -&gt; dolfin.cpp.mesh.FacetIterator</li>
+<li>facets(arg0: dolfin.cpp.mesh.MeshEntity) -&gt; dolfin.cpp.mesh.FacetIterator</li>
+</ol>
+</dd></dl>
+
+<dl class="function">
+<dt id="dolfin.cpp.mesh.make_dolfin_subdomain">
+<code class="descclassname">dolfin.cpp.mesh.</code><code class="descname">make_dolfin_subdomain</code><span class="sig-paren">(</span><em>arg0: int</em><span class="sig-paren">)</span> &#x2192; dolfin::SubDomain<a class="headerlink" href="#dolfin.cpp.mesh.make_dolfin_subdomain" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="dolfin.cpp.mesh.vertices">
+<code class="descclassname">dolfin.cpp.mesh.</code><code class="descname">vertices</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dolfin.cpp.mesh.vertices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>vertices(mesh: dolfin.cpp.mesh.Mesh, type: str=’regular’) -&gt; dolfin.cpp.mesh.VertexIterator</li>
+<li>vertices(arg0: dolfin.cpp.mesh.MeshEntity) -&gt; dolfin.cpp.mesh.VertexIterator</li>
+</ol>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="dolfin.cpp.multistage.html" class="btn btn-neutral float-right" title="dolfin.cpp.multistage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="dolfin.cpp.math.html" class="btn btn-neutral" title="dolfin.cpp.math" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, FEniCS Project.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

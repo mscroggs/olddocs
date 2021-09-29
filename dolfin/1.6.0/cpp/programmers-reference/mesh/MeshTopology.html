@@ -1,0 +1,453 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>MeshTopology.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN mesh module" href="index.html"/>
+        <link rel="next" title="MeshTransformation.h" href="MeshTransformation.html"/>
+        <link rel="prev" title="MeshRenumbering.h" href="MeshRenumbering.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.6.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-1.6.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/index.html">DOLFIN common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fem/index.html">DOLFIN fem module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html">DOLFIN function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/index.html">DOLFIN geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/index.html">DOLFIN io module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../la/index.html">DOLFIN la module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/index.html">DOLFIN log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN mesh module</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="BoundaryMesh.html">BoundaryMesh.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Cell.html">Cell.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CellType.html">CellType.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DomainBoundary.html">DomainBoundary.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DynamicMeshEditor.html">DynamicMeshEditor.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Edge.html">Edge.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Face.html">Face.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Facet.html">Facet.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FacetCell.html">FacetCell.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LocalMeshData.html">LocalMeshData.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LocalMeshValueCollection.html">LocalMeshValueCollection.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Mesh.html">Mesh.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshColoring.html">MeshColoring.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshConnectivity.html">MeshConnectivity.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshData.html">MeshData.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshDomains.html">MeshDomains.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshEditor.html">MeshEditor.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshEntity.html">MeshEntity.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshEntityIterator.html">MeshEntityIterator.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshEntityIteratorBase.html">MeshEntityIteratorBase.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshFunction.html">MeshFunction.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshGeometry.html">MeshGeometry.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshHierarchy.html">MeshHierarchy.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshPartitioning.html">MeshPartitioning.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshQuality.html">MeshQuality.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshRenumbering.html">MeshRenumbering.h</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">MeshTopology.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshTransformation.html">MeshTransformation.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeshValueCollection.html">MeshValueCollection.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MultiMesh.html">MultiMesh.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PeriodicBoundaryComputation.html">PeriodicBoundaryComputation.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Restriction.html">Restriction.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SubDomain.html">SubDomain.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SubMesh.html">SubMesh.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SubsetIterator.html">SubsetIterator.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Vertex.html">Vertex.h</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot/index.html">DOLFIN plot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer&#8217;s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-1.6.0</a> &raquo;</li>
+      
+          <li><a href="index.html">DOLFIN mesh module</a> &raquo;</li>
+      
+    <li>MeshTopology.h</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/programmers-reference/mesh/MeshTopology.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="meshtopology-h">
+<span id="programmers-reference-cpp-mesh-meshtopology"></span><h1>MeshTopology.h<a class="headerlink" href="#meshtopology-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="class">
+<dt id="_CPPv212MeshTopology">
+<span id="MeshTopology"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">MeshTopology</code><a class="headerlink" href="#_CPPv212MeshTopology" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>MeshTopology stores the topology of a mesh, consisting of mesh
+entities and connectivity (incidence relations for the mesh
+entities). Note that the mesh entities don&#8217;t need to be stored,
+only the number of entities and the connectivity. Any numbering
+scheme for the mesh entities is stored separately in a
+MeshFunction over the entities.</p>
+<p>A mesh entity e may be identified globally as a pair e = (dim,
+i), where dim is the topological dimension and i is the index of
+the entity within that topological dimension.</p>
+<dl class="function">
+<dt id="_CPPv2N12MeshTopology12MeshTopologyEv">
+<span id="MeshTopology::MeshTopology"></span><code class="descclassname"></code><code class="descname">MeshTopology</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12MeshTopology12MeshTopologyEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create empty mesh topology</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12MeshTopology12MeshTopologyERK12MeshTopology">
+<span id="MeshTopology::MeshTopology__MeshTopologyCR"></span><code class="descclassname"></code><code class="descname">MeshTopology</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv2N12MeshTopology12MeshTopologyEv" title="MeshTopology::MeshTopology">MeshTopology</a> &amp;<em>topology</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12MeshTopology12MeshTopologyERK12MeshTopology" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Copy constructor</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12MeshTopologyaSERK12MeshTopology">
+<span id="MeshTopology::assign-operator__MeshTopologyCR"></span><a class="reference internal" href="#_CPPv212MeshTopology" title="MeshTopology">MeshTopology</a> &amp;<code class="descclassname"></code><code class="descname">operator=</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv212MeshTopology" title="MeshTopology">MeshTopology</a> &amp;<em>topology</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12MeshTopologyaSERK12MeshTopology" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Assignment</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12MeshTopology3dimEv">
+<span id="MeshTopology::dimC"></span>std::size_t <code class="descclassname"></code><code class="descname">dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12MeshTopology3dimEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return topological dimension</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12MeshTopology4sizeENSt6size_tE">
+<span id="MeshTopology::size__std::sC"></span>std::size_t <code class="descclassname"></code><code class="descname">size</code><span class="sig-paren">(</span>std::size_t <em>dim</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12MeshTopology4sizeENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return number of entities for given dimension</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12MeshTopology11size_globalENSt6size_tE">
+<span id="MeshTopology::size_global__std::sC"></span>std::size_t <code class="descclassname"></code><code class="descname">size_global</code><span class="sig-paren">(</span>std::size_t <em>dim</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12MeshTopology11size_globalENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return global number of entities for given dimension</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12MeshTopology12ghost_offsetENSt6size_tE">
+<span id="MeshTopology::ghost_offset__std::sC"></span>std::size_t <code class="descclassname"></code><code class="descname">ghost_offset</code><span class="sig-paren">(</span>std::size_t <em>dim</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12MeshTopology12ghost_offsetENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return number of regular (non-ghost) entities
+or equivalently, the offset of where ghost entities begin</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12MeshTopology5clearEv">
+<span id="MeshTopology::clear"></span>void <code class="descclassname"></code><code class="descname">clear</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12MeshTopology5clearEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clear all data</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12MeshTopology5clearENSt6size_tENSt6size_tE">
+<span id="MeshTopology::clear__std::s.std::s"></span>void <code class="descclassname"></code><code class="descname">clear</code><span class="sig-paren">(</span>std::size_t <em>d0</em>, std::size_t <em>d1</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12MeshTopology5clearENSt6size_tENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clear data for given pair of topological dimensions</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12MeshTopology4initENSt6size_tE">
+<span id="MeshTopology::init__std::s"></span>void <code class="descclassname"></code><code class="descname">init</code><span class="sig-paren">(</span>std::size_t <em>dim</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12MeshTopology4initENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Initialize topology of given maximum dimension</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12MeshTopology4initENSt6size_tENSt6size_tENSt6size_tE">
+<span id="MeshTopology::init__std::s.std::s.std::s"></span>void <code class="descclassname"></code><code class="descname">init</code><span class="sig-paren">(</span>std::size_t <em>dim</em>, std::size_t <em>local_size</em>, std::size_t <em>global_size</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12MeshTopology4initENSt6size_tENSt6size_tENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set number of local entities (local_size) and global entities
+(global_size) for given topological dimension dim</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12MeshTopology19init_global_indicesENSt6size_tENSt6size_tE">
+<span id="MeshTopology::init_global_indices__std::s.std::s"></span>void <code class="descclassname"></code><code class="descname">init_global_indices</code><span class="sig-paren">(</span>std::size_t <em>dim</em>, std::size_t <em>size</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12MeshTopology19init_global_indicesENSt6size_tENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Initialize storage for global entity numbering for entities of
+dimension dim</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12MeshTopology10init_ghostENSt6size_tENSt6size_tE">
+<span id="MeshTopology::init_ghost__std::s.std::s"></span>void <code class="descclassname"></code><code class="descname">init_ghost</code><span class="sig-paren">(</span>std::size_t <em>dim</em>, std::size_t <em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12MeshTopology10init_ghostENSt6size_tENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Initialise the offset index of ghost entities for this dimension</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12MeshTopology16set_global_indexENSt6size_tENSt6size_tENSt6size_tE">
+<span id="MeshTopology::set_global_index__std::s.std::s.std::s"></span>void <code class="descclassname"></code><code class="descname">set_global_index</code><span class="sig-paren">(</span>std::size_t <em>dim</em>, std::size_t <em>local_index</em>, std::size_t <em>global_index</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12MeshTopology16set_global_indexENSt6size_tENSt6size_tENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set global index for entity of dimension dim and with local
+index</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12MeshTopology14global_indicesENSt6size_tE">
+<span id="MeshTopology::global_indices__std::sC"></span><em class="property">const</em> std::vector&lt;std::size_t&gt; &amp;<code class="descclassname"></code><code class="descname">global_indices</code><span class="sig-paren">(</span>std::size_t <em>d</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12MeshTopology14global_indicesENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get local-to-global index map for entities of topological
+dimension d</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12MeshTopology19have_global_indicesENSt6size_tE">
+<span id="MeshTopology::have_global_indices__std::sC"></span>bool <code class="descclassname"></code><code class="descname">have_global_indices</code><span class="sig-paren">(</span>std::size_t <em>dim</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12MeshTopology19have_global_indicesENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Check if global indices are available for entities of
+dimension dim</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12MeshTopology20have_shared_entitiesEj">
+<span id="MeshTopology::have_shared_entities__unsigned-iC"></span>bool <code class="descclassname"></code><code class="descname">have_shared_entities</code><span class="sig-paren">(</span>unsigned int <em>dim</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12MeshTopology20have_shared_entitiesEj" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Check whether there are any shared entities calculated
+of dimension dim</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12MeshTopology15shared_entitiesEj">
+<span id="MeshTopology::shared_entities__unsigned-i"></span>std::map&lt;unsigned int, std::set&lt;unsigned int&gt;&gt; &amp;<code class="descclassname"></code><code class="descname">shared_entities</code><span class="sig-paren">(</span>unsigned int <em>dim</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12MeshTopology15shared_entitiesEj" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return map from shared entities (local index) to processes
+that share the entity</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12MeshTopology15shared_entitiesEj">
+<span id="MeshTopology::shared_entities__unsigned-iC"></span><em class="property">const</em> std::map&lt;unsigned int, std::set&lt;unsigned int&gt;&gt; &amp;<code class="descclassname"></code><code class="descname">shared_entities</code><span class="sig-paren">(</span>unsigned int <em>dim</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12MeshTopology15shared_entitiesEj" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return map from shared entities (local index) to process that
+share the entity (const version)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12MeshTopology10cell_ownerEv">
+<span id="MeshTopology::cell_owner"></span>std::vector&lt;unsigned int&gt; &amp;<code class="descclassname"></code><code class="descname">cell_owner</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12MeshTopology10cell_ownerEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return mapping from local ghost cell index to owning process
+Since ghost cells are at the end of the range, this is just
+a vector over those cells</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12MeshTopology10cell_ownerEv">
+<span id="MeshTopology::cell_ownerC"></span><em class="property">const</em> std::vector&lt;unsigned int&gt; &amp;<code class="descclassname"></code><code class="descname">cell_owner</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12MeshTopology10cell_ownerEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return mapping from local ghost cell index to owning process (const version)
+Since ghost cells are at the end of the range, this is just
+a vector over those cells</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12MeshTopologyclENSt6size_tENSt6size_tE">
+<span id="MeshTopology::call-operator__std::s.std::s"></span>dolfin::MeshConnectivity &amp;<code class="descclassname"></code><code class="descname">operator()</code><span class="sig-paren">(</span>std::size_t <em>d0</em>, std::size_t <em>d1</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12MeshTopologyclENSt6size_tENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return connectivity for given pair of topological dimensions</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12MeshTopologyclENSt6size_tENSt6size_tE">
+<span id="MeshTopology::call-operator__std::s.std::sC"></span><em class="property">const</em> dolfin::MeshConnectivity &amp;<code class="descclassname"></code><code class="descname">operator()</code><span class="sig-paren">(</span>std::size_t <em>d0</em>, std::size_t <em>d1</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12MeshTopologyclENSt6size_tENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return connectivity for given pair of topological dimensions</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12MeshTopology4hashEv">
+<span id="MeshTopology::hashC"></span>size_t <code class="descclassname"></code><code class="descname">hash</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12MeshTopology4hashEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return hash based on the hash of cell-vertex connectivity</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK12MeshTopology3strEb">
+<span id="MeshTopology::str__bC"></span>std::string <code class="descclassname"></code><code class="descname">str</code><span class="sig-paren">(</span>bool <em>verbose</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK12MeshTopology3strEb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return informal string representation (pretty-print)</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="MeshTransformation.html" class="btn btn-neutral float-right" title="MeshTransformation.h" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="MeshRenumbering.html" class="btn btn-neutral" title="MeshRenumbering.h" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://bitbucket.org/fenics-project/.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.6.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

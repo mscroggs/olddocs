@@ -1,0 +1,693 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>FunctionSpace.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN function module" href="index.html"/>
+        <link rel="next" title="GenericFunction.h" href="GenericFunction.html"/>
+        <link rel="prev" title="FunctionAssigner.h" href="FunctionAssigner.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2016.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-2016.1.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/index.html">DOLFIN common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fem/index.html">DOLFIN fem module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN function module</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Constant.html">Constant.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Expression.html">Expression.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Function.html">Function.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FunctionAXPY.html">FunctionAXPY.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FunctionAssigner.html">FunctionAssigner.h</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">FunctionSpace.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericFunction.html">GenericFunction.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LagrangeInterpolator.html">LagrangeInterpolator.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MultiMeshFunction.html">MultiMeshFunction.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MultiMeshFunctionSpace.html">MultiMeshFunctionSpace.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MultiMeshSubSpace.html">MultiMeshSubSpace.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SpecialFacetFunction.html">SpecialFacetFunction.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SpecialFunctions.html">SpecialFunctions.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="assign.html">assign.h</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/index.html">DOLFIN geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/index.html">DOLFIN io module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../la/index.html">DOLFIN la module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/index.html">DOLFIN log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mesh/index.html">DOLFIN mesh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot/index.html">DOLFIN plot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer&#8217;s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-2016.1.0</a> &raquo;</li>
+      
+          <li><a href="index.html">DOLFIN function module</a> &raquo;</li>
+      
+    <li>FunctionSpace.h</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/programmers-reference/function/FunctionSpace.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="functionspace-h">
+<span id="programmers-reference-cpp-function-functionspace"></span><h1>FunctionSpace.h<a class="headerlink" href="#functionspace-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="class">
+<dt id="_CPPv213FunctionSpace">
+<span id="FunctionSpace"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">FunctionSpace</code><a class="headerlink" href="#_CPPv213FunctionSpace" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Parent class(es)</em></p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="../common/Variable.html#_CPPv28Variable" title="Variable"><code class="xref cpp cpp-class docutils literal"><span class="pre">Variable</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv213FunctionSpace" title="FunctionSpace"><code class="xref cpp cpp-class docutils literal"><span class="pre">Hierarchical</span></code></a></li>
+</ul>
+</div></blockquote>
+<p>This class represents a finite element function space defined by
+a mesh, a finite element, and a local-to-global mapping of the
+degrees of freedom (dofmap).</p>
+<dl class="function">
+<dt id="_CPPv2N13FunctionSpace13FunctionSpaceENSt10shared_ptrIK4MeshEENSt10shared_ptrIK13FiniteElementEENSt10shared_ptrIK13GenericDofMapEE">
+<span id="FunctionSpace::FunctionSpace__std::shared_ptr:MeshC:.std::shared_ptr:FiniteElementC:.std::shared_ptr:GenericDofMapC:"></span><code class="descclassname"></code><code class="descname">FunctionSpace</code><span class="sig-paren">(</span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a>&gt; <em>mesh</em>, std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../fem/FiniteElement.html#_CPPv213FiniteElement" title="FiniteElement">FiniteElement</a>&gt; <em>element</em>, std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../fem/GenericDofMap.html#_CPPv213GenericDofMap" title="GenericDofMap">GenericDofMap</a>&gt; <em>dofmap</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N13FunctionSpace13FunctionSpaceENSt10shared_ptrIK4MeshEENSt10shared_ptrIK13FiniteElementEENSt10shared_ptrIK13GenericDofMapEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create function space for given mesh, element and dofmap
+(shared data)</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>mesh (<a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh"><code class="xref cpp cpp-class docutils literal"><span class="pre">Mesh</span></code></a>)</dt>
+<dd>The mesh.</dd>
+<dt>element (<a class="reference internal" href="../fem/FiniteElement.html#_CPPv213FiniteElement" title="FiniteElement"><code class="xref cpp cpp-class docutils literal"><span class="pre">FiniteElement</span></code></a>)</dt>
+<dd>The element.</dd>
+<dt>dofmap (<a class="reference internal" href="../fem/GenericDofMap.html#_CPPv213GenericDofMap" title="GenericDofMap"><code class="xref cpp cpp-class docutils literal"><span class="pre">GenericDofMap</span></code></a>)</dt>
+<dd>The dofmap.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N13FunctionSpace13FunctionSpaceENSt10shared_ptrIK4MeshEE">
+<span id="FunctionSpace::FunctionSpace__std::shared_ptr:MeshC:"></span><em class="property">explicit</em> <code class="descclassname"></code><code class="descname">FunctionSpace</code><span class="sig-paren">(</span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a>&gt; <em>mesh</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N13FunctionSpace13FunctionSpaceENSt10shared_ptrIK4MeshEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create empty function space for later initialization. This
+constructor is intended for use by any sub-classes which need
+to construct objects before the initialisation of the base
+class. Data can be attached to the base class using
+FunctionSpace::attach(...).</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>mesh (<a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh"><code class="xref cpp cpp-class docutils literal"><span class="pre">Mesh</span></code></a>)</dt>
+<dd>The mesh.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N13FunctionSpace13FunctionSpaceERK13FunctionSpace">
+<span id="FunctionSpace::FunctionSpace__FunctionSpaceCR"></span><code class="descclassname"></code><code class="descname">FunctionSpace</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv2N13FunctionSpace13FunctionSpaceENSt10shared_ptrIK4MeshEENSt10shared_ptrIK13FiniteElementEENSt10shared_ptrIK13GenericDofMapEE" title="FunctionSpace::FunctionSpace">FunctionSpace</a> &amp;<em>V</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N13FunctionSpace13FunctionSpaceERK13FunctionSpace" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Copy constructor</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>V (<a class="reference internal" href="#_CPPv2N13FunctionSpace13FunctionSpaceENSt10shared_ptrIK4MeshEENSt10shared_ptrIK13FiniteElementEENSt10shared_ptrIK13GenericDofMapEE" title="FunctionSpace::FunctionSpace"><code class="xref cpp cpp-class docutils literal"><span class="pre">FunctionSpace</span></code></a>)</dt>
+<dd>The object to be copied.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N13FunctionSpace6attachENSt10shared_ptrIK13FiniteElementEENSt10shared_ptrIK13GenericDofMapEE">
+<span id="FunctionSpace::attach__std::shared_ptr:FiniteElementC:.std::shared_ptr:GenericDofMapC:"></span>void <code class="descclassname"></code><code class="descname">attach</code><span class="sig-paren">(</span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../fem/FiniteElement.html#_CPPv213FiniteElement" title="FiniteElement">FiniteElement</a>&gt; <em>element</em>, std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../fem/GenericDofMap.html#_CPPv213GenericDofMap" title="GenericDofMap">GenericDofMap</a>&gt; <em>dofmap</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N13FunctionSpace6attachENSt10shared_ptrIK13FiniteElementEENSt10shared_ptrIK13GenericDofMapEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Attach data to an empty function space</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>element (<a class="reference internal" href="../fem/FiniteElement.html#_CPPv213FiniteElement" title="FiniteElement"><code class="xref cpp cpp-class docutils literal"><span class="pre">FiniteElement</span></code></a>)</dt>
+<dd>The element.</dd>
+<dt>dofmap (<a class="reference internal" href="../fem/GenericDofMap.html#_CPPv213GenericDofMap" title="GenericDofMap"><code class="xref cpp cpp-class docutils literal"><span class="pre">GenericDofMap</span></code></a>)</dt>
+<dd>The dofmap.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N13FunctionSpaceaSERK13FunctionSpace">
+<span id="FunctionSpace::assign-operator__FunctionSpaceCR"></span><em class="property">const</em> <a class="reference internal" href="#_CPPv213FunctionSpace" title="FunctionSpace">FunctionSpace</a> &amp;<code class="descclassname"></code><code class="descname">operator=</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv213FunctionSpace" title="FunctionSpace">FunctionSpace</a> &amp;<em>V</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N13FunctionSpaceaSERK13FunctionSpace" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Assignment operator</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>V (<a class="reference internal" href="#_CPPv213FunctionSpace" title="FunctionSpace"><code class="xref cpp cpp-class docutils literal"><span class="pre">FunctionSpace</span></code></a>)</dt>
+<dd>Another function space.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13FunctionSpaceeqERK13FunctionSpace">
+<span id="FunctionSpace::eq-operator__FunctionSpaceCRC"></span>bool <code class="descclassname"></code><code class="descname">operator==</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv213FunctionSpace" title="FunctionSpace">FunctionSpace</a> &amp;<em>V</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13FunctionSpaceeqERK13FunctionSpace" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Equality operator</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>V (<a class="reference internal" href="#_CPPv213FunctionSpace" title="FunctionSpace"><code class="xref cpp cpp-class docutils literal"><span class="pre">FunctionSpace</span></code></a>)</dt>
+<dd>Another function space.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13FunctionSpaceneERK13FunctionSpace">
+<span id="FunctionSpace::neq-operator__FunctionSpaceCRC"></span>bool <code class="descclassname"></code><code class="descname">operator!=</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv213FunctionSpace" title="FunctionSpace">FunctionSpace</a> &amp;<em>V</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13FunctionSpaceneERK13FunctionSpace" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Inequality operator</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>V (<a class="reference internal" href="#_CPPv213FunctionSpace" title="FunctionSpace"><code class="xref cpp cpp-class docutils literal"><span class="pre">FunctionSpace</span></code></a>)</dt>
+<dd>Another function space.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13FunctionSpace4meshEv">
+<span id="FunctionSpace::meshC"></span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a>&gt; <code class="descclassname"></code><code class="descname">mesh</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13FunctionSpace4meshEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return mesh</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt><a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh"><code class="xref cpp cpp-class docutils literal"><span class="pre">Mesh</span></code></a></dt>
+<dd>The mesh.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13FunctionSpace7elementEv">
+<span id="FunctionSpace::elementC"></span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../fem/FiniteElement.html#_CPPv213FiniteElement" title="FiniteElement">FiniteElement</a>&gt; <code class="descclassname"></code><code class="descname">element</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13FunctionSpace7elementEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return finite element</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt><a class="reference internal" href="../fem/FiniteElement.html#_CPPv213FiniteElement" title="FiniteElement"><code class="xref cpp cpp-class docutils literal"><span class="pre">FiniteElement</span></code></a></dt>
+<dd>The finite element.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13FunctionSpace6dofmapEv">
+<span id="FunctionSpace::dofmapC"></span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../fem/GenericDofMap.html#_CPPv213GenericDofMap" title="GenericDofMap">GenericDofMap</a>&gt; <code class="descclassname"></code><code class="descname">dofmap</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13FunctionSpace6dofmapEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return dofmap</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt><a class="reference internal" href="../fem/GenericDofMap.html#_CPPv213GenericDofMap" title="GenericDofMap"><code class="xref cpp cpp-class docutils literal"><span class="pre">GenericDofMap</span></code></a></dt>
+<dd>The dofmap.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13FunctionSpace3dimEv">
+<span id="FunctionSpace::dimC"></span>std::size_t <code class="descclassname"></code><code class="descname">dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13FunctionSpace3dimEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return dimension of function space</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>std::size_t</dt>
+<dd>The dimension of the function space.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13FunctionSpace11interpolateER13GenericVectorRK15GenericFunction">
+<span id="FunctionSpace::interpolate__GenericVectorR.GenericFunctionCRC"></span>void <code class="descclassname"></code><code class="descname">interpolate</code><span class="sig-paren">(</span><a class="reference internal" href="../la/GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>expansion_coefficients</em>, <em class="property">const</em> <a class="reference internal" href="GenericFunction.html#_CPPv215GenericFunction" title="GenericFunction">GenericFunction</a> &amp;<em>v</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13FunctionSpace11interpolateER13GenericVectorRK15GenericFunction" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Interpolate function v into function space, returning the
+vector of expansion coefficients</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>expansion_coefficients (<a class="reference internal" href="../la/GenericVector.html#_CPPv213GenericVector" title="GenericVector"><code class="xref cpp cpp-class docutils literal"><span class="pre">GenericVector</span></code></a>)</dt>
+<dd>The expansion coefficients.</dd>
+<dt>v (<a class="reference internal" href="GenericFunction.html#_CPPv215GenericFunction" title="GenericFunction"><code class="xref cpp cpp-class docutils literal"><span class="pre">GenericFunction</span></code></a>)</dt>
+<dd>The function to be interpolated.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13FunctionSpaceixENSt6size_tE">
+<span id="FunctionSpace::subscript-operator__std::sC"></span>std::shared_ptr&lt;<a class="reference internal" href="#_CPPv213FunctionSpace" title="FunctionSpace">FunctionSpace</a>&gt; <code class="descclassname"></code><code class="descname">operator[]</code><span class="sig-paren">(</span>std::size_t <em>i</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13FunctionSpaceixENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Extract subspace for component</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>i (std::size_t)</dt>
+<dd>Index of the subspace.</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt><a class="reference internal" href="#_CPPv213FunctionSpace" title="FunctionSpace"><code class="xref cpp cpp-class docutils literal"><span class="pre">FunctionSpace</span></code></a></dt>
+<dd>The subspace.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13FunctionSpace3subENSt6size_tE">
+<span id="FunctionSpace::sub__std::sC"></span>std::shared_ptr&lt;<a class="reference internal" href="#_CPPv213FunctionSpace" title="FunctionSpace">FunctionSpace</a>&gt; <code class="descclassname"></code><code class="descname">sub</code><span class="sig-paren">(</span>std::size_t <em>component</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13FunctionSpace3subENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Extract subspace for component</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>component (std::size_t)</dt>
+<dd>Index of the subspace.</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt><a class="reference internal" href="#_CPPv213FunctionSpace" title="FunctionSpace"><code class="xref cpp cpp-class docutils literal"><span class="pre">FunctionSpace</span></code></a></dt>
+<dd>The subspace.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13FunctionSpace3subERKNSt6vectorINSt6size_tEEE">
+<span id="FunctionSpace::sub__std::vector:std::s:CRC"></span>std::shared_ptr&lt;<a class="reference internal" href="#_CPPv213FunctionSpace" title="FunctionSpace">FunctionSpace</a>&gt; <code class="descclassname"></code><code class="descname">sub</code><span class="sig-paren">(</span><em class="property">const</em> std::vector&lt;std::size_t&gt; &amp;<em>component</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13FunctionSpace3subERKNSt6vectorINSt6size_tEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Extract subspace for component</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>component (std::vector&lt;std::size_t&gt;)</dt>
+<dd>The component.</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt><a class="reference internal" href="#_CPPv213FunctionSpace" title="FunctionSpace"><code class="xref cpp cpp-class docutils literal"><span class="pre">FunctionSpace</span></code></a></dt>
+<dd>The subspace.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13FunctionSpace17extract_sub_spaceERKNSt6vectorINSt6size_tEEE">
+<span id="FunctionSpace::extract_sub_space__std::vector:std::s:CRC"></span>std::shared_ptr&lt;<a class="reference internal" href="#_CPPv213FunctionSpace" title="FunctionSpace">FunctionSpace</a>&gt; <code class="descclassname"></code><code class="descname">extract_sub_space</code><span class="sig-paren">(</span><em class="property">const</em> std::vector&lt;std::size_t&gt; &amp;<em>component</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13FunctionSpace17extract_sub_spaceERKNSt6vectorINSt6size_tEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Extract subspace for component</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>component (std::vector&lt;std::size_t&gt;)</dt>
+<dd>The component.</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt><a class="reference internal" href="#_CPPv213FunctionSpace" title="FunctionSpace"><code class="xref cpp cpp-class docutils literal"><span class="pre">FunctionSpace</span></code></a></dt>
+<dd>The subspace.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13FunctionSpace8collapseEv">
+<span id="FunctionSpace::collapseC"></span>std::shared_ptr&lt;<a class="reference internal" href="#_CPPv213FunctionSpace" title="FunctionSpace">FunctionSpace</a>&gt; <code class="descclassname"></code><code class="descname">collapse</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13FunctionSpace8collapseEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Collapse a subspace and return a new function space</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt><a class="reference internal" href="#_CPPv213FunctionSpace" title="FunctionSpace"><code class="xref cpp cpp-class docutils literal"><span class="pre">FunctionSpace</span></code></a></dt>
+<dd>The new function space.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13FunctionSpace8collapseERNSt13unordered_mapINSt6size_tENSt6size_tEEE">
+<span id="FunctionSpace::collapse__std::unordered_map:std::s.std::s:RC"></span>std::shared_ptr&lt;<a class="reference internal" href="#_CPPv213FunctionSpace" title="FunctionSpace">FunctionSpace</a>&gt; <code class="descclassname"></code><code class="descname">collapse</code><span class="sig-paren">(</span>std::unordered_map&lt;std::size_t, std::size_t&gt; &amp;<em>collapsed_dofs</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13FunctionSpace8collapseERNSt13unordered_mapINSt6size_tENSt6size_tEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Collapse a subspace and return a new function space and a map
+from new to old dofs</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>collapsed_dofs (std::unordered_map&lt;std::size_t, std::size_t&gt;)</dt>
+<dd>The map from new to old dofs.</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt><a class="reference internal" href="#_CPPv213FunctionSpace" title="FunctionSpace"><code class="xref cpp cpp-class docutils literal"><span class="pre">FunctionSpace</span></code></a></dt>
+<dd>The new function space.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13FunctionSpace8has_cellERK4Cell">
+<span id="FunctionSpace::has_cell__CellCRC"></span>bool <code class="descclassname"></code><code class="descname">has_cell</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../mesh/Cell.html#_CPPv24Cell" title="Cell">Cell</a> &amp;<em>cell</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13FunctionSpace8has_cellERK4Cell" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Check if function space has given cell</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>cell (<a class="reference internal" href="../mesh/Cell.html#_CPPv24Cell" title="Cell"><code class="xref cpp cpp-class docutils literal"><span class="pre">Cell</span></code></a>)</dt>
+<dd>The cell.</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>bool</dt>
+<dd>True if the function space has the given cell.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13FunctionSpace11has_elementERK13FiniteElement">
+<span id="FunctionSpace::has_element__FiniteElementCRC"></span>bool <code class="descclassname"></code><code class="descname">has_element</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../fem/FiniteElement.html#_CPPv213FiniteElement" title="FiniteElement">FiniteElement</a> &amp;<em>element</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13FunctionSpace11has_elementERK13FiniteElement" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Check if function space has given element</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>element (<a class="reference internal" href="../fem/FiniteElement.html#_CPPv213FiniteElement" title="FiniteElement"><code class="xref cpp cpp-class docutils literal"><span class="pre">FiniteElement</span></code></a>)</dt>
+<dd>The finite element.</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>bool</dt>
+<dd>True if the function space has the given element.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13FunctionSpace9componentEv">
+<span id="FunctionSpace::componentC"></span>std::vector&lt;std::size_t&gt; <code class="descclassname"></code><code class="descname">component</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13FunctionSpace9componentEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return component</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>std::vector&lt;std::size_t&gt;</dt>
+<dd>The component (relative to superspace).</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13FunctionSpace24tabulate_dof_coordinatesEv">
+<span id="FunctionSpace::tabulate_dof_coordinatesC"></span>std::vector&lt;double&gt; <code class="descclassname"></code><code class="descname">tabulate_dof_coordinates</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13FunctionSpace24tabulate_dof_coordinatesEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Tabulate the coordinates of all dofs on this process. This
+function is typically used by preconditioners that require the
+spatial coordinates of dofs, for example for re-partitioning or
+nullspace computations.</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>mesh (<a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh"><code class="xref cpp cpp-class docutils literal"><span class="pre">Mesh</span></code></a>)</dt>
+<dd>The mesh.</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>std::vector&lt;double&gt;</dt>
+<dd>The dof coordinates (x0, y0, x1, y1, . . .)</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13FunctionSpace5set_xER13GenericVectordNSt6size_tE">
+<span id="FunctionSpace::set_x__GenericVectorR.double.std::sC"></span>void <code class="descclassname"></code><code class="descname">set_x</code><span class="sig-paren">(</span><a class="reference internal" href="../la/GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>x</em>, double <em>value</em>, std::size_t <em>component</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13FunctionSpace5set_xER13GenericVectordNSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set dof entries in vector to value*x[i], where [x][i] is the
+coordinate of the dof spatial coordinate. Parallel layout of
+vector must be consistent with dof map range This function is
+typically used to construct the null space of a matrix
+operator, e.g. rigid body rotations.</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>vector (<a class="reference internal" href="../la/GenericVector.html#_CPPv213GenericVector" title="GenericVector"><code class="xref cpp cpp-class docutils literal"><span class="pre">GenericVector</span></code></a>)</dt>
+<dd>The vector to set.</dd>
+<dt>value (double)</dt>
+<dd>The value to multiply to coordinate by.</dd>
+<dt>component (std::size_t)</dt>
+<dd>The coordinate index.</dd>
+<dt>mesh (<a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh"><code class="xref cpp cpp-class docutils literal"><span class="pre">Mesh</span></code></a>)</dt>
+<dd>The mesh.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13FunctionSpace3strEb">
+<span id="FunctionSpace::str__bC"></span>std::string <code class="descclassname"></code><code class="descname">str</code><span class="sig-paren">(</span>bool <em>verbose</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13FunctionSpace3strEb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return informal string representation (pretty-print)</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>verbose (bool)</dt>
+<dd>Flag to turn on additional output.</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>std::string</dt>
+<dd>An informal representation of the function space.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13FunctionSpace12print_dofmapEv">
+<span id="FunctionSpace::print_dofmapC"></span>void <code class="descclassname"></code><code class="descname">print_dofmap</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13FunctionSpace12print_dofmapEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Print dofmap (useful for debugging)</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="GenericFunction.html" class="btn btn-neutral float-right" title="GenericFunction.h" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="FunctionAssigner.html" class="btn btn-neutral" title="FunctionAssigner.h" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://bitbucket.org/fenics-project/.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'2016.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

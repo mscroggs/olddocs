@@ -1,0 +1,556 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>File.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN io module" href="index.html"/>
+        <link rel="next" title="GenericFile.h" href="GenericFile.html"/>
+        <link rel="prev" title="DOLFIN io module" href="index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.9.11+
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer’s reference for DOLFIN-2017.1.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/index.html">DOLFIN common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fem/index.html">DOLFIN fem module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html">DOLFIN function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/index.html">DOLFIN geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN io module</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">File.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericFile.html">GenericFile.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="HDF5Attribute.html">HDF5Attribute.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="HDF5File.html">HDF5File.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="X3DOM.html">X3DOM.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="XDMFFile.html">XDMFFile.h</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../la/index.html">DOLFIN la module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/index.html">DOLFIN log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mesh/index.html">DOLFIN mesh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot/index.html">DOLFIN plot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer’s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">DOLFIN</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">C++ Programmer’s reference for DOLFIN-2017.1.0</a> &raquo;</li>
+        
+          <li><a href="index.html">DOLFIN io module</a> &raquo;</li>
+        
+      <li>File.h</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/programmers-reference/io/File.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="file-h">
+<span id="programmers-reference-cpp-io-file"></span><h1>File.h<a class="headerlink" href="#file-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="class">
+<dt id="_CPPv24File">
+<span id="File"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">File</code><a class="headerlink" href="#_CPPv24File" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A File represents a data file for reading and writing objects.
+Unless specified explicitly, the format is determined by the
+file name suffix.
+A list of objects that can be read/written to file can be found in
+GenericFile.h. Compatible file formats include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Binary (.bin)</li>
+<li>RAW    (.raw)</li>
+<li>SVG    (.svg)</li>
+<li>XD3    (.xd3)</li>
+<li>XML    (.xml)</li>
+<li>XYZ    (.xyz)</li>
+<li>VTK    (.pvd)</li>
+</ul>
+</div></blockquote>
+<dl class="function">
+<dt>
+<code class="descname">enum class Type</code></dt>
+<dd><p>File formats</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4File4FileEKNSt6stringENSt6stringE">
+<span id="File::File__ssC.ss"></span><code class="descclassname"></code><code class="descname">File</code><span class="sig-paren">(</span><em class="property">const</em> std::string <em>filename</em>, std::string <em>encoding</em> = &quot;ascii&quot;<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4File4FileEKNSt6stringENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create a file with given name</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>filename (std::string)</dt>
+<dd>Name of file.</dd>
+<dt>encoding (std::string)</dt>
+<dd>Optional argument specifying encoding, ASCII is default.</dd>
+</dl>
+</dd>
+<dt><em>Example</em></dt>
+<dd><div class="first last highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// Save solution to file</span>
+<span class="n">File</span> <span class="nf">file</span><span class="p">(</span><span class="s">&quot;solution.pvd&quot;</span><span class="p">);</span>
+<span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="n">u</span><span class="p">;</span>
+
+<span class="c1">// Read mesh data from file</span>
+<span class="n">File</span> <span class="nf">mesh_file</span><span class="p">(</span><span class="s">&quot;mesh.xml&quot;</span><span class="p">);</span>
+<span class="n">mesh_file</span> <span class="o">&gt;&gt;</span> <span class="n">mesh</span><span class="p">;</span>
+
+<span class="c1">// Using compressed binary format</span>
+<span class="n">File</span> <span class="nf">comp_file</span><span class="p">(</span><span class="s">&quot;solution.pvd&quot;</span><span class="p">,</span> <span class="s">&quot;compressed&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4File4FileE8MPI_CommKNSt6stringENSt6stringE">
+<span id="File::File__MPI_Comm.ssC.ss"></span><code class="descclassname"></code><code class="descname">File</code><span class="sig-paren">(</span>MPI_Comm <em>comm</em>, <em class="property">const</em> std::string <em>filename</em>, std::string <em>encoding</em> = &quot;ascii&quot;<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4File4FileE8MPI_CommKNSt6stringENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create a file with given name with MPI communicator</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>communicator (MPI_Comm)</dt>
+<dd>The MPI communicator.</dd>
+<dt>filename (std::string)</dt>
+<dd>Name of file.</dd>
+<dt>encoding (std::string)</dt>
+<dd>Optional argument specifying encoding, ascii is default.</dd>
+</dl>
+</dd>
+<dt><em>Example</em></dt>
+<dd><div class="first last highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// Save solution to file</span>
+<span class="n">File</span> <span class="nf">file</span><span class="p">(</span><span class="n">u</span><span class="p">.</span><span class="n">mesh</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">mpi_comm</span><span class="p">(),</span> <span class="s">&quot;solution.pvd&quot;</span><span class="p">);</span>
+<span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="n">u</span><span class="p">;</span>
+
+<span class="c1">// Read mesh data from file</span>
+<span class="n">File</span> <span class="nf">mesh_file</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span> <span class="s">&quot;mesh.xml&quot;</span><span class="p">);</span>
+<span class="n">mesh_file</span> <span class="o">&gt;&gt;</span> <span class="n">mesh</span><span class="p">;</span>
+
+<span class="c1">// Using compressed binary format</span>
+<span class="n">File</span> <span class="nf">comp_file</span><span class="p">(</span><span class="n">u</span><span class="p">.</span><span class="n">mesh</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">mpi_comm</span><span class="p">(),</span> <span class="s">&quot;solution.pvd&quot;</span><span class="p">,</span>
+               <span class="s">&quot;compressed&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4File4FileEKNSt6stringE4TypeNSt6stringE">
+<span id="File::File__ssC.Type.ss"></span><code class="descclassname"></code><code class="descname">File</code><span class="sig-paren">(</span><em class="property">const</em> std::string <em>filename</em>, Type <em>type</em>, std::string <em>encoding</em> = &quot;ascii&quot;<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4File4FileEKNSt6stringE4TypeNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create a file with given name and type (format)</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>filename (std::string)</dt>
+<dd>Name of file.</dd>
+<dt>type (Type)</dt>
+<dd>File format.</dd>
+<dt>encoding (std::string)</dt>
+<dd>Optional argument specifying encoding, ascii is default.</dd>
+</dl>
+</dd>
+<dt><em>Example</em></dt>
+<dd><div class="first last highlight-c++"><div class="highlight"><pre><span></span><span class="n">File</span> <span class="nf">file</span><span class="p">(</span><span class="s">&quot;solution&quot;</span><span class="p">,</span> <span class="n">vtk</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4File4FileE8MPI_CommKNSt6stringE4TypeNSt6stringE">
+<span id="File::File__MPI_Comm.ssC.Type.ss"></span><code class="descclassname"></code><code class="descname">File</code><span class="sig-paren">(</span>MPI_Comm <em>comm</em>, <em class="property">const</em> std::string <em>filename</em>, Type <em>type</em>, std::string <em>encoding</em> = &quot;ascii&quot;<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4File4FileE8MPI_CommKNSt6stringE4TypeNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create a file with given name and type (format) with MPI communicator</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>communicator (MPI_Comm)</dt>
+<dd>The MPI communicator.</dd>
+<dt>filename (std::string)</dt>
+<dd>Name of file.</dd>
+<dt>type (Type)</dt>
+<dd>File format.</dd>
+<dt>encoding (std::string)</dt>
+<dd>Optional argument specifying encoding, ascii is default.</dd>
+</dl>
+</dd>
+<dt><em>Example</em></dt>
+<dd><div class="first last highlight-c++"><div class="highlight"><pre><span></span><span class="n">File</span> <span class="nf">file</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span> <span class="s">&quot;solution&quot;</span><span class="p">,</span> <span class="n">vtk</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4File4FileERNSt7ostreamE">
+<span id="File::File__osR"></span><code class="descclassname"></code><code class="descname">File</code><span class="sig-paren">(</span>std::ostream &amp;<em>outstream</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4File4FileERNSt7ostreamE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create an outfile object writing to stream</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>outstream (std::ostream)</dt>
+<dd>The stream.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4FilersER1T">
+<span id="File::rshift-operator__TR"></span>void <code class="descclassname"></code><code class="descname">operator&gt;&gt;</code><span class="sig-paren">(</span>T &amp;<em>t</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4FilersER1T" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Read from file</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4FilelsEKNSt4pairIPK4MeshdEE">
+<span id="File::lshift-operator__std::pair:MeshCP.double:C"></span>void <code class="descclassname"></code><code class="descname">operator&lt;&lt;</code><span class="sig-paren">(</span><em class="property">const</em> std::pair&lt;<em class="property">const</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> *, double&gt; <em>mesh</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4FilelsEKNSt4pairIPK4MeshdEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Write Mesh to file with time</p>
+<dl class="docutils">
+<dt><em>Example</em></dt>
+<dd><div class="first last highlight-c++"><div class="highlight"><pre><span></span><span class="n">File</span> <span class="nf">file</span><span class="p">(</span><span class="s">&quot;mesh.pvd&quot;</span><span class="p">,</span> <span class="s">&quot;compressed&quot;</span><span class="p">);</span>
+<span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">make_pair</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">Mesh</span><span class="o">*</span><span class="p">,</span> <span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mesh</span><span class="p">,</span> <span class="n">t</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4FilelsEKNSt4pairIPK12MeshFunctionIiEdEE">
+<span id="File::lshift-operator__std::pair:MeshFunction:i:CP.double:C"></span>void <code class="descclassname"></code><code class="descname">operator&lt;&lt;</code><span class="sig-paren">(</span><em class="property">const</em> std::pair&lt;<em class="property">const</em> <a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction">MeshFunction</a>&lt;int&gt; *, double&gt; <em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4FilelsEKNSt4pairIPK12MeshFunctionIiEdEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Write MeshFunction to file with time</p>
+<dl class="docutils">
+<dt><em>Example</em></dt>
+<dd><div class="first last highlight-c++"><div class="highlight"><pre><span></span><span class="n">File</span> <span class="nf">file</span><span class="p">(</span><span class="s">&quot;markers.pvd&quot;</span><span class="p">,</span> <span class="s">&quot;compressed&quot;</span><span class="p">);</span>
+<span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">make_pair</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">MeshFunction</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;*</span><span class="p">,</span> <span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">f</span><span class="p">,</span> <span class="n">t</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4FilelsEKNSt4pairIPK12MeshFunctionINSt6size_tEEdEE">
+<span id="File::lshift-operator__std::pair:MeshFunction:std::s:CP.double:C"></span>void <code class="descclassname"></code><code class="descname">operator&lt;&lt;</code><span class="sig-paren">(</span><em class="property">const</em> std::pair&lt;<em class="property">const</em> <a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction">MeshFunction</a>&lt;std::size_t&gt; *, double&gt; <em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4FilelsEKNSt4pairIPK12MeshFunctionINSt6size_tEEdEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Write MeshFunction to file with time</p>
+<dl class="docutils">
+<dt><em>Example</em></dt>
+<dd><div class="first last highlight-c++"><div class="highlight"><pre><span></span><span class="n">File</span> <span class="nf">file</span><span class="p">(</span><span class="s">&quot;markers.pvd&quot;</span><span class="p">,</span> <span class="s">&quot;compressed&quot;</span><span class="p">);</span>
+<span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">make_pair</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">MeshFunction</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&gt;*</span><span class="p">,</span> <span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">f</span><span class="p">,</span> <span class="n">t</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4FilelsEKNSt4pairIPK12MeshFunctionIdEdEE">
+<span id="File::lshift-operator__std::pair:MeshFunction:double:CP.double:C"></span>void <code class="descclassname"></code><code class="descname">operator&lt;&lt;</code><span class="sig-paren">(</span><em class="property">const</em> std::pair&lt;<em class="property">const</em> <a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction">MeshFunction</a>&lt;double&gt; *, double&gt; <em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4FilelsEKNSt4pairIPK12MeshFunctionIdEdEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Write MeshFunction to file with time</p>
+<dl class="docutils">
+<dt><em>Example</em></dt>
+<dd><div class="first last highlight-c++"><div class="highlight"><pre><span></span><span class="n">File</span> <span class="nf">file</span><span class="p">(</span><span class="s">&quot;markers.pvd&quot;</span><span class="p">,</span> <span class="s">&quot;compressed&quot;</span><span class="p">);</span>
+<span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">make_pair</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">MeshFunction</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;*</span><span class="p">,</span> <span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">f</span><span class="p">,</span> <span class="n">t</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4FilelsEKNSt4pairIPK12MeshFunctionIbEdEE">
+<span id="File::lshift-operator__std::pair:MeshFunction:b:CP.double:C"></span>void <code class="descclassname"></code><code class="descname">operator&lt;&lt;</code><span class="sig-paren">(</span><em class="property">const</em> std::pair&lt;<em class="property">const</em> <a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction">MeshFunction</a>&lt;bool&gt; *, double&gt; <em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4FilelsEKNSt4pairIPK12MeshFunctionIbEdEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Write MeshFunction to file with time</p>
+<dl class="docutils">
+<dt><em>Example</em></dt>
+<dd><div class="first last highlight-c++"><div class="highlight"><pre><span></span><span class="n">File</span> <span class="nf">file</span><span class="p">(</span><span class="s">&quot;markers.pvd&quot;</span><span class="p">,</span> <span class="s">&quot;compressed&quot;</span><span class="p">);</span>
+<span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">make_pair</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">MeshFunction</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;*</span><span class="p">,</span> <span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">f</span><span class="p">,</span> <span class="n">t</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4FilelsEKNSt4pairIPK8FunctiondEE">
+<span id="File::lshift-operator__std::pair:FunctionCP.double:C"></span>void <code class="descclassname"></code><code class="descname">operator&lt;&lt;</code><span class="sig-paren">(</span><em class="property">const</em> std::pair&lt;<em class="property">const</em> <a class="reference internal" href="../function/Function.html#_CPPv28Function" title="Function">Function</a> *, double&gt; <em>u</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4FilelsEKNSt4pairIPK8FunctiondEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Write Function to file with time</p>
+<dl class="docutils">
+<dt><em>Example</em></dt>
+<dd><div class="first last highlight-c++"><div class="highlight"><pre><span></span><span class="n">File</span> <span class="nf">file</span><span class="p">(</span><span class="s">&quot;solution.pvd&quot;</span><span class="p">,</span> <span class="s">&quot;compressed&quot;</span><span class="p">);</span>
+<span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">make_pair</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">Function</span><span class="o">*</span><span class="p">,</span> <span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">u</span><span class="p">,</span> <span class="n">t</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4FilelsERK1T">
+<span id="File::lshift-operator__TCR"></span>void <code class="descclassname"></code><code class="descname">operator&lt;&lt;</code><span class="sig-paren">(</span><em class="property">const</em> T &amp;<em>t</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4FilelsERK1T" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Write object to file</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4File6existsENSt6stringE">
+<span id="File::exists__ss"></span><em class="property">static</em> bool <code class="descclassname"></code><code class="descname">exists</code><span class="sig-paren">(</span>std::string <em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4File6existsENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Check if file exists</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>filename (std::string)</dt>
+<dd>Name of file.</dd>
+</dl>
+</dd>
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>bool</dt>
+<dd>True if the file exists.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4File18create_parent_pathENSt6stringE">
+<span id="File::create_parent_path__ss"></span><em class="property">static</em> void <code class="descclassname"></code><code class="descname">create_parent_path</code><span class="sig-paren">(</span>std::string <em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4File18create_parent_pathENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>filename (std::string)</dt>
+<dd>Name of file / path.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="GenericFile.html" class="btn btn-neutral float-right" title="GenericFile.h" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="DOLFIN io module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright DOLFIN Core, https://launchpad.net/~dolfin-core.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.9.11+',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

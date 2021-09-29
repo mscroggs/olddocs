@@ -1,0 +1,6 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$dd/d47/classdolfin_1_1GenericBoundingBoxTree.html" title="dolfin::GenericBoundingBoxTree" alt="" coords="5,56,235,83"/>
+<area shape="rect" id="node2" href="$d8/d1c/classdolfin_1_1BoundingBoxTree1D.html" title="Specialization of bounding box implementation to 1D. " alt="" coords="283,5,480,32"/>
+<area shape="rect" id="node3" href="$d9/d21/classdolfin_1_1BoundingBoxTree2D.html" title="Specialization of bounding box implementation to 2D. " alt="" coords="283,56,480,83"/>
+<area shape="rect" id="node4" href="$dc/ddd/classdolfin_1_1BoundingBoxTree3D.html" title="Specialization of bounding box implementation to 3D. " alt="" coords="283,107,480,133"/>
+</map>

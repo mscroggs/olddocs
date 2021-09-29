@@ -1,0 +1,388 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>FunctionAssigner.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN function module" href="index.html"/>
+        <link rel="next" title="FunctionSpace.h" href="FunctionSpace.html"/>
+        <link rel="prev" title="FunctionAXPY.h" href="FunctionAXPY.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-1.5.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/index.html">DOLFIN common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fem/index.html">DOLFIN fem module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN function module</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Constant.html">Constant.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Expression.html">Expression.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Function.html">Function.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FunctionAXPY.html">FunctionAXPY.h</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">FunctionAssigner.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FunctionSpace.html">FunctionSpace.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericFunction.html">GenericFunction.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LagrangeInterpolator.html">LagrangeInterpolator.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MultiMeshFunction.html">MultiMeshFunction.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MultiMeshFunctionSpace.html">MultiMeshFunctionSpace.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MultiMeshSubSpace.html">MultiMeshSubSpace.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SpecialFacetFunction.html">SpecialFacetFunction.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SpecialFunctions.html">SpecialFunctions.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SubSpace.html">SubSpace.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="assign.html">assign.h</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/index.html">DOLFIN geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/index.html">DOLFIN io module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../la/index.html">DOLFIN la module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/index.html">DOLFIN log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mesh/index.html">DOLFIN mesh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot/index.html">DOLFIN plot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer&#8217;s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-1.5.0</a> &raquo;</li>
+      
+          <li><a href="index.html">DOLFIN function module</a> &raquo;</li>
+      
+    <li>FunctionAssigner.h</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/programmers-reference/function/FunctionAssigner.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="functionassigner-h">
+<span id="programmers-reference-cpp-function-functionassigner"></span><h1>FunctionAssigner.h<a class="headerlink" href="#functionassigner-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="class">
+<dt id="_CPPv216FunctionAssigner">
+<span id="FunctionAssigner"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">FunctionAssigner</code><a class="headerlink" href="#_CPPv216FunctionAssigner" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This class facilitate assignments between Function and sub
+Functions. It builds and caches maps between compatible
+dofs. These maps are used in the assignment methods which
+perform the actual assignment. Optionally can a MeshFunction be
+passed together with a label, facilitating FunctionAssignment
+over sub domains.</p>
+<dl class="function">
+<dt id="_CPPv2N16FunctionAssigner16FunctionAssignerENSt10shared_ptrIK13FunctionSpaceEENSt10shared_ptrIK13FunctionSpaceEE">
+<span id="FunctionAssigner::FunctionAssigner__std::shared_ptr:FunctionSpaceC:.std::shared_ptr:FunctionSpaceC:"></span><code class="descclassname"></code><code class="descname">FunctionAssigner</code><span class="sig-paren">(</span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="FunctionSpace.html#_CPPv213FunctionSpace" title="FunctionSpace">FunctionSpace</a>&gt; <em>receiving_space</em>, std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="FunctionSpace.html#_CPPv213FunctionSpace" title="FunctionSpace">FunctionSpace</a>&gt; <em>assigning_space</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N16FunctionAssigner16FunctionAssignerENSt10shared_ptrIK13FunctionSpaceEENSt10shared_ptrIK13FunctionSpaceEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create a FunctionAssigner between functions residing in the
+same type of FunctionSpace. One or both functions can be sub
+functions.</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>receiving_space (<a class="reference internal" href="FunctionSpace.html#_CPPv213FunctionSpace" title="FunctionSpace"><code class="xref cpp cpp-class docutils literal"><span class="pre">FunctionSpace</span></code></a>)</dt>
+<dd>The function space of the receiving function</dd>
+<dt>assigning_space (<a class="reference internal" href="FunctionSpace.html#_CPPv213FunctionSpace" title="FunctionSpace"><code class="xref cpp cpp-class docutils literal"><span class="pre">FunctionSpace</span></code></a>)</dt>
+<dd>The function space of the assigning function</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N16FunctionAssigner16FunctionAssignerENSt6vectorINSt10shared_ptrIK13FunctionSpaceEEEENSt10shared_ptrIK13FunctionSpaceEE">
+<span id="FunctionAssigner::FunctionAssigner__std::vector:std::shared_ptr:FunctionSpaceC::.std::shared_ptr:FunctionSpaceC:"></span><code class="descclassname"></code><code class="descname">FunctionAssigner</code><span class="sig-paren">(</span>std::vector&lt;std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="FunctionSpace.html#_CPPv213FunctionSpace" title="FunctionSpace">FunctionSpace</a>&gt;&gt; <em>receiving_spaces</em>, std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="FunctionSpace.html#_CPPv213FunctionSpace" title="FunctionSpace">FunctionSpace</a>&gt; <em>assigning_space</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N16FunctionAssigner16FunctionAssignerENSt6vectorINSt10shared_ptrIK13FunctionSpaceEEEENSt10shared_ptrIK13FunctionSpaceEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create a FunctionAssigner between one mixed function
+(assigning) and several functions (receiving). The number of
+receiving functions must sum up to the number of sub functions
+in the assigning mixed function. The sub spaces of the
+assigning mixed space must be of the same type ans size as the
+receiving spaces.</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>receiving_spaces (std::vector&lt;<a class="reference internal" href="FunctionSpace.html#_CPPv213FunctionSpace" title="FunctionSpace"><code class="xref cpp cpp-class docutils literal"><span class="pre">FunctionSpace</span></code></a>&gt;)</dt>
+<dd>The receiving function spaces</dd>
+<dt>assigning_space (<a class="reference internal" href="FunctionSpace.html#_CPPv213FunctionSpace" title="FunctionSpace"><code class="xref cpp cpp-class docutils literal"><span class="pre">FunctionSpace</span></code></a>)</dt>
+<dd>The assigning function space</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N16FunctionAssigner16FunctionAssignerENSt10shared_ptrIK13FunctionSpaceEENSt6vectorINSt10shared_ptrIK13FunctionSpaceEEEE">
+<span id="FunctionAssigner::FunctionAssigner__std::shared_ptr:FunctionSpaceC:.std::vector:std::shared_ptr:FunctionSpaceC::"></span><code class="descclassname"></code><code class="descname">FunctionAssigner</code><span class="sig-paren">(</span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="FunctionSpace.html#_CPPv213FunctionSpace" title="FunctionSpace">FunctionSpace</a>&gt; <em>receiving_space</em>, std::vector&lt;std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="FunctionSpace.html#_CPPv213FunctionSpace" title="FunctionSpace">FunctionSpace</a>&gt;&gt; <em>assigning_spaces</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N16FunctionAssigner16FunctionAssignerENSt10shared_ptrIK13FunctionSpaceEENSt6vectorINSt10shared_ptrIK13FunctionSpaceEEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create a FunctionAssigner between several functions
+(assigning) and one mixed function (receiving). The number of
+sub functions in the assigning mixed function must sum up to
+the number of receiving functions. The sub spaces of the
+receiving mixed space must be of the same type ans size as the
+assigning spaces.</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>receiving_space (std::shared_ptr&lt;<a class="reference internal" href="FunctionSpace.html#_CPPv213FunctionSpace" title="FunctionSpace"><code class="xref cpp cpp-class docutils literal"><span class="pre">FunctionSpace</span></code></a>&gt;)</dt>
+<dd>The receiving function space</dd>
+<dt>assigning_spaces (std::vector&lt;std::shared_ptr&lt;<a class="reference internal" href="FunctionSpace.html#_CPPv213FunctionSpace" title="FunctionSpace"><code class="xref cpp cpp-class docutils literal"><span class="pre">FunctionSpace</span></code></a>&gt; &gt;)</dt>
+<dd>The assigning function spaces</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK16FunctionAssigner6assignENSt10shared_ptrI8FunctionEENSt10shared_ptrIK8FunctionEE">
+<span id="FunctionAssigner::assign__std::shared_ptr:Function:.std::shared_ptr:FunctionC:C"></span>void <code class="descclassname"></code><code class="descname">assign</code><span class="sig-paren">(</span>std::shared_ptr&lt;<a class="reference internal" href="Function.html#_CPPv28Function" title="Function">Function</a>&gt; <em>receiving_func</em>, std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="Function.html#_CPPv28Function" title="Function">Function</a>&gt; <em>assigning_func</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK16FunctionAssigner6assignENSt10shared_ptrI8FunctionEENSt10shared_ptrIK8FunctionEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Assign one function to another</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>receiving_func (std::shared_ptr&lt;<a class="reference internal" href="Function.html#_CPPv28Function" title="Function"><code class="xref cpp cpp-class docutils literal"><span class="pre">Function</span></code></a>&gt;)</dt>
+<dd>The receiving function</dd>
+<dt>assigning_func (std::shared_ptr&lt;<a class="reference internal" href="Function.html#_CPPv28Function" title="Function"><code class="xref cpp cpp-class docutils literal"><span class="pre">Function</span></code></a>&gt;)</dt>
+<dd>The assigning function</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK16FunctionAssigner6assignENSt10shared_ptrI8FunctionEENSt6vectorINSt10shared_ptrIK8FunctionEEEE">
+<span id="FunctionAssigner::assign__std::shared_ptr:Function:.std::vector:std::shared_ptr:FunctionC::C"></span>void <code class="descclassname"></code><code class="descname">assign</code><span class="sig-paren">(</span>std::shared_ptr&lt;<a class="reference internal" href="Function.html#_CPPv28Function" title="Function">Function</a>&gt; <em>receiving_func</em>, std::vector&lt;std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="Function.html#_CPPv28Function" title="Function">Function</a>&gt;&gt; <em>assigning_funcs</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK16FunctionAssigner6assignENSt10shared_ptrI8FunctionEENSt6vectorINSt10shared_ptrIK8FunctionEEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Assign several functions to sub functions of a mixed receiving
+function</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>receiving_func (std::shared_ptr&lt;<a class="reference internal" href="Function.html#_CPPv28Function" title="Function"><code class="xref cpp cpp-class docutils literal"><span class="pre">Function</span></code></a>&gt;)</dt>
+<dd>The receiving mixed function</dd>
+<dt>assigning_funcs (std::vector&lt;std::shared_ptr&lt;<a class="reference internal" href="Function.html#_CPPv28Function" title="Function"><code class="xref cpp cpp-class docutils literal"><span class="pre">Function</span></code></a>&gt; &gt;)</dt>
+<dd>The assigning functions</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK16FunctionAssigner6assignENSt6vectorINSt10shared_ptrI8FunctionEEEENSt10shared_ptrIK8FunctionEE">
+<span id="FunctionAssigner::assign__std::vector:std::shared_ptr:Function::.std::shared_ptr:FunctionC:C"></span>void <code class="descclassname"></code><code class="descname">assign</code><span class="sig-paren">(</span>std::vector&lt;std::shared_ptr&lt;<a class="reference internal" href="Function.html#_CPPv28Function" title="Function">Function</a>&gt;&gt; <em>receiving_funcs</em>, std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="Function.html#_CPPv28Function" title="Function">Function</a>&gt; <em>assigning_func</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK16FunctionAssigner6assignENSt6vectorINSt10shared_ptrI8FunctionEEEENSt10shared_ptrIK8FunctionEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Assign sub functions of a single mixed function to single
+receiving functions</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>receiving_funcs (std::vector&lt;std::shared_ptr&lt;<a class="reference internal" href="Function.html#_CPPv28Function" title="Function"><code class="xref cpp cpp-class docutils literal"><span class="pre">Function</span></code></a>&gt; &gt;)</dt>
+<dd>The receiving functions</dd>
+<dt>assigning_func (std::shared_ptr&lt;<a class="reference internal" href="Function.html#_CPPv28Function" title="Function"><code class="xref cpp cpp-class docutils literal"><span class="pre">Function</span></code></a>&gt;)</dt>
+<dd>The assigning mixed function</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK16FunctionAssigner23num_assigning_functionsEv">
+<span id="FunctionAssigner::num_assigning_functionsC"></span>std::size_t <code class="descclassname"></code><code class="descname">num_assigning_functions</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK16FunctionAssigner23num_assigning_functionsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the number of assigning functions</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK16FunctionAssigner23num_receiving_functionsEv">
+<span id="FunctionAssigner::num_receiving_functionsC"></span>std::size_t <code class="descclassname"></code><code class="descname">num_receiving_functions</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK16FunctionAssigner23num_receiving_functionsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the number of receiving functions</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="FunctionSpace.html" class="btn btn-neutral float-right" title="FunctionSpace.h" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="FunctionAXPY.html" class="btn btn-neutral" title="FunctionAXPY.h" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://bitbucket.org/fenics-project/.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.5.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

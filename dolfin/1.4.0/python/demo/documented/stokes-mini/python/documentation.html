@@ -1,0 +1,475 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>20. Stokes equations with Mini elements &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../../../index.html"/>
+        <link rel="up" title="Collection of documented demos" href="../../../index.html"/>
+        <link rel="next" title="21. Stokes equations with stabilized first order elements" href="../../stokes-stabilized/python/documentation.html"/>
+        <link rel="prev" title="19. Stokes equations" href="../../stokes-iterative/python/documentation.html"/> 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.4.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../programmers-reference/index.html">Programmer&#8217;s reference for DOLFIN (Python)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Collection of documented demos</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../auto-adaptive-poisson/python/documentation.html">1. Auto adaptive Poisson equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../bcs/python/documentation.html">2. Set boundary conditions for meshes that include boundary indicators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../biharmonic/python/documentation.html">3. Biharmonic equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../built-in_meshes/python/documentation.html">4. Built-in meshes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cahn-hilliard/python/documentation.html">5. Cahn-Hilliard equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../csg-2D/python/documentation.html">6. Create CSG 2D-geometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../csg-3D/python/documentation.html">7. Create CSG 3D-geometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../eigenvalue/python/documentation.html">8. A simple eigenvalue solver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hyperelasticity/python/documentation.html">9. Hyperelasticity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mesh-generation/python/documentation.html">10. Generate mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mixed-poisson-dual/python/documentation.html">11. Dual-mixed formulation for Poisson equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mixed-poisson/python/documentation.html">12. Mixed formulation for Poisson equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../navier-stokes/python/documentation.html">13. Incompressible Navier-Stokes equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../neumann-poisson/python/documentation.html">14. Poisson equation with pure Neumann boundary conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nonlinear-poisson/python/documentation.html">15. Nonlinear Poisson equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../periodic/python/documentation.html">16. Poisson equation with periodic boundary conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../poisson/python/documentation.html">17. Poisson equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../singular-poisson/python/documentation.html">18. Singular Poisson</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stokes-iterative/python/documentation.html">19. Stokes equations</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">20. Stokes equations with Mini elements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#equation-and-problem-definition">20.1. Equation and problem definition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#implementation">20.2. Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#complete-code">20.3. Complete code</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../stokes-stabilized/python/documentation.html">21. Stokes equations with stabilized first order elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stokes-taylor-hood/python/documentation.html">22. Stokes equations with Taylor-Hood elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../subdomains-poisson/python/documentation.html">23. Poisson equation with multiple subdomains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../subdomains/python/documentation.html">24. Marking subdomains of a mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tensor-weighted-poisson/python/documentation.html">25. Tensor-weighted Poisson</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../quick_reference.html">Quick Programmer&#8217;s Reference (Python)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../index.html">Collection of documented demos</a> &raquo;</li>
+      
+    <li>20. Stokes equations with Mini elements</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../../_sources/demo/documented/stokes-mini/python/documentation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="stokes-equations-with-mini-elements">
+<span id="demo-pde-stokes-mini-python-documentation"></span><h1>20. Stokes equations with Mini elements<a class="headerlink" href="#stokes-equations-with-mini-elements" title="Permalink to this headline">¶</a></h1>
+<p>This demo is implemented in a single Python file,
+<a class="reference download internal" href="../../../../_downloads/demo_stokes-mini.py" download=""><code class="xref download docutils literal"><span class="pre">demo_stokes-mini.py</span></code></a>, which contains both the variational
+form and the solver.</p>
+<p>This demo illustrates how to:</p>
+<ul class="simple">
+<li>Read mesh and subdomains from file</li>
+<li>Use mixed function spaces</li>
+<li>Use enriched function spaces</li>
+</ul>
+<p>The solution for <span class="math">\(u\)</span> and <span class="math">\(p\)</span> in this demo will look as follows:</p>
+<a class="reference internal image-reference" href="../../../../_images/plot_u2.png"><img alt="../../../../_images/plot_u2.png" src="../../../../_images/plot_u2.png" style="width: 450.0px; height: 300.0px;" /></a>
+<a class="reference internal image-reference" href="../../../../_images/plot_p.png"><img alt="../../../../_images/plot_p.png" src="../../../../_images/plot_p.png" style="width: 450.0px; height: 300.0px;" /></a>
+<div class="section" id="equation-and-problem-definition">
+<h2>20.1. Equation and problem definition<a class="headerlink" href="#equation-and-problem-definition" title="Permalink to this headline">¶</a></h2>
+<p>Strong formulation:</p>
+<div class="math">
+\[\begin{split}- \nabla \cdot (\nabla u + p I) &amp;= f \quad {\rm in} \ \Omega, \\
+                \nabla \cdot u &amp;= 0 \quad {\rm in} \ \Omega. \\\end{split}\]</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The sign of the pressure has been flipped from the classical definition. This is done in order to have a symmetric (but not positive-definite) system of equations              rather than a non-symmetric (but positive-definite) system of equations.</p>
+</div>
+<p>A typical set of boundary conditions on the boundary <span class="math">\(\partial \Omega = \Gamma_{D} \cup \Gamma_{N}\)</span> can be:</p>
+<div class="math">
+\[\begin{split}u &amp;= u_0 \quad {\rm on} \ \Gamma_{D}, \\
+\nabla u \cdot n + p n &amp;= g  \quad\;\; {\rm on} \ \Gamma_{N}. \\\end{split}\]</div>
+<p>The Stokes equations can easily be formulated in a mixed variational form; that is, a form where the two variables, the velocity and the pressure, are approximated simultaneously. Using the abstract framework, we have the problem: find <span class="math">\((u, p) \in W\)</span>, such that</p>
+<div class="math">
+\[a((u, p), (v, q)) = L((v, q))\]</div>
+<p>for all <span class="math">\((v, q) \in W\)</span>, where</p>
+<div class="math">
+\[\begin{split}a((u, p), (v, q))
+                        &amp;= \int_{\Omega} [\nabla u \cdot \nabla v
+         + \nabla \cdot v \ p
+         + \nabla \cdot u \ q] \, {\rm d} x, \\
+L((v, q))
+                        &amp;= \int_{\Omega} f \cdot v \, {\rm d} x
+                + \int_{\partial \Omega_N} g \cdot v \, {\rm d} s. \\\end{split}\]</div>
+<p>The space <span class="math">\(W\)</span> should be a mixed (product) function space: <span class="math">\(W = V \times Q\)</span> such that <span class="math">\(u \in V \, {\rm and} \, q \in Q\)</span>.</p>
+<p>In this demo, we shall consider the following definitions of the input functions, the domain, and the boundaries:</p>
+<ul class="simple">
+<li><span class="math">\(\Omega = [0,1]\times[0, 1] \backslash {\rm dolphin}\)</span> (a unit square)</li>
+<li><span class="math">\(\Gamma_D =\)</span></li>
+<li><span class="math">\(\Gamma_N =\)</span></li>
+<li><span class="math">\(u_0 = (- \sin(\pi x_1), 0.0) \, {\rm for} \, x_0 = 1 \, {\rm and} \, u_0 = (0.0, 0.0)\)</span> otherwise</li>
+<li><span class="math">\(f = (0.0, 0.0)\)</span></li>
+<li><span class="math">\(g = (0.0, 0.0)\)</span></li>
+</ul>
+</div>
+<div class="section" id="implementation">
+<h2>20.2. Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
+<p>This description goes through the implementation (in
+<a class="reference download internal" href="../../../../_downloads/demo_stokes-mini.py" download=""><code class="xref download docutils literal"><span class="pre">demo_stokes-mini.py</span></code></a>) of a solver for the Stokes equation
+step-by-step.</p>
+<p>First, the <a class="reference internal" href="../../../../programmers-reference/index.html#module-dolfin" title="dolfin"><code class="xref py py-mod docutils literal"><span class="pre">dolfin</span></code></a> module is imported:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dolfin</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+<p>In this example, different boundary conditions are prescribed on
+different parts of the boundaries. This information must be made
+available to the solver. One way of doing this, is to tag the
+different sub-regions with different (integer) labels. DOLFIN provides
+a class <a class="reference internal" href="../../../../programmers-reference/cpp/mesh/MeshFunction.html#dolfin.cpp.mesh.MeshFunction" title="dolfin.cpp.mesh.MeshFunction"><code class="xref py py-class docutils literal"><span class="pre">MeshFunction</span></code></a> which
+is useful for these types of operations: instances of this class
+represent a functions over mesh entities (such as over cells or over
+facets). Mesh and mesh functions can be read from file in the
+following way:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Load mesh and subdomains</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">Mesh</span><span class="p">(</span><span class="s2">&quot;../dolfin_fine.xml.gz&quot;</span><span class="p">)</span>
+<span class="n">sub_domains</span> <span class="o">=</span> <span class="n">MeshFunction</span><span class="p">(</span><span class="s2">&quot;size_t&quot;</span><span class="p">,</span> <span class="n">mesh</span><span class="p">,</span> <span class="s2">&quot;../dolfin_fine_subdomains.xml.gz&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Next, we define a <a class="reference internal" href="../../../../programmers-reference/functions/functionspace/MixedFunctionSpace.html#dolfin.functions.functionspace.MixedFunctionSpace" title="dolfin.functions.functionspace.MixedFunctionSpace"><code class="xref py py-class docutils literal"><span class="pre">MixedFunctionSpace</span></code></a> composed of a
+<a class="reference internal" href="../../../../programmers-reference/functions/functionspace/VectorFunctionSpace.html#dolfin.functions.functionspace.VectorFunctionSpace" title="dolfin.functions.functionspace.VectorFunctionSpace"><code class="xref py py-class docutils literal"><span class="pre">VectorFunctionSpace</span></code></a> of the linear
+vector Lagrange elements enriched with the cubic vector Bubble
+elements and a <a class="reference internal" href="../../../../programmers-reference/cpp/function/FunctionSpace.html#dolfin.cpp.function.FunctionSpace" title="dolfin.cpp.function.FunctionSpace"><code class="xref py py-class docutils literal"><span class="pre">FunctionSpace</span></code></a> of continuous piecewise
+linears. (This mixed finite element space is known as the Mini space
+where we have the vector Bubble element for the velocity
+approximation.)</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Define function spaces</span>
+<span class="n">P1</span> <span class="o">=</span> <span class="n">VectorFunctionSpace</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="s2">&quot;Lagrange&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">B</span>  <span class="o">=</span> <span class="n">VectorFunctionSpace</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="s2">&quot;Bubble&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">Q</span>  <span class="o">=</span> <span class="n">FunctionSpace</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="s2">&quot;CG&quot;</span><span class="p">,</span>  <span class="mi">1</span><span class="p">)</span>
+<span class="n">Mini</span> <span class="o">=</span> <span class="p">(</span><span class="n">P1</span> <span class="o">+</span> <span class="n">B</span><span class="p">)</span><span class="o">*</span><span class="n">Q</span>
+</pre></div>
+</div>
+<p>Now that we have our mixed function space and marked subdomains
+defining the boundaries, we define boundary conditions:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># No-slip boundary condition for velocity</span>
+<span class="n">noslip</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">bc0</span> <span class="o">=</span> <span class="n">DirichletBC</span><span class="p">(</span><span class="n">Mini</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">noslip</span><span class="p">,</span> <span class="n">sub_domains</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Inflow boundary condition for velocity</span>
+<span class="n">inflow</span> <span class="o">=</span> <span class="n">Expression</span><span class="p">((</span><span class="s2">&quot;-sin(x[1]*pi)&quot;</span><span class="p">,</span> <span class="s2">&quot;0.0&quot;</span><span class="p">))</span>
+<span class="n">bc1</span> <span class="o">=</span> <span class="n">DirichletBC</span><span class="p">(</span><span class="n">Mini</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">inflow</span><span class="p">,</span> <span class="n">sub_domains</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Boundary condition for pressure at outflow</span>
+<span class="n">zero</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">bc2</span> <span class="o">=</span> <span class="n">DirichletBC</span><span class="p">(</span><span class="n">Mini</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">zero</span><span class="p">,</span> <span class="n">sub_domains</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Collect boundary conditions</span>
+<span class="n">bcs</span> <span class="o">=</span> <span class="p">[</span><span class="n">bc0</span><span class="p">,</span> <span class="n">bc1</span><span class="p">,</span> <span class="n">bc2</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Here, we have given four arguments in the call of
+<a class="reference internal" href="../../../../programmers-reference/cpp/fem/DirichletBC.html#dolfin.cpp.fem.DirichletBC" title="dolfin.cpp.fem.DirichletBC"><code class="xref py py-class docutils literal"><span class="pre">DirichletBC</span></code></a>. The first
+specifies the <a class="reference internal" href="../../../../programmers-reference/cpp/function/FunctionSpace.html#dolfin.cpp.function.FunctionSpace" title="dolfin.cpp.function.FunctionSpace"><code class="xref py py-class docutils literal"><span class="pre">FunctionSpace</span></code></a>. Since we have a
+<a class="reference internal" href="../../../../programmers-reference/functions/functionspace/MixedFunctionSpace.html#dolfin.functions.functionspace.MixedFunctionSpace" title="dolfin.functions.functionspace.MixedFunctionSpace"><code class="xref py py-class docutils literal"><span class="pre">MixedFunctionSpace</span></code></a>, we write
+W.sub(0) for the function space V, and W.sub(1) for Q. The second
+argument specifies the value on the Dirichlet boundary. The two last
+arguments specify the marking of the subdomains; <code class="docutils literal"><span class="pre">sub_domains</span></code> contains
+the subdomain markers and the number given as the last argument is the
+subdomain index.</p>
+<p>The bilinear and linear forms corresponding to the weak mixed
+formulation of the Stokes equations are defined as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Define variational problem</span>
+<span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span> <span class="o">=</span> <span class="n">TrialFunctions</span><span class="p">(</span><span class="n">Mini</span><span class="p">)</span>
+<span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span> <span class="o">=</span> <span class="n">TestFunctions</span><span class="p">(</span><span class="n">Mini</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="n">inner</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">grad</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="o">-</span> <span class="n">div</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">*</span><span class="n">p</span> <span class="o">+</span> <span class="n">q</span><span class="o">*</span><span class="n">div</span><span class="p">(</span><span class="n">u</span><span class="p">))</span><span class="o">*</span><span class="n">dx</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">inner</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span>
+</pre></div>
+</div>
+<p>To compute the solution we use the bilinear and linear forms, and the
+boundary condition, but we also need to create a <a class="reference internal" href="../../../../programmers-reference/cpp/function/Function.html#dolfin.cpp.function.Function" title="dolfin.cpp.function.Function"><code class="xref py py-class docutils literal"><span class="pre">Function</span></code></a> to store the solution(s). The (full)
+solution will be stored in <code class="docutils literal"><span class="pre">w</span></code>, which we initialize using the
+<a class="reference internal" href="../../../../programmers-reference/functions/functionspace/MixedFunctionSpace.html#dolfin.functions.functionspace.MixedFunctionSpace" title="dolfin.functions.functionspace.MixedFunctionSpace"><code class="xref py py-class docutils literal"><span class="pre">MixedFunctionSpace</span></code></a> <code class="docutils literal"><span class="pre">W</span></code>. The actual
+computation is performed by calling solve with the arguments <code class="docutils literal"><span class="pre">a</span></code>,
+<code class="docutils literal"><span class="pre">L</span></code>, <code class="docutils literal"><span class="pre">w</span></code> and <code class="docutils literal"><span class="pre">bcs</span></code>. The separate components <code class="docutils literal"><span class="pre">u</span></code> and <code class="docutils literal"><span class="pre">p</span></code> of
+the solution can be extracted by calling the <a class="reference internal" href="../../../../programmers-reference/functions/function/Function.html#dolfin.functions.function.Function.split" title="dolfin.functions.function.Function.split"><code class="xref py py-meth docutils literal"><span class="pre">split</span></code></a> function. Here we use an
+optional argument True in the split function to specify that we want a
+deep copy. If no argument is given we will get a shallow copy. We want
+a deep copy for further computations on the coefficient vectors.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Compute solution</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="n">Mini</span><span class="p">)</span>
+<span class="n">solve</span><span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">L</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">bcs</span><span class="p">)</span>
+
+<span class="c1"># Split the mixed solution using deepcopy</span>
+<span class="c1"># (needed for further computation on coefficient vector)</span>
+<span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We may be interested in the <span class="math">\(L^2\)</span> norms of u and p, they can be
+calculated and printed by writing</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">print</span> <span class="s2">&quot;Norm of velocity coefficient vector: </span><span class="si">%.15g</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">u</span><span class="o">.</span><span class="n">vector</span><span class="p">()</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="s2">&quot;l2&quot;</span><span class="p">)</span>
+<span class="k">print</span> <span class="s2">&quot;Norm of pressure coefficient vector: </span><span class="si">%.15g</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">p</span><span class="o">.</span><span class="n">vector</span><span class="p">()</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="s2">&quot;l2&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>One can also split functions using shallow copies (which is enough
+when we just plot the result) by writing</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Split the mixed solution using a shallow copy</span>
+<span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Finally, we can store to file and plot the solutions.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Save solution in VTK format</span>
+<span class="n">ufile_pvd</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="s2">&quot;velocity.pvd&quot;</span><span class="p">)</span>
+<span class="n">ufile_pvd</span> <span class="o">&lt;&lt;</span> <span class="n">u</span>
+<span class="n">pfile_pvd</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="s2">&quot;pressure.pvd&quot;</span><span class="p">)</span>
+<span class="n">pfile_pvd</span> <span class="o">&lt;&lt;</span> <span class="n">p</span>
+
+<span class="c1"># Plot solution</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="n">interactive</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="complete-code">
+<h2>20.3. Complete code<a class="headerlink" href="#complete-code" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default"><div class="highlight"><pre><span></span>
+<span class="kn">from</span> <span class="nn">dolfin</span> <span class="k">import</span> <span class="o">*</span>
+
+<span class="c1"># Load mesh and subdomains</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">Mesh</span><span class="p">(</span><span class="s2">&quot;../dolfin_fine.xml.gz&quot;</span><span class="p">)</span>
+<span class="n">sub_domains</span> <span class="o">=</span> <span class="n">MeshFunction</span><span class="p">(</span><span class="s2">&quot;size_t&quot;</span><span class="p">,</span> <span class="n">mesh</span><span class="p">,</span> <span class="s2">&quot;../dolfin_fine_subdomains.xml.gz&quot;</span><span class="p">)</span>
+
+<span class="c1"># Define function spaces</span>
+<span class="n">P1</span> <span class="o">=</span> <span class="n">VectorFunctionSpace</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="s2">&quot;Lagrange&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">B</span>  <span class="o">=</span> <span class="n">VectorFunctionSpace</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="s2">&quot;Bubble&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">Q</span>  <span class="o">=</span> <span class="n">FunctionSpace</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="s2">&quot;CG&quot;</span><span class="p">,</span>  <span class="mi">1</span><span class="p">)</span>
+<span class="n">Mini</span> <span class="o">=</span> <span class="p">(</span><span class="n">P1</span> <span class="o">+</span> <span class="n">B</span><span class="p">)</span><span class="o">*</span><span class="n">Q</span>
+
+<span class="c1"># No-slip boundary condition for velocity</span>
+<span class="n">noslip</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">bc0</span> <span class="o">=</span> <span class="n">DirichletBC</span><span class="p">(</span><span class="n">Mini</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">noslip</span><span class="p">,</span> <span class="n">sub_domains</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Inflow boundary condition for velocity</span>
+<span class="n">inflow</span> <span class="o">=</span> <span class="n">Expression</span><span class="p">((</span><span class="s2">&quot;-sin(x[1]*pi)&quot;</span><span class="p">,</span> <span class="s2">&quot;0.0&quot;</span><span class="p">))</span>
+<span class="n">bc1</span> <span class="o">=</span> <span class="n">DirichletBC</span><span class="p">(</span><span class="n">Mini</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">inflow</span><span class="p">,</span> <span class="n">sub_domains</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Boundary condition for pressure at outflow</span>
+<span class="n">zero</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">bc2</span> <span class="o">=</span> <span class="n">DirichletBC</span><span class="p">(</span><span class="n">Mini</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">zero</span><span class="p">,</span> <span class="n">sub_domains</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Collect boundary conditions</span>
+<span class="n">bcs</span> <span class="o">=</span> <span class="p">[</span><span class="n">bc0</span><span class="p">,</span> <span class="n">bc1</span><span class="p">,</span> <span class="n">bc2</span><span class="p">]</span>
+
+<span class="c1"># Define variational problem</span>
+<span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span> <span class="o">=</span> <span class="n">TrialFunctions</span><span class="p">(</span><span class="n">Mini</span><span class="p">)</span>
+<span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span> <span class="o">=</span> <span class="n">TestFunctions</span><span class="p">(</span><span class="n">Mini</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="n">inner</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">grad</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="o">-</span> <span class="n">div</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">*</span><span class="n">p</span> <span class="o">+</span> <span class="n">q</span><span class="o">*</span><span class="n">div</span><span class="p">(</span><span class="n">u</span><span class="p">))</span><span class="o">*</span><span class="n">dx</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">inner</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span>
+
+<span class="c1"># Compute solution</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="n">Mini</span><span class="p">)</span>
+<span class="n">solve</span><span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">L</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">bcs</span><span class="p">)</span>
+
+<span class="c1"># Split the mixed solution using deepcopy</span>
+<span class="c1"># (needed for further computation on coefficient vector)</span>
+<span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span> <span class="s2">&quot;Norm of velocity coefficient vector: </span><span class="si">%.15g</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">u</span><span class="o">.</span><span class="n">vector</span><span class="p">()</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="s2">&quot;l2&quot;</span><span class="p">)</span>
+<span class="nb">print</span> <span class="s2">&quot;Norm of pressure coefficient vector: </span><span class="si">%.15g</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">p</span><span class="o">.</span><span class="n">vector</span><span class="p">()</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="s2">&quot;l2&quot;</span><span class="p">)</span>
+
+<span class="c1"># Split the mixed solution using a shallow copy</span>
+<span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+
+<span class="c1"># Save solution in VTK format</span>
+<span class="n">ufile_pvd</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="s2">&quot;velocity.pvd&quot;</span><span class="p">)</span>
+<span class="n">ufile_pvd</span> <span class="o">&lt;&lt;</span> <span class="n">u</span>
+<span class="n">pfile_pvd</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="s2">&quot;pressure.pvd&quot;</span><span class="p">)</span>
+<span class="n">pfile_pvd</span> <span class="o">&lt;&lt;</span> <span class="n">p</span>
+
+<span class="c1"># Plot solution</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="n">interactive</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../stokes-stabilized/python/documentation.html" class="btn btn-neutral float-right" title="21. Stokes equations with stabilized first order elements" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../../stokes-iterative/python/documentation.html" class="btn btn-neutral" title="19. Stokes equations" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://fenicsproject.org.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'1.4.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

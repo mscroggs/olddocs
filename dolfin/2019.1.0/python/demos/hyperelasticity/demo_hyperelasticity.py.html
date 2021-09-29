@@ -1,0 +1,491 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Hyperelasticity &mdash; DOLFIN  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Nonlinear Poisson equation" href="../nonlinear-poisson/demo_nonlinear-poisson.py.html" />
+    <link rel="prev" title="Stable and unstable finite elements for the Maxwell eigenvalue problem" href="../maxwell-eigenvalues/demo_maxwell-eigenvalues.py.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../using.html">Using DOLFIN</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../demos.html">Demos</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../demos.html#introductory-demos">Introductory demos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../demos.html#more-advanced-demos">More advanced demos</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../demos.html#all-documented-demos">All documented demos</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../poisson/demo_poisson.py.html">Poisson equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../eigenvalue/demo_eigenvalue.py.html">A simple eigenvalue solver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../built-in-meshes/demo_built-in-meshes.py.html">Built-in meshes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mixed-poisson/demo_mixed-poisson.py.html">Mixed formulation for Poisson equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../biharmonic/demo_biharmonic.py.html">Biharmonic equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../auto-adaptive-poisson/demo_auto-adaptive-poisson.py.html">Auto adaptive Poisson equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cahn-hilliard/demo_cahn-hilliard.py.html">Cahn-Hilliard equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maxwell-eigenvalues/demo_maxwell-eigenvalues.py.html">Stable and unstable finite elements for the Maxwell eigenvalue problem</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Hyperelasticity</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#background">Background</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#equation-and-problem-definition">Equation and problem definition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#implementation">Implementation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../nonlinear-poisson/demo_nonlinear-poisson.py.html">Nonlinear Poisson equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../singular-poisson/demo_singular-poisson.py.html">Singular Poisson</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../neumann-poisson/demo_neumann-poisson.py.html">Poisson equation with pure Neumann boundary conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nonmatching-interpolation/demo_nonmatching-interpolation.py.html">Interpolation from a non-matching mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../stokes-iterative/demo_stokes-iterative.py.html">Stokes equations with an iterative solver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elastodynamics/demo_elastodynamics.py.html">Time-integration of elastodynamics equation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">Python API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer.html">Developer resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ChangeLog.html">Change log</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">DOLFIN</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../demos.html">Demos</a> &raquo;</li>
+        
+      <li>Hyperelasticity</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/demos/hyperelasticity/demo_hyperelasticity.py.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="hyperelasticity">
+<span id="demo-hyperelasticity"></span><h1>Hyperelasticity<a class="headerlink" href="#hyperelasticity" title="Permalink to this headline">¶</a></h1>
+<p>This demo is implemented in a single Python file,
+<a class="reference download internal" download="" href="../../_downloads/2d5fbd0d5e1e4b5582f173bfc33c7d31/demo_hyperelasticity.py"><code class="xref download docutils literal notranslate"><span class="pre">demo_hyperelasticity.py</span></code></a>, which contains both the
+variational forms and the solver.</p>
+<div class="section" id="background">
+<h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h2>
+<p>This example demonstrates the solution of a three-dimensional
+elasticity problem. In addition to illustrating how to use
+FunctionSpaces, Expressions and how to apply Dirichlet boundary
+conditions, it focuses on how to:</p>
+<ul class="simple">
+<li><p>Minimise a non-quadratic functional</p></li>
+<li><p>Use automatic computation of the directional derivative</p></li>
+<li><p>Solve a nonlinear variational problem</p></li>
+<li><p>Define compiled sub-domains</p></li>
+<li><p>Use specific form compiler optimization options</p></li>
+</ul>
+</div>
+<div class="section" id="equation-and-problem-definition">
+<h2>Equation and problem definition<a class="headerlink" href="#equation-and-problem-definition" title="Permalink to this headline">¶</a></h2>
+<p>By definition, boundary value problems for hyperelastic media can be
+expressed as minimisation problems, and the minimization approach is
+adopted in this example. For a domain <span class="math notranslate nohighlight">\(\Omega \subset
+\mathbb{R}^{d}\)</span>, where <span class="math notranslate nohighlight">\(d\)</span> denotes the spatial dimension, the
+task is to find the displacement field <span class="math notranslate nohighlight">\(u: \Omega \rightarrow
+\mathbb{R}^{d}\)</span> that minimises the total potential energy <span class="math notranslate nohighlight">\(\Pi\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\min_{u \in V} \Pi,\]</div>
+<p>where <span class="math notranslate nohighlight">\(V\)</span> is a suitable function space that satisfies boundary
+conditions on <span class="math notranslate nohighlight">\(u\)</span>.  The total potential energy is given by</p>
+<div class="math notranslate nohighlight">
+\[\Pi = \int_{\Omega} \psi(u) \, {\rm d} x
+- \int_{\Omega} B \cdot u \, {\rm d} x
+- \int_{\partial\Omega} T \cdot u \, {\rm d} s,\]</div>
+<p>where <span class="math notranslate nohighlight">\(\psi\)</span> is the elastic stored energy density, <span class="math notranslate nohighlight">\(B\)</span> is a
+body force (per unit reference volume) and <span class="math notranslate nohighlight">\(T\)</span> is a traction force
+(per unit reference area).</p>
+<p>At minimum points of <span class="math notranslate nohighlight">\(\Pi\)</span>, the directional derivative of <span class="math notranslate nohighlight">\(\Pi\)</span>
+with respect to change in <span class="math notranslate nohighlight">\(u\)</span></p>
+<div class="math notranslate nohighlight" id="equation-first-variation">
+<span class="eqno">(1)<a class="headerlink" href="#equation-first-variation" title="Permalink to this equation">¶</a></span>\[L(u; v) = D_{v} \Pi = \left. \frac{d \Pi(u + \epsilon v)}{d\epsilon} \right|_{\epsilon = 0}\]</div>
+<p>is equal to zero for all <span class="math notranslate nohighlight">\(v \in V\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[L(u; v) = 0 \quad \forall \ v \in V.\]</div>
+<p>To minimise the potential energy, a solution to the variational
+equation above is sought. Depending on the potential energy
+<span class="math notranslate nohighlight">\(\psi\)</span>, <span class="math notranslate nohighlight">\(L(u; v)\)</span> can be nonlinear in <span class="math notranslate nohighlight">\(u\)</span>. In such a
+case, the Jacobian of <span class="math notranslate nohighlight">\(L\)</span> is required in order to solve this
+problem using Newton’s method. The Jacobian of <span class="math notranslate nohighlight">\(L\)</span> is defined as</p>
+<div class="math notranslate nohighlight" id="equation-second-variation">
+<span class="eqno">(2)<a class="headerlink" href="#equation-second-variation" title="Permalink to this equation">¶</a></span>\[a(u; du, v) = D_{du} L = \left. \frac{d L(u + \epsilon du; v)}{d\epsilon} \right|_{\epsilon = 0} .\]</div>
+<div class="section" id="elastic-stored-energy-density">
+<h3>Elastic stored energy density<a class="headerlink" href="#elastic-stored-energy-density" title="Permalink to this headline">¶</a></h3>
+<p>To define the elastic stored energy density, consider the deformation
+gradient <span class="math notranslate nohighlight">\(F\)</span></p>
+<div class="math notranslate nohighlight">
+\[F = I + \nabla u,\]</div>
+<p>the right Cauchy-Green tensor <span class="math notranslate nohighlight">\(C\)</span></p>
+<div class="math notranslate nohighlight">
+\[C = F^{T} F,\]</div>
+<p>and the scalars  <span class="math notranslate nohighlight">\(J\)</span> and <span class="math notranslate nohighlight">\(I_{c}\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}J     &amp;= \det(F), \\
+I_{c} &amp;= {\rm trace}(C).\end{split}\]</div>
+<p>This demo considers a common neo-Hookean stored energy model of the form</p>
+<div class="math notranslate nohighlight">
+\[\psi =  \frac{\mu}{2} (I_{c} - 3) - \mu \ln(J) + \frac{\lambda}{2}\ln(J)^{2},\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\lambda\)</span> are the Lame parameters. These
+can be expressed in terms of the more common Young’s modulus <span class="math notranslate nohighlight">\(E\)</span>
+and Poisson ratio <span class="math notranslate nohighlight">\(\nu\)</span> by:</p>
+<div class="math notranslate nohighlight">
+\[\lambda = \frac{E \nu}{(1 + \nu)(1 - 2\nu)}, \quad  \quad
+\mu     =  \frac{E}{2(1 + \nu)} .\]</div>
+</div>
+<div class="section" id="demo-parameters">
+<h3>Demo parameters<a class="headerlink" href="#demo-parameters" title="Permalink to this headline">¶</a></h3>
+<p>We consider a unit cube domain:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\Omega = (0, 1) \times (0, 1) \times (0, 1)\)</span> (unit cube)</p></li>
+</ul>
+<p>We use the following definitions of the boundary and boundary conditions:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\Gamma_{D_{0}} = 0 \times (0, 1) \times (0, 1)\)</span> (Dirichlet boundary)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Gamma_{D_{1}} = 1 \times (0, 1) \times (0, 1)\)</span> (Dirichlet boundary)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Gamma_{N} = \partial \Omega \backslash \Gamma_{D}\)</span> (Neumann boundary)</p></li>
+<li><p>On <span class="math notranslate nohighlight">\(\Gamma_{D_{0}}\)</span>:  <span class="math notranslate nohighlight">\(u = (0, 0, 0)\)</span></p></li>
+<li><dl>
+<dt>On  <span class="math notranslate nohighlight">\(\Gamma_{D_{1}}\)</span></dt><dd><div class="math notranslate nohighlight">
+\[\begin{split}u = (&amp;0, \\
+&amp;(0.5 + (y - 0.5)\cos(\pi/3) - (z - 0.5)\sin(\pi/3) - y)/2, \\
+&amp;(0.5 + (y - 0.5)\sin(\pi/3) + (z - 0.5)\cos(\pi/3) - z))/2)\end{split}\]</div>
+</dd>
+</dl>
+</li>
+<li><p>On <span class="math notranslate nohighlight">\(\Gamma_{N}\)</span>: <span class="math notranslate nohighlight">\(T = (0.1, 0, 0)\)</span></p></li>
+</ul>
+<p>These are the body forces and material parameters used:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(B = (0, -0.5, 0)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(E    = 10.0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\nu  = 0.3\)</span></p></li>
+</ul>
+<p>With the above input the solution for <span class="math notranslate nohighlight">\(u\)</span> will look as follows:</p>
+<a class="reference internal image-reference" href="../../_images/hyperelasticity_u0.png"><img alt="../../_images/hyperelasticity_u0.png" class="align-center" src="../../_images/hyperelasticity_u0.png" style="width: 450.0px; height: 300.0px;" /></a>
+<a class="reference internal image-reference" href="../../_images/hyperelasticity_u1.png"><img alt="../../_images/hyperelasticity_u1.png" class="align-center" src="../../_images/hyperelasticity_u1.png" style="width: 450.0px; height: 300.0px;" /></a>
+</div>
+</div>
+<div class="section" id="implementation">
+<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
+<p>This demo is implemented in the <a class="reference download internal" download="" href="../../_downloads/2d5fbd0d5e1e4b5582f173bfc33c7d31/demo_hyperelasticity.py"><code class="xref download docutils literal notranslate"><span class="pre">demo_hyperelasticity.py</span></code></a>
+file.</p>
+<p>First, the required modules are imported:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">dolfin</span> <span class="k">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+<p>The behavior of the form compiler FFC can be adjusted by prescribing
+various parameters. Here, we want to use the UFLACS backend of FFC:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Optimization options for the form compiler</span>
+<span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;form_compiler&quot;</span><span class="p">][</span><span class="s2">&quot;cpp_optimize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;form_compiler&quot;</span><span class="p">][</span><span class="s2">&quot;representation&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;uflacs&quot;</span>
+</pre></div>
+</div>
+<p>The first line tells the form compiler to use C++ compiler optimizations when
+compiling the generated code. The remainder is a dictionary of options which
+will be passed to the form compiler. It lists the optimizations strategies
+that we wish the form compiler to use when generating code.</p>
+<p id="index-0">First, we need a tetrahedral mesh of the domain and a function space
+on this mesh. Here, we choose to create a unit cube mesh with 25 ( =
+24 + 1) vertices in one direction and 17 ( = 16 + 1) vertices in the
+other two direction. On this mesh, we define a function space of
+continuous piecewise linear vector polynomials (a Lagrange vector
+element space):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create mesh and define function space</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">UnitCubeMesh</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">V</span> <span class="o">=</span> <span class="n">VectorFunctionSpace</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="s2">&quot;Lagrange&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note that <code class="xref py py-class docutils literal notranslate"><span class="pre">VectorFunctionSpace</span></code> creates a
+function space of vector fields. The dimension of the vector field
+(the number of components) is assumed to be the same as the spatial
+dimension, unless otherwise specified.</p>
+<p id="index-1">The portions of the boundary on which Dirichlet boundary conditions
+will be applied are now defined:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mark boundary subdomians</span>
+<span class="n">left</span> <span class="o">=</span>  <span class="n">CompiledSubDomain</span><span class="p">(</span><span class="s2">&quot;near(x[0], side) &amp;&amp; on_boundary&quot;</span><span class="p">,</span> <span class="n">side</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">)</span>
+<span class="n">right</span> <span class="o">=</span> <span class="n">CompiledSubDomain</span><span class="p">(</span><span class="s2">&quot;near(x[0], side) &amp;&amp; on_boundary&quot;</span><span class="p">,</span> <span class="n">side</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The boundary subdomain <code class="docutils literal notranslate"><span class="pre">left</span></code> corresponds to the part of the
+boundary on which <span class="math notranslate nohighlight">\(x=0\)</span> and the boundary subdomain <code class="docutils literal notranslate"><span class="pre">right</span></code>
+corresponds to the part of the boundary on which <span class="math notranslate nohighlight">\(x=1\)</span>. Note
+that C++ syntax is used in the <code class="xref py py-func docutils literal notranslate"><span class="pre">CompiledSubDomain()</span></code>
+&lt;dolfin.compilemodules.subdomains.CompiledSubDomain&gt;` function since
+the function will be automatically compiled into C++ code for
+efficiency. The (built-in) variable <code class="docutils literal notranslate"><span class="pre">on_boundary</span></code> is true for points
+on the boundary of a domain, and false otherwise.</p>
+<p id="index-2">The Dirichlet boundary values are defined using compiled expressions:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define Dirichlet boundary (x = 0 or x = 1)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">((</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">))</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">Expression</span><span class="p">((</span><span class="s2">&quot;scale*0.0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;scale*(y0 + (x[1] - y0)*cos(theta) - (x[2] - z0)*sin(theta) - x[1])&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;scale*(z0 + (x[1] - y0)*sin(theta) + (x[2] - z0)*cos(theta) - x[2])&quot;</span><span class="p">),</span>
+                <span class="n">scale</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">y0</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">z0</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">theta</span> <span class="o">=</span> <span class="n">pi</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note the use of setting named parameters in the <code class="xref py py-class docutils literal notranslate"><span class="pre">Expression</span></code> for <code class="docutils literal notranslate"><span class="pre">r</span></code>.</p>
+<p>The boundary subdomains and the boundary condition expressions are
+collected together in two <code class="xref py py-class docutils literal notranslate"><span class="pre">DirichletBC</span></code> objects, one for each part of the
+Dirichlet boundary:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bcl</span> <span class="o">=</span> <span class="n">DirichletBC</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">left</span><span class="p">)</span>
+<span class="n">bcr</span> <span class="o">=</span> <span class="n">DirichletBC</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span>
+<span class="n">bcs</span> <span class="o">=</span> <span class="p">[</span><span class="n">bcl</span><span class="p">,</span> <span class="n">bcr</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The Dirichlet (essential) boundary conditions are constraints on the
+function space <span class="math notranslate nohighlight">\(V\)</span>. The function space is therefore required as
+an argument to <code class="xref py py-class docutils literal notranslate"><span class="pre">DirichletBC</span></code>.</p>
+<p id="index-3">Trial and test functions, and the most recent approximate displacement
+<code class="docutils literal notranslate"><span class="pre">u</span></code> are defined on the finite element space <code class="docutils literal notranslate"><span class="pre">V</span></code>, and two objects
+of type <code class="xref py py-class docutils literal notranslate"><span class="pre">Constant</span></code> are
+declared for the body force (<code class="docutils literal notranslate"><span class="pre">B</span></code>) and traction (<code class="docutils literal notranslate"><span class="pre">T</span></code>) terms:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define functions</span>
+<span class="n">du</span> <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>            <span class="c1"># Incremental displacement</span>
+<span class="n">v</span>  <span class="o">=</span> <span class="n">TestFunction</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>             <span class="c1"># Test function</span>
+<span class="n">u</span>  <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>                 <span class="c1"># Displacement from previous iteration</span>
+<span class="n">B</span>  <span class="o">=</span> <span class="n">Constant</span><span class="p">((</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">))</span>  <span class="c1"># Body force per unit volume</span>
+<span class="n">T</span>  <span class="o">=</span> <span class="n">Constant</span><span class="p">((</span><span class="mf">0.1</span><span class="p">,</span>  <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">))</span>  <span class="c1"># Traction force on the boundary</span>
+</pre></div>
+</div>
+<p>In place of <code class="xref py py-class docutils literal notranslate"><span class="pre">Constant</span></code>,
+it is also possible to use <code class="docutils literal notranslate"><span class="pre">as_vector</span></code>, e.g.  <code class="docutils literal notranslate"><span class="pre">B</span> <span class="pre">=</span> <span class="pre">as_vector(</span> <span class="pre">[0.0,</span>
+<span class="pre">-0.5,</span> <span class="pre">0.0]</span> <span class="pre">)</span></code>. The advantage of Constant is that its values can be
+changed without requiring re-generation and re-compilation of C++
+code. On the other hand, using <code class="docutils literal notranslate"><span class="pre">as_vector</span></code> can eliminate some
+function calls during assembly.</p>
+<p>With the functions defined, the kinematic quantities involved in the model
+are defined using UFL syntax:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Kinematics</span>
+<span class="n">d</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+<span class="n">I</span> <span class="o">=</span> <span class="n">Identity</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>             <span class="c1"># Identity tensor</span>
+<span class="n">F</span> <span class="o">=</span> <span class="n">I</span> <span class="o">+</span> <span class="n">grad</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>             <span class="c1"># Deformation gradient</span>
+<span class="n">C</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">T</span><span class="o">*</span><span class="n">F</span>                   <span class="c1"># Right Cauchy-Green tensor</span>
+
+<span class="c1"># Invariants of deformation tensors</span>
+<span class="n">Ic</span> <span class="o">=</span> <span class="n">tr</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
+<span class="n">J</span>  <span class="o">=</span> <span class="n">det</span><span class="p">(</span><span class="n">F</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Next, the material parameters are set and the strain energy density
+and the total potential energy are defined, again using UFL syntax:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Elasticity parameters</span>
+<span class="n">E</span><span class="p">,</span> <span class="n">nu</span> <span class="o">=</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">0.3</span>
+<span class="n">mu</span><span class="p">,</span> <span class="n">lmbda</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="n">E</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">nu</span><span class="p">))),</span> <span class="n">Constant</span><span class="p">(</span><span class="n">E</span><span class="o">*</span><span class="n">nu</span><span class="o">/</span><span class="p">((</span><span class="mi">1</span> <span class="o">+</span> <span class="n">nu</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">nu</span><span class="p">)))</span>
+
+<span class="c1"># Stored strain energy density (compressible neo-Hookean model)</span>
+<span class="n">psi</span> <span class="o">=</span> <span class="p">(</span><span class="n">mu</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">Ic</span> <span class="o">-</span> <span class="mi">3</span><span class="p">)</span> <span class="o">-</span> <span class="n">mu</span><span class="o">*</span><span class="n">ln</span><span class="p">(</span><span class="n">J</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">lmbda</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">ln</span><span class="p">(</span><span class="n">J</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="c1"># Total potential energy</span>
+<span class="n">Pi</span> <span class="o">=</span> <span class="n">psi</span><span class="o">*</span><span class="n">dx</span> <span class="o">-</span> <span class="n">dot</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span> <span class="o">-</span> <span class="n">dot</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span><span class="o">*</span><span class="n">ds</span>
+</pre></div>
+</div>
+<p>Just as for the body force and traction vectors, <code class="xref py py-class docutils literal notranslate"><span class="pre">Constant</span></code> has been used for the model
+parameters <code class="docutils literal notranslate"><span class="pre">mu</span></code> and <code class="docutils literal notranslate"><span class="pre">lmbda</span></code> to avoid re-generation of C++ code
+when changing model parameters. Note that <code class="docutils literal notranslate"><span class="pre">lambda</span></code> is a reserved
+keyword in Python, hence the misspelling <code class="docutils literal notranslate"><span class="pre">lmbda</span></code>.</p>
+<p id="index-4">Directional derivatives are now computed of <span class="math notranslate nohighlight">\(\Pi\)</span> and <span class="math notranslate nohighlight">\(L\)</span>
+(see <a class="reference internal" href="#equation-first-variation">(1)</a> and <a class="reference internal" href="#equation-second-variation">(2)</a>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute first variation of Pi (directional derivative about u in the direction of v)</span>
+<span class="n">F</span> <span class="o">=</span> <span class="n">derivative</span><span class="p">(</span><span class="n">Pi</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+
+<span class="c1"># Compute Jacobian of F</span>
+<span class="n">J</span> <span class="o">=</span> <span class="n">derivative</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">du</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The complete variational problem can now be solved by a single call to
+<code class="xref py py-func docutils literal notranslate"><span class="pre">solve</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solve variational problem</span>
+<span class="n">solve</span><span class="p">(</span><span class="n">F</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">bcs</span><span class="p">,</span> <span class="n">J</span><span class="o">=</span><span class="n">J</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Finally, the solution <code class="docutils literal notranslate"><span class="pre">u</span></code> is saved to a file named
+<code class="docutils literal notranslate"><span class="pre">displacement.pvd</span></code> in VTK format, and the deformed mesh is plotted
+to the screen:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save solution in VTK format</span>
+<span class="n">file</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="s2">&quot;displacement.pvd&quot;</span><span class="p">);</span>
+<span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="n">u</span><span class="p">;</span>
+
+<span class="c1"># Plot solution</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../nonlinear-poisson/demo_nonlinear-poisson.py.html" class="btn btn-neutral float-right" title="Nonlinear Poisson equation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../maxwell-eigenvalues/demo_maxwell-eigenvalues.py.html" class="btn btn-neutral float-left" title="Stable and unstable finite elements for the Maxwell eigenvalue problem" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, FEniCS Project
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

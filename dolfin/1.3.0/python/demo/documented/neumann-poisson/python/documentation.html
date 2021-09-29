@@ -1,0 +1,423 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>13. Poisson equation with pure Neumann boundary conditions &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../../../index.html"/>
+        <link rel="up" title="Collection of documented demos" href="../../../index.html"/>
+        <link rel="next" title="14. Nonlinear Poisson equation" href="../../nonlinear-poisson/python/documentation.html"/>
+        <link rel="prev" title="12. Incompressible Navier-Stokes equations" href="../../navier-stokes/python/documentation.html"/> 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../programmers-reference/index.html">Programmer&#8217;s reference for DOLFIN (Python)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Collection of documented demos</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../auto-adaptive-poisson/python/documentation.html">1. Auto adaptive Poisson equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../bcs/python/documentation.html">2. Set boundary conditions for meshes that include boundary indicators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../biharmonic/python/documentation.html">3. Biharmonic equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../built-in_meshes/python/documentation.html">4. Built-in meshes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cahn-hilliard/python/documentation.html">5. Cahn-Hilliard equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../csg-2D/python/documentation.html">6. Create CSG 2D-geometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../csg-3D/python/documentation.html">7. Create CSG 3D-geometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../eigenvalue/python/documentation.html">8. A simple eigenvalue solver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hyperelasticity/python/documentation.html">9. Hyperelasticity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mesh-generation/python/documentation.html">10. Generate mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mixed-poisson/python/documentation.html">11. Mixed formulation for Poisson equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../navier-stokes/python/documentation.html">12. Incompressible Navier-Stokes equations</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">13. Poisson equation with pure Neumann boundary conditions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#equation-and-problem-definition">13.1. Equation and problem definition:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#implementation">13.2. Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#complete-code">13.3. Complete code</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../nonlinear-poisson/python/documentation.html">14. Nonlinear Poisson equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../periodic/python/documentation.html">15. Poisson equation with periodic boundary conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../poisson/python/documentation.html">16. Poisson equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../singular-poisson/python/documentation.html">17. Singular Poisson</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stokes-iterative/python/documentation.html">18. Stokes equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stokes-mini/python/documentation.html">19. Stokes equations with Mini elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stokes-stabilized/python/documentation.html">20. Stokes equations with stabilized first order elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stokes-taylor-hood/python/documentation.html">21. Stokes equations with Taylor-Hood elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../subdomains-poisson/python/documentation.html">22. Poisson equation with multiple subdomains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../subdomains/python/documentation.html">23. Marking subdomains of a mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tensor-weighted-poisson/python/documentation.html">24. Tensor-weighted Poisson</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../quick_reference.html">Quick Programmer&#8217;s Reference (Python)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../index.html">Collection of documented demos</a> &raquo;</li>
+      
+    <li>13. Poisson equation with pure Neumann boundary conditions</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../../_sources/demo/documented/neumann-poisson/python/documentation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="poisson-equation-with-pure-neumann-boundary-conditions">
+<span id="demo-pde-neumann-poisson-python-documentation"></span><h1>13. Poisson equation with pure Neumann boundary conditions<a class="headerlink" href="#poisson-equation-with-pure-neumann-boundary-conditions" title="Permalink to this headline">¶</a></h1>
+<p>This demo is implemented in a single Python file,
+<a class="reference download internal" href="../../../../_downloads/demo_neumann-poisson.py" download=""><code class="xref download docutils literal"><span class="pre">demo_neumann-poisson.py</span></code></a>, which contains both the
+variational form and the solver.</p>
+<p>This demo illustrates how to:</p>
+<ul class="simple">
+<li>Solve a linear partial differential equation with Neumann boundary conditions</li>
+<li>Use mixed finite element spaces</li>
+</ul>
+<p>The solution for  <span class="math">\(u\)</span> in this demo will look as follows:</p>
+<a class="reference internal image-reference" href="../../../../_images/neumann-poisson_u.png"><img alt="../../../../_images/neumann-poisson_u.png" src="../../../../_images/neumann-poisson_u.png" style="width: 450.0px; height: 300.0px;" /></a>
+<div class="section" id="equation-and-problem-definition">
+<h2>13.1. Equation and problem definition:<a class="headerlink" href="#equation-and-problem-definition" title="Permalink to this headline">¶</a></h2>
+<p>The Poisson equation is the canonical elliptic partial differential
+equation. For a domain <span class="math">\(\Omega \subset \mathbb{R}^n\)</span> with
+boundary <span class="math">\(\partial \Omega\)</span>, the Poisson equation with particular
+boundary conditions reads:</p>
+<div class="math">
+\[\begin{split}  - \nabla^{2} u &amp;= f \quad {\rm in} \ \Omega, \\
+\nabla u \cdot n &amp;= g \quad {\rm on} \ \partial \Omega.\end{split}\]</div>
+<p>Here, <span class="math">\(f\)</span> and <span class="math">\(g\)</span> are input data and <span class="math">\(n\)</span> denotes the
+outward directed boundary normal. Since only Neumann conditions are
+applied, <span class="math">\(u\)</span> is only determined up to a constant <span class="math">\(c\)</span> by
+the above equations. An additional constraint is thus required, for
+instance:</p>
+<div class="math">
+\[\int_{\Omega} u \, {\rm d} x = 0.\]</div>
+<p>This can be accomplished by introducing the constant <span class="math">\(c\)</span> as an
+additional unknown (to be sought in <span class="math">\(\mathbb{R}\)</span>) and the above
+constraint expressed via a Lagrange multiplier.</p>
+<p>We further note that a necessary condition for the existence of a
+solution to the Neumann problem is that the right-hand side <span class="math">\(f\)</span>
+satisfies</p>
+<div class="math">
+\[\int_{\Omega} f \, {\rm d} x = - \int_{\partial\Omega} g \, {\rm d} s.\]</div>
+<p>This can be seen by multiplying by <span class="math">\(1\)</span> and integrating by
+parts:</p>
+<div class="math">
+\[\int_{\Omega} f \, {\rm d} x = - \int_{\Omega} 1 \cdot \nabla^{2} u \, {\rm d} x
+                             = - \int_{\partial\Omega} 1 \cdot \partial_n u \, {\rm d} s
+                               + \int_{\Omega} \nabla 1 \cdot \nabla u \, {\rm d} x
+                             = - \int_{\partial\Omega} g \, {\rm d} s.\]</div>
+<p>This condition is not satisfied by the specific right-hand side chosen
+for this test problem, which means that the partial differential
+equation is not well-posed. However, the variational problem expressed
+below is well-posed as the Lagrange multiplier introduced to satisfy
+the condition <span class="math">\(\int_{\Omega} u \, {\rm d} x = 0\)</span> <em>effectively
+redefines the right-hand side such that it safisfies the necessary
+condition</em> <span class="math">\(\int_{\Omega} f \, {\rm d} x = -
+\int_{\partial\Omega} g \, {\rm d} s\)</span>.</p>
+<p>Our variational form reads: Find <span class="math">\((u, c) \in V \times R\)</span> such
+that</p>
+<div class="math">
+\[a((u, c), (v, d)) = L((v, d)) \quad \forall \ (v, d) \in V \times R,\]</div>
+<div class="math">
+\[\begin{split}a((u, c), (v, d)) &amp;= \int_{\Omega} \nabla u \cdot \nabla v \, {\rm d} x
+                                        + \int_{\Omega} cv \, {\rm d} x
+                                        + \int_{\Omega} ud \, {\rm d} x, \\
+L(v)    &amp;= \int_{\Omega} f v \, {\rm d} x
+        + \int_{\partial\Omega} g v \, {\rm d} s.\end{split}\]</div>
+<p><span class="math">\(V\)</span> is a suitable function space containing <span class="math">\(u\)</span> and
+<span class="math">\(v\)</span>, and <span class="math">\(R\)</span> is the space of real numbers.</p>
+<p>The expression <span class="math">\(a(\cdot, \cdot)\)</span> is the bilinear form and
+<span class="math">\(L(\cdot)\)</span> is the linear form.</p>
+<p>Note that the above variational problem may alternatively be expressed
+in terms of the modified (and consistent) right-hand side
+<span class="math">\(\tilde{f} = f - c\)</span>.</p>
+<p>In this demo we shall consider the following definitions of the domain
+and input functions:</p>
+<ul class="simple">
+<li><span class="math">\(\Omega = [0, 1] \times [0, 1]\)</span> (a unit square)</li>
+<li><span class="math">\(g = - \sin(5x)\)</span> (normal derivative)</li>
+<li><span class="math">\(f = 10\exp(-((x - 0.5)^2 + (y - 0.5)^2) / 0.02)\)</span> (source term)</li>
+</ul>
+</div>
+<div class="section" id="implementation">
+<h2>13.2. Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
+<p>This description goes through the implementation in
+<a class="reference download internal" href="../../../../_downloads/demo_neumann-poisson.py" download=""><code class="xref download docutils literal"><span class="pre">demo_neumann-poisson.py</span></code></a> of a solver for the above
+described Poisson equation step-by-step.</p>
+<p>First, the <a class="reference internal" href="../../../../programmers-reference/index.html#module-dolfin" title="dolfin"><code class="xref py py-mod docutils literal"><span class="pre">dolfin</span></code></a> module is imported:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dolfin</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+<p>We proceed by defining a mesh of the domain.  We use a built-in mesh
+provided by the class <code class="xref py py-class docutils literal"><span class="pre">UnitSquareMesh</span></code>.  In order to create a mesh consisting of
+<span class="math">\(64 \times 64\)</span> squares with each square divided into two
+triangles, we do as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Create mesh</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">UnitSquareMesh</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Next, we need to define the function spaces. We define the two
+function spaces <span class="math">\(V\)</span> and <span class="math">\(R\)</span> separately, before combining
+these into a mixed function space <span class="math">\(W\)</span>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Define function spaces and mixed (product) space</span>
+<span class="n">V</span> <span class="o">=</span> <span class="n">FunctionSpace</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="s2">&quot;CG&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">R</span> <span class="o">=</span> <span class="n">FunctionSpace</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">W</span> <span class="o">=</span> <span class="n">V</span> <span class="o">*</span> <span class="n">R</span>
+</pre></div>
+</div>
+<p>The second argument to <a class="reference internal" href="../../../../programmers-reference/functions/functionspace/FunctionSpace.html#dolfin.functions.functionspace.FunctionSpace" title="dolfin.functions.functionspace.FunctionSpace"><code class="xref py py-class docutils literal"><span class="pre">FunctionSpace</span></code></a> specifies the type of
+finite element family, while the third argument specifies the
+polynomial degree.  The UFL user manual contains a list of all
+available finite element families and more details.  The * operator
+creates a mixed (product) space <span class="math">\(W\)</span> from the two separate spaces
+<span class="math">\(V\)</span> and <span class="math">\(R\)</span>.  Hence,</p>
+<div class="math">
+\[W = \{ (v, d) \ \text{such that} \ v \in V, d \in R \}.\]</div>
+<p>Now, we want to define the variational problem, but first we need to
+specify the trial functions (the unknowns) and the test functions.
+This can be done using
+<a class="reference internal" href="../../../../programmers-reference/functions/function/TrialFunction.html#dolfin.functions.function.TrialFunction" title="dolfin.functions.function.TrialFunction"><code class="xref py py-class docutils literal"><span class="pre">TrialFunctions</span></code></a>
+and <a class="reference internal" href="../../../../programmers-reference/functions/function/TestFunction.html#dolfin.functions.function.TestFunction" title="dolfin.functions.function.TestFunction"><code class="xref py py-class docutils literal"><span class="pre">TestFunctions</span></code></a>.  It only remains to define
+the source function <span class="math">\(f\)</span>, before we define the bilinear and
+linear forms.  It is given by a simple mathematical formula, and can
+easily be declared using the <a class="reference internal" href="../../../../programmers-reference/functions/expression/Expression.html#dolfin.functions.expression.Expression" title="dolfin.functions.expression.Expression"><code class="xref py py-class docutils literal"><span class="pre">Expression</span></code></a> class.  Note that the string
+defining <code class="docutils literal"><span class="pre">f</span></code> uses C++ syntax since, for efficiency, DOLFIN will
+generate and compile C++ code for these expressions at run-time.  The
+following code shows how this is done and defines the variational
+problem:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Define variational problem</span>
+<span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
+<span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span> <span class="o">=</span> <span class="n">TestFunctions</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">Expression</span><span class="p">(</span><span class="s2">&quot;10*exp(-(pow(x[0] - 0.5, 2) + pow(x[1] - 0.5, 2)) / 0.02)&quot;</span><span class="p">)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">Expression</span><span class="p">(</span><span class="s2">&quot;-sin(5*x[0])&quot;</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="n">inner</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">grad</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="o">+</span> <span class="n">c</span><span class="o">*</span><span class="n">v</span> <span class="o">+</span> <span class="n">u</span><span class="o">*</span><span class="n">d</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">f</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">dx</span> <span class="o">+</span> <span class="n">g</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">ds</span>
+</pre></div>
+</div>
+<p>Since we have natural (Neumann) boundary conditions in this problem,
+we don´t have to implement boundary conditions.  This is because
+Neumann boundary conditions are default in DOLFIN.</p>
+<p>To compute the solution we use the bilinear form, the linear forms,
+and the boundary condition, but we also need to create a
+<a class="reference internal" href="../../../../programmers-reference/functions/function/Function.html#dolfin.functions.function.Function" title="dolfin.functions.function.Function"><code class="xref py py-class docutils literal"><span class="pre">Function</span></code></a> to store the
+solution(s).  The (full) solution will be stored in <code class="docutils literal"><span class="pre">w</span></code>, which we
+initialize using the
+<a class="reference internal" href="../../../../programmers-reference/functions/functionspace/FunctionSpace.html#dolfin.functions.functionspace.FunctionSpace" title="dolfin.functions.functionspace.FunctionSpace"><code class="xref py py-class docutils literal"><span class="pre">FunctionSpace</span></code></a>
+<code class="docutils literal"><span class="pre">W</span></code>.  The actual computation is performed by calling
+<a class="reference internal" href="../../../../programmers-reference/fem/solving/solve.html#dolfin.fem.solving.solve" title="dolfin.fem.solving.solve"><code class="xref py py-func docutils literal"><span class="pre">solve</span></code></a>.  The separate components
+<code class="docutils literal"><span class="pre">u</span></code> and <code class="docutils literal"><span class="pre">c</span></code> of the solution can be extracted by calling the split
+function.  Finally, we plot the solutions to examine the result.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Compute solution</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
+<span class="n">solve</span><span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">L</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
+<span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+
+<span class="c1"># Plot solution</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">interactive</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="complete-code">
+<h2>13.3. Complete code<a class="headerlink" href="#complete-code" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default"><div class="highlight"><pre><span></span>
+<span class="kn">from</span> <span class="nn">dolfin</span> <span class="k">import</span> <span class="o">*</span>
+
+<span class="c1"># Create mesh and define function space</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">UnitSquareMesh</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>
+<span class="n">V</span> <span class="o">=</span> <span class="n">FunctionSpace</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="s2">&quot;CG&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">R</span> <span class="o">=</span> <span class="n">FunctionSpace</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">W</span> <span class="o">=</span> <span class="n">V</span> <span class="o">*</span> <span class="n">R</span>
+
+<span class="c1"># Define variational problem</span>
+<span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
+<span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span> <span class="o">=</span> <span class="n">TestFunctions</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">Expression</span><span class="p">(</span><span class="s2">&quot;10*exp(-(pow(x[0] - 0.5, 2) + pow(x[1] - 0.5, 2)) / 0.02)&quot;</span><span class="p">)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">Expression</span><span class="p">(</span><span class="s2">&quot;-sin(5*x[0])&quot;</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="n">inner</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">grad</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="o">+</span> <span class="n">c</span><span class="o">*</span><span class="n">v</span> <span class="o">+</span> <span class="n">u</span><span class="o">*</span><span class="n">d</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">f</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">dx</span> <span class="o">+</span> <span class="n">g</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">ds</span>
+
+<span class="c1"># Compute solution</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
+<span class="n">solve</span><span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">L</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
+<span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+
+<span class="c1"># Plot solution</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">interactive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../nonlinear-poisson/python/documentation.html" class="btn btn-neutral float-right" title="14. Nonlinear Poisson equation" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../../navier-stokes/python/documentation.html" class="btn btn-neutral" title="12. Incompressible Navier-Stokes equations" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://fenicsproject.org.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'1.3.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

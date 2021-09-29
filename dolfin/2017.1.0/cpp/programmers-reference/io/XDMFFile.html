@@ -1,0 +1,629 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>XDMFFile.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN io module" href="index.html"/>
+        <link rel="next" title="DOLFIN la module" href="../la/index.html"/>
+        <link rel="prev" title="X3DOM.h" href="X3DOM.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.9.11+
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer’s reference for DOLFIN-2017.1.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/index.html">DOLFIN common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fem/index.html">DOLFIN fem module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html">DOLFIN function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/index.html">DOLFIN geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN io module</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="File.html">File.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericFile.html">GenericFile.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="HDF5Attribute.html">HDF5Attribute.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="HDF5File.html">HDF5File.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="X3DOM.html">X3DOM.h</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">XDMFFile.h</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../la/index.html">DOLFIN la module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/index.html">DOLFIN log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mesh/index.html">DOLFIN mesh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot/index.html">DOLFIN plot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer’s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">DOLFIN</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">C++ Programmer’s reference for DOLFIN-2017.1.0</a> &raquo;</li>
+        
+          <li><a href="index.html">DOLFIN io module</a> &raquo;</li>
+        
+      <li>XDMFFile.h</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/programmers-reference/io/XDMFFile.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="xdmffile-h">
+<span id="programmers-reference-cpp-io-xdmffile"></span><h1>XDMFFile.h<a class="headerlink" href="#xdmffile-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="class">
+<dt id="_CPPv28XDMFFile">
+<span id="XDMFFile"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">XDMFFile</code><a class="headerlink" href="#_CPPv28XDMFFile" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Parent class(es)</em></p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="../common/Variable.html#_CPPv28Variable" title="Variable"><code class="xref cpp cpp-class docutils literal"><span class="pre">Variable</span></code></a></li>
+</ul>
+</div></blockquote>
+<p>Read and write Mesh, Function, MeshFunction and other objects in XDMF
+This class supports the output of meshes and functions in XDMF
+(<a class="reference external" href="http://www.xdmf.org">http://www.xdmf.org</a>) format. It creates an XML file that
+describes the data and points to a HDF5 file that stores the
+actual problem data. Output of data in parallel is supported.</p>
+<p>XDMF is not suitable for checkpointing as it may decimate some
+data.</p>
+<dl class="function">
+<dt>
+<code class="descname">enum class Encoding</code></dt>
+<dd><p>File encoding type</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8XDMFFile8XDMFFileEKNSt6stringE">
+<span id="XDMFFile::XDMFFile__ssC"></span><code class="descclassname"></code><code class="descname">XDMFFile</code><span class="sig-paren">(</span><em class="property">const</em> std::string <em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8XDMFFile8XDMFFileEKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructor</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8XDMFFile8XDMFFileE8MPI_CommKNSt6stringE">
+<span id="XDMFFile::XDMFFile__MPI_Comm.ssC"></span><code class="descclassname"></code><code class="descname">XDMFFile</code><span class="sig-paren">(</span>MPI_Comm <em>comm</em>, <em class="property">const</em> std::string <em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8XDMFFile8XDMFFileE8MPI_CommKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructor</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8XDMFFile5closeEv">
+<span id="XDMFFile::close"></span>void <code class="descclassname"></code><code class="descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8XDMFFile5closeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Close the file</p>
+<p>This closes any open HDF5 files. In ASCII mode the XML file is
+closed each time it is written to or read from, so close() has
+no effect.</p>
+<p>From Python you can also use XDMFFile as a context manager:</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>with XDMFFile(mpi_comm_world(), ‘name.xdmf’) as xdmf:</dt>
+<dd>xdmf.write(mesh)</dd>
+</dl>
+</div></blockquote>
+<p>The file is automatically closed at the end of the with block</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8XDMFFile5writeERK4Mesh8Encoding">
+<span id="XDMFFile::write__MeshCR.Encoding"></span>void <code class="descclassname"></code><code class="descname">write</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em>, Encoding <em>encoding</em> = Encoding::HDF5<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8XDMFFile5writeERK4Mesh8Encoding" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Save a mesh to XDMF format, either using an associated HDF5
+file, or storing the data inline as XML Create function on
+given function space</p>
+<dl class="docutils">
+<dt>&#64;param    mesh (<a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh"><code class="xref cpp cpp-class docutils literal"><span class="pre">Mesh</span></code></a>)</dt>
+<dd>A mesh to save.</dd>
+<dt>&#64;param    encoding (_Encoding_)</dt>
+<dd>Encoding to use: HDF5 or ASCII</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8XDMFFile5writeERK8Function8Encoding">
+<span id="XDMFFile::write__FunctionCR.Encoding"></span>void <code class="descclassname"></code><code class="descname">write</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../function/Function.html#_CPPv28Function" title="Function">Function</a> &amp;<em>u</em>, Encoding <em>encoding</em> = Encoding::HDF5<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8XDMFFile5writeERK8Function8Encoding" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Save a Function to XDMF file for visualisation, using an
+associated HDF5 file, or storing the data inline as XML.</p>
+<dl class="docutils">
+<dt>&#64;param    u (<a class="reference internal" href="../function/Function.html#_CPPv28Function" title="Function"><code class="xref cpp cpp-class docutils literal"><span class="pre">Function</span></code></a>)</dt>
+<dd>A function to save.</dd>
+<dt>&#64;param    encoding (_Encoding_)</dt>
+<dd>Encoding to use: HDF5 or ASCII</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8XDMFFile5writeERK8Functiond8Encoding">
+<span id="XDMFFile::write__FunctionCR.double.Encoding"></span>void <code class="descclassname"></code><code class="descname">write</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../function/Function.html#_CPPv28Function" title="Function">Function</a> &amp;<em>u</em>, double <em>t</em>, Encoding <em>encoding</em> = Encoding::HDF5<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8XDMFFile5writeERK8Functiond8Encoding" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Save a Function with timestamp to XDMF file for visualisation,
+using an associated HDF5 file, or storing the data inline as
+XML.</p>
+<p>You can control the output with the following boolean
+parameters on the XDMFFile class:</p>
+<ul class="simple">
+<li>rewrite_function_mesh (default true):
+Controls whether the mesh will be rewritten every timestep.
+If the mesh does not change this can be turned off to create
+smaller files.</li>
+<li>functions_share_mesh (default false):
+Controls whether all functions on a single time step share
+the same mesh. If true the files created will be smaller and
+also behave better in Paraview, at least in version 5.3.0</li>
+</ul>
+<dl class="docutils">
+<dt>&#64;param    u (<a class="reference internal" href="../function/Function.html#_CPPv28Function" title="Function"><code class="xref cpp cpp-class docutils literal"><span class="pre">Function</span></code></a>)</dt>
+<dd>A function to save.</dd>
+<dt>&#64;param    t (_double_)</dt>
+<dd>Timestep</dd>
+<dt>&#64;param   encoding (_Encoding_)</dt>
+<dd>Encoding to use: HDF5 or ASCII</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8XDMFFile5writeERK12MeshFunctionIbE8Encoding">
+<span id="XDMFFile::write__MeshFunction:b:CR.Encoding"></span>void <code class="descclassname"></code><code class="descname">write</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction">MeshFunction</a>&lt;bool&gt; &amp;<em>meshfunction</em>, Encoding <em>encoding</em> = Encoding::HDF5<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8XDMFFile5writeERK12MeshFunctionIbE8Encoding" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Save MeshFunction to file using an associated HDF5 file, or
+storing the data inline as XML.</p>
+<dl class="docutils">
+<dt>&#64;param    meshfunction (<a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction"><code class="xref cpp cpp-class docutils literal"><span class="pre">MeshFunction</span></code></a>)</dt>
+<dd>A meshfunction to save.</dd>
+<dt>&#64;param    encoding (_Encoding_)</dt>
+<dd>Encoding to use: HDF5 or ASCII</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8XDMFFile5writeERK12MeshFunctionIiE8Encoding">
+<span id="XDMFFile::write__MeshFunction:i:CR.Encoding"></span>void <code class="descclassname"></code><code class="descname">write</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction">MeshFunction</a>&lt;int&gt; &amp;<em>meshfunction</em>, Encoding <em>encoding</em> = Encoding::HDF5<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8XDMFFile5writeERK12MeshFunctionIiE8Encoding" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Save MeshFunction to file using an associated HDF5 file, or
+storing the data inline as XML.</p>
+<dl class="docutils">
+<dt>&#64;param    meshfunction (<a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction"><code class="xref cpp cpp-class docutils literal"><span class="pre">MeshFunction</span></code></a>)</dt>
+<dd>A meshfunction to save.</dd>
+<dt>&#64;param    encoding (_Encoding_)</dt>
+<dd>Encoding to use: HDF5 or ASCII</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8XDMFFile5writeERK12MeshFunctionINSt6size_tEE8Encoding">
+<span id="XDMFFile::write__MeshFunction:std::s:CR.Encoding"></span>void <code class="descclassname"></code><code class="descname">write</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction">MeshFunction</a>&lt;std::size_t&gt; &amp;<em>meshfunction</em>, Encoding <em>encoding</em> = Encoding::HDF5<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8XDMFFile5writeERK12MeshFunctionINSt6size_tEE8Encoding" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Save MeshFunction to file using an associated HDF5 file, or
+storing the data inline as XML.</p>
+<dl class="docutils">
+<dt>&#64;param    meshfunction (<a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction"><code class="xref cpp cpp-class docutils literal"><span class="pre">MeshFunction</span></code></a>)</dt>
+<dd>A meshfunction to save.</dd>
+<dt>&#64;param    encoding (_Encoding_)</dt>
+<dd>Encoding to use: HDF5 or ASCII</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8XDMFFile5writeERK12MeshFunctionIdE8Encoding">
+<span id="XDMFFile::write__MeshFunction:double:CR.Encoding"></span>void <code class="descclassname"></code><code class="descname">write</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction">MeshFunction</a>&lt;double&gt; &amp;<em>meshfunction</em>, Encoding <em>encoding</em> = Encoding::HDF5<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8XDMFFile5writeERK12MeshFunctionIdE8Encoding" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Save MeshFunction to file using an associated HDF5 file, or
+storing the data inline as XML.</p>
+<dl class="docutils">
+<dt>&#64;param    meshfunction (<a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction"><code class="xref cpp cpp-class docutils literal"><span class="pre">MeshFunction</span></code></a>)</dt>
+<dd>A meshfunction to save.</dd>
+<dt>&#64;param    encoding (_Encoding_)</dt>
+<dd>Encoding to use: HDF5 or ASCII</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8XDMFFile5writeERK19MeshValueCollectionIbE8Encoding">
+<span id="XDMFFile::write__MeshValueCollection:b:CR.Encoding"></span>void <code class="descclassname"></code><code class="descname">write</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../mesh/MeshValueCollection.html#_CPPv219MeshValueCollection" title="MeshValueCollection">MeshValueCollection</a>&lt;bool&gt; &amp;<em>mvc</em>, Encoding <em>encoding</em> = Encoding::HDF5<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8XDMFFile5writeERK19MeshValueCollectionIbE8Encoding" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Write out mesh value collection (subset) using an associated
+HDF5 file, or storing the data inline as XML.</p>
+<dl class="docutils">
+<dt>&#64;param mvc (_MeshValueCollection&lt;bool&gt;_)</dt>
+<dd>MeshValueCollection to save</dd>
+<dt>&#64;param encoding (_Encoding_)</dt>
+<dd>Encoding to use: HDF5 or ASCII</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8XDMFFile5writeERK19MeshValueCollectionIiE8Encoding">
+<span id="XDMFFile::write__MeshValueCollection:i:CR.Encoding"></span>void <code class="descclassname"></code><code class="descname">write</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../mesh/MeshValueCollection.html#_CPPv219MeshValueCollection" title="MeshValueCollection">MeshValueCollection</a>&lt;int&gt; &amp;<em>mvc</em>, Encoding <em>encoding</em> = Encoding::HDF5<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8XDMFFile5writeERK19MeshValueCollectionIiE8Encoding" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Write out mesh value collection (subset) using an associated
+HDF5 file, or storing the data inline as XML.</p>
+<dl class="docutils">
+<dt>&#64;param mvc (_MeshValueCollection&lt;int&gt;_)</dt>
+<dd>MeshValueCollection to save</dd>
+<dt>&#64;param encoding (_Encoding_)</dt>
+<dd>Encoding to use: HDF5 or ASCII</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8XDMFFile5writeERK19MeshValueCollectionINSt6size_tEE8Encoding">
+<span id="XDMFFile::write__MeshValueCollection:std::s:CR.Encoding"></span>void <code class="descclassname"></code><code class="descname">write</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../mesh/MeshValueCollection.html#_CPPv219MeshValueCollection" title="MeshValueCollection">MeshValueCollection</a>&lt;std::size_t&gt; &amp;<em>mvc</em>, Encoding <em>encoding</em> = Encoding::HDF5<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8XDMFFile5writeERK19MeshValueCollectionINSt6size_tEE8Encoding" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Write out mesh value collection (subset) using an associated
+HDF5 file, or storing the data inline as XML.</p>
+<dl class="docutils">
+<dt>&#64;param  mvc (_MeshValueCollection&lt;int&gt;_)</dt>
+<dd>MeshValueCollection to save</dd>
+<dt>&#64;param  encoding (_Encoding_)</dt>
+<dd>Encoding to use: HDF5 or ASCII</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8XDMFFile5writeERK19MeshValueCollectionIdE8Encoding">
+<span id="XDMFFile::write__MeshValueCollection:double:CR.Encoding"></span>void <code class="descclassname"></code><code class="descname">write</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../mesh/MeshValueCollection.html#_CPPv219MeshValueCollection" title="MeshValueCollection">MeshValueCollection</a>&lt;double&gt; &amp;<em>mvc</em>, Encoding <em>encoding</em> = Encoding::HDF5<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8XDMFFile5writeERK19MeshValueCollectionIdE8Encoding" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Write out mesh value collection (subset) using an associated
+HDF5 file, or storing the data inline as XML.</p>
+<dl class="docutils">
+<dt>&#64;param mvc (_MeshValueCollection&lt;double&gt;_)</dt>
+<dd>MeshValueCollection to save</dd>
+<dt>&#64;param encoding (_Encoding_)</dt>
+<dd>Encoding to use: HDF5 or ASCII</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8XDMFFile5writeERKNSt6vectorI5PointEE8Encoding">
+<span id="XDMFFile::write__std::vector:Point:CR.Encoding"></span>void <code class="descclassname"></code><code class="descname">write</code><span class="sig-paren">(</span><em class="property">const</em> std::vector&lt;<a class="reference internal" href="../geometry/Point.html#_CPPv25Point" title="Point">Point</a>&gt; &amp;<em>points</em>, Encoding <em>encoding</em> = Encoding::HDF5<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8XDMFFile5writeERKNSt6vectorI5PointEE8Encoding" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Save a cloud of points to file using an associated HDF5 file,
+or storing the data inline as XML.</p>
+<dl class="docutils">
+<dt>&#64;param    points (_std::vector&lt;Point&gt;_)</dt>
+<dd>A list of points to save.</dd>
+<dt>&#64;param    encoding (_Encoding_)</dt>
+<dd>Encoding to use: HDF5 or ASCII</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8XDMFFile5writeERKNSt6vectorI5PointEERKNSt6vectorIdEE8Encoding">
+<span id="XDMFFile::write__std::vector:Point:CR.std::vector:double:CR.Encoding"></span>void <code class="descclassname"></code><code class="descname">write</code><span class="sig-paren">(</span><em class="property">const</em> std::vector&lt;<a class="reference internal" href="../geometry/Point.html#_CPPv25Point" title="Point">Point</a>&gt; &amp;<em>points</em>, <em class="property">const</em> std::vector&lt;double&gt; &amp;<em>values</em>, Encoding <em>encoding</em> = Encoding::HDF5<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8XDMFFile5writeERKNSt6vectorI5PointEERKNSt6vectorIdEE8Encoding" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Save a cloud of points, with scalar values using an associated
+HDF5 file, or storing the data inline as XML.</p>
+<dl class="docutils">
+<dt>&#64;param   points (_std::vector&lt;Point&gt;_)</dt>
+<dd>A list of points to save.</dd>
+<dt>&#64;param    values (_std::vector&lt;double&gt;_)</dt>
+<dd>A list of values at each point.</dd>
+<dt>&#64;param    encoding (_Encoding_)</dt>
+<dd>Encoding to use: HDF5 or ASCII</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK8XDMFFile4readER4Mesh">
+<span id="XDMFFile::read__MeshRC"></span>void <code class="descclassname"></code><code class="descname">read</code><span class="sig-paren">(</span><a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK8XDMFFile4readER4Mesh" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Read in the first Mesh in XDMF file</p>
+<dl class="docutils">
+<dt>&#64;param mesh (<a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh"><code class="xref cpp cpp-class docutils literal"><span class="pre">Mesh</span></code></a>)</dt>
+<dd>Mesh to fill from XDMF file</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8XDMFFile4readER12MeshFunctionIbENSt6stringE">
+<span id="XDMFFile::read__MeshFunction:b:R.ss"></span>void <code class="descclassname"></code><code class="descname">read</code><span class="sig-paren">(</span><a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction">MeshFunction</a>&lt;bool&gt; &amp;<em>meshfunction</em>, std::string <em>name</em> = &quot;&quot;<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8XDMFFile4readER12MeshFunctionIbENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Read first MeshFunction from file
+&#64;param meshfunction (_MeshFunction&lt;bool&gt;_)</p>
+<blockquote>
+<div>MeshFunction to restore</div></blockquote>
+<dl class="docutils">
+<dt>&#64;param name (std::string)</dt>
+<dd>Name of data attribute in XDMF file</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8XDMFFile4readER12MeshFunctionIiENSt6stringE">
+<span id="XDMFFile::read__MeshFunction:i:R.ss"></span>void <code class="descclassname"></code><code class="descname">read</code><span class="sig-paren">(</span><a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction">MeshFunction</a>&lt;int&gt; &amp;<em>meshfunction</em>, std::string <em>name</em> = &quot;&quot;<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8XDMFFile4readER12MeshFunctionIiENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Read first MeshFunction from file
+&#64;param meshfunction (_MeshFunction&lt;int&gt;_)</p>
+<blockquote>
+<div>MeshFunction to restore</div></blockquote>
+<dl class="docutils">
+<dt>&#64;param name (std::string)</dt>
+<dd>Name of data attribute in XDMF file</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8XDMFFile4readER12MeshFunctionINSt6size_tEENSt6stringE">
+<span id="XDMFFile::read__MeshFunction:std::s:R.ss"></span>void <code class="descclassname"></code><code class="descname">read</code><span class="sig-paren">(</span><a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction">MeshFunction</a>&lt;std::size_t&gt; &amp;<em>meshfunction</em>, std::string <em>name</em> = &quot;&quot;<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8XDMFFile4readER12MeshFunctionINSt6size_tEENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Read MeshFunction from file, optionally specifying dataset name
+&#64;param meshfunction (_MeshFunction&lt;std::size_t&gt;_)</p>
+<blockquote>
+<div>MeshFunction to restore</div></blockquote>
+<dl class="docutils">
+<dt>&#64;param name (std::string)</dt>
+<dd>Name of data attribute in XDMF file</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8XDMFFile4readER12MeshFunctionIdENSt6stringE">
+<span id="XDMFFile::read__MeshFunction:double:R.ss"></span>void <code class="descclassname"></code><code class="descname">read</code><span class="sig-paren">(</span><a class="reference internal" href="../mesh/MeshFunction.html#_CPPv212MeshFunction" title="MeshFunction">MeshFunction</a>&lt;double&gt; &amp;<em>meshfunction</em>, std::string <em>name</em> = &quot;&quot;<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8XDMFFile4readER12MeshFunctionIdENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Read MeshFunction from file, optionally specifying dataset name
+&#64;param meshfunction (_MeshFunction&lt;double&gt;_)</p>
+<blockquote>
+<div>MeshFunction to restore</div></blockquote>
+<dl class="docutils">
+<dt>&#64;param name (std::string)</dt>
+<dd>Name of data attribute in XDMF file</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8XDMFFile4readER19MeshValueCollectionIbENSt6stringE">
+<span id="XDMFFile::read__MeshValueCollection:b:R.ss"></span>void <code class="descclassname"></code><code class="descname">read</code><span class="sig-paren">(</span><a class="reference internal" href="../mesh/MeshValueCollection.html#_CPPv219MeshValueCollection" title="MeshValueCollection">MeshValueCollection</a>&lt;bool&gt; &amp;<em>mvc</em>, std::string <em>name</em> = &quot;&quot;<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8XDMFFile4readER19MeshValueCollectionIbENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Read MeshValueCollection from file, optionally specifying dataset name
+&#64;param mvc (_MeshValueCollection&lt;bool&gt;_)</p>
+<blockquote>
+<div>MeshValueCollection to restore</div></blockquote>
+<dl class="docutils">
+<dt>&#64;param name (std::string)</dt>
+<dd>Name of data attribute in XDMF file</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8XDMFFile4readER19MeshValueCollectionIiENSt6stringE">
+<span id="XDMFFile::read__MeshValueCollection:i:R.ss"></span>void <code class="descclassname"></code><code class="descname">read</code><span class="sig-paren">(</span><a class="reference internal" href="../mesh/MeshValueCollection.html#_CPPv219MeshValueCollection" title="MeshValueCollection">MeshValueCollection</a>&lt;int&gt; &amp;<em>mvc</em>, std::string <em>name</em> = &quot;&quot;<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8XDMFFile4readER19MeshValueCollectionIiENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Read MeshValueCollection from file, optionally specifying dataset name
+&#64;param mvc (_MeshValueCollection&lt;int&gt;_)</p>
+<blockquote>
+<div>MeshValueCollection to restore</div></blockquote>
+<dl class="docutils">
+<dt>&#64;param name (std::string)</dt>
+<dd>Name of data attribute in XDMF file</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8XDMFFile4readER19MeshValueCollectionINSt6size_tEENSt6stringE">
+<span id="XDMFFile::read__MeshValueCollection:std::s:R.ss"></span>void <code class="descclassname"></code><code class="descname">read</code><span class="sig-paren">(</span><a class="reference internal" href="../mesh/MeshValueCollection.html#_CPPv219MeshValueCollection" title="MeshValueCollection">MeshValueCollection</a>&lt;std::size_t&gt; &amp;<em>mvc</em>, std::string <em>name</em> = &quot;&quot;<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8XDMFFile4readER19MeshValueCollectionINSt6size_tEENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Read MeshValueCollection from file, optionally specifying dataset name
+&#64;param mvc (_MeshValueCollection&lt;std::size_t&gt;_)</p>
+<blockquote>
+<div>MeshValueCollection to restore</div></blockquote>
+<dl class="docutils">
+<dt>&#64;param name (std::string)</dt>
+<dd>Name of data attribute in XDMF file</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8XDMFFile4readER19MeshValueCollectionIdENSt6stringE">
+<span id="XDMFFile::read__MeshValueCollection:double:R.ss"></span>void <code class="descclassname"></code><code class="descname">read</code><span class="sig-paren">(</span><a class="reference internal" href="../mesh/MeshValueCollection.html#_CPPv219MeshValueCollection" title="MeshValueCollection">MeshValueCollection</a>&lt;double&gt; &amp;<em>mvc</em>, std::string <em>name</em> = &quot;&quot;<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8XDMFFile4readER19MeshValueCollectionIdENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Read MeshValueCollection from file, optionally specifying dataset name
+&#64;param mvc (_MeshValueCollection&lt;double&gt;_)</p>
+<blockquote>
+<div>MeshValueCollection to restore</div></blockquote>
+<dl class="docutils">
+<dt>&#64;param name (std::string)</dt>
+<dd>Name of data attribute in XDMF file</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../la/index.html" class="btn btn-neutral float-right" title="DOLFIN la module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="X3DOM.html" class="btn btn-neutral" title="X3DOM.h" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright DOLFIN Core, https://launchpad.net/~dolfin-core.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.9.11+',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

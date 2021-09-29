@@ -1,0 +1,10 @@
+<map id="dolfin::PETScMatrix" name="dolfin::PETScMatrix">
+<area shape="rect" id="node2" href="$dd/d5f/classdolfin_1_1GenericMatrix.html" title="This class defines a common interface for matrices. " alt="" coords="967,64,1119,91"/>
+<area shape="rect" id="node3" href="$db/ddc/classdolfin_1_1GenericTensor.html" title="A common interface for arbitrary rank tensors. " alt="" coords="735,64,890,91"/>
+<area shape="rect" id="node4" href="$db/d42/classdolfin_1_1LinearAlgebraObject.html" title="dolfin::LinearAlgebraObject" alt="" coords="465,72,659,99"/>
+<area shape="rect" id="node7" href="$da/d6a/classdolfin_1_1GenericLinearOperator.html" title="dolfin::GenericLinearOperator" alt="" coords="708,115,917,141"/>
+<area shape="rect" id="node5" href="$d8/df0/classdolfin_1_1Variable.html" title="Common base class for DOLFIN variables. " alt="" coords="287,64,401,91"/>
+<area shape="rect" id="node8" href="$d0/d3d/classdolfin_1_1PETScBaseMatrix.html" title="dolfin::PETScBaseMatrix" alt="" coords="475,13,649,40"/>
+<area shape="rect" id="node6" href="$da/d06/classdolfin_1_1Parameters.html" title="dolfin::Parameters" alt="" coords="5,64,144,91"/>
+<area shape="rect" id="node9" href="$d1/d64/classdolfin_1_1PETScObject.html" title="dolfin::PETScObject" alt="" coords="272,5,416,32"/>
+</map>

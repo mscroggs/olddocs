@@ -1,0 +1,10 @@
+.. Documentation for the function dolfin.cpp.mesh.CollisionPredicates_collides
+
+.. _programmers_reference_cpp_mesh_collisionpredicates_collides:
+
+CollisionPredicates_collides
+============================
+
+.. currentmodule:: dolfin.cpp.mesh
+
+.. autofunction:: CollisionPredicates_collides

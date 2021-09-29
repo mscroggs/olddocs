@@ -1,0 +1,62 @@
+dolfin.cpp.fem
+==============
+
+.. automodule:: dolfin.cpp.fem
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      adapt
+      assemble
+      assemble_local
+      assemble_system
+      create_mesh
+      dof_to_vertex_map
+      get_coordinates
+      make_ufc_dofmap
+      make_ufc_finite_element
+      make_ufc_form
+      set_coordinates
+      vertex_to_dof_map
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      Assembler
+      AssemblerBase
+      DirichletBC
+      DiscreteOperators
+      DofMap
+      FiniteElement
+      Form
+      GenericDofMap
+      LinearVariationalProblem
+      LinearVariationalSolver
+      LocalSolver
+      MultiMeshAssembler
+      MultiMeshDirichletBC
+      MultiMeshDofMap
+      MultiMeshForm
+      NonlinearVariationalProblem
+      NonlinearVariationalSolver
+      PETScDMCollection
+      PointSource
+      SparsityPatternBuilder
+      SystemAssembler
+      ufc_dofmap
+      ufc_finite_element
+      ufc_form
+   
+   
+
+   
+   
+   

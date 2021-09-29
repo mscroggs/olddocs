@@ -1,0 +1,10 @@
+.. Documentation for the function dolfin.deprecation.has_pybind11
+
+.. _programmers_reference_deprecation_has_pybind11:
+
+has_pybind11
+============
+
+.. currentmodule:: dolfin.deprecation
+
+.. autofunction:: has_pybind11

@@ -1,0 +1,393 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>RectangleMesh.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN generation module" href="index.html"/>
+        <link rel="next" title="SphericalShellMesh.h" href="SphericalShellMesh.html"/>
+        <link rel="prev" title="IntervalMesh.h" href="IntervalMesh.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.9.11+
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer’s reference for DOLFIN-2017.2.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/index.html">DOLFIN common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fem/index.html">DOLFIN fem module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html">DOLFIN function module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN generation module</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="BoxMesh.html">BoxMesh.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="IntervalMesh.html">IntervalMesh.h</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">RectangleMesh.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SphericalShellMesh.html">SphericalShellMesh.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="UnitCubeMesh.html">UnitCubeMesh.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="UnitDiscMesh.html">UnitDiscMesh.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="UnitIntervalMesh.html">UnitIntervalMesh.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="UnitSquareMesh.html">UnitSquareMesh.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="UnitTetrahedronMesh.html">UnitTetrahedronMesh.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="UnitTriangleMesh.html">UnitTriangleMesh.h</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/index.html">DOLFIN geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/index.html">DOLFIN io module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../la/index.html">DOLFIN la module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/index.html">DOLFIN log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mesh/index.html">DOLFIN mesh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer’s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">DOLFIN</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">C++ Programmer’s reference for DOLFIN-2017.2.0</a> &raquo;</li>
+        
+          <li><a href="index.html">DOLFIN generation module</a> &raquo;</li>
+        
+      <li>RectangleMesh.h</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/programmers-reference/generation/RectangleMesh.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="rectanglemesh-h">
+<span id="programmers-reference-cpp-generation-rectanglemesh"></span><h1>RectangleMesh.h<a class="headerlink" href="#rectanglemesh-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="class">
+<dt id="_CPPv213RectangleMesh">
+<span id="RectangleMesh"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">RectangleMesh</code><a class="headerlink" href="#_CPPv213RectangleMesh" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Parent class(es)</em></p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh"><code class="xref cpp cpp-class docutils literal"><span class="pre">Mesh</span></code></a></li>
+</ul>
+</div></blockquote>
+<p>Triangular mesh of the 2D rectangle spanned by two points p0 and
+p1. Given the number of cells (nx, ny) in each direction, the
+total number of triangles will be 2*nx*ny and the total number
+of vertices will be (nx + 1)*(ny + 1).</p>
+<dl class="function">
+<dt id="_CPPv2N13RectangleMesh6createERKNSt5arrayI5PointX2EEENSt5arrayINSt6size_tEX2EEEN8CellType4TypeENSt6stringE">
+<span id="RectangleMesh::create__std::array:Point.2:CR.std::array:std::s.2:.CellType::Type.ss"></span><em class="property">static</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> <code class="descclassname"></code><code class="descname">create</code><span class="sig-paren">(</span><em class="property">const</em> std::array&lt;<a class="reference internal" href="../geometry/Point.html#_CPPv25Point" title="Point">Point</a>, 2&gt; &amp;<em>p</em>, std::array&lt;std::size_t, 2&gt; <em>n</em>, <a class="reference internal" href="../mesh/CellType.html#_CPPv28CellType" title="CellType">CellType</a>::Type <em>cell_type</em>, std::string <em>diagonal</em> = &quot;right&quot;<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N13RectangleMesh6createERKNSt5arrayI5PointX2EEENSt5arrayINSt6size_tEX2EEEN8CellType4TypeENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><dl class="docutils">
+<dt>&#64;param    p (std::array&lt;<a class="reference internal" href="../geometry/Point.html#_CPPv25Point" title="Point"><code class="xref cpp cpp-class docutils literal"><span class="pre">Point</span></code></a>, 2&gt;)</dt>
+<dd>Vertex points.</dd>
+<dt>&#64;param    n (std::array&lt;std::size_t, 2&gt;)</dt>
+<dd>Number of cells in each direction</dd>
+<dt>&#64;param    cell_type (dolfin::CellType::Type)</dt>
+<dd>Cell type</dd>
+<dt>&#64;param    diagonal (string)</dt>
+<dd>Direction of diagonals: “left”, “right”, “left/right”, “crossed”</dd>
+</dl>
+<p>&#64;code{.cpp}</p>
+<blockquote>
+<div>// Mesh with 8 cell edges in each direction on the
+// set [-1,2] x [-1,2]
+Point p0(-1, -1);
+Point p1(2, 2);
+auto Mesh = RectangleMesh::create({p0, p1}, {8, 8});</div></blockquote>
+<p>&#64;endcode</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N13RectangleMesh6createE8MPI_CommRKNSt5arrayI5PointX2EEENSt5arrayINSt6size_tEX2EEEN8CellType4TypeENSt6stringE">
+<span id="RectangleMesh::create__MPI_Comm.std::array:Point.2:CR.std::array:std::s.2:.CellType::Type.ss"></span><em class="property">static</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> <code class="descclassname"></code><code class="descname">create</code><span class="sig-paren">(</span>MPI_Comm <em>comm</em>, <em class="property">const</em> std::array&lt;<a class="reference internal" href="../geometry/Point.html#_CPPv25Point" title="Point">Point</a>, 2&gt; &amp;<em>p</em>, std::array&lt;std::size_t, 2&gt; <em>n</em>, <a class="reference internal" href="../mesh/CellType.html#_CPPv28CellType" title="CellType">CellType</a>::Type <em>cell_type</em>, std::string <em>diagonal</em> = &quot;right&quot;<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N13RectangleMesh6createE8MPI_CommRKNSt5arrayI5PointX2EEENSt5arrayINSt6size_tEX2EEEN8CellType4TypeENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><dl class="docutils">
+<dt>&#64;param    comm (MPI_Comm)</dt>
+<dd>MPI communicator</dd>
+<dt>&#64;param    p (std::array&lt;<a class="reference internal" href="../geometry/Point.html#_CPPv25Point" title="Point"><code class="xref cpp cpp-class docutils literal"><span class="pre">Point</span></code></a>, 2&gt;)</dt>
+<dd>Vertex points.</dd>
+<dt>&#64;param    n (std::array&lt;std::size_t, 2&gt;)</dt>
+<dd>Number of cells in each direction</dd>
+<dt>&#64;param    cell_type (dolfin::CellType::Type)</dt>
+<dd>Cell type</dd>
+<dt>&#64;param    diagonal (string)</dt>
+<dd>Direction of diagonals: “left”, “right”, “left/right”, “crossed”</dd>
+</dl>
+<p>&#64;code{.cpp}</p>
+<blockquote>
+<div>// Mesh with 8 cells in each direction on the
+// set [-1,2] x [-1,2]
+Point p0(-1, -1);
+Point p1(2, 2);
+auto mesh = RectangleMesh::create(MPI_COMM_WORLD, {p0, p1}, {8, 8});</div></blockquote>
+<p>&#64;endcode</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N13RectangleMesh13RectangleMeshERK5PointRK5PointNSt6size_tENSt6size_tENSt6stringE">
+<span id="RectangleMesh::RectangleMesh__PointCR.PointCR.std::s.std::s.ss"></span><code class="descclassname"></code><code class="descname">RectangleMesh</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../geometry/Point.html#_CPPv25Point" title="Point">Point</a> &amp;<em>p0</em>, <em class="property">const</em> <a class="reference internal" href="../geometry/Point.html#_CPPv25Point" title="Point">Point</a> &amp;<em>p1</em>, std::size_t <em>nx</em>, std::size_t <em>ny</em>, std::string <em>diagonal</em> = &quot;right&quot;<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N13RectangleMesh13RectangleMeshERK5PointRK5PointNSt6size_tENSt6size_tENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><dl class="docutils">
+<dt>&#64;param    p0 (<a class="reference internal" href="../geometry/Point.html#_CPPv25Point" title="Point"><code class="xref cpp cpp-class docutils literal"><span class="pre">Point</span></code></a>)</dt>
+<dd>First point.</dd>
+<dt>&#64;param    p1 (<a class="reference internal" href="../geometry/Point.html#_CPPv25Point" title="Point"><code class="xref cpp cpp-class docutils literal"><span class="pre">Point</span></code></a>)</dt>
+<dd>Second point.</dd>
+<dt>&#64;param    nx (double)</dt>
+<dd>Number of cells in <span class="math">\(x\)</span>-direction.</dd>
+<dt>&#64;param    ny (double)</dt>
+<dd>Number of cells in <span class="math">\(y\)</span>-direction.</dd>
+<dt>&#64;param    diagonal (string)</dt>
+<dd>Direction of diagonals: “left”, “right”, “left/right”, “crossed”</dd>
+</dl>
+<p>&#64;code{.cpp}</p>
+<blockquote>
+<div>// Mesh with 8 cells in each direction on the
+// set [-1,2] x [-1,2]
+Point p0(-1, -1);
+Point p1(2, 2);
+RectangleMesh mesh(p0, p1, 8, 8);</div></blockquote>
+<p>&#64;endcode</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N13RectangleMesh13RectangleMeshE8MPI_CommRK5PointRK5PointNSt6size_tENSt6size_tENSt6stringE">
+<span id="RectangleMesh::RectangleMesh__MPI_Comm.PointCR.PointCR.std::s.std::s.ss"></span><code class="descclassname"></code><code class="descname">RectangleMesh</code><span class="sig-paren">(</span>MPI_Comm <em>comm</em>, <em class="property">const</em> <a class="reference internal" href="../geometry/Point.html#_CPPv25Point" title="Point">Point</a> &amp;<em>p0</em>, <em class="property">const</em> <a class="reference internal" href="../geometry/Point.html#_CPPv25Point" title="Point">Point</a> &amp;<em>p1</em>, std::size_t <em>nx</em>, std::size_t <em>ny</em>, std::string <em>diagonal</em> = &quot;right&quot;<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N13RectangleMesh13RectangleMeshE8MPI_CommRK5PointRK5PointNSt6size_tENSt6size_tENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><dl class="docutils">
+<dt>&#64;param    comm (MPI_Comm)</dt>
+<dd>MPI communicator</dd>
+<dt>&#64;param    p0 (<a class="reference internal" href="../geometry/Point.html#_CPPv25Point" title="Point"><code class="xref cpp cpp-class docutils literal"><span class="pre">Point</span></code></a>)</dt>
+<dd>First point.</dd>
+<dt>&#64;param    p1 (<a class="reference internal" href="../geometry/Point.html#_CPPv25Point" title="Point"><code class="xref cpp cpp-class docutils literal"><span class="pre">Point</span></code></a>)</dt>
+<dd>Second point.</dd>
+<dt>&#64;param    nx (double)</dt>
+<dd>Number of cells in <span class="math">\(x\)</span>-direction.</dd>
+<dt>&#64;param    ny (double)</dt>
+<dd>Number of cells in <span class="math">\(y\)</span>-direction.</dd>
+<dt>&#64;param    diagonal (string)</dt>
+<dd>Direction of diagonals: “left”, “right”, “left/right”, “crossed”</dd>
+</dl>
+<p>&#64;code{.cpp}</p>
+<blockquote>
+<div>// Mesh with 8 cells in each direction on the
+// set [-1,2] x [-1,2]
+Point p0(-1, -1);
+Point p1(2, 2);
+RectangleMesh mesh(MPI_COMM_WORLD, p0, p1, 8, 8);</div></blockquote>
+<p>&#64;endcode</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="SphericalShellMesh.html" class="btn btn-neutral float-right" title="SphericalShellMesh.h" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="IntervalMesh.html" class="btn btn-neutral" title="IntervalMesh.h" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright DOLFIN Core, https://launchpad.net/~dolfin-core.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.9.11+',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,530 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>CCFEMDofMap.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN fem module" href="index.html"/>
+        <link rel="next" title="CCFEMForm.h" href="CCFEMForm.html"/>
+        <link rel="prev" title="CCFEMAssembler.h" href="CCFEMAssembler.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.4.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-1.4.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/index.html">DOLFIN common module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN fem module</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Assembler.html">Assembler.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AssemblerBase.html">AssemblerBase.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BasisFunction.html">BasisFunction.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CCFEMAssembler.html">CCFEMAssembler.h</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">CCFEMDofMap.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CCFEMForm.html">CCFEMForm.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DirichletBC.html">DirichletBC.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DofMap.html">DofMap.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Equation.html">Equation.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FiniteElement.html">FiniteElement.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Form.html">Form.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericDofMap.html">GenericDofMap.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LinearVariationalProblem.html">LinearVariationalProblem.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LinearVariationalSolver.html">LinearVariationalSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LocalSolver.html">LocalSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NonlinearVariationalProblem.html">NonlinearVariationalProblem.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NonlinearVariationalSolver.html">NonlinearVariationalSolver.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="OpenMpAssembler.html">OpenMpAssembler.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PointSource.html">PointSource.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SparsityPatternBuilder.html">SparsityPatternBuilder.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SystemAssembler.html">SystemAssembler.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="assemble.html">assemble.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fem_utils.html">fem_utils.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solve.html">solve.h</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html">DOLFIN function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/index.html">DOLFIN geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/index.html">DOLFIN io module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../la/index.html">DOLFIN la module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/index.html">DOLFIN log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mesh/index.html">DOLFIN mesh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot/index.html">DOLFIN plot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer&#8217;s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-1.4.0</a> &raquo;</li>
+      
+          <li><a href="index.html">DOLFIN fem module</a> &raquo;</li>
+      
+    <li>CCFEMDofMap.h</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/programmers-reference/fem/CCFEMDofMap.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ccfemdofmap-h">
+<span id="programmers-reference-cpp-fem-ccfemdofmap"></span><h1>CCFEMDofMap.h<a class="headerlink" href="#ccfemdofmap-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="class">
+<dt id="_CPPv211CCFEMDofMap">
+<span id="CCFEMDofMap"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">CCFEMDofMap</code><a class="headerlink" href="#_CPPv211CCFEMDofMap" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Parent class(es)</em></p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="GenericDofMap.html#_CPPv213GenericDofMap" title="GenericDofMap"><code class="xref cpp cpp-class docutils literal"><span class="pre">GenericDofMap</span></code></a></li>
+</ul>
+</div></blockquote>
+<p>This class handles the mapping of degrees of freedom for CCFEM
+function spaces.</p>
+<dl class="function">
+<dt id="_CPPv2N11CCFEMDofMap11CCFEMDofMapEv">
+<span id="CCFEMDofMap::CCFEMDofMap"></span><code class="descclassname"></code><code class="descname">CCFEMDofMap</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11CCFEMDofMap11CCFEMDofMapEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructor</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11CCFEMDofMap9num_partsEv">
+<span id="CCFEMDofMap::num_partsC"></span>std::size_t <code class="descclassname"></code><code class="descname">num_parts</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11CCFEMDofMap9num_partsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the number dofmaps (parts) of the CCFEM dofmap</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt>std::size_t</dt>
+<dd>The number of dofmaps (parts) of the CCFEM dofmap</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11CCFEMDofMap4partENSt6size_tE">
+<span id="CCFEMDofMap::part__std::sC"></span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="GenericDofMap.html#_CPPv213GenericDofMap" title="GenericDofMap">GenericDofMap</a>&gt; <code class="descclassname"></code><code class="descname">part</code><span class="sig-paren">(</span>std::size_t <em>i</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11CCFEMDofMap4partENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return dofmap (part) number i</p>
+<dl class="docutils">
+<dt><em>Returns</em></dt>
+<dd><dl class="first last docutils">
+<dt><a class="reference internal" href="GenericDofMap.html#_CPPv213GenericDofMap" title="GenericDofMap"><code class="xref cpp cpp-class docutils literal"><span class="pre">GenericDofMap</span></code></a></dt>
+<dd>Dofmap (part) number i</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11CCFEMDofMap16set_current_partENSt6size_tE">
+<span id="CCFEMDofMap::set_current_part__std::sC"></span>void <code class="descclassname"></code><code class="descname">set_current_part</code><span class="sig-paren">(</span>std::size_t <em>part</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11CCFEMDofMap16set_current_partENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set current part. This will make the CCFEM dofmap act as a
+dofmap for the part of the CCFEM function space defined on the
+current part (mesh).</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>part (std::size_t)</dt>
+<dd>The number of the part.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N11CCFEMDofMap3addENSt10shared_ptrIK13GenericDofMapEE">
+<span id="CCFEMDofMap::add__std::shared_ptr:GenericDofMapC:"></span>void <code class="descclassname"></code><code class="descname">add</code><span class="sig-paren">(</span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="GenericDofMap.html#_CPPv213GenericDofMap" title="GenericDofMap">GenericDofMap</a>&gt; <em>dofmap</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11CCFEMDofMap3addENSt10shared_ptrIK13GenericDofMapEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add dofmap (shared pointer version)</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>dofmap (<a class="reference internal" href="GenericDofMap.html#_CPPv213GenericDofMap" title="GenericDofMap"><code class="xref cpp cpp-class docutils literal"><span class="pre">GenericDofMap</span></code></a>)</dt>
+<dd>The dofmap.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N11CCFEMDofMap3addERK13GenericDofMap">
+<span id="CCFEMDofMap::add__GenericDofMapCR"></span>void <code class="descclassname"></code><code class="descname">add</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="GenericDofMap.html#_CPPv213GenericDofMap" title="GenericDofMap">GenericDofMap</a> &amp;<em>dofmap</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11CCFEMDofMap3addERK13GenericDofMap" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add dofmap (reference version)</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>dofmap (<a class="reference internal" href="DofMap.html#_CPPv26DofMap" title="DofMap"><code class="xref cpp cpp-class docutils literal"><span class="pre">DofMap</span></code></a>)</dt>
+<dd>The dofmap.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N11CCFEMDofMap5buildERK18CCFEMFunctionSpace">
+<span id="CCFEMDofMap::build__CCFEMFunctionSpaceCR"></span>void <code class="descclassname"></code><code class="descname">build</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../function/CCFEMFunctionSpace.html#_CPPv218CCFEMFunctionSpace" title="CCFEMFunctionSpace">CCFEMFunctionSpace</a> &amp;<em>function_space</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11CCFEMDofMap5buildERK18CCFEMFunctionSpace" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Build CCFEM dofmap</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N11CCFEMDofMap5clearEv">
+<span id="CCFEMDofMap::clear"></span>void <code class="descclassname"></code><code class="descname">clear</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11CCFEMDofMap5clearEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clear CCFEM dofmap</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11CCFEMDofMap7is_viewEv">
+<span id="CCFEMDofMap::is_viewC"></span>bool <code class="descclassname"></code><code class="descname">is_view</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11CCFEMDofMap7is_viewEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>True if dof map is a view into another map (is a sub-dofmap)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11CCFEMDofMap16global_dimensionEv">
+<span id="CCFEMDofMap::global_dimensionC"></span>std::size_t <code class="descclassname"></code><code class="descname">global_dimension</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11CCFEMDofMap16global_dimensionEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the dimension of the global finite element function
+space</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11CCFEMDofMap14cell_dimensionENSt6size_tE">
+<span id="CCFEMDofMap::cell_dimension__std::sC"></span>std::size_t <code class="descclassname"></code><code class="descname">cell_dimension</code><span class="sig-paren">(</span>std::size_t <em>index</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11CCFEMDofMap14cell_dimensionENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the dimension of the local finite element function
+space on a cell</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11CCFEMDofMap18max_cell_dimensionEv">
+<span id="CCFEMDofMap::max_cell_dimensionC"></span>std::size_t <code class="descclassname"></code><code class="descname">max_cell_dimension</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11CCFEMDofMap18max_cell_dimensionEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the maximum dimension of the local finite element
+function space</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11CCFEMDofMap15num_entity_dofsENSt6size_tE">
+<span id="CCFEMDofMap::num_entity_dofs__std::sC"></span>std::size_t <code class="descclassname"></code><code class="descname">num_entity_dofs</code><span class="sig-paren">(</span>std::size_t <em>dim</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11CCFEMDofMap15num_entity_dofsENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the number of dofs for a given entity dimension</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11CCFEMDofMap14num_facet_dofsEv">
+<span id="CCFEMDofMap::num_facet_dofsC"></span>std::size_t <code class="descclassname"></code><code class="descname">num_facet_dofs</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11CCFEMDofMap14num_facet_dofsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return number of facet dofs</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11CCFEMDofMap11restrictionEv">
+<span id="CCFEMDofMap::restrictionC"></span>std::shared_ptr&lt;<em class="property">const</em> <a class="reference internal" href="../mesh/Restriction.html#_CPPv211Restriction" title="Restriction">Restriction</a>&gt; <code class="descclassname"></code><code class="descname">restriction</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11CCFEMDofMap11restrictionEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Restriction if any. If the dofmap is not restricted, a null
+pointer is returned.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11CCFEMDofMap15ownership_rangeEv">
+<span id="CCFEMDofMap::ownership_rangeC"></span>std::pair&lt;std::size_t, std::size_t&gt; <code class="descclassname"></code><code class="descname">ownership_range</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11CCFEMDofMap15ownership_rangeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the ownership range (dofs in this range are owned by
+this process)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11CCFEMDofMap17off_process_ownerEv">
+<span id="CCFEMDofMap::off_process_ownerC"></span><em class="property">const</em> boost::unordered_map&lt;std::size_t, unsigned int&gt; &amp;<code class="descclassname"></code><code class="descname">off_process_owner</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11CCFEMDofMap17off_process_ownerEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return map from nonlocal-dofs (that appear in local dof map)
+to owning process</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11CCFEMDofMap9cell_dofsENSt6size_tE">
+<span id="CCFEMDofMap::cell_dofs__std::sC"></span><em class="property">const</em> std::vector&lt;dolfin::la_index&gt; &amp;<code class="descclassname"></code><code class="descname">cell_dofs</code><span class="sig-paren">(</span>std::size_t <em>cell_index</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11CCFEMDofMap9cell_dofsENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Local-to-global mapping of dofs on a cell</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11CCFEMDofMap19tabulate_facet_dofsERNSt6vectorINSt6size_tEEENSt6size_tE">
+<span id="CCFEMDofMap::tabulate_facet_dofs__std::vector:std::s:R.std::sC"></span>void <code class="descclassname"></code><code class="descname">tabulate_facet_dofs</code><span class="sig-paren">(</span>std::vector&lt;std::size_t&gt; &amp;<em>dofs</em>, std::size_t <em>local_facet</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11CCFEMDofMap19tabulate_facet_dofsERNSt6vectorINSt6size_tEEENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Tabulate local-local facet dofs</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11CCFEMDofMap20tabulate_entity_dofsERNSt6vectorINSt6size_tEEENSt6size_tENSt6size_tE">
+<span id="CCFEMDofMap::tabulate_entity_dofs__std::vector:std::s:R.std::s.std::sC"></span>void <code class="descclassname"></code><code class="descname">tabulate_entity_dofs</code><span class="sig-paren">(</span>std::vector&lt;std::size_t&gt; &amp;<em>dofs</em>, std::size_t <em>dim</em>, std::size_t <em>local_entity</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11CCFEMDofMap20tabulate_entity_dofsERNSt6vectorINSt6size_tEEENSt6size_tENSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Tabulate the local-to-local mapping of dofs on entity
+(dim, local_entity)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11CCFEMDofMap20tabulate_coordinatesERN5boost11multi_arrayIdX2EEERKNSt6vectorIdEERK4Cell">
+<span id="CCFEMDofMap::tabulate_coordinates__boost::multi_array:double.2:R.std::vector:double:CR.CellCRC"></span>void <code class="descclassname"></code><code class="descname">tabulate_coordinates</code><span class="sig-paren">(</span>boost::multi_array&lt;double, 2&gt; &amp;<em>coordinates</em>, <em class="property">const</em> std::vector&lt;double&gt; &amp;<em>vertex_coordinates</em>, <em class="property">const</em> <a class="reference internal" href="../mesh/Cell.html#_CPPv24Cell" title="Cell">Cell</a> &amp;<em>cell</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11CCFEMDofMap20tabulate_coordinatesERN5boost11multi_arrayIdX2EEERKNSt6vectorIdEERK4Cell" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Tabulate the coordinates of all dofs on a cell (UFC cell version)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11CCFEMDofMap24tabulate_all_coordinatesERK4Mesh">
+<span id="CCFEMDofMap::tabulate_all_coordinates__MeshCRC"></span>std::vector&lt;double&gt; <code class="descclassname"></code><code class="descname">tabulate_all_coordinates</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11CCFEMDofMap24tabulate_all_coordinatesERK4Mesh" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Tabulate the coordinates of all dofs owned by this
+process. This function is typically used by preconditioners
+that require the spatial coordinates of dofs, for example
+for re-partitioning or nullspace computations. The format for
+the return vector is [x0, y0, z0, x1, y1, z1, . . .].</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11CCFEMDofMap4copyEv">
+<span id="CCFEMDofMap::copyC"></span>std::shared_ptr&lt;<a class="reference internal" href="GenericDofMap.html#_CPPv213GenericDofMap" title="GenericDofMap">GenericDofMap</a>&gt; <code class="descclassname"></code><code class="descname">copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11CCFEMDofMap4copyEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create a copy of the dof map</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11CCFEMDofMap6createERK4Mesh">
+<span id="CCFEMDofMap::create__MeshCRC"></span>std::shared_ptr&lt;<a class="reference internal" href="GenericDofMap.html#_CPPv213GenericDofMap" title="GenericDofMap">GenericDofMap</a>&gt; <code class="descclassname"></code><code class="descname">create</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>new_mesh</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11CCFEMDofMap6createERK4Mesh" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create a new dof map on new mesh</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11CCFEMDofMap18extract_sub_dofmapERKNSt6vectorINSt6size_tEEERK4Mesh">
+<span id="CCFEMDofMap::extract_sub_dofmap__std::vector:std::s:CR.MeshCRC"></span>std::shared_ptr&lt;<a class="reference internal" href="GenericDofMap.html#_CPPv213GenericDofMap" title="GenericDofMap">GenericDofMap</a>&gt; <code class="descclassname"></code><code class="descname">extract_sub_dofmap</code><span class="sig-paren">(</span><em class="property">const</em> std::vector&lt;std::size_t&gt; &amp;<em>component</em>, <em class="property">const</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11CCFEMDofMap18extract_sub_dofmapERKNSt6vectorINSt6size_tEEERK4Mesh" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Extract sub dofmap component</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11CCFEMDofMap8collapseERN5boost13unordered_mapINSt6size_tENSt6size_tEEERK4Mesh">
+<span id="CCFEMDofMap::collapse__boost::unordered_map:std::s.std::s:R.MeshCRC"></span>std::shared_ptr&lt;<a class="reference internal" href="GenericDofMap.html#_CPPv213GenericDofMap" title="GenericDofMap">GenericDofMap</a>&gt; <code class="descclassname"></code><code class="descname">collapse</code><span class="sig-paren">(</span>boost::unordered_map&lt;std::size_t, std::size_t&gt; &amp;<em>collapsed_map</em>, <em class="property">const</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11CCFEMDofMap8collapseERN5boost13unordered_mapINSt6size_tENSt6size_tEEERK4Mesh" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create a &#8220;collapsed&#8221; a dofmap (collapses from a sub-dofmap view)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11CCFEMDofMap4dofsEv">
+<span id="CCFEMDofMap::dofsC"></span>std::vector&lt;dolfin::la_index&gt; <code class="descclassname"></code><code class="descname">dofs</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11CCFEMDofMap4dofsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return list of global dof indices on this process</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11CCFEMDofMap3setER13GenericVectord">
+<span id="CCFEMDofMap::set__GenericVectorR.doubleC"></span>void <code class="descclassname"></code><code class="descname">set</code><span class="sig-paren">(</span><a class="reference internal" href="../la/GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>x</em>, double <em>value</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11CCFEMDofMap3setER13GenericVectord" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set dof entries in vector to a specified value. Parallel
+layout of vector must be consistent with dof map range. This
+function is typically used to construct the null space of a
+matrix operator</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11CCFEMDofMap5set_xER13GenericVectordNSt6size_tERK4Mesh">
+<span id="CCFEMDofMap::set_x__GenericVectorR.double.std::s.MeshCRC"></span>void <code class="descclassname"></code><code class="descname">set_x</code><span class="sig-paren">(</span><a class="reference internal" href="../la/GenericVector.html#_CPPv213GenericVector" title="GenericVector">GenericVector</a> &amp;<em>x</em>, double <em>value</em>, std::size_t <em>component</em>, <em class="property">const</em> <a class="reference internal" href="../mesh/Mesh.html#_CPPv24Mesh" title="Mesh">Mesh</a> &amp;<em>mesh</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11CCFEMDofMap5set_xER13GenericVectordNSt6size_tERK4Mesh" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set dof entries in vector to the value*x[i], where x[i] is the
+spatial coordinate of the dof. Parallel layout of vector must
+be consistent with dof map range. This function is typically
+used to construct the null space of a matrix operator, e.g. rigid
+body rotations.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11CCFEMDofMap11shared_dofsEv">
+<span id="CCFEMDofMap::shared_dofsC"></span><em class="property">const</em> boost::unordered_map&lt;std::size_t, std::vector&lt;unsigned int&gt;&gt; &amp;<code class="descclassname"></code><code class="descname">shared_dofs</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11CCFEMDofMap11shared_dofsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return map from shared dofs to the processes (not including
+the current process) that share it.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11CCFEMDofMap10neighboursEv">
+<span id="CCFEMDofMap::neighboursC"></span><em class="property">const</em> std::set&lt;std::size_t&gt; &amp;<code class="descclassname"></code><code class="descname">neighbours</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11CCFEMDofMap10neighboursEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return set of processes that share dofs with the this process</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK11CCFEMDofMap3strEb">
+<span id="CCFEMDofMap::str__bC"></span>std::string <code class="descclassname"></code><code class="descname">str</code><span class="sig-paren">(</span>bool <em>verbose</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK11CCFEMDofMap3strEb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return informal string representation (pretty-print)</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="CCFEMForm.html" class="btn btn-neutral float-right" title="CCFEMForm.h" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="CCFEMAssembler.html" class="btn btn-neutral" title="CCFEMAssembler.h" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://fenicsproject.org.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.4.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

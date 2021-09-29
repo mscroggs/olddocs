@@ -1,0 +1,352 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>HDF5Attribute.h &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="FEniCS Project" href="../../index.html"/>
+        <link rel="up" title="DOLFIN io module" href="index.html"/>
+        <link rel="next" title="HDF5File.h" href="HDF5File.html"/>
+        <link rel="prev" title="GenericFile.h" href="GenericFile.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> DOLFIN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2016.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-2016.1.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../adaptivity/index.html">DOLFIN adaptivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ale/index.html">DOLFIN ale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/index.html">DOLFIN common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fem/index.html">DOLFIN fem module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html">DOLFIN function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generation/index.html">DOLFIN generation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/index.html">DOLFIN geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/index.html">DOLFIN graph module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">DOLFIN io module</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="File.html">File.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenericFile.html">GenericFile.h</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">HDF5Attribute.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="HDF5File.html">HDF5File.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="X3DOM.html">X3DOM.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="XDMFFile.html">XDMFFile.h</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../la/index.html">DOLFIN la module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/index.html">DOLFIN log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/index.html">DOLFIN math module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mesh/index.html">DOLFIN mesh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multistage/index.html">DOLFIN multistage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nls/index.html">DOLFIN nls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameter/index.html">DOLFIN parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot/index.html">DOLFIN plot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../refinement/index.html">DOLFIN refinement module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo/index.html">Collection of documented demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Programmer&#8217;s Reference (C++)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">DOLFIN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">C++ Programmer&#8217;s reference for DOLFIN-2016.1.0</a> &raquo;</li>
+      
+          <li><a href="index.html">DOLFIN io module</a> &raquo;</li>
+      
+    <li>HDF5Attribute.h</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/programmers-reference/io/HDF5Attribute.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="hdf5attribute-h">
+<span id="programmers-reference-cpp-io-hdf5attribute"></span><h1>HDF5Attribute.h<a class="headerlink" href="#hdf5attribute-h" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation on this page was automatically extracted from the
+DOLFIN C++ code and may need to be edited or expanded.</p>
+</div>
+<dl class="class">
+<dt id="_CPPv213HDF5Attribute">
+<span id="HDF5Attribute"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">HDF5Attribute</code><a class="headerlink" href="#_CPPv213HDF5Attribute" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>HDF5Attribute gives access to the attributes of a dataset
+via set() and get() methods</p>
+<dl class="function">
+<dt id="_CPPv2N13HDF5Attribute13HDF5AttributeEK5hid_tNSt6stringE">
+<span id="HDF5Attribute::HDF5Attribute__hid_tC.ss"></span><code class="descclassname"></code><code class="descname">HDF5Attribute</code><span class="sig-paren">(</span><em class="property">const</em> hid_t <em>hdf5_file_id</em>, std::string <em>dataset_name</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N13HDF5Attribute13HDF5AttributeEK5hid_tNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructor</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13HDF5Attribute6existsEKNSt6stringE">
+<span id="HDF5Attribute::exists__ssCC"></span>bool <code class="descclassname"></code><code class="descname">exists</code><span class="sig-paren">(</span><em class="property">const</em> std::string <em>attribute_name</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13HDF5Attribute6existsEKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Check for the existence of an attribute on a dataset</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N13HDF5Attribute3setEKNSt6stringEKd">
+<span id="HDF5Attribute::set__ssC.doubleC"></span>void <code class="descclassname"></code><code class="descname">set</code><span class="sig-paren">(</span><em class="property">const</em> std::string <em>attribute_name</em>, <em class="property">const</em> double <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N13HDF5Attribute3setEKNSt6stringEKd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set the value of a double attribute in the HDF5 file</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N13HDF5Attribute3setEKNSt6stringEKNSt6size_tE">
+<span id="HDF5Attribute::set__ssC.std::sC"></span>void <code class="descclassname"></code><code class="descname">set</code><span class="sig-paren">(</span><em class="property">const</em> std::string <em>attribute_name</em>, <em class="property">const</em> std::size_t <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N13HDF5Attribute3setEKNSt6stringEKNSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set the value of a double attribute in the HDF5 file</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N13HDF5Attribute3setEKNSt6stringERKNSt6vectorIdEE">
+<span id="HDF5Attribute::set__ssC.std::vector:double:CR"></span>void <code class="descclassname"></code><code class="descname">set</code><span class="sig-paren">(</span><em class="property">const</em> std::string <em>attribute_name</em>, <em class="property">const</em> std::vector&lt;double&gt; &amp;<em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N13HDF5Attribute3setEKNSt6stringERKNSt6vectorIdEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set the value of an array of float attribute in the HDF5 file</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N13HDF5Attribute3setEKNSt6stringERKNSt6vectorINSt6size_tEEE">
+<span id="HDF5Attribute::set__ssC.std::vector:std::s:CR"></span>void <code class="descclassname"></code><code class="descname">set</code><span class="sig-paren">(</span><em class="property">const</em> std::string <em>attribute_name</em>, <em class="property">const</em> std::vector&lt;std::size_t&gt; &amp;<em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N13HDF5Attribute3setEKNSt6stringERKNSt6vectorINSt6size_tEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set the value of an array of float attribute in the HDF5 file</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N13HDF5Attribute3setEKNSt6stringEKNSt6stringE">
+<span id="HDF5Attribute::set__ssC.ssC"></span>void <code class="descclassname"></code><code class="descname">set</code><span class="sig-paren">(</span><em class="property">const</em> std::string <em>attribute_name</em>, <em class="property">const</em> std::string <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N13HDF5Attribute3setEKNSt6stringEKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set the value of a string attribute in the HDF5 file</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13HDF5Attribute3getEKNSt6stringERd">
+<span id="HDF5Attribute::get__ssC.doubleRC"></span>void <code class="descclassname"></code><code class="descname">get</code><span class="sig-paren">(</span><em class="property">const</em> std::string <em>attribute_name</em>, double &amp;<em>value</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13HDF5Attribute3getEKNSt6stringERd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set the value of a double attribute in the HDF5 file</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13HDF5Attribute3getEKNSt6stringERNSt6vectorIdEE">
+<span id="HDF5Attribute::get__ssC.std::vector:double:RC"></span>void <code class="descclassname"></code><code class="descname">get</code><span class="sig-paren">(</span><em class="property">const</em> std::string <em>attribute_name</em>, std::vector&lt;double&gt; &amp;<em>value</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13HDF5Attribute3getEKNSt6stringERNSt6vectorIdEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the value of a vector double attribute in the HDF5 file</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13HDF5Attribute3getEKNSt6stringERNSt6size_tE">
+<span id="HDF5Attribute::get__ssC.std::sRC"></span>void <code class="descclassname"></code><code class="descname">get</code><span class="sig-paren">(</span><em class="property">const</em> std::string <em>attribute_name</em>, std::size_t &amp;<em>value</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13HDF5Attribute3getEKNSt6stringERNSt6size_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set the value of a double attribute in the HDF5 file</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13HDF5Attribute3getEKNSt6stringERNSt6vectorINSt6size_tEEE">
+<span id="HDF5Attribute::get__ssC.std::vector:std::s:RC"></span>void <code class="descclassname"></code><code class="descname">get</code><span class="sig-paren">(</span><em class="property">const</em> std::string <em>attribute_name</em>, std::vector&lt;std::size_t&gt; &amp;<em>value</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13HDF5Attribute3getEKNSt6stringERNSt6vectorINSt6size_tEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the value of a vector double attribute in the HDF5 file</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13HDF5Attribute3getEKNSt6stringERNSt6stringE">
+<span id="HDF5Attribute::get__ssC.ssRC"></span>void <code class="descclassname"></code><code class="descname">get</code><span class="sig-paren">(</span><em class="property">const</em> std::string <em>attribute_name</em>, std::string &amp;<em>value</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13HDF5Attribute3getEKNSt6stringERNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the value of an attribute in the HDF5 file as a string</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13HDF5Attribute3strEKNSt6stringE">
+<span id="HDF5Attribute::str__ssCC"></span><em class="property">const</em> std::string <code class="descclassname"></code><code class="descname">str</code><span class="sig-paren">(</span><em class="property">const</em> std::string <em>attribute_name</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13HDF5Attribute3strEKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the value of the attribute in the HDF5 file
+as a string representation</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13HDF5Attribute8type_strEKNSt6stringE">
+<span id="HDF5Attribute::type_str__ssCC"></span><em class="property">const</em> std::string <code class="descclassname"></code><code class="descname">type_str</code><span class="sig-paren">(</span><em class="property">const</em> std::string <em>attribute_name</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13HDF5Attribute8type_strEKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the type of the attribute &#8220;string&#8221;, &#8220;float&#8221;, &#8220;int&#8221;
+&#8220;vectorfloat&#8221;, &#8220;vectorint&#8221; or &#8220;unsupported&#8221;</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13HDF5Attribute3strEv">
+<span id="HDF5Attribute::strC"></span><em class="property">const</em> std::string <code class="descclassname"></code><code class="descname">str</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13HDF5Attribute3strEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the names of all the attributes on this dataset</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK13HDF5Attribute15list_attributesEv">
+<span id="HDF5Attribute::list_attributesC"></span><em class="property">const</em> std::vector&lt;std::string&gt; <code class="descclassname"></code><code class="descname">list_attributes</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK13HDF5Attribute15list_attributesEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the names of all the attributes on this dataset as a
+std::vector&lt;std::string&gt;</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="HDF5File.html" class="btn btn-neutral float-right" title="HDF5File.h" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="GenericFile.html" class="btn btn-neutral" title="GenericFile.h" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, https://bitbucket.org/fenics-project/.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'2016.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
