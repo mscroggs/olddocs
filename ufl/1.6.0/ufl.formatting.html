@@ -1,0 +1,1171 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>formatting Package &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="FEniCS Project" href="index.html"/>
+        <link rel="up" title="ufl Package" href="ufl.html"/>
+        <link rel="next" title="utils Package" href="ufl.utils.html"/>
+        <link rel="prev" title="finiteelement Package" href="ufl.finiteelement.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> UFL
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.6
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Project Modules</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="ufl.html">ufl Package</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#id2"><code class="docutils literal"><span class="pre">ufl</span></code> Package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.algebra"><code class="docutils literal"><span class="pre">algebra</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.argument"><code class="docutils literal"><span class="pre">argument</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.assertions"><code class="docutils literal"><span class="pre">assertions</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.cell"><code class="docutils literal"><span class="pre">cell</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.checks"><code class="docutils literal"><span class="pre">checks</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.classes"><code class="docutils literal"><span class="pre">classes</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.coefficient"><code class="docutils literal"><span class="pre">coefficient</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.common"><code class="docutils literal"><span class="pre">common</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.compound_expressions"><code class="docutils literal"><span class="pre">compound_expressions</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.conditional"><code class="docutils literal"><span class="pre">conditional</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.constantvalue"><code class="docutils literal"><span class="pre">constantvalue</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.differentiation"><code class="docutils literal"><span class="pre">differentiation</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.domain"><code class="docutils literal"><span class="pre">domain</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.equation"><code class="docutils literal"><span class="pre">equation</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.exprcontainers"><code class="docutils literal"><span class="pre">exprcontainers</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.exprequals"><code class="docutils literal"><span class="pre">exprequals</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.exproperators"><code class="docutils literal"><span class="pre">exproperators</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.form"><code class="docutils literal"><span class="pre">form</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.formoperators"><code class="docutils literal"><span class="pre">formoperators</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.geometry"><code class="docutils literal"><span class="pre">geometry</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.index_combination_utils"><code class="docutils literal"><span class="pre">index_combination_utils</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.indexed"><code class="docutils literal"><span class="pre">indexed</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.indexing"><code class="docutils literal"><span class="pre">indexing</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.indexsum"><code class="docutils literal"><span class="pre">indexsum</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.integral"><code class="docutils literal"><span class="pre">integral</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.log"><code class="docutils literal"><span class="pre">log</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.mathfunctions"><code class="docutils literal"><span class="pre">mathfunctions</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.measure"><code class="docutils literal"><span class="pre">measure</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.objects"><code class="docutils literal"><span class="pre">objects</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.operators"><code class="docutils literal"><span class="pre">operators</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.permutation"><code class="docutils literal"><span class="pre">permutation</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.precedence"><code class="docutils literal"><span class="pre">precedence</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.protocols"><code class="docutils literal"><span class="pre">protocols</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.referencevalue"><code class="docutils literal"><span class="pre">referencevalue</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.restriction"><code class="docutils literal"><span class="pre">restriction</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.sobolevspace"><code class="docutils literal"><span class="pre">sobolevspace</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.sorting"><code class="docutils literal"><span class="pre">sorting</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.split_functions"><code class="docutils literal"><span class="pre">split_functions</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.tensoralgebra"><code class="docutils literal"><span class="pre">tensoralgebra</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.tensors"><code class="docutils literal"><span class="pre">tensors</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.variable"><code class="docutils literal"><span class="pre">variable</span></code> Module</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="ufl.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="ufl.algorithms.html">algorithms Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufl.core.html">core Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufl.corealg.html">corealg Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufl.finiteelement.html">finiteelement Package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">formatting Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufl.utils.html">utils Package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">UFL</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="modules.html">Project Modules</a> &raquo;</li>
+      
+          <li><a href="ufl.html">ufl Package</a> &raquo;</li>
+      
+    <li>formatting Package</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/ufl.formatting.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="formatting-package">
+<h1>formatting Package<a class="headerlink" href="#formatting-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-ufl.formatting.graph">
+<span id="graph-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">graph</span></code> Module<a class="headerlink" href="#module-ufl.formatting.graph" title="Permalink to this headline">¶</a></h2>
+<p>Algorithms for working with linearized computational graphs.</p>
+<dl class="class">
+<dt id="ufl.formatting.graph.Graph">
+<em class="property">class </em><code class="descclassname">ufl.formatting.graph.</code><code class="descname">Graph</code><span class="sig-paren">(</span><em>expression</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.graph.Graph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Graph class which computes connectivity on demand.</p>
+<dl class="method">
+<dt id="ufl.formatting.graph.Graph.E">
+<code class="descname">E</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.graph.Graph.E" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.graph.Graph.Ein">
+<code class="descname">Ein</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.graph.Graph.Ein" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.graph.Graph.Eout">
+<code class="descname">Eout</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.graph.Graph.Eout" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.graph.Graph.V">
+<code class="descname">V</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.graph.Graph.V" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.graph.Graph.Vin">
+<code class="descname">Vin</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.graph.Graph.Vin" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.graph.Graph.Vout">
+<code class="descname">Vout</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.graph.Graph.Vout" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ufl.formatting.graph.HeapItem">
+<em class="property">class </em><code class="descclassname">ufl.formatting.graph.</code><code class="descname">HeapItem</code><span class="sig-paren">(</span><em>incoming</em>, <em>outgoing</em>, <em>i</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.graph.HeapItem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="ufl.formatting.graph.StringDependencyDefiner">
+<em class="property">class </em><code class="descclassname">ufl.formatting.graph.</code><code class="descname">StringDependencyDefiner</code><span class="sig-paren">(</span><em>argument_deps=None</em>, <em>coefficient_deps=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.graph.StringDependencyDefiner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="ufl.corealg.html#ufl.corealg.multifunction.MultiFunction" title="ufl.corealg.multifunction.MultiFunction"><code class="xref py py-class docutils literal"><span class="pre">ufl.corealg.multifunction.MultiFunction</span></code></a></p>
+<p>Given an expr, returns a frozenset of its dependencies.</p>
+<dl class="docutils">
+<dt>Possible dependency values are:</dt>
+<dd>&#8220;c&#8221;       - depends on runtime information like the cell, local&lt;-&gt;global coordinate mappings, facet normals, or coefficients
+&#8220;x&#8221;       - depends on local coordinates
+&#8220;v%d&#8221; % i - depends on argument i, for i in [0,rank)</dd>
+</dl>
+<dl class="method">
+<dt id="ufl.formatting.graph.StringDependencyDefiner.argument">
+<code class="descname">argument</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.graph.StringDependencyDefiner.argument" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.graph.StringDependencyDefiner.coefficient">
+<code class="descname">coefficient</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.graph.StringDependencyDefiner.coefficient" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.graph.StringDependencyDefiner.expr">
+<code class="descname">expr</code><span class="sig-paren">(</span><em>o</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.graph.StringDependencyDefiner.expr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.graph.StringDependencyDefiner.facet_normal">
+<code class="descname">facet_normal</code><span class="sig-paren">(</span><em>o</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.graph.StringDependencyDefiner.facet_normal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.graph.StringDependencyDefiner.geometric_quantity">
+<code class="descname">geometric_quantity</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.graph.StringDependencyDefiner.geometric_quantity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.graph.StringDependencyDefiner.spatial_derivative">
+<code class="descname">spatial_derivative</code><span class="sig-paren">(</span><em>o</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.graph.StringDependencyDefiner.spatial_derivative" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.formatting.graph.build_graph">
+<code class="descclassname">ufl.formatting.graph.</code><code class="descname">build_graph</code><span class="sig-paren">(</span><em>expr</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.graph.build_graph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build a linearized graph from an UFL Expr.</p>
+<p>Returns G = (V, E), with V being a list of
+graph nodes (Expr objects) in post traversal
+ordering and E being a list of edges. Each edge
+is represented as a (i, j) tuple where i and j
+are vertex indices into V.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.formatting.graph.depth_first_ordering">
+<code class="descclassname">ufl.formatting.graph.</code><code class="descname">depth_first_ordering</code><span class="sig-paren">(</span><em>G</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.graph.depth_first_ordering" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ufl.formatting.graph.extract_incoming_edges">
+<code class="descclassname">ufl.formatting.graph.</code><code class="descname">extract_incoming_edges</code><span class="sig-paren">(</span><em>G</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.graph.extract_incoming_edges" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build lists of incoming edges to each vertex in a linearized graph.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.formatting.graph.extract_incoming_vertex_connections">
+<code class="descclassname">ufl.formatting.graph.</code><code class="descname">extract_incoming_vertex_connections</code><span class="sig-paren">(</span><em>G</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.graph.extract_incoming_vertex_connections" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build lists of vertices in incoming and outgoing
+edges to and from each vertex in a linearized graph.</p>
+<p>Returns lists Vin and Vout.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.formatting.graph.extract_outgoing_edges">
+<code class="descclassname">ufl.formatting.graph.</code><code class="descname">extract_outgoing_edges</code><span class="sig-paren">(</span><em>G</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.graph.extract_outgoing_edges" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build list of outgoing edges from each vertex in a linearized graph.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.formatting.graph.extract_outgoing_vertex_connections">
+<code class="descclassname">ufl.formatting.graph.</code><code class="descname">extract_outgoing_vertex_connections</code><span class="sig-paren">(</span><em>G</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.graph.extract_outgoing_vertex_connections" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build lists of vertices in incoming and outgoing
+edges to and from each vertex in a linearized graph.</p>
+<p>Returns lists Vin and Vout.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.formatting.graph.len_items">
+<code class="descclassname">ufl.formatting.graph.</code><code class="descname">len_items</code><span class="sig-paren">(</span><em>sequence</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.graph.len_items" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ufl.formatting.graph.lists">
+<code class="descclassname">ufl.formatting.graph.</code><code class="descname">lists</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.graph.lists" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ufl.formatting.graph.partition">
+<code class="descclassname">ufl.formatting.graph.</code><code class="descname">partition</code><span class="sig-paren">(</span><em>G</em>, <em>criteria=&lt;function string_set_criteria&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.graph.partition" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ufl.formatting.graph.string_set_criteria">
+<code class="descclassname">ufl.formatting.graph.</code><code class="descname">string_set_criteria</code><span class="sig-paren">(</span><em>v</em>, <em>keys</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.graph.string_set_criteria" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-ufl.formatting.latextools">
+<span id="latextools-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">latextools</span></code> Module<a class="headerlink" href="#module-ufl.formatting.latextools" title="Permalink to this headline">¶</a></h2>
+<p>This module defines basic utilities for stitching together LaTeX documents.</p>
+<dl class="function">
+<dt id="ufl.formatting.latextools.align">
+<code class="descclassname">ufl.formatting.latextools.</code><code class="descname">align</code><span class="sig-paren">(</span><em>lines</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.latextools.align" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ufl.formatting.latextools.document">
+<code class="descclassname">ufl.formatting.latextools.</code><code class="descname">document</code><span class="sig-paren">(</span><em>title</em>, <em>sections</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.latextools.document" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ufl.formatting.latextools.itemize">
+<code class="descclassname">ufl.formatting.latextools.</code><code class="descname">itemize</code><span class="sig-paren">(</span><em>items</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.latextools.itemize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ufl.formatting.latextools.section">
+<code class="descclassname">ufl.formatting.latextools.</code><code class="descname">section</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.latextools.section" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ufl.formatting.latextools.subsection">
+<code class="descclassname">ufl.formatting.latextools.</code><code class="descname">subsection</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.latextools.subsection" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ufl.formatting.latextools.subsubsection">
+<code class="descclassname">ufl.formatting.latextools.</code><code class="descname">subsubsection</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.latextools.subsubsection" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ufl.formatting.latextools.testdocument">
+<code class="descclassname">ufl.formatting.latextools.</code><code class="descname">testdocument</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.latextools.testdocument" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ufl.formatting.latextools.verbatim">
+<code class="descclassname">ufl.formatting.latextools.</code><code class="descname">verbatim</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.latextools.verbatim" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-ufl.formatting.printing">
+<span id="printing-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">printing</span></code> Module<a class="headerlink" href="#module-ufl.formatting.printing" title="Permalink to this headline">¶</a></h2>
+<p>A collection of utility algorithms for printing
+of UFL objects, mostly intended for debugging purposes.</p>
+<dl class="function">
+<dt id="ufl.formatting.printing.form_info">
+<code class="descclassname">ufl.formatting.printing.</code><code class="descname">form_info</code><span class="sig-paren">(</span><em>form</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.printing.form_info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ufl.formatting.printing.integral_info">
+<code class="descclassname">ufl.formatting.printing.</code><code class="descname">integral_info</code><span class="sig-paren">(</span><em>integral</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.printing.integral_info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ufl.formatting.printing.tree_format">
+<code class="descclassname">ufl.formatting.printing.</code><code class="descname">tree_format</code><span class="sig-paren">(</span><em>expression</em>, <em>indentation=0</em>, <em>parentheses=True</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.printing.tree_format" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-ufl.formatting.ufl2dot">
+<span id="ufl2dot-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">ufl2dot</span></code> Module<a class="headerlink" href="#module-ufl.formatting.ufl2dot" title="Permalink to this headline">¶</a></h2>
+<p>A collection of utility algorithms for printing
+of UFL objects in the DOT graph visualization language,
+mostly intended for debugging purposers.</p>
+<dl class="class">
+<dt id="ufl.formatting.ufl2dot.CompactLabeller">
+<em class="property">class </em><code class="descclassname">ufl.formatting.ufl2dot.</code><code class="descname">CompactLabeller</code><span class="sig-paren">(</span><em>function_mapping=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2dot.CompactLabeller" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#ufl.formatting.ufl2dot.ReprLabeller" title="ufl.formatting.ufl2dot.ReprLabeller"><code class="xref py py-class docutils literal"><span class="pre">ufl.formatting.ufl2dot.ReprLabeller</span></code></a></p>
+<dl class="method">
+<dt id="ufl.formatting.ufl2dot.CompactLabeller.cell_avg">
+<code class="descname">cell_avg</code><span class="sig-paren">(</span><em>e</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2dot.CompactLabeller.cell_avg" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2dot.CompactLabeller.component_tensor">
+<code class="descname">component_tensor</code><span class="sig-paren">(</span><em>e</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2dot.CompactLabeller.component_tensor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2dot.CompactLabeller.curl">
+<code class="descname">curl</code><span class="sig-paren">(</span><em>e</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2dot.CompactLabeller.curl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2dot.CompactLabeller.determinant">
+<code class="descname">determinant</code><span class="sig-paren">(</span><em>e</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2dot.CompactLabeller.determinant" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2dot.CompactLabeller.dev">
+<code class="descname">dev</code><span class="sig-paren">(</span><em>e</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2dot.CompactLabeller.dev" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2dot.CompactLabeller.diff">
+<code class="descname">diff</code><span class="sig-paren">(</span><em>e</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2dot.CompactLabeller.diff" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2dot.CompactLabeller.div">
+<code class="descname">div</code><span class="sig-paren">(</span><em>e</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2dot.CompactLabeller.div" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2dot.CompactLabeller.division">
+<code class="descname">division</code><span class="sig-paren">(</span><em>e</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2dot.CompactLabeller.division" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2dot.CompactLabeller.dot">
+<code class="descname">dot</code><span class="sig-paren">(</span><em>e</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2dot.CompactLabeller.dot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2dot.CompactLabeller.facet_avg">
+<code class="descname">facet_avg</code><span class="sig-paren">(</span><em>e</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2dot.CompactLabeller.facet_avg" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2dot.CompactLabeller.form_argument">
+<code class="descname">form_argument</code><span class="sig-paren">(</span><em>e</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2dot.CompactLabeller.form_argument" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2dot.CompactLabeller.geometric_quantity">
+<code class="descname">geometric_quantity</code><span class="sig-paren">(</span><em>e</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2dot.CompactLabeller.geometric_quantity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2dot.CompactLabeller.grad">
+<code class="descname">grad</code><span class="sig-paren">(</span><em>e</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2dot.CompactLabeller.grad" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2dot.CompactLabeller.identity">
+<code class="descname">identity</code><span class="sig-paren">(</span><em>e</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2dot.CompactLabeller.identity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2dot.CompactLabeller.index_sum">
+<code class="descname">index_sum</code><span class="sig-paren">(</span><em>e</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2dot.CompactLabeller.index_sum" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2dot.CompactLabeller.indexed">
+<code class="descname">indexed</code><span class="sig-paren">(</span><em>e</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2dot.CompactLabeller.indexed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2dot.CompactLabeller.inner">
+<code class="descname">inner</code><span class="sig-paren">(</span><em>e</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2dot.CompactLabeller.inner" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2dot.CompactLabeller.math_function">
+<code class="descname">math_function</code><span class="sig-paren">(</span><em>e</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2dot.CompactLabeller.math_function" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2dot.CompactLabeller.multi_index">
+<code class="descname">multi_index</code><span class="sig-paren">(</span><em>e</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2dot.CompactLabeller.multi_index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2dot.CompactLabeller.nabla_div">
+<code class="descname">nabla_div</code><span class="sig-paren">(</span><em>e</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2dot.CompactLabeller.nabla_div" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2dot.CompactLabeller.nabla_grad">
+<code class="descname">nabla_grad</code><span class="sig-paren">(</span><em>e</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2dot.CompactLabeller.nabla_grad" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2dot.CompactLabeller.negative_restricted">
+<code class="descname">negative_restricted</code><span class="sig-paren">(</span><em>e</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2dot.CompactLabeller.negative_restricted" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2dot.CompactLabeller.outer">
+<code class="descname">outer</code><span class="sig-paren">(</span><em>e</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2dot.CompactLabeller.outer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2dot.CompactLabeller.positive_restricted">
+<code class="descname">positive_restricted</code><span class="sig-paren">(</span><em>e</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2dot.CompactLabeller.positive_restricted" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2dot.CompactLabeller.power">
+<code class="descname">power</code><span class="sig-paren">(</span><em>e</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2dot.CompactLabeller.power" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2dot.CompactLabeller.product">
+<code class="descname">product</code><span class="sig-paren">(</span><em>e</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2dot.CompactLabeller.product" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2dot.CompactLabeller.scalar_value">
+<code class="descname">scalar_value</code><span class="sig-paren">(</span><em>e</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2dot.CompactLabeller.scalar_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2dot.CompactLabeller.skew">
+<code class="descname">skew</code><span class="sig-paren">(</span><em>e</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2dot.CompactLabeller.skew" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2dot.CompactLabeller.sum">
+<code class="descname">sum</code><span class="sig-paren">(</span><em>e</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2dot.CompactLabeller.sum" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2dot.CompactLabeller.trace">
+<code class="descname">trace</code><span class="sig-paren">(</span><em>e</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2dot.CompactLabeller.trace" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2dot.CompactLabeller.transposed">
+<code class="descname">transposed</code><span class="sig-paren">(</span><em>e</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2dot.CompactLabeller.transposed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2dot.CompactLabeller.zero">
+<code class="descname">zero</code><span class="sig-paren">(</span><em>e</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2dot.CompactLabeller.zero" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ufl.formatting.ufl2dot.FancyLabeller">
+<em class="property">class </em><code class="descclassname">ufl.formatting.ufl2dot.</code><code class="descname">FancyLabeller</code><span class="sig-paren">(</span><em>function_mapping=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2dot.FancyLabeller" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#ufl.formatting.ufl2dot.CompactLabeller" title="ufl.formatting.ufl2dot.CompactLabeller"><code class="xref py py-class docutils literal"><span class="pre">ufl.formatting.ufl2dot.CompactLabeller</span></code></a></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="ufl.formatting.ufl2dot.ReprLabeller">
+<em class="property">class </em><code class="descclassname">ufl.formatting.ufl2dot.</code><code class="descname">ReprLabeller</code><a class="headerlink" href="#ufl.formatting.ufl2dot.ReprLabeller" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="ufl.corealg.html#ufl.corealg.multifunction.MultiFunction" title="ufl.corealg.multifunction.MultiFunction"><code class="xref py py-class docutils literal"><span class="pre">ufl.corealg.multifunction.MultiFunction</span></code></a></p>
+<dl class="method">
+<dt id="ufl.formatting.ufl2dot.ReprLabeller.operator">
+<code class="descname">operator</code><span class="sig-paren">(</span><em>e</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2dot.ReprLabeller.operator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2dot.ReprLabeller.terminal">
+<code class="descname">terminal</code><span class="sig-paren">(</span><em>e</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2dot.ReprLabeller.terminal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.formatting.ufl2dot.build_entities">
+<code class="descclassname">ufl.formatting.ufl2dot.</code><code class="descname">build_entities</code><span class="sig-paren">(</span><em>e</em>, <em>nodes</em>, <em>edges</em>, <em>nodeoffset</em>, <em>prefix=''</em>, <em>labeller=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2dot.build_entities" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ufl.formatting.ufl2dot.format_entities">
+<code class="descclassname">ufl.formatting.ufl2dot.</code><code class="descname">format_entities</code><span class="sig-paren">(</span><em>nodes</em>, <em>edges</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2dot.format_entities" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ufl.formatting.ufl2dot.ufl2dot">
+<code class="descclassname">ufl.formatting.ufl2dot.</code><code class="descname">ufl2dot</code><span class="sig-paren">(</span><em>expression</em>, <em>formname='a'</em>, <em>nodeoffset=0</em>, <em>begin=True</em>, <em>end=True</em>, <em>labeling='repr'</em>, <em>object_names=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2dot.ufl2dot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-ufl.formatting.ufl2latex">
+<span id="ufl2latex-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">ufl2latex</span></code> Module<a class="headerlink" href="#module-ufl.formatting.ufl2latex" title="Permalink to this headline">¶</a></h2>
+<p>This module defines expression transformation utilities,
+either converting UFL expressions to new UFL expressions or
+converting UFL expressions to other representations.</p>
+<dl class="class">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler">
+<em class="property">class </em><code class="descclassname">ufl.formatting.ufl2latex.</code><code class="descname">Expression2LatexHandler</code><span class="sig-paren">(</span><em>argument_names=None</em>, <em>coefficient_names=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="ufl.algorithms.html#ufl.algorithms.transformer.Transformer" title="ufl.algorithms.transformer.Transformer"><code class="xref py py-class docutils literal"><span class="pre">ufl.algorithms.transformer.Transformer</span></code></a></p>
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.abs">
+<code class="descname">abs</code><span class="sig-paren">(</span><em>o</em>, <em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.abs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.acos">
+<code class="descname">acos</code><span class="sig-paren">(</span><em>o</em>, <em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.acos" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.and_condition">
+<code class="descname">and_condition</code><span class="sig-paren">(</span><em>o</em>, <em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.and_condition" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.argument">
+<code class="descname">argument</code><span class="sig-paren">(</span><em>o</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.argument" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.asin">
+<code class="descname">asin</code><span class="sig-paren">(</span><em>o</em>, <em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.asin" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.atan">
+<code class="descname">atan</code><span class="sig-paren">(</span><em>o</em>, <em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.atan" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.atan2">
+<code class="descname">atan2</code><span class="sig-paren">(</span><em>o</em>, <em>f1</em>, <em>f2</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.atan2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.bessel_K">
+<code class="descname">bessel_K</code><span class="sig-paren">(</span><em>o</em>, <em>nu</em>, <em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.bessel_K" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.bessel_i">
+<code class="descname">bessel_i</code><span class="sig-paren">(</span><em>o</em>, <em>nu</em>, <em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.bessel_i" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.bessel_j">
+<code class="descname">bessel_j</code><span class="sig-paren">(</span><em>o</em>, <em>nu</em>, <em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.bessel_j" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.bessel_y">
+<code class="descname">bessel_y</code><span class="sig-paren">(</span><em>o</em>, <em>nu</em>, <em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.bessel_y" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.cell_avg">
+<code class="descname">cell_avg</code><span class="sig-paren">(</span><em>o</em>, <em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.cell_avg" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.coefficient">
+<code class="descname">coefficient</code><span class="sig-paren">(</span><em>o</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.coefficient" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.coefficient_derivative">
+<code class="descname">coefficient_derivative</code><span class="sig-paren">(</span><em>o</em>, <em>f</em>, <em>w</em>, <em>v</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.coefficient_derivative" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.cofactor">
+<code class="descname">cofactor</code><span class="sig-paren">(</span><em>o</em>, <em>A</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.cofactor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.component_tensor">
+<code class="descname">component_tensor</code><span class="sig-paren">(</span><em>o</em>, <em>*ops</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.component_tensor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.conditional">
+<code class="descname">conditional</code><span class="sig-paren">(</span><em>o</em>, <em>c</em>, <em>t</em>, <em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.conditional" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.constant">
+<code class="descname">constant</code><span class="sig-paren">(</span><em>o</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.constant" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.cos">
+<code class="descname">cos</code><span class="sig-paren">(</span><em>o</em>, <em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.cos" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.cosh">
+<code class="descname">cosh</code><span class="sig-paren">(</span><em>o</em>, <em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.cosh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.cross">
+<code class="descname">cross</code><span class="sig-paren">(</span><em>o</em>, <em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.cross" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.curl">
+<code class="descname">curl</code><span class="sig-paren">(</span><em>o</em>, <em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.curl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.determinant">
+<code class="descname">determinant</code><span class="sig-paren">(</span><em>o</em>, <em>A</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.determinant" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.deviatoric">
+<code class="descname">deviatoric</code><span class="sig-paren">(</span><em>o</em>, <em>A</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.deviatoric" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.div">
+<code class="descname">div</code><span class="sig-paren">(</span><em>o</em>, <em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.div" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.division">
+<code class="descname">division</code><span class="sig-paren">(</span><em>o</em>, <em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.division" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.dot">
+<code class="descname">dot</code><span class="sig-paren">(</span><em>o</em>, <em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.dot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.eq">
+<code class="descname">eq</code><span class="sig-paren">(</span><em>o</em>, <em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.eq" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.erf">
+<code class="descname">erf</code><span class="sig-paren">(</span><em>o</em>, <em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.erf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.exp">
+<code class="descname">exp</code><span class="sig-paren">(</span><em>o</em>, <em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.exp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.expr">
+<code class="descname">expr</code><span class="sig-paren">(</span><em>o</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.expr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.facet_normal">
+<code class="descname">facet_normal</code><span class="sig-paren">(</span><em>o</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.facet_normal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.ge">
+<code class="descname">ge</code><span class="sig-paren">(</span><em>o</em>, <em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.ge" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.grad">
+<code class="descname">grad</code><span class="sig-paren">(</span><em>o</em>, <em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.grad" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.gt">
+<code class="descname">gt</code><span class="sig-paren">(</span><em>o</em>, <em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.gt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.identity">
+<code class="descname">identity</code><span class="sig-paren">(</span><em>o</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.identity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.index_sum">
+<code class="descname">index_sum</code><span class="sig-paren">(</span><em>o</em>, <em>f</em>, <em>i</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.index_sum" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.indexed">
+<code class="descname">indexed</code><span class="sig-paren">(</span><em>o</em>, <em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.indexed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.inner">
+<code class="descname">inner</code><span class="sig-paren">(</span><em>o</em>, <em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.inner" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.inverse">
+<code class="descname">inverse</code><span class="sig-paren">(</span><em>o</em>, <em>A</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.inverse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.le">
+<code class="descname">le</code><span class="sig-paren">(</span><em>o</em>, <em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.le" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.list_tensor">
+<code class="descname">list_tensor</code><span class="sig-paren">(</span><em>o</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.list_tensor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.ln">
+<code class="descname">ln</code><span class="sig-paren">(</span><em>o</em>, <em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.ln" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.lt">
+<code class="descname">lt</code><span class="sig-paren">(</span><em>o</em>, <em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.lt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.max_value">
+<code class="descname">max_value</code><span class="sig-paren">(</span><em>o</em>, <em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.max_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.min_value">
+<code class="descname">min_value</code><span class="sig-paren">(</span><em>o</em>, <em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.min_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.multi_index">
+<code class="descname">multi_index</code><span class="sig-paren">(</span><em>o</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.multi_index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.nabla_div">
+<code class="descname">nabla_div</code><span class="sig-paren">(</span><em>o</em>, <em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.nabla_div" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.nabla_grad">
+<code class="descname">nabla_grad</code><span class="sig-paren">(</span><em>o</em>, <em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.nabla_grad" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.ne">
+<code class="descname">ne</code><span class="sig-paren">(</span><em>o</em>, <em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.ne" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.negative_restricted">
+<code class="descname">negative_restricted</code><span class="sig-paren">(</span><em>o</em>, <em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.negative_restricted" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.not_condition">
+<code class="descname">not_condition</code><span class="sig-paren">(</span><em>o</em>, <em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.not_condition" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.or_condition">
+<code class="descname">or_condition</code><span class="sig-paren">(</span><em>o</em>, <em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.or_condition" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.outer">
+<code class="descname">outer</code><span class="sig-paren">(</span><em>o</em>, <em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.outer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.permutation_symbol">
+<code class="descname">permutation_symbol</code><span class="sig-paren">(</span><em>o</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.permutation_symbol" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.positive_restricted">
+<code class="descname">positive_restricted</code><span class="sig-paren">(</span><em>o</em>, <em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.positive_restricted" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.power">
+<code class="descname">power</code><span class="sig-paren">(</span><em>o</em>, <em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.power" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.product">
+<code class="descname">product</code><span class="sig-paren">(</span><em>o</em>, <em>*ops</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.product" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.scalar_value">
+<code class="descname">scalar_value</code><span class="sig-paren">(</span><em>o</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.scalar_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.sin">
+<code class="descname">sin</code><span class="sig-paren">(</span><em>o</em>, <em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.sin" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.sinh">
+<code class="descname">sinh</code><span class="sig-paren">(</span><em>o</em>, <em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.sinh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.skew">
+<code class="descname">skew</code><span class="sig-paren">(</span><em>o</em>, <em>A</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.skew" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.sqrt">
+<code class="descname">sqrt</code><span class="sig-paren">(</span><em>o</em>, <em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.sqrt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.sum">
+<code class="descname">sum</code><span class="sig-paren">(</span><em>o</em>, <em>*ops</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.sum" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.sym">
+<code class="descname">sym</code><span class="sig-paren">(</span><em>o</em>, <em>A</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.sym" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.tan">
+<code class="descname">tan</code><span class="sig-paren">(</span><em>o</em>, <em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.tan" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.tanh">
+<code class="descname">tanh</code><span class="sig-paren">(</span><em>o</em>, <em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.tanh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.trace">
+<code class="descname">trace</code><span class="sig-paren">(</span><em>o</em>, <em>A</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.trace" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.transposed">
+<code class="descname">transposed</code><span class="sig-paren">(</span><em>o</em>, <em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.transposed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.variable">
+<code class="descname">variable</code><span class="sig-paren">(</span><em>o</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.variable" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.variable_derivative">
+<code class="descname">variable_derivative</code><span class="sig-paren">(</span><em>o</em>, <em>f</em>, <em>v</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.variable_derivative" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.formatting.ufl2latex.Expression2LatexHandler.zero">
+<code class="descname">zero</code><span class="sig-paren">(</span><em>o</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.Expression2LatexHandler.zero" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.formatting.ufl2latex.bfname">
+<code class="descclassname">ufl.formatting.ufl2latex.</code><code class="descname">bfname</code><span class="sig-paren">(</span><em>i</em>, <em>p</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.bfname" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ufl.formatting.ufl2latex.build_precedence_map">
+<code class="descclassname">ufl.formatting.ufl2latex.</code><code class="descname">build_precedence_map</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.build_precedence_map" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ufl.formatting.ufl2latex.cfname">
+<code class="descclassname">ufl.formatting.ufl2latex.</code><code class="descname">cfname</code><span class="sig-paren">(</span><em>i</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.cfname" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ufl.formatting.ufl2latex.code2latex">
+<code class="descclassname">ufl.formatting.ufl2latex.</code><code class="descname">code2latex</code><span class="sig-paren">(</span><em>G</em>, <em>partitions</em>, <em>formdata</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.code2latex" title="Permalink to this definition">¶</a></dt>
+<dd><p>TODO: Document me</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.formatting.ufl2latex.dependency_sorting">
+<code class="descclassname">ufl.formatting.ufl2latex.</code><code class="descname">dependency_sorting</code><span class="sig-paren">(</span><em>deplist</em>, <em>rank</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.dependency_sorting" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ufl.formatting.ufl2latex.deps2latex">
+<code class="descclassname">ufl.formatting.ufl2latex.</code><code class="descname">deps2latex</code><span class="sig-paren">(</span><em>deps</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.deps2latex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ufl.formatting.ufl2latex.element2latex">
+<code class="descclassname">ufl.formatting.ufl2latex.</code><code class="descname">element2latex</code><span class="sig-paren">(</span><em>element</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.element2latex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ufl.formatting.ufl2latex.expression2latex">
+<code class="descclassname">ufl.formatting.ufl2latex.</code><code class="descname">expression2latex</code><span class="sig-paren">(</span><em>expression</em>, <em>argument_names=None</em>, <em>coefficient_names=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.expression2latex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ufl.formatting.ufl2latex.form2code2latex">
+<code class="descclassname">ufl.formatting.ufl2latex.</code><code class="descname">form2code2latex</code><span class="sig-paren">(</span><em>formdata</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.form2code2latex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ufl.formatting.ufl2latex.form2latex">
+<code class="descclassname">ufl.formatting.ufl2latex.</code><code class="descname">form2latex</code><span class="sig-paren">(</span><em>form</em>, <em>formdata</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.form2latex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ufl.formatting.ufl2latex.format_index">
+<code class="descclassname">ufl.formatting.ufl2latex.</code><code class="descname">format_index</code><span class="sig-paren">(</span><em>ii</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.format_index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ufl.formatting.ufl2latex.format_multi_index">
+<code class="descclassname">ufl.formatting.ufl2latex.</code><code class="descname">format_multi_index</code><span class="sig-paren">(</span><em>ii</em>, <em>formatstring='%s'</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.format_multi_index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ufl.formatting.ufl2latex.formdata2latex">
+<code class="descclassname">ufl.formatting.ufl2latex.</code><code class="descname">formdata2latex</code><span class="sig-paren">(</span><em>formdata</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.formdata2latex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ufl.formatting.ufl2latex.forms2latexdocument">
+<code class="descclassname">ufl.formatting.ufl2latex.</code><code class="descname">forms2latexdocument</code><span class="sig-paren">(</span><em>forms</em>, <em>uflfilename</em>, <em>compile=False</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.forms2latexdocument" title="Permalink to this definition">¶</a></dt>
+<dd><p>Render forms from a .ufl file as a LaTeX document.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.formatting.ufl2latex.integrand2code">
+<code class="descclassname">ufl.formatting.ufl2latex.</code><code class="descname">integrand2code</code><span class="sig-paren">(</span><em>integrand</em>, <em>formdata</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.integrand2code" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ufl.formatting.ufl2latex.par">
+<code class="descclassname">ufl.formatting.ufl2latex.</code><code class="descname">par</code><span class="sig-paren">(</span><em>s</em>, <em>condition=True</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.par" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ufl.formatting.ufl2latex.tex2pdf">
+<code class="descclassname">ufl.formatting.ufl2latex.</code><code class="descname">tex2pdf</code><span class="sig-paren">(</span><em>latexfilename</em>, <em>pdffilename</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.tex2pdf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compile a .pdf file from a .tex file.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.formatting.ufl2latex.ufl2latex">
+<code class="descclassname">ufl.formatting.ufl2latex.</code><code class="descname">ufl2latex</code><span class="sig-paren">(</span><em>expression</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.ufl2latex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate LaTeX code for a UFL expression or form (wrapper for form2latex and expression2latex).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.formatting.ufl2latex.ufl2pdf">
+<code class="descclassname">ufl.formatting.ufl2latex.</code><code class="descname">ufl2pdf</code><span class="sig-paren">(</span><em>uflfilename</em>, <em>latexfilename</em>, <em>pdffilename</em>, <em>compile=False</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.ufl2pdf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compile a .pdf file from a .ufl file.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.formatting.ufl2latex.ufl2tex">
+<code class="descclassname">ufl.formatting.ufl2latex.</code><code class="descname">ufl2tex</code><span class="sig-paren">(</span><em>uflfilename</em>, <em>latexfilename</em>, <em>compile=False</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.formatting.ufl2latex.ufl2tex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compile a .tex file from a .ufl file.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ufl.utils.html" class="btn btn-neutral float-right" title="utils Package" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ufl.finiteelement.html" class="btn btn-neutral" title="finiteelement Package" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, http://www.fenicsproject.org/.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.6.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

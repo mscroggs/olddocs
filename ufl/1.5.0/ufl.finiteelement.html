@@ -1,0 +1,1091 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>finiteelement Package &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="FEniCS Project" href="index.html"/>
+        <link rel="up" title="ufl Package" href="ufl.html"/>
+        <link rel="next" title="utils Package" href="ufl.utils.html"/>
+        <link rel="prev" title="corealg Package" href="ufl.corealg.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> UFL
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Project Modules</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="ufl.html">ufl Package</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#id2"><code class="docutils literal"><span class="pre">ufl</span></code> Package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.algebra"><code class="docutils literal"><span class="pre">algebra</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.argument"><code class="docutils literal"><span class="pre">argument</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.assertions"><code class="docutils literal"><span class="pre">assertions</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.cell"><code class="docutils literal"><span class="pre">cell</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.checks"><code class="docutils literal"><span class="pre">checks</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.classes"><code class="docutils literal"><span class="pre">classes</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.coefficient"><code class="docutils literal"><span class="pre">coefficient</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.common"><code class="docutils literal"><span class="pre">common</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.compound_expressions"><code class="docutils literal"><span class="pre">compound_expressions</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.conditional"><code class="docutils literal"><span class="pre">conditional</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.constantvalue"><code class="docutils literal"><span class="pre">constantvalue</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.differentiation"><code class="docutils literal"><span class="pre">differentiation</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.domain"><code class="docutils literal"><span class="pre">domain</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.equation"><code class="docutils literal"><span class="pre">equation</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.exprcontainers"><code class="docutils literal"><span class="pre">exprcontainers</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.exprequals"><code class="docutils literal"><span class="pre">exprequals</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.exproperators"><code class="docutils literal"><span class="pre">exproperators</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.form"><code class="docutils literal"><span class="pre">form</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.formoperators"><code class="docutils literal"><span class="pre">formoperators</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.geometry"><code class="docutils literal"><span class="pre">geometry</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.index_combination_utils"><code class="docutils literal"><span class="pre">index_combination_utils</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.indexed"><code class="docutils literal"><span class="pre">indexed</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.indexing"><code class="docutils literal"><span class="pre">indexing</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.indexsum"><code class="docutils literal"><span class="pre">indexsum</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.integral"><code class="docutils literal"><span class="pre">integral</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.log"><code class="docutils literal"><span class="pre">log</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.mathfunctions"><code class="docutils literal"><span class="pre">mathfunctions</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.measure"><code class="docutils literal"><span class="pre">measure</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.objects"><code class="docutils literal"><span class="pre">objects</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.operators"><code class="docutils literal"><span class="pre">operators</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.permutation"><code class="docutils literal"><span class="pre">permutation</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.precedence"><code class="docutils literal"><span class="pre">precedence</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.protocols"><code class="docutils literal"><span class="pre">protocols</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.referencevalue"><code class="docutils literal"><span class="pre">referencevalue</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.restriction"><code class="docutils literal"><span class="pre">restriction</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.sobolevspace"><code class="docutils literal"><span class="pre">sobolevspace</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.sorting"><code class="docutils literal"><span class="pre">sorting</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.split_functions"><code class="docutils literal"><span class="pre">split_functions</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.tensoralgebra"><code class="docutils literal"><span class="pre">tensoralgebra</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.tensors"><code class="docutils literal"><span class="pre">tensors</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.variable"><code class="docutils literal"><span class="pre">variable</span></code> Module</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="ufl.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="ufl.algorithms.html">algorithms Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufl.core.html">core Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufl.corealg.html">corealg Package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">finiteelement Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufl.utils.html">utils Package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">UFL</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="modules.html">Project Modules</a> &raquo;</li>
+      
+          <li><a href="ufl.html">ufl Package</a> &raquo;</li>
+      
+    <li>finiteelement Package</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/ufl.finiteelement.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="finiteelement-package">
+<span id="ufl-finiteelement-package"></span><h1>finiteelement Package<a class="headerlink" href="#finiteelement-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2><code class="xref py py-mod docutils literal"><span class="pre">finiteelement</span></code> Package<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-ufl.finiteelement"></span><p>This module defines the UFL finite element classes.</p>
+</div>
+<div class="section" id="module-ufl.finiteelement.elementlist">
+<span id="elementlist-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">elementlist</span></code> Module<a class="headerlink" href="#module-ufl.finiteelement.elementlist" title="Permalink to this headline">¶</a></h2>
+<p>This module provides an extensive list of predefined finite element
+families. Users or more likely, form compilers, may register new
+elements by calling the function register_element.</p>
+<dl class="function">
+<dt id="ufl.finiteelement.elementlist.canonical_element_description">
+<code class="descclassname">ufl.finiteelement.elementlist.</code><code class="descname">canonical_element_description</code><span class="sig-paren">(</span><em>family</em>, <em>cell</em>, <em>order</em>, <em>form_degree</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.elementlist.canonical_element_description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given basic element information, return corresponding element information on canonical form.</p>
+<p>Input: family, cell, (polynomial) order, form_degree
+Output: family (canonical), short_name (for printing), order, value shape, reference value shape, sobolev_space</p>
+<p>This is used by the FiniteElement constructor to ved input
+data against the element list and aliases defined in ufl.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.finiteelement.elementlist.feec_element">
+<code class="descclassname">ufl.finiteelement.elementlist.</code><code class="descname">feec_element</code><span class="sig-paren">(</span><em>family</em>, <em>n</em>, <em>r</em>, <em>k</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.elementlist.feec_element" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ufl.finiteelement.elementlist.register_alias">
+<code class="descclassname">ufl.finiteelement.elementlist.</code><code class="descname">register_alias</code><span class="sig-paren">(</span><em>alias</em>, <em>to</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.elementlist.register_alias" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ufl.finiteelement.elementlist.register_element">
+<code class="descclassname">ufl.finiteelement.elementlist.</code><code class="descname">register_element</code><span class="sig-paren">(</span><em>family</em>, <em>short_name</em>, <em>value_rank</em>, <em>sobolev_space</em>, <em>mapping</em>, <em>degree_range</em>, <em>cellnames</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.elementlist.register_element" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register new finite element family</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.finiteelement.elementlist.register_element2">
+<code class="descclassname">ufl.finiteelement.elementlist.</code><code class="descname">register_element2</code><span class="sig-paren">(</span><em>family</em>, <em>value_rank</em>, <em>sobolev_space</em>, <em>mapping</em>, <em>degree_range</em>, <em>cellnames</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.elementlist.register_element2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register new finite element family</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.finiteelement.elementlist.show_elements">
+<code class="descclassname">ufl.finiteelement.elementlist.</code><code class="descname">show_elements</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.elementlist.show_elements" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-ufl.finiteelement.enrichedelement">
+<span id="enrichedelement-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">enrichedelement</span></code> Module<a class="headerlink" href="#module-ufl.finiteelement.enrichedelement" title="Permalink to this headline">¶</a></h2>
+<p>This module defines the UFL finite element classes.</p>
+<dl class="class">
+<dt id="ufl.finiteelement.enrichedelement.EnrichedElement">
+<em class="property">class </em><code class="descclassname">ufl.finiteelement.enrichedelement.</code><code class="descname">EnrichedElement</code><span class="sig-paren">(</span><em>*elements</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.enrichedelement.EnrichedElement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#ufl.finiteelement.finiteelementbase.FiniteElementBase" title="ufl.finiteelement.finiteelementbase.FiniteElementBase"><code class="xref py py-class docutils literal"><span class="pre">ufl.finiteelement.finiteelementbase.FiniteElementBase</span></code></a></p>
+<p>The vector sum of two finite element spaces:</p>
+<p>EnrichedElement(V, Q) = {v + q | v in V, q in Q}.</p>
+<dl class="method">
+<dt id="ufl.finiteelement.enrichedelement.EnrichedElement.is_cellwise_constant">
+<code class="descname">is_cellwise_constant</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.enrichedelement.EnrichedElement.is_cellwise_constant" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return whether the basis functions of this
+element is spatially constant over each cell.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.enrichedelement.EnrichedElement.mapping">
+<code class="descname">mapping</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.enrichedelement.EnrichedElement.mapping" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.enrichedelement.EnrichedElement.reconstruct">
+<code class="descname">reconstruct</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.enrichedelement.EnrichedElement.reconstruct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct a new EnrichedElement object with some properties
+replaced with new values.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.enrichedelement.EnrichedElement.reconstruction_signature">
+<code class="descname">reconstruction_signature</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.enrichedelement.EnrichedElement.reconstruction_signature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format as string for evaluation as Python object.</p>
+<p>For use with cross language frameworks, stored in generated code
+and evaluated later in Python to reconstruct this object.</p>
+<p>This differs from repr in that it does not include domain
+label and data, which must be reconstructed or supplied by other means.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.enrichedelement.EnrichedElement.shortstr">
+<code class="descname">shortstr</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.enrichedelement.EnrichedElement.shortstr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format as string for pretty printing.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.enrichedelement.EnrichedElement.signature_data">
+<code class="descname">signature_data</code><span class="sig-paren">(</span><em>renumbering</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.enrichedelement.EnrichedElement.signature_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-ufl.finiteelement.finiteelement">
+<span id="finiteelement-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">finiteelement</span></code> Module<a class="headerlink" href="#module-ufl.finiteelement.finiteelement" title="Permalink to this headline">¶</a></h2>
+<p>This module defines the UFL finite element classes.</p>
+<dl class="class">
+<dt id="ufl.finiteelement.finiteelement.FiniteElement">
+<em class="property">class </em><code class="descclassname">ufl.finiteelement.finiteelement.</code><code class="descname">FiniteElement</code><span class="sig-paren">(</span><em>family</em>, <em>domain=None</em>, <em>degree=None</em>, <em>form_degree=None</em>, <em>quad_scheme=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.finiteelement.FiniteElement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#ufl.finiteelement.finiteelementbase.FiniteElementBase" title="ufl.finiteelement.finiteelementbase.FiniteElementBase"><code class="xref py py-class docutils literal"><span class="pre">ufl.finiteelement.finiteelementbase.FiniteElementBase</span></code></a></p>
+<p>The basic finite element class for all simple finite elements</p>
+<p>Create finite element.</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>family (string)</dt>
+<dd>The finite element family</dd>
+<dt>domain</dt>
+<dd>The geometric domain</dd>
+<dt>degree (int)</dt>
+<dd>The polynomial degree (optional)</dd>
+<dt>form_degree (int)</dt>
+<dd>The form degree (FEEC notation, used when field is
+viewed as k-form)</dd>
+<dt>quad_scheme</dt>
+<dd>The quadrature scheme (optional)</dd>
+</dl>
+</dd>
+</dl>
+<dl class="method">
+<dt id="ufl.finiteelement.finiteelement.FiniteElement.mapping">
+<code class="descname">mapping</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.finiteelement.FiniteElement.mapping" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.finiteelement.FiniteElement.reconstruct">
+<code class="descname">reconstruct</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.finiteelement.FiniteElement.reconstruct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct a new FiniteElement object with some properties
+replaced with new values.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.finiteelement.FiniteElement.reconstruction_signature">
+<code class="descname">reconstruction_signature</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.finiteelement.FiniteElement.reconstruction_signature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format as string for evaluation as Python object.</p>
+<p>For use with cross language frameworks, stored in generated code
+and evaluated later in Python to reconstruct this object.</p>
+<p>This differs from repr in that it does not include domain
+label and data, which must be reconstructed or supplied by other means.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.finiteelement.FiniteElement.shortstr">
+<code class="descname">shortstr</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.finiteelement.FiniteElement.shortstr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format as string for pretty printing.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.finiteelement.FiniteElement.signature_data">
+<code class="descname">signature_data</code><span class="sig-paren">(</span><em>renumbering</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.finiteelement.FiniteElement.signature_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.finiteelement.FiniteElement.sobolev_space">
+<code class="descname">sobolev_space</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.finiteelement.FiniteElement.sobolev_space" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-ufl.finiteelement.finiteelementbase">
+<span id="finiteelementbase-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">finiteelementbase</span></code> Module<a class="headerlink" href="#module-ufl.finiteelement.finiteelementbase" title="Permalink to this headline">¶</a></h2>
+<p>This module defines the UFL finite element classes.</p>
+<dl class="class">
+<dt id="ufl.finiteelement.finiteelementbase.FiniteElementBase">
+<em class="property">class </em><code class="descclassname">ufl.finiteelement.finiteelementbase.</code><code class="descname">FiniteElementBase</code><span class="sig-paren">(</span><em>family</em>, <em>domain</em>, <em>degree</em>, <em>quad_scheme</em>, <em>value_shape</em>, <em>reference_value_shape</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.finiteelementbase.FiniteElementBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<p>Base class for all finite elements</p>
+<p>Initialize basic finite element data</p>
+<dl class="method">
+<dt id="ufl.finiteelement.finiteelementbase.FiniteElementBase.cell">
+<code class="descname">cell</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.finiteelementbase.FiniteElementBase.cell" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return cell of finite element</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.finiteelementbase.FiniteElementBase.degree">
+<code class="descname">degree</code><span class="sig-paren">(</span><em>component=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.finiteelementbase.FiniteElementBase.degree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return polynomial degree of finite element</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.finiteelementbase.FiniteElementBase.domain">
+<code class="descname">domain</code><span class="sig-paren">(</span><em>component=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.finiteelementbase.FiniteElementBase.domain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the domain on which this element is defined.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.finiteelementbase.FiniteElementBase.domains">
+<code class="descname">domains</code><span class="sig-paren">(</span><em>component=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.finiteelementbase.FiniteElementBase.domains" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the domain on which this element is defined.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.finiteelementbase.FiniteElementBase.extract_component">
+<code class="descname">extract_component</code><span class="sig-paren">(</span><em>i</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.finiteelementbase.FiniteElementBase.extract_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Recursively extract component index relative to a (simple) element
+and that element for given value component index</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.finiteelementbase.FiniteElementBase.extract_reference_component">
+<code class="descname">extract_reference_component</code><span class="sig-paren">(</span><em>i</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.finiteelementbase.FiniteElementBase.extract_reference_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Recursively extract reference component index relative to a (simple) element
+and that element for given reference value component index</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.finiteelementbase.FiniteElementBase.extract_subelement_component">
+<code class="descname">extract_subelement_component</code><span class="sig-paren">(</span><em>i</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.finiteelementbase.FiniteElementBase.extract_subelement_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract direct subelement index and subelement relative
+component index for a given component index</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.finiteelementbase.FiniteElementBase.extract_subelement_reference_component">
+<code class="descname">extract_subelement_reference_component</code><span class="sig-paren">(</span><em>i</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.finiteelementbase.FiniteElementBase.extract_subelement_reference_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract direct subelement index and subelement relative
+reference component index for a given reference component index</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.finiteelementbase.FiniteElementBase.family">
+<code class="descname">family</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.finiteelementbase.FiniteElementBase.family" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return finite element family</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.finiteelementbase.FiniteElementBase.is_cellwise_constant">
+<code class="descname">is_cellwise_constant</code><span class="sig-paren">(</span><em>component=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.finiteelementbase.FiniteElementBase.is_cellwise_constant" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return whether the basis functions of this
+element is spatially constant over each cell.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.finiteelementbase.FiniteElementBase.mapping">
+<code class="descname">mapping</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.finiteelementbase.FiniteElementBase.mapping" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.finiteelementbase.FiniteElementBase.num_sub_elements">
+<code class="descname">num_sub_elements</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.finiteelementbase.FiniteElementBase.num_sub_elements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return number of sub elements</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.finiteelementbase.FiniteElementBase.quadrature_scheme">
+<code class="descname">quadrature_scheme</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.finiteelementbase.FiniteElementBase.quadrature_scheme" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return quadrature scheme of finite element</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.finiteelementbase.FiniteElementBase.reconstruction_signature">
+<code class="descname">reconstruction_signature</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.finiteelementbase.FiniteElementBase.reconstruction_signature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format as string for evaluation as Python object.</p>
+<p>For use with cross language frameworks, stored in generated code
+and evaluated later in Python to reconstruct this object.</p>
+<p>This differs from repr in that it does not include domain
+label and data, which must be reconstructed or supplied by other means.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.finiteelementbase.FiniteElementBase.reference_value_shape">
+<code class="descname">reference_value_shape</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.finiteelementbase.FiniteElementBase.reference_value_shape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the shape of the value space on the reference cell.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.finiteelementbase.FiniteElementBase.signature_data">
+<code class="descname">signature_data</code><span class="sig-paren">(</span><em>renumbering</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.finiteelementbase.FiniteElementBase.signature_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.finiteelementbase.FiniteElementBase.sub_elements">
+<code class="descname">sub_elements</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.finiteelementbase.FiniteElementBase.sub_elements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return list of sub elements</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.finiteelementbase.FiniteElementBase.symmetry">
+<code class="descname">symmetry</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.finiteelementbase.FiniteElementBase.symmetry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the symmetry dict, which is a mapping c0 -&gt; c1
+meaning that component c0 is represented by component c1.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.finiteelementbase.FiniteElementBase.value_shape">
+<code class="descname">value_shape</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.finiteelementbase.FiniteElementBase.value_shape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the shape of the value space on the global domain.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-ufl.finiteelement.hdivcurl">
+<span id="hdivcurl-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">hdivcurl</span></code> Module<a class="headerlink" href="#module-ufl.finiteelement.hdivcurl" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="ufl.finiteelement.hdivcurl.HCurl">
+<em class="property">class </em><code class="descclassname">ufl.finiteelement.hdivcurl.</code><code class="descname">HCurl</code><span class="sig-paren">(</span><em>element</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.hdivcurl.HCurl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#ufl.finiteelement.outerproductelement.OuterProductElement" title="ufl.finiteelement.outerproductelement.OuterProductElement"><code class="xref py py-class docutils literal"><span class="pre">ufl.finiteelement.outerproductelement.OuterProductElement</span></code></a></p>
+<p>A curl-conforming version of an outer product element, assuming
+this makes mathematical sense.</p>
+<dl class="method">
+<dt id="ufl.finiteelement.hdivcurl.HCurl.reconstruct">
+<code class="descname">reconstruct</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.hdivcurl.HCurl.reconstruct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct a new HCurl object with some properties
+replaced with new values.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.hdivcurl.HCurl.reconstruction_signature">
+<code class="descname">reconstruction_signature</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.hdivcurl.HCurl.reconstruction_signature" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.hdivcurl.HCurl.shortstr">
+<code class="descname">shortstr</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.hdivcurl.HCurl.shortstr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.hdivcurl.HCurl.signature_data">
+<code class="descname">signature_data</code><span class="sig-paren">(</span><em>domain_numbering</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.hdivcurl.HCurl.signature_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ufl.finiteelement.hdivcurl.HDiv">
+<em class="property">class </em><code class="descclassname">ufl.finiteelement.hdivcurl.</code><code class="descname">HDiv</code><span class="sig-paren">(</span><em>element</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.hdivcurl.HDiv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#ufl.finiteelement.outerproductelement.OuterProductElement" title="ufl.finiteelement.outerproductelement.OuterProductElement"><code class="xref py py-class docutils literal"><span class="pre">ufl.finiteelement.outerproductelement.OuterProductElement</span></code></a></p>
+<p>A div-conforming version of an outer product element, assuming
+this makes mathematical sense.</p>
+<dl class="method">
+<dt id="ufl.finiteelement.hdivcurl.HDiv.reconstruct">
+<code class="descname">reconstruct</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.hdivcurl.HDiv.reconstruct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct a new HDiv object with some properties
+replaced with new values.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.hdivcurl.HDiv.reconstruction_signature">
+<code class="descname">reconstruction_signature</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.hdivcurl.HDiv.reconstruction_signature" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.hdivcurl.HDiv.shortstr">
+<code class="descname">shortstr</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.hdivcurl.HDiv.shortstr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.hdivcurl.HDiv.signature_data">
+<code class="descname">signature_data</code><span class="sig-paren">(</span><em>domain_numbering</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.hdivcurl.HDiv.signature_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-ufl.finiteelement.mixedelement">
+<span id="mixedelement-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">mixedelement</span></code> Module<a class="headerlink" href="#module-ufl.finiteelement.mixedelement" title="Permalink to this headline">¶</a></h2>
+<p>This module defines the UFL finite element classes.</p>
+<dl class="class">
+<dt id="ufl.finiteelement.mixedelement.MixedElement">
+<em class="property">class </em><code class="descclassname">ufl.finiteelement.mixedelement.</code><code class="descname">MixedElement</code><span class="sig-paren">(</span><em>*elements</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.mixedelement.MixedElement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#ufl.finiteelement.finiteelementbase.FiniteElementBase" title="ufl.finiteelement.finiteelementbase.FiniteElementBase"><code class="xref py py-class docutils literal"><span class="pre">ufl.finiteelement.finiteelementbase.FiniteElementBase</span></code></a></p>
+<p>A finite element composed of a nested hierarchy of mixed or simple elements</p>
+<p>Create mixed finite element from given list of elements</p>
+<dl class="method">
+<dt id="ufl.finiteelement.mixedelement.MixedElement.degree">
+<code class="descname">degree</code><span class="sig-paren">(</span><em>component=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.mixedelement.MixedElement.degree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return polynomial degree of finite element</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.mixedelement.MixedElement.domains">
+<code class="descname">domains</code><span class="sig-paren">(</span><em>component=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.mixedelement.MixedElement.domains" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the domain(s) on which this element is defined.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.mixedelement.MixedElement.extract_component">
+<code class="descname">extract_component</code><span class="sig-paren">(</span><em>i</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.mixedelement.MixedElement.extract_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Recursively extract component index relative to a (simple) element
+and that element for given value component index</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.mixedelement.MixedElement.extract_reference_component">
+<code class="descname">extract_reference_component</code><span class="sig-paren">(</span><em>i</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.mixedelement.MixedElement.extract_reference_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Recursively extract reference_component index relative to a (simple) element
+and that element for given value reference_component index</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.mixedelement.MixedElement.extract_subelement_component">
+<code class="descname">extract_subelement_component</code><span class="sig-paren">(</span><em>i</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.mixedelement.MixedElement.extract_subelement_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract direct subelement index and subelement relative
+component index for a given component index</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.mixedelement.MixedElement.extract_subelement_reference_component">
+<code class="descname">extract_subelement_reference_component</code><span class="sig-paren">(</span><em>i</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.mixedelement.MixedElement.extract_subelement_reference_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract direct subelement index and subelement relative
+reference_component index for a given reference_component index</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.mixedelement.MixedElement.is_cellwise_constant">
+<code class="descname">is_cellwise_constant</code><span class="sig-paren">(</span><em>component=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.mixedelement.MixedElement.is_cellwise_constant" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return whether the basis functions of this
+element is spatially constant over each cell.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.mixedelement.MixedElement.mapping">
+<code class="descname">mapping</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.mixedelement.MixedElement.mapping" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.mixedelement.MixedElement.num_sub_elements">
+<code class="descname">num_sub_elements</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.mixedelement.MixedElement.num_sub_elements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return number of sub elements.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.mixedelement.MixedElement.reconstruct">
+<code class="descname">reconstruct</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.mixedelement.MixedElement.reconstruct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct a new MixedElement object with some
+properties replaced with new values.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.mixedelement.MixedElement.reconstruct_from_elements">
+<code class="descname">reconstruct_from_elements</code><span class="sig-paren">(</span><em>*elements</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.mixedelement.MixedElement.reconstruct_from_elements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reconstruct a mixed element from new subelements.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.mixedelement.MixedElement.reconstruction_signature">
+<code class="descname">reconstruction_signature</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.mixedelement.MixedElement.reconstruction_signature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format as string for evaluation as Python object.</p>
+<p>For use with cross language frameworks, stored in generated code
+and evaluated later in Python to reconstruct this object.</p>
+<p>This differs from repr in that it does not include domain
+label and data, which must be reconstructed or supplied by other means.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.mixedelement.MixedElement.shortstr">
+<code class="descname">shortstr</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.mixedelement.MixedElement.shortstr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format as string for pretty printing.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.mixedelement.MixedElement.signature_data">
+<code class="descname">signature_data</code><span class="sig-paren">(</span><em>renumbering</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.mixedelement.MixedElement.signature_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.mixedelement.MixedElement.sub_elements">
+<code class="descname">sub_elements</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.mixedelement.MixedElement.sub_elements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return list of sub elements.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.mixedelement.MixedElement.symmetry">
+<code class="descname">symmetry</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.mixedelement.MixedElement.symmetry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the symmetry dict, which is a mapping c0 -&gt; c1
+meaning that component c0 is represented by component c1.
+A component is a tuple of one or more ints.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ufl.finiteelement.mixedelement.TensorElement">
+<em class="property">class </em><code class="descclassname">ufl.finiteelement.mixedelement.</code><code class="descname">TensorElement</code><span class="sig-paren">(</span><em>family</em>, <em>domain</em>, <em>degree</em>, <em>shape=None</em>, <em>symmetry=None</em>, <em>quad_scheme=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.mixedelement.TensorElement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#ufl.finiteelement.mixedelement.MixedElement" title="ufl.finiteelement.mixedelement.MixedElement"><code class="xref py py-class docutils literal"><span class="pre">ufl.finiteelement.mixedelement.MixedElement</span></code></a></p>
+<p>A special case of a mixed finite element where all elements are equal</p>
+<p>Create tensor element (repeated mixed element with optional symmetries)</p>
+<dl class="method">
+<dt id="ufl.finiteelement.mixedelement.TensorElement.extract_subelement_component">
+<code class="descname">extract_subelement_component</code><span class="sig-paren">(</span><em>i</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.mixedelement.TensorElement.extract_subelement_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract direct subelement index and subelement relative
+component index for a given component index</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.mixedelement.TensorElement.mapping">
+<code class="descname">mapping</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.mixedelement.TensorElement.mapping" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.mixedelement.TensorElement.reconstruct">
+<code class="descname">reconstruct</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.mixedelement.TensorElement.reconstruct" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.mixedelement.TensorElement.reconstruction_signature">
+<code class="descname">reconstruction_signature</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.mixedelement.TensorElement.reconstruction_signature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format as string for evaluation as Python object.</p>
+<p>For use with cross language frameworks, stored in generated code
+and evaluated later in Python to reconstruct this object.</p>
+<p>This differs from repr in that it does not include domain
+label and data, which must be reconstructed or supplied by other means.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.mixedelement.TensorElement.shortstr">
+<code class="descname">shortstr</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.mixedelement.TensorElement.shortstr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format as string for pretty printing.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.mixedelement.TensorElement.signature_data">
+<code class="descname">signature_data</code><span class="sig-paren">(</span><em>renumbering</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.mixedelement.TensorElement.signature_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.mixedelement.TensorElement.symmetry">
+<code class="descname">symmetry</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.mixedelement.TensorElement.symmetry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the symmetry dict, which is a mapping c0 -&gt; c1
+meaning that component c0 is represented by component c1.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ufl.finiteelement.mixedelement.VectorElement">
+<em class="property">class </em><code class="descclassname">ufl.finiteelement.mixedelement.</code><code class="descname">VectorElement</code><span class="sig-paren">(</span><em>family</em>, <em>domain</em>, <em>degree</em>, <em>dim=None</em>, <em>form_degree=None</em>, <em>quad_scheme=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.mixedelement.VectorElement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#ufl.finiteelement.mixedelement.MixedElement" title="ufl.finiteelement.mixedelement.MixedElement"><code class="xref py py-class docutils literal"><span class="pre">ufl.finiteelement.mixedelement.MixedElement</span></code></a></p>
+<p>A special case of a mixed finite element where all elements are equal</p>
+<p>Create vector element (repeated mixed element)</p>
+<dl class="docutils">
+<dt><em>Arguments</em></dt>
+<dd><dl class="first last docutils">
+<dt>family (string)</dt>
+<dd>The finite element family</dd>
+<dt>domain</dt>
+<dd>The geometric domain</dd>
+<dt>degree (int)</dt>
+<dd>The polynomial degree</dd>
+<dt>dim (int)</dt>
+<dd>The value dimension of the element (optional)</dd>
+<dt>form_degree (int)</dt>
+<dd>The form degree (FEEC notation, used when field is
+viewed as k-form)</dd>
+<dt>quad_scheme</dt>
+<dd>The quadrature scheme (optional)</dd>
+</dl>
+</dd>
+</dl>
+<dl class="method">
+<dt id="ufl.finiteelement.mixedelement.VectorElement.mapping">
+<code class="descname">mapping</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.mixedelement.VectorElement.mapping" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.mixedelement.VectorElement.reconstruct">
+<code class="descname">reconstruct</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.mixedelement.VectorElement.reconstruct" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.mixedelement.VectorElement.reconstruction_signature">
+<code class="descname">reconstruction_signature</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.mixedelement.VectorElement.reconstruction_signature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format as string for evaluation as Python object.</p>
+<p>For use with cross language frameworks, stored in generated code
+and evaluated later in Python to reconstruct this object.</p>
+<p>This differs from repr in that it does not include domain
+label and data, which must be reconstructed or supplied by other means.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.mixedelement.VectorElement.shortstr">
+<code class="descname">shortstr</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.mixedelement.VectorElement.shortstr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format as string for pretty printing.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.mixedelement.VectorElement.signature_data">
+<code class="descname">signature_data</code><span class="sig-paren">(</span><em>renumbering</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.mixedelement.VectorElement.signature_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-ufl.finiteelement.outerproductelement">
+<span id="outerproductelement-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">outerproductelement</span></code> Module<a class="headerlink" href="#module-ufl.finiteelement.outerproductelement" title="Permalink to this headline">¶</a></h2>
+<p>This module defines the UFL finite element classes.</p>
+<dl class="class">
+<dt id="ufl.finiteelement.outerproductelement.OuterProductElement">
+<em class="property">class </em><code class="descclassname">ufl.finiteelement.outerproductelement.</code><code class="descname">OuterProductElement</code><span class="sig-paren">(</span><em>A</em>, <em>B</em>, <em>domain=None</em>, <em>form_degree=None</em>, <em>quad_scheme=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.outerproductelement.OuterProductElement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#ufl.finiteelement.finiteelementbase.FiniteElementBase" title="ufl.finiteelement.finiteelementbase.FiniteElementBase"><code class="xref py py-class docutils literal"><span class="pre">ufl.finiteelement.finiteelementbase.FiniteElementBase</span></code></a></p>
+<p>The outer (tensor) product of 2 element spaces:</p>
+<div class="math">
+\[V = A \otimes B\]</div>
+<p>Given bases <span class="math">\({\phi_A, \phi_B}\)</span> for <span class="math">\(A, B\)</span>,
+<span class="math">\({\phi_A * \phi_B}\)</span> forms a basis for <span class="math">\(V\)</span>.</p>
+<p>Create OuterProductElement from a given pair of elements.</p>
+<dl class="method">
+<dt id="ufl.finiteelement.outerproductelement.OuterProductElement.mapping">
+<code class="descname">mapping</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.outerproductelement.OuterProductElement.mapping" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.outerproductelement.OuterProductElement.reconstruct">
+<code class="descname">reconstruct</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.outerproductelement.OuterProductElement.reconstruct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct a new OuterProductElement with some properties
+replaced with new values.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.outerproductelement.OuterProductElement.reconstruction_signature">
+<code class="descname">reconstruction_signature</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.outerproductelement.OuterProductElement.reconstruction_signature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format as string for evaluation as Python object.</p>
+<p>For use with cross language frameworks, stored in generated code
+and evaluated later in Python to reconstruct this object.</p>
+<p>This differs from repr in that it does not include domain
+label and data, which must be reconstructed or supplied by other means.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.outerproductelement.OuterProductElement.shortstr">
+<code class="descname">shortstr</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.outerproductelement.OuterProductElement.shortstr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Short pretty-print.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.outerproductelement.OuterProductElement.signature_data">
+<code class="descname">signature_data</code><span class="sig-paren">(</span><em>renumbering</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.outerproductelement.OuterProductElement.signature_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ufl.finiteelement.outerproductelement.OuterProductVectorElement">
+<em class="property">class </em><code class="descclassname">ufl.finiteelement.outerproductelement.</code><code class="descname">OuterProductVectorElement</code><span class="sig-paren">(</span><em>A</em>, <em>B</em>, <em>domain=None</em>, <em>dim=None</em>, <em>form_degree=None</em>, <em>quad_scheme=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.outerproductelement.OuterProductVectorElement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#ufl.finiteelement.mixedelement.MixedElement" title="ufl.finiteelement.mixedelement.MixedElement"><code class="xref py py-class docutils literal"><span class="pre">ufl.finiteelement.mixedelement.MixedElement</span></code></a></p>
+<p>A special case of a mixed finite element where all
+elements are equal OuterProductElements</p>
+<dl class="method">
+<dt id="ufl.finiteelement.outerproductelement.OuterProductVectorElement.reconstruct">
+<code class="descname">reconstruct</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.outerproductelement.OuterProductVectorElement.reconstruct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct a new OuterProductVectorElement with some properties
+replaced with new values.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.outerproductelement.OuterProductVectorElement.reconstruction_signature">
+<code class="descname">reconstruction_signature</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.outerproductelement.OuterProductVectorElement.reconstruction_signature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format as string for evaluation as Python object.</p>
+<p>For use with cross language frameworks, stored in generated code
+and evaluated later in Python to reconstruct this object.</p>
+<p>This differs from repr in that it does not include domain
+label and data, which must be reconstructed or supplied by other means.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.outerproductelement.OuterProductVectorElement.shortstr">
+<code class="descname">shortstr</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.outerproductelement.OuterProductVectorElement.shortstr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format as string for pretty printing.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.outerproductelement.OuterProductVectorElement.signature_data">
+<code class="descname">signature_data</code><span class="sig-paren">(</span><em>domain_numbering</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.outerproductelement.OuterProductVectorElement.signature_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-ufl.finiteelement.restrictedelement">
+<span id="restrictedelement-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">restrictedelement</span></code> Module<a class="headerlink" href="#module-ufl.finiteelement.restrictedelement" title="Permalink to this headline">¶</a></h2>
+<p>This module defines the UFL finite element classes.</p>
+<dl class="class">
+<dt id="ufl.finiteelement.restrictedelement.RestrictedElement">
+<em class="property">class </em><code class="descclassname">ufl.finiteelement.restrictedelement.</code><code class="descname">RestrictedElement</code><span class="sig-paren">(</span><em>element</em>, <em>cell_restriction</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.restrictedelement.RestrictedElement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#ufl.finiteelement.finiteelementbase.FiniteElementBase" title="ufl.finiteelement.finiteelementbase.FiniteElementBase"><code class="xref py py-class docutils literal"><span class="pre">ufl.finiteelement.finiteelementbase.FiniteElementBase</span></code></a></p>
+<p>Represents the restriction of a finite element to a type of cell entity.</p>
+<dl class="method">
+<dt id="ufl.finiteelement.restrictedelement.RestrictedElement.cell_restriction">
+<code class="descname">cell_restriction</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.restrictedelement.RestrictedElement.cell_restriction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the domain onto which the element is restricted.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.restrictedelement.RestrictedElement.element">
+<code class="descname">element</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.restrictedelement.RestrictedElement.element" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the element which is restricted.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.restrictedelement.RestrictedElement.is_cellwise_constant">
+<code class="descname">is_cellwise_constant</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.restrictedelement.RestrictedElement.is_cellwise_constant" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return whether the basis functions of this
+element is spatially constant over each cell.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.restrictedelement.RestrictedElement.mapping">
+<code class="descname">mapping</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.restrictedelement.RestrictedElement.mapping" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.restrictedelement.RestrictedElement.num_restricted_sub_elements">
+<code class="descname">num_restricted_sub_elements</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.restrictedelement.RestrictedElement.num_restricted_sub_elements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return number of restricted sub elements.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.restrictedelement.RestrictedElement.num_sub_elements">
+<code class="descname">num_sub_elements</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.restrictedelement.RestrictedElement.num_sub_elements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return number of sub elements</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.restrictedelement.RestrictedElement.reconstruct">
+<code class="descname">reconstruct</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.restrictedelement.RestrictedElement.reconstruct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct a new RestrictedElement object with
+some properties replaced with new values.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.restrictedelement.RestrictedElement.reconstruction_signature">
+<code class="descname">reconstruction_signature</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.restrictedelement.RestrictedElement.reconstruction_signature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format as string for evaluation as Python object.</p>
+<p>For use with cross language frameworks, stored in generated code
+and evaluated later in Python to reconstruct this object.</p>
+<p>This differs from repr in that it does not include domain
+label and data, which must be reconstructed or supplied by other means.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.restrictedelement.RestrictedElement.restricted_sub_elements">
+<code class="descname">restricted_sub_elements</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.restrictedelement.RestrictedElement.restricted_sub_elements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return list of restricted sub elements.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.restrictedelement.RestrictedElement.shortstr">
+<code class="descname">shortstr</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.restrictedelement.RestrictedElement.shortstr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format as string for pretty printing.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.restrictedelement.RestrictedElement.signature_data">
+<code class="descname">signature_data</code><span class="sig-paren">(</span><em>renumbering</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.restrictedelement.RestrictedElement.signature_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.restrictedelement.RestrictedElement.sub_elements">
+<code class="descname">sub_elements</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.restrictedelement.RestrictedElement.sub_elements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return list of sub elements</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.restrictedelement.RestrictedElement.symmetry">
+<code class="descname">symmetry</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.restrictedelement.RestrictedElement.symmetry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the symmetry dict, which is a mapping c0 -&gt; c1
+meaning that component c0 is represented by component c1.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-ufl.finiteelement.tensorproductelement">
+<span id="tensorproductelement-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">tensorproductelement</span></code> Module<a class="headerlink" href="#module-ufl.finiteelement.tensorproductelement" title="Permalink to this headline">¶</a></h2>
+<p>This module defines the UFL finite element classes.</p>
+<dl class="class">
+<dt id="ufl.finiteelement.tensorproductelement.TensorProductElement">
+<em class="property">class </em><code class="descclassname">ufl.finiteelement.tensorproductelement.</code><code class="descname">TensorProductElement</code><span class="sig-paren">(</span><em>*elements</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.tensorproductelement.TensorProductElement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#ufl.finiteelement.finiteelementbase.FiniteElementBase" title="ufl.finiteelement.finiteelementbase.FiniteElementBase"><code class="xref py py-class docutils literal"><span class="pre">ufl.finiteelement.finiteelementbase.FiniteElementBase</span></code></a></p>
+<p>The tensor product of d element spaces:</p>
+<div class="math">
+\[V = V_0 \otimes V_1 \otimes ...  \otimes V_d\]</div>
+<p>Given bases {phi_i} for V_i for i = 1, ...., d,
+{ phi_0 * phi_1 * ... * phi_d } forms a basis for V.</p>
+<p>Create TensorProductElement from a given list of elements.</p>
+<dl class="method">
+<dt id="ufl.finiteelement.tensorproductelement.TensorProductElement.mapping">
+<code class="descname">mapping</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.tensorproductelement.TensorProductElement.mapping" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.tensorproductelement.TensorProductElement.num_sub_elements">
+<code class="descname">num_sub_elements</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.tensorproductelement.TensorProductElement.num_sub_elements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return number of subelements.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.tensorproductelement.TensorProductElement.reconstruction_signature">
+<code class="descname">reconstruction_signature</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.tensorproductelement.TensorProductElement.reconstruction_signature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format as string for evaluation as Python object.</p>
+<p>For use with cross language frameworks, stored in generated code
+and evaluated later in Python to reconstruct this object.</p>
+<p>This differs from repr in that it does not include domain
+label and data, which must be reconstructed or supplied by other means.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.tensorproductelement.TensorProductElement.shortstr">
+<code class="descname">shortstr</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.tensorproductelement.TensorProductElement.shortstr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Short pretty-print.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.tensorproductelement.TensorProductElement.signature_data">
+<code class="descname">signature_data</code><span class="sig-paren">(</span><em>renumbering</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.tensorproductelement.TensorProductElement.signature_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.finiteelement.tensorproductelement.TensorProductElement.sub_elements">
+<code class="descname">sub_elements</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.finiteelement.tensorproductelement.TensorProductElement.sub_elements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return subelements (factors).</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ufl.utils.html" class="btn btn-neutral float-right" title="utils Package" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ufl.corealg.html" class="btn btn-neutral" title="corealg Package" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, http://www.fenicsproject.org/.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.5.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

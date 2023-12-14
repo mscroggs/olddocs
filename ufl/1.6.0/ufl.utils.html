@@ -1,0 +1,630 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>utils Package &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="FEniCS Project" href="index.html"/>
+        <link rel="up" title="ufl Package" href="ufl.html"/>
+        <link rel="prev" title="formatting Package" href="ufl.formatting.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> UFL
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.6
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Project Modules</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="ufl.html">ufl Package</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#id2"><code class="docutils literal"><span class="pre">ufl</span></code> Package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.algebra"><code class="docutils literal"><span class="pre">algebra</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.argument"><code class="docutils literal"><span class="pre">argument</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.assertions"><code class="docutils literal"><span class="pre">assertions</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.cell"><code class="docutils literal"><span class="pre">cell</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.checks"><code class="docutils literal"><span class="pre">checks</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.classes"><code class="docutils literal"><span class="pre">classes</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.coefficient"><code class="docutils literal"><span class="pre">coefficient</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.common"><code class="docutils literal"><span class="pre">common</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.compound_expressions"><code class="docutils literal"><span class="pre">compound_expressions</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.conditional"><code class="docutils literal"><span class="pre">conditional</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.constantvalue"><code class="docutils literal"><span class="pre">constantvalue</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.differentiation"><code class="docutils literal"><span class="pre">differentiation</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.domain"><code class="docutils literal"><span class="pre">domain</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.equation"><code class="docutils literal"><span class="pre">equation</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.exprcontainers"><code class="docutils literal"><span class="pre">exprcontainers</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.exprequals"><code class="docutils literal"><span class="pre">exprequals</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.exproperators"><code class="docutils literal"><span class="pre">exproperators</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.form"><code class="docutils literal"><span class="pre">form</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.formoperators"><code class="docutils literal"><span class="pre">formoperators</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.geometry"><code class="docutils literal"><span class="pre">geometry</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.index_combination_utils"><code class="docutils literal"><span class="pre">index_combination_utils</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.indexed"><code class="docutils literal"><span class="pre">indexed</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.indexing"><code class="docutils literal"><span class="pre">indexing</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.indexsum"><code class="docutils literal"><span class="pre">indexsum</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.integral"><code class="docutils literal"><span class="pre">integral</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.log"><code class="docutils literal"><span class="pre">log</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.mathfunctions"><code class="docutils literal"><span class="pre">mathfunctions</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.measure"><code class="docutils literal"><span class="pre">measure</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.objects"><code class="docutils literal"><span class="pre">objects</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.operators"><code class="docutils literal"><span class="pre">operators</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.permutation"><code class="docutils literal"><span class="pre">permutation</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.precedence"><code class="docutils literal"><span class="pre">precedence</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.protocols"><code class="docutils literal"><span class="pre">protocols</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.referencevalue"><code class="docutils literal"><span class="pre">referencevalue</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.restriction"><code class="docutils literal"><span class="pre">restriction</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.sobolevspace"><code class="docutils literal"><span class="pre">sobolevspace</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.sorting"><code class="docutils literal"><span class="pre">sorting</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.split_functions"><code class="docutils literal"><span class="pre">split_functions</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.tensoralgebra"><code class="docutils literal"><span class="pre">tensoralgebra</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.tensors"><code class="docutils literal"><span class="pre">tensors</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.variable"><code class="docutils literal"><span class="pre">variable</span></code> Module</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="ufl.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="ufl.algorithms.html">algorithms Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufl.core.html">core Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufl.corealg.html">corealg Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufl.finiteelement.html">finiteelement Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufl.formatting.html">formatting Package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">utils Package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">UFL</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="modules.html">Project Modules</a> &raquo;</li>
+      
+          <li><a href="ufl.html">ufl Package</a> &raquo;</li>
+      
+    <li>utils Package</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/ufl.utils.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="utils-package">
+<h1>utils Package<a class="headerlink" href="#utils-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-ufl.utils.counted">
+<span id="counted-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">counted</span></code> Module<a class="headerlink" href="#module-ufl.utils.counted" title="Permalink to this headline">¶</a></h2>
+<p>Utilites for types with a global unique counter attached to each object.</p>
+<dl class="class">
+<dt id="ufl.utils.counted.ExampleCounted">
+<em class="property">class </em><code class="descclassname">ufl.utils.counted.</code><code class="descname">ExampleCounted</code><span class="sig-paren">(</span><em>count=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.counted.ExampleCounted" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<p>An example class for classes of objects identified by a global counter.</p>
+<p>Mimic this class to create globally counted objects within a single type.</p>
+<dl class="method">
+<dt id="ufl.utils.counted.ExampleCounted.count">
+<code class="descname">count</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.counted.ExampleCounted.count" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.utils.counted.counted_init">
+<code class="descclassname">ufl.utils.counted.</code><code class="descname">counted_init</code><span class="sig-paren">(</span><em>self</em>, <em>count=None</em>, <em>countedclass=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.counted.counted_init" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize a counted object, see ExampleCounted below for how to use.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-ufl.utils.derivativetuples">
+<span id="derivativetuples-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">derivativetuples</span></code> Module<a class="headerlink" href="#module-ufl.utils.derivativetuples" title="Permalink to this headline">¶</a></h2>
+<p>This module contains a collection of utilities for representing partial derivatives as integer tuples.</p>
+<dl class="function">
+<dt id="ufl.utils.derivativetuples.compute_derivative_tuples">
+<code class="descclassname">ufl.utils.derivativetuples.</code><code class="descname">compute_derivative_tuples</code><span class="sig-paren">(</span><em>n</em>, <em>gdim</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.derivativetuples.compute_derivative_tuples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the list of all derivative tuples for derivatives of
+given total order n and given geometric dimension gdim. This
+function returns two lists. The first is a list of tuples, where
+each tuple of length n specifies the coordinate directions of the
+n derivatives. The second is a corresponding list of tuples, where
+each tuple of length gdim specifies the number of derivatives in
+each direction. Both lists have length gdim^n and are ordered as
+expected by the UFC function tabulate_basis_derivatives.</p>
+<p>Example: If n = 2 and gdim = 3, then the nice tuples are</p>
+<blockquote>
+<div>(0, 0)  &lt;&#8211;&gt;  (2, 0, 0)  &lt;&#8211;&gt;  d^2/dxdx
+(0, 1)  &lt;&#8211;&gt;  (1, 1, 0)  &lt;&#8211;&gt;  d^2/dxdy
+(0, 2)  &lt;&#8211;&gt;  (1, 0, 1)  &lt;&#8211;&gt;  d^2/dxdz
+(1, 0)  &lt;&#8211;&gt;  (1, 1, 0)  &lt;&#8211;&gt;  d^2/dydx
+(1, 1)  &lt;&#8211;&gt;  (0, 2, 0)  &lt;&#8211;&gt;  d^2/dydy
+(1, 2)  &lt;&#8211;&gt;  (0, 1, 1)  &lt;&#8211;&gt;  d^2/dydz
+(2, 0)  &lt;&#8211;&gt;  (1, 0, 1)  &lt;&#8211;&gt;  d^2/dzdx
+(2, 1)  &lt;&#8211;&gt;  (0, 1, 1)  &lt;&#8211;&gt;  d^2/dzdy
+(2, 2)  &lt;&#8211;&gt;  (0, 0, 2)  &lt;&#8211;&gt;  d^2/dzdz</div></blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.utils.derivativetuples.derivative_counts_to_listing">
+<code class="descclassname">ufl.utils.derivativetuples.</code><code class="descname">derivative_counts_to_listing</code><span class="sig-paren">(</span><em>derivative_counts</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.derivativetuples.derivative_counts_to_listing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a derivative count tuple to a derivative listing tuple.</p>
+<p>The derivative d^3 / dy^2 dz is represented
+in counting form as (0, 2, 1) meaning (dx^0, dy^2, dz^1)
+and in listing form as (1, 1, 2) meaning (dy, dy, dz).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.utils.derivativetuples.derivative_listing_to_counts">
+<code class="descclassname">ufl.utils.derivativetuples.</code><code class="descname">derivative_listing_to_counts</code><span class="sig-paren">(</span><em>derivatives</em>, <em>gdim</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.derivativetuples.derivative_listing_to_counts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a derivative listing tuple to a derivative count tuple.</p>
+<p>The derivative d^3 / dy^2 dz is represented
+in counting form as (0, 2, 1) meaning (dx^0, dy^2, dz^1)
+and in listing form as (1, 1, 2) meaning (dy, dy, dz).</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-ufl.utils.dicts">
+<span id="dicts-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">dicts</span></code> Module<a class="headerlink" href="#module-ufl.utils.dicts" title="Permalink to this headline">¶</a></h2>
+<p>Various dict manipulation utilities.</p>
+<dl class="class">
+<dt id="ufl.utils.dicts.EmptyDictType">
+<em class="property">class </em><code class="descclassname">ufl.utils.dicts.</code><code class="descname">EmptyDictType</code><a class="headerlink" href="#ufl.utils.dicts.EmptyDictType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">dict</span></code></a></p>
+<dl class="method">
+<dt id="ufl.utils.dicts.EmptyDictType.update">
+<code class="descname">update</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.dicts.EmptyDictType.update" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.utils.dicts.dict_sum">
+<code class="descclassname">ufl.utils.dicts.</code><code class="descname">dict_sum</code><span class="sig-paren">(</span><em>items</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.dicts.dict_sum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct a dict, in between dict(items) and sum(items), by accumulating items for each key.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.utils.dicts.mergedicts">
+<code class="descclassname">ufl.utils.dicts.</code><code class="descname">mergedicts</code><span class="sig-paren">(</span><em>dicts</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.dicts.mergedicts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ufl.utils.dicts.mergedicts2">
+<code class="descclassname">ufl.utils.dicts.</code><code class="descname">mergedicts2</code><span class="sig-paren">(</span><em>d1</em>, <em>d2</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.dicts.mergedicts2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ufl.utils.dicts.slice_dict">
+<code class="descclassname">ufl.utils.dicts.</code><code class="descname">slice_dict</code><span class="sig-paren">(</span><em>dictionary</em>, <em>keys</em>, <em>default=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.dicts.slice_dict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ufl.utils.dicts.some_key">
+<code class="descclassname">ufl.utils.dicts.</code><code class="descname">some_key</code><span class="sig-paren">(</span><em>a_dict</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.dicts.some_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an arbitrary key from a dictionary.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.utils.dicts.split_dict">
+<code class="descclassname">ufl.utils.dicts.</code><code class="descname">split_dict</code><span class="sig-paren">(</span><em>d</em>, <em>criteria</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.dicts.split_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Split a dict d into two dicts based on a criteria on the keys.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.utils.dicts.subdict">
+<code class="descclassname">ufl.utils.dicts.</code><code class="descname">subdict</code><span class="sig-paren">(</span><em>superdict</em>, <em>keys</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.dicts.subdict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-ufl.utils.formatting">
+<span id="formatting-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">formatting</span></code> Module<a class="headerlink" href="#module-ufl.utils.formatting" title="Permalink to this headline">¶</a></h2>
+<p>Various string formatting utilities.</p>
+<dl class="function">
+<dt id="ufl.utils.formatting.camel2underscore">
+<code class="descclassname">ufl.utils.formatting.</code><code class="descname">camel2underscore</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.formatting.camel2underscore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a CamelCaps string to underscore_syntax.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.utils.formatting.dstr">
+<code class="descclassname">ufl.utils.formatting.</code><code class="descname">dstr</code><span class="sig-paren">(</span><em>d</em>, <em>colsize=80</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.formatting.dstr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pretty-print dictionary of key-value pairs.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.utils.formatting.estr">
+<code class="descclassname">ufl.utils.formatting.</code><code class="descname">estr</code><span class="sig-paren">(</span><em>elements</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.formatting.estr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format list of elements for printing.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.utils.formatting.istr">
+<code class="descclassname">ufl.utils.formatting.</code><code class="descname">istr</code><span class="sig-paren">(</span><em>o</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.formatting.istr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format object as string, inserting ? for None.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.utils.formatting.lstr">
+<code class="descclassname">ufl.utils.formatting.</code><code class="descname">lstr</code><span class="sig-paren">(</span><em>l</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.formatting.lstr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pretty-print list or tuple, invoking str() on items instead of repr() like str() does.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.utils.formatting.sstr">
+<code class="descclassname">ufl.utils.formatting.</code><code class="descname">sstr</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.formatting.sstr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pretty-print set.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.utils.formatting.tstr">
+<code class="descclassname">ufl.utils.formatting.</code><code class="descname">tstr</code><span class="sig-paren">(</span><em>t</em>, <em>colsize=80</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.formatting.tstr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pretty-print list of tuples of key-value pairs.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-ufl.utils.indexflattening">
+<span id="indexflattening-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">indexflattening</span></code> Module<a class="headerlink" href="#module-ufl.utils.indexflattening" title="Permalink to this headline">¶</a></h2>
+<p>This module contains a collection of utilities for mapping between multiindices and a flattened index space.</p>
+<dl class="function">
+<dt id="ufl.utils.indexflattening.flatten_multiindex">
+<code class="descclassname">ufl.utils.indexflattening.</code><code class="descname">flatten_multiindex</code><span class="sig-paren">(</span><em>ii</em>, <em>strides</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.indexflattening.flatten_multiindex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the flat index corresponding to the given multiindex.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.utils.indexflattening.shape_to_strides">
+<code class="descclassname">ufl.utils.indexflattening.</code><code class="descname">shape_to_strides</code><span class="sig-paren">(</span><em>sh</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.indexflattening.shape_to_strides" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a tuple of strides given a shape tuple.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.utils.indexflattening.unflatten_index">
+<code class="descclassname">ufl.utils.indexflattening.</code><code class="descname">unflatten_index</code><span class="sig-paren">(</span><em>i</em>, <em>strides</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.indexflattening.unflatten_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the multiindex corresponding to the given flat index.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-ufl.utils.sequences">
+<span id="sequences-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">sequences</span></code> Module<a class="headerlink" href="#module-ufl.utils.sequences" title="Permalink to this headline">¶</a></h2>
+<p>Various sequence manipulation utilities.</p>
+<dl class="function">
+<dt id="ufl.utils.sequences.and_tuples">
+<code class="descclassname">ufl.utils.sequences.</code><code class="descname">and_tuples</code><span class="sig-paren">(</span><em>seqa</em>, <em>seqb</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.sequences.and_tuples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return &#8216;and&#8217; of all pairs in two sequences of same length.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.utils.sequences.iter_tree">
+<code class="descclassname">ufl.utils.sequences.</code><code class="descname">iter_tree</code><span class="sig-paren">(</span><em>tree</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.sequences.iter_tree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Iterate over all nodes in a tree represented
+by lists of lists of leaves.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.utils.sequences.or_tuples">
+<code class="descclassname">ufl.utils.sequences.</code><code class="descname">or_tuples</code><span class="sig-paren">(</span><em>seqa</em>, <em>seqb</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.sequences.or_tuples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return &#8216;or&#8217; of all pairs in two sequences of same length.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.utils.sequences.product">
+<code class="descclassname">ufl.utils.sequences.</code><code class="descname">product</code><span class="sig-paren">(</span><em>sequence</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.sequences.product" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the product of all elements in a sequence.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.utils.sequences.recursive_chain">
+<code class="descclassname">ufl.utils.sequences.</code><code class="descname">recursive_chain</code><span class="sig-paren">(</span><em>lists</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.sequences.recursive_chain" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ufl.utils.sequences.unzip">
+<code class="descclassname">ufl.utils.sequences.</code><code class="descname">unzip</code><span class="sig-paren">(</span><em>seq</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.sequences.unzip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inverse operation of zip: unzip(zip(a, b)) == (a, b)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.utils.sequences.xor">
+<code class="descclassname">ufl.utils.sequences.</code><code class="descname">xor</code><span class="sig-paren">(</span><em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.sequences.xor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-ufl.utils.sorting">
+<span id="sorting-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">sorting</span></code> Module<a class="headerlink" href="#module-ufl.utils.sorting" title="Permalink to this headline">¶</a></h2>
+<p>Utilites for sorting.</p>
+<dl class="function">
+<dt id="ufl.utils.sorting.canonicalize_metadata">
+<code class="descclassname">ufl.utils.sorting.</code><code class="descname">canonicalize_metadata</code><span class="sig-paren">(</span><em>metadata</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.sorting.canonicalize_metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assuming metadata to be a dict with string keys and builtin python types as values.</p>
+<p>Transform dict to a tuple of (key, value) item tuples ordered by key,
+with dict, list and tuple values converted the same way recursively.
+Lists and tuples are converted to tuples. Other values are converted using str().
+This is such that the end result can be hashed and sorted using regular &lt;,
+because python 3 doesn&#8217;t allow e.g. (3 &lt; &#8220;auto&#8221;) which occurs regularly in metadata.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.utils.sorting.sorted_by_count">
+<code class="descclassname">ufl.utils.sorting.</code><code class="descname">sorted_by_count</code><span class="sig-paren">(</span><em>seq</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.sorting.sorted_by_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sort a sequence by the item.count().</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.utils.sorting.sorted_by_key">
+<code class="descclassname">ufl.utils.sorting.</code><code class="descname">sorted_by_key</code><span class="sig-paren">(</span><em>mapping</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.sorting.sorted_by_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sort dict items by key, allowing different key types.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.utils.sorting.topological_sorting">
+<code class="descclassname">ufl.utils.sorting.</code><code class="descname">topological_sorting</code><span class="sig-paren">(</span><em>nodes</em>, <em>edges</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.sorting.topological_sorting" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a topologically sorted list of the nodes</p>
+<p>Implemented algorithm from Wikipedia :P</p>
+<p>&lt;<a class="reference external" href="http://en.wikipedia.org/wiki/Topological_sorting">http://en.wikipedia.org/wiki/Topological_sorting</a>&gt;</p>
+<p>No error for cyclic edges...</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-ufl.utils.stacks">
+<span id="stacks-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">stacks</span></code> Module<a class="headerlink" href="#module-ufl.utils.stacks" title="Permalink to this headline">¶</a></h2>
+<p>Various utility data structures.</p>
+<dl class="class">
+<dt id="ufl.utils.stacks.Stack">
+<em class="property">class </em><code class="descclassname">ufl.utils.stacks.</code><code class="descname">Stack</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.stacks.Stack" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">list</span></code></a></p>
+<p>A stack datastructure.</p>
+<dl class="method">
+<dt id="ufl.utils.stacks.Stack.peek">
+<code class="descname">peek</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.stacks.Stack.peek" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.utils.stacks.Stack.push">
+<code class="descname">push</code><span class="sig-paren">(</span><em>v</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.stacks.Stack.push" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ufl.utils.stacks.StackDict">
+<em class="property">class </em><code class="descclassname">ufl.utils.stacks.</code><code class="descname">StackDict</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.stacks.StackDict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">dict</span></code></a></p>
+<p>A dict that can be changed incrementally with &#8216;d.push(k,v)&#8217; and have changes rolled back with &#8216;k,v = d.pop()&#8217;.</p>
+<dl class="method">
+<dt id="ufl.utils.stacks.StackDict.pop">
+<code class="descname">pop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.stacks.StackDict.pop" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.utils.stacks.StackDict.push">
+<code class="descname">push</code><span class="sig-paren">(</span><em>k</em>, <em>v</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.stacks.StackDict.push" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-ufl.utils.system">
+<span id="system-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">system</span></code> Module<a class="headerlink" href="#module-ufl.utils.system" title="Permalink to this headline">¶</a></h2>
+<p>Various utilities accessing system io.</p>
+<dl class="function">
+<dt id="ufl.utils.system.get_status_output">
+<code class="descclassname">ufl.utils.system.</code><code class="descname">get_status_output</code><span class="sig-paren">(</span><em>cmd</em>, <em>input=None</em>, <em>cwd=None</em>, <em>env=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.system.get_status_output" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ufl.utils.system.openpdf">
+<code class="descclassname">ufl.utils.system.</code><code class="descname">openpdf</code><span class="sig-paren">(</span><em>pdffilename</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.system.openpdf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Open PDF file in external pdf viewer.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.utils.system.pdflatex">
+<code class="descclassname">ufl.utils.system.</code><code class="descname">pdflatex</code><span class="sig-paren">(</span><em>latexfilename</em>, <em>pdffilename</em>, <em>flags=''</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.system.pdflatex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute pdflatex to compile a latex file into pdf.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.utils.system.write_file">
+<code class="descclassname">ufl.utils.system.</code><code class="descname">write_file</code><span class="sig-paren">(</span><em>filename</em>, <em>text</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.system.write_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-ufl.utils.timer">
+<span id="timer-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">timer</span></code> Module<a class="headerlink" href="#module-ufl.utils.timer" title="Permalink to this headline">¶</a></h2>
+<p>Timer utilites.</p>
+<dl class="class">
+<dt id="ufl.utils.timer.Timer">
+<em class="property">class </em><code class="descclassname">ufl.utils.timer.</code><code class="descname">Timer</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.timer.Timer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<dl class="method">
+<dt id="ufl.utils.timer.Timer.end">
+<code class="descname">end</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.timer.Timer.end" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-ufl.utils.ufltypedicts">
+<span id="ufltypedicts-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">ufltypedicts</span></code> Module<a class="headerlink" href="#module-ufl.utils.ufltypedicts" title="Permalink to this headline">¶</a></h2>
+<p>Various utility data structures.</p>
+<dl class="class">
+<dt id="ufl.utils.ufltypedicts.UFLTypeDefaultDict">
+<em class="property">class </em><code class="descclassname">ufl.utils.ufltypedicts.</code><code class="descname">UFLTypeDefaultDict</code><span class="sig-paren">(</span><em>default</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.utils.ufltypedicts.UFLTypeDefaultDict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">dict</span></code></a></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="ufl.utils.ufltypedicts.UFLTypeDict">
+<em class="property">class </em><code class="descclassname">ufl.utils.ufltypedicts.</code><code class="descname">UFLTypeDict</code><a class="headerlink" href="#ufl.utils.ufltypedicts.UFLTypeDict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">dict</span></code></a></p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="ufl.formatting.html" class="btn btn-neutral" title="formatting Package" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, http://www.fenicsproject.org/.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.6.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

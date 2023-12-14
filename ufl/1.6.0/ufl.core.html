@@ -1,0 +1,733 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>core Package &mdash; FEniCS Project</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="FEniCS Project" href="index.html"/>
+        <link rel="up" title="ufl Package" href="ufl.html"/>
+        <link rel="next" title="corealg Package" href="ufl.corealg.html"/>
+        <link rel="prev" title="algorithms Package" href="ufl.algorithms.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> UFL
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.6
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Project Modules</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="ufl.html">ufl Package</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#id2"><code class="docutils literal"><span class="pre">ufl</span></code> Package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.algebra"><code class="docutils literal"><span class="pre">algebra</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.argument"><code class="docutils literal"><span class="pre">argument</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.assertions"><code class="docutils literal"><span class="pre">assertions</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.cell"><code class="docutils literal"><span class="pre">cell</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.checks"><code class="docutils literal"><span class="pre">checks</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.classes"><code class="docutils literal"><span class="pre">classes</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.coefficient"><code class="docutils literal"><span class="pre">coefficient</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.common"><code class="docutils literal"><span class="pre">common</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.compound_expressions"><code class="docutils literal"><span class="pre">compound_expressions</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.conditional"><code class="docutils literal"><span class="pre">conditional</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.constantvalue"><code class="docutils literal"><span class="pre">constantvalue</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.differentiation"><code class="docutils literal"><span class="pre">differentiation</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.domain"><code class="docutils literal"><span class="pre">domain</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.equation"><code class="docutils literal"><span class="pre">equation</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.exprcontainers"><code class="docutils literal"><span class="pre">exprcontainers</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.exprequals"><code class="docutils literal"><span class="pre">exprequals</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.exproperators"><code class="docutils literal"><span class="pre">exproperators</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.form"><code class="docutils literal"><span class="pre">form</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.formoperators"><code class="docutils literal"><span class="pre">formoperators</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.geometry"><code class="docutils literal"><span class="pre">geometry</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.index_combination_utils"><code class="docutils literal"><span class="pre">index_combination_utils</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.indexed"><code class="docutils literal"><span class="pre">indexed</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.indexing"><code class="docutils literal"><span class="pre">indexing</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.indexsum"><code class="docutils literal"><span class="pre">indexsum</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.integral"><code class="docutils literal"><span class="pre">integral</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.log"><code class="docutils literal"><span class="pre">log</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.mathfunctions"><code class="docutils literal"><span class="pre">mathfunctions</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.measure"><code class="docutils literal"><span class="pre">measure</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.objects"><code class="docutils literal"><span class="pre">objects</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.operators"><code class="docutils literal"><span class="pre">operators</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.permutation"><code class="docutils literal"><span class="pre">permutation</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.precedence"><code class="docutils literal"><span class="pre">precedence</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.protocols"><code class="docutils literal"><span class="pre">protocols</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.referencevalue"><code class="docutils literal"><span class="pre">referencevalue</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.restriction"><code class="docutils literal"><span class="pre">restriction</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.sobolevspace"><code class="docutils literal"><span class="pre">sobolevspace</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.sorting"><code class="docutils literal"><span class="pre">sorting</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.split_functions"><code class="docutils literal"><span class="pre">split_functions</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.tensoralgebra"><code class="docutils literal"><span class="pre">tensoralgebra</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.tensors"><code class="docutils literal"><span class="pre">tensors</span></code> Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ufl.html#module-ufl.variable"><code class="docutils literal"><span class="pre">variable</span></code> Module</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="ufl.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="ufl.algorithms.html">algorithms Package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">core Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufl.corealg.html">corealg Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufl.finiteelement.html">finiteelement Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufl.formatting.html">formatting Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufl.utils.html">utils Package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">UFL</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="modules.html">Project Modules</a> &raquo;</li>
+      
+          <li><a href="ufl.html">ufl Package</a> &raquo;</li>
+      
+    <li>core Package</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/ufl.core.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="core-package">
+<h1>core Package<a class="headerlink" href="#core-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-ufl.core.compute_expr_hash">
+<span id="compute-expr-hash-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">compute_expr_hash</span></code> Module<a class="headerlink" href="#module-ufl.core.compute_expr_hash" title="Permalink to this headline">¶</a></h2>
+<p>Non-recursive traversal based hash computation algorithm.</p>
+<p>Fast iteration over nodes in an Expr DAG to compute
+memoized hashes for all unique nodes.</p>
+<dl class="function">
+<dt id="ufl.core.compute_expr_hash.compute_expr_hash">
+<code class="descclassname">ufl.core.compute_expr_hash.</code><code class="descname">compute_expr_hash</code><span class="sig-paren">(</span><em>expr</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.compute_expr_hash.compute_expr_hash" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute hashes of expr and all its nodes efficiently without using Python recursion.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-ufl.core.expr">
+<span id="expr-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">expr</span></code> Module<a class="headerlink" href="#module-ufl.core.expr" title="Permalink to this headline">¶</a></h2>
+<p>This module defines the Expr class, the superclass
+for all expression tree node types in UFL.</p>
+<p>NB! A note about other operators not implemented here:</p>
+<p>More operators (special functions) on Exprs are defined in exproperators.py,
+as well as the transpose &#8220;A.T&#8221; and spatial derivative &#8220;a.dx(i)&#8221;.
+This is to avoid circular dependencies between Expr and its subclasses.</p>
+<dl class="class">
+<dt id="ufl.core.expr.Expr">
+<em class="property">class </em><code class="descclassname">ufl.core.expr.</code><code class="descname">Expr</code><a class="headerlink" href="#ufl.core.expr.Expr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<p>Base class for all UFL expression types.</p>
+<dl class="docutils">
+<dt><em>Instance properties</em></dt>
+<dd>Every expression instance will have certain properties.
+Most important are the <code class="docutils literal"><span class="pre">ufl_operands</span></code>, <code class="docutils literal"><span class="pre">ufl_shape</span></code>,
+<code class="docutils literal"><span class="pre">ufl_free_indices</span></code>, and <code class="docutils literal"><span class="pre">ufl_index_dimensions</span></code> properties.
+Expressions are immutable and hashable.</dd>
+<dt><em>Type traits</em></dt>
+<dd>The Expr API defines a number of type traits that each subclass
+needs to provide. Most of these are specified indirectly via
+the arguments to the <code class="docutils literal"><span class="pre">ufl_type</span></code> class decorator, allowing UFL
+to do some consistency checks and automate most of the traits
+for most types. The type traits are accessed via a class or
+instance object on the form obj._ufl_traitname_. See the source
+code for description of each type trait.</dd>
+<dt><em>Operators</em></dt>
+<dd>Some Python special functions are implemented in this class,
+some are implemented in subclasses, and some are attached to
+this class in the <code class="docutils literal"><span class="pre">ufl_type</span></code> class decorator.</dd>
+<dt><em>Defining subclasses</em></dt>
+<dd><p class="first">To define a new expression class, inherit from either
+<code class="docutils literal"><span class="pre">Terminal</span></code> or <code class="docutils literal"><span class="pre">Operator</span></code>, and apply the <code class="docutils literal"><span class="pre">ufl_type</span></code> class
+decorator with suitable arguments.  See the docstring of
+<code class="docutils literal"><span class="pre">ufl_type</span></code> for details on its arguments.  Looking at existing
+classes similar to the one you wish to add is a good
+idea. Looking through the comments in the <code class="docutils literal"><span class="pre">Expr</span></code> class and
+<code class="docutils literal"><span class="pre">ufl_type</span></code> to understand all the properties that may need to
+be specified is also a good idea. Note that many algorithms in
+UFL and form compilers will need handlers implemented for each
+new type.</p>
+<div class="last highlight-python"><div class="highlight"><pre><span></span><span class="nd">@ufl_type</span><span class="p">()</span>
+<span class="k">class</span> <span class="nc">MyOperator</span><span class="p">(</span><span class="n">Operator</span><span class="p">):</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+</dd>
+<dt><em>Type collections</em></dt>
+<dd>All <code class="docutils literal"><span class="pre">Expr</span></code> subclasses are collected by <code class="docutils literal"><span class="pre">ufl_type</span></code> in global
+variables available via <code class="docutils literal"><span class="pre">Expr</span></code>.</dd>
+<dt><em>Profiling</em></dt>
+<dd><p class="first">Object creation statistics can be collected by doing</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Expr</span><span class="o">.</span><span class="n">ufl_enable_profiling</span><span class="p">()</span>
+<span class="c1"># ... run some code</span>
+<span class="n">initstats</span><span class="p">,</span> <span class="n">delstats</span> <span class="o">=</span> <span class="n">Expr</span><span class="o">.</span><span class="n">ufl_disable_profiling</span><span class="p">()</span>
+</pre></div>
+</div>
+<p class="last">Giving a list of creation and deletion counts for each typecode.</p>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="ufl.core.expr.Expr.T">
+<code class="descname">T</code><a class="headerlink" href="#ufl.core.expr.Expr.T" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transposed a rank two tensor expression. For more general transpose
+operations of higher order tensor expressions, use indexing and Tensor.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.core.expr.Expr.cell">
+<code class="descname">cell</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.expr.Expr.cell" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the cell this expression is defined on.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.core.expr.Expr.domain">
+<code class="descname">domain</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.expr.Expr.domain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the single unique domain this expression is defined on or throw an error.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.core.expr.Expr.domains">
+<code class="descname">domains</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.expr.Expr.domains" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.core.expr.Expr.dx">
+<code class="descname">dx</code><span class="sig-paren">(</span><em>*ii</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.expr.Expr.dx" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the partial derivative with respect to spatial variable number i.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.core.expr.Expr.evaluate">
+<code class="descname">evaluate</code><span class="sig-paren">(</span><em>x</em>, <em>mapping</em>, <em>component</em>, <em>index_values</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.expr.Expr.evaluate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate expression at given coordinate with given values for terminals.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.core.expr.Expr.free_indices">
+<code class="descname">free_indices</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.expr.Expr.free_indices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a tuple with the free indices (unassigned) of the expression.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.core.expr.Expr.geometric_dimension">
+<code class="descname">geometric_dimension</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.expr.Expr.geometric_dimension" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the geometric dimension this expression lives in.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.core.expr.Expr.index_dimensions">
+<code class="descname">index_dimensions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.expr.Expr.index_dimensions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a dict with the free or repeated indices in the expression
+as keys and the dimensions of those indices as values.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.core.expr.Expr.is_cellwise_constant">
+<code class="descname">is_cellwise_constant</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.expr.Expr.is_cellwise_constant" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return whether this expression is spatially constant over each cell.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.core.expr.Expr.operands">
+<code class="descname">operands</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.expr.Expr.operands" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a sequence with all subtree nodes in expression tree.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.core.expr.Expr.rank">
+<code class="descname">rank</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.expr.Expr.rank" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the tensor rank of the expression.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.core.expr.Expr.reconstruct">
+<code class="descname">reconstruct</code><span class="sig-paren">(</span><em>*operands</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.expr.Expr.reconstruct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a new object of the same type with new operands.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.core.expr.Expr.shape">
+<code class="descname">shape</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.expr.Expr.shape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the tensor shape of the expression.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.core.expr.Expr.signature_data">
+<code class="descname">signature_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.expr.Expr.signature_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return data that uniquely identifies form compiler relevant aspects of this object.</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="ufl.core.expr.Expr.ufl_disable_profiling">
+<em class="property">static </em><code class="descname">ufl_disable_profiling</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.expr.Expr.ufl_disable_profiling" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turn off object counting mechanism. Returns object init and del counts.</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="ufl.core.expr.Expr.ufl_enable_profiling">
+<em class="property">static </em><code class="descname">ufl_enable_profiling</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.expr.Expr.ufl_enable_profiling" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turn on object counting mechanism and reset counts to zero.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-ufl.core.multiindex">
+<span id="multiindex-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">multiindex</span></code> Module<a class="headerlink" href="#module-ufl.core.multiindex" title="Permalink to this headline">¶</a></h2>
+<p>This module defines the single index types and some internal index utilities.</p>
+<dl class="class">
+<dt id="ufl.core.multiindex.FixedIndex">
+<em class="property">class </em><code class="descclassname">ufl.core.multiindex.</code><code class="descname">FixedIndex</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.multiindex.FixedIndex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#ufl.core.multiindex.IndexBase" title="ufl.core.multiindex.IndexBase"><code class="xref py py-class docutils literal"><span class="pre">ufl.core.multiindex.IndexBase</span></code></a></p>
+<p>UFL value: An index with a specific value assigned.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="ufl.core.multiindex.Index">
+<em class="property">class </em><code class="descclassname">ufl.core.multiindex.</code><code class="descname">Index</code><span class="sig-paren">(</span><em>count=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.multiindex.Index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#ufl.core.multiindex.IndexBase" title="ufl.core.multiindex.IndexBase"><code class="xref py py-class docutils literal"><span class="pre">ufl.core.multiindex.IndexBase</span></code></a></p>
+<p>UFL value: An index with no value assigned.</p>
+<p>Used to represent free indices in Einstein indexing notation.</p>
+<dl class="method">
+<dt id="ufl.core.multiindex.Index.count">
+<code class="descname">count</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.multiindex.Index.count" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ufl.core.multiindex.IndexBase">
+<em class="property">class </em><code class="descclassname">ufl.core.multiindex.</code><code class="descname">IndexBase</code><a class="headerlink" href="#ufl.core.multiindex.IndexBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="ufl.core.multiindex.MultiIndex">
+<em class="property">class </em><code class="descclassname">ufl.core.multiindex.</code><code class="descname">MultiIndex</code><span class="sig-paren">(</span><em>indices</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.multiindex.MultiIndex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#ufl.core.terminal.Terminal" title="ufl.core.terminal.Terminal"><code class="xref py py-class docutils literal"><span class="pre">ufl.core.terminal.Terminal</span></code></a></p>
+<p>Represents a sequence of indices, either fixed or free.</p>
+<dl class="method">
+<dt id="ufl.core.multiindex.MultiIndex.domains">
+<code class="descname">domains</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.multiindex.MultiIndex.domains" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return tuple of domains related to this terminal object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.core.multiindex.MultiIndex.evaluate">
+<code class="descname">evaluate</code><span class="sig-paren">(</span><em>x</em>, <em>mapping</em>, <em>component</em>, <em>index_values</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.multiindex.MultiIndex.evaluate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.core.multiindex.MultiIndex.indices">
+<code class="descname">indices</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.multiindex.MultiIndex.indices" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.core.multiindex.MultiIndex.is_cellwise_constant">
+<code class="descname">is_cellwise_constant</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.multiindex.MultiIndex.is_cellwise_constant" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ufl.core.multiindex.MultiIndex.ufl_free_indices">
+<code class="descname">ufl_free_indices</code><a class="headerlink" href="#ufl.core.multiindex.MultiIndex.ufl_free_indices" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ufl.core.multiindex.MultiIndex.ufl_index_dimensions">
+<code class="descname">ufl_index_dimensions</code><a class="headerlink" href="#ufl.core.multiindex.MultiIndex.ufl_index_dimensions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ufl.core.multiindex.MultiIndex.ufl_shape">
+<code class="descname">ufl_shape</code><a class="headerlink" href="#ufl.core.multiindex.MultiIndex.ufl_shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.core.multiindex.as_multi_index">
+<code class="descclassname">ufl.core.multiindex.</code><code class="descname">as_multi_index</code><span class="sig-paren">(</span><em>ii</em>, <em>shape=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.multiindex.as_multi_index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ufl.core.multiindex.indices">
+<code class="descclassname">ufl.core.multiindex.</code><code class="descname">indices</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.multiindex.indices" title="Permalink to this definition">¶</a></dt>
+<dd><p>UFL value: Return a tuple of n new Index objects.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-ufl.core.operator">
+<span id="operator-module"></span><h2><a class="reference external" href="https://docs.python.org/2/library/operator.html#module-operator" title="(in Python v2.7)"><code class="xref py py-mod docutils literal"><span class="pre">operator</span></code></a> Module<a class="headerlink" href="#module-ufl.core.operator" title="Permalink to this headline">¶</a></h2>
+<p>Base class for all operators, i.e. non-terminal expr types.</p>
+<dl class="class">
+<dt id="ufl.core.operator.Operator">
+<em class="property">class </em><code class="descclassname">ufl.core.operator.</code><code class="descname">Operator</code><span class="sig-paren">(</span><em>operands=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.operator.Operator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#ufl.core.expr.Expr" title="ufl.core.expr.Expr"><code class="xref py py-class docutils literal"><span class="pre">ufl.core.expr.Expr</span></code></a></p>
+<dl class="method">
+<dt id="ufl.core.operator.Operator.free_indices">
+<code class="descname">free_indices</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.operator.Operator.free_indices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Intermediate helper property getter to transition from .free_indices() to .ufl_free_indices.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.core.operator.Operator.index_dimensions">
+<code class="descname">index_dimensions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.operator.Operator.index_dimensions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Intermediate helper property getter to transition from .index_dimensions() to .ufl_index_dimensions.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.core.operator.Operator.is_cellwise_constant">
+<code class="descname">is_cellwise_constant</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.operator.Operator.is_cellwise_constant" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return whether this expression is spatially constant over each cell.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.core.operator.Operator.operands">
+<code class="descname">operands</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.operator.Operator.operands" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ufl.core.operator.Operator.reconstruct">
+<code class="descname">reconstruct</code><span class="sig-paren">(</span><em>*operands</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.operator.Operator.reconstruct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a new object of the same type with new operands.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.core.operator.Operator.signature_data">
+<code class="descname">signature_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.operator.Operator.signature_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ufl.core.operator.Operator.ufl_operands">
+<code class="descname">ufl_operands</code><a class="headerlink" href="#ufl.core.operator.Operator.ufl_operands" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-ufl.core.terminal">
+<span id="terminal-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">terminal</span></code> Module<a class="headerlink" href="#module-ufl.core.terminal" title="Permalink to this headline">¶</a></h2>
+<p>This module defines the Terminal class, the superclass
+for all types that are terminal nodes in the expression trees.</p>
+<dl class="class">
+<dt id="ufl.core.terminal.FormArgument">
+<em class="property">class </em><code class="descclassname">ufl.core.terminal.</code><code class="descname">FormArgument</code><a class="headerlink" href="#ufl.core.terminal.FormArgument" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#ufl.core.terminal.Terminal" title="ufl.core.terminal.Terminal"><code class="xref py py-class docutils literal"><span class="pre">ufl.core.terminal.Terminal</span></code></a></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="ufl.core.terminal.Terminal">
+<em class="property">class </em><code class="descclassname">ufl.core.terminal.</code><code class="descname">Terminal</code><a class="headerlink" href="#ufl.core.terminal.Terminal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#ufl.core.expr.Expr" title="ufl.core.expr.Expr"><code class="xref py py-class docutils literal"><span class="pre">ufl.core.expr.Expr</span></code></a></p>
+<p>A terminal node in the UFL expression tree.</p>
+<dl class="method">
+<dt id="ufl.core.terminal.Terminal.domains">
+<code class="descname">domains</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.terminal.Terminal.domains" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return tuple of domains related to this terminal object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.core.terminal.Terminal.evaluate">
+<code class="descname">evaluate</code><span class="sig-paren">(</span><em>x</em>, <em>mapping</em>, <em>component</em>, <em>index_values</em>, <em>derivatives=()</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.terminal.Terminal.evaluate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get self from mapping and return the component asked for.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.core.terminal.Terminal.free_indices">
+<code class="descname">free_indices</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.terminal.Terminal.free_indices" title="Permalink to this definition">¶</a></dt>
+<dd><p>A Terminal object never has free indices.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.core.terminal.Terminal.index_dimensions">
+<code class="descname">index_dimensions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.terminal.Terminal.index_dimensions" title="Permalink to this definition">¶</a></dt>
+<dd><p>A Terminal object never has free indices.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.core.terminal.Terminal.operands">
+<code class="descname">operands</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.terminal.Terminal.operands" title="Permalink to this definition">¶</a></dt>
+<dd><p>A Terminal object never has operands.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.core.terminal.Terminal.reconstruct">
+<code class="descname">reconstruct</code><span class="sig-paren">(</span><em>*operands</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.terminal.Terminal.reconstruct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return self.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ufl.core.terminal.Terminal.signature_data">
+<code class="descname">signature_data</code><span class="sig-paren">(</span><em>renumbering</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.terminal.Terminal.signature_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Default signature data for of terminals just return the repr string.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ufl.core.terminal.Terminal.ufl_free_indices">
+<code class="descname">ufl_free_indices</code><em class="property"> = ()</em><a class="headerlink" href="#ufl.core.terminal.Terminal.ufl_free_indices" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ufl.core.terminal.Terminal.ufl_index_dimensions">
+<code class="descname">ufl_index_dimensions</code><em class="property"> = ()</em><a class="headerlink" href="#ufl.core.terminal.Terminal.ufl_index_dimensions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ufl.core.terminal.Terminal.ufl_operands">
+<code class="descname">ufl_operands</code><em class="property"> = ()</em><a class="headerlink" href="#ufl.core.terminal.Terminal.ufl_operands" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-ufl.core.ufl_type">
+<span id="ufl-type-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">ufl_type</span></code> Module<a class="headerlink" href="#module-ufl.core.ufl_type" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="ufl.core.ufl_type.attach_implementations_of_indexing_interface">
+<code class="descclassname">ufl.core.ufl_type.</code><code class="descname">attach_implementations_of_indexing_interface</code><span class="sig-paren">(</span><em>cls</em>, <em>inherit_shape_from_operand</em>, <em>inherit_indices_from_operand</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.ufl_type.attach_implementations_of_indexing_interface" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ufl.core.ufl_type.check_abstract_trait_consistency">
+<code class="descclassname">ufl.core.ufl_type.</code><code class="descname">check_abstract_trait_consistency</code><span class="sig-paren">(</span><em>cls</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.ufl_type.check_abstract_trait_consistency" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check that the first base classes up to Expr are other UFL types.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.core.ufl_type.check_has_slots">
+<code class="descclassname">ufl.core.ufl_type.</code><code class="descname">check_has_slots</code><span class="sig-paren">(</span><em>cls</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.ufl_type.check_has_slots" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if type has __slots__ unless it is marked as exception with _ufl_noslots_</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.core.ufl_type.check_implements_required_methods">
+<code class="descclassname">ufl.core.ufl_type.</code><code class="descname">check_implements_required_methods</code><span class="sig-paren">(</span><em>cls</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.ufl_type.check_implements_required_methods" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if type implements the required methods.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.core.ufl_type.check_implements_required_properties">
+<code class="descclassname">ufl.core.ufl_type.</code><code class="descname">check_implements_required_properties</code><span class="sig-paren">(</span><em>cls</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.ufl_type.check_implements_required_properties" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if type implements the required properties.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.core.ufl_type.check_is_terminal_consistency">
+<code class="descclassname">ufl.core.ufl_type.</code><code class="descname">check_is_terminal_consistency</code><span class="sig-paren">(</span><em>cls</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.ufl_type.check_is_terminal_consistency" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check for consistency in is_terminal trait among superclasses.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.core.ufl_type.check_type_traits_consistency">
+<code class="descclassname">ufl.core.ufl_type.</code><code class="descname">check_type_traits_consistency</code><span class="sig-paren">(</span><em>cls</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.ufl_type.check_type_traits_consistency" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute a variety of consistency checks on the ufl type traits.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.core.ufl_type.determine_num_ops">
+<code class="descclassname">ufl.core.ufl_type.</code><code class="descname">determine_num_ops</code><span class="sig-paren">(</span><em>cls</em>, <em>num_ops</em>, <em>unop</em>, <em>binop</em>, <em>rbinop</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.ufl_type.determine_num_ops" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ufl.core.ufl_type.get_base_attr">
+<code class="descclassname">ufl.core.ufl_type.</code><code class="descname">get_base_attr</code><span class="sig-paren">(</span><em>cls</em>, <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.ufl_type.get_base_attr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return first non-None attribute of given name among base classes.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.core.ufl_type.set_trait">
+<code class="descclassname">ufl.core.ufl_type.</code><code class="descname">set_trait</code><span class="sig-paren">(</span><em>cls</em>, <em>basename</em>, <em>value</em>, <em>inherit=False</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.ufl_type.set_trait" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assign a trait to class with namespacing _ufl_basename_ applied.</p>
+<p>If trait value is None, optionally inherit it from the closest base class that has it.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.core.ufl_type.ufl_type">
+<code class="descclassname">ufl.core.ufl_type.</code><code class="descname">ufl_type</code><span class="sig-paren">(</span><em>is_abstract=False</em>, <em>is_terminal=None</em>, <em>is_scalar=False</em>, <em>is_index_free=False</em>, <em>is_shaping=False</em>, <em>is_literal=False</em>, <em>is_terminal_modifier=False</em>, <em>is_in_reference_frame=False</em>, <em>is_restriction=False</em>, <em>is_evaluation=False</em>, <em>is_differential=None</em>, <em>use_default_hash=True</em>, <em>num_ops=None</em>, <em>inherit_shape_from_operand=None</em>, <em>inherit_indices_from_operand=None</em>, <em>wraps_type=None</em>, <em>unop=None</em>, <em>binop=None</em>, <em>rbinop=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.ufl_type.ufl_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>This decorator is to be applied to every subclass in the UFL Expr hierarchy.</p>
+<p>This decorator contains a number of checks that are
+intended to enforce uniform behaviour across UFL types.</p>
+<p>The rationale behind the checks and the meaning of the
+optional arguments should be sufficiently documented
+in the source code below.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ufl.core.ufl_type.update_global_expr_attributes">
+<code class="descclassname">ufl.core.ufl_type.</code><code class="descname">update_global_expr_attributes</code><span class="sig-paren">(</span><em>cls</em><span class="sig-paren">)</span><a class="headerlink" href="#ufl.core.ufl_type.update_global_expr_attributes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update global Expr attributes, mainly by adding cls to global collections of ufl types.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ufl.corealg.html" class="btn btn-neutral float-right" title="corealg Package" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ufl.algorithms.html" class="btn btn-neutral" title="algorithms Package" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright FEniCS Project, http://www.fenicsproject.org/.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.6.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
